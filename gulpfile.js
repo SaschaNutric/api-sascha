@@ -1,20 +1,39 @@
 var gulp = require('gulp');
-var browserSync = require('browser-sync').create();
+
+var nock = require('nock');
+var request = require('request');
+var API_URL = 'https://localhost:3030';
+
+gulp.task('test', function(){
+	/*nock(API_URL)
+  		.get('/')
+  		.socketDelay(2000) // 2 seconds
+  		.reply(200, '<html></html>')
+  		*/
 
 
-// Configure the browserSync task
-gulp.task('browserSync', function() {
-    browserSync.init({
-        server: {
-            baseDir: 'bin/www'
-        },
+nock('should provide token in header', function (done) {
+    nock(API_URL, {
+        reqheaders: {
+            'Content-Type': 'application/json'
+        }
     })
+        .get('/users')
+        .reply(200, 'OK')
+ 
+    mediaClient.musicList(function(error, response) {
+        expect(response).to.eql('OK')
+        done()
+    })
+ 
 })
 
-// Dev task with browserSync
-gulp.task('dev', ['browserSync'], function() {
-
-    // Reloads the browser whenever HTML or JS files change
-    gulp.watch('views/*.html', browserSync.reload);
-    gulp.watch('routes/*.js', browserSync.reload);
 });
+
+ gulp.task('token', function(){
+ 	var User = function (token) {
+    if (typeof token === 'undefined')
+        throw new Error('You need to specify valid token for API request!');
+    	this.token = token
+	}
+ })

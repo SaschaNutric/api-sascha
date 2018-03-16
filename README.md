@@ -41,20 +41,51 @@ ir a [http://localhost:3000](http://localhost:3000) en tu nevegador
 Nosotro establesemos un orden de los archivo para mantener un estandar en el desarrollo de la intefaz de programacion de aplicaciones:
 ```
 api-sascha/
- ├──bin/                        * Nuestro directorio server
- |   ├──www                 		* www configuracion para el server
+ ├──bin/					* Nuestro directorio server
+ |   ├──www						* www configuracion para el server
  │
- ├──/node_modules               * Nuestro directorio de dependencias node
+ ├──/node_modules			* Nuestro directorio de dependencias node
  │       
- ├──/public                     * Nuestro directorio publico
- │   ├──/images                    * Nuestro directorio statico de imagenes
- │   ├──/javascripts               * Nuestro directorio statico de javascripts
- │   ├──/stylesheets               * Nuestro directorio statico de estilos
- │       ├──stile.css            	* un simple stile.css
+ ├──/public 				* Nuestro directorio publico
+ │   ├──/images 				* Nuestro directorio statico de imagenes
+ │   ├──/javascripts 			* Nuestro directorio statico de javascripts
+ │   ├──/stylesheets 			* Nuestro directorio statico de estilos
+ │       ├──stile.css 				* un simple stile.css
  │       
- ├──/routes                     * Nuestro directorio de rutas
- │   ├──index.js                    * indice de enrutamiento /index
- │   
+ ├──/src 					* Nuestro directorio src
+ │   ├──/collections 			* Directorio de Colecciones Bookshelf
+ │   │	 ├──users.js				* Coleccion de usuarios
+ │	 │ 	 
+ │   ├──/commons				* Directorio de Config ORM Bookshelf
+ │   │	 ├──bookshelf.js			* congigura el bookshelf + knex y basedato
+ │	 │ 	 
+ │   ├──/controllers			* Directorio de los controladores de la api
+ │   │	 ├──users.js				* Controlador de usuario
+ │	 │ 	 
+ │   ├──/middlewares			* Directorio intermediario
+ │   │	 ├──auth.js				* Archivo para la autenticacion
+ │	 │ 	 
+ │   ├──/migrate				* Directorio para la migracion del la base de dato
+ │   │	 ├──migrate.js			* 
+ │	 │ 	 
+ │   ├──/models 				* Directorio de Modelos
+ │   │	 ├──user.js				* Modelo Usuario
+ │	 │ 	 
+ │   ├──/routes					* Directorio de Rutas
+ │   │	 ├──index.js				* indice de rutas de acceso a la api 
+ │	 │ 	 
+ │   ├──/schemas				* Directorio de Colecciones Bookshelf
+ │   │	 ├──schema.js				* Esquema de la base de dato
+ │	 │ 	 
+ │   ├──/services				* Directorio de los Servicio
+ │   │	 ├──index.js				* Servicio indice 
+ │      
+ ├──/tests 					* Nuestro directorio de vistas
+ │   ├──/resources				* Directorio de recursos
+ │   │	 ├──config.json				* Archivo Json para la configuracion del default.js
+ │   │
+ │   ├──default.js				* Archivo para el test default de la api
+ │
  ├──/views                      * Nuestro directorio de vistas
  │   ├──index.js                    * vista indice /index
  │
@@ -64,7 +95,9 @@ api-sascha/
  ├──LICENSE                     * GNU GENERAL PUBLIC LICENSE
  ├──README.md                   * Este Archivo
  ├──app.js                      * Principal configuracion de la aplicacion
+ ├──config.js                   * configuracion de la api
  ├──gulpfile.js                 * Gestor gulp para sincronizacion, construccion, etc.
+ ├──knexfile.js                 * Datos para la coneccion con la base de dato
  ├──package-lock.json           * Registro de dependencia cargada en node_modules
  └──package.json                * Gestor npm 
 
@@ -73,7 +106,8 @@ api-sascha/
 # Aranque Inicial
 ## Dependencias
 Que necesita para ejecutar esta app:
-* `node` y `npm` (`sudo curl -sL https://raw.githubusercontent.com/SaschaNutric/scripts-bash/master/dist/run-tooldev -o /bin/tooldev && sudo chmod a+x /bin/tooldev && tooldev install node`)
+
+* `node` y `npm` 
 
 ya instalado esto, tendras que instalar de forma globals con `npm install --global`:
 * `express` (`npm install --global express`)

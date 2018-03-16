@@ -4,20 +4,37 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "test": "mocha $(find tests -name '*.js') --timeout 3000 --recursive",
+    "migrate": "node ./src/migrate/migrate.js",
     "dev": "npm run start && gulp dev",
     "create-heroku": "heroku create",
     "push-heroku": "git push heroku master",
     "deploy-heroku": "git push heroku master && heroku ps:scale web=1 && heroku open"
   },
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "body-parser": "~1.17.1",
+    "bookshelf": "^0.12.1",
     "consolidate": "^0.15.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "express": "~4.15.2",
-    "gulp": "^3.9.1",
-    "morgan": "~1.8.1",
+    "jwt-simple": "^0.5.1",
+    "knex": "^0.13.0",
+    "lodash": "^4.17.5",
+    "moment": "^2.21.0",
+    "morgan": "^1.9.0",
+    "pg": "^7.4.1",
     "serve-favicon": "~2.4.2",
-    "swig": "^1.4.2"
+    "swig": "^1.4.2",
+    "when": "^3.7.8"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "co": "^4.6.0",
+    "gulp": "^3.9.1",
+    "mocha": "^5.0.4",
+    "node-fetch": "^2.1.1"
   }
 }
