@@ -6,10 +6,14 @@
     "start": "node ./bin/www",
     "test": "mocha $(find tests -name '*.js') --timeout 3000 --recursive",
     "migrate": "node ./src/migrate/migrate.js",
+    "sascha":"sascha",
     "dev": "npm run start && gulp dev",
     "create-heroku": "heroku create",
     "push-heroku": "git push heroku master",
-    "deploy-heroku": "git push heroku master && heroku ps:scale web=1 && heroku open"
+    "deploy-heroku": "git push heroku master && heroku ps:scale web=1 && heroku open",
+    "git:remote": "git remote add upstream https://github.com/SaschaNutric/api-sascha.git",
+    "git:fetch": "git fetch upstream",
+    "git:merge": "git merge upstream/master"
   },
   "dependencies": {
     "bcrypt": "^1.0.3",
