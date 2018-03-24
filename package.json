@@ -5,12 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "test": "mocha $(find tests -name '*.js') --timeout 3000 --recursive",
-    "migrate": "node ./src/migrate/migrate.js",
-    "migrate:heroku": "heroku run 'npm run migrate'",
-    "git:push": "bash scripts/configdb.sh && git push origin",
-    "git:remote": "git remote add upstream https://github.com/SaschaNutric/api-sascha.git",
-    "git:fetch": "git fetch upstream",
-    "git:merge": "git merge upstream/master"
+    "migrate": "node ./src/migrate/migrate.js"
   },
   "dependencies": {
     "bcrypt": "^1.0.3",
