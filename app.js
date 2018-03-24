@@ -24,11 +24,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public'));
-});
+app.use(express.static(process.env.PWD + '/'), routes);
 
-app.use('/', routes);
+//app.use('/', routes);
 app.get('/favicon.ico', function(req, res) {
     res.status(204);
 });
