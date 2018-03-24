@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "bash scripts/configdb.sh && npm run migrate && node ./bin/www",
+    "start": "node ./bin/www",
+    "configdb": "bash scripts/configdb.sh",
     "test": "mocha $(find tests -name '*.js') --timeout 3000 --recursive",
     "migrate": "node ./src/migrate/migrate.js",
     "sascha":"sascha",
