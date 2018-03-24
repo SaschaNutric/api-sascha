@@ -13,7 +13,7 @@ credenciales="module.exports = {
 MODE='NULL'
 DATABASE='saschadb'
 
-if [ "$MODE" = "NULL"]; then
+if [ "$MODE" = "NULL" ]; then
 	AUTO_CONFIG=$(psql postgres -c "\l $DATABASE" 2>/dev/null | grep "$DATABASE" | head -1 | cut -d" " -f2)
 	if [ "$AUTO_CONFIG" = "$DATABASE" ]; then
 		MODE='development'	
