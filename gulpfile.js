@@ -1,39 +1,24 @@
 var gulp = require('gulp');
+const { exec } = require('child_process');
 
-var nock = require('nock');
-var request = require('request');
-var API_URL = 'https://localhost:3030';
+var modo = 'prod';
+//name: "d7h3pnfqclegkn",
 
-gulp.task('test', function(){
-	/*nock(API_URL)
-  		.get('/')
-  		.socketDelay(2000) // 2 seconds
-  		.reply(200, '<html></html>')
-  		*/
-
-
-nock('should provide token in header', function (done) {
-    nock(API_URL, {
-        reqheaders: {
-            'Content-Type': 'application/json'
-        }
-    })
-        .get('/users')
-        .reply(200, 'OK')
- 
-    mediaClient.musicList(function(error, response) {
-        expect(response).to.eql('OK')
-        done()
-    })
- 
-})
+gulp.task('credenciales', function(){
+  exec("bash $PWD/scripts/configdb.sh " + modo , (err, stdout, stderr) => {
+  if (err) {
+    console.log(`${err}`);
+    return;
+  }else if (stdout) {
+    console.log(`stdout: ${stdout}`);
+  }else {
+    console.log(`stderr: ${stderr}`);  
+  }
 
 });
+});
 
- gulp.task('token', function(){
- 	var User = function (token) {
-    if (typeof token === 'undefined')
-        throw new Error('You need to specify valid token for API request!');
-    	this.token = token
-	}
- })
+gulp.task('token', function(){
+
+
+});
