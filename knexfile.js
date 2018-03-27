@@ -1,4 +1,5 @@
 if (process.env.NODE_ENV === 'development') {
+	console.log("MODO DEVELOPMENT");
 	module.exports = {
    		client: "pg",
 			connection: {
@@ -9,6 +10,7 @@ if (process.env.NODE_ENV === 'development') {
 			}
 		}
 } else if (process.env.NODE_ENV === 'production') {
+	console.log("MODO PRODUCTION");
 	module.exports = {
    		client: "pg",
 			connection: {
