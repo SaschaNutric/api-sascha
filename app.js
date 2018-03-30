@@ -47,6 +47,10 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+console.log('Process.env' + process.env);
+console.log('NODE_ENV' + process.env.NODE_ENV);
+console.log('DATABASE_URL' + process.env.DATABASE_URL);
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
