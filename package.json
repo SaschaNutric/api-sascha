@@ -2,8 +2,12 @@
   "name": "api-sascha",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "8.9.1"
+  },
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "nodemon ./app.js",
+    "serve": "node ./bin/www",
     "test": "mocha $(find tests -name '*.js') --timeout 3000 --recursive",
     "migrate": "node ./src/migrate/migrate.js"
   },
@@ -16,11 +20,14 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "express": "~4.15.2",
+    "express-handlebars": "^3.0.0",
+    "graceful-fs": "^4.1.11",
     "jwt-simple": "^0.5.1",
     "knex": "^0.13.0",
     "lodash": "^4.17.5",
     "moment": "^2.21.0",
     "morgan": "^1.9.0",
+    "nodemailer": "^4.6.3",
     "pg": "^7.4.1",
     "serve-favicon": "~2.4.2",
     "swig": "^1.4.2",
@@ -32,6 +39,7 @@
     "co": "^4.6.0",
     "gulp": "^3.9.1",
     "mocha": "^5.0.4",
-    "node-fetch": "^2.1.1"
+    "node-fetch": "^2.1.1",
+    "nodemon": "^1.17.2"
   }
 }
