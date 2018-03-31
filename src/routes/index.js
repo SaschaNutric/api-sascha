@@ -1,6 +1,8 @@
 var express = require('express');
 var usersCtrl = require('../controllers/users');
-var auth= require('../middlewares/auth');
+//const clientesCtrl = require('../controllers/clientes');
+const suscripcionesCtrl = require('../controllers/suscripciones');
+var auth = require('../middlewares/auth');
 
 module.exports = (function () {
 
@@ -10,6 +12,21 @@ module.exports = (function () {
   res.render('index', { title: 'Express' });
   });
   
+  api.get('/suscripciones',      suscripcionesCtrl.getSuscripciones);
+  api.post('/suscripciones',     suscripcionesCtrl.saveSuscripcion);
+  api.get('/suscripcion/:id',    suscripcionesCtrl.getSuscripcionById);
+  api.put('/suscripcion/:id',    suscripcionesCtrl.updateSuscripcion);
+  api.delete('/suscripcion/:id', suscripcionesCtrl.deleteSuscripcion);
+  api.post('/login',             suscripcionesCtrl.singIn);
+
+/*
+  api.get('/clientes',       clientesCtrl.getClientes);
+  api.post('/clientes',      clientesCtrl.saveCliente);
+  // api.post('/login',         clientesCtrl.singIn);
+  api.get('/cliente/:id',    clientesCtrl.getClienteById);
+  api.put('/cliente/:id',    clientesCtrl.updateCliente);
+  api.delete('/cliente/:id', clientesCtrl.deleteCliente);
+*/
 	api.get('/users', usersCtrl.getUsers);
   api.post('/users', usersCtrl.saveUser);
   api.post('/login', usersCtrl.singIn);
