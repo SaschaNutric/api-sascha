@@ -133,34 +133,31 @@ function saveSuscripcion(req, res, next) {
 				}
 
 				transportador.sendMail(opcionesCorreo, function(req, res) {
-					/*
-					if (err) 
+					if (err) {
+						tr.rollback();
 						return res.status(500).json({
 							error: true,
 							data: { mensaje: err.message }
 						});
-					else 
-						return res.status(200).json({
-							error: false,
-							data: { mensaje: 'Mensaje enviado satisfactoriamente' }
-						});
-					*/
+					}
 				});
 
 				const suscripcionGuardada = {
 					id_suscripcion: suscripcion.get('id_suscripcion'),
 					correo:         suscripcion.get('correo'),
-					token:          service.createToken(suscripcion)
+					token:          service.createToken(suscripcion),
+					mensaje:        'Confirmación de correo enviada exitosamente'
 				}
 
 				return res.status(201).json({ error: false, data: suscripcionGuardada });
 			})
 			.catch(function (err) {
-				suscripcion.destroy();
+				tr.rollback();
 				return res.status(500).json({ error: true, data: { mensaje: err.message } });
 			});
 		})
 		.catch(function (err) {
+			tr.rollback();
 			return res.status(500).json({ error: true, data: { mensaje: err.message } });
 		});
 		
