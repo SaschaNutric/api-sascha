@@ -2,10 +2,10 @@
 
 const Bookshelf = require('../commons/bookshelf');
 
-const Cliente = Bookshelf.Model.extend({
+let Cliente = Bookshelf.Model.extend({
 	tableName: 'cliente',
 	idAttribute: 'id_cliente',
 
 });
 
-module.exports = Cliente;
+module.exports = Bookshelf.model('Cliente', Cliente);

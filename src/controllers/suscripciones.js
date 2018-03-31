@@ -3,6 +3,7 @@
 const Suscripcion   = require('../models/suscripcion');
 const Suscripciones = require('../collections/suscripciones');
 const Cliente       = require('../models/cliente');
+const Bookshelf     = require('../commons/Bookshelf');
 const Bcrypt        = require("bcrypt");
 const Crypto        = require("crypto");
 const nodemailer    = require('nodemailer');
@@ -46,7 +47,7 @@ function getSuscripcionById(req, res, next) {
 	});
 }
 
-function sendConfirmacion(correo, nombre) {
+function sendConfirmacion(nombre, correo, contraseña) {
 	const transportador = nodemailer.createTransport({
 		service: 'gmail',
 		auth: {
@@ -62,11 +63,12 @@ function sendConfirmacion(correo, nombre) {
 		html: `
 			<h1>Bienvenido a Sascha Nutric ${nombre}<h1>
 			<p>Acceso: ${correo}</p>
-			<p>contraseña: ${contrasenia}</p>
+			<p>Contraseña: ${contraseña}</p>
 		`
 	}
 
 	transportador.sendMail(opcionesCorreo, function(req, res) {
+		/*
 		if (err) 
 			return res.status(500).json({
 				error: true,
@@ -77,53 +79,92 @@ function sendConfirmacion(correo, nombre) {
 				error: false,
 				data: { mensaje: 'Mensaje enviado satisfactoriamente' }
 			});
+		*/
 	});
 }
 
 function saveSuscripcion(req, res, next) {
-	const salt = Bcrypt.genSaltSync(12);
-	const hash = Bcrypt.hashSync(req.body.contraseña, salt);
-	const nuevaSuscripcion = {
-		correo:      req.body.correo.toLowerCase(),
-		contrasenia: hash,
-		salt:        salt
-	}
-	const nuevoCliente = {
-		nombres:          req.body.nombres,
-		apellidos:        req.body.apellidos,
-		cedula:           req.body.cedula,
-		telefono:         req.body.telefono,
-		fecha_nacimiento: req.body.fecha_nacimiento,
-		direccion:        req.body.direccion,
-		sexo:             req.body.sexo
-	}
+	Bookshelf.transaction(function(tr) {
+		const salt = Bcrypt.genSaltSync(12);
+		const hash = Bcrypt.hashSync(req.body.contraseña, salt);
+		const nuevaSuscripcion = {
+			correo:      req.body.correo.toLowerCase(),
+			contrasenia: hash,
+			salt:        salt
+		}
 
-	Suscripcion.forge(nuevaSuscripcion)
-	.save()
-	.then(function(suscripcion) {
-		Cliente.forge(nuevoCliente)
-		.save()
-		.then(function(cliente) {		
-			sendConfirmacion(suscripcion.get('correo'),
-				             `${cliente.get('nombres')} ${cliente.get('apellidos')}`,
-				             suscripcion.get('contrasenia'));
-
-			suscripcionGuardada = {
-				id_suscripcion: suscripcion.get('id_suscripcion'),
-				correo:         suscripcion.get('correo'),
-				token:          service.createToken(suscripcion)
+		Suscripcion.forge(nuevaSuscripcion)
+		.save(null, { transacting: tr })
+		.then(function(suscripcion) {
+			const nuevoCliente = {
+				id_suscripcion:   suscripcion.get('id_suscripcion'),
+				nombres:          req.body.nombres,
+				apellidos:        req.body.apellidos,
+				cedula:           req.body.cedula,
+				telefono:         req.body.telefono,
+				fecha_nacimiento: req.body.fecha_nacimiento,
+				direccion:        req.body.direccion
+			//	sexo:             req.body.sexo 
 			}
+			Cliente.forge(nuevoCliente)
+			.save(null, { transacting: tr })
+			.then(function(cliente) {		
+				/* sendConfirmacion(`${cliente.get('nombres')} ${cliente.get('apellidos')}`,
+								 suscripcion.get('correo'),
+					             req.body.contraseña);
+				*/
+				const transportador = nodemailer.createTransport({
+					service: 'gmail',
+					auth: {
+						user: 'test.joseguerrero@gmail.com',
+						pass: '1234jose5678'
+					}
+				});
 
-			return res.status(201).json({ error: false, data: suscripcionGuardada });
+				const opcionesCorreo = {
+					from: 'test.joseguerrero@gmail.com',
+					to: correo,
+					subject: 'Confirmación de Suscripción',
+					html: `
+						<h1>Bienvenido a Sascha Nutric ${nombre}<h1>
+						<p>Acceso: ${correo}</p>
+						<p>Contraseña: ${contraseña}</p>
+					`
+				}
+
+				transportador.sendMail(opcionesCorreo, function(req, res) {
+					/*
+					if (err) 
+						return res.status(500).json({
+							error: true,
+							data: { mensaje: err.message }
+						});
+					else 
+						return res.status(200).json({
+							error: false,
+							data: { mensaje: 'Mensaje enviado satisfactoriamente' }
+						});
+					*/
+				});
+
+				const suscripcionGuardada = {
+					id_suscripcion: suscripcion.get('id_suscripcion'),
+					correo:         suscripcion.get('correo'),
+					token:          service.createToken(suscripcion)
+				}
+
+				return res.status(201).json({ error: false, data: suscripcionGuardada });
+			})
+			.catch(function (err) {
+				suscripcion.destroy();
+				return res.status(500).json({ error: true, data: { mensaje: err.message } });
+			});
 		})
 		.catch(function (err) {
-			suscripcion.destroy();
 			return res.status(500).json({ error: true, data: { mensaje: err.message } });
 		});
+		
 	})
-	.catch(function (err) {
-		return res.status(500).json({ error: true, data: { mensaje: err.message } });
-	});
 }
 
 function singIn(req, res) {

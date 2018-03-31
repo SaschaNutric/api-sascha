@@ -8,4 +8,4 @@ let Suscripcion = Bookshelf.Model.extend({
 
 });
 
-module.exports = Suscripcion;
+module.exports = Bookshelf.model('Suscripcion', Suscripcion);
