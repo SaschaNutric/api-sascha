@@ -9,82 +9,63 @@ const Crypto        = require("crypto");
 const nodemailer    = require('nodemailer');
 const service       = require("../services");
 
+
 function getSuscripciones(req, res, next) {
-	Suscripciones.query({ where: { estatus: 1 } }).fetch()
-	.then(function(suscripciones){
+	Suscripciones.query({ where: { estatus: 1 } })
+	.fetch({ columns: ['id_suscripcion', 'correo', 'fecha_creacion', 'fecha_actualizacion', 'ultimo_acceso' ] })
+	.then(function(suscripciones) {
 		if (!suscripciones)
 			return res.status(404).json({ 
-						error: true, 
-						data: { mensaje: 'No hay propiedades registradas' } 
-					});
+				error: true, 
+				data: { mensaje: 'No hay propiedades registradas' } 
+			});
 
 		return res.status(200).json({
-					error: false,
-					data: suscripciones.toJSON()
-				});
+			error: false,
+			data: suscripciones
+		});
 	})
 	.catch(function (err) {
      	return res.status(500).json({
-					error: true,
-					data: { mensaje: err.message }
-				});
+			error: true,
+			data: { mensaje: err.message }
+		});
     });
 }
+
 
 function getSuscripcionById(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') 
-		return res.status(400).json({ error: true, data: { mensaje: 'Solicitud incorrecta' } });
+		return res.status(400).json({ 
+			error: true, 
+			data: { mensaje: 'Solicitud incorrecta' } 
+		});
+
 	Suscripcion.forge({ id_suscripcion: id, estatus: 1 })
 	.fetch()
 	.then(function(suscripcion) {
 		if(!suscripcion) 
-			return res.status(404).json({ error: true, data: { mensaje: 'Suscripcion no encontrada' } });
-		return res.status(200).json({ error : false, data : user.toJSON() })
+			return res.status(404).json({ 
+				error: true, 
+				data: { mensaje: 'Suscripcion no encontrada' } 
+			});
+		return res.status(200).json({ 
+			error : false, 
+			data : suscripcion.omit('contrasenia', 'salt') 
+		});
 	})
 	.catch(function(err){
-		return res.status(500).json({ error: false, data: { mensaje: err.message } })
+		return res.status(500).json({ 
+			error: false, 
+			data: { mensaje: err.message } 
+		})
 	});
 }
 
-function sendConfirmacion(nombre, correo, contraseña) {
-	const transportador = nodemailer.createTransport({
-		service: 'gmail',
-		auth: {
-			user: 'test.joseguerrero@gmail.com',
-			pass: '1234jose5678'
-		}
-	});
-
-	const opcionesCorreo = {
-		from: 'test.joseguerrero@gmail.com',
-		to: correo,
-		subject: 'Confirmación de Suscripción',
-		html: `
-			<h1>Bienvenido a Sascha Nutric ${nombre}<h1>
-			<p>Acceso: ${correo}</p>
-			<p>Contraseña: ${contraseña}</p>
-		`
-	}
-
-	transportador.sendMail(opcionesCorreo, function(req, res) {
-		/*
-		if (err) 
-			return res.status(500).json({
-				error: true,
-				data: { mensaje: err.message }
-			});
-		else 
-			return res.status(200).json({
-				error: false,
-				data: { mensaje: 'Mensaje enviado satisfactoriamente' }
-			});
-		*/
-	});
-}
 
 function saveSuscripcion(req, res, next) {
-	Bookshelf.transaction(function(tr) {
+	Bookshelf.transaction(function(transaction) {
 		const salt = Bcrypt.genSaltSync(12);
 		const hash = Bcrypt.hashSync(req.body.contraseña, salt);
 		const nuevaSuscripcion = {
@@ -94,7 +75,7 @@ function saveSuscripcion(req, res, next) {
 		}
 
 		Suscripcion.forge(nuevaSuscripcion)
-		.save(null, { transacting: tr })
+		.save(null, { transacting: transaction })
 		.then(function(suscripcion) {
 			const nuevoCliente = {
 				id_suscripcion:   suscripcion.get('id_suscripcion'),
@@ -106,13 +87,11 @@ function saveSuscripcion(req, res, next) {
 				direccion:        req.body.direccion
 			//	sexo:             req.body.sexo 
 			}
+
 			Cliente.forge(nuevoCliente)
-			.save(null, { transacting: tr })
+			.save(null, { transacting: transaction })
 			.then(function(cliente) {		
-				/* sendConfirmacion(`${cliente.get('nombres')} ${cliente.get('apellidos')}`,
-								 suscripcion.get('correo'),
-					             req.body.contraseña);
-				*/
+
 				const transportador = nodemailer.createTransport({
 					service: 'gmail',
 					auth: {
@@ -123,18 +102,18 @@ function saveSuscripcion(req, res, next) {
 
 				const opcionesCorreo = {
 					from: 'test.joseguerrero@gmail.com',
-					to: correo,
+					to: suscripcion.get('correo'),
 					subject: 'Confirmación de Suscripción',
 					html: `
-						<h1>Bienvenido a Sascha Nutric ${nombre}<h1>
-						<p>Acceso: ${correo}</p>
-						<p>Contraseña: ${contraseña}</p>
+						<h1>Bienvenido a Sascha Nutric ${cliente.get('nombres')} ${cliente.get('apellidos')}<h1>
+						<p>Acceso: ${suscripcion.get('correo')}</p>
+						<p>Contraseña: ${req.body.contraseña}</p>
 					`
 				}
 
 				transportador.sendMail(opcionesCorreo, function(req, res) {
 					if (err) {
-						tr.rollback();
+						transaction.rollback();
 						return res.status(500).json({
 							error: true,
 							data: { mensaje: err.message }
@@ -148,31 +127,116 @@ function saveSuscripcion(req, res, next) {
 					token:          service.createToken(suscripcion),
 					mensaje:        'Confirmación de correo enviada exitosamente'
 				}
-
+				transaction.commit();
 				return res.status(201).json({ error: false, data: suscripcionGuardada });
 			})
 			.catch(function (err) {
-				tr.rollback();
+				transaction.rollback();
 				return res.status(500).json({ error: true, data: { mensaje: err.message } });
 			});
 		})
 		.catch(function (err) {
-			tr.rollback();
+			transaction.rollback();
 			return res.status(500).json({ error: true, data: { mensaje: err.message } });
 		});
-		
+	});
+}
+
+
+
+
+function updateSuscripcion(req, res, next) {
+	const id = Number.parseInt(req.params.id);
+	if (!id || id == 'NaN') {
+		return res.status(400).json({ 
+			error: true, 
+			data: { mensaje: 'Solicitud incorrecta' } 
+		});
+	}
+
+	Suscripcion.forge({ id_suscripcion: id, estatus: 1 })
+	.fetch()
+	.then(function(suscripcion){
+		if(!suscripcion) 
+			return res.status(404).json({ 
+				error: true, 
+				data: { mensaje: 'Suscripcion no encontrada' } 
+			});
+		suscripcion.save({
+			correo:  req.body.correo || suscripcion.get('correo')
+		})
+		.then(function() {
+			return res.status(200).json({ 
+				error: false, 
+				data: { mensaje: 'Suscripcion actualizada' } 
+			});
+		})
+		.catch(function(err) {
+			return res.status(500).json({ 
+				error : true, 
+				data : { mensaje : err.message } 
+			});
+		})
+	})
+	.catch(function(err) {
+		return res.status(500).json({ 
+			error : true, 
+			data : { mensaje : err.message } 
+		});
 	})
 }
 
-function singIn(req, res) {
-	Suscripcion.forge()
-	.query(function (qb) {
-		qb.where("correo", "=", req.body.correo.toLowerCase());
+// Falta que elimine al cliente junto a la suscripcion
+function deleteSuscripcion(req, res, next) {
+	const id = Number.parseInt(req.params.id);
+	if (!id || id == 'NaN') {
+		return res.status(400).json({ 
+			error: true, 
+			data: { mensaje: 'Solicitud incorrecta' } 
+		});
+	}
+	Suscripcion.forge({ id_suscripcion: id, estatus: 1 })
+	.fetch()
+	.then(function(suscripcion){
+		console.log(suscripcion);
+		if(!suscripcion) 
+			return res.status(404).json({ 
+				error: true, 
+				data: { mensaje: 'Suscripcion no encontrada' } 
+			});
+
+		suscripcion.save({ estatus:  0 })
+		.then(function() {
+			return res.status(200).json({ 
+				error: false,
+				data: { mensaje: 'Suscripcion eliminada exitosamente' } 
+			});
+		})
+		.catch(function(err) {
+			return res.status(500).json({ 
+				error: true, 
+				data: { mensaje: err.message} 
+			});
+		})
 	})
-	.fetchOne()
+	.catch(function(err){
+		return res.status(500).json({ 
+			error: true, 
+			data: { mensaje: err.message } 
+		});
+	})
+}
+
+
+function singIn(req, res) {
+	Suscripcion.query({ where: { correo: req.body.correo.toLowerCase(), estatus: 1 } })
+	.fetch()
 	.then(function(suscripcion){
 		if(!suscripcion)
-			return res.status(404).json({ error: true, data: { mensaje: 'Correo o contraseña incorrectos' } });
+			return res.status(404).json({ 
+				error: true, 
+				data: { mensaje: 'Correo o contraseña invalido' } 
+			});
         
         const esContrasenia = Bcrypt.compareSync(req.body.contraseña, suscripcion.get('contrasenia'));
 		if(esContrasenia) {
@@ -180,61 +244,26 @@ function singIn(req, res) {
 				mensaje: 'Inicio de sesión exitoso',
 				token: service.createToken(suscripcion)
 			}
-			return res.status(200).json({ error: false, data: data});
+			return res.status(200).json({ 
+				error: false, 
+				data: data
+			});
 		}
 		else {
-			return res.status(404).json({ error: true, data: { mensaje: 'Correo o contraseña incorrectos' } });
+			return res.status(404).json({ 
+				error: true, 
+				data: { mensaje: 'Correo o contraseña invalido' } 
+			});
 		}
 	})
 	.catch(function(err){
-		return res.status(500).json({ error: true, data: { mensaje: err.message } });
-	})
-	
-}
-
-function updateSuscripcion(req, res, next) {
-	const id = Number.parseInt(req.params.id);
-	if (!id || id == 'NaN') {
-		return res.status(400).json({ error: true, data: { mensaje: 'Solicitud incorrecta' } });
-	}
-	Suscripcion.forge({ id_suscripcion: id, estatus: 1 })
-	.fetch({ require: true })
-	.then(function(suscripcion){
-		suscripcion.save({
-			correo:  req.body.correo || suscripcion.get('correo')
-		})
-		.then(function() {
-			return res.status(200).json({ error: false, data: { mensaje: 'Detalles de suscripcion actualizado' } });
-		})
-		.catch(function(err) {
-			return res.status(500).json({ error : true, data : { mensaje : err.message } });
-		})
-	})
-	.catch(function(err) {
-		return res.status(500).json({ error : true, data : { mensaje : err.message } });
+		return res.status(500).json({ 
+			error: true, 
+			data: { mensaje: err.message } 
+		});
 	})
 }
 
-function deleteSuscripcion(req, res, next) {
-	const id = Number.parseInt(req.params.id);
-	if (!id || id == 'NaN') {
-		return res.status(400).json({ error: true, data: { mensaje: 'Solicitud incorrecta' } });
-	}
-	Suscripcion.forge({ id_suscripcion: id, estatus: 1 })
-	.fetch({ require: true })
-	.then(function(suscripcion){
-		suscripcion.save({ estatus:  0 })
-		.then(function() {
-			return res.status(200).json({ error: false, data: { mensaje: 'Suscripcion eliminada exitosamente' } });
-		})
-		.catch(function(err) {
-			return res.status(500).json({ error: true, data: { mensaje: err.message} });
-		})
-	})
-	.catch(function(err){
-		return res.status(500).json({ error: true, data: { mensaje: err.message } });
-	})
-}
 
 module.exports = {
 	getSuscripciones,
