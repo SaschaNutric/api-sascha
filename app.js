@@ -60,8 +60,9 @@ app.use(function(err, req, res, next) {
   console.log('Error');
 });
 */
-app.listen(process.env.PORT || 8080, function() {
-  console.log(`Servidor express corriendo en localhost: ${process.env.PORT || 8080}`)
+app.listen(process.env.PORT, function() {
+  console.log(`Servidor express corriendo en localhost: ${process.env.PORT}`)
+  console.log(process.env.NODE_ENV)
 })
 
 module.exports = app;
