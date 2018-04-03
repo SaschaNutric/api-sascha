@@ -7,4 +7,5 @@ information and the person's real life name and email are unknown.
 
 Listed in no particular order:
 
-* Leonardo Pineda @leo1305pineda <leo1305pineda@gmail.com>
+* Leonardo Pineda         @leo1305pineda    <leo1305pineda@gmail.com>
+* Jose Alberto Guerrero   @guerrero-josea   <guerrero.c.jose.a@gmail.com>
