@@ -145,8 +145,6 @@ function saveSuscripcion(req, res, next) {
 }
 
 
-
-
 function updateSuscripcion(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') {

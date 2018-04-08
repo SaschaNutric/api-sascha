@@ -6,8 +6,8 @@
     "node": "8.9.1"
   },
   "scripts": {
-    "start": "nodemon ./app.js",
-    "serve": "node ./bin/www",
+    "start":     "node ./bin/www",
+    "start:dev": "nodemon ./app.js",
     "test": "mocha $(find tests -name '*.js') --timeout 3000 --recursive",
     "migrate": "node ./src/migrate/migrate.js"
   },
