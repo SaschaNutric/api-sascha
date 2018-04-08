@@ -8,7 +8,9 @@ const Bcrypt        = require("bcrypt");
 const Crypto        = require("crypto");
 const nodemailer    = require('nodemailer');
 const service       = require("../services");
-
+const MAIL_SERVICE  = process.env.MAIL_SERVICE || 'gmail';
+const MAIL_USER     = process.env.MAIL_USER    || 'test.joseguerrero@gmail.com';
+const MAIL_PASS     = process.env.MAIL_PASS    || '1234jose5678';
 
 function getSuscripciones(req, res, next) {
 	Suscripciones.query({ where: { estatus: 1 } })
@@ -93,15 +95,15 @@ function saveSuscripcion(req, res, next) {
 			.then(function(cliente) {		
 
 				const transportador = nodemailer.createTransport({
-					service: 'gmail',
+					service: MAIL_SERVICE,
 					auth: {
-						user: 'test.joseguerrero@gmail.com',
-						pass: '1234jose5678'
+						user: MAIL_USER,
+						pass: MAIL_PASS
 					}
 				});
 
 				const opcionesCorreo = {
-					from: 'test.joseguerrero@gmail.com',
+					from: MAIL_USER,
 					to: suscripcion.get('correo'),
 					subject: 'Confirmación de Suscripción',
 					html: `
