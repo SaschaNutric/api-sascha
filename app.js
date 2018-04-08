@@ -46,8 +46,9 @@ server.use(function(err, req, res, next) {
 
 const PORT = process.env.PORT || 5000;
 const HOST = process.env.HOST || 'localhost';
+
 app.listen(PORT, function() {
   console.log(`Servidor express corriendo en ${HOST}:${PORT}`)
-})
+});
 
 module.exports = app;
