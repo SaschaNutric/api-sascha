@@ -34,13 +34,13 @@ process.env.PWD = process.cwd();
 app.use('/', routes);
 
 
-server.use(function(req, res, next) {
+app.use(function(req, res, next) {
   let err = new Error('No encontrado');
   err.status = 404;
   next(err);
 });
 
-server.use(function(err, req, res, next) {
+app.use(function(err, req, res, next) {
   res.status(err.status || 500).json({ error: true, mensaje: err.message || 'Fallo del servidor' });
 });
 
