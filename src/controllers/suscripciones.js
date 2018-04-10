@@ -112,25 +112,23 @@ function saveSuscripcion(req, res, next) {
 						<p>Contraseña: ${req.body.contraseña}</p>
 					`
 				}
-
-				transportador.sendMail(opcionesCorreo, function(req, res) {
-					if (err) {
-						transaction.rollback();
-						return res.status(500).json({
-							error: true,
-							data: { mensaje: err.message }
-						});
+				
+				transportador.sendMail(opcionesCorreo)
+				.then(function() {
+					const suscripcionGuardada = {
+						id_suscripcion: suscripcion.get('id_suscripcion'),
+						correo:         suscripcion.get('correo'),
+						token:          service.createToken(suscripcion),
+						mensaje:        'Confirmación de correo enviada exitosamente'
 					}
+					transaction.commit();
+					return res.status(201).json({ error: false, data: suscripcionGuardada });
+				})
+				.catch(function(err) {
+					transaction.rollback();
+					return res.status(500).json({ error: true, data: { mensaje: err.message } });	
 				});
 
-				const suscripcionGuardada = {
-					id_suscripcion: suscripcion.get('id_suscripcion'),
-					correo:         suscripcion.get('correo'),
-					token:          service.createToken(suscripcion),
-					mensaje:        'Confirmación de correo enviada exitosamente'
-				}
-				transaction.commit();
-				return res.status(201).json({ error: false, data: suscripcionGuardada });
 			})
 			.catch(function (err) {
 				transaction.rollback();
