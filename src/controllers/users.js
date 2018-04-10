@@ -20,7 +20,7 @@ module.exports = {
 	     	res.status(500)
 			.json({
 				error: true,
-				data: {message: err.message}
+				data: { message: err.message }
 			});
 	    });
 	},
@@ -48,7 +48,7 @@ module.exports = {
 			res.status(500)
 			.json({
 				error : false,
-				data : {message : err.message}
+				data : { message : err.message }
 			})
 		})
 	},
@@ -89,22 +89,45 @@ module.exports = {
 		.fetchOne()
 		.then(function(user){
 			if(!user){
-				return res.status(404).send({message:"El usuario no existe ....."})
+				return res.status(404)
+					.json({
+						error: true,
+						data: { }
+					});
 			}
             var isPassword = Bcrypt.compareSync(req.body.password, user.get("password"))
 			if(isPassword){
-						res.status(200).send({message:"Te has logueado de forma exitosa",
-						token: service.createToken(user)})
+				res.status(200).json({
+					error: false,
+					data: [{
+						id : user.get('id'),
+						name : user.get('name'),
+						email : user.get('email'),
+						token : service.createToken(user)
+					}]
+				})
+				console.log(res.body());
 			}else{
-				return res.status(404).send({message: "La contraseña es incorrecta"})
+				return res.status(404)
+					.json({
+						error: true,
+						data: [{ 
+							message: "La contraseña es incorrecta" 
+						}]
+					});
 			}
 		})
 		.catch(function(err){
-			res.status(500).send({message:`Ha ocurrido el siguiente error${err}`})
-		})
-		
-
+			res.status(500)
+				.json({
+					error: true,
+					data: [{ 
+						message: err.message
+					}]
+				});
+		});	
 	},
+
 	updateUser : function(req, res, next){
 		User.forge({ id : req.params.id })
 		.fetch({ require : true })

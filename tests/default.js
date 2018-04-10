@@ -21,6 +21,8 @@ let objectJSON = '';
 let deleteObj = '';
 let cont = 0;
 
+console.log(SERVER);
+
 for (let method of methods) {
 /*
   * Test the /GET route

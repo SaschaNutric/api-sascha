@@ -5,10 +5,14 @@ const services= require('../services')
 function isAuth(req,res,next){
 
 	console.log(" POLICIA AUTH");
-	console.log(" req: "+req.headers);
+	console.log(" req: "+ JSON.stringify(req.headers));
 	
 	if(!req.headers.authorization){
-		return res.status(403).send({message:'Tu petición no tiene cabecera de autorización'})
+		return res.status(403)
+		.json({ 
+			error:true, 
+			message:'Tu petición no tiene cabecera de autorización'
+		});
 	}
     const token = req.headers.authorization.split(" ")[1]
     services.decodeToken(token)
@@ -17,7 +21,11 @@ function isAuth(req,res,next){
 		next()
 	})
 	.catch(response=>{
-		res.status(response.status).send({message: response.message})
+		res.status(response.status)
+		.json({
+			error: true,
+			data: { message: response.message }
+		});
 	})
 }
 

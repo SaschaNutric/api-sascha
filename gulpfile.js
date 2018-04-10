@@ -18,7 +18,7 @@ gulp.task('credenciales', function(){
 });
 });
 
-gulp.task('token', function(){
+gulp.task('token', ['credenciales' ],function(){
 
 
 });
