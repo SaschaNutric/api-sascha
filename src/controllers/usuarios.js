@@ -231,7 +231,7 @@ function deleteUsuario(req, res, next) {
 
 function singIn(req, res) {
 	Usuario.query(function(qb) { 
-		qb.where('correo', req.body.correo.toLowerCase()).orWhere('nombre_usuario', req.body.correo.toLowerCase());
+		qb.where('correo', req.body.correo).orWhere('nombre_usuario', req.body.correo);
 		qb.where('estatus', 1); 
 	})
 	.fetch()
