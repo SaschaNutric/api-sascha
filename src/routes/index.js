@@ -1,7 +1,8 @@
 var express = require('express');
 var usersCtrl = require('../controllers/users');
-//const clientesCtrl = require('../controllers/clientes');
-const suscripcionesCtrl = require('../controllers/suscripciones');
+const clientesCtrl = require('../controllers/clientes');
+const usuariosCtrl = require('../controllers/usuarios');
+const perfilCtrl = require('../controllers/perfil');
 var auth = require('../middlewares/auth');
 
 module.exports = (function () {
@@ -9,30 +10,29 @@ module.exports = (function () {
 	var api = express.Router();
   
   api.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+    res.render('index', { title: 'Express' });
   });
   
-  api.get('/suscripciones',      suscripcionesCtrl.getSuscripciones);
-  api.post('/suscripciones',     suscripcionesCtrl.saveSuscripcion);
-  api.get('/suscripcion/:id',    suscripcionesCtrl.getSuscripcionById);
-  api.put('/suscripcion/:id',    suscripcionesCtrl.updateSuscripcion);
-  api.delete('/suscripcion/:id', suscripcionesCtrl.deleteSuscripcion);
-  api.post('/login',             suscripcionesCtrl.singIn);
+  api.get('/usuarios',       usuariosCtrl.getUsuarios);
+  api.post('/usuarios',      usuariosCtrl.saveUsuario);
+  api.get('/usuario/:id',    usuariosCtrl.getUsuarioById);
+  api.put('/usuario/:id',    usuariosCtrl.updateUsuario);
+  api.delete('/usuario/:id', usuariosCtrl.deleteUsuario);
+  api.post('/login',         usuariosCtrl.singIn);
+
+  api.get('/clientes',       clientesCtrl.getClientes);
+  api.get('/cliente/:id',    clientesCtrl.getClienteById);
+
+  api.get('/generos',       perfilCtrl.getGeneros);
+  api.get('/estados',       perfilCtrl.getEstados);
+  api.get('/estados_civil', perfilCtrl.getEstadosCivil);
 
 /*
-  api.get('/clientes',       clientesCtrl.getClientes);
   api.post('/clientes',      clientesCtrl.saveCliente);
   // api.post('/login',         clientesCtrl.singIn);
-  api.get('/cliente/:id',    clientesCtrl.getClienteById);
   api.put('/cliente/:id',    clientesCtrl.updateCliente);
   api.delete('/cliente/:id', clientesCtrl.deleteCliente);
 */
-	api.get('/users', usersCtrl.getUsers);
-  api.post('/users', usersCtrl.saveUser);
-  api.post('/login', usersCtrl.singIn);
-  api.get('/users/:id', usersCtrl.getUserById);
-  api.put('/users/:id', usersCtrl.updateUser);
-  api.delete('/users/:id', usersCtrl.deleteUser);
   	
   return api;
 

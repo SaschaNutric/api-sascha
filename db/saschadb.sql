@@ -41,13 +41,82 @@ CREATE FUNCTION fun_eliminar_cliente() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
 DECLARE BEGIN
-	UPDATE cliente SET estatus = 0 WHERE cliente.id_suscripcion = OLD.id_suscripcion;
+	UPDATE cliente SET estatus = 0 WHERE cliente.id_usuario = OLD.id_usuario;
 	RETURN NULL;
 END
 $$;
 
 
 ALTER FUNCTION public.fun_eliminar_cliente() OWNER TO postgres;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+
+CREATE TABLE genero (
+    id_genero integer NOT NULL,
+    nombre character varying(20) DEFAULT ''::character varying NOT NULL
+);
+
+
+ALTER TABLE public.genero OWNER TO postgres;
+
+
+CREATE TABLE estado_civil (
+    id_estado_civil integer NOT NULL,
+    nombre character varying(20) DEFAULT ''::character varying NOT NULL
+);
+
+
+ALTER TABLE public.estado_civil OWNER TO postgres;
+
+
+CREATE SEQUENCE id_estado_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER TABLE public.id_estado_seq OWNER TO postgres;
+
+
+CREATE TABLE estado (
+    id_estado integer DEFAULT nextval('id_estado_seq'::regclass) NOT NULL,
+    nombre character varying(50) DEFAULT ''::character varying NOT NULL,
+    fecha_creacion timestamp with time zone DEFAULT now() NOT NULL,
+    fecha_actualizacion timestamp with time zone DEFAULT now() NOT NULL,
+    estatus integer DEFAULT 1 NOT NULL
+);
+
+
+ALTER TABLE public.estado OWNER TO postgres;
+
+
+CREATE SEQUENCE id_rango_edad_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER TABLE public.id_rango_edad_seq OWNER TO postgres;
+
+
+CREATE TABLE rango_edad (
+    id_rango_edad integer DEFAULT nextval('id_rango_edad_seq'::regclass) NOT NULL,
+    nombre character varying(20) DEFAULT ''::character varying NOT NULL,
+    minimo integer NOT NULL,
+    maximo integer NOT NULL,
+    fecha_creacion timestamp with time zone DEFAULT now() NOT NULL,
+    fecha_actualizacion timestamp with time zone DEFAULT now() NOT NULL,
+    estatus integer DEFAULT 1 NOT NULL
+);
+
+
+ALTER TABLE public.estado_civil OWNER TO postgres;
+
 
 --
 -- TOC entry 171 (class 1259 OID 23215)
@@ -64,10 +133,6 @@ CREATE SEQUENCE id_cliente_seq
 
 ALTER TABLE public.id_cliente_seq OWNER TO postgres;
 
-SET default_tablespace = '';
-
-SET default_with_oids = false;
-
 --
 -- TOC entry 173 (class 1259 OID 23240)
 -- Name: cliente; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -75,13 +140,19 @@ SET default_with_oids = false;
 
 CREATE TABLE cliente (
     id_cliente integer DEFAULT nextval('id_cliente_seq'::regclass) NOT NULL,
-    id_suscripcion integer NOT NULL,
+    id_usuario integer NOT NULL,
+    id_genero integer NOT NULL,
+    id_estado integer NOT NULL,
+    id_estado_civil integer NOT NULL,
+    id_rango_edad integer,
     cedula character varying(10) DEFAULT ''::character varying NOT NULL,
     nombres character varying(50) DEFAULT ''::character varying NOT NULL,
     apellidos character varying(50) DEFAULT ''::character varying NOT NULL,
     telefono character varying(12) DEFAULT ''::character varying NOT NULL,
     direccion character varying(100) DEFAULT ''::character varying NOT NULL,
     fecha_nacimiento date NOT NULL,
+    tipo_cliente integer DEFAULT 1 NOT NULL,
+    fecha_consolidado timestamp with time zone,
     fecha_creacion timestamp with time zone DEFAULT now() NOT NULL,
     fecha_actualizacion timestamp with time zone DEFAULT now() NOT NULL,
     estatus integer DEFAULT 1 NOT NULL
@@ -90,12 +161,15 @@ CREATE TABLE cliente (
 
 ALTER TABLE public.cliente OWNER TO postgres;
 
+
+COMMENT ON COLUMN cliente.estatus IS '1: Potencial 2: Consolidado';
+
 --
 -- TOC entry 170 (class 1259 OID 23213)
--- Name: id_suscripcion_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_usuario_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE id_suscripcion_seq
+CREATE SEQUENCE id_usuario_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -103,81 +177,51 @@ CREATE SEQUENCE id_suscripcion_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_suscripcion_seq OWNER TO postgres;
+ALTER TABLE public.id_usuario_seq OWNER TO postgres;
 
 --
 -- TOC entry 172 (class 1259 OID 23217)
--- Name: suscripcion; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: usuario; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE suscripcion (
-    id_suscripcion integer DEFAULT nextval('id_suscripcion_seq'::regclass) NOT NULL,
+CREATE TABLE usuario (
+    id_usuario integer DEFAULT nextval('id_usuario_seq'::regclass) NOT NULL,
+    nombre_usuario character varying(100) DEFAULT ''::character varying NOT NULL,
     correo character varying(100) DEFAULT ''::character varying NOT NULL,
     contrasenia character varying DEFAULT ''::character varying NOT NULL,
     salt character varying DEFAULT ''::character varying NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
-    fecha_actualizacion timestamp without time zone,
+    fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
     ultimo_acceso timestamp with time zone,
     estatus integer DEFAULT 1 NOT NULL
 );
 
 
-ALTER TABLE public.suscripcion OWNER TO postgres;
+ALTER TABLE public.usuario OWNER TO postgres;
 
 --
 -- TOC entry 1971 (class 0 OID 0)
 -- Dependencies: 172
--- Name: COLUMN suscripcion.estatus; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: COLUMN usuario.estatus; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON COLUMN suscripcion.estatus IS '1: Activo
+COMMENT ON COLUMN usuario.estatus IS '1: Activo
 0: Eliminado';
 
-
---
--- TOC entry 1962 (class 0 OID 23240)
--- Dependencies: 173
--- Data for Name: cliente; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY cliente (id_cliente, id_suscripcion, cedula, nombres, apellidos, telefono, direccion, fecha_nacimiento, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-10	10	V-24160052	Jose Alberto	Guerrero Carrillo	0414-5495292	Urb. El Amanecer, Cabudare	1994-06-07	2018-03-30 22:26:30.918-04:30	2018-03-30 22:26:30.918-04:30	1
-2	2	V-24160052	Jose Alberto	Guerrero Carrillo	0414-5495292	Urb. El Amanecer, Cabudare	1994-06-07	2018-03-30 14:33:03.569-04:30	2018-03-30 14:33:03.569-04:30	0
-4	4	V-24160052	Jose Alberto	Guerrero Carrillo	0414-5495292	Urb. El Amanecer, Cabudare	1994-06-07	2018-03-30 14:42:20.196-04:30	2018-03-30 14:42:20.196-04:30	0
-3	3	V-24160052	Jose Alberto	Guerrero Carrillo	0414-5495292	Urb. El Amanecer, Cabudare	1994-06-07	2018-03-30 14:41:15.702-04:30	2018-03-30 14:41:15.702-04:30	0
-\.
+ALTER TABLE ONLY genero
+    ADD CONSTRAINT genero_pkey PRIMARY KEY (id_genero);
 
 
---
--- TOC entry 1972 (class 0 OID 0)
--- Dependencies: 171
--- Name: id_cliente_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('id_cliente_seq', 10, true);
+ALTER TABLE ONLY estado_civil
+    ADD CONSTRAINT estado_civil_pkey PRIMARY KEY (id_estado_civil);
 
 
---
--- TOC entry 1973 (class 0 OID 0)
--- Dependencies: 170
--- Name: id_suscripcion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('id_suscripcion_seq', 10, true);
+ALTER TABLE ONLY estado
+    ADD CONSTRAINT estado_pkey PRIMARY KEY (id_estado);
 
 
---
--- TOC entry 1961 (class 0 OID 23217)
--- Dependencies: 172
--- Data for Name: suscripcion; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY suscripcion (id_suscripcion, correo, contrasenia, salt, fecha_creacion, fecha_actualizacion, ultimo_acceso, estatus) FROM stdin;
-10	guerrero.c.jose.a@gmail.com	$2a$12$BqDiJzwvGZyPEYETCbjpeeflYu2/Zkrt7wMf.u8hPKGfjbQJVXBlW	$2a$12$BqDiJzwvGZyPEYETCbjpee	2018-03-30 22:26:30.918	\N	\N	1
-2	guerrero.c.jose.a@gmail.com	$2a$12$iMNtPZoHYjt33IXrkConNegy5mEzCeCHbYK.YADHwL.lIpvdGQNOO	$2a$12$iMNtPZoHYjt33IXrkConNe	2018-03-30 14:33:03.555	\N	\N	0
-3	guerrero.c.jose.a@gmail.com	$2a$12$zMd3.bRYfT.Zv9l7H9LbTu/JqsPO36RySJtETWmieNoHr/okOjgTm	$2a$12$zMd3.bRYfT.Zv9l7H9LbTu	2018-03-30 14:41:15.684	\N	\N	1
-4	guerrero.c.jose.a@gmail.com	$2a$12$KVQFoCvP4VaC3NVxS01lBeh7ljWJufTO3iJffdnXOEkTAGfJNl03G	$2a$12$KVQFoCvP4VaC3NVxS01lBe	2018-03-30 14:42:20.148	\N	\N	1
-\.
+ALTER TABLE ONLY rango_edad
+    ADD CONSTRAINT rango_edad_pkey PRIMARY KEY (id_rango_edad);
 
 
 --
@@ -185,34 +229,75 @@ COPY suscripcion (id_suscripcion, correo, contrasenia, salt, fecha_creacion, fec
 -- Name: cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
+
 ALTER TABLE ONLY cliente
     ADD CONSTRAINT cliente_pkey PRIMARY KEY (id_cliente);
 
 
 --
 -- TOC entry 1847 (class 2606 OID 23230)
--- Name: suscripcion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY suscripcion
-    ADD CONSTRAINT suscripcion_pkey PRIMARY KEY (id_suscripcion);
+ALTER TABLE ONLY usuario
+    ADD CONSTRAINT usuario_pkey PRIMARY KEY (id_usuario);
 
 
 --
 -- TOC entry 1851 (class 2620 OID 23265)
--- Name: dis_suscripcion_eliminada; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: dis_usuario_eliminada; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
-CREATE TRIGGER dis_suscripcion_eliminada AFTER UPDATE OF estatus ON suscripcion FOR EACH ROW WHEN ((new.estatus = 0)) EXECUTE PROCEDURE fun_eliminar_cliente();
+CREATE TRIGGER dis_usuario_eliminada AFTER UPDATE OF estatus ON usuario FOR EACH ROW WHEN ((new.estatus = 0)) EXECUTE PROCEDURE fun_eliminar_cliente();
 
 
 --
 -- TOC entry 1850 (class 2606 OID 23254)
--- Name: cliente_id_suscripcion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: cliente_id_usuario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY cliente
-    ADD CONSTRAINT cliente_id_suscripcion_fkey FOREIGN KEY (id_suscripcion) REFERENCES suscripcion(id_suscripcion);
+    ADD CONSTRAINT cliente_id_usuario_fkey FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario);
+
+
+ALTER TABLE ONLY cliente 
+    ADD CONSTRAINT cliente_id_genero_fkey FOREIGN KEY (id_genero) REFERENCES genero(id_genero);
+
+ALTER TABLE ONLY cliente 
+    ADD CONSTRAINT cliente_id_estado_civil_fkey FOREIGN KEY (id_estado_civil) REFERENCES estado_civil(id_estado_civil);
+
+ALTER TABLE ONLY cliente 
+    ADD CONSTRAINT cliente_id_estado_fkey FOREIGN KEY (id_estado) REFERENCES estado(id_estado);
+
+ALTER TABLE ONLY cliente
+    ADD CONSTRAINT cliente_id_rango_edad_fkey FOREIGN KEY (id_rango_edad) REFERENCES rango_edad(id_rango_edad);     
+
+
+
+CREATE VIEW v_cliente AS
+SELECT a.id_cliente, 
+    a.id_usuario,
+    a.cedula, 
+    a.nombres, 
+    a.apellidos, 
+    b.id_genero,
+    b.nombre as genero,
+    c.id_estado_civil,
+    c.nombre as estado_civil, 
+    a.fecha_nacimiento,
+    a.telefono,
+    a.direccion, 
+    d.id_estado,
+    d.nombre as estado, 
+    a.tipo_cliente
+   FROM (((cliente a
+   JOIN genero b ON (a.id_genero = b.id_genero))
+   JOIN estado_civil c ON (a.id_estado_civil = c.id_estado_civil))
+   JOIN estado d ON (a.id_estado = d.id_estado))
+  WHERE (a.estatus = 1);
+
+
+ALTER TABLE public.v_cliente OWNER TO postgres;
 
 
 --
