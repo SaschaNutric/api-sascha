@@ -35,7 +35,6 @@ function getSuscripciones(req, res, next) {
     });
 }
 
-
 function getSuscripcionById(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') 
@@ -64,7 +63,6 @@ function getSuscripcionById(req, res, next) {
 		})
 	});
 }
-
 
 function saveSuscripcion(req, res, next) {
 	Bookshelf.transaction(function(transaction) {
@@ -143,7 +141,6 @@ function saveSuscripcion(req, res, next) {
 		});
 	});
 }
-
 
 function updateSuscripcion(req, res, next) {
 	const id = Number.parseInt(req.params.id);
@@ -227,10 +224,7 @@ function deleteSuscripcion(req, res, next) {
 	})
 }
 
-
 function singIn(req, res) {
-	console.log('correo: ' + req.body.correo.toLowerCase());
-	console.log('correo: ' + req.body.contraseña);
 	Suscripcion.query({ where: { correo: req.body.correo.toLowerCase(), estatus: 1 } })
 	.fetch()
 	.then(function(suscripcion){
@@ -266,7 +260,6 @@ function singIn(req, res) {
 		});
 	})
 }
-
 
 module.exports = {
 	getSuscripciones,

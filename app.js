@@ -1,15 +1,9 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var logger = require('morgan');
-//var methodOverride = require('method-override')
-//var cors = require('cors');
-var routes = require('./src/routes'); 
-var app = express();
-/*app.use(cors({
-    origin: '*',
-    withCredentials: false,
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin' ]
-}));*/
+var express = require('express')
+    bodyParser = require('body-parser')
+    logger = require('morgan')
+    routes = require('./src/routes')
+    app = express();
+
 app.set('secret', 'SECRET');
 
 app.use(function(req, res, next) {
@@ -20,7 +14,6 @@ app.use(function(req, res, next) {
 });
 app.use(logger('dev'));
 app.use(bodyParser.json());
-//app.use(methodOverride());
 app.use('/', routes);
 
 app.use(function(req, res, next) {
