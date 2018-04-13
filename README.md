@@ -25,6 +25,16 @@ npm start
 ```
 ir a [http://localhost:3000](http://localhost:3000) en tu nevegador
 
+>Resolver error: Cannot find module /bcrypt/lib/binding/bcrypt_lib.node' 
+```bash
+# Moverse en el directorio del proyecto 
+# Ejecutar
+npm install node-gyp -g
+npm install bcrypt -g
+
+npm install bcrypt -save
+```
+
 # Tabla de contenido
 * [Archivo Estructura](#archivo-estructura)
 * [Aranque Inicial](#aranque-inicial)
