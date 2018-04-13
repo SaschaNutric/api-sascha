@@ -3,7 +3,7 @@
 const Estados       = require('../collections/estados');
 const EstadosCivil  = require('../collections/estado_civil');
 const Generos       = require('../collections/generos');
-const Bookshelf     = require('../commons/Bookshelf');
+const Bookshelf     = require('../commons/bookshelf');
 const service       = require("../services");
 
 function getEstados(req, res, next) {

@@ -2,7 +2,7 @@
 
 const ViewClientes  = require('../collections/v_clientes');
 const ViewCliente   = require('../models/v_cliente');
-const Bookshelf     = require('../commons/Bookshelf');
+const Bookshelf     = require('../commons/bookshelf');
 const service       = require("../services");
 
 function getClientes(req, res, next) {
