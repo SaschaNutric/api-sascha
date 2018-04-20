@@ -3,7 +3,6 @@ var usersCtrl = require('../controllers/users');
 //const clientesCtrl = require('../controllers/clientes');
 const suscripcionesCtrl = require('../controllers/suscripciones');
 var auth = require('../middlewares/auth');
-var cors = require('cors');
 
 module.exports = (function () {
 
