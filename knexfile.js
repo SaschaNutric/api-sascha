@@ -1,7 +1,7 @@
 const DB_HOST    = process.env.DB_HOST    || 'localhost';
 const DB_NAME    = process.env.DB_NAME    || 'saschadb';
 const DB_USER    = process.env.DB_USER    || 'postgres';
-const DB_PASS    = process.env.DB_PASS    || 'postgres';
+const DB_PASS    = process.env.DB_PASS    || '1234';
 const DB_CHARSET = process.env.DB_CHARSET || 'utf-8';
 const DB_CLIENT  = process.env.DB_CLIENT  || 'postgresql';
 
@@ -11,7 +11,7 @@ module.exports = {
 		connection: {
 			host:     "localhost",
 			user:     "postgres",
-			password: "postgres",
+			password: "1234",
 			database: "saschadb",
 			charset:  "utf-8"
 		}

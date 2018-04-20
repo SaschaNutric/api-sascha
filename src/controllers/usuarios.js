@@ -3,6 +3,7 @@
 const Usuario       = require('../models/usuario');
 const Usuarios      = require('../collections/usuarios');
 const Cliente       = require('../models/cliente');
+const ViewCliente   = require('../models/v_cliente');
 const Bookshelf     = require('../commons/bookshelf');
 const Bcrypt        = require("bcrypt");
 const Crypto        = require("crypto");
@@ -230,8 +231,15 @@ function deleteUsuario(req, res, next) {
 
 
 function singIn(req, res) {
+	if(!req.body.correo && !req.body.nombre_usuario)
+		return res.status(400).json({ error: true, data: { mensaje: 'Faltan parametros en el body' } });
+	
+	let credenciales = {
+		correo: req.body.correo ? req.body.correo.toLowerCase() : null,
+		nombre_usuario: req.body.nombre_usuario ? req.body.nombre_usuario.toLowerCase() : null
+	}
 	Usuario.query(function(qb) { 
-		qb.where('correo', req.body.correo.toLowerCase()).orWhere('nombre_usuario', req.body.correo.toLowerCase());
+		qb.where('correo', credenciales.correo).orWhere('nombre_usuario', credenciales.nombre_usuario);
 		qb.where('estatus', 1); 
 	})
 	.fetch()
@@ -244,13 +252,31 @@ function singIn(req, res) {
         
         const esContrasenia = Bcrypt.compareSync(req.body.contraseña, usuario.get('contrasenia'));
 		if(esContrasenia) {
-			const data = { 
-				mensaje: 'Inicio de sesión exitoso',
-				token: service.createToken(usuario)
-			}
-			return res.status(200).json({ 
-				error: false, 
-				data: data
+			ViewCliente.forge({ id_usuario: usuario.get('id_usuario') })
+			.fetch({ columns: ['id_cliente', 'cedula', 'nombres', 'apellidos', 
+								'telefono', 'genero', 'estado_civil', 'direccion', 
+								'fecha_nacimiento', 'tipo_cliente', 'estado', 'rango_edad'] })
+			.then(function(cliente) {
+				if(!cliente) 
+					return res.status(404).json({ 
+						error: true, 
+						data: { mensaje: 'Cliente no encontrado' } 
+					});
+				const data = { 
+					mensaje: 'Inicio de sesión exitoso',
+					token: service.createToken(usuario),
+					cliente: cliente
+				}
+				return res.status(200).json({ 
+					error: false, 
+					data: data
+				});
+			})
+			.catch(function(err){
+				return res.status(500).json({ 
+					error: false, 
+					data: { mensaje: err.message } 
+				})
 			});
 		}
 		else {
