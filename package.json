@@ -7,7 +7,11 @@
   },
   "scripts": {
     "start": "node ./app.js",
-    "migrate": "node ./src/migrate/migrate.js"
+    "update:db": "psql saschadb < $PWD/db/saschadb.sql",
+    "remove:db": "dropdb -e --if-exists -h localhost -p 5432 -U postgres saschadb",
+    "create:db": "sudo -u postgres psql -c 'create database saschadb;'",
+    "backup:db": "pg_dump saschadb -h localhost -p 5432 -U postgres -F p -b -v -f $PWD/db/saschadb.sql",
+    "restore:db": "npm run remove:db && npm run create:db && npm run update:db"
   },
   "dependencies": {
     "bcrypt": "^1.0.3",
