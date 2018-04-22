@@ -1,9 +1,11 @@
-var express = require('express');
-var usersCtrl = require('../controllers/users');
-const clientesCtrl = require('../controllers/clientes');
-const usuariosCtrl = require('../controllers/usuarios');
-const perfilCtrl = require('../controllers/perfil');
-var auth = require('../middlewares/auth');
+var express           = require('express');
+var usersCtrl         = require('../controllers/users');
+const clientesCtrl    = require('../controllers/clientes');
+const usuariosCtrl    = require('../controllers/usuarios');
+const serviciosCtrl   = require('../controllers/servicios');
+const plan_dietasCtrl = require('../controllers/plan_dietas');
+const perfilCtrl      = require('../controllers/perfil');
+var auth              = require('../middlewares/auth');
 
 module.exports = (function () {
 
@@ -27,9 +29,9 @@ module.exports = (function () {
   api.get('/clientes',       clientesCtrl.getClientes);
   api.get('/cliente/:id',    clientesCtrl.getClienteById);
 
-  api.get('/generos',       perfilCtrl.getGeneros);
-  api.get('/estados',       perfilCtrl.getEstados);
-  api.get('/estados_civil', perfilCtrl.getEstadosCivil);
+  api.get('/generos',        perfilCtrl.getGeneros);
+  api.get('/estados',        perfilCtrl.getEstados);
+  api.get('/estados_civil',  perfilCtrl.getEstadosCivil);
 
 /*
   api.post('/clientes',      clientesCtrl.saveCliente);
@@ -37,6 +39,17 @@ module.exports = (function () {
   api.put('/cliente/:id',    clientesCtrl.updateCliente);
   api.delete('/cliente/:id', clientesCtrl.deleteCliente);
 */
+
+/* ------------ Gestion de servicio --------------------- */
+
+  api.get('/servicios',      serviciosCtrl.getServicios);
+  api.post('/servicios',     serviciosCtrl.saveServicio);
+  api.get('/servicio/:id',  serviciosCtrl.getServicioById);
+  
+
+  api.get('/dietas',         plan_dietasCtrl.getPlanDietas);
+
+/* ----------------------------------------------------- */
 
 	api.get('/users', usersCtrl.getUsers);
   api.post('/users', usersCtrl.saveUser);

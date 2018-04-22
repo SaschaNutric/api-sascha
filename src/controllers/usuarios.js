@@ -65,6 +65,7 @@ function getUsuarioById(req, res, next) {
 }
 
 function saveUsuario(req, res, next) {
+	console.log(JSON.stringify(res.boy));
 	Bookshelf.transaction(function(transaction) {
 		const salt = Bcrypt.genSaltSync(12);
 		const hash = Bcrypt.hashSync(req.body.contraseña, salt);
