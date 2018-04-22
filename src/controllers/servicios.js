@@ -112,9 +112,6 @@ function updateServicio(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({
-			id_plan_dieta: req.body.id_plan_dieta || data.get('id_plan_dieta'),
-			id_plan_ejercicio: req.body.id_plan_ejercicio || data.get('id_plan_ejercicio'), 
-			id_plan_suplemento: req.body.id_plan_suplemento || data.get('id_plan_suplemento'), 
         	nombre: req.body.nombre || data.get('nombre'), 
         	descripcion: req.body.descripcion || data.get('descripcion'), 
         	url_imagen: req.body.url_imagen || data.get('url_imagen'), 
