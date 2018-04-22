@@ -186,7 +186,6 @@ function updateUsuario(req, res, next) {
 	})
 }
 
-
 function deleteUsuario(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') {

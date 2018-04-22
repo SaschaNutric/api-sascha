@@ -1,6 +1,7 @@
 'use strict';
 
 const Dietas = require('../collections/plan_dietas');
+const PlanDieta  = require('../models/plan_dieta');
 
 function getPlanDietas(req, res, next) {
 	Dietas.query(function (q) {
@@ -30,7 +31,33 @@ function getPlanDietas(req, res, next) {
     });
 }
 
-function getPlanDietaId(req, res, next) {
+function savePlanDieta(req, res, next){
+	console.log(JSON.stringify(req.body));
+
+	PlanDieta.forge({
+		id_tipo_dieta: req.body.id_tipo_dieta,
+        nombre: req.body.nombre, 
+        descripcion: req.body.descripcion
+	})
+	.save()
+	.then(function(servicio){
+		res.status(200).json({
+			error: false,
+			data: [{
+				msg: "Servicio Creado"
+			}]
+		});
+	})
+	.catch(function (err) {
+		res.status(500)
+		.json({
+			error: true,
+			data: {message: err.message}
+		});
+	});
+}
+
+function getPlanDietaById(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') 
 		return res.status(400).json({ 
@@ -38,17 +65,17 @@ function getPlanDietaId(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 
-	Usuario.forge({ id_usuario: id, estatus: 1 })
+	PlanDieta.forge({ id_plan_dieta: id, estatus: 1 })
 	.fetch()
-	.then(function(usuario) {
-		if(!usuario) 
+	.then(function(data) {
+		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'Usuario no encontrado' } 
+				data: { mensaje: 'Servicio no encontrado' } 
 			});
 		return res.status(200).json({ 
 			error : false, 
-			data : usuario.omit('contrasenia', 'salt') 
+			data : data 
 		});
 	})
 	.catch(function(err){
@@ -59,8 +86,8 @@ function getPlanDietaId(req, res, next) {
 	});
 }
 
-
 module.exports = {
 	getPlanDietas,
-	getPlanDietaId
+	savePlanDieta,
+	getPlanDietaById
 }
