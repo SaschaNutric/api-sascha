@@ -1,7 +1,5 @@
 # Informacion sobre las rutas
 
-# Documentacion de las rutas
-
 Informacion sobre el contenido manejado sobre cada rutas de la api-sascha
 
 # Tabla de contenido 
@@ -19,7 +17,7 @@ Heroku con http://api-sascha.heroku.com/
 
 ## Usuarios
 
- ├──/[Host | Port](#host-port)
+ ├──/
  	├─GET────/usuarios 			* Retorna todos.
     ├─POST───/usuarios 			* Guarda.
     ├─GET────/usuario/:id 		* Retorna.
@@ -30,20 +28,20 @@ Heroku con http://api-sascha.heroku.com/
 
  ├─GET────/usuarios
 	├─JSON 200
-	├──[{
-    	"error": false,
-    	"data": []
-	}];
+	├──´´[{
+    		"error": false,
+    		"data": []
+	}]´´
  	├─JSON 400
-    ├──[{
-    	"error": true,
-    	"data": [ msg:"" ]
-	}]│
+    ├──´´[{
+    		"error": true,
+    		"data": [ msg:""]
+	}]´´
 
 
 ## Servicios
 
- ├──/[Host | Port](#host-port) 
+ ├──/
  	├─GET────/servicios 		* Retorna todos.
     ├─POST───/servicios 		* Guarda. 
     ├─GET────/servicio/:id 		* Retorna.
@@ -53,44 +51,44 @@ Heroku con http://api-sascha.heroku.com/
 
  ├─GET────/servicios
 	├─JSON 200
-	├──[{
-    	"error": false,
-    	"data": {
-        "id_servicio": 1,
-        "estatus": 1,
-        "id_plan_dieta": 1,
-        "id_plan_ejercicio": 1,
-        "id_plan_suplemento": 1,
-        "nombre": "",
-        "descripcion": "",
-        "url_imagen": "",
-        "precio": 0,
-        "numero_visita": 0,
-        "fecha_creacion": "",
-        "fecha_actualizacion": ""
-	}];
+	├──´´[{
+    		"error": false,
+    		"data": {
+        	"id_servicio": 1,
+        	"estatus": 1,
+        	"id_plan_dieta": 1,
+        	"id_plan_ejercicio": 1,
+        	"id_plan_suplemento": 1,
+        	"nombre": "",
+        	"descripcion": "",
+        	"url_imagen": "",
+        	"precio": 0,
+        	"numero_visita": 0,
+        	"fecha_creacion": "",
+        	"fecha_actualizacion": ""
+	}]´´
  ├─GET────/servicios/1
 	├─JSON 200
-	├──[{
-    	"error": false,
-    	"data": {
-        "id_servicio": 1,
-        "estatus": 1,
-        "id_plan_dieta": 1,
-        "id_plan_ejercicio": 1,
-        "id_plan_suplemento": 1,
-        "nombre": "",
-        "descripcion": "",
-        "url_imagen": "",
-        "precio": 0,
-        "numero_visita": 0,
-        "fecha_creacion": "",
-        "fecha_actualizacion": ""
-	}];
+	├──´´[{
+    		"error": false,
+    		"data": {
+        	"id_servicio": 1,
+        	"estatus": 1,
+        	"id_plan_dieta": 1,
+        	"id_plan_ejercicio": 1,
+        	"id_plan_suplemento": 1,
+	        "nombre": "",
+        	"descripcion": "",
+        	"url_imagen": "",
+        	"precio": 0,
+        	"numero_visita": 0,
+        	"fecha_creacion": "",
+        	"fecha_actualizacion": ""
+	}]´´
  	├─JSON 400
-    │	├──[{
-    │		"error": true,
-    │		"data": [ msg:"" ]
-	│	}]│
+    	├──´´[{
+    		"error": true,
+   		"data": [ msg:"" ]
+	}]´´
 
 
