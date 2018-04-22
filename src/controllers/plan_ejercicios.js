@@ -5,7 +5,7 @@ const PlanEjercicio  = require('../models/tipo_dieta');
 
 function getPlanEjercicios(req, res, next) {
 	PlanEjercicios.query({})
-	.fetch({ columns: ['id_tipo_dieta', 'nombre', 'fecha_creacion', 'fecha_actualizacion', 'estatus'] })
+	.fetch({ columns: ['id_plan_ejercicio', 'nombre', 'descripcion', 'fecha_creacion', 'fecha_actualizacion', 'estatus'] })
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -27,11 +27,9 @@ function getPlanEjercicios(req, res, next) {
 }
 
 function savePlanEjercicio(req, res, next){
-	console.log(JSON.stringify(req.body));
-
 	PlanEjercicio.forge({
         nombre: req.body.nombre,
-         descripcion: req.body.descripcion
+        descripcion: req.body.descripcion
 	})
 	.save()
 	.then(function(servicio){
@@ -59,7 +57,7 @@ function getPlanEjercicioById(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 
-	PlanEjercicio.forge({ id_tipo_dieta: id, estatus: 1 })
+	PlanEjercicio.forge({ id_plan_ejercicio: id, estatus: 1 })
 	.fetch()
 	.then(function(data) {
 		if(!data) 
@@ -89,7 +87,7 @@ function updatePlanEjercicio(req, res, next) {
 		});
 	}
 
-	PlanEjercicio.forge({ id_tipo_dieta: id, estatus: 1 })
+	PlanEjercicio.forge({ id_plan_ejercicio: id, estatus: 1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 
@@ -132,7 +130,7 @@ function deletePlanEjercicio(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 	}
-	PlanEjercicio.forge({ id_tipo_dieta: id, estatus: 1 })
+	PlanEjercicio.forge({ id_plan_ejercicio: id, estatus: 1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 
@@ -162,7 +160,6 @@ function deletePlanEjercicio(req, res, next) {
 		});
 	})
 }
-
 
 module.exports = {
 	getPlanEjercicios,

@@ -27,8 +27,6 @@ function getPlanSuplementos(req, res, next) {
 }
 
 function savePlanSuplemento(req, res, next){
-	console.log(JSON.stringify(req.body));
-
 	PlanSuplemento.forge({
         nombre: req.body.nombre,
         descripcion: req.body.descripcion
@@ -97,8 +95,6 @@ function updatePlanSuplemento(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		console.log(req.body.nombre);
-		console.log(data.get('nombre'));
 		data.save({
 			nombre: req.body.nombre || data.get('nombre'),
 			descripcion: req.body.descripcion || data.get('descripcion')

@@ -67,8 +67,6 @@ function getServicioById(req, res, next) {
 }
 
 function saveServicio(req, res, next){
-	console.log(JSON.stringify(req.body));
-
 	Servicio.forge({
 		id_plan_dieta: req.body.id_plan_dieta,
 		id_plan_ejercicio: req.body.id_plan_ejercicio, 
@@ -97,8 +95,96 @@ function saveServicio(req, res, next){
 	});
 }
 
+function updateServicio(req, res, next) {
+	const id = Number.parseInt(req.params.id);
+	if (!id || id == 'NaN') {
+		return res.status(400).json({ 
+			error: true, 
+			data: { mensaje: 'Solicitud incorrecta' } 
+		});
+	}
+	Servicio.forge({ id_servicio: id, estatus: 1 })
+	.fetch()
+	.then(function(data){
+		if(!data) 
+			return res.status(404).json({ 
+				error: true, 
+				data: { mensaje: 'Solicitud no encontrada' } 
+			});
+		data.save({
+			id_plan_dieta: req.body.id_plan_dieta || data.get('id_plan_dieta'),
+			id_plan_ejercicio: req.body.id_plan_ejercicio || data.get('id_plan_ejercicio'), 
+			id_plan_suplemento: req.body.id_plan_suplemento || data.get('id_plan_suplemento'), 
+        	nombre: req.body.nombre || data.get('nombre'), 
+        	descripcion: req.body.descripcion || data.get('descripcion'), 
+        	url_imagen: req.body.url_imagen || data.get('url_imagen'), 
+        	precio: req.body.precio || data.get('precio'), 
+        	numero_visita: req.body.numero_visita || data.get('numero_visita')
+		})
+		.then(function() {
+			return res.status(200).json({ 
+				error: false, 
+				data: { mensaje: 'Registro actualizado' } 
+			});
+		})
+		.catch(function(err) {
+			return res.status(500).json({ 
+				error : true, 
+				data : { mensaje : err.message } 
+			});
+		})
+	})
+	.catch(function(err) {
+		return res.status(500).json({ 
+			error : true, 
+			data : { mensaje : err.message } 
+		});
+	})
+}
+
+function deleteServicio(req, res, next) {
+	const id = Number.parseInt(req.params.id);
+	if (!id || id == 'NaN') {
+		return res.status(400).json({ 
+			error: true, 
+			data: { mensaje: 'Solicitud incorrecta' } 
+		});
+	}
+	Servicio.forge({ id_servicio: id, estatus: 1 })
+	.fetch()
+	.then(function(data){
+		if(!data) 
+			return res.status(404).json({ 
+				error: true, 
+				data: { mensaje: 'Solicitud no encontrad0' } 
+			});
+
+		data.save({ estatus:  0 })
+		.then(function() {
+			return res.status(200).json({ 
+				error: false,
+				data: { mensaje: 'Registro eliminado' } 
+			});
+		})
+		.catch(function(err) {
+			return res.status(500).json({ 
+				error: true, 
+				data: { mensaje: err.message} 
+			});
+		})
+	})
+	.catch(function(err){
+		return res.status(500).json({ 
+			error: true, 
+			data: { mensaje: err.message } 
+		});
+	})
+}
+
 module.exports = {
 	getServicios,
 	getServicioById,
-	saveServicio
+	saveServicio,
+	updateServicio,
+	deleteServicio
 }

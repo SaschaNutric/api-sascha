@@ -48,10 +48,14 @@ module.exports = (function () {
   api.get('/servicios',             serviciosCtrl.getServicios);
   api.post('/servicios',            serviciosCtrl.saveServicio);
   api.get('/servicio/:id',          serviciosCtrl.getServicioById);
+  api.put('/servicio/:id',          serviciosCtrl.updateServicio);
+  api.delete('/servicio/:id',       serviciosCtrl.deleteServicio);
   
   api.get('/dietas',                plan_dietasCtrl.getPlanDietas);
   api.post('/dietas',               plan_dietasCtrl.savePlanDieta);
   api.get('/dieta/:id',             plan_dietasCtrl.getPlanDietaById);
+  api.put('/dieta/:id',             plan_dietasCtrl.updatePlanDieta);
+  api.delete('/dieta/:id',          plan_dietasCtrl.deletePlanDieta);
 
   api.get('/tipodietas',            tipo_dietasCtrl.getTipoDietas);
   api.post('/tipodietas',           tipo_dietasCtrl.saveTipoDieta);

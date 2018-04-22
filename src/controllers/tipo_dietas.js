@@ -96,8 +96,6 @@ function updateTipoDieta(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		console.log(req.body.nombre);
-		console.log(data.get('nombre'));
 		data.save({
 			nombre: req.body.nombre || data.get('nombre')
 		})
@@ -160,7 +158,6 @@ function deleteTipoDieta(req, res, next) {
 		});
 	})
 }
-
 
 module.exports = {
 	getTipoDietas,
