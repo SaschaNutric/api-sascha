@@ -14,10 +14,10 @@ Local con http://localhost:5000/
 Heroku con http://api-sascha.heroku.com/
 
 # Rutas | Json
-```
 
 ## Usuarios
 
+```
  ├──/
  	├─GET────/usuarios 			* Retorna todos.
     ├─POST───/usuarios 			* Guarda.
@@ -38,10 +38,11 @@ Heroku con http://api-sascha.heroku.com/
     		"error": true,
     		"data": [ msg:""]
 	}]
-
+```
 
 ## Servicios
 
+```
  ├──/
  	├─GET────/servicios 		* Retorna todos.
     ├─POST───/servicios 		* Guarda. 
