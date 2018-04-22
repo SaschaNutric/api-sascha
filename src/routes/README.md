@@ -14,6 +14,7 @@ Local con http://localhost:5000/
 Heroku con http://api-sascha.heroku.com/
 
 # Rutas | Json
+```
 
 ## Usuarios
 
@@ -28,15 +29,15 @@ Heroku con http://api-sascha.heroku.com/
 
  ├─GET────/usuarios
 	├─JSON 200
-	├──´´[{
+	├──[{
     		"error": false,
     		"data": []
-	}]´´
+	}]
  	├─JSON 400
     ├──´´[{
     		"error": true,
     		"data": [ msg:""]
-	}]´´
+	}]
 
 
 ## Servicios
@@ -51,7 +52,7 @@ Heroku con http://api-sascha.heroku.com/
 
  ├─GET────/servicios
 	├─JSON 200
-	├──´´[{
+	├──[{
     		"error": false,
     		"data": {
         	"id_servicio": 1,
@@ -66,10 +67,10 @@ Heroku con http://api-sascha.heroku.com/
         	"numero_visita": 0,
         	"fecha_creacion": "",
         	"fecha_actualizacion": ""
-	}]´´
+	}]
  ├─GET────/servicios/1
 	├─JSON 200
-	├──´´[{
+	├──[{
     		"error": false,
     		"data": {
         	"id_servicio": 1,
@@ -84,11 +85,11 @@ Heroku con http://api-sascha.heroku.com/
         	"numero_visita": 0,
         	"fecha_creacion": "",
         	"fecha_actualizacion": ""
-	}]´´
+	}]
  	├─JSON 400
     	├──´´[{
     		"error": true,
    		"data": [ msg:"" ]
-	}]´´
-
+	}]
+```
 
