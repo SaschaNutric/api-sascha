@@ -11,7 +11,7 @@ Informacion sobre el contenido manejado sobre cada rutas de la api-sascha
     * [Promociones](#promociones)
     * [Dietas](#dietas)
     * [Tipo Dietas](#tipo_dietas)
-    * [Tipo Citas](#tipo_citas)
+    * [Tipo Citas](#tipo_citas)[[ver json]](https://api-sascha.herokuapp.com/tipocitas)
     * [Suplementos](#suplementos)
     * [Ejercicios](#ejercicios)
 
@@ -177,25 +177,6 @@ Heroku con http://api-sascha.heroku.com/
     ├─GET────/tipodieta/:id      * Retorna por id.
     ├─PUT────/tipodieta/:id      * Actualiza.
     ├─DELETE─/tipodieta/:id      * Elimina.
-    ├─JSON 200
-    ├──{
-    "error": false,
-    "data": [
-        {
-            "id_tipo_dieta": 1,
-            "nombre": "tipo dieta",
-            "fecha_creacion": "2018-04-02T04:00:00.000Z",
-            "fecha_actualizacion": "2018-05-02T04:00:00.000Z",
-            "estatus": 1
-        },
-        {
-            "id_tipo_dieta": 2,
-            "nombre": "dieta1",
-            "fecha_creacion": "2018-04-22T03:56:32.238Z",
-            "fecha_actualizacion": "2018-04-22T03:56:32.238Z",
-            "estatus": 1
-        }
-    ]}
 ```
 
 ## Tipo Citas
@@ -206,10 +187,7 @@ Heroku con http://api-sascha.heroku.com/
     ├─GET────/tipocita/:id      * Retorna por id.
     ├─PUT────/tipocita/:id      * Actualiza.
     ├─DELETE─/tipocita/:id      * Elimina.
-    ├─JSON 200 [![json]](https://api-sascha.herokuapp.com/tipocitas)
-
 ```
-[![json]](https://api-sascha.herokuapp.com/tipocitas)
 
 ## Suplemento
 
