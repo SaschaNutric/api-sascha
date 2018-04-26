@@ -13,6 +13,9 @@ Informacion sobre el contenido manejado sobre cada rutas de la api-sascha
 * [2-TipoCitas](#tipo_citas)
 * [3-TipoCriterios](#tipo_criterios)
 * [4-TipoIncidencias](#tipo_incidencias)
+* [5-TipoMotivos](#tipo_motivos)
+* [6-TipoOrdenes](#tipo_ordenes)
+* [7-TipoParametros](#tipo_parametros)
 * [Suplementos](#suplementos)
 * [Ejercicios](#ejercicios)
 
@@ -212,6 +215,38 @@ Heroku con http://api-sascha.heroku.com/
 ```
 [[ver json]](https://api-sascha.herokuapp.com/tipoincidencias)
 
+# 5-TipoMotivos
+
+```
+    ├─GET────/tipomotivos         * Retorna todos.
+    ├─POST───/tipomotivos         * Guarda. 
+    ├─GET────/tipomotivo/:id      * Retorna por id.
+    ├─PUT────/tipomotivo/:id      * Actualiza.
+    ├─DELETE─/tipomotivo/:id      * Elimina.
+```
+[[ver json]](https://api-sascha.herokuapp.com/tipomotivos)
+
+# 6-TipoOrdenes
+
+```
+    ├─GET────/tipoordenes         * Retorna todos.
+    ├─POST───/tipoordenes         * Guarda. 
+    ├─GET────/tipoorden/:id       * Retorna por id.
+    ├─PUT────/tipoorden/:id       * Actualiza.
+    ├─DELETE─/tipoorden/:id       * Elimina.
+```
+[[ver json]](https://api-sascha.herokuapp.com/tipoordenes)
+
+# 7-TipoParametros
+
+```
+    ├─GET────/tipoparametros       * Retorna todos.
+    ├─POST───/tipoparametros       * Guarda. 
+    ├─GET────/tipoparametro/:id    * Retorna por id.
+    ├─PUT────/tipoparametro/:id    * Actualiza.
+    ├─DELETE─/tipoparametro/:id    * Elimina.
+```
+[[ver json]](https://api-sascha.herokuapp.com/tipomotivos)
 
 # Suplemento
 

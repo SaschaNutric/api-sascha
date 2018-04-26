@@ -1,19 +1,22 @@
-var express               = require('express');
-var usersCtrl             = require('../controllers/users');
-const clientesCtrl        = require('../controllers/clientes');
-const usuariosCtrl        = require('../controllers/usuarios');
-const serviciosCtrl       = require('../controllers/servicios');
-const promocionesCtrl     = require('../controllers/promociones');
-const plan_dietasCtrl     = require('../controllers/plan_dietas');
-const tipo_dietasCtrl     = require('../controllers/tipo_dietas');
-const tipo_citasCtrl      = require('../controllers/tipo_citas');
-const tipo_criteriosCtrl  = require('../controllers/tipo_criterios');
+var express                 = require('express');
+var usersCtrl               = require('../controllers/users');
+const clientesCtrl          = require('../controllers/clientes');
+const usuariosCtrl          = require('../controllers/usuarios');
+const serviciosCtrl         = require('../controllers/servicios');
+const promocionesCtrl       = require('../controllers/promociones');
+const plan_dietasCtrl       = require('../controllers/plan_dietas');
+const tipo_dietasCtrl       = require('../controllers/tipo_dietas');
+const tipo_citasCtrl        = require('../controllers/tipo_citas');
+const tipo_criteriosCtrl    = require('../controllers/tipo_criterios');
 const tipo_incidenciasCtrl  = require('../controllers/tipo_incidencias');
-const plan_suplementoCtrl = require('../controllers/plan_suplementos');
-const pla_ejercicioCtrl   = require('../controllers/plan_ejercicios');
-const perfilCtrl          = require('../controllers/perfil');
+const tipo_motivosCtrl      = require('../controllers/tipo_motivos');
+const tipo_ordenesCtrl      = require('../controllers/tipo_ordenes');
+const tipo_parametrosCtrl   = require('../controllers/tipo_parametros');
+const plan_suplementoCtrl   = require('../controllers/plan_suplementos');
+const pla_ejercicioCtrl     = require('../controllers/plan_ejercicios');
+const perfilCtrl            = require('../controllers/perfil');
 
-var auth                  = require('../middlewares/auth');
+var auth                    = require('../middlewares/auth');
 
 module.exports = (function () {
 
@@ -110,6 +113,24 @@ module.exports = (function () {
   api.get('/tipoincidencia/:id',      tipo_incidenciasCtrl.getTipoIncidenciaById);  
   api.put('/tipoincidencia/:id',      tipo_incidenciasCtrl.updateTipoIncidencia);
   api.delete('/tipoincidencia/:id',   tipo_incidenciasCtrl.deleteTipoIncidencia);
+
+  api.get('/tipomotivos',             tipo_motivosCtrl.getTipoMotivos);
+  api.post('/tipomotivos',            tipo_motivosCtrl.saveTipoMotivo);
+  api.get('/tipomotivo/:id',          tipo_motivosCtrl.getTipoMotivoById);  
+  api.put('/tipomotivo/:id',          tipo_motivosCtrl.updateTipoMotivo);
+  api.delete('/tipomotivo/:id',       tipo_motivosCtrl.deleteTipoMotivo);
+
+  api.get('/tipoordenes',             tipo_ordenesCtrl.getTipoOrdenes);
+  api.post('/tipoordenes',            tipo_ordenesCtrl.saveTipoOrden);
+  api.get('/tipoorden/:id',           tipo_ordenesCtrl.getTipoOrdenById);  
+  api.put('/tipoorden/:id',           tipo_ordenesCtrl.updateTipoOrden);
+  api.delete('/tipoorden/:id',        tipo_ordenesCtrl.deleteTipoOrden);
+
+  api.get('/tipoparametros',          tipo_parametrosCtrl.getTipoParametros);
+  api.post('/tipoparametros',         tipo_parametrosCtrl.saveTipoParametro);
+  api.get('/tipoparametro/:id',       tipo_parametrosCtrl.getTipoParametroById);  
+  api.put('/tipoparametro/:id',       tipo_parametrosCtrl.updateTipoParametro);
+  api.delete('/tipoparametro/:id',    tipo_parametrosCtrl.deleteTipoParametro);
 
 	api.get('/users', usersCtrl.getUsers);
   api.post('/users', usersCtrl.saveUser);

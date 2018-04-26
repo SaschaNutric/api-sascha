@@ -1,16 +1,16 @@
 'use strict';
 
-const TipoCitas = require('../collections/tipo_citas');
-const TipoCita  = require('../models/tipo_cita');
+const TipoOrdenes = require('../collections/tipo_ordenes');
+const TipoOrden  = require('../models/tipo_orden');
 
-function getTipoCitas(req, res, next) {
-	TipoCitas.query({})
-	.fetch({ columns: ['id_tipo_cita', 'nombre', 'fecha_creacion', 'fecha_actualizacion', 'estatus'] })
+function getTipoOrdenes(req, res, next) {
+	TipoOrdenes.query({})
+	.fetch({ columns: ['id_tipo_orden', 'nombre', 'fecha_creacion', 'fecha_actualizacion', 'estatus'] })
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'No hay dato registrados' } 
+				data: { mensaje: 'No hay datos registrados' } 
 			});
 
 		return res.status(200).json({
@@ -26,10 +26,10 @@ function getTipoCitas(req, res, next) {
     });
 }
 
-function saveTipoCita(req, res, next){
+function saveTipoOrden(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	TipoCita.forge({
+	TipoOrden.forge({
         nombre: req.body.nombre
 	})
 	.save()
@@ -50,7 +50,7 @@ function saveTipoCita(req, res, next){
 	});
 }
 
-function getTipoCitaById(req, res, next) {
+function getTipoOrdenById(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') 
 		return res.status(400).json({ 
@@ -58,13 +58,13 @@ function getTipoCitaById(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 
-	TipoCita.forge({ id_tipo_cita: id, estatus: 1 })
+	TipoOrden.forge({ id_tipo_orden: id, estatus: 1 })
 	.fetch()
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'dato no encontrado' } 
+				data: { mensaje: 'Dato no encontrado' } 
 			});
 		return res.status(200).json({ 
 			error : false, 
@@ -79,7 +79,7 @@ function getTipoCitaById(req, res, next) {
 	});
 }
 
-function updateTipoCita(req, res, next) {
+function updateTipoOrden(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') {
 		return res.status(400).json({ 
@@ -88,7 +88,7 @@ function updateTipoCita(req, res, next) {
 		});
 	}
 
-	TipoCita.forge({ id_tipo_cita: id, estatus: 1 })
+	TipoOrden.forge({ id_tipo_orden: id, estatus: 1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 
@@ -120,7 +120,7 @@ function updateTipoCita(req, res, next) {
 	})
 }
 
-function deleteTipoCita(req, res, next) {
+function deleteTipoOrden(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') {
 		return res.status(400).json({ 
@@ -128,7 +128,7 @@ function deleteTipoCita(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 	}
-	TipoCita.forge({ id_tipo_cita: id, estatus: 1 })
+	TipoOrden.forge({ id_tipo_orden: id, estatus: 1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 
@@ -160,9 +160,9 @@ function deleteTipoCita(req, res, next) {
 }
 
 module.exports = {
-	getTipoCitas,
-	saveTipoCita,
-	getTipoCitaById,
-	updateTipoCita,
-	deleteTipoCita
+	getTipoOrdenes,
+	saveTipoOrden,
+	getTipoOrdenById,
+	updateTipoOrden,
+	deleteTipoOrden
 }

@@ -1221,6 +1221,20 @@ CREATE SEQUENCE id_tipo_cita_seq
 ALTER TABLE id_tipo_cita_seq OWNER TO postgres;
 
 --
+-- Name: id_tipo_criterio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE id_tipo_criterio_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE id_tipo_criterio_seq OWNER TO postgres;
+
+--
 -- Name: id_tipo_dieta_seq; Type: SEQUENCE; Schema: public; Owner: leo
 --
 
@@ -1261,6 +1275,20 @@ CREATE SEQUENCE id_tipo_motivo_seq
 
 
 ALTER TABLE id_tipo_motivo_seq OWNER TO leo;
+
+--
+-- Name: id_tipo_orden_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE id_tipo_orden_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE id_tipo_orden_seq OWNER TO postgres;
 
 --
 -- Name: id_tipo_parametro_seq; Type: SEQUENCE; Schema: public; Owner: leo
@@ -1887,8 +1915,11 @@ ALTER TABLE tipo_cita OWNER TO leo;
 --
 
 CREATE TABLE tipo_criterio (
-    id_tipo_criterio integer NOT NULL,
-    nombre character varying(50) NOT NULL
+    id_tipo_criterio integer DEFAULT nextval('id_tipo_criterio_seq'::regclass) NOT NULL,
+    nombre character varying(50) NOT NULL,
+    estatus integer DEFAULT 1 NOT NULL,
+    fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
+    fecha_creacion timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
@@ -1944,8 +1975,11 @@ ALTER TABLE tipo_motivo OWNER TO leo;
 --
 
 CREATE TABLE tipo_orden (
-    id_tipo_orden integer NOT NULL,
-    nombre character varying(50) DEFAULT ''::character varying NOT NULL
+    id_tipo_orden integer DEFAULT nextval('id_tipo_orden_seq'::regclass) NOT NULL,
+    nombre character varying(50) DEFAULT ''::character varying NOT NULL,
+    fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
+    fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
+    estatus integer DEFAULT 1 NOT NULL
 );
 
 
@@ -2699,6 +2733,13 @@ SELECT pg_catalog.setval('id_tipo_cita_seq', 1, true);
 
 
 --
+-- Name: id_tipo_criterio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('id_tipo_criterio_seq', 1, true);
+
+
+--
 -- Name: id_tipo_dieta_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
 --
 
@@ -2709,21 +2750,28 @@ SELECT pg_catalog.setval('id_tipo_dieta_seq', 1, true);
 -- Name: id_tipo_incidencia_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
 --
 
-SELECT pg_catalog.setval('id_tipo_incidencia_seq', 1, false);
+SELECT pg_catalog.setval('id_tipo_incidencia_seq', 1, true);
 
 
 --
 -- Name: id_tipo_motivo_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
 --
 
-SELECT pg_catalog.setval('id_tipo_motivo_seq', 1, false);
+SELECT pg_catalog.setval('id_tipo_motivo_seq', 1, true);
+
+
+--
+-- Name: id_tipo_orden_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('id_tipo_orden_seq', 1, true);
 
 
 --
 -- Name: id_tipo_parametro_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
 --
 
-SELECT pg_catalog.setval('id_tipo_parametro_seq', 1, false);
+SELECT pg_catalog.setval('id_tipo_parametro_seq', 1, true);
 
 
 --
@@ -3001,7 +3049,7 @@ COPY tiempo (id_tiempo, nombre, abreviatura, fecha_creacion, fecha_actualizacion
 --
 
 COPY tipo_cita (id_tipo_cita, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	Inicial	2018-04-26 15:17:34.87	2018-04-26 15:17:58.572	1
+1	Criterio	2018-04-26 15:17:34.87	2018-04-26 15:17:58.572	1
 \.
 
 
@@ -3009,7 +3057,8 @@ COPY tipo_cita (id_tipo_cita, nombre, fecha_creacion, fecha_actualizacion, estat
 -- Data for Name: tipo_criterio; Type: TABLE DATA; Schema: public; Owner: leo
 --
 
-COPY tipo_criterio (id_tipo_criterio, nombre) FROM stdin;
+COPY tipo_criterio (id_tipo_criterio, nombre, estatus, fecha_actualizacion, fecha_creacion) FROM stdin;
+1	Criterio	1	2018-04-26 16:23:34.800573	2018-04-26 16:23:34.800573
 \.
 
 
@@ -3027,6 +3076,7 @@ COPY tipo_dieta (id_tipo_dieta, nombre, fecha_creacion, fecha_actualizacion, est
 --
 
 COPY tipo_incidencia (id_tipo_incidencia, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+1	nuevo motivo	2018-04-26 17:33:09.924	2018-04-26 17:33:09.924	1
 \.
 
 
@@ -3035,6 +3085,7 @@ COPY tipo_incidencia (id_tipo_incidencia, nombre, fecha_creacion, fecha_actualiz
 --
 
 COPY tipo_motivo (id_tipo_motivo, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+1	motivo                                            	2018-04-26 18:08:25.981343	2018-04-26 18:08:25.981343	1
 \.
 
 
@@ -3042,7 +3093,8 @@ COPY tipo_motivo (id_tipo_motivo, nombre, fecha_creacion, fecha_actualizacion, e
 -- Data for Name: tipo_orden; Type: TABLE DATA; Schema: public; Owner: leo
 --
 
-COPY tipo_orden (id_tipo_orden, nombre) FROM stdin;
+COPY tipo_orden (id_tipo_orden, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+1	nueva orden	2018-04-26 18:42:16.06	2018-04-26 18:42:16.06	1
 \.
 
 
@@ -3051,6 +3103,7 @@ COPY tipo_orden (id_tipo_orden, nombre) FROM stdin;
 --
 
 COPY tipo_parametro (id_tipo_parametro, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+1	nueva parametro	2018-04-26 18:56:58.785	2018-04-26 18:56:58.785	1
 \.
 
 

@@ -10,7 +10,7 @@ function getTipoIncidencias(req, res, next) {
 		if (!data)
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'No hay servicios registrados' } 
+				data: { mensaje: 'No hay datos registrados' } 
 			});
 
 		return res.status(200).json({
@@ -64,7 +64,7 @@ function getTipoIncidenciaById(req, res, next) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'Servicio no encontrado' } 
+				data: { mensaje: 'Dato no encontrado' } 
 			});
 		return res.status(200).json({ 
 			error : false, 
