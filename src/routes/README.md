@@ -9,10 +9,10 @@ Informacion sobre el contenido manejado sobre cada rutas de la api-sascha
 * [Servicios](#servicios)
 * [Promociones](#promociones)
 * [Dietas](#dietas)
-* [TipoDietas](#tipo_dietas)
-* [TipoCitas](#tipo_citas)
-* [TipoCriterios](#tipo_criterios)
-* [TipoIncidencias](#tipo_incidencias)
+* [1-TipoDietas](#tipo_dietas)
+* [2-TipoCitas](#tipo_citas)
+* [3-TipoCriterios](#tipo_criterios)
+* [4-TipoIncidencias](#tipo_incidencias)
 * [Suplementos](#suplementos)
 * [Ejercicios](#ejercicios)
 
@@ -168,7 +168,7 @@ Heroku con http://api-sascha.heroku.com/
     }
 ```
 
-# TipoDietas
+# 1-TipoDietas
 
 ```
     ├─GET────/tipodietas         * Retorna todos.
@@ -177,8 +177,9 @@ Heroku con http://api-sascha.heroku.com/
     ├─PUT────/tipodieta/:id      * Actualiza.
     ├─DELETE─/tipodieta/:id      * Elimina.
 ```
+[[ver json]](https://api-sascha.herokuapp.com/tipodietas)
 
-# TipoCitas
+# 2-TipoCitas
 
 ```
     ├─GET────/tipocitas         * Retorna todos.
@@ -189,7 +190,7 @@ Heroku con http://api-sascha.heroku.com/
 ```
 [[ver json]](https://api-sascha.herokuapp.com/tipocitas)
 
-# TipoCriterios
+# 3-TipoCriterios
 
 ```
     ├─GET────/tipocriterios         * Retorna todos.
@@ -200,14 +201,14 @@ Heroku con http://api-sascha.heroku.com/
 ```
 [[ver json]](https://api-sascha.herokuapp.com/tipocriterios)
 
-# TipoIncidencias
+# 4-TipoIncidencias
 
 ```
-    ├─GET────/tipocriterios         * Retorna todos.
-    ├─POST───/tipocriterios         * Guarda. 
-    ├─GET────/tipocriterio/:id      * Retorna por id.
-    ├─PUT────/tipocriterio/:id      * Actualiza.
-    ├─DELETE─/tipocriterio/:id      * Elimina.
+    ├─GET────/tipoincidencias         * Retorna todos.
+    ├─POST───/tipoincidencias         * Guarda. 
+    ├─GET────/tipoincidencia/:id      * Retorna por id.
+    ├─PUT────/tipoincidencia/:id      * Actualiza.
+    ├─DELETE─/tipoincidencia/:id      * Elimina.
 ```
 [[ver json]](https://api-sascha.herokuapp.com/tipoincidencias)
 
