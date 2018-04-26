@@ -1,32 +1,18 @@
 'use strict';
 
-const Servicios = require('../collections/servicios');
-const Servicio  = require('../models/servicio');
+const Promociones = require('../collections/promociones');
+const Promocion  = require('../models/promocion');
 
-async function getServicios(req, res, next) {
-	await Servicios.query(function (q) {
-        q.distinct()
-         .innerJoin('plan_dieta', function () {
-                this.on('servicio.id_plan_dieta', '=', 'plan_dieta.id_plan_dieta');
-            })
-         .innerJoin('tipo_dieta', function () {
-                this.on('tipo_dieta.id_tipo_dieta', '=', 'plan_dieta.id_tipo_dieta');
-            })
-         .innerJoin('plan_ejercicio', function () {
-                this.on('servicio.id_plan_ejercicio', '=', 'plan_ejercicio.id_plan_ejercicio');
-            })
-         .innerJoin('plan_suplemento', function () {
-                this.on('servicio.id_plan_suplemento', '=', 'plan_suplemento.id_plan_suplemento');
-            });
-	})
-	.fetch({ withRelated: ['plan_dieta', 'plan_dieta.tipo_dieta','plan_ejercicio', 'plan_suplemento'] })
+function getPromociones(req, res, next) {
+	Promociones.query({})
+	.fetch({ columns: ['id_promocion', 'nombre', 'descripcion', 'url_imagen', 'precio', 'fecha_creacion', 'fecha_actualizacion', 'estatus'] })
 	.then(function(data) {
-		//console.log(servicios.at(0).related('plan_dieta'));
 		if (!data)
 			return res.status(404).json({ 
 				error: true, 
 				data: { mensaje: 'No hay servicios registrados' } 
 			});
+
 		return res.status(200).json({
 			error: false,
 			data: data
@@ -40,52 +26,21 @@ async function getServicios(req, res, next) {
     });
 }
 
-function getServicioById(req, res, next) {
-	const id = Number.parseInt(req.params.id);
-	if (!id || id == 'NaN') 
-		return res.status(400).json({ 
-			error: true, 
-			data: { mensaje: 'Solicitud incorrecta' } 
-		});
+function savePromocion(req, res, next){
+	console.log(JSON.stringify(req.body));
 
-	Servicio.forge({ id_servicio: id, estatus: 1 })
-	.fetch()
-	.then(function(data) {
-		if(!data) 
-			return res.status(404).json({ 
-				error: true, 
-				data: { mensaje: 'Servicio no encontrado' } 
-			});
-		return res.status(200).json({ 
-			error : false, 
-			data : data
-		});
-	})
-	.catch(function(err){
-		return res.status(500).json({ 
-			error: false, 
-			data: { mensaje: err.message } 
-		})
-	});
-}
-
-function saveServicio(req, res, next){
-	Servicio.forge({
-		id_plan_dieta: req.body.id_plan_dieta,
-		id_plan_ejercicio: req.body.id_plan_ejercicio, 
-		id_plan_suplemento: req.body.id_plan_suplemento, 
+	Promocion.forge({
         nombre: req.body.nombre, 
         descripcion: req.body.descripcion, 
         url_imagen: req.body.url_imagen, 
-        precio: req.body.precio, 
-        numero_visita: req.body.numero_visita
+        precio: req.body.precio
 	})
 	.save()
-	.then(function(data){
+	.then(function(servicio){
 		res.status(200).json({
 			error: false,
 			data: [{
-				msg: "Servicio Creado"
+				msg: "Registro Creado"
 			}]
 		});
 	})
@@ -98,7 +53,36 @@ function saveServicio(req, res, next){
 	});
 }
 
-function updateServicio(req, res, next) {
+function getPromocionById(req, res, next) {
+	const id = Number.parseInt(req.params.id);
+	if (!id || id == 'NaN') 
+		return res.status(400).json({ 
+			error: true, 
+			data: { mensaje: 'Solicitud incorrecta' } 
+		});
+
+	Promocion.forge({ id_promocion: id, estatus: 1 })
+	.fetch()
+	.then(function(data) {
+		if(!data) 
+			return res.status(404).json({ 
+				error: true, 
+				data: { mensaje: 'Servicio no encontrado' } 
+			});
+		return res.status(200).json({ 
+			error : false, 
+			data : data 
+		});
+	})
+	.catch(function(err){
+		return res.status(500).json({ 
+			error: false, 
+			data: { mensaje: err.message } 
+		})
+	});
+}
+
+function updatePromocion(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') {
 		return res.status(400).json({ 
@@ -106,7 +90,8 @@ function updateServicio(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 	}
-	Servicio.forge({ id_servicio: id, estatus: 1 })
+
+	Promocion.forge({ id_promocion: id, estatus: 1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 
@@ -115,11 +100,7 @@ function updateServicio(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({
-        	nombre: req.body.nombre || data.get('nombre'), 
-        	descripcion: req.body.descripcion || data.get('descripcion'), 
-        	url_imagen: req.body.url_imagen || data.get('url_imagen'), 
-        	precio: req.body.precio || data.get('precio'), 
-        	numero_visita: req.body.numero_visita || data.get('numero_visita')
+			nombre: req.body.nombre || data.get('nombre')
 		})
 		.then(function() {
 			return res.status(200).json({ 
@@ -142,7 +123,7 @@ function updateServicio(req, res, next) {
 	})
 }
 
-function deleteServicio(req, res, next) {
+function deletePromocion(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') {
 		return res.status(400).json({ 
@@ -150,7 +131,7 @@ function deleteServicio(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 	}
-	Servicio.forge({ id_servicio: id, estatus: 1 })
+	Promocion.forge({ id_promocion: id, estatus: 1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 
@@ -182,9 +163,9 @@ function deleteServicio(req, res, next) {
 }
 
 module.exports = {
-	getServicios,
-	getServicioById,
-	saveServicio,
-	updateServicio,
-	deleteServicio
+	getPromociones,
+	savePromocion,
+	getPromocionById,
+	updatePromocion,
+	deletePromocion
 }

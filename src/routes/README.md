@@ -8,6 +8,7 @@ Informacion sobre el contenido manejado sobre cada rutas de la api-sascha
 * [Rutas | Json](#rutas-json)
     * [Usuarios](#usuarios)
     * [Servicios](#servicios)
+    * [Promociones](#promociones)
     * [Dietas](#dietas)
     * [Tipo Dietas](#tipo_dietas)
     * [Suplementos](#suplementos)
@@ -106,6 +107,32 @@ Heroku con http://api-sascha.heroku.com/
                     "fecha_actualizacion": "2018-07-09T04:00:00.000Z",
                     "estatus": 1
                 }
+            }
+        ]
+    }
+```
+
+## Promociones
+
+```
+    ├─GET────/promociones        * Retorna todos.
+    ├─POST───/promociones        * Guarda. 
+    ├─GET────/promocion/:id      * Retorna por id.
+    ├─PUT────/promocion/:id      * Actualiza.
+    ├─DELETE─/promocion/:id      * Elimina.
+    ├─JSON 200
+    ├──{
+    "error": false,
+    "data": [
+        {
+            "id_promocion": 1,
+            "nombre": "",
+            "descripcion": "",
+            "url_imagen": "",
+            "precio": 70,
+            "fecha_creacion": "",
+            "fecha_actualizacion": "",
+            "estatus": 1
             }
         ]
     }

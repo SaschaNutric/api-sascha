@@ -3,6 +3,7 @@ var usersCtrl             = require('../controllers/users');
 const clientesCtrl        = require('../controllers/clientes');
 const usuariosCtrl        = require('../controllers/usuarios');
 const serviciosCtrl       = require('../controllers/servicios');
+const promocionesCtrl     = require('../controllers/promociones');
 const plan_dietasCtrl     = require('../controllers/plan_dietas');
 const tipo_dietasCtrl     = require('../controllers/tipo_dietas');
 const plan_suplementoCtrl = require('../controllers/plan_suplementos');
@@ -69,11 +70,21 @@ module.exports = (function () {
   api.put('/suplemento/:id',         plan_suplementoCtrl.updatePlanSuplemento);
   api.delete('/suplemento/:id',      plan_suplementoCtrl.deletePlanSuplemento);
 
-  api.get('/ejercicios',            pla_ejercicioCtrl.getPlanEjercicios);
-  api.post('/ejercicios',           pla_ejercicioCtrl.savePlanEjercicio);
-  api.get('/ejercicio/:id',         pla_ejercicioCtrl.getPlanEjercicioById);  
-  api.put('/ejercicio/:id',         pla_ejercicioCtrl.updatePlanEjercicio);
-  api.delete('/ejercicio/:id',      pla_ejercicioCtrl.deletePlanEjercicio);
+  api.get('/ejercicios',             pla_ejercicioCtrl.getPlanEjercicios);
+  api.post('/ejercicios',            pla_ejercicioCtrl.savePlanEjercicio);
+  api.get('/ejercicio/:id',          pla_ejercicioCtrl.getPlanEjercicioById);  
+  api.put('/ejercicio/:id',          pla_ejercicioCtrl.updatePlanEjercicio);
+  api.delete('/ejercicio/:id',       pla_ejercicioCtrl.deletePlanEjercicio);
+
+/* ----------------------------------------------------- */
+
+/* ------------ Gestion de promocion --------------------- */
+
+  api.get('/promociones',             promocionesCtrl.getPromociones);
+  api.post('/promociones',            promocionesCtrl.savePromocion);
+  api.get('/promocion/:id',           promocionesCtrl.getPromocionById);
+  api.put('/promocion/:id',           promocionesCtrl.updatePromocion);
+  api.delete('/promocion/:id',        promocionesCtrl.deletePromocion);
 
 /* ----------------------------------------------------- */
 

@@ -448,6 +448,20 @@ CREATE TABLE grupo_alimenticio (
 ALTER TABLE grupo_alimenticio OWNER TO postgres;
 
 --
+-- Name: id_parametro_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE id_parametro_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE id_parametro_seq OWNER TO postgres;
+
+--
 -- Name: id_plan_dieta_seq; Type: SEQUENCE; Schema: public; Owner: leo
 --
 
@@ -488,6 +502,20 @@ CREATE SEQUENCE id_plan_suplemento_seq
 
 
 ALTER TABLE id_plan_suplemento_seq OWNER TO leo;
+
+--
+-- Name: id_promocion_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE id_promocion_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE id_promocion_seq OWNER TO postgres;
 
 --
 -- Name: id_rango_edad_seq; Type: SEQUENCE; Schema: public; Owner: leo
@@ -602,6 +630,20 @@ CREATE SEQUENCE id_tipo_dieta_seq
 ALTER TABLE id_tipo_dieta_seq OWNER TO leo;
 
 --
+-- Name: id_tipo_parametro_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE id_tipo_parametro_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE id_tipo_parametro_seq OWNER TO postgres;
+
+--
 -- Name: id_unidad_seq; Type: SEQUENCE; Schema: public; Owner: leo
 --
 
@@ -628,6 +670,23 @@ CREATE SEQUENCE id_usuario_seq
 
 
 ALTER TABLE id_usuario_seq OWNER TO leo;
+
+--
+-- Name: parametro; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE parametro (
+    id_parametro integer DEFAULT nextval('id_parametro_seq'::regclass) NOT NULL,
+    id_tipo_parametro integer NOT NULL,
+    nombre character varying(50) DEFAULT ''::character varying NOT NULL,
+    id_tipo_valor integer NOT NULL,
+    fecha_creacion timestamp with time zone DEFAULT now() NOT NULL,
+    fecha_actualizacion timestamp with time zone DEFAULT now() NOT NULL,
+    estatus integer DEFAULT 1 NOT NULL
+);
+
+
+ALTER TABLE parametro OWNER TO postgres;
 
 --
 -- Name: plan_dieta; Type: TABLE; Schema: public; Owner: leo
@@ -677,6 +736,41 @@ CREATE TABLE plan_suplemento (
 
 
 ALTER TABLE plan_suplemento OWNER TO leo;
+
+--
+-- Name: promocion; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE promocion (
+    id_promocion integer DEFAULT nextval('id_promocion_seq'::regclass) NOT NULL,
+    nombre character varying(50) DEFAULT ''::character varying NOT NULL,
+    descripcion character varying(200) DEFAULT ''::character varying NOT NULL,
+    url_imagen character varying(50) DEFAULT ''::character varying NOT NULL,
+    precio integer NOT NULL,
+    fecha_creacion timestamp with time zone DEFAULT now() NOT NULL,
+    fecha_actualizacion timestamp with time zone DEFAULT now() NOT NULL,
+    estatus integer DEFAULT 1 NOT NULL
+);
+
+
+ALTER TABLE promocion OWNER TO postgres;
+
+--
+-- Name: promocion_parametro; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE promocion_parametro (
+    id_promocion integer NOT NULL,
+    id_parametro integer NOT NULL,
+    valor_minimo integer NOT NULL,
+    valor_maximo integer NOT NULL,
+    fecha_creacion timestamp with time zone DEFAULT now() NOT NULL,
+    fecha_actualizacion timestamp with time zone DEFAULT now() NOT NULL,
+    estatus integer DEFAULT 1 NOT NULL
+);
+
+
+ALTER TABLE promocion_parametro OWNER TO postgres;
 
 --
 -- Name: rango_edad; Type: TABLE; Schema: public; Owner: leo
@@ -759,7 +853,7 @@ CREATE TABLE servicio (
     id_plan_ejercicio integer NOT NULL,
     id_plan_suplemento integer NOT NULL,
     nombre character varying(50) DEFAULT ''::character varying NOT NULL,
-    descripcion character varying(100) DEFAULT ''::character varying NOT NULL,
+    descripcion character varying(200) DEFAULT ''::character varying NOT NULL,
     url_imagen character varying(50) DEFAULT ''::character varying NOT NULL,
     precio integer NOT NULL,
     numero_visita integer NOT NULL,
@@ -834,6 +928,21 @@ CREATE TABLE tipo_dieta (
 
 
 ALTER TABLE tipo_dieta OWNER TO leo;
+
+--
+-- Name: tipo_parametro; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE tipo_parametro (
+    id_tipo_parametro integer DEFAULT nextval('id_tipo_parametro_seq'::regclass) NOT NULL,
+    nombre character varying(50) DEFAULT ''::character varying NOT NULL,
+    fecha_creacion timestamp with time zone DEFAULT now() NOT NULL,
+    fecha_actualizacion timestamp with time zone DEFAULT now() NOT NULL,
+    estatus integer DEFAULT 1 NOT NULL
+);
+
+
+ALTER TABLE tipo_parametro OWNER TO postgres;
 
 --
 -- Name: unidad; Type: TABLE; Schema: public; Owner: leo
@@ -1075,6 +1184,13 @@ SELECT pg_catalog.setval('id_grupo_alimenticio_seq', 1, true);
 
 
 --
+-- Name: id_parametro_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('id_parametro_seq', 1, false);
+
+
+--
 -- Name: id_plan_dieta_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
 --
 
@@ -1093,6 +1209,13 @@ SELECT pg_catalog.setval('id_plan_ejercicio_seq', 1, true);
 --
 
 SELECT pg_catalog.setval('id_plan_suplemento_seq', 2, true);
+
+
+--
+-- Name: id_promocion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('id_promocion_seq', 1, true);
 
 
 --
@@ -1127,7 +1250,7 @@ SELECT pg_catalog.setval('id_regimen_suplemento_seq', 1, true);
 -- Name: id_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
 --
 
-SELECT pg_catalog.setval('id_servicio_seq', 1, true);
+SELECT pg_catalog.setval('id_servicio_seq', 7, true);
 
 
 --
@@ -1152,6 +1275,13 @@ SELECT pg_catalog.setval('id_tipo_dieta_seq', 4, true);
 
 
 --
+-- Name: id_tipo_parametro_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('id_tipo_parametro_seq', 1, false);
+
+
+--
 -- Name: id_unidad_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
 --
 
@@ -1163,6 +1293,14 @@ SELECT pg_catalog.setval('id_unidad_seq', 1, true);
 --
 
 SELECT pg_catalog.setval('id_usuario_seq', 1, true);
+
+
+--
+-- Data for Name: parametro; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY parametro (id_parametro, id_tipo_parametro, nombre, id_tipo_valor, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+\.
 
 
 --
@@ -1191,6 +1329,23 @@ COPY plan_ejercicio (id_plan_ejercicio, nombre, descripcion, fecha_creacion, fec
 COPY plan_suplemento (id_plan_suplemento, nombre, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
 1	suplemento actualizado	descripcion	2018-07-04 00:00:00-04	2018-07-09 00:00:00-04	1
 2	suplemento nuevo		2018-04-22 18:10:44.152783-04	2018-04-22 18:10:44.152783-04	1
+\.
+
+
+--
+-- Data for Name: promocion; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY promocion (id_promocion, nombre, descripcion, url_imagen, precio, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+1	Promocion Mes de las Madres	En el mes de Mayo las madres recibiran un precio especial en su Plan alimentacion durante el embarazo	../../assets/imgs/promomama.jpg	70	2018-04-26 10:12:04.004578-04	2018-04-26 10:12:04.004578-04	1
+\.
+
+
+--
+-- Data for Name: promocion_parametro; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY promocion_parametro (id_promocion, id_parametro, valor_minimo, valor_maximo, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
 \.
 
 
@@ -1231,8 +1386,12 @@ COPY regimen_suplemento (id_regimen_suplemento, id_plan_suplemento, id_cliente, 
 --
 
 COPY servicio (id_servicio, id_plan_dieta, id_plan_ejercicio, id_plan_suplemento, nombre, descripcion, url_imagen, precio, numero_visita, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	1	1	1	nombre del servicio	descripcion del servicio	url de la imagen	34	5	2018-04-06 00:00:00-04	2018-05-06 00:00:00-04	1
-2	1	1	1	bbn	req.body.descripcion	req.body.url_imagen	788390	6	2018-04-21 20:53:05.962768-04	2018-04-21 20:53:05.962768-04	1
+3	1	1	1	Plan Control de obesidad	Consejos alimenticios y planes nutricionales para el control de peso.	../../assets/imgs/controlobe.jpg	120	10	2018-04-23 08:42:18.987037-04	2018-04-23 08:42:18.987037-04	1
+1	1	1	1	Plan para Adultos Mayores.	Un nutricionista calificado realiza una evaluación de tu estado nutricional.	../../assets/imgs/nutricionadultos.jpg	100	5	2018-04-06 00:00:00-04	2018-05-06 00:00:00-04	1
+4	1	1	1	Plan Nutrición Deportiva	Planes de nutrición especializados para deportistas.	../../assets/imgs/nutydep1.jpg	90	10	2018-04-25 21:56:15.151355-04	2018-04-25 21:56:15.151355-04	1
+5	1	1	1	Plan Alimentacion Infantil	Un Nutricionista hará un plan nutricional para el niño, teniendo en cuenta los hábitos de alimentacion de la familia.	../../assets/imgs/nutinf.jpeg	90	10	2018-04-25 22:01:08.84057-04	2018-04-25 22:01:08.84057-04	1
+6	1	1	1	Plan Gana Peso con salud	Gana peso a un ritmo adecuado de manera saludable. Equilibra tu masa muscular y porcentaje de grasa hasta conseguir el peso deseado.	../../assets/imgs/Ganarpeso.jpg	90	10	2018-04-25 22:04:06.407166-04	2018-04-25 22:04:06.407166-04	1
+7	1	1	1	Plan alimentacion durante el embarazo	Tu nutricionista te proporcionara un plan adecuado durante la gestación, siguiendo las pautas necesarias para cubrir las necesidades nutricionales del bebé.	../../assets/imgs/Nutricionembarazo.jpg	90	10	2018-04-25 22:05:15.374866-04	2018-04-25 22:05:15.374866-04	1
 \.
 
 
@@ -1268,6 +1427,14 @@ COPY tipo_dieta (id_tipo_dieta, nombre, fecha_creacion, fecha_actualizacion, est
 1	Nueva Dieta	2018-04-02 00:00:00-04	2018-05-02 00:00:00-04	1
 2	dieta1	2018-04-21 23:56:32.238-04	2018-04-21 23:56:32.238-04	0
 4	Nueva	2018-04-22 17:14:36.36457-04	2018-04-22 17:14:36.36457-04	1
+\.
+
+
+--
+-- Data for Name: tipo_parametro; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tipo_parametro (id_tipo_parametro, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
 \.
 
 
@@ -1376,6 +1543,14 @@ ALTER TABLE ONLY frecuencia
 
 
 --
+-- Name: parametro_id_parametro_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY parametro
+    ADD CONSTRAINT parametro_id_parametro_pkey PRIMARY KEY (id_parametro);
+
+
+--
 -- Name: plan_dieta_id_plan_dieta_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
 --
 
@@ -1397,6 +1572,22 @@ ALTER TABLE ONLY plan_ejercicio
 
 ALTER TABLE ONLY plan_suplemento
     ADD CONSTRAINT plan_suplemento_pkey PRIMARY KEY (id_plan_suplemento);
+
+
+--
+-- Name: promocion_id_promocion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY promocion
+    ADD CONSTRAINT promocion_id_promocion_pkey PRIMARY KEY (id_promocion);
+
+
+--
+-- Name: promocion_parametro_id_promocion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY promocion_parametro
+    ADD CONSTRAINT promocion_parametro_id_promocion_pkey PRIMARY KEY (id_promocion, id_parametro);
 
 
 --
@@ -1472,6 +1663,14 @@ ALTER TABLE ONLY tipo_dieta
 
 
 --
+-- Name: tipo_parametro_id_tipo_parametro_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tipo_parametro
+    ADD CONSTRAINT tipo_parametro_id_tipo_parametro_pkey PRIMARY KEY (id_tipo_parametro);
+
+
+--
 -- Name: unidad_id_unidad_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
 --
 
@@ -1544,6 +1743,13 @@ CREATE INDEX fki_frecuencia_id_tiempo_fkey ON frecuencia USING btree (id_tiempo)
 
 
 --
+-- Name: fki_parametro_fkey; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX fki_parametro_fkey ON parametro USING btree (id_tipo_parametro);
+
+
+--
 -- Name: fki_plan_dieta_id_plan_dieta; Type: INDEX; Schema: public; Owner: leo
 --
 
@@ -1555,6 +1761,13 @@ CREATE INDEX fki_plan_dieta_id_plan_dieta ON plan_dieta USING btree (id_plan_die
 --
 
 CREATE INDEX fki_plan_dieta_idtipo_dieta_fkey ON plan_dieta USING btree (id_tipo_dieta);
+
+
+--
+-- Name: fki_promocion_parametro_id_parametro_fkey; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX fki_promocion_parametro_id_parametro_fkey ON promocion_parametro USING btree (id_parametro);
 
 
 --
@@ -1694,11 +1907,35 @@ ALTER TABLE ONLY cliente
 
 
 --
+-- Name: parametro_id_tipo_parametro_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY parametro
+    ADD CONSTRAINT parametro_id_tipo_parametro_fkey FOREIGN KEY (id_tipo_parametro) REFERENCES tipo_parametro(id_tipo_parametro);
+
+
+--
 -- Name: plan_dieta_id_tipo_dieta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
 --
 
 ALTER TABLE ONLY plan_dieta
     ADD CONSTRAINT plan_dieta_id_tipo_dieta_fkey FOREIGN KEY (id_tipo_dieta) REFERENCES tipo_dieta(id_tipo_dieta);
+
+
+--
+-- Name: promocion_parametro_id_parametro_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY promocion_parametro
+    ADD CONSTRAINT promocion_parametro_id_parametro_fkey FOREIGN KEY (id_parametro) REFERENCES parametro(id_parametro);
+
+
+--
+-- Name: promocion_parametro_id_promocion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY promocion_parametro
+    ADD CONSTRAINT promocion_parametro_id_promocion_fkey FOREIGN KEY (id_promocion) REFERENCES promocion(id_promocion);
 
 
 --
@@ -1766,11 +2003,11 @@ ALTER TABLE ONLY servicio
 
 
 --
--- Name: servicio_id_plan_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: servicio_id_plan_suplemento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
 --
 
 ALTER TABLE ONLY servicio
-    ADD CONSTRAINT servicio_id_plan_servicio_fkey FOREIGN KEY (id_plan_suplemento) REFERENCES plan_suplemento(id_plan_suplemento);
+    ADD CONSTRAINT servicio_id_plan_suplemento_fkey FOREIGN KEY (id_plan_suplemento) REFERENCES plan_suplemento(id_plan_suplemento);
 
 
 --
