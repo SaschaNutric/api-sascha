@@ -10,8 +10,8 @@ Informacion sobre el contenido manejado sobre cada rutas de la api-sascha
     * [Servicios](#servicios)
     * [Promociones](#promociones)
     * [Dietas](#dietas)
-    * [Tipo Dietas](#tipo_dietas)
-    * [Tipo Citas](#tipo_citas)[[ver json]](https://api-sascha.herokuapp.com/tipocitas)
+    * [TipoDietas](#tipo_dietas)
+    * [TipoCitas](#tipo_citas)
     * [Suplementos](#suplementos)
     * [Ejercicios](#ejercicios)
 
@@ -169,7 +169,7 @@ Heroku con http://api-sascha.heroku.com/
     }
 ```
 
-## Tipo Dietas
+## TipoDietas
 
 ```
     ├─GET────/tipodietas         * Retorna todos.
@@ -179,7 +179,7 @@ Heroku con http://api-sascha.heroku.com/
     ├─DELETE─/tipodieta/:id      * Elimina.
 ```
 
-## Tipo Citas
+## TipoCitas
 
 ```
     ├─GET────/tipocitas         * Retorna todos.
@@ -188,6 +188,7 @@ Heroku con http://api-sascha.heroku.com/
     ├─PUT────/tipocita/:id      * Actualiza.
     ├─DELETE─/tipocita/:id      * Elimina.
 ```
+[[ver json]](https://api-sascha.herokuapp.com/tipocitas)
 
 ## Suplemento
 
