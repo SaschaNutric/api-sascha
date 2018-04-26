@@ -6,7 +6,8 @@ const serviciosCtrl       = require('../controllers/servicios');
 const promocionesCtrl     = require('../controllers/promociones');
 const plan_dietasCtrl     = require('../controllers/plan_dietas');
 const tipo_dietasCtrl     = require('../controllers/tipo_dietas');
-const tipo_citasCtrl     = require('../controllers/tipo_citas');
+const tipo_citasCtrl      = require('../controllers/tipo_citas');
+const tipo_criteriosCtrl  = require('../controllers/tipo_criterios');
 const plan_suplementoCtrl = require('../controllers/plan_suplementos');
 const pla_ejercicioCtrl   = require('../controllers/plan_ejercicios');
 const perfilCtrl          = require('../controllers/perfil');
@@ -90,16 +91,18 @@ module.exports = (function () {
 
 /* ----------------------------------------------------- */
 
-/* ------------ Gestion de Cita --------------------- */
 
   api.get('/tipocitas',               tipo_citasCtrl.getTipoCitas);
-  api.post('/tipocitas',             tipo_citasCtrl.saveTipoCita);
-  api.get('/tipocita/:id',           tipo_citasCtrl.getTipoCitaById);  
-  api.put('/tipocita/:id',           tipo_citasCtrl.updateTipoCita);
-  api.delete('/tipocita/:id',        tipo_citasCtrl.deleteTipoCita);
+  api.post('/tipocitas',              tipo_citasCtrl.saveTipoCita);
+  api.get('/tipocita/:id',            tipo_citasCtrl.getTipoCitaById);  
+  api.put('/tipocita/:id',            tipo_citasCtrl.updateTipoCita);
+  api.delete('/tipocita/:id',         tipo_citasCtrl.deleteTipoCita);
 
-/* ----------------------------------------------------- */
-
+  api.get('/tipocriterios',           tipo_criteriosCtrl.getTipoCriterios);
+  api.post('/tipocriterios',          tipo_criteriosCtrl.saveTipoCriterio);
+  api.get('/tipocriterio/:id',        tipo_criteriosCtrl.getTipoCriterioById);  
+  api.put('/tipocriterio/:id',        tipo_criteriosCtrl.updateTipoCriterio);
+  api.delete('/tipocriterio/:id',     tipo_criteriosCtrl.deleteTipoCriterio);
 
 	api.get('/users', usersCtrl.getUsers);
   api.post('/users', usersCtrl.saveUser);

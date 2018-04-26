@@ -5,24 +5,22 @@ Informacion sobre el contenido manejado sobre cada rutas de la api-sascha
 # Tabla de contenido 
 * [Host | Port](#host-port)
 * [Modelo Generico](#modelo-generico)
-* [Rutas | Json](#rutas-json)
-    * [Usuarios](#usuarios)
-    * [Servicios](#servicios)
-    * [Promociones](#promociones)
-    * [Dietas](#dietas)
-    * [TipoDietas](#tipo_dietas)
-    * [TipoCitas](#tipo_citas)
-    * [Suplementos](#suplementos)
-    * [Ejercicios](#ejercicios)
+* [Usuarios](#usuarios)
+* [Servicios](#servicios)
+* [Promociones](#promociones)
+* [Dietas](#dietas)
+* [TipoDietas](#tipo_dietas)
+* [TipoCitas](#tipo_citas)
+* [TipoCriterios](#tipo_criterio)
+* [Suplementos](#suplementos)
+* [Ejercicios](#ejercicios)
 
 # Host | Port
 
 Local con http://localhost:5000/
 Heroku con http://api-sascha.heroku.com/
 
-# Rutas | Json
-
-## Usuarios
+# Usuarios
 
 ```
  ├──/
@@ -51,7 +49,7 @@ Heroku con http://api-sascha.heroku.com/
     }
 ```
 
-## Servicios
+# Servicios
 
 ```
     ├─GET────/servicios 		* Retorna todos.
@@ -113,7 +111,7 @@ Heroku con http://api-sascha.heroku.com/
     }
 ```
 
-## Promociones
+# Promociones
 
 ```
     ├─GET────/promociones        * Retorna todos.
@@ -139,7 +137,7 @@ Heroku con http://api-sascha.heroku.com/
     }
 ```
 
-## Dietas
+# Dietas
 
 ```
     ├─GET────/dietas         * Retorna todos.
@@ -169,7 +167,7 @@ Heroku con http://api-sascha.heroku.com/
     }
 ```
 
-## TipoDietas
+# TipoDietas
 
 ```
     ├─GET────/tipodietas         * Retorna todos.
@@ -179,7 +177,7 @@ Heroku con http://api-sascha.heroku.com/
     ├─DELETE─/tipodieta/:id      * Elimina.
 ```
 
-## TipoCitas
+# TipoCitas
 
 ```
     ├─GET────/tipocitas         * Retorna todos.
@@ -190,8 +188,18 @@ Heroku con http://api-sascha.heroku.com/
 ```
 [[ver json]](https://api-sascha.herokuapp.com/tipocitas)
 
-## Suplemento
+# TipoCriterios
 
+```
+    ├─GET────/tipocriterios         * Retorna todos.
+    ├─POST───/tipocriterios         * Guarda. 
+    ├─GET────/tipocriterio/:id      * Retorna por id.
+    ├─PUT────/tipocriterio/:id      * Actualiza.
+    ├─DELETE─/tipocriterio/:id      * Elimina.
+```
+[[ver json]](https://api-sascha.herokuapp.com/tipocriterios)
+
+# Suplemento
 
 ```
     ├─GET────/suplementos         * Retorna todos.
@@ -205,7 +213,7 @@ Heroku con http://api-sascha.heroku.com/
     }
 ```
 
-## Ejercicio
+# Ejercicio
 
 ```
     ├─GET────/ejercicios         * Retorna todos.
@@ -223,7 +231,7 @@ Heroku con http://api-sascha.heroku.com/
     ]}
 ```
 
-## Modelo Generico
+# Modelo Generico
 
 ```
     ├─GET────/objeto          * Retorna todos.
