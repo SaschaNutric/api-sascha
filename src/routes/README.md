@@ -11,7 +11,8 @@ Informacion sobre el contenido manejado sobre cada rutas de la api-sascha
 * [Dietas](#dietas)
 * [TipoDietas](#tipo_dietas)
 * [TipoCitas](#tipo_citas)
-* [TipoCriterios](#tipo_criterio)
+* [TipoCriterios](#tipo_criterios)
+* [TipoIncidencias](#tipo_incidencias)
 * [Suplementos](#suplementos)
 * [Ejercicios](#ejercicios)
 
@@ -198,6 +199,18 @@ Heroku con http://api-sascha.heroku.com/
     ├─DELETE─/tipocriterio/:id      * Elimina.
 ```
 [[ver json]](https://api-sascha.herokuapp.com/tipocriterios)
+
+# TipoIncidencias
+
+```
+    ├─GET────/tipocriterios         * Retorna todos.
+    ├─POST───/tipocriterios         * Guarda. 
+    ├─GET────/tipocriterio/:id      * Retorna por id.
+    ├─PUT────/tipocriterio/:id      * Actualiza.
+    ├─DELETE─/tipocriterio/:id      * Elimina.
+```
+[[ver json]](https://api-sascha.herokuapp.com/tipoincidencias)
+
 
 # Suplemento
 

@@ -8,6 +8,7 @@ const plan_dietasCtrl     = require('../controllers/plan_dietas');
 const tipo_dietasCtrl     = require('../controllers/tipo_dietas');
 const tipo_citasCtrl      = require('../controllers/tipo_citas');
 const tipo_criteriosCtrl  = require('../controllers/tipo_criterios');
+const tipo_incidenciasCtrl  = require('../controllers/tipo_incidencias');
 const plan_suplementoCtrl = require('../controllers/plan_suplementos');
 const pla_ejercicioCtrl   = require('../controllers/plan_ejercicios');
 const perfilCtrl          = require('../controllers/perfil');
@@ -103,6 +104,12 @@ module.exports = (function () {
   api.get('/tipocriterio/:id',        tipo_criteriosCtrl.getTipoCriterioById);  
   api.put('/tipocriterio/:id',        tipo_criteriosCtrl.updateTipoCriterio);
   api.delete('/tipocriterio/:id',     tipo_criteriosCtrl.deleteTipoCriterio);
+
+  api.get('/tipoincidencias',         tipo_incidenciasCtrl.getTipoIncidencias);
+  api.post('/tipoincidencias',        tipo_incidenciasCtrl.saveTipoIncidencia);
+  api.get('/tipoincidencia/:id',      tipo_incidenciasCtrl.getTipoIncidenciaById);  
+  api.put('/tipoincidencia/:id',      tipo_incidenciasCtrl.updateTipoIncidencia);
+  api.delete('/tipoincidencia/:id',   tipo_incidenciasCtrl.deleteTipoIncidencia);
 
 	api.get('/users', usersCtrl.getUsers);
   api.post('/users', usersCtrl.saveUser);
