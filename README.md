@@ -90,12 +90,6 @@ api-sascha/
  │   ├──/services				* Directorio de los Servicio
  │   │	 ├──index.js				* Servicio indice 
  │      
- ├──/tests 					* Nuestro directorio de vistas
- │   ├──/resources				* Directorio de recursos
- │   │	 ├──config.json				* Archivo Json para la configuracion del default.js
- │   │
- │   ├──default.js				* Archivo para el test default de la api
- │
  ├──/views                      * Nuestro directorio de vistas
  │   ├──index.js                    * vista indice /index
  │
@@ -106,7 +100,6 @@ api-sascha/
  ├──README.md                   * Este Archivo
  ├──app.js                      * Principal configuracion de la aplicacion
  ├──config.js                   * configuracion de la api
- ├──gulpfile.js                 * Gestor gulp para sincronizacion, construccion, etc.
  ├──knexfile.js                 * Datos para la coneccion con la base de dato
  ├──package-lock.json           * Registro de dependencia cargada en node_modules
  └──package.json                * Gestor npm 

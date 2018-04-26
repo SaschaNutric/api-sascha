@@ -1,21 +1,10 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var express = require('express')
+    bodyParser = require('body-parser')
+    logger = require('morgan')
+    routes = require('./src/routes')
+    app = express();
 
-var routes = require('./src/routes');
-var compression = require('compression');
-
-var app = express();
 app.set('secret', 'SECRET');
-var cons = require('consolidate');
-
-// view engine setup
-app.engine('html',cons.swig);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'html');
 
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', "*");
@@ -25,14 +14,7 @@ app.use(function(req, res, next) {
 });
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(compression()); //Compress all routes
-
-process.env.PWD = process.cwd();
 app.use('/', routes);
-
 
 app.use(function(req, res, next) {
   let err = new Error('No encontrado');
@@ -48,7 +30,7 @@ const PORT = process.env.PORT || 5000;
 const HOST = process.env.HOST || 'localhost';
 
 app.listen(PORT, function() {
-  console.log(`Servidor express corriendo en ${HOST}:${PORT}`)
+  console.log(`Servidor express corriendo en http://${HOST}:${PORT}`)
 });
 
 module.exports = app;

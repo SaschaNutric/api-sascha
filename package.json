@@ -6,18 +6,18 @@
     "node": "8.9.1"
   },
   "scripts": {
-    "start":     "node ./app.js",
-    "start:dev": "nodemon ./app.js",
-    "test": "mocha $(find tests -name '*.js') --timeout 3000 --recursive",
-    "migrate": "node ./src/migrate/migrate.js"
+    "start": "node ./app.js",
+    "update:db": "psql saschadb < $PWD/db/saschadb.sql",
+    "remove:db": "dropdb -e --if-exists -h localhost -p 5432 -U postgres saschadb",
+    "create:db": "sudo -u postgres psql -c 'create database saschadb;'",
+    "histori:db": "pg_dump saschadb -h localhost -p 5432 -U postgres -F p -b -v -f $PWD/db/saschadb$(date +%s).hsql",
+    "backup:db": "npm run histori:db && pg_dump saschadb -h localhost -p 5432 -U postgres -F p -b -f $PWD/db/saschadb.sql",
+    "restore:db": "npm run remove:db && npm run create:db && npm run update:db"
   },
   "dependencies": {
     "bcrypt": "^1.0.3",
     "body-parser": "~1.17.1",
     "bookshelf": "^0.12.1",
-    "compression": "^1.7.2",
-    "consolidate": "^0.15.0",
-    "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "express": "~4.15.2",
     "express-handlebars": "^3.0.0",
@@ -29,17 +29,7 @@
     "morgan": "^1.9.0",
     "nodemailer": "^4.6.3",
     "pg": "^7.4.1",
-    "serve-favicon": "~2.4.2",
-    "swig": "^1.4.2",
+    "socket.io": "^2.1.0",
     "when": "^3.7.8"
-  },
-  "devDependencies": {
-    "chai": "^4.1.2",
-    "chai-http": "^3.0.0",
-    "co": "^4.6.0",
-    "gulp": "^3.9.1",
-    "mocha": "^5.0.4",
-    "node-fetch": "^2.1.1",
-    "nodemon": "^1.17.2"
   }
 }
