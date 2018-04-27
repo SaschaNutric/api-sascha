@@ -12,9 +12,9 @@ const nodemailer    = require('nodemailer');
 const service       = require("../services");
 const MAIL_SERVICE       = process.env.MAIL_SERVICE       || 'gmail';
 const MAIL_USER          = process.env.MAIL_USER          || 'SaschaNutric@gmail.com';
-const MAIL_CLIENT_ID     = process.env.MAIL_CLIENT_ID     || '862807210957-pbr6vr839n3riaupne6cf8fac3hb0poj.apps.googleusercontent.com';
-const MAIL_CLIENT_SECRET = process.env.MAIL_CLIENT_SECRET || 'RYEt8VxWfo8ZmmZp-lu30cMY';
-const REFRESH_TOKEN      = process.env.REFRESH_TOKEN      || '1/MLizuGNqgEgdDv4XHeb68SuAGd3a5VTidZPWCxFsp98';
+const MAIL_CLIENT_ID     = process.env.MAIL_CLIENT_ID     || '';
+const MAIL_CLIENT_SECRET = process.env.MAIL_CLIENT_SECRET || '';
+const REFRESH_TOKEN      = process.env.REFRESH_TOKEN      || '';
 
 function getUsuarios(req, res, next) {
 	Usuarios.query({ where: { estatus: 1 } })

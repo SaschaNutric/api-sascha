@@ -34,7 +34,7 @@ module.exports = (function () {
   });
   
   api.get('/usuarios',               usuariosCtrl.getUsuarios);
-  api.post('/usuarios',              usuariosCtrl.saveUsuario);
+  api.post('/suscripciones',         usuariosCtrl.saveUsuario);
   api.get('/usuario/:id',            usuariosCtrl.getUsuarioById);
   api.put('/usuario/:id',            usuariosCtrl.updateUsuario);
   api.delete('/usuario/:id',         usuariosCtrl.deleteUsuario);

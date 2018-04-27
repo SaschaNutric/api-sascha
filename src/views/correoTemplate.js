@@ -50,7 +50,7 @@ box-shadow: 4px 7px 14px -1px rgba(99,99,99,1);">
 		 			    	    <!--Nos falto lo del asunto -->
 		 			    		<p>Hola ${nombre}! Gracias por Registrarte en Sascha, ahora necesitas descargar nuestra aplicacion movil para solicitar una cita con nuestro calificado grupo de nutricionistas.</p>
 		 			    		<p>Nombre de Usuario: ${nombre_usuario}</p>
-		 			    		<p>Correo: ${correo}</p>
+		 			    		<p>Correo: <a style="text-decoration:none; color:#FFFFFF;" href="">${correo}</a></p>
 		 			    		<p>Contraseña: ${contraseña}</p>
 		 			    		<h3 style="color:#3da3cb; font-family:arial">DESCARGAR</h3>
 		 			    		 <!-- enlace de descarga -->
@@ -74,9 +74,11 @@ box-shadow: 4px 7px 14px -1px rgba(99,99,99,1);">
 
 background: linear-gradient(#1c6b34, #7ab740);" colspan="3" >
 		             
-		 			 <p style="text-align:center; color:white">saschanutric.com | twitter: @saschanutric</p>
-		 			  <p style="text-align:center; color:white">Tel: 0251-7272468</p>
-		 			  <p style="text-align:center; color:white">Direccion: Barquisimeto, Edo. Lara</p>
+		 			<p style="text-align:center; color:white">
+		 				<a style="text-decoration:none; color:#FFFFFF;">www.saschanutric.com</a> | twitter: @saschanutric
+		 			</p>
+		 			<p style="text-align:center; color:white">Tel: 0251-7272468</p>
+		 			<p style="text-align:center; color:white">Direccion: Barquisimeto, Edo. Lara</p>
 			 </td>
 		 
 
