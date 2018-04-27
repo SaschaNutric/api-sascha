@@ -70,7 +70,7 @@ function getUnidadById(req, res, next) {
         	q
          	.innerJoin('tipo_unidad', function () {
                 this.on('unidad.id_tipo_unidad', '=', 'tipo_unidad.id_tipo_unidad')
-                	.andOn('unidad.id_unidad', '=', id)
+                	.andOn('id_unidad', '=', id)
              		.andOn('unidad.estatus', '=', 1);
             });
 	})

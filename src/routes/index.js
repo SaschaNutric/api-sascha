@@ -62,11 +62,11 @@ module.exports = (function () {
   api.put('/servicio/:id',           serviciosCtrl.updateServicio);
   api.delete('/servicio/:id',        serviciosCtrl.deleteServicio);
   
-  api.get('/dietas',                 plan_dietasCtrl.getPlanDietas);
-  api.post('/dietas',                plan_dietasCtrl.savePlanDieta);
-  api.get('/dieta/:id',              plan_dietasCtrl.getPlanDietaById);
-  api.put('/dieta/:id',              plan_dietasCtrl.updatePlanDieta);
-  api.delete('/dieta/:id',           plan_dietasCtrl.deletePlanDieta);
+  api.get('/plandietas',             plan_dietasCtrl.getPlanDietas);
+  api.post('/plandietas',            plan_dietasCtrl.savePlanDieta);
+  api.get('/plandieta/:id',          plan_dietasCtrl.getPlanDietaById);
+  api.put('/plandieta/:id',          plan_dietasCtrl.updatePlanDieta);
+  api.delete('/plandieta/:id',       plan_dietasCtrl.deletePlanDieta);
 
   api.get('/tipodietas',             tipo_dietasCtrl.getTipoDietas);
   api.post('/tipodietas',            tipo_dietasCtrl.saveTipoDieta);
@@ -74,17 +74,17 @@ module.exports = (function () {
   api.put('/tipodieta/:id',          tipo_dietasCtrl.updateTipoDieta);
   api.delete('/tipodieta/:id',       tipo_dietasCtrl.deleteTipoDieta);
 
-  api.get('/suplementos',            plan_suplementoCtrl.getPlanSuplementos);
-  api.post('/suplementos',           plan_suplementoCtrl.savePlanSuplemento);
-  api.get('/suplemento/:id',         plan_suplementoCtrl.getPlanSuplementoById);  
-  api.put('/suplemento/:id',         plan_suplementoCtrl.updatePlanSuplemento);
-  api.delete('/suplemento/:id',      plan_suplementoCtrl.deletePlanSuplemento);
+  api.get('/plansuplementos',        plan_suplementoCtrl.getPlanSuplementos);
+  api.post('/plansuplementos',       plan_suplementoCtrl.savePlanSuplemento);
+  api.get('/plansuplemento/:id',     plan_suplementoCtrl.getPlanSuplementoById);  
+  api.put('/plansuplemento/:id',     plan_suplementoCtrl.updatePlanSuplemento);
+  api.delete('/plansuplemento/:id',  plan_suplementoCtrl.deletePlanSuplemento);
 
-  api.get('/ejercicios',             pla_ejercicioCtrl.getPlanEjercicios);
-  api.post('/ejercicios',            pla_ejercicioCtrl.savePlanEjercicio);
-  api.get('/ejercicio/:id',          pla_ejercicioCtrl.getPlanEjercicioById);  
-  api.put('/ejercicio/:id',          pla_ejercicioCtrl.updatePlanEjercicio);
-  api.delete('/ejercicio/:id',       pla_ejercicioCtrl.deletePlanEjercicio);
+  api.get('/planejercicios',         pla_ejercicioCtrl.getPlanEjercicios);
+  api.post('/planejercicios',        pla_ejercicioCtrl.savePlanEjercicio);
+  api.get('/planejercicio/:id',      pla_ejercicioCtrl.getPlanEjercicioById);  
+  api.put('/planejercicio/:id',      pla_ejercicioCtrl.updatePlanEjercicio);
+  api.delete('/planejercicio/:id',   pla_ejercicioCtrl.deletePlanEjercicio);
 
 /* ----------------------------------------------------- */
 

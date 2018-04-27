@@ -100,7 +100,10 @@ function updatePromocion(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({
-			nombre: req.body.nombre || data.get('nombre')
+			nombre: req.body.nombre || data.get('nombre'), 
+        	descripcion: req.body.descripcion || data.get('descripcion'), 
+        	url_imagen: req.body.url_imagen || data.get('url_imagen'), 
+        	precio: req.body.precio || data.get('precio')	
 		})
 		.then(function() {
 			return res.status(200).json({ 
