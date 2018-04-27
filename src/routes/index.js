@@ -14,6 +14,7 @@ const tipo_ordenesCtrl      = require('../controllers/tipo_ordenes');
 const tipo_parametrosCtrl   = require('../controllers/tipo_parametros');
 const tipo_respuestasCtrl   = require('../controllers/tipo_respuestas');
 const tipo_unidadesCtrl     = require('../controllers/tipo_unidades');
+const unidadesCtrl          = require('../controllers/unidades');
 const tipo_valoracionesCtrl = require('../controllers/tipo_valoraciones');
 const plan_suplementoCtrl   = require('../controllers/plan_suplementos');
 const pla_ejercicioCtrl     = require('../controllers/plan_ejercicios');
@@ -151,6 +152,12 @@ module.exports = (function () {
   api.get('/tipovaloracion/:id',      tipo_valoracionesCtrl.getTipoValoracionById);  
   api.put('/tipovaloracion/:id',      tipo_valoracionesCtrl.updateTipoValoracion);
   api.delete('/tipovaloracion/:id',   tipo_valoracionesCtrl.deleteTipoValoracion);
+
+  api.get('/unidades',                unidadesCtrl.getUnidades);
+  api.post('/unidades',               unidadesCtrl.saveUnidad);
+  api.get('/unidad/:id',              unidadesCtrl.getUnidadById);  
+  api.put('/unidad/:id',              unidadesCtrl.updateUnidad);
+  api.delete('/unidad/:id',           unidadesCtrl.deleteUnidad);  
 
 	api.get('/users', usersCtrl.getUsers);
   api.post('/users', usersCtrl.saveUser);

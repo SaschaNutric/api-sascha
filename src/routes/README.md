@@ -19,6 +19,7 @@ Informacion sobre el contenido manejado sobre cada rutas de la api-sascha
 * [Tipo Respuestas](#tipo-respuestas)
 * [Tipo Unidades](#tipo-unidades)
 * [Tipo Valoraciones](#tipo-valoraciones)
+* [Unidades](#unidades)
 * [Suplementos](#suplementos)
 * [Ejercicios](#ejercicios)
 
@@ -283,6 +284,17 @@ Heroku con http://api-sascha.heroku.com/
     ├─DELETE─/tipovaloracion/:id   * Elimina.
 ```
 [[ver json]](https://api-sascha.herokuapp.com/tipovaloraciones)
+
+# Unidades
+
+```
+    ├─GET────/unidades        * Retorna todos.
+    ├─POST───/unidades        * Guarda. 
+    ├─GET────/unidad/:id      * Retorna por id.
+    ├─PUT────/unidad/:id      * Actualiza.
+    ├─DELETE─/unidad/:id      * Elimina.
+```
+[[ver json]](https://api-sascha.herokuapp.com/unidades)
 
 # Suplementos
 
