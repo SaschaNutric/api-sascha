@@ -12,10 +12,12 @@ const tipo_incidenciasCtrl  = require('../controllers/tipo_incidencias');
 const tipo_motivosCtrl      = require('../controllers/tipo_motivos');
 const tipo_ordenesCtrl      = require('../controllers/tipo_ordenes');
 const tipo_parametrosCtrl   = require('../controllers/tipo_parametros');
+const tipo_respuestasCtrl   = require('../controllers/tipo_respuestas');
+const tipo_unidadesCtrl     = require('../controllers/tipo_unidades');
+const tipo_valoracionesCtrl = require('../controllers/tipo_valoraciones');
 const plan_suplementoCtrl   = require('../controllers/plan_suplementos');
 const pla_ejercicioCtrl     = require('../controllers/plan_ejercicios');
 const perfilCtrl            = require('../controllers/perfil');
-
 var auth                    = require('../middlewares/auth');
 
 module.exports = (function () {
@@ -131,6 +133,24 @@ module.exports = (function () {
   api.get('/tipoparametro/:id',       tipo_parametrosCtrl.getTipoParametroById);  
   api.put('/tipoparametro/:id',       tipo_parametrosCtrl.updateTipoParametro);
   api.delete('/tipoparametro/:id',    tipo_parametrosCtrl.deleteTipoParametro);
+
+  api.get('/tiporespuestas',          tipo_respuestasCtrl.getTipoRespuestas);
+  api.post('/tiporespuestas',         tipo_respuestasCtrl.saveTipoRespuesta);
+  api.get('/tiporespuesta/:id',       tipo_respuestasCtrl.getTipoRespuestaById);  
+  api.put('/tiporespuesta/:id',       tipo_respuestasCtrl.updateTipoRespuesta);
+  api.delete('/tiporespuesta/:id',    tipo_respuestasCtrl.deleteTipoRespuesta);
+
+  api.get('/tipounidades',            tipo_unidadesCtrl.getTipoUnidades);
+  api.post('/tipounidades',           tipo_unidadesCtrl.saveTipoUnidad);
+  api.get('/tipounidad/:id',          tipo_unidadesCtrl.getTipoUnidadById);  
+  api.put('/tipounidad/:id',          tipo_unidadesCtrl.updateTipoUnidad);
+  api.delete('/tipounidad/:id',       tipo_unidadesCtrl.deleteTipoUnidad);
+
+  api.get('/tipovaloraciones',        tipo_valoracionesCtrl.getTipoValoraciones);
+  api.post('/tipovaloraciones',       tipo_valoracionesCtrl.saveTipoValoracion);
+  api.get('/tipovaloracion/:id',      tipo_valoracionesCtrl.getTipoValoracionById);  
+  api.put('/tipovaloracion/:id',      tipo_valoracionesCtrl.updateTipoValoracion);
+  api.delete('/tipovaloracion/:id',   tipo_valoracionesCtrl.deleteTipoValoracion);
 
 	api.get('/users', usersCtrl.getUsers);
   api.post('/users', usersCtrl.saveUser);
