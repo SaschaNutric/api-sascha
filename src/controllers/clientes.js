@@ -9,9 +9,9 @@ function getClientes(req, res, next) {
 	ViewClientes.query({})
 	.fetch({ columns: ['id_cliente', 'cedula', 'nombres', 'apellidos', 
 						'telefono', 'genero', 'estado_civil', 'direccion', 
-						'fecha_nacimiento', 'tipo_cliente', 'estado'] })
+						'fecha_nacimiento', 'tipo_cliente', 'estado', 'rango_edad'] })
 	.then(function(clientes) {
-		if (!clientes)
+		if (clientes.length == 0)
 			return res.status(404).json({ 
 				error: true, 
 				data: { mensaje: 'No hay clientes registrados' } 
@@ -42,7 +42,7 @@ function getClienteById(req, res, next) {
 	ViewCliente.forge({ id_cliente: id })
 	.fetch({ columns: ['id_cliente', 'cedula', 'nombres', 'apellidos', 
 						'telefono', 'genero', 'estado_civil', 'direccion', 
-						'fecha_nacimiento', 'tipo_cliente', 'estado'] })
+						'fecha_nacimiento', 'tipo_cliente', 'estado', 'rango_edad'] })
 	.then(function(cliente) {
 		if(!cliente) 
 			return res.status(404).json({ 
