@@ -9,13 +9,16 @@ Informacion sobre el contenido manejado sobre cada rutas de la api-sascha
 * [Servicios](#servicios)
 * [Promociones](#promociones)
 * [Dietas](#dietas)
-* [1-TipoDietas](#tipo_dietas)
-* [2-TipoCitas](#tipo_citas)
-* [3-TipoCriterios](#tipo_criterios)
-* [4-TipoIncidencias](#tipo_incidencias)
-* [5-TipoMotivos](#tipo_motivos)
-* [6-TipoOrdenes](#tipo_ordenes)
-* [7-TipoParametros](#tipo_parametros)
+* [Tipo Dietas](#tipo-dietas)
+* [Tipo Citas](#tipo-citas)
+* [Tipo Criterios](#tipo-criterios)
+* [Tipo Incidencias](#tipo-incidencias)
+* [Tipo Motivos](#tipo-motivos)
+* [Tipo Ordenes](#tipo-ordenes)
+* [Tipo Parametros](#tipo-parametros)
+* [Tipo Respuestas](#tipo-respuestas)
+* [Tipo Unidades](#tipo-unidades)
+* [Tipo Valoraciones](#tipo-valoraciones)
 * [Suplementos](#suplementos)
 * [Ejercicios](#ejercicios)
 
@@ -171,7 +174,7 @@ Heroku con http://api-sascha.heroku.com/
     }
 ```
 
-# 1-TipoDietas
+# Tipo Dietas
 
 ```
     ├─GET────/tipodietas         * Retorna todos.
@@ -182,7 +185,7 @@ Heroku con http://api-sascha.heroku.com/
 ```
 [[ver json]](https://api-sascha.herokuapp.com/tipodietas)
 
-# 2-TipoCitas
+# Tipo Citas
 
 ```
     ├─GET────/tipocitas         * Retorna todos.
@@ -193,7 +196,7 @@ Heroku con http://api-sascha.heroku.com/
 ```
 [[ver json]](https://api-sascha.herokuapp.com/tipocitas)
 
-# 3-TipoCriterios
+# Tipo Criterios
 
 ```
     ├─GET────/tipocriterios         * Retorna todos.
@@ -204,7 +207,7 @@ Heroku con http://api-sascha.heroku.com/
 ```
 [[ver json]](https://api-sascha.herokuapp.com/tipocriterios)
 
-# 4-TipoIncidencias
+# Tipo Incidencias
 
 ```
     ├─GET────/tipoincidencias         * Retorna todos.
@@ -215,7 +218,7 @@ Heroku con http://api-sascha.heroku.com/
 ```
 [[ver json]](https://api-sascha.herokuapp.com/tipoincidencias)
 
-# 5-TipoMotivos
+# Tipo Motivos
 
 ```
     ├─GET────/tipomotivos         * Retorna todos.
@@ -226,7 +229,7 @@ Heroku con http://api-sascha.heroku.com/
 ```
 [[ver json]](https://api-sascha.herokuapp.com/tipomotivos)
 
-# 6-TipoOrdenes
+# Tipo Ordenes
 
 ```
     ├─GET────/tipoordenes         * Retorna todos.
@@ -237,7 +240,7 @@ Heroku con http://api-sascha.heroku.com/
 ```
 [[ver json]](https://api-sascha.herokuapp.com/tipoordenes)
 
-# 7-TipoParametros
+# Tipo Parametros
 
 ```
     ├─GET────/tipoparametros       * Retorna todos.
@@ -246,9 +249,42 @@ Heroku con http://api-sascha.heroku.com/
     ├─PUT────/tipoparametro/:id    * Actualiza.
     ├─DELETE─/tipoparametro/:id    * Elimina.
 ```
-[[ver json]](https://api-sascha.herokuapp.com/tipomotivos)
+[[ver json]](https://api-sascha.herokuapp.com/tipoparametros)
 
-# Suplemento
+# Tipo Respuestas
+
+```
+    ├─GET────/tiporespuestas       * Retorna todos.
+    ├─POST───/tiporespuestas       * Guarda. 
+    ├─GET────/tiporespuesta/:id    * Retorna por id.
+    ├─PUT────/tiporespuesta/:id    * Actualiza.
+    ├─DELETE─/tiporespuesta/:id    * Elimina.
+```
+[[ver json]](https://api-sascha.herokuapp.com/tiporespuestas)
+
+# Tipo Unidades
+
+```
+    ├─GET────/tipounidades        * Retorna todos.
+    ├─POST───/tipounidades        * Guarda. 
+    ├─GET────/tipounidad/:id      * Retorna por id.
+    ├─PUT────/tipounidad/:id      * Actualiza.
+    ├─DELETE─/tipounidad/:id      * Elimina.
+```
+[[ver json]](https://api-sascha.herokuapp.com/tipounidades)
+
+# Tipo Valoraciones
+
+```
+    ├─GET────/tipovaloraciones     * Retorna todos.
+    ├─POST───/tipovaloraciones     * Guarda. 
+    ├─GET────/tipovaloracion/:id   * Retorna por id.
+    ├─PUT────/tipovaloracion/:id   * Actualiza.
+    ├─DELETE─/tipovaloracion/:id   * Elimina.
+```
+[[ver json]](https://api-sascha.herokuapp.com/tipovaloraciones)
+
+# Suplementos
 
 ```
     ├─GET────/suplementos         * Retorna todos.
