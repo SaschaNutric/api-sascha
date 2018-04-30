@@ -4,14 +4,17 @@ const Usuario       = require('../models/usuario');
 const Usuarios      = require('../collections/usuarios');
 const Cliente       = require('../models/cliente');
 const ViewCliente   = require('../models/v_cliente');
+const correoTemplate = require('../views/correoTemplate');
 const Bookshelf     = require('../commons/bookshelf');
 const Bcrypt        = require("bcrypt");
 const Crypto        = require("crypto");
 const nodemailer    = require('nodemailer');
 const service       = require("../services");
-const MAIL_SERVICE  = process.env.MAIL_SERVICE || 'gmail';
-const MAIL_USER     = process.env.MAIL_USER    || 'test.joseguerrero@gmail.com';
-const MAIL_PASS     = process.env.MAIL_PASS    || '1234jose5678';
+const MAIL_SERVICE       = process.env.MAIL_SERVICE       || 'gmail';
+const MAIL_USER          = process.env.MAIL_USER          || 'SaschaNutric@gmail.com';
+const MAIL_CLIENT_ID     = process.env.MAIL_CLIENT_ID     || '';
+const MAIL_CLIENT_SECRET = process.env.MAIL_CLIENT_SECRET || '';
+const REFRESH_TOKEN      = process.env.REFRESH_TOKEN      || '';
 
 function getUsuarios(req, res, next) {
 	Usuarios.query({ where: { estatus: 1 } })
@@ -98,10 +101,13 @@ function saveUsuario(req, res, next) {
 			.then(function(cliente) {		
 
 				const transportador = nodemailer.createTransport({
-					service: MAIL_SERVICE,
+					host: 'smtp.gmail.com',
 					auth: {
-						user: MAIL_USER,
-						pass: MAIL_PASS
+						type: 'OAuth2',
+						user:         MAIL_USER,
+						clientId:     MAIL_CLIENT_ID,
+						clientSecret: MAIL_CLIENT_SECRET,
+						refreshToken: REFRESH_TOKEN
 					}
 				});
 
@@ -109,11 +115,10 @@ function saveUsuario(req, res, next) {
 					from: MAIL_USER,
 					to: usuario.get('correo'),
 					subject: 'Confirmación de Suscripción',
-					html: `
-						<h1>Bienvenido a Sascha Nutric ${cliente.get('nombres')} ${cliente.get('apellidos')}<h1>
-						<p>Acceso: ${usuario.get('correo')} o ${usuario.get('nombre_usuario')}</p>
-						<p>Contraseña: ${req.body.contraseña}</p>
-					`
+					html: correoTemplate(`${cliente.get('nombres')} ${cliente.get('apellidos')}`, 
+										usuario.get('nombre_usuario'),
+										usuario.get('correo'),
+										req.body.contraseña)
 				}
 				
 				transportador.sendMail(opcionesCorreo)
