@@ -6,40 +6,57 @@ Informacion sobre el contenido manejado sobre cada rutas de la api-sascha
 * [Host | Port](#host-port)
 * [Test](#test)
 * [Modelo Generico](#modelo-generico)
+* [Maestros](#maestros)
+    * [appmoviles](#app_moviles)
+    * [bloquehorarios](#bloque_horarios)
+    * [comidas](#comidas)
+    * [condicionGarantias](#condicion_garantias)
+    * [contenidos](#contenidos)
+    * [diaLaborables](#dia_laborables)
+    * [ejercicios](#ejercicios)
+    * [especialidades](#especialidades)
+    * [estados](#estados)
+    * [estadoCiviles](#estado_civiles)
+    * [generos](#generos)
+    * [negocios](#negocios)
+    * [rangoEdades](#rango_edades)
+    * [redSociales](#red_sociales)
+    * [roles](#roles)
+    * [slides](#slides)
+    * [tiempos](#tiempos)
+    * [tipo_citas](#tipo_citas)
+    * [tipo_criterios](#tipo_criterios)
+    * [tipo_dietas](#tipo_dietas)
+    * [tipo_incidencias](#tipo_incidencias)
+    * [tipo_motivos](#tipo_motivos)
+    * [tipo_ordenes](#tipo_ordenes)
+    * [tipo_parametros](#tipo_parametros)
+    * [tipo_respuestas](#tipo_respuestas)
+    * [tipo_unidades](#tipo_unidades)
+    * [tipo_valoraciones](#tipo_valoraciones)
+
 * [agendas](#agendas)
 * [alimentos](#alimentos)
-* [appmoviles](#app_moviles)
-* [bloquehorarios](#bloque_horarios)
 * [calificaciones](#calificaciones)
 * [citas](#citas)
 * [clientes](#clientes)
 * [comentarios](#comentarios)
-* [comidas](#comidas)
-* [condicionGarantias](#condicion_garantias)
-* [contenidos](#contenidos)
 * [criterios](#criterios)
 * [detallePlanDietas](#detalle_plan_dietas)
 * [detallePlanEjercicios](#detalle_plan_ejercicios)
 * [detallePlanSuplementos](#detalle_plan_suplementos)
 * [detalleRegimenAlimentos](#detalle_regimen_alimentos)
 * [detalleVisitas](#detalle_visitas)
-* [diaLaborables](#dia_laborables)
-* [ejercicios](#ejercicios)
 * [empleados](#empleados)
-* [especialidades](#especialidades)
 * [especialidadeEmpleados](#especialidad_empleados)
 * [especialidadeServicios](#especialidad_servicios)
-* [estados](#estados)
-* [estadoCiviles](#estado_civiles)
 * [frecuencias](#frecuencias)
 * [funcionalidades](#funcionalidades)
 * [garantiaServicios](#garantia_servicios)
-* [generos](#generos)
 * [grupoalimenticios](#grupo_alimenticios)
 * [horarioEmpleados](#horario_empleados)
 * [incidencias](#incidencias)
 * [motivos](#motivos)
-* [negocios](#negocios)
 * [ordenServicios](#orden_servicios)
 * [parametros](#parametros)
 * [parametroClientes](#parametro_clientes)
@@ -51,30 +68,15 @@ Informacion sobre el contenido manejado sobre cada rutas de la api-sascha
 * [precios](#precios)
 * [preferenciaClientes](#preferencia_clientes)
 * [promociones](#promociones)
-* [rangoEdades](#rango_edades)
 * [reclamos](#reclamos)
-* [redSociales](#red_sociales)
 * [regimenDietas](#regimen_dietas)
 * [regimenEjercicios](#regimen_ejercicios)
 * [regimenSuplementos](#regimen_suplementos)
 * [respuestas](#respuestas)
-* [roles](#roles)
 * [rolFuncionalidades](#rol_funcionalidades)
 * [servicios](#servicios)
-* [slides](#slides)
 * [solicitudServicios](#solicitud_servicios)
 * [suplementos](#suplementos)
-* [tiempos](#tiempos)
-* [tipo_citas](#tipo_citas)
-* [tipo_criterios](#tipo_criterios)
-* [tipo_dietas](#tipo_dietas)
-* [tipo_incidencias](#tipo_incidencias)
-* [tipo_motivos](#tipo_motivos)
-* [tipo_ordenes](#tipo_ordenes)
-* [tipo_parametros](#tipo_parametros)
-* [tipo_respuestas](#tipo_respuestas)
-* [tipo_unidades](#tipo_unidades)
-* [tipo_valoraciones](#tipo_valoraciones)
 * [unidades](#unidades)
 * [usuarios](#usuarios)
 * [valoraciones](#valoraciones)
@@ -105,7 +107,7 @@ Local con:
 ir a [http://localhost:5000](http://localhost:5000) en tu nevegador
 
 Heroku con:
-ir a [http://api-sascha.heroku.com/](http://api-sascha.heroku.com/) en tu nevegador
+ir a [https://api-sascha.heroku.com/](http://api-sascha.heroku.com/) en tu nevegador
 
 # Test
 
@@ -184,6 +186,107 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 
 [[ver json]](https://api-sascha.herokuapp.com/bloquehorarios)
 
+# comidas
+
+[[ver json]](https://api-sascha.herokuapp.com/comidas)
+
+
+# condicionGarantias
+
+[[ver json]](https://api-sascha.herokuapp.com/condiciongarantias)
+
+# contenidos
+
+[[ver json]](https://api-sascha.herokuapp.com/contenidos)
+
+# diaLaborables
+
+[[ver json]](https://api-sascha.herokuapp.com/dialaborables)
+
+# ejercicios
+
+[[ver json]](https://api-sascha.herokuapp.com/ejercicios)
+
+# especialidades
+
+[[ver json]](https://api-sascha.herokuapp.com/especialidades)
+
+# estados
+
+[[ver json]](https://api-sascha.herokuapp.com/estados)
+
+# estadoCiviles
+
+[[ver json]](https://api-sascha.herokuapp.com/estadociviles)
+
+# generos
+
+[[ver json]](https://api-sascha.herokuapp.com/generos)
+
+# negocios
+
+[[ver json]](https://api-sascha.herokuapp.com/negocios)
+
+# rangoEdades
+
+[[ver json]](https://api-sascha.herokuapp.com/rangoedades)
+
+# redSociales
+
+[[ver json]](https://api-sascha.herokuapp.com/redsociales)
+
+# roles
+
+[[ver json]](https://api-sascha.herokuapp.com/roles)
+
+# slides
+
+[[ver json]](https://api-sascha.herokuapp.com/slides)
+
+# tiempos
+
+[[ver json]](https://api-sascha.herokuapp.com/tiempos)
+
+# tipo_citas
+
+[[ver json]](https://api-sascha.herokuapp.com/tipocitas)
+
+# tipo_criterios
+
+[[ver json]](https://api-sascha.herokuapp.com/tipocriterios)
+
+# tipo_dietas
+
+[[ver json]](https://api-sascha.herokuapp.com/tipodietas)
+
+# tipo_incidencias
+
+[[ver json]](https://api-sascha.herokuapp.com/tipoincidencias)
+
+# tipo_motivos
+
+[[ver json]](https://api-sascha.herokuapp.com/tipomotivos)
+
+# tipo_ordenes
+
+[[ver json]](https://api-sascha.herokuapp.com/tipoordenes)
+
+# tipo_parametros
+
+[[ver json]](https://api-sascha.herokuapp.com/tipoparametros)
+
+# tipo_respuestas
+
+[[ver json]](https://api-sascha.herokuapp.com/tiporespuestas)
+
+# tipo_unidades
+
+[[ver json]](https://api-sascha.herokuapp.com/tipounidades)
+
+# tipo_valoraciones
+
+[[ver json]](https://api-sascha.herokuapp.com/tipovaloraciones)
+
 # calificaciones
 
 [[ver json]](https://api-sascha.herokuapp.com/calificaciones)
@@ -199,18 +302,6 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 # comentarios
 
 [[ver json]](https://api-sascha.herokuapp.com/comentarios)
-
-# comidas
-
-[[ver json]](https://api-sascha.herokuapp.com/comidas)
-
-# condicionGarantias
-
-[[ver json]](https://api-sascha.herokuapp.com/condiciongarantias)
-
-# contenidos
-
-[[ver json]](https://api-sascha.herokuapp.com/contenidos)
 
 # criterios
 
@@ -236,21 +327,9 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 
 [[ver json]](https://api-sascha.herokuapp.com/detallevisitas)
 
-# diaLaborables
-
-[[ver json]](https://api-sascha.herokuapp.com/dialaborables)
-
-# ejercicios
-
-[[ver json]](https://api-sascha.herokuapp.com/ejercicios)
-
 # empleados
 
 [[ver json]](https://api-sascha.herokuapp.com/empleados)
-
-# especialidades
-
-[[ver json]](https://api-sascha.herokuapp.com/especialidades)
 
 # especialidadeEmpleados
 
@@ -259,14 +338,6 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 # especialidadeServicios
 
 [[ver json]](https://api-sascha.herokuapp.com/especialidadeservicios)
-
-# estados
-
-[[ver json]](https://api-sascha.herokuapp.com/estados)
-
-# estadoCiviles
-
-[[ver json]](https://api-sascha.herokuapp.com/estadociviles)
 
 # frecuencias
 
@@ -279,10 +350,6 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 # garantiaServicios
 
 [[ver json]](https://api-sascha.herokuapp.com/garantiaservicios)
-
-# generos
-
-[[ver json]](https://api-sascha.herokuapp.com/generos)
 
 # grupoalimenticios
 
@@ -299,10 +366,6 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 # motivos
 
 [[ver json]](https://api-sascha.herokuapp.com/motivos)
-
-# negocios
-
-[[ver json]](https://api-sascha.herokuapp.com/negocios)
 
 # ordenServicios
 
@@ -348,17 +411,9 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 
 [[ver json]](https://api-sascha.herokuapp.com/promociones)
 
-# rangoEdades
-
-[[ver json]](https://api-sascha.herokuapp.com/rangoedades)
-
 # reclamos
 
 [[ver json]](https://api-sascha.herokuapp.com/reclamos)
-
-# redSociales
-
-[[ver json]](https://api-sascha.herokuapp.com/redsociales)
 
 # regimenDietas
 
@@ -376,10 +431,6 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 
 [[ver json]](https://api-sascha.herokuapp.com/respuestas)
 
-# roles
-
-[[ver json]](https://api-sascha.herokuapp.com/roles)
-
 # rolFuncionalidades
 
 [[ver json]](https://api-sascha.herokuapp.com/rolfuncionalidades)
@@ -388,10 +439,6 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 
 [[ver json]](https://api-sascha.herokuapp.com/servicios)
 
-# slides
-
-[[ver json]](https://api-sascha.herokuapp.com/slides)
-
 # solicitudServicios
 
 [[ver json]](https://api-sascha.herokuapp.com/solicitudes)
@@ -399,50 +446,6 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 # suplementos
 
 [[ver json]](https://api-sascha.herokuapp.com/suplementos)
-
-# tiempos
-
-[[ver json]](https://api-sascha.herokuapp.com/tiempos)
-
-# tipo_citas
-
-[[ver json]](https://api-sascha.herokuapp.com/tipocitas)
-
-# tipo_criterios
-
-[[ver json]](https://api-sascha.herokuapp.com/tipocriterios)
-
-# tipo_dietas
-
-[[ver json]](https://api-sascha.herokuapp.com/tipodietas)
-
-# tipo_incidencias
-
-[[ver json]](https://api-sascha.herokuapp.com/tipoincidencias)
-
-# tipo_motivos
-
-[[ver json]](https://api-sascha.herokuapp.com/tipomotivos)
-
-# tipo_ordenes
-
-[[ver json]](https://api-sascha.herokuapp.com/tipoordenes)
-
-# tipo_parametros
-
-[[ver json]](https://api-sascha.herokuapp.com/tipoparametros)
-
-# tipo_respuestas
-
-[[ver json]](https://api-sascha.herokuapp.com/tiporespuestas)
-
-# tipo_unidades
-
-[[ver json]](https://api-sascha.herokuapp.com/tipounidades)
-
-# tipo_valoraciones
-
-[[ver json]](https://api-sascha.herokuapp.com/tipovaloraciones)
 
 # unidades
 
