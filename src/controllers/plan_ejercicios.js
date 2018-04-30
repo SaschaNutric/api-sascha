@@ -1,7 +1,7 @@
 'use strict';
 
-const PlanEjercicios = require('../collections/tipo_dietas');
-const PlanEjercicio  = require('../models/tipo_dieta');
+const PlanEjercicios = require('../collections/plan_ejercicios');
+const PlanEjercicio  = require('../models/plan_ejercicio');
 
 function getPlanEjercicios(req, res, next) {
 	PlanEjercicios.query({})

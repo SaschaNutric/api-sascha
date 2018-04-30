@@ -4,6 +4,7 @@ Informacion sobre el contenido manejado sobre cada rutas de la api-sascha
 
 # Tabla de contenido 
 * [Host | Port](#host-port)
+* [Test](#test)
 * [Modelo Generico](#modelo-generico)
 * [Usuarios](#usuarios)
 * [Servicios](#servicios)
@@ -19,14 +20,79 @@ Informacion sobre el contenido manejado sobre cada rutas de la api-sascha
 * [Tipo Respuestas](#tipo-respuestas)
 * [Tipo Unidades](#tipo-unidades)
 * [Tipo Valoraciones](#tipo-valoraciones)
+* [Negocio](#negocio)
 * [Unidades](#unidades)
 * [Suplementos](#suplementos)
 * [Ejercicios](#ejercicios)
 
 # Host | Port
 
-Local con http://localhost:5000/
-Heroku con http://api-sascha.heroku.com/
+Local con:
+ir a [http://localhost:5000](http://localhost:5000) en tu nevegador
+
+Heroku con:
+ir a [http://api-sascha.heroku.com/](http://api-sascha.heroku.com/) en tu nevegador
+
+# Test
+
+Postman [https://www.getpostman.com/](https://www.getpostman.com/)
+
+# Modelo Generico
+
+```
+    ├─GET────/objeto          * Retorna todos.
+    ├─POST───/objeto          * Guarda. 
+    ├─GET────/objeto/:id      * Retorna por id.
+    ├─PUT────/objeto/:id      * Actualiza.
+    ├─DELETE─/objeto/:id      * Elimina.
+
+
+ ├─GET────/objetos
+    ├─JSON 200
+    ├──{
+        "error": false,
+        "data": [{
+            "dato":"volor"
+        }]
+    }
+ ├─POST───/objetos
+    ├─JSON 200
+    ├──{
+    "error": false,
+    "data": [
+        {
+            "msg": "Registro Creado"
+        }
+    ]}
+ ├─GET────/objetos/1
+    ├─JSON 200
+    ├──{
+        
+    }
+    ├─JSON 400
+        ├──´´[{
+            "error": true,
+        "data": [ msg:"" ]
+    }]
+├─PUT───/objeto/1
+    ├─JSON 200
+    ├──{
+    "error": false,
+    "data": [
+        {
+            "msg": "Registro actualizado"
+        }
+    ]}
+├─PUT───/objeto/1
+    ├─JSON 200
+    ├──{
+    "error": false,
+    "data": [
+        {
+            "msg": "Registro eliminado"
+        }
+    ]}
+```
 
 # Usuarios
 
@@ -37,25 +103,8 @@ Heroku con http://api-sascha.heroku.com/
     ├─GET────/usuario/:id 		* Retorna por id.
     ├─PUT────/usuario/:id 		* Actualiza.
     ├─DELETE─/usuario/:id 		* Elimina.
-	├─JSON 200
-	├──{
-    		"error": false,
-    		"data": []
-	}
- ├─POST───/usuarios
-    ├─JSON 200
-    ├──{
-    }
- ├─POST───/login             * Inicia de session.
-    ├─JSON 200
-    ├──{
-            "error": false,
-            "data": [{
-                mensaje: 'Inicio de sesión exitoso',
-                token: service.createToken(usuario)
-            }]
-    }
 ```
+[[ver json]](https://api-sascha.herokuapp.com/usuarios)
 
 # Servicios
 
@@ -65,59 +114,8 @@ Heroku con http://api-sascha.heroku.com/
     ├─GET────/servicio/:id 		* Retorna por id.
     ├─PUT────/servicio/:id 		* Actualiza.
     ├─DELETE─/servicio/:id 		* Elimina.
-	├─JSON 200
-	├──{
-        "error": false,
-        "data": [
-            {
-                "id_servicio": 1,
-                "id_plan_dieta": 1,
-                "id_plan_ejercicio": 1,
-                "id_plan_suplemento": 1,
-                "nombre": "nombre del servicio",
-                "descripcion": "descripcion del servicio",
-                "url_imagen": "url de la imagen",
-                "precio": 34,
-                "numero_visita": 5,
-                "fecha_creacion": "2018-04-06T04:00:00.000Z",
-                "fecha_actualizacion": "2018-05-06T04:00:00.000Z",
-                "estatus": 1,
-                "plan_dieta": {
-                    "id_plan_dieta": 1,
-                    "id_tipo_dieta": 1,
-                    "nombre": "plan dieta",
-                    "descripcion": "descripcion",
-                    "fecha_creacion": "2018-02-05T04:00:00.000Z",
-                    "fecha_actualizacion": "2018-04-05T04:00:00.000Z",
-                    "estatus": 1,
-                    "tipo_dieta": {
-                        "id_tipo_dieta": 1,
-                        "nombre": "tipo dieta",
-                        "fecha_creacion": "2018-04-02T04:00:00.000Z",
-                        "fecha_actualizacion": "2018-05-02T04:00:00.000Z",
-                        "estatus": 1
-                    }
-                },
-                "plan_ejercicio": {
-                    "id_plan_ejercicio": 1,
-                    "nombre": "ejercicio",
-                    "descripcion": "descripcion",
-                    "fecha_creacion": "2018-05-04T04:00:00.000Z",
-                    "fecha_actualizacion": "2018-06-08T04:00:00.000Z",
-                    "estatus": 1
-                },
-                "plan_suplemento": {
-                    "id_plan_suplemento": 1,
-                    "nombre": "suplemento",
-                    "descripcion": "descripcion",
-                    "fecha_creacion": "2018-07-04T04:00:00.000Z",
-                    "fecha_actualizacion": "2018-07-09T04:00:00.000Z",
-                    "estatus": 1
-                }
-            }
-        ]
-    }
 ```
+[[ver json]](https://api-sascha.herokuapp.com/servicios)
 
 # Promociones
 
@@ -127,23 +125,8 @@ Heroku con http://api-sascha.heroku.com/
     ├─GET────/promocion/:id      * Retorna por id.
     ├─PUT────/promocion/:id      * Actualiza.
     ├─DELETE─/promocion/:id      * Elimina.
-    ├─JSON 200
-    ├──{
-    "error": false,
-    "data": [
-        {
-            "id_promocion": 1,
-            "nombre": "",
-            "descripcion": "",
-            "url_imagen": "",
-            "precio": 70,
-            "fecha_creacion": "",
-            "fecha_actualizacion": "",
-            "estatus": 1
-            }
-        ]
-    }
 ```
+[[ver json]](https://api-sascha.herokuapp.com/promociones)
 
 # Dietas
 
@@ -153,27 +136,8 @@ Heroku con http://api-sascha.heroku.com/
     ├─GET────/dieta/:id      * Retorna por id.
     ├─PUT────/dieta/:id      * Actualiza.
     ├─DELETE─/dieta/:id      * Elimina.
-    ├─JSON 200
-    ├──{
-        "error": false,
-        "data": [{
-            "id_plan_dieta": 1,
-            "id_tipo_dieta": 1,
-            "nombre": "plan dieta",
-            "descripcion": "descripcion",
-            "fecha_creacion": "2018-02-05T04:00:00.000Z",
-            "fecha_actualizacion": "2018-04-05T04:00:00.000Z",
-            "estatus": 1,
-            "tipo_dieta": {
-                "id_tipo_dieta": 1,
-                "nombre": "tipo dieta",
-                "fecha_creacion": "2018-04-02T04:00:00.000Z",
-                "fecha_actualizacion": "2018-05-02T04:00:00.000Z",
-                "estatus": 1
-            }
-        }]
-    }
 ```
+[[ver json]](https://api-sascha.herokuapp.com/dietas)
 
 # Tipo Dietas
 
@@ -304,11 +268,8 @@ Heroku con http://api-sascha.heroku.com/
     ├─GET────/suplemento/:id      * Retorna por id.
     ├─PUT────/suplemento/:id      * Actualiza.
     ├─DELETE─/suplemento/:id      * Elimina.
-    ├─JSON 200
-    ├──{
-
-    }
 ```
+[[ver json]](https://api-sascha.herokuapp.com/suplementos)
 
 # Ejercicio
 
@@ -318,70 +279,16 @@ Heroku con http://api-sascha.heroku.com/
     ├─GET────/ejercicio/:id      * Retorna por id.
     ├─PUT────/ejercicio/:id      * Actualiza.
     ├─DELETE─/ejercicio/:id      * Elimina.
-    ├─JSON 200
-    ├──{
-    "error": false,
-    "data": [
-        {
-            "msg": "Registro Creado"
-        }
-    ]}
 ```
+[[ver json]](https://api-sascha.herokuapp.com/ejercicios)
 
-# Modelo Generico
+# Negocio
 
 ```
-    ├─GET────/objeto          * Retorna todos.
-    ├─POST───/objeto          * Guarda. 
-    ├─GET────/objeto/:id      * Retorna por id.
-    ├─PUT────/objeto/:id      * Actualiza.
-    ├─DELETE─/objeto/:id      * Elimina.
-
-
- ├─GET────/objetos
-    ├─JSON 200
-    ├──{
-        "error": false,
-        "data": [{
-            "dato":"volor"
-        }]
-    }
- ├─POST───/objetos
-    ├─JSON 200
-    ├──{
-    "error": false,
-    "data": [
-        {
-            "msg": "Registro Creado"
-        }
-    ]}
- ├─GET────/objetos/1
-    ├─JSON 200
-    ├──{
-        
-    }
-    ├─JSON 400
-        ├──´´[{
-            "error": true,
-        "data": [ msg:"" ]
-    }]
-├─PUT───/objeto/1
-    ├─JSON 200
-    ├──{
-    "error": false,
-    "data": [
-        {
-            "msg": "Registro actualizado"
-        }
-    ]}
-├─PUT───/objeto/1
-    ├─JSON 200
-    ├──{
-    "error": false,
-    "data": [
-        {
-            "msg": "Registro eliminado"
-        }
-    ]}
+    ├─GET────/negocios         * Retorna todos.
+    ├─POST───/negocios         * Guarda. 
+    ├─GET────/negocio/:id      * Retorna por id.
+    ├─PUT────/negocio/:id      * Actualiza.
+    ├─DELETE─/negocio/:id      * Elimina.
 ```
-
+[[ver json]](https://api-sascha.herokuapp.com/negocios)

@@ -9,23 +9,21 @@ API: Sascha
 
 ```bash
 # clona nuestro repositorio sascha
-sudo curl -sL https://raw.githubusercontent.com/SaschaNutric/scripts-bash/master/dist/run-sascha -o /bin/sascha 
-sudo chmod a+x /bin/sascha 
-sudo sascha init
 
 # moverse al directorio
-cd $HOME/git/sascha/api-sascha
+cd ~/api-sascha
 
 # intalar las dependencia node con
 npm install
 
 # iniciar el server
-npm start
+npm run start
 
 ```
-ir a [http://localhost:3000](http://localhost:3000) en tu nevegador
+ir a [http://localhost:5000](http://localhost:5000) en tu nevegador
 
 >Resolver error: Cannot find module /bcrypt/lib/binding/bcrypt_lib.node' 
+
 ```bash
 # Moverse en el directorio del proyecto 
 # Ejecutar
@@ -51,48 +49,37 @@ npm install bcrypt -save
 Nosotro establesemos un orden de los archivo para mantener un estandar en el desarrollo de la intefaz de programacion de aplicaciones:
 ```
 api-sascha/
- ├──bin/					* Nuestro directorio server
- |   ├──www						* www configuracion para el server
+ ├──db/					* Nuestro directorio server
+ |   ├──saschadb.sql		* Script respaldo de la base de dato
  │
  ├──/node_modules			* Nuestro directorio de dependencias node
  │       
  ├──/public 				* Nuestro directorio publico
- │   ├──/images 				* Nuestro directorio statico de imagenes
- │   ├──/javascripts 			* Nuestro directorio statico de javascripts
- │   ├──/stylesheets 			* Nuestro directorio statico de estilos
- │       ├──stile.css 				* un simple stile.css
+ │   ├──/menu.html 				* 
  │       
  ├──/src 					* Nuestro directorio src
  │   ├──/collections 			* Directorio de Colecciones Bookshelf
- │   │	 ├──users.js				* Coleccion de usuarios
+ │   │	 ├──objetos.js				* Coleccion de objetos
  │	 │ 	 
  │   ├──/commons				* Directorio de Config ORM Bookshelf
- │   │	 ├──bookshelf.js			* congigura el bookshelf + knex y basedato
+ │   │	 ├──bookshelf.js			* Congigura el bookshelf + knex y basedato
  │	 │ 	 
  │   ├──/controllers			* Directorio de los controladores de la api
- │   │	 ├──users.js				* Controlador de usuario
+ │   │	 ├──objetos.js				* Controlador de objetos
  │	 │ 	 
  │   ├──/middlewares			* Directorio intermediario
  │   │	 ├──auth.js				* Archivo para la autenticacion
  │	 │ 	 
- │   ├──/migrate				* Directorio para la migracion del la base de dato
- │   │	 ├──migrate.js			* 
- │	 │ 	 
  │   ├──/models 				* Directorio de Modelos
- │   │	 ├──user.js				* Modelo Usuario
+ │   │	 ├──objetos.js				* Modelo objetos
  │	 │ 	 
  │   ├──/routes					* Directorio de Rutas
- │   │	 ├──index.js				* indice de rutas de acceso a la api 
- │	 │ 	 
- │   ├──/schemas				* Directorio de Colecciones Bookshelf
- │   │	 ├──schema.js				* Esquema de la base de dato
- │	 │ 	 
+ │   │	 ├──README.md				* Informacion sobre las rutas
+ │	 │	 ├──index.js				* Indice de rutas de acceso a la api 
+ │	 │ 	  
  │   ├──/services				* Directorio de los Servicio
  │   │	 ├──index.js				* Servicio indice 
  │      
- ├──/views                      * Nuestro directorio de vistas
- │   ├──index.js                    * vista indice /index
- │
  ├──.gitignore                  * Contenedor de los archivo ignorado por git
  ├──CONTRIBUTING.md             * Contenedor de las condiciones para los contribuidores
  ├──CONTRIBUTORS.md             * Contenedor de los contribuidores al projecto
@@ -116,17 +103,14 @@ ya instalado esto, tendras que instalar de forma globals con `npm install --glob
 * `express` (`npm install --global express`)
 
 ## Instalacion
-* `fork` este repositorio
-* `clone` tu fork
-* `sudo curl -sL https://raw.githubusercontent.com/SaschaNutric/scripts-bash/master/dist/run-sascha -o /bin/sascha` 
-* `sudo chmod a+x /bin/sascha`
-* `sudo sascha init` para iniciar por medio del script sascha
-
+* `fork` este repositorio.
+* `clone` tu fork.
+* `cd ~/api-sascha` mover al directorio.
 * `npm install` para instalar dependencia node
 * `npm run start` para iniciar el server
 
 ## Ejecutar la Aplicacion
-Antes tienes que instalar toda las dependencia tu ahora puedes ejecutar la aplicacion. Ejecutar`npm run start`. El host y puerto por defecto es `http://localhost:3000` .
+Antes tienes que instalar toda las dependencia tu ahora puedes ejecutar la aplicacion. Ejecutar`npm run start`. El host y puerto por defecto es `http://localhost:5000` .
 
 ## Otro Comandos
 
@@ -154,7 +138,7 @@ Nosotro tenemos experiencia usando editores:
 
 ## Heroku
 
-Para realizar el despliegue a heroku tu necesitas en tu **sistema operativo** instalado **git** (para clonar este repositorio) y [heroku](https://www.heroku.com/).
+Para realizar el despliegue a heroku tu necesitas en tu **sistema operativo** instalado **git** (para clonar este repositorio) y [heroku](https://api-sascha.herokuapp.com/).
 
 ### Install heroku
 
@@ -162,7 +146,7 @@ Para realizar el despliegue a heroku tu necesitas en tu **sistema operativo** in
 
 ```
 sudo apt-get install heroku
-cd $HOME/git/sascha/api-sascha
+cd ~/api-sascha
 heroku login
 heroku create
 git push heroku master

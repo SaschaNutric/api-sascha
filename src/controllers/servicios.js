@@ -3,8 +3,8 @@
 const Servicios = require('../collections/servicios');
 const Servicio  = require('../models/servicio');
 
-async function getServicios(req, res, next) {
-	await Servicios.query(function (q) {
+/*
+.query(function (q) {
         q.distinct()
          .innerJoin('plan_dieta', function () {
                 this.on('servicio.id_plan_dieta', '=', 'plan_dieta.id_plan_dieta');
@@ -19,7 +19,35 @@ async function getServicios(req, res, next) {
                 this.on('servicio.id_plan_suplemento', '=', 'plan_suplemento.id_plan_suplemento');
             });
 	})
-	.fetch({ withRelated: ['plan_dieta', 'plan_dieta.tipo_dieta','plan_ejercicio', 'plan_suplemento'] })
+*/
+/*
+'plan_dieta',
+		'plan_dieta.tipo_dieta',
+		'plan_ejercicio',
+		'plan_suplemento',
+		'precio',
+		'precio.unidad',
+		'precio.unidad.tipo_unidad'	
+*/
+async function getServicios(req, res, next) {
+	await Servicios
+	.query(function (qb) {
+   		//qb.innerJoin('plan_ejercicio', 'servicio.id_plan_ejercicio', 'plan_ejercicio.id_plan_ejercicio');
+   		//qb.innerJoin('plan_dieta', 'servicio.id_plan_dieta', 'plan_dieta.id_plan_dieta');
+   		//qb.innerJoin('plan_suplemento', 'servicio.id_plan_suplemento', 'plan_suplemento.id_plan_suplemento');
+   		//qb.innerJoin('precio', 'servicio.id_precio', 'precio.id_precio');
+   		qb.groupBy('servicio.id_servicio');
+   		qb.where('servicio.estatus', '=', 1);
+	})
+	.fetch({
+		withRelated: [
+			'plan_dieta',
+			'plan_ejercicio',
+			'plan_suplemento',
+			'precio',
+			'precio.unidad',
+			'precio.unidad.tipo_unidad'	
+		] })
 	.then(function(data) {
 		//console.log(servicios.at(0).related('plan_dieta'));
 		if (!data)
@@ -78,7 +106,7 @@ function saveServicio(req, res, next){
         descripcion: req.body.descripcion, 
         url_imagen: req.body.url_imagen, 
         precio: req.body.precio, 
-        numero_visita: req.body.numero_visita
+        numero_visitas: req.body.numero_visitas
 	})
 	.save()
 	.then(function(data){

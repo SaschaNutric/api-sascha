@@ -37,7 +37,8 @@ function saveUnidad(req, res, next){
 	Unidad.forge({
  		id_tipo_unidad: req.body.id_tipo_unidad, 
         nombre: req.body.nombre,
-        abreviatura: req.body.abreviatura
+        abreviatura: req.body.abreviatura,
+        simbolo: req.body.simbolo,
 	})
 	.save()
 	.then(function(servicio){
@@ -114,7 +115,8 @@ function updateUnidad(req, res, next) {
 		data.save({
 			id_tipo_unidad: req.body.id_tipo_unidad || data.get('id_tipo_unidad'), 
 			nombre: req.body.nombre 				|| data.get('nombre'),
-        	abreviatura: req.body.abreviatura 		|| data.get('abreviatura')
+        	abreviatura: req.body.abreviatura 		|| data.get('abreviatura'),
+        	simbolo: req.body.simbolo		 		|| data.get('simbolo')
 		})
 		.then(function() {
 			return res.status(200).json({ 

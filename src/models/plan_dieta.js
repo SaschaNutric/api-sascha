@@ -7,7 +7,7 @@ let PlanDieta = Bookshelf.Model.extend({
   tableName: 'plan_dieta',
   idAttribute: 'id_plan_dieta',
   tipo_dieta: function() {
-    return this.hasOne(TipoDieta, 'id_tipo_dieta');
+    return this.belongsTo(TipoDieta, 'id_tipo_dieta');
   }
 });
 

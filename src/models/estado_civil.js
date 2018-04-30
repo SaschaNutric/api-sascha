@@ -2,9 +2,9 @@
 
 const Bookshelf = require('../commons/bookshelf');
 
-let EstadoCivil = Bookshelf.Model.extend({
-	tableName: 'estado_civil',
-	idAttribute: 'id_estado_civil',
+let Estado_civil = Bookshelf.Model.extend({
+  tableName: 'estado_civil',
+  idAttribute: 'id_estado_civil'
 });
 
-module.exports = Bookshelf.model('EstadoCivil', EstadoCivil);
+module.exports = Bookshelf.model('Estado_civil', Estado_civil);

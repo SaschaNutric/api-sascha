@@ -7,7 +7,7 @@ let Unidad = Bookshelf.Model.extend({
   tableName: 'unidad',
   idAttribute: 'id_unidad',
   tipo_unidad: function() {
-    return this.hasOne(TipoUnidad, 'id_tipo_unidad');
+    return this.belongsTo(TipoUnidad, 'id_tipo_unidad');
   }
 });
 

@@ -12,7 +12,8 @@
     "create:db": "sudo -u postgres psql -c 'create database saschadb;'",
     "histori:db": "pg_dump saschadb -h localhost -p 5432 -U postgres -F p -b -v -f $PWD/db/saschadb$(date +%s).hsql",
     "backup:db": "npm run histori:db && pg_dump saschadb -h localhost -p 5432 -U postgres -F p -b -f $PWD/db/saschadb.sql",
-    "restore:db": "npm run remove:db && npm run create:db && npm run update:db"
+    "restore:db": "npm run remove:db && npm run create:db && npm run update:db",
+    "sascha": "bash sascha"
   },
   "dependencies": {
     "bcrypt": "^1.0.3",
