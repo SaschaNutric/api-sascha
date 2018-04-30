@@ -7,33 +7,33 @@ Informacion sobre el contenido manejado sobre cada rutas de la api-sascha
 * [Test](#test)
 * [Modelo Generico](#modelo-generico)
 * [Maestros](#maestros)
-    * [appmoviles](#app_moviles)
-    * [bloquehorarios](#bloque_horarios)
+    * [appmoviles](#appmoviles)
+    * [bloquehorarios](#bloquehorarios)
     * [comidas](#comidas)
-    * [condicionGarantias](#condicion_garantias)
+    * [condicionGarantias](#condiciongarantias)
     * [contenidos](#contenidos)
-    * [diaLaborables](#dia_laborables)
+    * [diaLaborables](#dialaborables)
     * [ejercicios](#ejercicios)
     * [especialidades](#especialidades)
     * [estados](#estados)
-    * [estadoCiviles](#estado_civiles)
+    * [estadoCiviles](#estadociviles)
     * [generos](#generos)
     * [negocios](#negocios)
-    * [rangoEdades](#rango_edades)
-    * [redSociales](#red_sociales)
+    * [rangoEdades](#rangoedades)
+    * [redSociales](#redsociales)
     * [roles](#roles)
     * [slides](#slides)
     * [tiempos](#tiempos)
-    * [tipo_citas](#tipo_citas)
-    * [tipo_criterios](#tipo_criterios)
-    * [tipo_dietas](#tipo_dietas)
-    * [tipo_incidencias](#tipo_incidencias)
-    * [tipo_motivos](#tipo_motivos)
-    * [tipo_ordenes](#tipo_ordenes)
-    * [tipo_parametros](#tipo_parametros)
-    * [tipo_respuestas](#tipo_respuestas)
-    * [tipo_unidades](#tipo_unidades)
-    * [tipo_valoraciones](#tipo_valoraciones)
+    * [tipocitas](#tipocitas)
+    * [tipocriterios](#tipocriterios)
+    * [tipodietas](#tipodietas)
+    * [tipoincidencias](#tipoincidencias)
+    * [tipomotivos](#tipomotivos)
+    * [tipoordenes](#tipoordenes)
+    * [tipoparametros](#tipoparametros)
+    * [tiporespuestas](#tiporespuestas)
+    * [tipounidades](#tipounidades)
+    * [tipovaloraciones](#tipovaloraciones)
 
 * [agendas](#agendas)
 * [alimentos](#alimentos)
@@ -42,40 +42,40 @@ Informacion sobre el contenido manejado sobre cada rutas de la api-sascha
 * [clientes](#clientes)
 * [comentarios](#comentarios)
 * [criterios](#criterios)
-* [detallePlanDietas](#detalle_plan_dietas)
-* [detallePlanEjercicios](#detalle_plan_ejercicios)
-* [detallePlanSuplementos](#detalle_plan_suplementos)
-* [detalleRegimenAlimentos](#detalle_regimen_alimentos)
-* [detalleVisitas](#detalle_visitas)
+* [detallePlanDietas](#detalleplandietas)
+* [detallePlanEjercicios](#detalleplanejercicios)
+* [detallePlanSuplementos](#detalleplansuplementos)
+* [detalleRegimenAlimentos](#detalleregimenalimentos)
+* [detalleVisitas](#detallevisitas)
 * [empleados](#empleados)
-* [especialidadeEmpleados](#especialidad_empleados)
-* [especialidadeServicios](#especialidad_servicios)
+* [especialidadeEmpleados](#especialidadempleados)
+* [especialidadeServicios](#especialidadservicios)
 * [frecuencias](#frecuencias)
 * [funcionalidades](#funcionalidades)
-* [garantiaServicios](#garantia_servicios)
-* [grupoalimenticios](#grupo_alimenticios)
-* [horarioEmpleados](#horario_empleados)
+* [garantiaServicios](#garantiaservicios)
+* [grupoalimenticios](#grupoalimenticios)
+* [horarioEmpleados](#horarioempleados)
 * [incidencias](#incidencias)
 * [motivos](#motivos)
-* [ordenServicios](#orden_servicios)
+* [ordenServicios](#ordenservicios)
 * [parametros](#parametros)
-* [parametroClientes](#parametro_clientes)
-* [parametroPromociones](#parametro_promociones)
-* [parametroServicios](#parametro_servicios)
-* [plan_dietas](#plan_dietas)
-* [plan_ejercicios](#plan_ejercicios)
-* [plan_suplementos](#plan_suplementos)
+* [parametroClientes](#parametroclientes)
+* [parametroPromociones](#parametropromociones)
+* [parametroServicios](#parametroservicios)
+* [plandietas](#plandietas)
+* [planejercicios](#planejercicios)
+* [plansuplementos](#plansuplementos)
 * [precios](#precios)
-* [preferenciaClientes](#preferencia_clientes)
+* [preferenciaClientes](#preferenciaclientes)
 * [promociones](#promociones)
 * [reclamos](#reclamos)
-* [regimenDietas](#regimen_dietas)
-* [regimenEjercicios](#regimen_ejercicios)
-* [regimenSuplementos](#regimen_suplementos)
+* [regimenDietas](#regimendietas)
+* [regimenEjercicios](#regimenejercicios)
+* [regimenSuplementos](#regimensuplementos)
 * [respuestas](#respuestas)
-* [rolFuncionalidades](#rol_funcionalidades)
+* [rolFuncionalidades](#rolfuncionalidades)
 * [servicios](#servicios)
-* [solicitudServicios](#solicitud_servicios)
+* [solicitudServicios](#solicitudservicios)
 * [suplementos](#suplementos)
 * [unidades](#unidades)
 * [usuarios](#usuarios)
@@ -247,43 +247,43 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 
 [[ver json]](https://api-sascha.herokuapp.com/tiempos)
 
-# tipo_citas
+# tipocitas
 
 [[ver json]](https://api-sascha.herokuapp.com/tipocitas)
 
-# tipo_criterios
+# tipocriterios
 
 [[ver json]](https://api-sascha.herokuapp.com/tipocriterios)
 
-# tipo_dietas
+# tipodietas
 
 [[ver json]](https://api-sascha.herokuapp.com/tipodietas)
 
-# tipo_incidencias
+# tipoincidencias
 
 [[ver json]](https://api-sascha.herokuapp.com/tipoincidencias)
 
-# tipo_motivos
+# tipomotivos
 
 [[ver json]](https://api-sascha.herokuapp.com/tipomotivos)
 
-# tipo_ordenes
+# tipoordenes
 
 [[ver json]](https://api-sascha.herokuapp.com/tipoordenes)
 
-# tipo_parametros
+# tipoparametros
 
 [[ver json]](https://api-sascha.herokuapp.com/tipoparametros)
 
-# tipo_respuestas
+# tiporespuestas
 
 [[ver json]](https://api-sascha.herokuapp.com/tiporespuestas)
 
-# tipo_unidades
+# tipounidades
 
 [[ver json]](https://api-sascha.herokuapp.com/tipounidades)
 
-# tipo_valoraciones
+# tipovaloraciones
 
 [[ver json]](https://api-sascha.herokuapp.com/tipovaloraciones)
 
@@ -387,15 +387,15 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 
 [[ver json]](https://api-sascha.herokuapp.com/parametroservicios)
 
-# plan_dietas
+# plandietas
 
 [[ver json]](https://api-sascha.herokuapp.com/plandietas)
 
-# plan_ejercicios
+# planejercicios
 
 [[ver json]](https://api-sascha.herokuapp.com/planejercicios)
 
-# plan_suplementos
+# plansuplementos
 
 [[ver json]](https://api-sascha.herokuapp.com/plansuplementos)
 
