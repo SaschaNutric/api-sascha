@@ -4,8 +4,15 @@ const Parametros 	= require('../collections/parametros');
 const Parametro  	= require('../models/parametro');
 
 function getParametros(req, res, next) {
-	Parametros.query({})
-	.fetch({ columns: ['id_parametro','id_tipo_parametro','id_unidad','tipo_valor','nombre'] })
+	Parametros.query(function (qb) {
+   		qb.where('parametro.estatus', '=', 1);
+	})
+	.fetch({
+		withRelated: [
+			'tipo_parametro',
+			'unidad',
+			'unidad.tipo_unidad'
+		]})
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -57,7 +64,12 @@ function getParametroById(req, res, next) {
 		});
 
 	Parametro.forge({ id_parametro: id, estatus: 1 })
-	.fetch()
+	.fetch({
+		withRelated: [
+			'tipo_parametro',
+			'unidad',
+			'unidad.tipo_unidad'
+		]})
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 

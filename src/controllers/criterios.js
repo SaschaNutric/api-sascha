@@ -4,8 +4,14 @@ const Criterios 	= require('../collections/criterios');
 const Criterio  	= require('../models/criterio');
 
 function getCriterios(req, res, next) {
-	Criterios.query({})
-	.fetch({ columns: ['id_criterio','id_tipo_criterio','id_tipo_valoracion','nombre','descripcion'] })
+	Criterios.query(function (qb) {
+   		qb.where('criterio.estatus', '=', 1);
+	})
+	.fetch({
+		withRelated: [
+			'tipo_criterio',
+			'tipo_valoracion'
+		] })
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -56,8 +62,12 @@ function getCriterioById(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 
-	Criterio.forge({ id_criterio: id })
-	.fetch()
+	Criterio.forge({ id_criterio: id, estatus: 1 })
+	.fetch({
+		withRelated: [
+			'tipo_criterio',
+			'tipo_valoracion'
+		] })
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
@@ -86,7 +96,7 @@ function updateCriterio(req, res, next) {
 		});
 	}
 
-	Criterio.forge({ id_criterio: id })
+	Criterio.forge({ id_criterio: id, estatus: 1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 
@@ -124,7 +134,7 @@ function deleteCriterio(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 	}
-	Criterio.forge({ id_criterio: id })
+	Criterio.forge({ id_criterio: id, estatus: 1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 

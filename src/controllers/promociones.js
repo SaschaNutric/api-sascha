@@ -4,8 +4,17 @@ const Promociones = require('../collections/promociones');
 const Promocion  = require('../models/promocion');
 
 function getPromociones(req, res, next) {
-	Promociones.query({})
-	.fetch({ columns: ['id_promocion', 'nombre', 'descripcion', 'url_imagen', 'precio', 'fecha_creacion', 'fecha_actualizacion', 'estatus'] })
+	Promociones.query(function (qb) {
+   		qb.where('promocion.estatus', '=', 1);
+	})
+	.fetch({
+		withRelated: [
+			'servicio',
+			'genero',
+			'estado_civil',
+			'estado',
+			'rango_edad'
+		]})
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -30,10 +39,13 @@ function savePromocion(req, res, next){
 	console.log(JSON.stringify(req.body));
 
 	Promocion.forge({
-        nombre: req.body.nombre, 
-        descripcion: req.body.descripcion, 
-        url_imagen: req.body.url_imagen, 
-        precio: req.body.precio
+		id_servicio: req.body.id_servicio,
+		nombre: req.body.nombre,
+		descripcion: req.body.descripcion,
+		id_genero: req.body.id_genero,
+		id_estado_civil: req.body.id_estado_civil,
+		id_rango_edad: req.body.id_rango_edad,
+		id_estado: req.body.id_estado
 	})
 	.save()
 	.then(function(servicio){
@@ -62,7 +74,14 @@ function getPromocionById(req, res, next) {
 		});
 
 	Promocion.forge({ id_promocion: id, estatus: 1 })
-	.fetch()
+	.fetch({
+		withRelated: [
+			'servicio',
+			'genero',
+			'estado_civil',
+			'estado',
+			'rango_edad'
+		]})
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
@@ -100,10 +119,13 @@ function updatePromocion(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({
-			nombre: req.body.nombre || data.get('nombre'), 
-        	descripcion: req.body.descripcion || data.get('descripcion'), 
-        	url_imagen: req.body.url_imagen || data.get('url_imagen'), 
-        	precio: req.body.precio || data.get('precio')	
+			id_servicio: req.body.id_servicio || data.get('id_servicio'),
+			nombre: req.body.nombre || data.get('nombre'),
+			descripcion: req.body.descripcion || data.get('descripcion'),
+			id_genero: req.body.id_genero || data.get('id_genero'),
+			id_estado_civil: req.body.id_estado_civil || data.get('id_estado_civil'),
+			id_rango_edad: req.body.id_rango_edad || data.get('id_rango_edad'),
+			id_estado: req.body.id_estado || data.get('id_estado')
 		})
 		.then(function() {
 			return res.status(200).json({ 

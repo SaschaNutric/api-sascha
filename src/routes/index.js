@@ -40,8 +40,8 @@ const parametroClientesCtrl       = require('../controllers/parametro_clientes')
 const parametroPromocionesCtrl    = require('../controllers/parametro_promociones');
 const parametroServiciosCtrl      = require('../controllers/parametro_servicios');
 const plan_dietasCtrl             = require('../controllers/plan_dietas');
-const pla_ejercicioCtrl           = require('../controllers/plan_ejercicios');
-const plan_suplementoCtrl         = require('../controllers/plan_suplementos');
+const plan_ejerciciosCtrl         = require('../controllers/plan_ejercicios');
+const plan_suplementosCtrl        = require('../controllers/plan_suplementos');
 const preciosCtrl                 = require('../controllers/precios');
 const preferenciaClientesCtrl     = require('../controllers/preferencia_clientes');
 const promocionesCtrl             = require('../controllers/promociones');
@@ -74,8 +74,8 @@ const usuariosCtrl                = require('../controllers/usuarios');
 const valoracionesCtrl            = require('../controllers/valoraciones');
 const visitasCtrl                 = require('../controllers/visitas');
 
-const perfilCtrl            = require('../controllers/perfil');
-var auth                    = require('../middlewares/auth');
+const perfilCtrl                  = require('../controllers/perfil');
+var auth                          = require('../middlewares/auth');
 
 module.exports = (function () {
 
@@ -326,17 +326,17 @@ module.exports = (function () {
   api.put('/plandieta/:id',                  plan_dietasCtrl.updatePlanDieta);
   api.delete('/plandieta/:id',               plan_dietasCtrl.deletePlanDieta);
 
-  api.get('/planejercicios',                 pla_ejercicioCtrl.getPlanEjercicios);
-  api.post('/planejercicios',                pla_ejercicioCtrl.savePlanEjercicio);
-  api.get('/planejercicio/:id',              pla_ejercicioCtrl.getPlanEjercicioById);  
-  api.put('/planejercicio/:id',              pla_ejercicioCtrl.updatePlanEjercicio);
-  api.delete('/planejercicio/:id',           pla_ejercicioCtrl.deletePlanEjercicio);
+  api.get('/planejercicios',                 plan_ejerciciosCtrl.getPlanEjercicios);
+  api.post('/planejercicios',                plan_ejerciciosCtrl.savePlanEjercicio);
+  api.get('/planejercicio/:id',              plan_ejerciciosCtrl.getPlanEjercicioById);  
+  api.put('/planejercicio/:id',              plan_ejerciciosCtrl.updatePlanEjercicio);
+  api.delete('/planejercicio/:id',           plan_ejerciciosCtrl.deletePlanEjercicio);
 
-  api.get('/plansuplementos',                plan_suplementoCtrl.getPlanSuplementos);
-  api.post('/plansuplementos',               plan_suplementoCtrl.savePlanSuplemento);
-  api.get('/plansuplemento/:id',             plan_suplementoCtrl.getPlanSuplementoById);  
-  api.put('/plansuplemento/:id',             plan_suplementoCtrl.updatePlanSuplemento);
-  api.delete('/plansuplemento/:id',          plan_suplementoCtrl.deletePlanSuplemento);
+  api.get('/plansuplementos',                plan_suplementosCtrl.getPlanSuplementos);
+  api.post('/plansuplementos',               plan_suplementosCtrl.savePlanSuplemento);
+  api.get('/plansuplemento/:id',             plan_suplementosCtrl.getPlanSuplementoById);  
+  api.put('/plansuplemento/:id',             plan_suplementosCtrl.updatePlanSuplemento);
+  api.delete('/plansuplemento/:id',          plan_suplementosCtrl.deletePlanSuplemento);
 
   api.get('/precios',                        preciosCtrl.getPrecios);
   api.post('/precios',                       preciosCtrl.savePrecio);

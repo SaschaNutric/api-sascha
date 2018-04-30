@@ -4,8 +4,17 @@ const Parametro_clientes 	= require('../collections/parametro_clientes');
 const Parametro_cliente  	= require('../models/parametro_cliente');
 
 function getParametro_clientes(req, res, next) {
-	Parametro_clientes.query({})
-	.fetch({ columns: ['id_parametro_cliente','id_cliente','id_parametro','valor'] })
+	Parametro_clientes.query(function (qb) {
+   		qb.where('parametro_cliente.estatus', '=', 1);
+	})
+	.fetch({
+		withRelated: [
+			'parametro',
+			'parametro.tipo_parametro',
+			'parametro.unidad',
+			'parametro.unidad.tipo_unidad',
+			'cliente'
+		]})
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 

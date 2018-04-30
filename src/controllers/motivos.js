@@ -4,8 +4,13 @@ const Motivos 	= require('../collections/motivos');
 const Motivo  	= require('../models/motivo');
 
 function getMotivos(req, res, next) {
-	Motivos.query({})
-	.fetch({ columns: ['id_motivo','id_tipo_motivo','descripcion'] })
+	Motivos.query(function (qb) {
+   		qb.where('motivo.estatus', '=', 1);
+	})
+	.fetch({
+		withRelated: [
+			'tipo_motivo'
+		] })
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -56,8 +61,11 @@ function getMotivoById(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 
-	Motivo.forge({ id_motivo: id })
-	.fetch()
+	Motivo.forge({ id_motivo: id, estatus: 1 })
+	.fetch({
+		withRelated: [
+			'tipo_motivo'
+		] })
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
@@ -86,7 +94,7 @@ function updateMotivo(req, res, next) {
 		});
 	}
 
-	Motivo.forge({ id_motivo: id })
+	Motivo.forge({ id_motivo: id, estatus: 1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 
@@ -124,7 +132,7 @@ function deleteMotivo(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 	}
-	Motivo.forge({ id_motivo: id })
+	Motivo.forge({ id_motivo: id, estatus: 1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 
