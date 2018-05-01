@@ -223,6 +223,17 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 
 # generos
 
+```
+    ├─GET────/generos     * Retorna todos.
+    ├─POST───/generos     * Guarda. 
+    ├─GET────/genero/:id   * Retorna por id.
+    ├─PUT────/genero/:id   * Actualiza.
+      ├─Body─{
+            "nombre": ""
+        }  
+    ├─DELETE─/genero/:id   * Elimina.
+```
+
 [[ver json]](https://api-sascha.herokuapp.com/generos)
 
 # negocios
@@ -251,45 +262,166 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 
 # tipocitas
 
+```
+    ├─GET────/tipocitas         * Retorna todos.
+    ├─POST───/tipocitas         * Guarda. 
+    ├─GET────/tipocita/:id      * Retorna por id.
+    ├─PUT────/tipocita/:id      * Actualiza.
+      ├─Body─{
+            "nombre": ""
+        }  
+    ├─DELETE─/tipocita/:id      * Elimina.
+```
+
 [[ver json]](https://api-sascha.herokuapp.com/tipocitas)
 
 # tipocomentarios
+
+```
+    ├─GET────/tipocomentarios         * Retorna todos.
+    ├─POST───/tipocomentarios         * Guarda. 
+    ├─GET────/tipocomentario/:id      * Retorna por id.
+    ├─PUT────/tipocomentario/:id      * Actualiza.
+      ├─Body─{
+            "nombre": ""
+        }  
+    ├─DELETE─/tipocomentarios/:id      * Elimina.
+```
 
 [[ver json]](https://api-sascha.herokuapp.com/tipocomentarios)
 
 # tipocriterios
 
+```
+    ├─GET────/tipocriterios         * Retorna todos.
+    ├─POST───/tipocriterios         * Guarda. 
+    ├─GET────/tipocriterio/:id      * Retorna por id.
+    ├─PUT────/tipocriterio/:id      * Actualiza.
+      ├─Body─{
+            "nombre": ""
+        }  
+    ├─DELETE─/tipocriterio/:id      * Elimina.
+```
+
 [[ver json]](https://api-sascha.herokuapp.com/tipocriterios)
 
 # tipodietas
+
+```
+    ├─GET────/tipodietas         * Retorna todos.
+    ├─POST───/tipodietas         * Guarda. 
+    ├─GET────/tipodieta/:id      * Retorna por id.
+    ├─PUT────/tipodieta/:id      * Actualiza.
+      ├─Body─{
+            "nombre": ""
+        }  
+    ├─DELETE─/tipodieta/:id      * Elimina.
+```
 
 [[ver json]](https://api-sascha.herokuapp.com/tipodietas)
 
 # tipoincidencias
 
+```
+    ├─GET────/tipoincidencias         * Retorna todos.
+    ├─POST───/tipoincidencias         * Guarda. 
+    ├─GET────/tipoincidencia/:id      * Retorna por id.
+    ├─PUT────/tipoincidencia/:id      * Actualiza.
+      ├─Body─{
+            "nombre": ""
+        }  
+    ├─DELETE─/tipoincidencia/:id      * Elimina.
+```
+
 [[ver json]](https://api-sascha.herokuapp.com/tipoincidencias)
 
 # tipomotivos
+
+```
+    ├─GET────/tipomotivos         * Retorna todos.
+    ├─POST───/tipomotivos         * Guarda. 
+    ├─GET────/tipomotivo/:id      * Retorna por id.
+    ├─PUT────/tipomotivo/:id      * Actualiza.
+      ├─Body─{
+            "nombre": ""
+        }  
+    ├─DELETE─/tipomotivo/:id      * Elimina.
+```
 
 [[ver json]](https://api-sascha.herokuapp.com/tipomotivos)
 
 # tipoordenes
 
+```
+    ├─GET────/tipoordenes         * Retorna todos.
+    ├─POST───/tipoordenes         * Guarda. 
+    ├─GET────/tipoordene/:id      * Retorna por id.
+    ├─PUT────/tipoordene/:id      * Actualiza.
+      ├─Body─{
+            "nombre": ""
+        }  
+    ├─DELETE─/tipoordene/:id      * Elimina.
+```
+
 [[ver json]](https://api-sascha.herokuapp.com/tipoordenes)
 
 # tipoparametros
+
+```
+    ├─GET────/tipoparametros         * Retorna todos.
+    ├─POST───/tipoparametros         * Guarda. 
+    ├─GET────/tipoparametro/:id      * Retorna por id.
+    ├─PUT────/tipoparametro/:id      * Actualiza.
+      ├─Body─{
+            "nombre": ""
+        }  
+    ├─DELETE─/tipoparametro/:id      * Elimina.
+```
 
 [[ver json]](https://api-sascha.herokuapp.com/tipoparametros)
 
 # tiporespuestas
 
+```
+    ├─GET────/tiporespuestas         * Retorna todos.
+    ├─POST───/tiporespuestas         * Guarda. 
+    ├─GET────/tiporespuesta/:id      * Retorna por id.
+    ├─PUT────/tiporespuesta/:id      * Actualiza.
+      ├─Body─{
+            "nombre": ""
+        }  
+    ├─DELETE─/tiporespuesta/:id      * Elimina.
+```
+
 [[ver json]](https://api-sascha.herokuapp.com/tiporespuestas)
 
 # tipounidades
 
+```
+    ├─GET────/tipounidades         * Retorna todos.
+    ├─POST───/tipounidades         * Guarda. 
+    ├─GET────/tipounidad/:id       * Retorna por id.
+    ├─PUT────/tipounidad/:id       * Actualiza.
+      ├─Body─{
+            "nombre": ""
+        }  
+    ├─DELETE─/tipounidad/:id       * Elimina.
+```
+
 [[ver json]](https://api-sascha.herokuapp.com/tipounidades)
 
 # tipovaloraciones
+
+```
+    ├─GET────/tipovaloraciones         * Retorna todos.
+    ├─POST───/tipovaloraciones         * Guarda. 
+    ├─GET────/tipovaloracion/:id       * Retorna por id.
+    ├─PUT────/tipovaloracion/:id       * Actualiza.
+      ├─Body─{
+            "nombre": ""
+        }  
+    ├─DELETE─/tipovaloracion/:id       * Elimina.
+```
 
 [[ver json]](https://api-sascha.herokuapp.com/tipovaloraciones)
 
