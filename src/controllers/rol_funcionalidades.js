@@ -56,7 +56,7 @@ function getRol_funcionalidadById(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 
-	Rol_funcionalidad.forge({ id_rol_funcionalidad })
+	Rol_funcionalidad.forge({ id_rol_funcionalidad: id, estatus: 1 })
 	.fetch()
 	.then(function(data) {
 		if(!data) 
@@ -86,7 +86,7 @@ function updateRol_funcionalidad(req, res, next) {
 		});
 	}
 
-	Rol_funcionalidad.forge({ id_rol_funcionalidad })
+	Rol_funcionalidad.forge({ id_rol_funcionalidad: id, estatus: 1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 
@@ -124,7 +124,7 @@ function deleteRol_funcionalidad(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 	}
-	Rol_funcionalidad.forge({ id_rol_funcionalidad })
+	Rol_funcionalidad.forge({ id_rol_funcionalidad: id, estatus: 1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 

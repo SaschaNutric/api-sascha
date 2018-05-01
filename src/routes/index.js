@@ -60,6 +60,7 @@ const solicitudServiciosCtrl      = require('../controllers/solicitud_servicios'
 const suplementosCtrl             = require('../controllers/suplementos');
 const tiemposCtrl                 = require('../controllers/tiempos');
 const tipo_citasCtrl              = require('../controllers/tipo_citas');
+const tipo_comentariosCtrl        = require('../controllers/tipo_comentarios');
 const tipo_criteriosCtrl          = require('../controllers/tipo_criterios');
 const tipo_dietasCtrl             = require('../controllers/tipo_dietas');
 const tipo_incidenciasCtrl        = require('../controllers/tipo_incidencias');
@@ -151,6 +152,12 @@ module.exports = (function () {
   api.get('/contenido/:id',                  contenidosCtrl.getContenidoById);  
   api.put('/contenido/:id',                  contenidosCtrl.updateContenido);
   api.delete('/contenido/:id',               contenidosCtrl.deleteContenido);  
+
+  api.get('/comentarios',                    comentariosCtrl.getComentarios);
+  api.post('/comentarios',                   comentariosCtrl.saveComentario);
+  api.get('/comentario/:id',                 comentariosCtrl.getComentarioById);  
+  api.put('/comentario/:id',                 comentariosCtrl.updateComentario);
+  api.delete('/comentario/:id',              comentariosCtrl.deleteComentario);  
 
   api.get('/criterios',                      criteriosCtrl.getCriterios);
   api.post('/criterios',                     criteriosCtrl.saveCriterio);
@@ -445,6 +452,12 @@ module.exports = (function () {
   api.get('/tipocita/:id',                   tipo_citasCtrl.getTipoCitaById);  
   api.put('/tipocita/:id',                   tipo_citasCtrl.updateTipoCita);
   api.delete('/tipocita/:id',                tipo_citasCtrl.deleteTipoCita);
+
+  api.get('/tipocomentarios',                tipo_comentariosCtrl.getTipo_comentarios);
+  api.post('/tipocomentarios',               tipo_comentariosCtrl.saveTipo_comentario);
+  api.get('/tipocomentario/:id',             tipo_comentariosCtrl.getTipo_comentarioById);  
+  api.put('/tipocomentario/:id',             tipo_comentariosCtrl.updateTipo_comentario);
+  api.delete('/tipocomentario/:id',          tipo_comentariosCtrl.deleteTipo_comentario);
 
   api.get('/tipocriterios',                  tipo_criteriosCtrl.getTipoCriterios);
   api.post('/tipocriterios',                 tipo_criteriosCtrl.saveTipoCriterio);

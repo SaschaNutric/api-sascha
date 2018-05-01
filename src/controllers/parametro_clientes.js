@@ -13,7 +13,10 @@ function getParametro_clientes(req, res, next) {
 			'parametro.tipo_parametro',
 			'parametro.unidad',
 			'parametro.unidad.tipo_unidad',
-			'cliente'
+			'cliente',
+			'cliente.estado',
+			'cliente.estado_civil',
+			'cliente.rango_edad'
 		]})
 	.then(function(data) {
 		if (!data)
@@ -66,7 +69,17 @@ function getParametro_clienteById(req, res, next) {
 		});
 
 	Parametro_cliente.forge({ id_parametro_cliente: id, estatus: 1 })
-	.fetch()
+	.fetch({
+		withRelated: [
+			'parametro',
+			'parametro.tipo_parametro',
+			'parametro.unidad',
+			'parametro.unidad.tipo_unidad',
+			'cliente',
+			'cliente.estado',
+			'cliente.estado_civil',
+			'cliente.rango_edad'
+		]})
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 

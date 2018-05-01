@@ -4,8 +4,19 @@ const Comentarios 	= require('../collections/comentarios');
 const Comentario  	= require('../models/comentario');
 
 function getComentarios(req, res, next) {
-	Comentarios.query({})
-	.fetch({ columns: ['id_comentario','id_cliente','id_respuesta','contenido','respuesta','id_tipo_comentario'] })
+	Comentarios.query(function (qb) {
+   		qb.where('comentario.estatus', '=', 1);
+	})
+	.fetch({ withRelated: [
+		'cliente',
+		'cliente.estado',
+		'cliente.estado_civil',
+		'cliente.genero',
+		'cliente.rango_edad',
+		'respuesta',
+		'respuesta.tipo_respuesta',
+		'tipo_comentario'
+		]})
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -56,8 +67,8 @@ function getComentarioById(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 
-	Comentario.forge({ id_comentario: id })
-	.fetch()
+	Comentario.forge({ id_comentario: id, estatus: 1 })
+	.fetch({ withRelated: ['cliente','respuesta','tipo_comentario']})
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
@@ -86,7 +97,7 @@ function updateComentario(req, res, next) {
 		});
 	}
 
-	Comentario.forge({ id_comentario: id })
+	Comentario.forge({ id_comentario: id, estatus: 1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 
@@ -124,7 +135,7 @@ function deleteComentario(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 	}
-	Comentario.forge({ id_comentario: id })
+	Comentario.forge({ id_comentario: id, estatus: 1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 
@@ -162,3 +173,4 @@ module.exports = {
 	updateComentario,
 	deleteComentario
 }
+

@@ -56,7 +56,7 @@ function getSolicitud_servicioById(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 
-	Solicitud_servicio.forge({ id_solicitud_servicio })
+	Solicitud_servicio.forge({ id_solicitud_servicio: id, estatus: 1 })
 	.fetch()
 	.then(function(data) {
 		if(!data) 
@@ -86,7 +86,7 @@ function updateSolicitud_servicio(req, res, next) {
 		});
 	}
 
-	Solicitud_servicio.forge({ id_solicitud_servicio })
+	Solicitud_servicio.forge({ id_solicitud_servicio: id, estatus: 1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 
@@ -124,7 +124,7 @@ function deleteSolicitud_servicio(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 	}
-	Solicitud_servicio.forge({ id_solicitud_servicio })
+	Solicitud_servicio.forge({ id_solicitud_servicio: id, estatus: 1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 

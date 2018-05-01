@@ -56,7 +56,7 @@ function getValoracionById(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 
-	Valoracion.forge({ id_valoracion })
+	Valoracion.forge({ id_valoracion: id, estatus: 1 })
 	.fetch()
 	.then(function(data) {
 		if(!data) 
@@ -86,7 +86,7 @@ function updateValoracion(req, res, next) {
 		});
 	}
 
-	Valoracion.forge({ id_valoracion })
+	Valoracion.forge({ id_valoracion: id, estatus: 1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 
@@ -124,7 +124,7 @@ function deleteValoracion(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 	}
-	Valoracion.forge({ id_valoracion })
+	Valoracion.forge({ id_valoracion: id, estatus: 1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 

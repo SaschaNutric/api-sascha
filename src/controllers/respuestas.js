@@ -4,8 +4,13 @@ const Respuestas 	= require('../collections/respuestas');
 const Respuesta  	= require('../models/respuesta');
 
 function getRespuestas(req, res, next) {
-	Respuestas.query({})
-	.fetch({ columns: ['id_tipo_respuesta','descripcion'] })
+	Respuestas.query(function (qb) {
+   		qb.where('respuesta.estatus', '=', 1);
+	})
+	.fetch({
+		withRelated: [
+			'tipo_respuesta'
+		] })
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -56,8 +61,11 @@ function getRespuestaById(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 
-	Respuesta.forge({ id_respuesta })
-	.fetch()
+	Respuesta.forge({ id_respuesta: id, estatus: 1 })
+	.fetch({
+		withRelated: [
+			'tipo_respuesta'
+		] })
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
@@ -86,7 +94,7 @@ function updateRespuesta(req, res, next) {
 		});
 	}
 
-	Respuesta.forge({ id_respuesta })
+	Respuesta.forge({ id_respuesta: id, estatus: 1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 
@@ -124,7 +132,7 @@ function deleteRespuesta(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 	}
-	Respuesta.forge({ id_respuesta })
+	Respuesta.forge({ id_respuesta: id, estatus: 1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 

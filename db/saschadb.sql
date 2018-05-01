@@ -30,7 +30,7 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 SET search_path = public, pg_catalog;
 
 --
--- Name: fun_asignar_rango_edad(); Type: FUNCTION; Schema: public; Owner: leo
+-- Name: fun_asignar_rango_edad(); Type: FUNCTION; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE FUNCTION fun_asignar_rango_edad() RETURNS trigger
@@ -49,10 +49,10 @@ END
 $$;
 
 
-ALTER FUNCTION public.fun_asignar_rango_edad() OWNER TO leo;
+ALTER FUNCTION public.fun_asignar_rango_edad() OWNER TO byqkxhkjgnspco;
 
 --
--- Name: fun_eliminar_cliente(); Type: FUNCTION; Schema: public; Owner: leo
+-- Name: fun_eliminar_cliente(); Type: FUNCTION; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE FUNCTION fun_eliminar_cliente() RETURNS trigger
@@ -65,10 +65,10 @@ END
 $$;
 
 
-ALTER FUNCTION public.fun_eliminar_cliente() OWNER TO leo;
+ALTER FUNCTION public.fun_eliminar_cliente() OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_agenda_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_agenda_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_agenda_seq
@@ -79,14 +79,14 @@ CREATE SEQUENCE id_agenda_seq
     CACHE 1;
 
 
-ALTER TABLE id_agenda_seq OWNER TO leo;
+ALTER TABLE id_agenda_seq OWNER TO byqkxhkjgnspco;
 
 SET default_tablespace = '';
 
 SET default_with_oids = false;
 
 --
--- Name: agenda; Type: TABLE; Schema: public; Owner: leo
+-- Name: agenda; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE agenda (
@@ -102,10 +102,10 @@ CREATE TABLE agenda (
 );
 
 
-ALTER TABLE agenda OWNER TO leo;
+ALTER TABLE agenda OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_alimento_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_alimento_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_alimento_seq
@@ -116,10 +116,10 @@ CREATE SEQUENCE id_alimento_seq
     CACHE 1;
 
 
-ALTER TABLE id_alimento_seq OWNER TO leo;
+ALTER TABLE id_alimento_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: alimento; Type: TABLE; Schema: public; Owner: leo
+-- Name: alimento; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE alimento (
@@ -132,10 +132,10 @@ CREATE TABLE alimento (
 );
 
 
-ALTER TABLE alimento OWNER TO leo;
+ALTER TABLE alimento OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_app_movil_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_app_movil_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_app_movil_seq
@@ -146,10 +146,10 @@ CREATE SEQUENCE id_app_movil_seq
     CACHE 1;
 
 
-ALTER TABLE id_app_movil_seq OWNER TO leo;
+ALTER TABLE id_app_movil_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: app_movil; Type: TABLE; Schema: public; Owner: leo
+-- Name: app_movil; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE app_movil (
@@ -162,10 +162,10 @@ CREATE TABLE app_movil (
 );
 
 
-ALTER TABLE app_movil OWNER TO leo;
+ALTER TABLE app_movil OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_bloque_horario_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_bloque_horario_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_bloque_horario_seq
@@ -176,10 +176,10 @@ CREATE SEQUENCE id_bloque_horario_seq
     CACHE 1;
 
 
-ALTER TABLE id_bloque_horario_seq OWNER TO leo;
+ALTER TABLE id_bloque_horario_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: bloque_horario; Type: TABLE; Schema: public; Owner: leo
+-- Name: bloque_horario; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE bloque_horario (
@@ -192,10 +192,10 @@ CREATE TABLE bloque_horario (
 );
 
 
-ALTER TABLE bloque_horario OWNER TO leo;
+ALTER TABLE bloque_horario OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_calificacion_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_calificacion_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_calificacion_seq
@@ -206,10 +206,10 @@ CREATE SEQUENCE id_calificacion_seq
     CACHE 1;
 
 
-ALTER TABLE id_calificacion_seq OWNER TO leo;
+ALTER TABLE id_calificacion_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: calificacion; Type: TABLE; Schema: public; Owner: leo
+-- Name: calificacion; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE calificacion (
@@ -224,10 +224,10 @@ CREATE TABLE calificacion (
 );
 
 
-ALTER TABLE calificacion OWNER TO leo;
+ALTER TABLE calificacion OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_cita_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_cita_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_cita_seq
@@ -238,10 +238,10 @@ CREATE SEQUENCE id_cita_seq
     CACHE 1;
 
 
-ALTER TABLE id_cita_seq OWNER TO leo;
+ALTER TABLE id_cita_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: cita; Type: TABLE; Schema: public; Owner: leo
+-- Name: cita; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE cita (
@@ -256,10 +256,10 @@ CREATE TABLE cita (
 );
 
 
-ALTER TABLE cita OWNER TO leo;
+ALTER TABLE cita OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_cliente_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_cliente_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_cliente_seq
@@ -270,10 +270,10 @@ CREATE SEQUENCE id_cliente_seq
     CACHE 1;
 
 
-ALTER TABLE id_cliente_seq OWNER TO leo;
+ALTER TABLE id_cliente_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: cliente; Type: TABLE; Schema: public; Owner: leo
+-- Name: cliente; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE cliente (
@@ -297,17 +297,17 @@ CREATE TABLE cliente (
 );
 
 
-ALTER TABLE cliente OWNER TO leo;
+ALTER TABLE cliente OWNER TO byqkxhkjgnspco;
 
 --
--- Name: COLUMN cliente.estatus; Type: COMMENT; Schema: public; Owner: leo
+-- Name: COLUMN cliente.estatus; Type: COMMENT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COMMENT ON COLUMN cliente.estatus IS '1: Potencial 2: Consolidado';
 
 
 --
--- Name: id_comentario_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_comentario_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_comentario_seq
@@ -318,10 +318,10 @@ CREATE SEQUENCE id_comentario_seq
     CACHE 1;
 
 
-ALTER TABLE id_comentario_seq OWNER TO leo;
+ALTER TABLE id_comentario_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: comentario; Type: TABLE; Schema: public; Owner: leo
+-- Name: comentario; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE comentario (
@@ -337,10 +337,10 @@ CREATE TABLE comentario (
 );
 
 
-ALTER TABLE comentario OWNER TO leo;
+ALTER TABLE comentario OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_comida_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_comida_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_comida_seq
@@ -351,10 +351,10 @@ CREATE SEQUENCE id_comida_seq
     CACHE 1;
 
 
-ALTER TABLE id_comida_seq OWNER TO leo;
+ALTER TABLE id_comida_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: comida; Type: TABLE; Schema: public; Owner: leo
+-- Name: comida; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE comida (
@@ -366,10 +366,10 @@ CREATE TABLE comida (
 );
 
 
-ALTER TABLE comida OWNER TO leo;
+ALTER TABLE comida OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_condicion_garantia_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_condicion_garantia_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_condicion_garantia_seq
@@ -380,10 +380,10 @@ CREATE SEQUENCE id_condicion_garantia_seq
     CACHE 1;
 
 
-ALTER TABLE id_condicion_garantia_seq OWNER TO leo;
+ALTER TABLE id_condicion_garantia_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: condicion_garantia; Type: TABLE; Schema: public; Owner: leo
+-- Name: condicion_garantia; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE condicion_garantia (
@@ -395,10 +395,10 @@ CREATE TABLE condicion_garantia (
 );
 
 
-ALTER TABLE condicion_garantia OWNER TO leo;
+ALTER TABLE condicion_garantia OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_contenido_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_contenido_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_contenido_seq
@@ -409,10 +409,10 @@ CREATE SEQUENCE id_contenido_seq
     CACHE 1;
 
 
-ALTER TABLE id_contenido_seq OWNER TO leo;
+ALTER TABLE id_contenido_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: contenido; Type: TABLE; Schema: public; Owner: leo
+-- Name: contenido; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE contenido (
@@ -426,10 +426,10 @@ CREATE TABLE contenido (
 );
 
 
-ALTER TABLE contenido OWNER TO leo;
+ALTER TABLE contenido OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_criterio_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_criterio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_criterio_seq
@@ -440,10 +440,10 @@ CREATE SEQUENCE id_criterio_seq
     CACHE 1;
 
 
-ALTER TABLE id_criterio_seq OWNER TO leo;
+ALTER TABLE id_criterio_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: criterio; Type: TABLE; Schema: public; Owner: leo
+-- Name: criterio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE criterio (
@@ -458,10 +458,10 @@ CREATE TABLE criterio (
 );
 
 
-ALTER TABLE criterio OWNER TO leo;
+ALTER TABLE criterio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_detalle_plan_dieta_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_detalle_plan_dieta_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_detalle_plan_dieta_seq
@@ -472,10 +472,10 @@ CREATE SEQUENCE id_detalle_plan_dieta_seq
     CACHE 1;
 
 
-ALTER TABLE id_detalle_plan_dieta_seq OWNER TO leo;
+ALTER TABLE id_detalle_plan_dieta_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: detalle_plan_dieta; Type: TABLE; Schema: public; Owner: leo
+-- Name: detalle_plan_dieta; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE detalle_plan_dieta (
@@ -489,10 +489,10 @@ CREATE TABLE detalle_plan_dieta (
 );
 
 
-ALTER TABLE detalle_plan_dieta OWNER TO leo;
+ALTER TABLE detalle_plan_dieta OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_detalle_plan_ejercicio_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_detalle_plan_ejercicio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_detalle_plan_ejercicio_seq
@@ -503,10 +503,10 @@ CREATE SEQUENCE id_detalle_plan_ejercicio_seq
     CACHE 1;
 
 
-ALTER TABLE id_detalle_plan_ejercicio_seq OWNER TO leo;
+ALTER TABLE id_detalle_plan_ejercicio_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: detalle_plan_ejercicio; Type: TABLE; Schema: public; Owner: leo
+-- Name: detalle_plan_ejercicio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE detalle_plan_ejercicio (
@@ -519,10 +519,10 @@ CREATE TABLE detalle_plan_ejercicio (
 );
 
 
-ALTER TABLE detalle_plan_ejercicio OWNER TO leo;
+ALTER TABLE detalle_plan_ejercicio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_detalle_plan_suplemento_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_detalle_plan_suplemento_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_detalle_plan_suplemento_seq
@@ -533,10 +533,10 @@ CREATE SEQUENCE id_detalle_plan_suplemento_seq
     CACHE 1;
 
 
-ALTER TABLE id_detalle_plan_suplemento_seq OWNER TO leo;
+ALTER TABLE id_detalle_plan_suplemento_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: detalle_plan_suplemento; Type: TABLE; Schema: public; Owner: leo
+-- Name: detalle_plan_suplemento; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE detalle_plan_suplemento (
@@ -549,7 +549,7 @@ CREATE TABLE detalle_plan_suplemento (
 );
 
 
-ALTER TABLE detalle_plan_suplemento OWNER TO leo;
+ALTER TABLE detalle_plan_suplemento OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: id_detalle_regimen_alimento_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -566,7 +566,7 @@ CREATE SEQUENCE id_detalle_regimen_alimento_seq
 ALTER TABLE id_detalle_regimen_alimento_seq OWNER TO postgres;
 
 --
--- Name: detalle_regimen_alimento; Type: TABLE; Schema: public; Owner: leo
+-- Name: detalle_regimen_alimento; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE detalle_regimen_alimento (
@@ -579,7 +579,7 @@ CREATE TABLE detalle_regimen_alimento (
 );
 
 
-ALTER TABLE detalle_regimen_alimento OWNER TO leo;
+ALTER TABLE detalle_regimen_alimento OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: id_detalle_visita_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -596,7 +596,7 @@ CREATE SEQUENCE id_detalle_visita_seq
 ALTER TABLE id_detalle_visita_seq OWNER TO postgres;
 
 --
--- Name: detalle_visita; Type: TABLE; Schema: public; Owner: leo
+-- Name: detalle_visita; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE detalle_visita (
@@ -610,10 +610,10 @@ CREATE TABLE detalle_visita (
 );
 
 
-ALTER TABLE detalle_visita OWNER TO leo;
+ALTER TABLE detalle_visita OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_dia_laborable_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_dia_laborable_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_dia_laborable_seq
@@ -624,10 +624,10 @@ CREATE SEQUENCE id_dia_laborable_seq
     CACHE 1;
 
 
-ALTER TABLE id_dia_laborable_seq OWNER TO leo;
+ALTER TABLE id_dia_laborable_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: dia_laborable; Type: TABLE; Schema: public; Owner: leo
+-- Name: dia_laborable; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE dia_laborable (
@@ -639,10 +639,10 @@ CREATE TABLE dia_laborable (
 );
 
 
-ALTER TABLE dia_laborable OWNER TO leo;
+ALTER TABLE dia_laborable OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_ejercicio_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_ejercicio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_ejercicio_seq
@@ -653,10 +653,10 @@ CREATE SEQUENCE id_ejercicio_seq
     CACHE 1;
 
 
-ALTER TABLE id_ejercicio_seq OWNER TO leo;
+ALTER TABLE id_ejercicio_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: ejercicio; Type: TABLE; Schema: public; Owner: leo
+-- Name: ejercicio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE ejercicio (
@@ -669,10 +669,10 @@ CREATE TABLE ejercicio (
 );
 
 
-ALTER TABLE ejercicio OWNER TO leo;
+ALTER TABLE ejercicio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_empleado_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_empleado_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_empleado_seq
@@ -683,10 +683,10 @@ CREATE SEQUENCE id_empleado_seq
     CACHE 1;
 
 
-ALTER TABLE id_empleado_seq OWNER TO leo;
+ALTER TABLE id_empleado_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: empleado; Type: TABLE; Schema: public; Owner: leo
+-- Name: empleado; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE empleado (
@@ -705,10 +705,10 @@ CREATE TABLE empleado (
 );
 
 
-ALTER TABLE empleado OWNER TO leo;
+ALTER TABLE empleado OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_especialidad_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_especialidad_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_especialidad_seq
@@ -719,10 +719,10 @@ CREATE SEQUENCE id_especialidad_seq
     CACHE 1;
 
 
-ALTER TABLE id_especialidad_seq OWNER TO leo;
+ALTER TABLE id_especialidad_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: especialidad; Type: TABLE; Schema: public; Owner: leo
+-- Name: especialidad; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE especialidad (
@@ -734,7 +734,7 @@ CREATE TABLE especialidad (
 );
 
 
-ALTER TABLE especialidad OWNER TO leo;
+ALTER TABLE especialidad OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: id_especialidad_empleado_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -751,7 +751,7 @@ CREATE SEQUENCE id_especialidad_empleado_seq
 ALTER TABLE id_especialidad_empleado_seq OWNER TO postgres;
 
 --
--- Name: especialidad_empleado; Type: TABLE; Schema: public; Owner: leo
+-- Name: especialidad_empleado; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE especialidad_empleado (
@@ -764,7 +764,7 @@ CREATE TABLE especialidad_empleado (
 );
 
 
-ALTER TABLE especialidad_empleado OWNER TO leo;
+ALTER TABLE especialidad_empleado OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: id_especialidad_servicio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -781,7 +781,7 @@ CREATE SEQUENCE id_especialidad_servicio_seq
 ALTER TABLE id_especialidad_servicio_seq OWNER TO postgres;
 
 --
--- Name: especialidad_servicio; Type: TABLE; Schema: public; Owner: leo
+-- Name: especialidad_servicio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE especialidad_servicio (
@@ -794,10 +794,10 @@ CREATE TABLE especialidad_servicio (
 );
 
 
-ALTER TABLE especialidad_servicio OWNER TO leo;
+ALTER TABLE especialidad_servicio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_estado_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_estado_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_estado_seq
@@ -808,10 +808,10 @@ CREATE SEQUENCE id_estado_seq
     CACHE 1;
 
 
-ALTER TABLE id_estado_seq OWNER TO leo;
+ALTER TABLE id_estado_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: estado; Type: TABLE; Schema: public; Owner: leo
+-- Name: estado; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE estado (
@@ -823,7 +823,7 @@ CREATE TABLE estado (
 );
 
 
-ALTER TABLE estado OWNER TO leo;
+ALTER TABLE estado OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: id_estado_civil_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -840,7 +840,7 @@ CREATE SEQUENCE id_estado_civil_seq
 ALTER TABLE id_estado_civil_seq OWNER TO postgres;
 
 --
--- Name: estado_civil; Type: TABLE; Schema: public; Owner: leo
+-- Name: estado_civil; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE estado_civil (
@@ -849,10 +849,10 @@ CREATE TABLE estado_civil (
 );
 
 
-ALTER TABLE estado_civil OWNER TO leo;
+ALTER TABLE estado_civil OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_frecuencia_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_frecuencia_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_frecuencia_seq
@@ -863,10 +863,10 @@ CREATE SEQUENCE id_frecuencia_seq
     CACHE 1;
 
 
-ALTER TABLE id_frecuencia_seq OWNER TO leo;
+ALTER TABLE id_frecuencia_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: frecuencia; Type: TABLE; Schema: public; Owner: leo
+-- Name: frecuencia; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE frecuencia (
@@ -879,10 +879,10 @@ CREATE TABLE frecuencia (
 );
 
 
-ALTER TABLE frecuencia OWNER TO leo;
+ALTER TABLE frecuencia OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_funcionalidad_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_funcionalidad_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_funcionalidad_seq
@@ -893,10 +893,10 @@ CREATE SEQUENCE id_funcionalidad_seq
     CACHE 1;
 
 
-ALTER TABLE id_funcionalidad_seq OWNER TO leo;
+ALTER TABLE id_funcionalidad_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: funcionalidad; Type: TABLE; Schema: public; Owner: leo
+-- Name: funcionalidad; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE funcionalidad (
@@ -911,7 +911,7 @@ CREATE TABLE funcionalidad (
 );
 
 
-ALTER TABLE funcionalidad OWNER TO leo;
+ALTER TABLE funcionalidad OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: id_garantia_servicio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -928,7 +928,7 @@ CREATE SEQUENCE id_garantia_servicio_seq
 ALTER TABLE id_garantia_servicio_seq OWNER TO postgres;
 
 --
--- Name: garantia_servicio; Type: TABLE; Schema: public; Owner: leo
+-- Name: garantia_servicio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE garantia_servicio (
@@ -941,7 +941,7 @@ CREATE TABLE garantia_servicio (
 );
 
 
-ALTER TABLE garantia_servicio OWNER TO leo;
+ALTER TABLE garantia_servicio OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: id_genero_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -958,7 +958,7 @@ CREATE SEQUENCE id_genero_seq
 ALTER TABLE id_genero_seq OWNER TO postgres;
 
 --
--- Name: genero; Type: TABLE; Schema: public; Owner: leo
+-- Name: genero; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE genero (
@@ -967,10 +967,10 @@ CREATE TABLE genero (
 );
 
 
-ALTER TABLE genero OWNER TO leo;
+ALTER TABLE genero OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_grupo_alimenticio_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_grupo_alimenticio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_grupo_alimenticio_seq
@@ -981,10 +981,10 @@ CREATE SEQUENCE id_grupo_alimenticio_seq
     CACHE 1;
 
 
-ALTER TABLE id_grupo_alimenticio_seq OWNER TO leo;
+ALTER TABLE id_grupo_alimenticio_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: grupo_alimenticio; Type: TABLE; Schema: public; Owner: leo
+-- Name: grupo_alimenticio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE grupo_alimenticio (
@@ -997,7 +997,7 @@ CREATE TABLE grupo_alimenticio (
 );
 
 
-ALTER TABLE grupo_alimenticio OWNER TO leo;
+ALTER TABLE grupo_alimenticio OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: id_horario_empleado_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1014,7 +1014,7 @@ CREATE SEQUENCE id_horario_empleado_seq
 ALTER TABLE id_horario_empleado_seq OWNER TO postgres;
 
 --
--- Name: horario_empleado; Type: TABLE; Schema: public; Owner: leo
+-- Name: horario_empleado; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE horario_empleado (
@@ -1028,10 +1028,10 @@ CREATE TABLE horario_empleado (
 );
 
 
-ALTER TABLE horario_empleado OWNER TO leo;
+ALTER TABLE horario_empleado OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_incidencia_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_incidencia_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_incidencia_seq
@@ -1042,10 +1042,10 @@ CREATE SEQUENCE id_incidencia_seq
     CACHE 1;
 
 
-ALTER TABLE id_incidencia_seq OWNER TO leo;
+ALTER TABLE id_incidencia_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_motivo_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_motivo_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_motivo_seq
@@ -1056,7 +1056,7 @@ CREATE SEQUENCE id_motivo_seq
     CACHE 1;
 
 
-ALTER TABLE id_motivo_seq OWNER TO leo;
+ALTER TABLE id_motivo_seq OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: id_negocio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1073,7 +1073,7 @@ CREATE SEQUENCE id_negocio_seq
 ALTER TABLE id_negocio_seq OWNER TO postgres;
 
 --
--- Name: id_orden_servicio_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_orden_servicio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_orden_servicio_seq
@@ -1084,7 +1084,7 @@ CREATE SEQUENCE id_orden_servicio_seq
     CACHE 1;
 
 
-ALTER TABLE id_orden_servicio_seq OWNER TO leo;
+ALTER TABLE id_orden_servicio_seq OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: id_parametro_cliente_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1115,7 +1115,7 @@ CREATE SEQUENCE id_parametro_promocion_seq
 ALTER TABLE id_parametro_promocion_seq OWNER TO postgres;
 
 --
--- Name: id_parametro_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_parametro_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_parametro_seq
@@ -1126,7 +1126,7 @@ CREATE SEQUENCE id_parametro_seq
     CACHE 1;
 
 
-ALTER TABLE id_parametro_seq OWNER TO leo;
+ALTER TABLE id_parametro_seq OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: id_parametro_servicio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1143,7 +1143,7 @@ CREATE SEQUENCE id_parametro_servicio_seq
 ALTER TABLE id_parametro_servicio_seq OWNER TO postgres;
 
 --
--- Name: id_plan_dieta_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_plan_dieta_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_plan_dieta_seq
@@ -1154,10 +1154,10 @@ CREATE SEQUENCE id_plan_dieta_seq
     CACHE 1;
 
 
-ALTER TABLE id_plan_dieta_seq OWNER TO leo;
+ALTER TABLE id_plan_dieta_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_plan_ejercicio_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_plan_ejercicio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_plan_ejercicio_seq
@@ -1168,10 +1168,10 @@ CREATE SEQUENCE id_plan_ejercicio_seq
     CACHE 1;
 
 
-ALTER TABLE id_plan_ejercicio_seq OWNER TO leo;
+ALTER TABLE id_plan_ejercicio_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_plan_suplemento_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_plan_suplemento_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_plan_suplemento_seq
@@ -1182,7 +1182,7 @@ CREATE SEQUENCE id_plan_suplemento_seq
     CACHE 1;
 
 
-ALTER TABLE id_plan_suplemento_seq OWNER TO leo;
+ALTER TABLE id_plan_suplemento_seq OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: id_precio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1213,7 +1213,7 @@ CREATE SEQUENCE id_preferencia_cliente_seq
 ALTER TABLE id_preferencia_cliente_seq OWNER TO postgres;
 
 --
--- Name: id_promocion_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_promocion_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_promocion_seq
@@ -1224,10 +1224,10 @@ CREATE SEQUENCE id_promocion_seq
     CACHE 1;
 
 
-ALTER TABLE id_promocion_seq OWNER TO leo;
+ALTER TABLE id_promocion_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_rango_edad_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_rango_edad_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_rango_edad_seq
@@ -1238,10 +1238,10 @@ CREATE SEQUENCE id_rango_edad_seq
     CACHE 1;
 
 
-ALTER TABLE id_rango_edad_seq OWNER TO leo;
+ALTER TABLE id_rango_edad_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_reclamo_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_reclamo_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_reclamo_seq
@@ -1252,10 +1252,10 @@ CREATE SEQUENCE id_reclamo_seq
     CACHE 1;
 
 
-ALTER TABLE id_reclamo_seq OWNER TO leo;
+ALTER TABLE id_reclamo_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_red_social_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_red_social_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_red_social_seq
@@ -1266,10 +1266,10 @@ CREATE SEQUENCE id_red_social_seq
     CACHE 1;
 
 
-ALTER TABLE id_red_social_seq OWNER TO leo;
+ALTER TABLE id_red_social_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_regimen_dieta_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_regimen_dieta_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_regimen_dieta_seq
@@ -1280,10 +1280,10 @@ CREATE SEQUENCE id_regimen_dieta_seq
     CACHE 1;
 
 
-ALTER TABLE id_regimen_dieta_seq OWNER TO leo;
+ALTER TABLE id_regimen_dieta_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_regimen_ejercicio_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_regimen_ejercicio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_regimen_ejercicio_seq
@@ -1294,10 +1294,10 @@ CREATE SEQUENCE id_regimen_ejercicio_seq
     CACHE 1;
 
 
-ALTER TABLE id_regimen_ejercicio_seq OWNER TO leo;
+ALTER TABLE id_regimen_ejercicio_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_regimen_suplemento_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_regimen_suplemento_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_regimen_suplemento_seq
@@ -1308,10 +1308,10 @@ CREATE SEQUENCE id_regimen_suplemento_seq
     CACHE 1;
 
 
-ALTER TABLE id_regimen_suplemento_seq OWNER TO leo;
+ALTER TABLE id_regimen_suplemento_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_respuesta_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_respuesta_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_respuesta_seq
@@ -1322,7 +1322,7 @@ CREATE SEQUENCE id_respuesta_seq
     CACHE 1;
 
 
-ALTER TABLE id_respuesta_seq OWNER TO leo;
+ALTER TABLE id_respuesta_seq OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: id_rol_funcionalidad_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1339,7 +1339,7 @@ CREATE SEQUENCE id_rol_funcionalidad_seq
 ALTER TABLE id_rol_funcionalidad_seq OWNER TO postgres;
 
 --
--- Name: id_rol_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_rol_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_rol_seq
@@ -1350,10 +1350,10 @@ CREATE SEQUENCE id_rol_seq
     CACHE 1;
 
 
-ALTER TABLE id_rol_seq OWNER TO leo;
+ALTER TABLE id_rol_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_servicio_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_servicio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_servicio_seq
@@ -1364,10 +1364,10 @@ CREATE SEQUENCE id_servicio_seq
     CACHE 1;
 
 
-ALTER TABLE id_servicio_seq OWNER TO leo;
+ALTER TABLE id_servicio_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_slide_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_slide_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_slide_seq
@@ -1378,10 +1378,10 @@ CREATE SEQUENCE id_slide_seq
     CACHE 1;
 
 
-ALTER TABLE id_slide_seq OWNER TO leo;
+ALTER TABLE id_slide_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_solicitud_servicio_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_solicitud_servicio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_solicitud_servicio_seq
@@ -1392,10 +1392,10 @@ CREATE SEQUENCE id_solicitud_servicio_seq
     CACHE 1;
 
 
-ALTER TABLE id_solicitud_servicio_seq OWNER TO leo;
+ALTER TABLE id_solicitud_servicio_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_suplemento_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_suplemento_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_suplemento_seq
@@ -1406,10 +1406,10 @@ CREATE SEQUENCE id_suplemento_seq
     CACHE 1;
 
 
-ALTER TABLE id_suplemento_seq OWNER TO leo;
+ALTER TABLE id_suplemento_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_tiempo_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_tiempo_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_tiempo_seq
@@ -1420,7 +1420,7 @@ CREATE SEQUENCE id_tiempo_seq
     CACHE 1;
 
 
-ALTER TABLE id_tiempo_seq OWNER TO leo;
+ALTER TABLE id_tiempo_seq OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: id_tipo_cita_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1437,6 +1437,20 @@ CREATE SEQUENCE id_tipo_cita_seq
 ALTER TABLE id_tipo_cita_seq OWNER TO postgres;
 
 --
+-- Name: id_tipo_comentario_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE id_tipo_comentario_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE id_tipo_comentario_seq OWNER TO postgres;
+
+--
 -- Name: id_tipo_criterio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1451,7 +1465,7 @@ CREATE SEQUENCE id_tipo_criterio_seq
 ALTER TABLE id_tipo_criterio_seq OWNER TO postgres;
 
 --
--- Name: id_tipo_dieta_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_tipo_dieta_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_tipo_dieta_seq
@@ -1462,10 +1476,10 @@ CREATE SEQUENCE id_tipo_dieta_seq
     CACHE 1;
 
 
-ALTER TABLE id_tipo_dieta_seq OWNER TO leo;
+ALTER TABLE id_tipo_dieta_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_tipo_incidencia_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_tipo_incidencia_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_tipo_incidencia_seq
@@ -1476,10 +1490,10 @@ CREATE SEQUENCE id_tipo_incidencia_seq
     CACHE 1;
 
 
-ALTER TABLE id_tipo_incidencia_seq OWNER TO leo;
+ALTER TABLE id_tipo_incidencia_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_tipo_motivo_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_tipo_motivo_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_tipo_motivo_seq
@@ -1490,7 +1504,7 @@ CREATE SEQUENCE id_tipo_motivo_seq
     CACHE 1;
 
 
-ALTER TABLE id_tipo_motivo_seq OWNER TO leo;
+ALTER TABLE id_tipo_motivo_seq OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: id_tipo_orden_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1507,7 +1521,7 @@ CREATE SEQUENCE id_tipo_orden_seq
 ALTER TABLE id_tipo_orden_seq OWNER TO postgres;
 
 --
--- Name: id_tipo_parametro_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_tipo_parametro_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_tipo_parametro_seq
@@ -1518,10 +1532,10 @@ CREATE SEQUENCE id_tipo_parametro_seq
     CACHE 1;
 
 
-ALTER TABLE id_tipo_parametro_seq OWNER TO leo;
+ALTER TABLE id_tipo_parametro_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_tipo_respuesta_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_tipo_respuesta_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_tipo_respuesta_seq
@@ -1532,10 +1546,10 @@ CREATE SEQUENCE id_tipo_respuesta_seq
     CACHE 1;
 
 
-ALTER TABLE id_tipo_respuesta_seq OWNER TO leo;
+ALTER TABLE id_tipo_respuesta_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_tipo_unidad_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_tipo_unidad_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_tipo_unidad_seq
@@ -1546,10 +1560,10 @@ CREATE SEQUENCE id_tipo_unidad_seq
     CACHE 1;
 
 
-ALTER TABLE id_tipo_unidad_seq OWNER TO leo;
+ALTER TABLE id_tipo_unidad_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_tipo_valoracion_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_tipo_valoracion_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_tipo_valoracion_seq
@@ -1560,10 +1574,10 @@ CREATE SEQUENCE id_tipo_valoracion_seq
     CACHE 1;
 
 
-ALTER TABLE id_tipo_valoracion_seq OWNER TO leo;
+ALTER TABLE id_tipo_valoracion_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_unidad_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_unidad_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_unidad_seq
@@ -1574,10 +1588,10 @@ CREATE SEQUENCE id_unidad_seq
     CACHE 1;
 
 
-ALTER TABLE id_unidad_seq OWNER TO leo;
+ALTER TABLE id_unidad_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_usuario_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_usuario_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_usuario_seq
@@ -1588,10 +1602,10 @@ CREATE SEQUENCE id_usuario_seq
     CACHE 1;
 
 
-ALTER TABLE id_usuario_seq OWNER TO leo;
+ALTER TABLE id_usuario_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_valoracion_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_valoracion_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_valoracion_seq
@@ -1602,10 +1616,10 @@ CREATE SEQUENCE id_valoracion_seq
     CACHE 1;
 
 
-ALTER TABLE id_valoracion_seq OWNER TO leo;
+ALTER TABLE id_valoracion_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_visita_seq; Type: SEQUENCE; Schema: public; Owner: leo
+-- Name: id_visita_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_visita_seq
@@ -1616,10 +1630,10 @@ CREATE SEQUENCE id_visita_seq
     CACHE 1;
 
 
-ALTER TABLE id_visita_seq OWNER TO leo;
+ALTER TABLE id_visita_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: incidencia; Type: TABLE; Schema: public; Owner: leo
+-- Name: incidencia; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE incidencia (
@@ -1634,10 +1648,10 @@ CREATE TABLE incidencia (
 );
 
 
-ALTER TABLE incidencia OWNER TO leo;
+ALTER TABLE incidencia OWNER TO byqkxhkjgnspco;
 
 --
--- Name: motivo; Type: TABLE; Schema: public; Owner: leo
+-- Name: motivo; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE motivo (
@@ -1650,10 +1664,10 @@ CREATE TABLE motivo (
 );
 
 
-ALTER TABLE motivo OWNER TO leo;
+ALTER TABLE motivo OWNER TO byqkxhkjgnspco;
 
 --
--- Name: negocio; Type: TABLE; Schema: public; Owner: leo
+-- Name: negocio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE negocio (
@@ -1674,10 +1688,10 @@ CREATE TABLE negocio (
 );
 
 
-ALTER TABLE negocio OWNER TO leo;
+ALTER TABLE negocio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: orden_servicio; Type: TABLE; Schema: public; Owner: leo
+-- Name: orden_servicio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE orden_servicio (
@@ -1694,10 +1708,10 @@ CREATE TABLE orden_servicio (
 );
 
 
-ALTER TABLE orden_servicio OWNER TO leo;
+ALTER TABLE orden_servicio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: parametro; Type: TABLE; Schema: public; Owner: leo
+-- Name: parametro; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE parametro (
@@ -1712,17 +1726,17 @@ CREATE TABLE parametro (
 );
 
 
-ALTER TABLE parametro OWNER TO leo;
+ALTER TABLE parametro OWNER TO byqkxhkjgnspco;
 
 --
--- Name: COLUMN parametro.tipo_valor; Type: COMMENT; Schema: public; Owner: leo
+-- Name: COLUMN parametro.tipo_valor; Type: COMMENT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COMMENT ON COLUMN parametro.tipo_valor IS '1: Nominal  2: Numerico';
 
 
 --
--- Name: parametro_cliente; Type: TABLE; Schema: public; Owner: leo
+-- Name: parametro_cliente; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE parametro_cliente (
@@ -1736,10 +1750,10 @@ CREATE TABLE parametro_cliente (
 );
 
 
-ALTER TABLE parametro_cliente OWNER TO leo;
+ALTER TABLE parametro_cliente OWNER TO byqkxhkjgnspco;
 
 --
--- Name: parametro_promocion; Type: TABLE; Schema: public; Owner: leo
+-- Name: parametro_promocion; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE parametro_promocion (
@@ -1754,10 +1768,10 @@ CREATE TABLE parametro_promocion (
 );
 
 
-ALTER TABLE parametro_promocion OWNER TO leo;
+ALTER TABLE parametro_promocion OWNER TO byqkxhkjgnspco;
 
 --
--- Name: parametro_servicio; Type: TABLE; Schema: public; Owner: leo
+-- Name: parametro_servicio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE parametro_servicio (
@@ -1772,10 +1786,10 @@ CREATE TABLE parametro_servicio (
 );
 
 
-ALTER TABLE parametro_servicio OWNER TO leo;
+ALTER TABLE parametro_servicio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: plan_dieta; Type: TABLE; Schema: public; Owner: leo
+-- Name: plan_dieta; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE plan_dieta (
@@ -1789,10 +1803,10 @@ CREATE TABLE plan_dieta (
 );
 
 
-ALTER TABLE plan_dieta OWNER TO leo;
+ALTER TABLE plan_dieta OWNER TO byqkxhkjgnspco;
 
 --
--- Name: plan_ejercicio; Type: TABLE; Schema: public; Owner: leo
+-- Name: plan_ejercicio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE plan_ejercicio (
@@ -1805,10 +1819,10 @@ CREATE TABLE plan_ejercicio (
 );
 
 
-ALTER TABLE plan_ejercicio OWNER TO leo;
+ALTER TABLE plan_ejercicio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: plan_suplemento; Type: TABLE; Schema: public; Owner: leo
+-- Name: plan_suplemento; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE plan_suplemento (
@@ -1821,7 +1835,7 @@ CREATE TABLE plan_suplemento (
 );
 
 
-ALTER TABLE plan_suplemento OWNER TO leo;
+ALTER TABLE plan_suplemento OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: precio; Type: TABLE; Schema: public; Owner: postgres
@@ -1841,7 +1855,7 @@ CREATE TABLE precio (
 ALTER TABLE precio OWNER TO postgres;
 
 --
--- Name: preferencia_cliente; Type: TABLE; Schema: public; Owner: leo
+-- Name: preferencia_cliente; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE preferencia_cliente (
@@ -1854,10 +1868,10 @@ CREATE TABLE preferencia_cliente (
 );
 
 
-ALTER TABLE preferencia_cliente OWNER TO leo;
+ALTER TABLE preferencia_cliente OWNER TO byqkxhkjgnspco;
 
 --
--- Name: promocion; Type: TABLE; Schema: public; Owner: leo
+-- Name: promocion; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE promocion (
@@ -1877,10 +1891,10 @@ CREATE TABLE promocion (
 );
 
 
-ALTER TABLE promocion OWNER TO leo;
+ALTER TABLE promocion OWNER TO byqkxhkjgnspco;
 
 --
--- Name: COLUMN promocion.id_estado_civil; Type: COMMENT; Schema: public; Owner: leo
+-- Name: COLUMN promocion.id_estado_civil; Type: COMMENT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COMMENT ON COLUMN promocion.id_estado_civil IS '
@@ -1888,7 +1902,7 @@ COMMENT ON COLUMN promocion.id_estado_civil IS '
 
 
 --
--- Name: rango_edad; Type: TABLE; Schema: public; Owner: leo
+-- Name: rango_edad; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE rango_edad (
@@ -1902,10 +1916,10 @@ CREATE TABLE rango_edad (
 );
 
 
-ALTER TABLE rango_edad OWNER TO leo;
+ALTER TABLE rango_edad OWNER TO byqkxhkjgnspco;
 
 --
--- Name: reclamo; Type: TABLE; Schema: public; Owner: leo
+-- Name: reclamo; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE reclamo (
@@ -1920,10 +1934,10 @@ CREATE TABLE reclamo (
 );
 
 
-ALTER TABLE reclamo OWNER TO leo;
+ALTER TABLE reclamo OWNER TO byqkxhkjgnspco;
 
 --
--- Name: red_social; Type: TABLE; Schema: public; Owner: leo
+-- Name: red_social; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE red_social (
@@ -1937,10 +1951,10 @@ CREATE TABLE red_social (
 );
 
 
-ALTER TABLE red_social OWNER TO leo;
+ALTER TABLE red_social OWNER TO byqkxhkjgnspco;
 
 --
--- Name: regimen_dieta; Type: TABLE; Schema: public; Owner: leo
+-- Name: regimen_dieta; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE regimen_dieta (
@@ -1954,10 +1968,10 @@ CREATE TABLE regimen_dieta (
 );
 
 
-ALTER TABLE regimen_dieta OWNER TO leo;
+ALTER TABLE regimen_dieta OWNER TO byqkxhkjgnspco;
 
 --
--- Name: regimen_ejercicio; Type: TABLE; Schema: public; Owner: leo
+-- Name: regimen_ejercicio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE regimen_ejercicio (
@@ -1973,10 +1987,10 @@ CREATE TABLE regimen_ejercicio (
 );
 
 
-ALTER TABLE regimen_ejercicio OWNER TO leo;
+ALTER TABLE regimen_ejercicio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: regimen_suplemento; Type: TABLE; Schema: public; Owner: leo
+-- Name: regimen_suplemento; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE regimen_suplemento (
@@ -1991,10 +2005,10 @@ CREATE TABLE regimen_suplemento (
 );
 
 
-ALTER TABLE regimen_suplemento OWNER TO leo;
+ALTER TABLE regimen_suplemento OWNER TO byqkxhkjgnspco;
 
 --
--- Name: respuesta; Type: TABLE; Schema: public; Owner: leo
+-- Name: respuesta; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE respuesta (
@@ -2007,10 +2021,10 @@ CREATE TABLE respuesta (
 );
 
 
-ALTER TABLE respuesta OWNER TO leo;
+ALTER TABLE respuesta OWNER TO byqkxhkjgnspco;
 
 --
--- Name: rol; Type: TABLE; Schema: public; Owner: leo
+-- Name: rol; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE rol (
@@ -2023,10 +2037,10 @@ CREATE TABLE rol (
 );
 
 
-ALTER TABLE rol OWNER TO leo;
+ALTER TABLE rol OWNER TO byqkxhkjgnspco;
 
 --
--- Name: rol_funcionalidad; Type: TABLE; Schema: public; Owner: leo
+-- Name: rol_funcionalidad; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE rol_funcionalidad (
@@ -2039,10 +2053,10 @@ CREATE TABLE rol_funcionalidad (
 );
 
 
-ALTER TABLE rol_funcionalidad OWNER TO leo;
+ALTER TABLE rol_funcionalidad OWNER TO byqkxhkjgnspco;
 
 --
--- Name: servicio; Type: TABLE; Schema: public; Owner: leo
+-- Name: servicio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE servicio (
@@ -2061,10 +2075,10 @@ CREATE TABLE servicio (
 );
 
 
-ALTER TABLE servicio OWNER TO leo;
+ALTER TABLE servicio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: slide; Type: TABLE; Schema: public; Owner: leo
+-- Name: slide; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE slide (
@@ -2079,10 +2093,10 @@ CREATE TABLE slide (
 );
 
 
-ALTER TABLE slide OWNER TO leo;
+ALTER TABLE slide OWNER TO byqkxhkjgnspco;
 
 --
--- Name: solicitud_servicio; Type: TABLE; Schema: public; Owner: leo
+-- Name: solicitud_servicio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE solicitud_servicio (
@@ -2099,10 +2113,10 @@ CREATE TABLE solicitud_servicio (
 );
 
 
-ALTER TABLE solicitud_servicio OWNER TO leo;
+ALTER TABLE solicitud_servicio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: suplemento; Type: TABLE; Schema: public; Owner: leo
+-- Name: suplemento; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE suplemento (
@@ -2115,10 +2129,10 @@ CREATE TABLE suplemento (
 );
 
 
-ALTER TABLE suplemento OWNER TO leo;
+ALTER TABLE suplemento OWNER TO byqkxhkjgnspco;
 
 --
--- Name: tiempo; Type: TABLE; Schema: public; Owner: leo
+-- Name: tiempo; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE tiempo (
@@ -2131,10 +2145,10 @@ CREATE TABLE tiempo (
 );
 
 
-ALTER TABLE tiempo OWNER TO leo;
+ALTER TABLE tiempo OWNER TO byqkxhkjgnspco;
 
 --
--- Name: tipo_cita; Type: TABLE; Schema: public; Owner: leo
+-- Name: tipo_cita; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE tipo_cita (
@@ -2146,10 +2160,25 @@ CREATE TABLE tipo_cita (
 );
 
 
-ALTER TABLE tipo_cita OWNER TO leo;
+ALTER TABLE tipo_cita OWNER TO byqkxhkjgnspco;
 
 --
--- Name: tipo_criterio; Type: TABLE; Schema: public; Owner: leo
+-- Name: tipo_comentario; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE tipo_comentario (
+    id_tipo_comentario integer DEFAULT nextval('id_tipo_comentario_seq'::regclass) NOT NULL,
+    nombre character varying(50) NOT NULL,
+    estatus integer DEFAULT 1 NOT NULL,
+    fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
+    fecha_creacion timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE tipo_comentario OWNER TO postgres;
+
+--
+-- Name: tipo_criterio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE tipo_criterio (
@@ -2161,10 +2190,10 @@ CREATE TABLE tipo_criterio (
 );
 
 
-ALTER TABLE tipo_criterio OWNER TO leo;
+ALTER TABLE tipo_criterio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: tipo_dieta; Type: TABLE; Schema: public; Owner: leo
+-- Name: tipo_dieta; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE tipo_dieta (
@@ -2176,10 +2205,10 @@ CREATE TABLE tipo_dieta (
 );
 
 
-ALTER TABLE tipo_dieta OWNER TO leo;
+ALTER TABLE tipo_dieta OWNER TO byqkxhkjgnspco;
 
 --
--- Name: tipo_incidencia; Type: TABLE; Schema: public; Owner: leo
+-- Name: tipo_incidencia; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE tipo_incidencia (
@@ -2191,10 +2220,10 @@ CREATE TABLE tipo_incidencia (
 );
 
 
-ALTER TABLE tipo_incidencia OWNER TO leo;
+ALTER TABLE tipo_incidencia OWNER TO byqkxhkjgnspco;
 
 --
--- Name: tipo_motivo; Type: TABLE; Schema: public; Owner: leo
+-- Name: tipo_motivo; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE tipo_motivo (
@@ -2206,10 +2235,10 @@ CREATE TABLE tipo_motivo (
 );
 
 
-ALTER TABLE tipo_motivo OWNER TO leo;
+ALTER TABLE tipo_motivo OWNER TO byqkxhkjgnspco;
 
 --
--- Name: tipo_orden; Type: TABLE; Schema: public; Owner: leo
+-- Name: tipo_orden; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE tipo_orden (
@@ -2221,10 +2250,10 @@ CREATE TABLE tipo_orden (
 );
 
 
-ALTER TABLE tipo_orden OWNER TO leo;
+ALTER TABLE tipo_orden OWNER TO byqkxhkjgnspco;
 
 --
--- Name: tipo_parametro; Type: TABLE; Schema: public; Owner: leo
+-- Name: tipo_parametro; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE tipo_parametro (
@@ -2236,10 +2265,10 @@ CREATE TABLE tipo_parametro (
 );
 
 
-ALTER TABLE tipo_parametro OWNER TO leo;
+ALTER TABLE tipo_parametro OWNER TO byqkxhkjgnspco;
 
 --
--- Name: tipo_respuesta; Type: TABLE; Schema: public; Owner: leo
+-- Name: tipo_respuesta; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE tipo_respuesta (
@@ -2251,10 +2280,10 @@ CREATE TABLE tipo_respuesta (
 );
 
 
-ALTER TABLE tipo_respuesta OWNER TO leo;
+ALTER TABLE tipo_respuesta OWNER TO byqkxhkjgnspco;
 
 --
--- Name: tipo_unidad; Type: TABLE; Schema: public; Owner: leo
+-- Name: tipo_unidad; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE tipo_unidad (
@@ -2266,10 +2295,10 @@ CREATE TABLE tipo_unidad (
 );
 
 
-ALTER TABLE tipo_unidad OWNER TO leo;
+ALTER TABLE tipo_unidad OWNER TO byqkxhkjgnspco;
 
 --
--- Name: tipo_valoracion; Type: TABLE; Schema: public; Owner: leo
+-- Name: tipo_valoracion; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE tipo_valoracion (
@@ -2281,10 +2310,10 @@ CREATE TABLE tipo_valoracion (
 );
 
 
-ALTER TABLE tipo_valoracion OWNER TO leo;
+ALTER TABLE tipo_valoracion OWNER TO byqkxhkjgnspco;
 
 --
--- Name: unidad; Type: TABLE; Schema: public; Owner: leo
+-- Name: unidad; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE unidad (
@@ -2299,10 +2328,10 @@ CREATE TABLE unidad (
 );
 
 
-ALTER TABLE unidad OWNER TO leo;
+ALTER TABLE unidad OWNER TO byqkxhkjgnspco;
 
 --
--- Name: usuario; Type: TABLE; Schema: public; Owner: leo
+-- Name: usuario; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE usuario (
@@ -2319,17 +2348,17 @@ CREATE TABLE usuario (
 );
 
 
-ALTER TABLE usuario OWNER TO leo;
+ALTER TABLE usuario OWNER TO byqkxhkjgnspco;
 
 --
--- Name: COLUMN usuario.estatus; Type: COMMENT; Schema: public; Owner: leo
+-- Name: COLUMN usuario.estatus; Type: COMMENT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COMMENT ON COLUMN usuario.estatus IS '1: Activo 0: Eliminado';
 
 
 --
--- Name: valoracion; Type: TABLE; Schema: public; Owner: leo
+-- Name: valoracion; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE valoracion (
@@ -2342,10 +2371,10 @@ CREATE TABLE valoracion (
 );
 
 
-ALTER TABLE valoracion OWNER TO leo;
+ALTER TABLE valoracion OWNER TO byqkxhkjgnspco;
 
 --
--- Name: visita; Type: TABLE; Schema: public; Owner: leo
+-- Name: visita; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE visita (
@@ -2358,10 +2387,10 @@ CREATE TABLE visita (
 );
 
 
-ALTER TABLE visita OWNER TO leo;
+ALTER TABLE visita OWNER TO byqkxhkjgnspco;
 
 --
--- Name: vista_cliente; Type: VIEW; Schema: public; Owner: leo
+-- Name: vista_cliente; Type: VIEW; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE VIEW vista_cliente AS
@@ -2390,10 +2419,10 @@ CREATE VIEW vista_cliente AS
   WHERE (a.estatus = 1);
 
 
-ALTER TABLE vista_cliente OWNER TO leo;
+ALTER TABLE vista_cliente OWNER TO byqkxhkjgnspco;
 
 --
--- Data for Name: agenda; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: agenda; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY agenda (id_agenda, id_empleado, id_cliente, id_orden_servicio, id_visita, id_cita, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -2401,7 +2430,7 @@ COPY agenda (id_agenda, id_empleado, id_cliente, id_orden_servicio, id_visita, i
 
 
 --
--- Data for Name: alimento; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: alimento; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY alimento (id_alimento, id_grupo_alimenticio, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -2513,7 +2542,7 @@ COPY alimento (id_alimento, id_grupo_alimenticio, nombre, fecha_creacion, fecha_
 
 
 --
--- Data for Name: app_movil; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: app_movil; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY app_movil (id_app_movil, sistema_operativo, url_descarga, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -2523,7 +2552,7 @@ COPY app_movil (id_app_movil, sistema_operativo, url_descarga, fecha_creacion, f
 
 
 --
--- Data for Name: bloque_horario; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: bloque_horario; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY bloque_horario (id_bloque_horario, hora_inicio, hora_fin, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -2536,7 +2565,7 @@ COPY bloque_horario (id_bloque_horario, hora_inicio, hora_fin, fecha_creacion, f
 
 
 --
--- Data for Name: calificacion; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: calificacion; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY calificacion (id_criterio, id_valoracion, id_visita, id_orden_servicio, fecha_creacion, fecha_actualizacion, estatus, id_calificacion) FROM stdin;
@@ -2544,7 +2573,7 @@ COPY calificacion (id_criterio, id_valoracion, id_visita, id_orden_servicio, fec
 
 
 --
--- Data for Name: cita; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: cita; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY cita (id_cita, id_orden_servicio, id_tipo_cita, id_bloque_horario, fecha, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -2552,7 +2581,7 @@ COPY cita (id_cita, id_orden_servicio, id_tipo_cita, id_bloque_horario, fecha, f
 
 
 --
--- Data for Name: cliente; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: cliente; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY cliente (id_cliente, id_usuario, id_genero, id_estado, id_estado_civil, id_rango_edad, cedula, nombres, apellidos, telefono, direccion, fecha_nacimiento, tipo_cliente, fecha_consolidado, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -2561,15 +2590,16 @@ COPY cliente (id_cliente, id_usuario, id_genero, id_estado, id_estado_civil, id_
 
 
 --
--- Data for Name: comentario; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: comentario; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY comentario (id_comentario, id_cliente, id_respuesta, contenido, respuesta, id_tipo_comentario, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+1	1	1	contenido	respuesta	2	2018-04-30 22:51:00.809818	2018-04-30 22:51:00.809818	1
 \.
 
 
 --
--- Data for Name: comida; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: comida; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY comida (id_comida, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -2582,7 +2612,7 @@ COPY comida (id_comida, nombre, fecha_creacion, fecha_actualizacion, estatus) FR
 
 
 --
--- Data for Name: condicion_garantia; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: condicion_garantia; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY condicion_garantia (id_condicion_garantia, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -2592,7 +2622,7 @@ COPY condicion_garantia (id_condicion_garantia, descripcion, fecha_creacion, fec
 
 
 --
--- Data for Name: contenido; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: contenido; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY contenido (id_contenido, titulo, texto, url_imagen, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -2600,7 +2630,7 @@ COPY contenido (id_contenido, titulo, texto, url_imagen, fecha_creacion, fecha_a
 
 
 --
--- Data for Name: criterio; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: criterio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY criterio (id_criterio, id_tipo_criterio, id_tipo_valoracion, nombre, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -2609,7 +2639,7 @@ COPY criterio (id_criterio, id_tipo_criterio, id_tipo_valoracion, nombre, descri
 
 
 --
--- Data for Name: detalle_plan_dieta; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: detalle_plan_dieta; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY detalle_plan_dieta (id_detalle_plan_dieta, id_plan_dieta, id_comida, id_grupo_alimenticio, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -2618,7 +2648,7 @@ COPY detalle_plan_dieta (id_detalle_plan_dieta, id_plan_dieta, id_comida, id_gru
 
 
 --
--- Data for Name: detalle_plan_ejercicio; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: detalle_plan_ejercicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY detalle_plan_ejercicio (id_detalle_plan_ejercicio, id_plan_ejercicio, id_ejercicio, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -2626,7 +2656,7 @@ COPY detalle_plan_ejercicio (id_detalle_plan_ejercicio, id_plan_ejercicio, id_ej
 
 
 --
--- Data for Name: detalle_plan_suplemento; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: detalle_plan_suplemento; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY detalle_plan_suplemento (id_detalle_plan_suplemento, id_plan_suplemento, id_suplemento, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -2634,7 +2664,7 @@ COPY detalle_plan_suplemento (id_detalle_plan_suplemento, id_plan_suplemento, id
 
 
 --
--- Data for Name: detalle_regimen_alimento; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: detalle_regimen_alimento; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY detalle_regimen_alimento (id_regimen_dieta, id_alimento, fecha_creacion, fecha_actualizacion, estatus, id_detalle_regimen_alimento) FROM stdin;
@@ -2642,7 +2672,7 @@ COPY detalle_regimen_alimento (id_regimen_dieta, id_alimento, fecha_creacion, fe
 
 
 --
--- Data for Name: detalle_visita; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: detalle_visita; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY detalle_visita (id_visita, id_parametro, valor, fecha_creacion, fecha_actualizacion, estatus, id_detalle_visita) FROM stdin;
@@ -2650,7 +2680,7 @@ COPY detalle_visita (id_visita, id_parametro, valor, fecha_creacion, fecha_actua
 
 
 --
--- Data for Name: dia_laborable; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: dia_laborable; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY dia_laborable (id_dia_laborable, dia, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -2658,7 +2688,7 @@ COPY dia_laborable (id_dia_laborable, dia, fecha_creacion, fecha_actualizacion, 
 
 
 --
--- Data for Name: ejercicio; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: ejercicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY ejercicio (id_ejercicio, nombre, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -2666,7 +2696,7 @@ COPY ejercicio (id_ejercicio, nombre, descripcion, fecha_creacion, fecha_actuali
 
 
 --
--- Data for Name: empleado; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: empleado; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY empleado (id_empleado, id_usuario, id_genero, cedula, nombres, apellidos, telefono, correo, direccion, estatus, fecha_creacion, fecha_actualizacion) FROM stdin;
@@ -2674,7 +2704,7 @@ COPY empleado (id_empleado, id_usuario, id_genero, cedula, nombres, apellidos, t
 
 
 --
--- Data for Name: especialidad; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: especialidad; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY especialidad (id_especialidad, nombre, fecha_actualizacion, fecha_creacion, estatus) FROM stdin;
@@ -2682,7 +2712,7 @@ COPY especialidad (id_especialidad, nombre, fecha_actualizacion, fecha_creacion,
 
 
 --
--- Data for Name: especialidad_empleado; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: especialidad_empleado; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY especialidad_empleado (id_empleado, id_especialidad, fecha_creacion, fecha_actualizacion, estatus, id_especialidad_empleado) FROM stdin;
@@ -2690,7 +2720,7 @@ COPY especialidad_empleado (id_empleado, id_especialidad, fecha_creacion, fecha_
 
 
 --
--- Data for Name: especialidad_servicio; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: especialidad_servicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY especialidad_servicio (id_servicio, id_especialidad, fecha_creacion, fecha_actualizacion, estatus, id_especialidad_servicio) FROM stdin;
@@ -2698,7 +2728,7 @@ COPY especialidad_servicio (id_servicio, id_especialidad, fecha_creacion, fecha_
 
 
 --
--- Data for Name: estado; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: estado; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY estado (id_estado, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -2714,7 +2744,7 @@ COPY estado (id_estado, nombre, fecha_creacion, fecha_actualizacion, estatus) FR
 
 
 --
--- Data for Name: estado_civil; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: estado_civil; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY estado_civil (id_estado_civil, nombre) FROM stdin;
@@ -2727,7 +2757,7 @@ COPY estado_civil (id_estado_civil, nombre) FROM stdin;
 
 
 --
--- Data for Name: frecuencia; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: frecuencia; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY frecuencia (id_frecuencia, id_tiempo, repeticiones, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -2735,7 +2765,7 @@ COPY frecuencia (id_frecuencia, id_tiempo, repeticiones, fecha_creacion, fecha_a
 
 
 --
--- Data for Name: funcionalidad; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: funcionalidad; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY funcionalidad (id_funcionalidad, id_funcionalidad_padre, nombre, icono, orden, nivel, estatus, url_vista) FROM stdin;
@@ -2743,7 +2773,7 @@ COPY funcionalidad (id_funcionalidad, id_funcionalidad_padre, nombre, icono, ord
 
 
 --
--- Data for Name: garantia_servicio; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: garantia_servicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY garantia_servicio (id_condicion_garantia, id_servicio, fecha_creacion, fecha_actualizacion, estatus, id_garantia_servicio) FROM stdin;
@@ -2752,7 +2782,7 @@ COPY garantia_servicio (id_condicion_garantia, id_servicio, fecha_creacion, fech
 
 
 --
--- Data for Name: genero; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: genero; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY genero (id_genero, nombre) FROM stdin;
@@ -2762,7 +2792,7 @@ COPY genero (id_genero, nombre) FROM stdin;
 
 
 --
--- Data for Name: grupo_alimenticio; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: grupo_alimenticio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY grupo_alimenticio (id_grupo_alimenticio, id_unidad, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -2775,7 +2805,7 @@ COPY grupo_alimenticio (id_grupo_alimenticio, id_unidad, nombre, fecha_creacion,
 
 
 --
--- Data for Name: horario_empleado; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: horario_empleado; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY horario_empleado (id_empleado, id_bloque_horario, id_dia_laborable, fecha_creacion, fecha_actualizacion, estatus, id_horario_empleado) FROM stdin;
@@ -2783,105 +2813,105 @@ COPY horario_empleado (id_empleado, id_bloque_horario, id_dia_laborable, fecha_c
 
 
 --
--- Name: id_agenda_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_agenda_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_agenda_seq', 1, false);
 
 
 --
--- Name: id_alimento_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_alimento_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_alimento_seq', 105, true);
 
 
 --
--- Name: id_app_movil_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_app_movil_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_app_movil_seq', 2, true);
 
 
 --
--- Name: id_bloque_horario_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_bloque_horario_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_bloque_horario_seq', 5, true);
 
 
 --
--- Name: id_calificacion_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_calificacion_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_calificacion_seq', 1, false);
 
 
 --
--- Name: id_cita_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_cita_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_cita_seq', 1, false);
 
 
 --
--- Name: id_cliente_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_cliente_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_cliente_seq', 1, true);
 
 
 --
--- Name: id_comentario_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_comentario_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('id_comentario_seq', 1, false);
+SELECT pg_catalog.setval('id_comentario_seq', 1, true);
 
 
 --
--- Name: id_comida_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_comida_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_comida_seq', 5, true);
 
 
 --
--- Name: id_condicion_garantia_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_condicion_garantia_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_condicion_garantia_seq', 2, true);
 
 
 --
--- Name: id_contenido_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_contenido_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_contenido_seq', 1, false);
 
 
 --
--- Name: id_criterio_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_criterio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_criterio_seq', 1, true);
 
 
 --
--- Name: id_detalle_plan_dieta_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_detalle_plan_dieta_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_detalle_plan_dieta_seq', 4, true);
 
 
 --
--- Name: id_detalle_plan_ejercicio_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_detalle_plan_ejercicio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_detalle_plan_ejercicio_seq', 1, false);
 
 
 --
--- Name: id_detalle_plan_suplemento_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_detalle_plan_suplemento_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_detalle_plan_suplemento_seq', 1, false);
@@ -2902,21 +2932,21 @@ SELECT pg_catalog.setval('id_detalle_visita_seq', 1, false);
 
 
 --
--- Name: id_dia_laborable_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_dia_laborable_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_dia_laborable_seq', 1, false);
 
 
 --
--- Name: id_ejercicio_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_ejercicio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_ejercicio_seq', 1, false);
 
 
 --
--- Name: id_empleado_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_empleado_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_empleado_seq', 1, false);
@@ -2930,7 +2960,7 @@ SELECT pg_catalog.setval('id_especialidad_empleado_seq', 1, false);
 
 
 --
--- Name: id_especialidad_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_especialidad_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_especialidad_seq', 1, false);
@@ -2951,21 +2981,21 @@ SELECT pg_catalog.setval('id_estado_civil_seq', 1, false);
 
 
 --
--- Name: id_estado_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_estado_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_estado_seq', 8, true);
 
 
 --
--- Name: id_frecuencia_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_frecuencia_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_frecuencia_seq', 1, false);
 
 
 --
--- Name: id_funcionalidad_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_funcionalidad_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_funcionalidad_seq', 1, false);
@@ -2986,7 +3016,7 @@ SELECT pg_catalog.setval('id_genero_seq', 1, true);
 
 
 --
--- Name: id_grupo_alimenticio_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_grupo_alimenticio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_grupo_alimenticio_seq', 5, true);
@@ -3000,14 +3030,14 @@ SELECT pg_catalog.setval('id_horario_empleado_seq', 1, false);
 
 
 --
--- Name: id_incidencia_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_incidencia_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_incidencia_seq', 1, true);
 
 
 --
--- Name: id_motivo_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_motivo_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_motivo_seq', 1, true);
@@ -3021,7 +3051,7 @@ SELECT pg_catalog.setval('id_negocio_seq', 1, true);
 
 
 --
--- Name: id_orden_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_orden_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_orden_servicio_seq', 1, false);
@@ -3031,7 +3061,7 @@ SELECT pg_catalog.setval('id_orden_servicio_seq', 1, false);
 -- Name: id_parametro_cliente_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_parametro_cliente_seq', 1, true);
+SELECT pg_catalog.setval('id_parametro_cliente_seq', 2, true);
 
 
 --
@@ -3042,7 +3072,7 @@ SELECT pg_catalog.setval('id_parametro_promocion_seq', 1, false);
 
 
 --
--- Name: id_parametro_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_parametro_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_parametro_seq', 1, true);
@@ -3056,21 +3086,21 @@ SELECT pg_catalog.setval('id_parametro_servicio_seq', 1, false);
 
 
 --
--- Name: id_plan_dieta_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_plan_dieta_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_plan_dieta_seq', 2, true);
 
 
 --
--- Name: id_plan_ejercicio_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_plan_ejercicio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_plan_ejercicio_seq', 2, true);
 
 
 --
--- Name: id_plan_suplemento_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_plan_suplemento_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_plan_suplemento_seq', 1, true);
@@ -3091,59 +3121,59 @@ SELECT pg_catalog.setval('id_preferencia_cliente_seq', 1, false);
 
 
 --
--- Name: id_promocion_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_promocion_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_promocion_seq', 1, true);
 
 
 --
--- Name: id_rango_edad_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_rango_edad_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_rango_edad_seq', 5, true);
 
 
 --
--- Name: id_reclamo_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_reclamo_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_reclamo_seq', 1, false);
 
 
 --
--- Name: id_red_social_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_red_social_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_red_social_seq', 1, false);
 
 
 --
--- Name: id_regimen_dieta_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_regimen_dieta_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_regimen_dieta_seq', 1, false);
 
 
 --
--- Name: id_regimen_ejercicio_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_regimen_ejercicio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_regimen_ejercicio_seq', 1, false);
 
 
 --
--- Name: id_regimen_suplemento_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_regimen_suplemento_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_regimen_suplemento_seq', 1, false);
 
 
 --
--- Name: id_respuesta_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_respuesta_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('id_respuesta_seq', 1, false);
+SELECT pg_catalog.setval('id_respuesta_seq', 1, true);
 
 
 --
@@ -3154,42 +3184,42 @@ SELECT pg_catalog.setval('id_rol_funcionalidad_seq', 1, false);
 
 
 --
--- Name: id_rol_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_rol_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_rol_seq', 1, false);
 
 
 --
--- Name: id_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_servicio_seq', 1, true);
 
 
 --
--- Name: id_slide_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_slide_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_slide_seq', 1, false);
 
 
 --
--- Name: id_solicitud_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_solicitud_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_solicitud_servicio_seq', 1, false);
 
 
 --
--- Name: id_suplemento_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_suplemento_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_suplemento_seq', 1, false);
 
 
 --
--- Name: id_tiempo_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_tiempo_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_tiempo_seq', 1, false);
@@ -3203,6 +3233,13 @@ SELECT pg_catalog.setval('id_tipo_cita_seq', 1, true);
 
 
 --
+-- Name: id_tipo_comentario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('id_tipo_comentario_seq', 2, true);
+
+
+--
 -- Name: id_tipo_criterio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3210,21 +3247,21 @@ SELECT pg_catalog.setval('id_tipo_criterio_seq', 1, true);
 
 
 --
--- Name: id_tipo_dieta_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_tipo_dieta_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_tipo_dieta_seq', 1, true);
 
 
 --
--- Name: id_tipo_incidencia_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_tipo_incidencia_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_tipo_incidencia_seq', 1, true);
 
 
 --
--- Name: id_tipo_motivo_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_tipo_motivo_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_tipo_motivo_seq', 1, true);
@@ -3238,63 +3275,63 @@ SELECT pg_catalog.setval('id_tipo_orden_seq', 1, true);
 
 
 --
--- Name: id_tipo_parametro_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_tipo_parametro_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_tipo_parametro_seq', 1, true);
 
 
 --
--- Name: id_tipo_respuesta_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_tipo_respuesta_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_tipo_respuesta_seq', 1, true);
 
 
 --
--- Name: id_tipo_unidad_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_tipo_unidad_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_tipo_unidad_seq', 3, true);
 
 
 --
--- Name: id_tipo_valoracion_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_tipo_valoracion_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_tipo_valoracion_seq', 1, true);
 
 
 --
--- Name: id_unidad_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_unidad_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_unidad_seq', 10, true);
 
 
 --
--- Name: id_usuario_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_usuario_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_usuario_seq', 1, true);
 
 
 --
--- Name: id_valoracion_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_valoracion_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_valoracion_seq', 1, false);
 
 
 --
--- Name: id_visita_seq; Type: SEQUENCE SET; Schema: public; Owner: leo
+-- Name: id_visita_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('id_visita_seq', 1, false);
 
 
 --
--- Data for Name: incidencia; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: incidencia; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY incidencia (id_incidencia, id_tipo_incidencia, id_motivo, descripcion, fecha_creacion, fecha_actualizacion, estatus, id_agenda) FROM stdin;
@@ -3302,7 +3339,7 @@ COPY incidencia (id_incidencia, id_tipo_incidencia, id_motivo, descripcion, fech
 
 
 --
--- Data for Name: motivo; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: motivo; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY motivo (id_motivo, id_tipo_motivo, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3311,7 +3348,7 @@ COPY motivo (id_motivo, id_tipo_motivo, descripcion, fecha_creacion, fecha_actua
 
 
 --
--- Data for Name: negocio; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: negocio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY negocio (id_negocio, razon_social, rif, url_logo, mision, vision, objetivo, telefono, correo, latitud, longitud, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3320,7 +3357,7 @@ COPY negocio (id_negocio, razon_social, rif, url_logo, mision, vision, objetivo,
 
 
 --
--- Data for Name: orden_servicio; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: orden_servicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY orden_servicio (id_orden_servicio, id_solicitud_servicio, id_tipo_orden, id_meta, fecha_emision, fecha_caducidad, id_reclamo, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3328,7 +3365,7 @@ COPY orden_servicio (id_orden_servicio, id_solicitud_servicio, id_tipo_orden, id
 
 
 --
--- Data for Name: parametro; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: parametro; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY parametro (id_parametro, id_tipo_parametro, id_unidad, tipo_valor, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3337,7 +3374,7 @@ COPY parametro (id_parametro, id_tipo_parametro, id_unidad, tipo_valor, nombre, 
 
 
 --
--- Data for Name: parametro_cliente; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: parametro_cliente; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY parametro_cliente (id_cliente, id_parametro, valor, fecha_creacion, fecha_actualizacion, estatus, id_parametro_cliente) FROM stdin;
@@ -3346,7 +3383,7 @@ COPY parametro_cliente (id_cliente, id_parametro, valor, fecha_creacion, fecha_a
 
 
 --
--- Data for Name: parametro_promocion; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: parametro_promocion; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY parametro_promocion (id_parametro, id_promocion, valor_minimo, valor_maximo, fecha_creacion, fecha_actualizacion, estatus, id_parametro_promocion) FROM stdin;
@@ -3354,7 +3391,7 @@ COPY parametro_promocion (id_parametro, id_promocion, valor_minimo, valor_maximo
 
 
 --
--- Data for Name: parametro_servicio; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: parametro_servicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY parametro_servicio (id_servicio, id_parametro, valor_minimo, valor_maximo, fecha_creacion, fecha_actualizacion, estatus, id_parametro_servicio) FROM stdin;
@@ -3362,7 +3399,7 @@ COPY parametro_servicio (id_servicio, id_parametro, valor_minimo, valor_maximo, 
 
 
 --
--- Data for Name: plan_dieta; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: plan_dieta; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY plan_dieta (id_plan_dieta, id_tipo_dieta, nombre, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3371,7 +3408,7 @@ COPY plan_dieta (id_plan_dieta, id_tipo_dieta, nombre, descripcion, fecha_creaci
 
 
 --
--- Data for Name: plan_ejercicio; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: plan_ejercicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY plan_ejercicio (id_plan_ejercicio, nombre, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3380,7 +3417,7 @@ COPY plan_ejercicio (id_plan_ejercicio, nombre, descripcion, fecha_creacion, fec
 
 
 --
--- Data for Name: plan_suplemento; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: plan_suplemento; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY plan_suplemento (id_plan_suplemento, nombre, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3398,7 +3435,7 @@ COPY precio (id_precio, id_unidad, nombre, fecha_creacion, fecha_actualizacion, 
 
 
 --
--- Data for Name: preferencia_cliente; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: preferencia_cliente; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY preferencia_cliente (id_cliente, id_especialidad, fecha_creacion, fecha_actualizacion, estatus, id_preferencia_cliente) FROM stdin;
@@ -3406,7 +3443,7 @@ COPY preferencia_cliente (id_cliente, id_especialidad, fecha_creacion, fecha_act
 
 
 --
--- Data for Name: promocion; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: promocion; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY promocion (id_promocion, id_servicio, nombre, descripcion, valido_desde, valido_hasta, id_genero, id_estado_civil, id_rango_edad, id_estado, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3415,7 +3452,7 @@ COPY promocion (id_promocion, id_servicio, nombre, descripcion, valido_desde, va
 
 
 --
--- Data for Name: rango_edad; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: rango_edad; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY rango_edad (id_rango_edad, nombre, minimo, maximo, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3428,7 +3465,7 @@ COPY rango_edad (id_rango_edad, nombre, minimo, maximo, fecha_creacion, fecha_ac
 
 
 --
--- Data for Name: reclamo; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: reclamo; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY reclamo (id_reclamo, id_motivo, id_orden_servicio, id_respuesta, respuesta, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3436,7 +3473,7 @@ COPY reclamo (id_reclamo, id_motivo, id_orden_servicio, id_respuesta, respuesta,
 
 
 --
--- Data for Name: red_social; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: red_social; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY red_social (id_red_social, nombre, url_base, url_logo, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3444,7 +3481,7 @@ COPY red_social (id_red_social, nombre, url_base, url_logo, fecha_creacion, fech
 
 
 --
--- Data for Name: regimen_dieta; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: regimen_dieta; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY regimen_dieta (id_regimen_dieta, id_detalle_plan_dieta, id_cliente, cantidad, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3452,7 +3489,7 @@ COPY regimen_dieta (id_regimen_dieta, id_detalle_plan_dieta, id_cliente, cantida
 
 
 --
--- Data for Name: regimen_ejercicio; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: regimen_ejercicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY regimen_ejercicio (id_regimen_ejercicio, id_plan_ejercicio, id_cliente, id_frecuencia, id_tiempo, duracion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3460,7 +3497,7 @@ COPY regimen_ejercicio (id_regimen_ejercicio, id_plan_ejercicio, id_cliente, id_
 
 
 --
--- Data for Name: regimen_suplemento; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: regimen_suplemento; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY regimen_suplemento (id_regimen_suplemento, id_plan_suplemento, id_cliente, id_frecuencia, cantidad, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3468,15 +3505,16 @@ COPY regimen_suplemento (id_regimen_suplemento, id_plan_suplemento, id_cliente, 
 
 
 --
--- Data for Name: respuesta; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: respuesta; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY respuesta (id_respuesta, id_tipo_respuesta, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+1	1	descripcion	2018-04-30 20:22:21.134494	2018-04-30 20:22:21.134494	1
 \.
 
 
 --
--- Data for Name: rol; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: rol; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY rol (id_rol, nombre, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3484,7 +3522,7 @@ COPY rol (id_rol, nombre, descripcion, fecha_creacion, fecha_actualizacion, esta
 
 
 --
--- Data for Name: rol_funcionalidad; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: rol_funcionalidad; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY rol_funcionalidad (id_rol, id_funcionalidad, fecha_creacion, fecha_actualizacion, estatus, id_rol_funcionalidad) FROM stdin;
@@ -3492,7 +3530,7 @@ COPY rol_funcionalidad (id_rol, id_funcionalidad, fecha_creacion, fecha_actualiz
 
 
 --
--- Data for Name: servicio; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: servicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY servicio (id_servicio, id_plan_dieta, id_plan_ejercicio, id_plan_suplemento, nombre, descripcion, url_imagen, id_precio, numero_visitas, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3501,7 +3539,7 @@ COPY servicio (id_servicio, id_plan_dieta, id_plan_ejercicio, id_plan_suplemento
 
 
 --
--- Data for Name: slide; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: slide; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY slide (id_slide, titulo, descripcion, orden, url_imagen, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3509,7 +3547,7 @@ COPY slide (id_slide, titulo, descripcion, orden, url_imagen, fecha_creacion, fe
 
 
 --
--- Data for Name: solicitud_servicio; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: solicitud_servicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY solicitud_servicio (id_solicitud_servicio, id_cliente, id_motivo, id_respuesta, id_servicio, respuesta, id_promocion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3517,7 +3555,7 @@ COPY solicitud_servicio (id_solicitud_servicio, id_cliente, id_motivo, id_respue
 
 
 --
--- Data for Name: suplemento; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: suplemento; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY suplemento (id_suplemento, id_unidad, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3525,7 +3563,7 @@ COPY suplemento (id_suplemento, id_unidad, nombre, fecha_creacion, fecha_actuali
 
 
 --
--- Data for Name: tiempo; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: tiempo; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY tiempo (id_tiempo, nombre, abreviatura, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3533,7 +3571,7 @@ COPY tiempo (id_tiempo, nombre, abreviatura, fecha_creacion, fecha_actualizacion
 
 
 --
--- Data for Name: tipo_cita; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: tipo_cita; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY tipo_cita (id_tipo_cita, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3542,7 +3580,16 @@ COPY tipo_cita (id_tipo_cita, nombre, fecha_creacion, fecha_actualizacion, estat
 
 
 --
--- Data for Name: tipo_criterio; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: tipo_comentario; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tipo_comentario (id_tipo_comentario, nombre, estatus, fecha_actualizacion, fecha_creacion) FROM stdin;
+2	nuevo comentario	1	2018-04-30 21:20:17.782	2018-04-30 21:20:17.782
+\.
+
+
+--
+-- Data for Name: tipo_criterio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY tipo_criterio (id_tipo_criterio, nombre, estatus, fecha_actualizacion, fecha_creacion) FROM stdin;
@@ -3551,7 +3598,7 @@ COPY tipo_criterio (id_tipo_criterio, nombre, estatus, fecha_actualizacion, fech
 
 
 --
--- Data for Name: tipo_dieta; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: tipo_dieta; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY tipo_dieta (id_tipo_dieta, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3560,7 +3607,7 @@ COPY tipo_dieta (id_tipo_dieta, nombre, fecha_creacion, fecha_actualizacion, est
 
 
 --
--- Data for Name: tipo_incidencia; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: tipo_incidencia; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY tipo_incidencia (id_tipo_incidencia, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3569,7 +3616,7 @@ COPY tipo_incidencia (id_tipo_incidencia, nombre, fecha_creacion, fecha_actualiz
 
 
 --
--- Data for Name: tipo_motivo; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: tipo_motivo; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY tipo_motivo (id_tipo_motivo, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3578,7 +3625,7 @@ COPY tipo_motivo (id_tipo_motivo, nombre, fecha_creacion, fecha_actualizacion, e
 
 
 --
--- Data for Name: tipo_orden; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: tipo_orden; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY tipo_orden (id_tipo_orden, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3587,7 +3634,7 @@ COPY tipo_orden (id_tipo_orden, nombre, fecha_creacion, fecha_actualizacion, est
 
 
 --
--- Data for Name: tipo_parametro; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: tipo_parametro; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY tipo_parametro (id_tipo_parametro, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3596,7 +3643,7 @@ COPY tipo_parametro (id_tipo_parametro, nombre, fecha_creacion, fecha_actualizac
 
 
 --
--- Data for Name: tipo_respuesta; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: tipo_respuesta; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY tipo_respuesta (id_tipo_respuesta, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3605,7 +3652,7 @@ COPY tipo_respuesta (id_tipo_respuesta, nombre, fecha_creacion, fecha_actualizac
 
 
 --
--- Data for Name: tipo_unidad; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: tipo_unidad; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY tipo_unidad (id_tipo_unidad, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3616,7 +3663,7 @@ COPY tipo_unidad (id_tipo_unidad, nombre, fecha_creacion, fecha_actualizacion, e
 
 
 --
--- Data for Name: tipo_valoracion; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: tipo_valoracion; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY tipo_valoracion (id_tipo_valoracion, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3625,7 +3672,7 @@ COPY tipo_valoracion (id_tipo_valoracion, nombre, fecha_creacion, fecha_actualiz
 
 
 --
--- Data for Name: unidad; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: unidad; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY unidad (id_unidad, id_tipo_unidad, nombre, abreviatura, fecha_creacion, fecha_actualizacion, estatus, simbolo) FROM stdin;
@@ -3642,7 +3689,7 @@ COPY unidad (id_unidad, id_tipo_unidad, nombre, abreviatura, fecha_creacion, fec
 
 
 --
--- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY usuario (id_usuario, nombre_usuario, correo, contrasenia, salt, fecha_creacion, fecha_actualizacion, ultimo_acceso, estatus, id_rol) FROM stdin;
@@ -3651,7 +3698,7 @@ COPY usuario (id_usuario, nombre_usuario, correo, contrasenia, salt, fecha_creac
 
 
 --
--- Data for Name: valoracion; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: valoracion; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY valoracion (id_valoracion, id_tipo_valoracion, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3659,7 +3706,7 @@ COPY valoracion (id_valoracion, id_tipo_valoracion, nombre, fecha_creacion, fech
 
 
 --
--- Data for Name: visita; Type: TABLE DATA; Schema: public; Owner: leo
+-- Data for Name: visita; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COPY visita (id_visita, numero, fecha_atencion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
@@ -3667,7 +3714,7 @@ COPY visita (id_visita, numero, fecha_atencion, fecha_creacion, fecha_actualizac
 
 
 --
--- Name: agenda_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: agenda_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY agenda
@@ -3675,7 +3722,7 @@ ALTER TABLE ONLY agenda
 
 
 --
--- Name: alimento_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: alimento_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY alimento
@@ -3683,7 +3730,7 @@ ALTER TABLE ONLY alimento
 
 
 --
--- Name: app_movil_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: app_movil_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY app_movil
@@ -3691,7 +3738,7 @@ ALTER TABLE ONLY app_movil
 
 
 --
--- Name: bloque_horario_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: bloque_horario_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY bloque_horario
@@ -3699,7 +3746,7 @@ ALTER TABLE ONLY bloque_horario
 
 
 --
--- Name: calificacion_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: calificacion_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY calificacion
@@ -3707,7 +3754,7 @@ ALTER TABLE ONLY calificacion
 
 
 --
--- Name: cita_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: cita_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY cita
@@ -3715,7 +3762,7 @@ ALTER TABLE ONLY cita
 
 
 --
--- Name: cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY cliente
@@ -3723,7 +3770,7 @@ ALTER TABLE ONLY cliente
 
 
 --
--- Name: comentario_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: comentario_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY comentario
@@ -3731,7 +3778,7 @@ ALTER TABLE ONLY comentario
 
 
 --
--- Name: comida_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: comida_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY comida
@@ -3739,7 +3786,7 @@ ALTER TABLE ONLY comida
 
 
 --
--- Name: condicion_garantia_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: condicion_garantia_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY condicion_garantia
@@ -3747,7 +3794,7 @@ ALTER TABLE ONLY condicion_garantia
 
 
 --
--- Name: contenido_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: contenido_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY contenido
@@ -3755,7 +3802,7 @@ ALTER TABLE ONLY contenido
 
 
 --
--- Name: criterio_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: criterio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY criterio
@@ -3763,7 +3810,7 @@ ALTER TABLE ONLY criterio
 
 
 --
--- Name: detalle_plan_dieta_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: detalle_plan_dieta_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY detalle_plan_dieta
@@ -3771,7 +3818,7 @@ ALTER TABLE ONLY detalle_plan_dieta
 
 
 --
--- Name: detalle_plan_ejercicio_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: detalle_plan_ejercicio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY detalle_plan_ejercicio
@@ -3779,7 +3826,7 @@ ALTER TABLE ONLY detalle_plan_ejercicio
 
 
 --
--- Name: detalle_plan_suplemento_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: detalle_plan_suplemento_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY detalle_plan_suplemento
@@ -3787,7 +3834,7 @@ ALTER TABLE ONLY detalle_plan_suplemento
 
 
 --
--- Name: detalle_regimen_alimento_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: detalle_regimen_alimento_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY detalle_regimen_alimento
@@ -3795,7 +3842,7 @@ ALTER TABLE ONLY detalle_regimen_alimento
 
 
 --
--- Name: detalle_visita_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: detalle_visita_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY detalle_visita
@@ -3803,7 +3850,7 @@ ALTER TABLE ONLY detalle_visita
 
 
 --
--- Name: dia_laborable_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: dia_laborable_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY dia_laborable
@@ -3811,7 +3858,7 @@ ALTER TABLE ONLY dia_laborable
 
 
 --
--- Name: ejercicio_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: ejercicio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY ejercicio
@@ -3819,7 +3866,7 @@ ALTER TABLE ONLY ejercicio
 
 
 --
--- Name: empleado_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: empleado_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY empleado
@@ -3827,7 +3874,7 @@ ALTER TABLE ONLY empleado
 
 
 --
--- Name: especialidad_empleado_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: especialidad_empleado_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY especialidad_empleado
@@ -3835,7 +3882,7 @@ ALTER TABLE ONLY especialidad_empleado
 
 
 --
--- Name: especialidad_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: especialidad_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY especialidad
@@ -3843,7 +3890,7 @@ ALTER TABLE ONLY especialidad
 
 
 --
--- Name: especialidad_servicio_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: especialidad_servicio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY especialidad_servicio
@@ -3851,7 +3898,7 @@ ALTER TABLE ONLY especialidad_servicio
 
 
 --
--- Name: estado_civil_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: estado_civil_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY estado_civil
@@ -3859,7 +3906,7 @@ ALTER TABLE ONLY estado_civil
 
 
 --
--- Name: estado_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: estado_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY estado
@@ -3867,7 +3914,7 @@ ALTER TABLE ONLY estado
 
 
 --
--- Name: frecuencia_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: frecuencia_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY frecuencia
@@ -3875,7 +3922,7 @@ ALTER TABLE ONLY frecuencia
 
 
 --
--- Name: funcionalidad_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: funcionalidad_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY funcionalidad
@@ -3883,7 +3930,7 @@ ALTER TABLE ONLY funcionalidad
 
 
 --
--- Name: garantia_servicio_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: garantia_servicio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY garantia_servicio
@@ -3891,7 +3938,7 @@ ALTER TABLE ONLY garantia_servicio
 
 
 --
--- Name: genero_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: genero_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY genero
@@ -3899,7 +3946,7 @@ ALTER TABLE ONLY genero
 
 
 --
--- Name: grupo_alimenticio_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: grupo_alimenticio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY grupo_alimenticio
@@ -3907,7 +3954,7 @@ ALTER TABLE ONLY grupo_alimenticio
 
 
 --
--- Name: horario_empleado_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: horario_empleado_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY horario_empleado
@@ -3915,7 +3962,7 @@ ALTER TABLE ONLY horario_empleado
 
 
 --
--- Name: id_servicio_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: id_servicio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY servicio
@@ -3923,7 +3970,7 @@ ALTER TABLE ONLY servicio
 
 
 --
--- Name: incidencia_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: incidencia_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY incidencia
@@ -3931,7 +3978,7 @@ ALTER TABLE ONLY incidencia
 
 
 --
--- Name: motivo_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: motivo_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY motivo
@@ -3939,7 +3986,7 @@ ALTER TABLE ONLY motivo
 
 
 --
--- Name: negocio_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: negocio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY negocio
@@ -3947,7 +3994,7 @@ ALTER TABLE ONLY negocio
 
 
 --
--- Name: orden_servicio_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: orden_servicio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY orden_servicio
@@ -3955,7 +4002,7 @@ ALTER TABLE ONLY orden_servicio
 
 
 --
--- Name: parametro_cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: parametro_cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY parametro_cliente
@@ -3963,7 +4010,7 @@ ALTER TABLE ONLY parametro_cliente
 
 
 --
--- Name: parametro_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: parametro_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY parametro
@@ -3971,7 +4018,7 @@ ALTER TABLE ONLY parametro
 
 
 --
--- Name: parametro_promocion_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: parametro_promocion_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY parametro_promocion
@@ -3979,7 +4026,7 @@ ALTER TABLE ONLY parametro_promocion
 
 
 --
--- Name: parametro_servicio_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: parametro_servicio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY parametro_servicio
@@ -3987,7 +4034,7 @@ ALTER TABLE ONLY parametro_servicio
 
 
 --
--- Name: plan_dieta_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: plan_dieta_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY plan_dieta
@@ -3995,7 +4042,7 @@ ALTER TABLE ONLY plan_dieta
 
 
 --
--- Name: plan_ejercicio_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: plan_ejercicio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY plan_ejercicio
@@ -4003,7 +4050,7 @@ ALTER TABLE ONLY plan_ejercicio
 
 
 --
--- Name: plan_suplemento_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: plan_suplemento_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY plan_suplemento
@@ -4019,7 +4066,7 @@ ALTER TABLE ONLY precio
 
 
 --
--- Name: preferencia_cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: preferencia_cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY preferencia_cliente
@@ -4027,7 +4074,7 @@ ALTER TABLE ONLY preferencia_cliente
 
 
 --
--- Name: promocion_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: promocion_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY promocion
@@ -4035,7 +4082,7 @@ ALTER TABLE ONLY promocion
 
 
 --
--- Name: rango_edad_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: rango_edad_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY rango_edad
@@ -4043,7 +4090,7 @@ ALTER TABLE ONLY rango_edad
 
 
 --
--- Name: reclamo_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: reclamo_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY reclamo
@@ -4051,7 +4098,7 @@ ALTER TABLE ONLY reclamo
 
 
 --
--- Name: red_social_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: red_social_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY red_social
@@ -4059,7 +4106,7 @@ ALTER TABLE ONLY red_social
 
 
 --
--- Name: regimen_dieta_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: regimen_dieta_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY regimen_dieta
@@ -4067,7 +4114,7 @@ ALTER TABLE ONLY regimen_dieta
 
 
 --
--- Name: regimen_ejercicio_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: regimen_ejercicio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY regimen_ejercicio
@@ -4075,7 +4122,7 @@ ALTER TABLE ONLY regimen_ejercicio
 
 
 --
--- Name: regimen_suplemento_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: regimen_suplemento_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY regimen_suplemento
@@ -4083,7 +4130,7 @@ ALTER TABLE ONLY regimen_suplemento
 
 
 --
--- Name: respuesta_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: respuesta_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY respuesta
@@ -4091,7 +4138,7 @@ ALTER TABLE ONLY respuesta
 
 
 --
--- Name: rol_funcionalidad_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: rol_funcionalidad_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY rol_funcionalidad
@@ -4099,7 +4146,7 @@ ALTER TABLE ONLY rol_funcionalidad
 
 
 --
--- Name: rol_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: rol_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY rol
@@ -4107,7 +4154,7 @@ ALTER TABLE ONLY rol
 
 
 --
--- Name: slide_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: slide_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY slide
@@ -4115,7 +4162,7 @@ ALTER TABLE ONLY slide
 
 
 --
--- Name: solicitud_servicio_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: solicitud_servicio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY solicitud_servicio
@@ -4123,7 +4170,7 @@ ALTER TABLE ONLY solicitud_servicio
 
 
 --
--- Name: suplemento_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: suplemento_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY suplemento
@@ -4131,7 +4178,7 @@ ALTER TABLE ONLY suplemento
 
 
 --
--- Name: tiempo_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: tiempo_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY tiempo
@@ -4139,7 +4186,7 @@ ALTER TABLE ONLY tiempo
 
 
 --
--- Name: tipo_cita_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: tipo_cita_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY tipo_cita
@@ -4147,7 +4194,15 @@ ALTER TABLE ONLY tipo_cita
 
 
 --
--- Name: tipo_criterio_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: tipo_comentario_id_tipo_comentario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tipo_comentario
+    ADD CONSTRAINT tipo_comentario_id_tipo_comentario_pkey PRIMARY KEY (id_tipo_comentario);
+
+
+--
+-- Name: tipo_criterio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY tipo_criterio
@@ -4155,7 +4210,7 @@ ALTER TABLE ONLY tipo_criterio
 
 
 --
--- Name: tipo_dieta_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: tipo_dieta_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY tipo_dieta
@@ -4163,7 +4218,7 @@ ALTER TABLE ONLY tipo_dieta
 
 
 --
--- Name: tipo_incidencia_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: tipo_incidencia_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY tipo_incidencia
@@ -4171,7 +4226,7 @@ ALTER TABLE ONLY tipo_incidencia
 
 
 --
--- Name: tipo_motivo_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: tipo_motivo_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY tipo_motivo
@@ -4179,7 +4234,7 @@ ALTER TABLE ONLY tipo_motivo
 
 
 --
--- Name: tipo_orden_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: tipo_orden_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY tipo_orden
@@ -4187,7 +4242,7 @@ ALTER TABLE ONLY tipo_orden
 
 
 --
--- Name: tipo_parametro_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: tipo_parametro_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY tipo_parametro
@@ -4195,7 +4250,7 @@ ALTER TABLE ONLY tipo_parametro
 
 
 --
--- Name: tipo_respuesta_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: tipo_respuesta_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY tipo_respuesta
@@ -4203,7 +4258,7 @@ ALTER TABLE ONLY tipo_respuesta
 
 
 --
--- Name: tipo_unidad_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: tipo_unidad_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY tipo_unidad
@@ -4211,7 +4266,7 @@ ALTER TABLE ONLY tipo_unidad
 
 
 --
--- Name: tipo_valoracion_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: tipo_valoracion_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY tipo_valoracion
@@ -4219,7 +4274,7 @@ ALTER TABLE ONLY tipo_valoracion
 
 
 --
--- Name: unidad_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: unidad_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY unidad
@@ -4227,7 +4282,7 @@ ALTER TABLE ONLY unidad
 
 
 --
--- Name: usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY usuario
@@ -4235,7 +4290,7 @@ ALTER TABLE ONLY usuario
 
 
 --
--- Name: valoracion_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: valoracion_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY valoracion
@@ -4243,7 +4298,7 @@ ALTER TABLE ONLY valoracion
 
 
 --
--- Name: visita_pkey; Type: CONSTRAINT; Schema: public; Owner: leo
+-- Name: visita_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY visita
@@ -4251,28 +4306,42 @@ ALTER TABLE ONLY visita
 
 
 --
--- Name: fki_servicio_id_precio_fkey; Type: INDEX; Schema: public; Owner: leo
+-- Name: fki_comentario_id_tipo_comentario_fkey; Type: INDEX; Schema: public; Owner: byqkxhkjgnspco
+--
+
+CREATE INDEX fki_comentario_id_tipo_comentario_fkey ON comentario USING btree (id_tipo_comentario);
+
+
+--
+-- Name: fki_incidencia_id_agenda_fkey; Type: INDEX; Schema: public; Owner: byqkxhkjgnspco
+--
+
+CREATE INDEX fki_incidencia_id_agenda_fkey ON incidencia USING btree (id_agenda);
+
+
+--
+-- Name: fki_servicio_id_precio_fkey; Type: INDEX; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE INDEX fki_servicio_id_precio_fkey ON servicio USING btree (id_precio);
 
 
 --
--- Name: dis_asignar_rango_edad; Type: TRIGGER; Schema: public; Owner: leo
+-- Name: dis_asignar_rango_edad; Type: TRIGGER; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TRIGGER dis_asignar_rango_edad AFTER INSERT ON cliente FOR EACH ROW EXECUTE PROCEDURE fun_asignar_rango_edad();
 
 
 --
--- Name: dis_usuario_eliminada; Type: TRIGGER; Schema: public; Owner: leo
+-- Name: dis_usuario_eliminada; Type: TRIGGER; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TRIGGER dis_usuario_eliminada AFTER UPDATE OF estatus ON usuario FOR EACH ROW WHEN ((new.estatus = 0)) EXECUTE PROCEDURE fun_eliminar_cliente();
 
 
 --
--- Name: agenda_id_cita_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: agenda_id_cita_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY agenda
@@ -4280,7 +4349,7 @@ ALTER TABLE ONLY agenda
 
 
 --
--- Name: agenda_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: agenda_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY agenda
@@ -4288,7 +4357,7 @@ ALTER TABLE ONLY agenda
 
 
 --
--- Name: agenda_id_empleado_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: agenda_id_empleado_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY agenda
@@ -4296,7 +4365,7 @@ ALTER TABLE ONLY agenda
 
 
 --
--- Name: agenda_id_orden_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: agenda_id_orden_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY agenda
@@ -4304,7 +4373,7 @@ ALTER TABLE ONLY agenda
 
 
 --
--- Name: agenda_id_visita_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: agenda_id_visita_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY agenda
@@ -4312,7 +4381,7 @@ ALTER TABLE ONLY agenda
 
 
 --
--- Name: alimento_id_grupo_alimenticio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: alimento_id_grupo_alimenticio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY alimento
@@ -4320,7 +4389,7 @@ ALTER TABLE ONLY alimento
 
 
 --
--- Name: calificacion_id_criterio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: calificacion_id_criterio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY calificacion
@@ -4328,7 +4397,7 @@ ALTER TABLE ONLY calificacion
 
 
 --
--- Name: calificacion_id_orden_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: calificacion_id_orden_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY calificacion
@@ -4336,7 +4405,7 @@ ALTER TABLE ONLY calificacion
 
 
 --
--- Name: calificacion_id_valoracion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: calificacion_id_valoracion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY calificacion
@@ -4344,7 +4413,7 @@ ALTER TABLE ONLY calificacion
 
 
 --
--- Name: calificacion_id_visita_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: calificacion_id_visita_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY calificacion
@@ -4352,7 +4421,7 @@ ALTER TABLE ONLY calificacion
 
 
 --
--- Name: cita_id_bloque_horario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: cita_id_bloque_horario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY cita
@@ -4360,7 +4429,7 @@ ALTER TABLE ONLY cita
 
 
 --
--- Name: cita_id_orden_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: cita_id_orden_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY cita
@@ -4368,7 +4437,7 @@ ALTER TABLE ONLY cita
 
 
 --
--- Name: cita_id_tipo_cita_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: cita_id_tipo_cita_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY cita
@@ -4376,7 +4445,7 @@ ALTER TABLE ONLY cita
 
 
 --
--- Name: cliente_id_estado_civil_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: cliente_id_estado_civil_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY cliente
@@ -4384,7 +4453,7 @@ ALTER TABLE ONLY cliente
 
 
 --
--- Name: cliente_id_estado_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: cliente_id_estado_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY cliente
@@ -4392,7 +4461,7 @@ ALTER TABLE ONLY cliente
 
 
 --
--- Name: cliente_id_genero_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: cliente_id_genero_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY cliente
@@ -4400,7 +4469,7 @@ ALTER TABLE ONLY cliente
 
 
 --
--- Name: cliente_id_rango_edad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: cliente_id_rango_edad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY cliente
@@ -4408,7 +4477,7 @@ ALTER TABLE ONLY cliente
 
 
 --
--- Name: cliente_id_usuario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: cliente_id_usuario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY cliente
@@ -4416,7 +4485,7 @@ ALTER TABLE ONLY cliente
 
 
 --
--- Name: comentario_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: comentario_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY comentario
@@ -4424,7 +4493,7 @@ ALTER TABLE ONLY comentario
 
 
 --
--- Name: comentario_id_respuesta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: comentario_id_respuesta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY comentario
@@ -4432,15 +4501,15 @@ ALTER TABLE ONLY comentario
 
 
 --
--- Name: comentario_id_tipo_comentario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: comentario_id_tipo_comentario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY comentario
-    ADD CONSTRAINT comentario_id_tipo_comentario_fkey FOREIGN KEY (id_tipo_comentario) REFERENCES tipo_motivo(id_tipo_motivo);
+    ADD CONSTRAINT comentario_id_tipo_comentario_fkey FOREIGN KEY (id_tipo_comentario) REFERENCES tipo_comentario(id_tipo_comentario);
 
 
 --
--- Name: criterio_id_tipo_criterio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: criterio_id_tipo_criterio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY criterio
@@ -4448,7 +4517,7 @@ ALTER TABLE ONLY criterio
 
 
 --
--- Name: criterio_id_tipo_valoracion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: criterio_id_tipo_valoracion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY criterio
@@ -4456,7 +4525,7 @@ ALTER TABLE ONLY criterio
 
 
 --
--- Name: detalle_plan_dieta_id_comida_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: detalle_plan_dieta_id_comida_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY detalle_plan_dieta
@@ -4464,7 +4533,7 @@ ALTER TABLE ONLY detalle_plan_dieta
 
 
 --
--- Name: detalle_plan_dieta_id_grupo_alimenticio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: detalle_plan_dieta_id_grupo_alimenticio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY detalle_plan_dieta
@@ -4472,7 +4541,7 @@ ALTER TABLE ONLY detalle_plan_dieta
 
 
 --
--- Name: detalle_plan_dieta_id_plan_dieta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: detalle_plan_dieta_id_plan_dieta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY detalle_plan_dieta
@@ -4480,7 +4549,7 @@ ALTER TABLE ONLY detalle_plan_dieta
 
 
 --
--- Name: detalle_plan_ejercicio_id_ejercicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: detalle_plan_ejercicio_id_ejercicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY detalle_plan_ejercicio
@@ -4488,7 +4557,7 @@ ALTER TABLE ONLY detalle_plan_ejercicio
 
 
 --
--- Name: detalle_plan_ejercicio_id_plan_ejercicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: detalle_plan_ejercicio_id_plan_ejercicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY detalle_plan_ejercicio
@@ -4496,7 +4565,7 @@ ALTER TABLE ONLY detalle_plan_ejercicio
 
 
 --
--- Name: detalle_plan_suplemento_id_plan_suplemento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: detalle_plan_suplemento_id_plan_suplemento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY detalle_plan_suplemento
@@ -4504,7 +4573,7 @@ ALTER TABLE ONLY detalle_plan_suplemento
 
 
 --
--- Name: detalle_plan_suplemento_id_suplemento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: detalle_plan_suplemento_id_suplemento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY detalle_plan_suplemento
@@ -4512,7 +4581,7 @@ ALTER TABLE ONLY detalle_plan_suplemento
 
 
 --
--- Name: detalle_regimen_alimento_id_alimento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: detalle_regimen_alimento_id_alimento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY detalle_regimen_alimento
@@ -4520,7 +4589,7 @@ ALTER TABLE ONLY detalle_regimen_alimento
 
 
 --
--- Name: detalle_regimen_alimento_id_regimen_dieta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: detalle_regimen_alimento_id_regimen_dieta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY detalle_regimen_alimento
@@ -4528,7 +4597,7 @@ ALTER TABLE ONLY detalle_regimen_alimento
 
 
 --
--- Name: detalle_visita_id_parametro_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: detalle_visita_id_parametro_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY detalle_visita
@@ -4536,7 +4605,7 @@ ALTER TABLE ONLY detalle_visita
 
 
 --
--- Name: detalle_visita_id_visita_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: detalle_visita_id_visita_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY detalle_visita
@@ -4544,7 +4613,7 @@ ALTER TABLE ONLY detalle_visita
 
 
 --
--- Name: empleado_id_genero_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: empleado_id_genero_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY empleado
@@ -4552,7 +4621,7 @@ ALTER TABLE ONLY empleado
 
 
 --
--- Name: empleado_id_usuario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: empleado_id_usuario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY empleado
@@ -4560,7 +4629,7 @@ ALTER TABLE ONLY empleado
 
 
 --
--- Name: especialidad_empleado_id_empleado_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: especialidad_empleado_id_empleado_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY especialidad_empleado
@@ -4568,7 +4637,7 @@ ALTER TABLE ONLY especialidad_empleado
 
 
 --
--- Name: especialidad_empleado_id_especialidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: especialidad_empleado_id_especialidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY especialidad_empleado
@@ -4576,7 +4645,7 @@ ALTER TABLE ONLY especialidad_empleado
 
 
 --
--- Name: especialidad_servicio_id_especialidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: especialidad_servicio_id_especialidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY especialidad_servicio
@@ -4584,7 +4653,7 @@ ALTER TABLE ONLY especialidad_servicio
 
 
 --
--- Name: especialidad_servicio_id_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: especialidad_servicio_id_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY especialidad_servicio
@@ -4592,7 +4661,7 @@ ALTER TABLE ONLY especialidad_servicio
 
 
 --
--- Name: frecuencia_tiempo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: frecuencia_tiempo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY frecuencia
@@ -4600,7 +4669,7 @@ ALTER TABLE ONLY frecuencia
 
 
 --
--- Name: funcionalidad_id_funcionalidad_padre_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: funcionalidad_id_funcionalidad_padre_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY funcionalidad
@@ -4608,7 +4677,7 @@ ALTER TABLE ONLY funcionalidad
 
 
 --
--- Name: garantia_servicio_id_condicion_garantia_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: garantia_servicio_id_condicion_garantia_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY garantia_servicio
@@ -4616,7 +4685,7 @@ ALTER TABLE ONLY garantia_servicio
 
 
 --
--- Name: garantia_servicio_id_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: garantia_servicio_id_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY garantia_servicio
@@ -4624,7 +4693,7 @@ ALTER TABLE ONLY garantia_servicio
 
 
 --
--- Name: grupo_alimenticio_id_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: grupo_alimenticio_id_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY grupo_alimenticio
@@ -4632,7 +4701,7 @@ ALTER TABLE ONLY grupo_alimenticio
 
 
 --
--- Name: horario_empleado_id_bloque_horario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: horario_empleado_id_bloque_horario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY horario_empleado
@@ -4640,7 +4709,7 @@ ALTER TABLE ONLY horario_empleado
 
 
 --
--- Name: horario_empleado_id_dia_laborable_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: horario_empleado_id_dia_laborable_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY horario_empleado
@@ -4648,7 +4717,7 @@ ALTER TABLE ONLY horario_empleado
 
 
 --
--- Name: horario_empleado_id_empleado_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: horario_empleado_id_empleado_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY horario_empleado
@@ -4656,7 +4725,15 @@ ALTER TABLE ONLY horario_empleado
 
 
 --
--- Name: incidencia_id_motivo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: incidencia_id_agenda_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
+--
+
+ALTER TABLE ONLY incidencia
+    ADD CONSTRAINT incidencia_id_agenda_fkey FOREIGN KEY (id_agenda) REFERENCES agenda(id_agenda);
+
+
+--
+-- Name: incidencia_id_motivo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY incidencia
@@ -4664,7 +4741,7 @@ ALTER TABLE ONLY incidencia
 
 
 --
--- Name: incidencia_id_tipo_incidencia_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: incidencia_id_tipo_incidencia_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY incidencia
@@ -4672,7 +4749,7 @@ ALTER TABLE ONLY incidencia
 
 
 --
--- Name: motivo_id_tipo_motivo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: motivo_id_tipo_motivo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY motivo
@@ -4680,7 +4757,7 @@ ALTER TABLE ONLY motivo
 
 
 --
--- Name: orden_servicio_id_reclamo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: orden_servicio_id_reclamo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY orden_servicio
@@ -4688,7 +4765,7 @@ ALTER TABLE ONLY orden_servicio
 
 
 --
--- Name: orden_servicio_id_solicitud_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: orden_servicio_id_solicitud_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY orden_servicio
@@ -4696,7 +4773,7 @@ ALTER TABLE ONLY orden_servicio
 
 
 --
--- Name: orden_servicio_id_tipo_orden_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: orden_servicio_id_tipo_orden_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY orden_servicio
@@ -4704,7 +4781,7 @@ ALTER TABLE ONLY orden_servicio
 
 
 --
--- Name: parametro_cliente_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: parametro_cliente_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY parametro_cliente
@@ -4712,7 +4789,7 @@ ALTER TABLE ONLY parametro_cliente
 
 
 --
--- Name: parametro_cliente_id_parametro_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: parametro_cliente_id_parametro_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY parametro_cliente
@@ -4720,7 +4797,7 @@ ALTER TABLE ONLY parametro_cliente
 
 
 --
--- Name: parametro_servicio_id_parametro_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: parametro_servicio_id_parametro_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY parametro_servicio
@@ -4728,7 +4805,7 @@ ALTER TABLE ONLY parametro_servicio
 
 
 --
--- Name: parametro_servicio_id_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: parametro_servicio_id_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY parametro_servicio
@@ -4736,7 +4813,7 @@ ALTER TABLE ONLY parametro_servicio
 
 
 --
--- Name: parametro_tipo_parametro_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: parametro_tipo_parametro_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY parametro
@@ -4744,7 +4821,7 @@ ALTER TABLE ONLY parametro
 
 
 --
--- Name: parametro_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: parametro_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY parametro
@@ -4752,7 +4829,7 @@ ALTER TABLE ONLY parametro
 
 
 --
--- Name: plan_dieta_tipo_dieta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: plan_dieta_tipo_dieta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY plan_dieta
@@ -4768,7 +4845,7 @@ ALTER TABLE ONLY precio
 
 
 --
--- Name: preferencia_cliente_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: preferencia_cliente_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY preferencia_cliente
@@ -4776,7 +4853,7 @@ ALTER TABLE ONLY preferencia_cliente
 
 
 --
--- Name: preferencia_cliente_id_especialidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: preferencia_cliente_id_especialidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY preferencia_cliente
@@ -4784,7 +4861,7 @@ ALTER TABLE ONLY preferencia_cliente
 
 
 --
--- Name: promocion_id_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: promocion_id_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY promocion
@@ -4792,7 +4869,7 @@ ALTER TABLE ONLY promocion
 
 
 --
--- Name: reclamo_id_motivo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: reclamo_id_motivo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY reclamo
@@ -4800,7 +4877,7 @@ ALTER TABLE ONLY reclamo
 
 
 --
--- Name: reclamo_id_orden_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: reclamo_id_orden_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY reclamo
@@ -4808,7 +4885,7 @@ ALTER TABLE ONLY reclamo
 
 
 --
--- Name: reclamo_id_respuesta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: reclamo_id_respuesta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY reclamo
@@ -4816,7 +4893,7 @@ ALTER TABLE ONLY reclamo
 
 
 --
--- Name: regimen_dieta_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: regimen_dieta_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY regimen_dieta
@@ -4824,7 +4901,7 @@ ALTER TABLE ONLY regimen_dieta
 
 
 --
--- Name: regimen_dieta_id_detalle_plan_dieta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: regimen_dieta_id_detalle_plan_dieta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY regimen_dieta
@@ -4832,7 +4909,7 @@ ALTER TABLE ONLY regimen_dieta
 
 
 --
--- Name: regimen_ejercicio_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: regimen_ejercicio_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY regimen_ejercicio
@@ -4840,7 +4917,7 @@ ALTER TABLE ONLY regimen_ejercicio
 
 
 --
--- Name: regimen_ejercicio_id_frecuencia_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: regimen_ejercicio_id_frecuencia_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY regimen_ejercicio
@@ -4848,7 +4925,7 @@ ALTER TABLE ONLY regimen_ejercicio
 
 
 --
--- Name: regimen_ejercicio_id_plan_ejercicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: regimen_ejercicio_id_plan_ejercicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY regimen_ejercicio
@@ -4856,7 +4933,7 @@ ALTER TABLE ONLY regimen_ejercicio
 
 
 --
--- Name: regimen_ejercicio_id_tiempo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: regimen_ejercicio_id_tiempo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY regimen_ejercicio
@@ -4864,7 +4941,7 @@ ALTER TABLE ONLY regimen_ejercicio
 
 
 --
--- Name: regimen_suplemento_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: regimen_suplemento_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY regimen_suplemento
@@ -4872,7 +4949,7 @@ ALTER TABLE ONLY regimen_suplemento
 
 
 --
--- Name: regimen_suplemento_id_frecuencia_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: regimen_suplemento_id_frecuencia_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY regimen_suplemento
@@ -4880,7 +4957,7 @@ ALTER TABLE ONLY regimen_suplemento
 
 
 --
--- Name: regimen_suplemento_id_plan_suplemento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: regimen_suplemento_id_plan_suplemento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY regimen_suplemento
@@ -4888,7 +4965,7 @@ ALTER TABLE ONLY regimen_suplemento
 
 
 --
--- Name: respuesta_id_tipo_respuesta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: respuesta_id_tipo_respuesta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY respuesta
@@ -4896,7 +4973,7 @@ ALTER TABLE ONLY respuesta
 
 
 --
--- Name: rol_funcionalidad_id_funcionalidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: rol_funcionalidad_id_funcionalidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY rol_funcionalidad
@@ -4904,7 +4981,7 @@ ALTER TABLE ONLY rol_funcionalidad
 
 
 --
--- Name: rol_funcionalidad_id_rol_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: rol_funcionalidad_id_rol_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY rol_funcionalidad
@@ -4912,7 +4989,7 @@ ALTER TABLE ONLY rol_funcionalidad
 
 
 --
--- Name: servicio_id_plan_dieta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: servicio_id_plan_dieta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY servicio
@@ -4920,7 +4997,7 @@ ALTER TABLE ONLY servicio
 
 
 --
--- Name: servicio_id_plan_ejercicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: servicio_id_plan_ejercicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY servicio
@@ -4928,7 +5005,7 @@ ALTER TABLE ONLY servicio
 
 
 --
--- Name: servicio_id_plan_suplemento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: servicio_id_plan_suplemento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY servicio
@@ -4936,7 +5013,7 @@ ALTER TABLE ONLY servicio
 
 
 --
--- Name: servicio_id_precio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: servicio_id_precio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY servicio
@@ -4944,7 +5021,7 @@ ALTER TABLE ONLY servicio
 
 
 --
--- Name: solicitud_servicio_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: solicitud_servicio_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY solicitud_servicio
@@ -4952,7 +5029,7 @@ ALTER TABLE ONLY solicitud_servicio
 
 
 --
--- Name: solicitud_servicio_id_motivo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: solicitud_servicio_id_motivo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY solicitud_servicio
@@ -4960,7 +5037,7 @@ ALTER TABLE ONLY solicitud_servicio
 
 
 --
--- Name: solicitud_servicio_id_promocion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: solicitud_servicio_id_promocion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY solicitud_servicio
@@ -4968,7 +5045,7 @@ ALTER TABLE ONLY solicitud_servicio
 
 
 --
--- Name: solicitud_servicio_id_respuesta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: solicitud_servicio_id_respuesta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY solicitud_servicio
@@ -4976,7 +5053,7 @@ ALTER TABLE ONLY solicitud_servicio
 
 
 --
--- Name: solicitud_servicio_id_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: solicitud_servicio_id_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY solicitud_servicio
@@ -4984,7 +5061,7 @@ ALTER TABLE ONLY solicitud_servicio
 
 
 --
--- Name: suplemento_id_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: suplemento_id_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY suplemento
@@ -4992,7 +5069,7 @@ ALTER TABLE ONLY suplemento
 
 
 --
--- Name: unidad_tipo_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: unidad_tipo_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY unidad
@@ -5000,7 +5077,7 @@ ALTER TABLE ONLY unidad
 
 
 --
--- Name: usuario_id_rol_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: usuario_id_rol_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY usuario
@@ -5008,7 +5085,7 @@ ALTER TABLE ONLY usuario
 
 
 --
--- Name: valoracion_id_tipo_valoracion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: leo
+-- Name: valoracion_id_tipo_valoracion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY valoracion

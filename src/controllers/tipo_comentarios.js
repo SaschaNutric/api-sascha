@@ -1,11 +1,13 @@
 'use strict';
 
-const Suplementos 	= require('../collections/suplementos');
-const Suplemento  	= require('../models/suplemento');
+const Tipo_comentarios 	= require('../collections/tipo_comentarios');
+const Tipo_comentario  	= require('../models/tipo_comentario');
 
-function getSuplementos(req, res, next) {
-	Suplementos.query({})
-	.fetch({ columns: ['id_unidad','nombre'] })
+function getTipo_comentarios(req, res, next) {
+	Tipo_comentarios.query(function (qb) {
+   		qb.where('tipo_comentario.estatus', '=', 1);
+	})
+	.fetch()
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -26,10 +28,10 @@ function getSuplementos(req, res, next) {
     });
 }
 
-function saveSuplemento(req, res, next){
+function saveTipo_comentario(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	Suplemento.forge({ id_unidad:req.body.id_unidad ,nombre:req.body.nombre  })
+	Tipo_comentario.forge({ nombre:req.body.nombre  })
 	.save()
 	.then(function(data){
 		res.status(200).json({
@@ -48,7 +50,7 @@ function saveSuplemento(req, res, next){
 	});
 }
 
-function getSuplementoById(req, res, next) {
+function getTipo_comentarioById(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') 
 		return res.status(400).json({ 
@@ -56,7 +58,7 @@ function getSuplementoById(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 
-	Suplemento.forge({ id_suplemento: id, estatus: 1 })
+	Tipo_comentario.forge({ id_tipo_comentario: id, estatus: 1 })
 	.fetch()
 	.then(function(data) {
 		if(!data) 
@@ -77,7 +79,7 @@ function getSuplementoById(req, res, next) {
 	});
 }
 
-function updateSuplemento(req, res, next) {
+function updateTipo_comentario(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') {
 		return res.status(400).json({ 
@@ -86,7 +88,7 @@ function updateSuplemento(req, res, next) {
 		});
 	}
 
-	Suplemento.forge({ id_suplemento: id, estatus: 1 })
+	Tipo_comentario.forge({ id_tipo_comentario: id, estatus: 1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 
@@ -94,7 +96,7 @@ function updateSuplemento(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ id_unidad:req.body.id_unidad || data.get('id_unidad'),nombre:req.body.nombre || data.get('nombre') })
+		data.save({ nombre:req.body.nombre || data.get('nombre') })
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
@@ -116,7 +118,7 @@ function updateSuplemento(req, res, next) {
 	})
 }
 
-function deleteSuplemento(req, res, next) {
+function deleteTipo_comentario(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') {
 		return res.status(400).json({ 
@@ -124,7 +126,7 @@ function deleteSuplemento(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 	}
-	Suplemento.forge({ id_suplemento: id, estatus: 1 })
+	Tipo_comentario.forge({ id_tipo_comentario: id, estatus: 1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 
@@ -156,9 +158,9 @@ function deleteSuplemento(req, res, next) {
 }
 
 module.exports = {
-	getSuplementos,
-	saveSuplemento,
-	getSuplementoById,
-	updateSuplemento,
-	deleteSuplemento
+	getTipo_comentarios,
+	saveTipo_comentario,
+	getTipo_comentarioById,
+	updateTipo_comentario,
+	deleteTipo_comentario
 }

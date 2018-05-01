@@ -2,11 +2,14 @@
 
 objecto=''
 objectos=''
+fetchs=''
+imports=''
 entidad=''
 entidades=''
 data=''
 dataUpdate=''
 declare -a ARRAY=('id_'$entidad)
+declare -a ARRAY2=()
 
 function main(){
 clear
@@ -16,10 +19,11 @@ clear
 		echo -e "|                                      |"$rescolor
 		echo -e "----------------------------------------"$rescolor
 		echo -e "      1) Asignar entidad "
-		echo -e "      2) Asignar columna "
-		echo -e "      3) Crear entidad   "
-		echo -e "      4) Remover entidad "
-		echo -e "      5) Cancelar  	  "
+		echo -e "      2) Asignar columnas "
+		echo -e "      3) Asignar entidades relacionadas"
+		echo -e "      4) Crear entidad   "
+		echo -e "      5) Remover entidad "
+		echo -e "      6) Cancelar  	  "
 		echo
 		echo -n "     #> "
 		read yn
@@ -29,11 +33,13 @@ clear
 				break ;;
 			2 ) asignarColumna && main
 				break ;;
-			3 ) generaEntidad && main
+			3 ) asignarFetch && main
 				break ;;
-			4 ) removeEntidad && main
+			4 ) generaEntidad && main
 				break ;;
-			5 ) exit 1;
+			5 ) removeEntidad && main
+				break ;;
+			6 ) exit 1;
 				break ;;
 			* ) clear && main;
 		  esac
@@ -103,10 +109,26 @@ function asignarEntidad(){
 	pausa
 }
 
+function asignarFetch(){
+	echo -n "Ingresar entidades foraneas sin comas ->"
+	read data2
+	ARRAY2=( $data2 )
+	fetchs="{ withRelated: ["
+	for arr2 in "${ARRAY2[@]}"; do 
+		fetchs=$fetchs"'"$arr2"',"
+	done
+	fetchs=${fetchs: 0:$(($(echo -n $fetchs | wc -m)-1))}"]}"
+	echo 'resultado:'
+	echo $fetchs
+	asignarFuncion
+	pausa
+}
+
 function asignarColumna(){
-	echo -n "Ingresar columnas sin comas ->"
-	read data
-	ARRAY=( $data )
+	echo -e "Agregar los campos a ser consultados menos el campo primaryKey es autogenerado"
+	echo -n "Ingresar campos sin comas->"
+	read data4
+	ARRAY=( $data4 )
 	columns="['id_$(echo $entidad)',"
 	for arr2 in "${ARRAY[@]}"; do 
 		columns=$columns"'"$arr2"',"
@@ -190,8 +212,10 @@ const $objectos 	= require('../collections/$entidades');
 const $objecto  	= require('../models/$entidad');
 
 function get$(echo $objectos)(req, res, next) {
-	$(echo $objectos).query({})
-	.fetch({ columns: $columns })
+	$(echo $objectos).query(function (qb) {
+   		qb.where('$(echo $entidad).estatus', '=', 1);
+	})
+	.fetch($fetchs)
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -243,7 +267,7 @@ function get$(echo $objecto)ById(req, res, next) {
 		});
 
 	$(echo $objecto).forge({ id_$(echo $entidad): id, estatus: 1 })
-	.fetch()
+	.fetch($fetchs)
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
@@ -371,15 +395,40 @@ function crearModelo(){
 	echo "'use strict'
 
 const Bookshelf = require('../commons/bookshelf');
-
+$imports
 let $(echo $objecto) = Bookshelf.Model.extend({
   tableName: '$(echo $entidad)',
-  idAttribute: 'id_$(echo $entidad)'
+  idAttribute: 'id_$(echo $entidad)'$funciones
 });
 
 module.exports = Bookshelf.model('$(echo $objecto)', $(echo $objecto));">$PWD'/src/models/'$(echo $entidad)'.js'
 	echo
 	echo "generado el modelo"
 }
+
+function asignarFuncion(){
+	for arr2 in "${ARRAY2[@]}"; do 
+		string=$arr2
+		A=$(echo ${string:0:1}|tr [[:lower:]] [[:upper:]])
+		B=$(echo ${string:1:$(echo -n $string | wc -m)})
+		imports=$imports"const $A$B = require('./$(echo $arr2)'); 
+"
+	done
+	echo -e "Se Requiere de:"
+	echo $imports
+	echo
+
+	funciones=","
+	for arr2 in "${ARRAY2[@]}"; do 
+		string=$arr2
+		A=$(echo ${string:0:1}|tr [[:lower:]] [[:upper:]])
+		B=$(echo ${string:1:$(echo -n $string | wc -m)})
+		funciones=$funciones$arr2": function() { return this.belongsTo( $A$B, 'id_$(echo $arr2)' ); },"
+	done
+	funciones=${funciones: 0:$(($(echo -n $funciones | wc -m)-1))}
+	echo -e "Funciones a crear"
+	echo $funciones
+}
+
 
 main

@@ -25,6 +25,7 @@ Informacion sobre el contenido manejado sobre cada rutas de la api-sascha
     * [slides](#slides)
     * [tiempos](#tiempos)
     * [tipocitas](#tipocitas)
+    * [tipocomentarios](#tipocomentarios)
     * [tipocriterios](#tipocriterios)
     * [tipodietas](#tipodietas)
     * [tipoincidencias](#tipoincidencias)
@@ -38,6 +39,7 @@ Informacion sobre el contenido manejado sobre cada rutas de la api-sascha
 * [agendas](#agendas)
 * [alimentos](#alimentos)
 * [calificaciones](#calificaciones)
+* [comentarios](#comentarios)
 * [citas](#citas)
 * [clientes](#clientes)
 * [comentarios](#comentarios)
@@ -250,6 +252,10 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 # tipocitas
 
 [[ver json]](https://api-sascha.herokuapp.com/tipocitas)
+
+# tipocomentarios
+
+[[ver json]](https://api-sascha.herokuapp.com/tipocomentarios)
 
 # tipocriterios
 
