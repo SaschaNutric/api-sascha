@@ -66,7 +66,7 @@ function getTipoUnidadById(req, res, next) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'dato no encontrado' } 
+				data: data
 			});
 		return res.status(200).json({ 
 			error : false, 
