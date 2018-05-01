@@ -5,7 +5,7 @@ const Red_social  	= require('../models/red_social');
 
 function getRed_sociales(req, res, next) {
 	Red_sociales.query({})
-	.fetch({ columns: ['id_red_social',,'nombre','url_base','url_logo'] })
+	.fetch({ columns: ['id_red_social','nombre','url_base','url_logo'] })
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -29,7 +29,7 @@ function getRed_sociales(req, res, next) {
 function saveRed_social(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	Red_social.forge({ nombre:req.body.nombre ,url_base:req.body.url_base ,url_logo:req.body.url_logo  })
+	Red_social.forge({ nombre:req.body.nombre ,url_base:req.body.url_base ,url_logo:req.body.url_logo })
 	.save()
 	.then(function(data){
 		res.status(200).json({

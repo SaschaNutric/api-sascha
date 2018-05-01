@@ -246,6 +246,19 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 
 # redSociales
 
+```
+    ├─GET────/redsociales       * Retorna todos.
+    ├─POST───/redsociales       * Guarda. 
+    ├─GET────/redsociale/:id    * Retorna por id.
+    ├─PUT────/redsociale/:id    * Actualiza.
+      ├─Body─{
+            "nombre":"" ,
+            "url_base":"" ,
+            "url_logo":""
+        } 
+    ├─DELETE─/genero/:id   * Elimina.
+```
+
 [[ver json]](https://api-sascha.herokuapp.com/redsociales)
 
 # roles
