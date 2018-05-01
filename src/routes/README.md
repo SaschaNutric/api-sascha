@@ -228,7 +228,7 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
     ├─POST───/generos     * Guarda. 
     ├─GET────/genero/:id   * Retorna por id.
     ├─PUT────/genero/:id   * Actualiza.
-      ├─Body─{
+    ├─Body─{
             "nombre": ""
         }  
     ├─DELETE─/genero/:id   * Elimina.
@@ -237,6 +237,26 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 [[ver json]](https://api-sascha.herokuapp.com/generos)
 
 # negocios
+
+```
+    ├─GET────/negocios       * Retorna todos.
+    ├─POST───/negocios       * Guarda. 
+    ├─GET────/negocio/:id    * Retorna por id.
+    ├─PUT────/negocio/:id    * Actualiza.
+    ├─Body─{
+            "razon_social": req.body.razon_social, 
+            "rif": "", 
+            "url_logo": "", 
+            "mision": "", 
+            "vision": "", 
+            "objetivo": "", 
+            "telefono": "", 
+            "correo": "", 
+            "latitud": "", 
+            "longitud": ""
+        } 
+    ├─DELETE─/genero/:id   * Elimina.
+```
 
 [[ver json]](https://api-sascha.herokuapp.com/negocios)
 
@@ -249,9 +269,9 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 ```
     ├─GET────/redsociales       * Retorna todos.
     ├─POST───/redsociales       * Guarda. 
-    ├─GET────/redsociale/:id    * Retorna por id.
-    ├─PUT────/redsociale/:id    * Actualiza.
-      ├─Body─{
+    ├─GET────/redsocial/:id     * Retorna por id.
+    ├─PUT────/redsocial/:id     * Actualiza.
+    ├─Body─{
             "nombre":"" ,
             "url_base":"" ,
             "url_logo":""
@@ -280,7 +300,7 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
     ├─POST───/tipocitas         * Guarda. 
     ├─GET────/tipocita/:id      * Retorna por id.
     ├─PUT────/tipocita/:id      * Actualiza.
-      ├─Body─{
+    ├─Body─{
             "nombre": ""
         }  
     ├─DELETE─/tipocita/:id      * Elimina.
@@ -295,7 +315,7 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
     ├─POST───/tipocomentarios         * Guarda. 
     ├─GET────/tipocomentario/:id      * Retorna por id.
     ├─PUT────/tipocomentario/:id      * Actualiza.
-      ├─Body─{
+    ├─Body─{
             "nombre": ""
         }  
     ├─DELETE─/tipocomentarios/:id      * Elimina.
@@ -310,7 +330,7 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
     ├─POST───/tipocriterios         * Guarda. 
     ├─GET────/tipocriterio/:id      * Retorna por id.
     ├─PUT────/tipocriterio/:id      * Actualiza.
-      ├─Body─{
+    ├─Body─{
             "nombre": ""
         }  
     ├─DELETE─/tipocriterio/:id      * Elimina.
@@ -325,7 +345,7 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
     ├─POST───/tipodietas         * Guarda. 
     ├─GET────/tipodieta/:id      * Retorna por id.
     ├─PUT────/tipodieta/:id      * Actualiza.
-      ├─Body─{
+    ├─Body─{
             "nombre": ""
         }  
     ├─DELETE─/tipodieta/:id      * Elimina.
@@ -340,7 +360,7 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
     ├─POST───/tipoincidencias         * Guarda. 
     ├─GET────/tipoincidencia/:id      * Retorna por id.
     ├─PUT────/tipoincidencia/:id      * Actualiza.
-      ├─Body─{
+    ├─Body─{
             "nombre": ""
         }  
     ├─DELETE─/tipoincidencia/:id      * Elimina.
@@ -355,7 +375,7 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
     ├─POST───/tipomotivos         * Guarda. 
     ├─GET────/tipomotivo/:id      * Retorna por id.
     ├─PUT────/tipomotivo/:id      * Actualiza.
-      ├─Body─{
+    ├─Body─{
             "nombre": ""
         }  
     ├─DELETE─/tipomotivo/:id      * Elimina.
@@ -370,7 +390,7 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
     ├─POST───/tipoordenes         * Guarda. 
     ├─GET────/tipoordene/:id      * Retorna por id.
     ├─PUT────/tipoordene/:id      * Actualiza.
-      ├─Body─{
+    ├─Body─{
             "nombre": ""
         }  
     ├─DELETE─/tipoordene/:id      * Elimina.
@@ -385,7 +405,7 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
     ├─POST───/tipoparametros         * Guarda. 
     ├─GET────/tipoparametro/:id      * Retorna por id.
     ├─PUT────/tipoparametro/:id      * Actualiza.
-      ├─Body─{
+    ├─Body─{
             "nombre": ""
         }  
     ├─DELETE─/tipoparametro/:id      * Elimina.
@@ -400,7 +420,7 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
     ├─POST───/tiporespuestas         * Guarda. 
     ├─GET────/tiporespuesta/:id      * Retorna por id.
     ├─PUT────/tiporespuesta/:id      * Actualiza.
-      ├─Body─{
+    ├─Body─{
             "nombre": ""
         }  
     ├─DELETE─/tiporespuesta/:id      * Elimina.
@@ -415,7 +435,7 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
     ├─POST───/tipounidades         * Guarda. 
     ├─GET────/tipounidad/:id       * Retorna por id.
     ├─PUT────/tipounidad/:id       * Actualiza.
-      ├─Body─{
+    ├─Body─{
             "nombre": ""
         }  
     ├─DELETE─/tipounidad/:id       * Elimina.
@@ -430,7 +450,7 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
     ├─POST───/tipovaloraciones         * Guarda. 
     ├─GET────/tipovaloracion/:id       * Retorna por id.
     ├─PUT────/tipovaloracion/:id       * Actualiza.
-      ├─Body─{
+    ├─Body─{
             "nombre": ""
         }  
     ├─DELETE─/tipovaloracion/:id       * Elimina.

@@ -94,7 +94,11 @@ function updateRed_social(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ nombre:req.body.nombre || data.get('nombre'),url_base:req.body.url_base || data.get('url_base'),url_logo:req.body.url_logo || data.get('url_logo') })
+		data.save({ 
+			nombre:req.body.nombre || data.get('nombre'),
+			url_base:req.body.url_base || data.get('url_base'),
+			url_logo:req.body.url_logo || data.get('url_logo') 
+		})
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 

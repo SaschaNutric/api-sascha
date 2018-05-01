@@ -4,8 +4,10 @@ const TipoUnidades = require('../collections/tipo_unidades');
 const TipoUnidad  = require('../models/tipo_unidad');
 
 function getTipoUnidades(req, res, next) {
-	TipoUnidades.query({})
-	.fetch({ columns: ['id_tipo_unidad', 'nombre', 'fecha_creacion', 'fecha_actualizacion', 'estatus'] })
+	TipoUnidades.query(function (qb) {
+   		qb.where('tipo_unidad.estatus', '=', 1);
+	})
+	.fetch()
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
