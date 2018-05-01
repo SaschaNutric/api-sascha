@@ -4,7 +4,9 @@ const Ejercicios 	= require('../collections/ejercicios');
 const Ejercicio  	= require('../models/ejercicio');
 
 function getEjercicios(req, res, next) {
-	Ejercicios.query({})
+	Ejercicios.query(function (qb) {
+   		qb.where('ejercicio.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_ejercicio','nombre','descripcion'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateEjercicio(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

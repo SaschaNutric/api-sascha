@@ -4,7 +4,9 @@ const App_moviles 	= require('../collections/app_moviles');
 const App_movil  	= require('../models/app_movil');
 
 function getApp_moviles(req, res, next) {
-	App_moviles.query({})
+	App_moviles.query(function (qb) {
+   		qb.where('app_movil.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_app_movil','sistema_operativo','url_descarga'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateApp_movil(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

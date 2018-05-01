@@ -4,7 +4,9 @@ const Rango_edades 	= require('../collections/rango_edades');
 const Rango_edad  	= require('../models/rango_edad');
 
 function getRango_edades(req, res, next) {
-	Rango_edades.query({})
+	Rango_edades.query(function (qb) {
+   		qb.where('rango_edad.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_rango_edad','nombre','minimo','maximo'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateRango_edad(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

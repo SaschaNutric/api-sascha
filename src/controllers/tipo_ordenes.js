@@ -4,8 +4,10 @@ const TipoOrdenes = require('../collections/tipo_ordenes');
 const TipoOrden  = require('../models/tipo_orden');
 
 function getTipoOrdenes(req, res, next) {
-	TipoOrdenes.query({})
-	.fetch({ columns: ['id_tipo_orden', 'nombre', 'fecha_creacion', 'fecha_actualizacion', 'estatus'] })
+	TipoOrdenes.query(function (qb) {
+   		qb.where('tipo_orden.estatus', '=', 1);
+	})
+	.fetch()
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -102,7 +104,7 @@ function updateTipoOrden(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

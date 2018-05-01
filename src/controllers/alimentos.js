@@ -4,7 +4,9 @@ const Alimentos 	= require('../collections/alimentos');
 const Alimento  	= require('../models/alimento');
 
 function getAlimentos(req, res, next) {
-	Alimentos.query({})
+	Alimentos.query(function (qb) {
+   		qb.where('alimento.estatus', '=', 1);
+	})
 	.fetch({ withRelated: ['grupo_alimenticio','grupo_alimenticio.unidad','grupo_alimenticio.unidad.tipo_unidad'] })
 	.then(function(data) {
 		if (!data)
@@ -104,7 +106,7 @@ function updateAlimento(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

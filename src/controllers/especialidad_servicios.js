@@ -4,7 +4,9 @@ const Especialidad_servicios 	= require('../collections/especialidad_servicios')
 const Especialidad_servicio  	= require('../models/especialidad_servicio');
 
 function getEspecialidad_servicios(req, res, next) {
-	Especialidad_servicios.query({})
+	Especialidad_servicios.query(function (qb) {
+   		qb.where('especialidad_servicio.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_especialidad_servicio','id_servicio','id_especialidad'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateEspecialidad_servicio(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

@@ -4,7 +4,9 @@ const Red_sociales 	= require('../collections/red_sociales');
 const Red_social  	= require('../models/red_social');
 
 function getRed_sociales(req, res, next) {
-	Red_sociales.query({})
+	Red_sociales.query(function (qb) {
+   		qb.where('red_social.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_red_social','nombre','url_base','url_logo'] })
 	.then(function(data) {
 		if (!data)
@@ -102,7 +104,7 @@ function updateRed_social(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

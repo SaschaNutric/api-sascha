@@ -302,7 +302,7 @@ function update$(echo $objecto)(req, res, next) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'Solicitud no encontrada' } 
+				data: data 
 			});
 		data.save($dataUpdate)
 		.then(function() {

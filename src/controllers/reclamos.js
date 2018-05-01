@@ -4,7 +4,9 @@ const Reclamos 	= require('../collections/reclamos');
 const Reclamo  	= require('../models/reclamo');
 
 function getReclamos(req, res, next) {
-	Reclamos.query({})
+	Reclamos.query(function (qb) {
+   		qb.where('reclamo.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_motivo','id_orden_servicio','id_respuesta','respuesta'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateReclamo(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

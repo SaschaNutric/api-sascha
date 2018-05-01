@@ -4,7 +4,9 @@ const Citas 	= require('../collections/citas');
 const Cita  	= require('../models/cita');
 
 function getCitas(req, res, next) {
-	Citas.query({})
+	Citas.query(function (qb) {
+   		qb.where('cita.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_cita','id_orden_servicio','id_tipo_cita','id_bloque_horario'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateCita(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

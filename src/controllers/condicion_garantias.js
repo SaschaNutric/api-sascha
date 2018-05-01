@@ -4,7 +4,9 @@ const Condicion_garantias 	= require('../collections/condicion_garantias');
 const Condicion_garantia  	= require('../models/condicion_garantia');
 
 function getCondicion_garantias(req, res, next) {
-	Condicion_garantias.query({})
+	Condicion_garantias.query(function (qb) {
+   		qb.where('condicion_garantia.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_condicion_garantia','descripcion'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateCondicion_garantia(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

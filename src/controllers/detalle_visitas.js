@@ -4,7 +4,9 @@ const Detalle_visitas 	= require('../collections/detalle_visitas');
 const Detalle_visita  	= require('../models/detalle_visita');
 
 function getDetalle_visitas(req, res, next) {
-	Detalle_visitas.query({})
+	Detalle_visitas.query(function (qb) {
+   		qb.where('detalle_visita.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_detalle_visita','id_visita','id_parametro','valor'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateDetalle_visita(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

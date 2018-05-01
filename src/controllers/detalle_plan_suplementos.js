@@ -4,7 +4,9 @@ const Detalle_plan_suplementos 	= require('../collections/detalle_plan_suplement
 const Detalle_plan_suplemento  	= require('../models/detalle_plan_suplemento');
 
 function getDetalle_plan_suplementos(req, res, next) {
-	Detalle_plan_suplementos.query({})
+	Detalle_plan_suplementos.query(function (qb) {
+   		qb.where('detalle_plan_suplemento.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_detalle_plan_suplemento','id_plan_suplemento','id_suplemento'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateDetalle_plan_suplemento(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

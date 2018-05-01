@@ -4,7 +4,9 @@ const Contenidos 	= require('../collections/contenidos');
 const Contenido  	= require('../models/contenido');
 
 function getContenidos(req, res, next) {
-	Contenidos.query({})
+	Contenidos.query(function (qb) {
+   		qb.where('contenido.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_contenido','titulo','texto','url_imagen'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateContenido(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

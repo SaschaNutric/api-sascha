@@ -4,8 +4,10 @@ const TipoRespuestas = require('../collections/tipo_respuestas');
 const TipoRespuesta  = require('../models/tipo_respuesta');
 
 function getTipoRespuestas(req, res, next) {
-	TipoRespuestas.query({})
-	.fetch({ columns: ['id_tipo_respuesta', 'nombre', 'fecha_creacion', 'fecha_actualizacion', 'estatus'] })
+	TipoRespuestas.query(function (qb) {
+   		qb.where('tipo_respuesta.estatus', '=', 1);
+	})
+	.fetch()
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -102,7 +104,7 @@ function updateTipoRespuesta(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

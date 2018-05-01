@@ -4,7 +4,9 @@ const Dia_laborables 	= require('../collections/dia_laborables');
 const Dia_laborable  	= require('../models/dia_laborable');
 
 function getDia_laborables(req, res, next) {
-	Dia_laborables.query({})
+	Dia_laborables.query(function (qb) {
+   		qb.where('dia_laborable.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_dia_laborable','dia'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateDia_laborable(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

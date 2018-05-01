@@ -4,7 +4,9 @@ const Horario_empleados 	= require('../collections/horario_empleados');
 const Horario_empleado  	= require('../models/horario_empleado');
 
 function getHorario_empleados(req, res, next) {
-	Horario_empleados.query({})
+	Horario_empleados.query(function (qb) {
+   		qb.where('horario_empleado.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_horario_empleado','id_empleado','id_bloque_horario','id_dia_laborable'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateHorario_empleado(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

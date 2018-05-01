@@ -4,7 +4,9 @@ const Parametro_promociones 	= require('../collections/parametro_promociones');
 const Parametro_promocion  	= require('../models/parametro_promocion');
 
 function getParametro_promociones(req, res, next) {
-	Parametro_promociones.query({})
+	Parametro_promociones.query(function (qb) {
+   		qb.where('parametro_promocion.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_parametro_promocion','id_parametro','id_promocion','valor_minimo','valor_maximo'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateParametro_promocion(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

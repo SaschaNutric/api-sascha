@@ -6,7 +6,9 @@ const Bookshelf     = require('../commons/bookshelf');
 const service       = require("../services");
 
 function getClientes(req, res, next) {
-	ViewClientes.query({})
+	ViewClientes.query(function (qb) {
+   		qb.where('cliente.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_cliente', 'cedula', 'nombres', 'apellidos', 
 						'telefono', 'genero', 'estado_civil', 'direccion', 
 						'fecha_nacimiento', 'tipo_cliente', 'estado', 'rango_edad'] })

@@ -4,7 +4,9 @@ const Comidas 	= require('../collections/comidas');
 const Comida  	= require('../models/comida');
 
 function getComidas(req, res, next) {
-	Comidas.query({})
+	Comidas.query(function (qb) {
+   		qb.where('comida.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_comida','nombre'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateComida(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

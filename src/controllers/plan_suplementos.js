@@ -4,7 +4,9 @@ const PlanSuplementos = require('../collections/plan_suplementos');
 const PlanSuplemento  = require('../models/plan_suplemento');
 
 function getPlanSuplementos(req, res, next) {
-	PlanSuplementos.query({})
+	PlanSuplementos.query(function (qb) {
+   		qb.where('plan_suplemento.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_plan_suplemento', 'nombre', 'descripcion','fecha_creacion', 'fecha_actualizacion', 'estatus'] })
 	.then(function(data) {
 		if (!data)
@@ -102,7 +104,7 @@ function updatePlanSuplemento(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

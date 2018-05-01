@@ -4,8 +4,10 @@ const TipoDietas = require('../collections/tipo_dietas');
 const TipoDieta  = require('../models/tipo_dieta');
 
 function getTipoDietas(req, res, next) {
-	TipoDietas.query({})
-	.fetch({ columns: ['id_tipo_dieta', 'nombre', 'fecha_creacion', 'fecha_actualizacion', 'estatus'] })
+	TipoDietas.query(function (qb) {
+   		qb.where('tipo_dieta.estatus', '=', 1);
+	})
+	.fetch()
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -102,7 +104,7 @@ function updateTipoDieta(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

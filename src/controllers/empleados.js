@@ -4,7 +4,9 @@ const Empleados 	= require('../collections/empleados');
 const Empleado  	= require('../models/empleado');
 
 function getEmpleados(req, res, next) {
-	Empleados.query({})
+	Empleados.query(function (qb) {
+   		qb.where('empleado.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_empleado','id_usuario','id_genero','cedula','nombres','apellidos','telefono','correo','direccion'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateEmpleado(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

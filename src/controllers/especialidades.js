@@ -4,7 +4,9 @@ const Especialidades 	= require('../collections/especialidades');
 const Especialidad  	= require('../models/especialidad');
 
 function getEspecialidades(req, res, next) {
-	Especialidades.query({})
+	Especialidades.query(function (qb) {
+   		qb.where('especialidad.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_especialidad','nombre'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateEspecialidad(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

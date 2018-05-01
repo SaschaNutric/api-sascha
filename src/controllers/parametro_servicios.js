@@ -4,7 +4,9 @@ const Parametro_servicios 	= require('../collections/parametro_servicios');
 const Parametro_servicio  	= require('../models/parametro_servicio');
 
 function getParametro_servicios(req, res, next) {
-	Parametro_servicios.query({})
+	Parametro_servicios.query(function (qb) {
+   		qb.where('parametro_servicio.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_parametro_servicio','id_servicio','id_parametro','valor_minimo','valor_maximo'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateParametro_servicio(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

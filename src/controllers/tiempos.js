@@ -4,8 +4,10 @@ const Tiempos 	= require('../collections/tiempos');
 const Tiempo  	= require('../models/tiempo');
 
 function getTiempos(req, res, next) {
-	Tiempos.query({})
-	.fetch({ columns: ['id_tiempo','nombre','abreviatura'] })
+	Tiempos.query(function (qb) {
+   		qb.where('tiempo.estatus', '=', 1);
+	})
+	.fetch()
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -98,7 +100,7 @@ function updateTiempo(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

@@ -4,7 +4,9 @@ const Preferencia_clientes 	= require('../collections/preferencia_clientes');
 const Preferencia_cliente  	= require('../models/preferencia_cliente');
 
 function getPreferencia_clientes(req, res, next) {
-	Preferencia_clientes.query({})
+	Preferencia_clientes.query(function (qb) {
+   		qb.where('preferencia_cliente.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_cliente','id_especialidad'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updatePreferencia_cliente(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

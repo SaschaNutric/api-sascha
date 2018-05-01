@@ -4,7 +4,9 @@ const Estado_civiles 	= require('../collections/estado_civiles');
 const Estado_civil  	= require('../models/estado_civil');
 
 function getEstado_civiles(req, res, next) {
-	Estado_civiles.query({})
+	Estado_civiles.query(function (qb) {
+   		qb.where('estado_civil.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_estado_civil','nombre'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateEstado_civil(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

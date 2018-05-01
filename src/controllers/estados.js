@@ -4,7 +4,9 @@ const Estados 	= require('../collections/estados');
 const Estado  	= require('../models/estado');
 
 function getEstados(req, res, next) {
-	Estados.query({})
+	Estados.query(function (qb) {
+   		qb.where('estado.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_estado','nombre'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateEstado(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

@@ -4,7 +4,9 @@ const Regimen_ejercicios 	= require('../collections/regimen_ejercicios');
 const Regimen_ejercicio  	= require('../models/regimen_ejercicio');
 
 function getRegimen_ejercicios(req, res, next) {
-	Regimen_ejercicios.query({})
+	Regimen_ejercicios.query(function (qb) {
+   		qb.where('regimen_ejercicio.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_plan_ejercicio','id_cliente','id_frecuencia','id_tiempo','duracion'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateRegimen_ejercicio(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

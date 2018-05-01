@@ -4,7 +4,9 @@ const Detalle_plan_ejercicios 	= require('../collections/detalle_plan_ejercicios
 const Detalle_plan_ejercicio  	= require('../models/detalle_plan_ejercicio');
 
 function getDetalle_plan_ejercicios(req, res, next) {
-	Detalle_plan_ejercicios.query({})
+	Detalle_plan_ejercicios.query(function (qb) {
+   		qb.where('detalle_plan_ejercicio.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_detalle_plan_ejercicio','id_plan_ejercicio','id_ejercicio'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateDetalle_plan_ejercicio(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

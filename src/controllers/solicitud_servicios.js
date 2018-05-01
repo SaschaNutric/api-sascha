@@ -4,8 +4,10 @@ const Solicitud_servicios 	= require('../collections/solicitud_servicios');
 const Solicitud_servicio  	= require('../models/solicitud_servicio');
 
 function getSolicitud_servicios(req, res, next) {
-	Solicitud_servicios.query({})
-	.fetch({ columns: ['id_cliente','id_motivo','id_respuesta','id_servicio','respuesta','id_promocion'] })
+	Solicitud_servicios.query(function (qb) {
+   		qb.where('solicitud_servicio.estatus', '=', 1);
+	})
+	.fetch()
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -98,7 +100,7 @@ function updateSolicitud_servicio(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

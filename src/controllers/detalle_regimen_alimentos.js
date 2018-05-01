@@ -4,7 +4,9 @@ const Detalle_regimen_alimentos 	= require('../collections/detalle_regimen_alime
 const Detalle_regimen_alimento  	= require('../models/detalle_regimen_alimento');
 
 function getDetalle_regimen_alimentos(req, res, next) {
-	Detalle_regimen_alimentos.query({})
+	Detalle_regimen_alimentos.query(function (qb) {
+   		qb.where('detalle_regimen_alimento.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_detalle_regimen_alimento','id_regimen_dieta','id_alimento'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateDetalle_regimen_alimento(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

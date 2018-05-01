@@ -4,7 +4,9 @@ const Bloque_horarios 	= require('../collections/bloque_horarios');
 const Bloque_horario  	= require('../models/bloque_horario');
 
 function getBloque_horarios(req, res, next) {
-	Bloque_horarios.query({})
+	Bloque_horarios.query(function (qb) {
+   		qb.where('bloque_horario.estatus', '=', 1);
+	})
 	.fetch({ columns: ['hora_inicio','hora_fin'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateBloque_horario(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

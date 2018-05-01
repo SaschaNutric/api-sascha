@@ -4,7 +4,9 @@ const Agendas 	= require('../collections/agendas');
 const Agenda  	= require('../models/agenda');
 
 function getAgendas(req, res, next) {
-	Agendas.query({})
+	Agendas.query(function (qb) {
+   		qb.where('agenda.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_empleado','id_cliente','id_orden_servicio','id_visita','id_incidencia','id_cita'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateAgenda(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

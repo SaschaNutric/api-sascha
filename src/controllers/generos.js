@@ -4,7 +4,9 @@ const Generos 	= require('../collections/generos');
 const Genero  	= require('../models/genero');
 
 function getGeneros(req, res, next) {
-	Generos.query({})
+	Generos.query(function (qb) {
+   		qb.where('genero.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_genero','nombre'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateGenero(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

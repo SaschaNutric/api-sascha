@@ -4,7 +4,9 @@ const Orden_servicios 	= require('../collections/orden_servicios');
 const Orden_servicio  	= require('../models/orden_servicio');
 
 function getOrden_servicios(req, res, next) {
-	Orden_servicios.query({})
+	Orden_servicios.query(function (qb) {
+   		qb.where('orden_servicio.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_orden_servicio','id_solicitud_servicio','id_tipo_orden','id_meta','fecha_emision','fecha_caducidad','id_reclamo'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateOrden_servicio(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

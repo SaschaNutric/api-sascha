@@ -4,7 +4,9 @@ const Slides 	= require('../collections/slides');
 const Slide  	= require('../models/slide');
 
 function getSlides(req, res, next) {
-	Slides.query({})
+	Slides.query(function (qb) {
+   		qb.where('slide.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_slide','titulo','descripcion','orden','url_imagen'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateSlide(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

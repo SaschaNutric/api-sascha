@@ -4,7 +4,9 @@ const PlanEjercicios = require('../collections/plan_ejercicios');
 const PlanEjercicio  = require('../models/plan_ejercicio');
 
 function getPlanEjercicios(req, res, next) {
-	PlanEjercicios.query({})
+	PlanEjercicios.query(function (qb) {
+   		qb.where('plan_ejercicio.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_plan_ejercicio', 'nombre', 'descripcion', 'fecha_creacion', 'fecha_actualizacion', 'estatus'] })
 	.then(function(data) {
 		if (!data)
@@ -104,7 +106,7 @@ function updatePlanEjercicio(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

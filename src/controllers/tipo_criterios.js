@@ -4,8 +4,10 @@ const TipoCriterios = require('../collections/tipo_criterios');
 const TipoCriterio  = require('../models/tipo_criterio');
 
 function getTipoCriterios(req, res, next) {
-	TipoCriterios.query({})
-	.fetch({ columns: ['id_tipo_criterio', 'nombre', 'fecha_creacion', 'fecha_actualizacion', 'estatus'] })
+	TipoCriterios.query(function (qb) {
+   		qb.where('tipo_criterio.estatus', '=', 1);
+	})
+	.fetch()
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -102,7 +104,7 @@ function updateTipoCriterio(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

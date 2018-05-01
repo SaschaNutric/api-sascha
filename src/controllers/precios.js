@@ -4,7 +4,9 @@ const Precios 	= require('../collections/precios');
 const Precio  	= require('../models/precio');
 
 function getPrecios(req, res, next) {
-	Precios.query({})
+	Precios.query(function (qb) {
+   		qb.where('precio.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_precio','id_unidad','nombre','valor'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updatePrecio(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

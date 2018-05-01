@@ -4,8 +4,10 @@ const TipoCitas = require('../collections/tipo_citas');
 const TipoCita  = require('../models/tipo_cita');
 
 function getTipoCitas(req, res, next) {
-	TipoCitas.query({})
-	.fetch({ columns: ['id_tipo_cita', 'nombre', 'fecha_creacion', 'fecha_actualizacion', 'estatus'] })
+	TipoCitas.query(function (qb) {
+   		qb.where('tipo_cita.estatus', '=', 1);
+	})
+	.fetch()
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -102,7 +104,7 @@ function updateTipoCita(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

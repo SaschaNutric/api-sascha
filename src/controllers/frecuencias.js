@@ -4,7 +4,9 @@ const Frecuencias 	= require('../collections/frecuencias');
 const Frecuencia  	= require('../models/frecuencia');
 
 function getFrecuencias(req, res, next) {
-	Frecuencias.query({})
+	Frecuencias.query(function (qb) {
+   		qb.where('frecuencia.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_frecuencia','id_tiempo','repeticiones'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateFrecuencia(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

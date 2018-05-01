@@ -4,7 +4,9 @@ const Incidencias 	= require('../collections/incidencias');
 const Incidencia  	= require('../models/incidencia');
 
 function getIncidencias(req, res, next) {
-	Incidencias.query({})
+	Incidencias.query(function (qb) {
+   		qb.where('incidencia.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_incidencia','id_tipo_incidencia','id_motivo','descripcion','id_agenda'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateIncidencia(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

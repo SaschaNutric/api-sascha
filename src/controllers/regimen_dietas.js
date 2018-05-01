@@ -4,7 +4,9 @@ const Regimen_dietas 	= require('../collections/regimen_dietas');
 const Regimen_dieta  	= require('../models/regimen_dieta');
 
 function getRegimen_dietas(req, res, next) {
-	Regimen_dietas.query({})
+	Regimen_dietas.query(function (qb) {
+   		qb.where('regimen_dieta.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_regimen_dieta','id_detalle_plan_dieta','id_cliente','cantidad'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateRegimen_dieta(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

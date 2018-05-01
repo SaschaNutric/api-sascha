@@ -4,7 +4,9 @@ const Calificaciones 	= require('../collections/calificaciones');
 const Calificacion  	= require('../models/calificacion');
 
 function getCalificaciones(req, res, next) {
-	Calificaciones.query({})
+	Calificaciones.query(function (qb) {
+   		qb.where('calificacion.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_calificacion','id_criterio','id_valoracion','id_visita','id_orden_servicio'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateCalificacion(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

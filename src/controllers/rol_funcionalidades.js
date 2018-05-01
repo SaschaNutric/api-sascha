@@ -4,7 +4,9 @@ const Rol_funcionalidades 	= require('../collections/rol_funcionalidades');
 const Rol_funcionalidad  	= require('../models/rol_funcionalidad');
 
 function getRol_funcionalidades(req, res, next) {
-	Rol_funcionalidades.query({})
+	Rol_funcionalidades.query(function (qb) {
+   		qb.where('rol_funcionalidad.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_funcionalidad','id_rol'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateRol_funcionalidad(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

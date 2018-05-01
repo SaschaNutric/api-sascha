@@ -4,7 +4,9 @@ const Grupo_alimenticios 	= require('../collections/grupo_alimenticios');
 const Grupo_alimenticio  	= require('../models/grupo_alimenticio');
 
 function getGrupo_alimenticios(req, res, next) {
-	Grupo_alimenticios.query({})
+	Grupo_alimenticios.query(function (qb) {
+   		qb.where('grupo_alimenticio.estatus', '=', 1);
+	})
 	.fetch({ withRelated: ['unidad','unidad.tipo_unidad'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateGrupo_alimenticio(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

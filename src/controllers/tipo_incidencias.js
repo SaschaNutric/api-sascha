@@ -4,8 +4,10 @@ const TipoIncidencias = require('../collections/tipo_incidencias');
 const TipoIncidencia  = require('../models/tipo_incidencia');
 
 function getTipoIncidencias(req, res, next) {
-	TipoIncidencias.query({})
-	.fetch({ columns: ['id_tipo_incidencia', 'nombre', 'fecha_creacion', 'fecha_actualizacion', 'estatus'] })
+	TipoIncidencias.query(function (qb) {
+   		qb.where('tipo_incidencia.estatus', '=', 1);
+	})
+	.fetch()
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -102,7 +104,7 @@ function updateTipoIncidencia(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

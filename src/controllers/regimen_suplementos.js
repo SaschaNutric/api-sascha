@@ -4,7 +4,9 @@ const Regimen_suplementos 	= require('../collections/regimen_suplementos');
 const Regimen_suplemento  	= require('../models/regimen_suplemento');
 
 function getRegimen_suplementos(req, res, next) {
-	Regimen_suplementos.query({})
+	Regimen_suplementos.query(function (qb) {
+   		qb.where('regimen_suplemento.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_plan_suplemento','id_cliente','id_frecuencia','cantidad'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateRegimen_suplemento(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

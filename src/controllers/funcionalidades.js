@@ -4,7 +4,9 @@ const Funcionalidades 	= require('../collections/funcionalidades');
 const Funcionalidad  	= require('../models/funcionalidad');
 
 function getFuncionalidades(req, res, next) {
-	Funcionalidades.query({})
+	Funcionalidades.query(function (qb) {
+   		qb.where('funcionalidad.estatus', '=', 1);
+	})
 	.fetch({ columns: ['id_funcionalidad','id_funcionalidad_padre','nombre','icono','orden','nivel','estatus','url_vista'] })
 	.then(function(data) {
 		if (!data)
@@ -98,7 +100,7 @@ function updateFuncionalidad(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {
