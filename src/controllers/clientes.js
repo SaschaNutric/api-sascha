@@ -64,8 +64,58 @@ function getClienteById(req, res, next) {
 	});
 }
 
+function updateCliente(req, res, next) {
+	const id = Number.parseInt(req.params.id);
+	if (!id || id == 'NaN') {
+		return res.status(400).json({ 
+			error: true, 
+			data: { mensaje: 'Solicitud incorrecta' } 
+		});
+	}
+
+	Comentario.forge({ id_cliente: id, estatus: 1 })
+	.fetch()
+	.then(function(data){
+		if(!data) 
+			return res.status(404).json({ 
+				error: true, 
+				data: { mensaje: 'Solicitud no encontrada' } 
+			});
+		data.save({ 
+			nombre : req.body.nombre || data.get('nombre'),
+            apellidos : req.body.apellidos || data.get('apellidos'),
+            cedula : req.body.cedula || data.get('cedula'),
+            fechaNacimiento : req.body.fechaNacimiento || data.get('fechaNacimiento'),
+            estadoCivil : req.body.estadoCivil || data.get('estadoCivil'),
+            genero : req.body.genero || data.get('genero'),
+            telefono : req.body.telefono || data.get('telefono'),
+            estado : req.body.estado || data.get('estado'),
+            direccion: req.body.direccion || data.get('direccion')
+		})
+		.then(function() {
+			return res.status(200).json({ 
+				error: false, 
+				data: data
+			});
+		})
+		.catch(function(err) {
+			return res.status(500).json({ 
+				error : true, 
+				data : { mensaje : err.message } 
+			});
+		})
+	})
+	.catch(function(err) {
+		return res.status(500).json({ 
+			error : true, 
+			data : { mensaje : err.message } 
+		});
+	})
+}
+
 
 module.exports = {
 	getClientes,
-	getClienteById
+	getClienteById,
+	updateCliente
 }
