@@ -254,7 +254,7 @@ function singIn(req, res) {
 		if(esContrasenia) {
 			ViewCliente.forge({ id_usuario: usuario.get('id_usuario') })
 			.fetch({ columns: ['id_cliente', 'cedula', 'nombres', 'apellidos', 
-								'telefono', 'genero', 'estado_civil', 'direccion', 
+								'telefono', 'id_genero', 'genero', 'id_estado_civil','estado_civil', 'direccion', 
 								'fecha_nacimiento', 'tipo_cliente', 'rango_edad'] })
 			.then(function(cliente) {
 				if(!cliente) 
