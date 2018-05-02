@@ -1,6 +1,5 @@
 'use strict';
 
-const Estados       = require('../collections/estados');
 const EstadosCivil  = require('../collections/estado_civil');
 const Generos       = require('../collections/generos');
 const Bookshelf     = require('../commons/bookshelf');

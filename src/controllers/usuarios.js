@@ -87,7 +87,6 @@ function saveUsuario(req, res, next) {
 				id_usuario:       usuario.get('id_usuario'),
 				id_genero:        req.body.id_genero,
 				id_estado_civil:  req.body.id_estado_civil,
-				id_estado:        req.body.id_estado,
 				nombres:          req.body.nombres,
 				apellidos:        req.body.apellidos,
 				cedula:           req.body.cedula,

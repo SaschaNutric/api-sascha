@@ -3,7 +3,6 @@
 const Bookshelf 	= require('../commons/bookshelf');
 const Servicio  	= require('./servicio');
 const Genero  		= require('./genero');
-const Estado  		= require('./estado');
 const EstadoCivil  	= require('./estado_civil');
 const RangoEdad  	= require('./rango_edad');
 
@@ -18,9 +17,6 @@ let Promocion = Bookshelf.Model.extend({
   },
   estado_civil: function() {
     return this.belongsTo(EstadoCivil, 'id_estado_civil');
-  },
-  estado: function() {
-    return this.belongsTo(Estado, 'id_estado');
   },
   rango_edad: function() {
     return this.belongsTo(RangoEdad, 'id_rango_edad');

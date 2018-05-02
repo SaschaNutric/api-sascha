@@ -23,7 +23,6 @@ const empleadosCtrl               = require('../controllers/empleados');
 const especialidadesCtrl          = require('../controllers/especialidades');
 const especialidadeEmpleadosCtrl  = require('../controllers/especialidad_empleados');
 const especialidadeServiciosCtrl  = require('../controllers/especialidad_servicios');
-const estadosCtrl                 = require('../controllers/estados');
 const estadoCivilesCtrl           = require('../controllers/estado_civiles');
 const frecuenciasCtrl             = require('../controllers/frecuencias');
 const funcionalidadesCtrl         = require('../controllers/funcionalidades');
@@ -230,13 +229,7 @@ module.exports = (function () {
   api.get('/especialidadeservicio/:id',      especialidadeServiciosCtrl.getEspecialidad_servicioById);  
   api.put('/especialidadeservicio/:id',      especialidadeServiciosCtrl.updateEspecialidad_servicio);
   api.delete('/especialidadeservicio/:id',   especialidadeServiciosCtrl.deleteEspecialidad_servicio);   
-
-  api.get('/estados',                        estadosCtrl.getEstados);
-  api.post('/estados',                       estadosCtrl.saveEstado);
-  api.get('/estado/:id',                     estadosCtrl.getEstadoById);  
-  api.put('/estado/:id',                     estadosCtrl.updateEstado);
-  api.delete('/estado/:id',                  estadosCtrl.deleteEstado);   
-
+  
   api.get('/estadociviles',                  estadoCivilesCtrl.getEstado_civiles);
   api.post('/estadociviles',                 estadoCivilesCtrl.saveEstado_civil);
   api.get('/estadocivil/:id',                estadoCivilesCtrl.getEstado_civilById);  

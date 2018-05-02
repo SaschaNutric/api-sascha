@@ -12,7 +12,6 @@ function getPromociones(req, res, next) {
 			'servicio',
 			'genero',
 			'estado_civil',
-			'estado',
 			'rango_edad'
 		]})
 	.then(function(data) {
@@ -44,8 +43,7 @@ function savePromocion(req, res, next){
 		descripcion: req.body.descripcion,
 		id_genero: req.body.id_genero,
 		id_estado_civil: req.body.id_estado_civil,
-		id_rango_edad: req.body.id_rango_edad,
-		id_estado: req.body.id_estado
+		id_rango_edad: req.body.id_rango_edad
 	})
 	.save()
 	.then(function(servicio){
@@ -79,7 +77,6 @@ function getPromocionById(req, res, next) {
 			'servicio',
 			'genero',
 			'estado_civil',
-			'estado',
 			'rango_edad'
 		]})
 	.then(function(data) {
@@ -124,8 +121,7 @@ function updatePromocion(req, res, next) {
 			descripcion: req.body.descripcion || data.get('descripcion'),
 			id_genero: req.body.id_genero || data.get('id_genero'),
 			id_estado_civil: req.body.id_estado_civil || data.get('id_estado_civil'),
-			id_rango_edad: req.body.id_rango_edad || data.get('id_rango_edad'),
-			id_estado: req.body.id_estado || data.get('id_estado')
+			id_rango_edad: req.body.id_rango_edad || data.get('id_rango_edad')
 		})
 		.then(function() {
 			return res.status(200).json({ 

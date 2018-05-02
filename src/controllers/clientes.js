@@ -11,7 +11,7 @@ function getClientes(req, res, next) {
 	})
 	.fetch({ columns: ['id_cliente', 'cedula', 'nombres', 'apellidos', 
 						'telefono', 'genero', 'estado_civil', 'direccion', 
-						'fecha_nacimiento', 'tipo_cliente', 'estado', 'rango_edad'] })
+						'fecha_nacimiento', 'tipo_cliente', 'rango_edad'] })
 	.then(function(clientes) {
 		if (clientes.length == 0)
 			return res.status(404).json({ 
@@ -44,7 +44,7 @@ function getClienteById(req, res, next) {
 	ViewCliente.forge({ id_cliente: id })
 	.fetch({ columns: ['id_cliente', 'cedula', 'nombres', 'apellidos', 
 						'telefono', 'genero', 'estado_civil', 'direccion', 
-						'fecha_nacimiento', 'tipo_cliente', 'estado', 'rango_edad'] })
+						'fecha_nacimiento', 'tipo_cliente', 'rango_edad'] })
 	.then(function(cliente) {
 		if(!cliente) 
 			return res.status(404).json({ 
@@ -85,11 +85,10 @@ function updateCliente(req, res, next) {
 			nombre : req.body.nombre || data.get('nombre'),
             apellidos : req.body.apellidos || data.get('apellidos'),
             cedula : req.body.cedula || data.get('cedula'),
-            fechaNacimiento : req.body.fechaNacimiento || data.get('fechaNacimiento'),
-            estadoCivil : req.body.estadoCivil || data.get('estadoCivil'),
-            genero : req.body.genero || data.get('genero'),
+            fecha_nacimiento : req.body.fecha_nacimiento || data.get('fecha_nacimiento'),
+            id_estado_civil : req.body.estadoCivil || data.get('id_estado_civil'),
+            id_genero : req.body.genero || data.get('id_genero'),
             telefono : req.body.telefono || data.get('telefono'),
-            estado : req.body.estado || data.get('estado'),
             direccion: req.body.direccion || data.get('direccion')
 		})
 		.then(function() {
