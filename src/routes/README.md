@@ -590,6 +590,18 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 
 # planejercicios
 
+```
+    ├─GET────/planejercicios         * Retorna todos.
+    ├─POST───/planejercicios         * Guarda. 
+    ├─GET────/planejercicio/:id      * Retorna por id.
+    ├─PUT────/planejercicio/:id      * Actualiza.
+    ├─DELETE─/planejercicio/:id       * Elimina.
+    ├─Body─{
+        "nombre": "", 
+        "descripcion": ""
+    }
+```
+
 [[ver json]](https://api-sascha.herokuapp.com/planejercicios)
 
 # plansuplementos
