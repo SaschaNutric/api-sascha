@@ -41,7 +41,7 @@ function saveUnidad(req, res, next){
         simbolo: req.body.simbolo,
 	})
 	.save()
-	.then(function(servicio){
+	.then(function(data){
 		res.status(200).json({
 			error: false,
 			data: data
@@ -64,7 +64,6 @@ function getUnidadById(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 
-//.forge({ id_unidad: id, estatus: 1 })
 	Unidad.query(function (q) {
         	q
          	.innerJoin('tipo_unidad', function () {
