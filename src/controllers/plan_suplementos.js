@@ -37,9 +37,7 @@ function savePlanSuplemento(req, res, next){
 	.then(function(servicio){
 		res.status(200).json({
 			error: false,
-			data: [{
-				msg: "Registro Creado"
-			}]
+			data: data
 		});
 	})
 	.catch(function (err) {

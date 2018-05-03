@@ -127,6 +127,7 @@ module.exports = (function () {
 
   api.get('/clientes',                       clientesCtrl.getClientes);
   api.get('/cliente/:id',                    clientesCtrl.getClienteById);
+  api.put('/cliente/:id',                    clientesCtrl.updateCliente);
 
   api.get('/comentarios',                    comentariosCtrl.getComentarios);
   api.post('/comentarios',                   comentariosCtrl.saveComentario);
@@ -283,6 +284,7 @@ module.exports = (function () {
   api.get('/motivo/:id',                     motivosCtrl.getMotivoById);  
   api.put('/motivo/:id',                     motivosCtrl.updateMotivo);
   api.delete('/motivo/:id',                  motivosCtrl.deleteMotivo);  
+  api.get('/motivo_tipo/:id',                motivosCtrl.getMotivo_tipo);
 
   api.get('/negocios',                       negociosCtrl.getNegocios);
   api.post('/negocios',                      negociosCtrl.saveNegocio);

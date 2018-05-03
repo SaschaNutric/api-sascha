@@ -2,8 +2,8 @@
 
 const ViewClientes  = require('../collections/v_clientes');
 const ViewCliente   = require('../models/v_cliente');
+const Cliente   	= require('../models/cliente');
 const Bookshelf     = require('../commons/bookshelf');
-const service       = require("../services");
 
 function getClientes(req, res, next) {
 	ViewClientes.query(function (qb) {
@@ -65,7 +65,8 @@ function getClienteById(req, res, next) {
 }
 
 function updateCliente(req, res, next) {
-	const id = Number.parseInt(req.params.id);
+
+const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') {
 		return res.status(400).json({ 
 			error: true, 
@@ -73,7 +74,7 @@ function updateCliente(req, res, next) {
 		});
 	}
 
-	Comentario.forge({ id_cliente: id, estatus: 1 })
+	Cliente.forge({ id_cliente: id, estatus: 1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 
@@ -82,7 +83,7 @@ function updateCliente(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ 
-			nombre : req.body.nombre || data.get('nombre'),
+			nombres : req.body.nombres || data.get('nombres'),
             apellidos : req.body.apellidos || data.get('apellidos'),
             cedula : req.body.cedula || data.get('cedula'),
             fecha_nacimiento : req.body.fecha_nacimiento || data.get('fecha_nacimiento'),

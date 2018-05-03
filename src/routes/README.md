@@ -536,6 +536,19 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 
 # motivos
 
+```
+    ├─GET────/motivos          * Retorna todos.
+    ├─POST───/motivos          * Guarda. 
+    ├─GET────/motivos_tipo/:id * Retorna todos los motivos por tipo_motivo.
+    ├─GET────/motivo/:id       * Retorna por id.
+    ├─PUT────/motivo/:id       * Actualiza.
+    ├─DELETE─/motivo/:id       * Eliminacion logica por id.
+    ├─Body─{ 
+        "id_tipo_motivo": 1, 
+        "descripcion": "" 
+    }
+```
+
 [[ver json]](https://api-sascha.herokuapp.com/motivos)
 
 # ordenServicios
