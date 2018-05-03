@@ -40,9 +40,7 @@ function saveCriterio(req, res, next){
 	.then(function(data){
 		res.status(200).json({
 			error: false,
-			data: [{
-				msg: "Registro Creado"
-			}]
+			data: data
 		});
 	})
 	.catch(function (err) {

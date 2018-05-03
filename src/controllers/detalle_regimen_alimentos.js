@@ -36,9 +36,7 @@ function saveDetalle_regimen_alimento(req, res, next){
 	.then(function(data){
 		res.status(200).json({
 			error: false,
-			data: [{
-				msg: "Registro Creado"
-			}]
+			data: data
 		});
 	})
 	.catch(function (err) {
