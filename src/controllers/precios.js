@@ -31,7 +31,11 @@ function getPrecios(req, res, next) {
 function savePrecio(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	Precio.forge({ id_unidad:req.body.id_unidad ,nombre:req.body.nombre ,valor:req.body.valor  })
+	Precio.forge({ 
+		id_unidad:req.body.id_unidad ,
+		nombre:req.body.nombre ,
+		valor:req.body.valor  
+	})
 	.save()
 	.then(function(data){
 		res.status(200).json({

@@ -610,6 +610,19 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 
 # precios
 
+```
+    ├─GET────/precios        * Retorna todos.
+    ├─POST───/precios        * Guarda. 
+    ├─GET────/precio/:id      * Retorna por id.
+    ├─PUT────/precio/:id      * Actualiza.
+    ├─DELETE─/precio/:id      * Elimina.
+    ├─Body─{
+        "id_unidad": 0,
+        "nombre":"Dos millones quinientos",
+        "valor": 2500000 
+    }
+```
+
 [[ver json]](https://api-sascha.herokuapp.com/precios)
 
 # preferenciaClientes
@@ -653,6 +666,19 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 [[ver json]](https://api-sascha.herokuapp.com/solicitudes)
 
 # suplementos
+
+```
+    ├─GET────/suplementos         * Retorna todos.
+    ├─POST───/suplementos         * Guarda. 
+    ├─GET────/suplemento/:id      * Retorna por id.
+    ├─PUT────/suplemento/:id      * Actualiza.
+    ├─DELETE─/suplemento/:id       * Elimina.
+    ├─Body─{
+        "nombre": "",
+        "descripcion": "",
+        "id_unidad":19
+    }
+```
 
 [[ver json]](https://api-sascha.herokuapp.com/suplementos)
 
@@ -836,6 +862,12 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
     ├─GET────/unidad/:id      * Retorna por id.
     ├─PUT────/unidad/:id      * Actualiza.
     ├─DELETE─/unidad/:id      * Elimina.
+    ├─Body─{
+        "id_tipo_unidad":0,
+        "nombre": "",
+        "abreviatura":"",
+        "simbolo": ""
+    }
 ```
 [[ver json]](https://api-sascha.herokuapp.com/unidades)
 
