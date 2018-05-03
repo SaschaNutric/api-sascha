@@ -2587,7 +2587,7 @@ VALUES (1, 'Desayuno'),
 (6, 'Merienda de la noche');
 
 
-SELECT pg_catalog.setval('id_comida_seq', 5, true);
+SELECT pg_catalog.setval('id_comida_seq', 6, true);
 
 
 --

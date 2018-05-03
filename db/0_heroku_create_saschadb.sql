@@ -2587,7 +2587,7 @@ VALUES (1, 'Desayuno'),
 (6, 'Merienda de la noche');
 
 
-SELECT pg_catalog.setval('id_comida_seq', 5, true);
+SELECT pg_catalog.setval('id_comida_seq', 6, true);
 
 
 --
@@ -2676,9 +2676,9 @@ SELECT pg_catalog.setval('id_rango_edad_seq', 5, true);
 
 
 INSERT INTO tipo_unidad (id_tipo_unidad, nombre)
-VALUES (1, 'Masa'),
-(2, 'Moneda'),
-(3,	'Tiempo');
+VALUES ('Masa'),
+('Moneda'),
+('Tiempo');
 
 
 SELECT pg_catalog.setval('id_tipo_unidad_seq', 3, true);
