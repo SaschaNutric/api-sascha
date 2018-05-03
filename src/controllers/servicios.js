@@ -112,12 +112,12 @@ function saveServicio(req, res, next){
         numero_visitas: req.body.numero_visitas
 	})
 	.save()
-	.then(function(servicio){
+	.then(function(data){
 		res.status(200).json({
 			error: false,
 			data: {
 				mensaje: "Servicio Creado satisfactoriamente",
-				servicio: servicio,
+				data: data,
 			}
 		});
 	})
