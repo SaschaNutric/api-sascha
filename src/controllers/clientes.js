@@ -87,7 +87,7 @@ const id = Number.parseInt(req.params.id);
             apellidos : req.body.apellidos || data.get('apellidos'),
             cedula : req.body.cedula || data.get('cedula'),
             fecha_nacimiento : req.body.fecha_nacimiento || data.get('fecha_nacimiento'),
-            id_estado_civil : req.body.estadoCivil || data.get('id_estado_civil'),
+            id_estado_civil : req.body.id_estado_civil || data.get('id_estado_civil'),
             id_genero : req.body.genero || data.get('id_genero'),
             telefono : req.body.telefono || data.get('telefono'),
             direccion: req.body.direccion || data.get('direccion')
