@@ -34,7 +34,7 @@ function savePlanEjercicio(req, res, next){
         descripcion: req.body.descripcion
 	})
 	.save()
-	.then(function(servicio){
+	.then(function(data){
 		res.status(200).json({
 			error: false,
 			data: data
