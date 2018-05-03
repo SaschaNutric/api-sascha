@@ -145,7 +145,7 @@ module.exports = (function () {
   api.post('/condiciongarantias',            condicionGarantiasCtrl.saveCondicion_garantia);
   api.get('/condiciongarantia/:id',          condicionGarantiasCtrl.getCondicion_garantiaById);  
   api.put('/condiciongarantia/:id',          condicionGarantiasCtrl.updateCondicion_garantia);
-  api.delete('/condicion/garantia/:id',      condicionGarantiasCtrl.deleteCondicion_garantia);  
+  api.delete('/condiciongarantia/:id',      condicionGarantiasCtrl.deleteCondicion_garantia);  
 
   api.get('/contenidos',                     contenidosCtrl.getContenidos);
   api.post('/contenidos',                    contenidosCtrl.saveContenido);
