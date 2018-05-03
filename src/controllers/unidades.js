@@ -8,7 +8,7 @@ function getUnidades(req, res, next) {
         q
          .innerJoin('tipo_unidad', function () {
                 this.on('unidad.id_tipo_unidad', '=', 'tipo_unidad.id_tipo_unidad');
-            });
+            }).andOn('status', '=', 1);
 	})
 	.fetch({ withRelated: ['tipo_unidad'] })
 	.then(function(data) {

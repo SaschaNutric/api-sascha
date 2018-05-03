@@ -35,7 +35,7 @@ function saveTipoUnidad(req, res, next){
         nombre: req.body.nombre
 	})
 	.save()
-	.then(function(servicio){
+	.then(function(data){
 		res.status(200).json({
 			error: false,
 			data: data
