@@ -573,6 +573,19 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 
 # plandietas
 
+```
+    ├─GET────/plandietas         * Retorna todos.
+    ├─POST───/plandietas         * Guarda. 
+    ├─GET────/plandieta/:id      * Retorna por id.
+    ├─PUT────/plandieta/:id      * Actualiza.
+    ├─DELETE─/plandieta/:id       * Elimina.
+    ├─Body─{
+        "id_tipo_dieta": 2,
+        "nombre": "", 
+        "descripcion": ""
+    }
+```
+
 [[ver json]](https://api-sascha.herokuapp.com/plandietas)
 
 # planejercicios
