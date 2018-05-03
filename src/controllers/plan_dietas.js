@@ -41,9 +41,7 @@ function savePlanDieta(req, res, next){
 	.then(function(data){
 		res.status(200).json({
 			error: false,
-			data: [{
-				msg: "Servicio Creado"
-			}]
+			data: data
 		});
 	})
 	.catch(function (err) {
