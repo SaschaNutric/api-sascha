@@ -44,10 +44,12 @@ async function getServicios(req, res, next) {
 			'plan_dieta',
 			'plan_ejercicio',
 			'plan_suplemento',
+			'especialidad',
 			'precio',
 			'precio.unidad',
-			'precio.unidad.tipo_unidad'	
-		] })
+			'precio.unidad.tipo_unidad'
+		]
+	})
 	.then(function(data) {
 		//console.log(servicios.at(0).related('plan_dieta'));
 		if (!data)
@@ -85,8 +87,8 @@ function getServicioById(req, res, next) {
 				data: { mensaje: 'Servicio no encontrado' } 
 			});
 		return res.status(200).json({ 
-			error : false, 
-			data : data
+			error: false, 
+			data: data
 		});
 	})
 	.catch(function(err){
@@ -101,7 +103,8 @@ function saveServicio(req, res, next){
 	Servicio.forge({
 		id_plan_dieta: req.body.id_plan_dieta,
 		id_plan_ejercicio: req.body.id_plan_ejercicio, 
-		id_plan_suplemento: req.body.id_plan_suplemento, 
+		id_plan_suplemento: req.body.id_plan_suplemento,
+		id_especialidad: req.body.id_especialidad || null,
         nombre: req.body.nombre, 
         descripcion: req.body.descripcion, 
         url_imagen: req.body.url_imagen, 
@@ -109,12 +112,13 @@ function saveServicio(req, res, next){
         numero_visitas: req.body.numero_visitas
 	})
 	.save()
-	.then(function(data){
+	.then(function(servicio){
 		res.status(200).json({
 			error: false,
-			data: [{
-				msg: "Servicio Creado"
-			}]
+			data: {
+				mensaje: "Servicio Creado satisfactoriamente",
+				servicio: servicio,
+			}
 		});
 	})
 	.catch(function (err) {
@@ -149,10 +153,13 @@ function updateServicio(req, res, next) {
         	precio: req.body.precio || data.get('precio'), 
         	numero_visita: req.body.numero_visita || data.get('numero_visita')
 		})
-		.then(function() {
+		.then(function(servicio) {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: { 
+					mensaje: 'Registro de servicio actualizado',
+					servicio: servicio
+				}
 			});
 		})
 		.catch(function(err) {
@@ -184,14 +191,14 @@ function deleteServicio(req, res, next) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'Solicitud no encontrad0' } 
+				data: { mensaje: 'Servicio no encontrada' } 
 			});
 
 		data.save({ estatus:  0 })
 		.then(function() {
 			return res.status(200).json({ 
 				error: false,
-				data: { mensaje: 'Registro eliminado' } 
+				data: { mensaje: 'Registro de servicio eliminado' } 
 			});
 		})
 		.catch(function(err) {

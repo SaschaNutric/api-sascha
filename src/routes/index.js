@@ -460,7 +460,7 @@ module.exports = (function () {
   api.put('/tipocriterio/:id',               tipo_criteriosCtrl.updateTipoCriterio);
   api.delete('/tipocriterio/:id',            tipo_criteriosCtrl.deleteTipoCriterio);
 
-  api.get('/tipo/dietas',                    tipo_dietasCtrl.getTipoDietas);
+  api.get('/tipodietas',                     tipo_dietasCtrl.getTipoDietas);
   api.post('/tipodietas',                    tipo_dietasCtrl.saveTipoDieta);
   api.get('/tipodieta/:id',                  tipo_dietasCtrl.getTipoDietaById);  
   api.put('/tipodieta/:id',                  tipo_dietasCtrl.updateTipoDieta);

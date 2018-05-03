@@ -1,5 +1,5 @@
---
--- PostgreSQL database dump
+﻿--
+-- byqkxhkjgnspcoQL database dump
 --
 
 -- Dumped from database version 9.5.11
@@ -11,7 +11,6 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
-SET row_security = off;
 
 --
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
@@ -552,7 +551,7 @@ CREATE TABLE detalle_plan_suplemento (
 ALTER TABLE detalle_plan_suplemento OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_detalle_regimen_alimento_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_detalle_regimen_alimento_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_detalle_regimen_alimento_seq
@@ -563,7 +562,7 @@ CREATE SEQUENCE id_detalle_regimen_alimento_seq
     CACHE 1;
 
 
-ALTER TABLE id_detalle_regimen_alimento_seq OWNER TO postgres;
+ALTER TABLE id_detalle_regimen_alimento_seq OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: detalle_regimen_alimento; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
@@ -582,7 +581,7 @@ CREATE TABLE detalle_regimen_alimento (
 ALTER TABLE detalle_regimen_alimento OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_detalle_visita_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_detalle_visita_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_detalle_visita_seq
@@ -593,7 +592,7 @@ CREATE SEQUENCE id_detalle_visita_seq
     CACHE 1;
 
 
-ALTER TABLE id_detalle_visita_seq OWNER TO postgres;
+ALTER TABLE id_detalle_visita_seq OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: detalle_visita; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
@@ -737,7 +736,7 @@ CREATE TABLE especialidad (
 ALTER TABLE especialidad OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_especialidad_empleado_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_especialidad_empleado_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_especialidad_empleado_seq
@@ -748,7 +747,7 @@ CREATE SEQUENCE id_especialidad_empleado_seq
     CACHE 1;
 
 
-ALTER TABLE id_especialidad_empleado_seq OWNER TO postgres;
+ALTER TABLE id_especialidad_empleado_seq OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: especialidad_empleado; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
@@ -767,7 +766,7 @@ CREATE TABLE especialidad_empleado (
 ALTER TABLE especialidad_empleado OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_especialidad_servicio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_especialidad_servicio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_especialidad_servicio_seq
@@ -778,7 +777,7 @@ CREATE SEQUENCE id_especialidad_servicio_seq
     CACHE 1;
 
 
-ALTER TABLE id_especialidad_servicio_seq OWNER TO postgres;
+ALTER TABLE id_especialidad_servicio_seq OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: especialidad_servicio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
@@ -826,7 +825,7 @@ CREATE TABLE estado (
 ALTER TABLE estado OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_estado_civil_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_estado_civil_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_estado_civil_seq
@@ -837,7 +836,7 @@ CREATE SEQUENCE id_estado_civil_seq
     CACHE 1;
 
 
-ALTER TABLE id_estado_civil_seq OWNER TO postgres;
+ALTER TABLE id_estado_civil_seq OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: estado_civil; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
@@ -914,7 +913,7 @@ CREATE TABLE funcionalidad (
 ALTER TABLE funcionalidad OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_garantia_servicio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_garantia_servicio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_garantia_servicio_seq
@@ -925,7 +924,7 @@ CREATE SEQUENCE id_garantia_servicio_seq
     CACHE 1;
 
 
-ALTER TABLE id_garantia_servicio_seq OWNER TO postgres;
+ALTER TABLE id_garantia_servicio_seq OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: garantia_servicio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
@@ -944,7 +943,7 @@ CREATE TABLE garantia_servicio (
 ALTER TABLE garantia_servicio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_genero_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_genero_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_genero_seq
@@ -955,7 +954,7 @@ CREATE SEQUENCE id_genero_seq
     CACHE 1;
 
 
-ALTER TABLE id_genero_seq OWNER TO postgres;
+ALTER TABLE id_genero_seq OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: genero; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
@@ -1000,7 +999,7 @@ CREATE TABLE grupo_alimenticio (
 ALTER TABLE grupo_alimenticio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_horario_empleado_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_horario_empleado_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_horario_empleado_seq
@@ -1011,7 +1010,7 @@ CREATE SEQUENCE id_horario_empleado_seq
     CACHE 1;
 
 
-ALTER TABLE id_horario_empleado_seq OWNER TO postgres;
+ALTER TABLE id_horario_empleado_seq OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: horario_empleado; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
@@ -1059,7 +1058,7 @@ CREATE SEQUENCE id_motivo_seq
 ALTER TABLE id_motivo_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_negocio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_negocio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_negocio_seq
@@ -1070,7 +1069,7 @@ CREATE SEQUENCE id_negocio_seq
     CACHE 1;
 
 
-ALTER TABLE id_negocio_seq OWNER TO postgres;
+ALTER TABLE id_negocio_seq OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: id_orden_servicio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
@@ -1087,7 +1086,7 @@ CREATE SEQUENCE id_orden_servicio_seq
 ALTER TABLE id_orden_servicio_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_parametro_cliente_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_parametro_cliente_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_parametro_cliente_seq
@@ -1098,10 +1097,10 @@ CREATE SEQUENCE id_parametro_cliente_seq
     CACHE 1;
 
 
-ALTER TABLE id_parametro_cliente_seq OWNER TO postgres;
+ALTER TABLE id_parametro_cliente_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_parametro_promocion_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_parametro_promocion_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_parametro_promocion_seq
@@ -1112,7 +1111,7 @@ CREATE SEQUENCE id_parametro_promocion_seq
     CACHE 1;
 
 
-ALTER TABLE id_parametro_promocion_seq OWNER TO postgres;
+ALTER TABLE id_parametro_promocion_seq OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: id_parametro_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
@@ -1129,7 +1128,7 @@ CREATE SEQUENCE id_parametro_seq
 ALTER TABLE id_parametro_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_parametro_servicio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_parametro_servicio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_parametro_servicio_seq
@@ -1140,7 +1139,7 @@ CREATE SEQUENCE id_parametro_servicio_seq
     CACHE 1;
 
 
-ALTER TABLE id_parametro_servicio_seq OWNER TO postgres;
+ALTER TABLE id_parametro_servicio_seq OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: id_plan_dieta_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
@@ -1185,7 +1184,7 @@ CREATE SEQUENCE id_plan_suplemento_seq
 ALTER TABLE id_plan_suplemento_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_precio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_precio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_precio_seq
@@ -1196,10 +1195,10 @@ CREATE SEQUENCE id_precio_seq
     CACHE 1;
 
 
-ALTER TABLE id_precio_seq OWNER TO postgres;
+ALTER TABLE id_precio_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_preferencia_cliente_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_preferencia_cliente_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_preferencia_cliente_seq
@@ -1210,7 +1209,7 @@ CREATE SEQUENCE id_preferencia_cliente_seq
     CACHE 1;
 
 
-ALTER TABLE id_preferencia_cliente_seq OWNER TO postgres;
+ALTER TABLE id_preferencia_cliente_seq OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: id_promocion_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
@@ -1325,7 +1324,7 @@ CREATE SEQUENCE id_respuesta_seq
 ALTER TABLE id_respuesta_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_rol_funcionalidad_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_rol_funcionalidad_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_rol_funcionalidad_seq
@@ -1336,7 +1335,7 @@ CREATE SEQUENCE id_rol_funcionalidad_seq
     CACHE 1;
 
 
-ALTER TABLE id_rol_funcionalidad_seq OWNER TO postgres;
+ALTER TABLE id_rol_funcionalidad_seq OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: id_rol_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
@@ -1423,7 +1422,7 @@ CREATE SEQUENCE id_tiempo_seq
 ALTER TABLE id_tiempo_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_tipo_cita_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_tipo_cita_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_tipo_cita_seq
@@ -1434,10 +1433,10 @@ CREATE SEQUENCE id_tipo_cita_seq
     CACHE 1;
 
 
-ALTER TABLE id_tipo_cita_seq OWNER TO postgres;
+ALTER TABLE id_tipo_cita_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_tipo_comentario_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_tipo_comentario_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_tipo_comentario_seq
@@ -1448,10 +1447,10 @@ CREATE SEQUENCE id_tipo_comentario_seq
     CACHE 1;
 
 
-ALTER TABLE id_tipo_comentario_seq OWNER TO postgres;
+ALTER TABLE id_tipo_comentario_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_tipo_criterio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_tipo_criterio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_tipo_criterio_seq
@@ -1462,7 +1461,7 @@ CREATE SEQUENCE id_tipo_criterio_seq
     CACHE 1;
 
 
-ALTER TABLE id_tipo_criterio_seq OWNER TO postgres;
+ALTER TABLE id_tipo_criterio_seq OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: id_tipo_dieta_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
@@ -1507,7 +1506,7 @@ CREATE SEQUENCE id_tipo_motivo_seq
 ALTER TABLE id_tipo_motivo_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_tipo_orden_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_tipo_orden_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE id_tipo_orden_seq
@@ -1518,7 +1517,7 @@ CREATE SEQUENCE id_tipo_orden_seq
     CACHE 1;
 
 
-ALTER TABLE id_tipo_orden_seq OWNER TO postgres;
+ALTER TABLE id_tipo_orden_seq OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: id_tipo_parametro_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
@@ -1838,7 +1837,7 @@ CREATE TABLE plan_suplemento (
 ALTER TABLE plan_suplemento OWNER TO byqkxhkjgnspco;
 
 --
--- Name: precio; Type: TABLE; Schema: public; Owner: postgres
+-- Name: precio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE precio (
@@ -1852,7 +1851,7 @@ CREATE TABLE precio (
 );
 
 
-ALTER TABLE precio OWNER TO postgres;
+ALTER TABLE precio OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: preferencia_cliente; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
@@ -2163,7 +2162,7 @@ CREATE TABLE tipo_cita (
 ALTER TABLE tipo_cita OWNER TO byqkxhkjgnspco;
 
 --
--- Name: tipo_comentario; Type: TABLE; Schema: public; Owner: postgres
+-- Name: tipo_comentario; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE tipo_comentario (
@@ -2175,7 +2174,7 @@ CREATE TABLE tipo_comentario (
 );
 
 
-ALTER TABLE tipo_comentario OWNER TO postgres;
+ALTER TABLE tipo_comentario OWNER TO byqkxhkjgnspco;
 
 --
 -- Name: tipo_criterio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
@@ -2421,1296 +2420,290 @@ CREATE VIEW vista_cliente AS
 
 ALTER TABLE vista_cliente OWNER TO byqkxhkjgnspco;
 
---
--- Data for Name: agenda; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY agenda (id_agenda, id_empleado, id_cliente, id_orden_servicio, id_visita, id_cita, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-\.
-
 
 --
 -- Data for Name: alimento; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
-COPY alimento (id_alimento, id_grupo_alimenticio, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-2	1	arroz integral	2018-04-29 16:27:41.153359	2018-04-29 16:27:41.153359	1
-3	1	trigo sarraceno	2018-04-29 16:28:02.656932	2018-04-29 16:28:02.656932	1
-5	1	harina de avena	2018-04-29 16:28:54.306745	2018-04-29 16:28:54.306745	1
-6	1	palomitas de maíz	2018-04-29 16:29:16.69524	2018-04-29 16:29:16.69524	1
-7	1	cebada de grano entero	2018-04-29 16:29:44.684614	2018-04-29 16:29:44.684614	1
-8	1	harina de maíz integral	2018-04-29 16:30:07.801988	2018-04-29 16:30:07.801988	1
-9	1	centeno integral	2018-04-29 16:30:32.348177	2018-04-29 16:30:32.348177	1
-10	1	pan integral	2018-04-29 16:30:55.156863	2018-04-29 16:30:55.156863	1
-11	1	galletas de trigo integral	2018-04-29 16:31:17.336011	2018-04-29 16:31:17.336011	1
-4	1	trigo integral (trigo partido)	2018-04-29 16:28:30.393343	2018-04-29 16:28:30.393343	1
-12	1	pasta de trigo integral	2018-04-29 16:31:58.874919	2018-04-29 16:31:58.874919	1
-13	1	copos de cereales integrales de trigo	2018-04-29 16:32:37.790184	2018-04-29 16:32:37.790184	1
-14	1	tortillas de trigo integral	2018-04-29 16:33:03.356232	2018-04-29 16:33:03.356232	1
-15	1	arroz salvaje	2018-04-29 16:33:20.276537	2018-04-29 16:33:20.276537	1
-16	1	pan de maíz	2018-04-29 16:34:11.120798	2018-04-29 16:34:11.120798	1
-17	1	tortillas de maíz	2018-04-29 16:34:27.684128	2018-04-29 16:34:27.684128	1
-18	1	cuscús	2018-04-29 16:34:52.939997	2018-04-29 16:34:52.939997	1
-19	1	galletas	2018-04-29 16:35:04.461438	2018-04-29 16:35:04.461438	1
-20	2	col china	2018-04-29 16:39:35.143345	2018-04-29 16:39:35.143345	1
-21	2	bróculi	2018-04-29 16:39:53.61204	2018-04-29 16:39:53.61204	1
-22	2	berza	2018-04-29 16:40:09.163878	2018-04-29 16:40:09.163878	1
-23	2	col rizada	2018-04-29 16:40:25.870373	2018-04-29 16:40:25.870373	1
-24	2	espinaca	2018-04-29 16:40:38.358102	2018-04-29 16:40:38.358102	1
-25	2	calabaza bellota	2018-04-29 16:40:58.447161	2018-04-29 16:40:58.447161	1
-26	2	calabaza moscada	2018-04-29 16:45:21.67891	2018-04-29 16:45:21.67891	1
-27	2	zanahorias	2018-04-29 16:45:39.220586	2018-04-29 16:45:39.220586	1
-28	2	calabaza	2018-04-29 16:45:55.262603	2018-04-29 16:45:55.262603	1
-29	2	pimientos rojos	2018-04-29 16:46:09.391247	2018-04-29 16:46:09.391247	1
-30	2	batatas	2018-04-29 16:46:22.726523	2018-04-29 16:46:22.726523	1
-31	2	tomates	2018-04-29 16:46:40.36571	2018-04-29 16:46:40.36571	1
-32	2	jugo de tomate	2018-04-29 16:46:53.26105	2018-04-29 16:46:53.26105	1
-33	2	maíz	2018-04-29 16:47:12.057307	2018-04-29 16:47:12.057307	1
-34	2	guisantes	2018-04-29 16:47:26.379676	2018-04-29 16:47:26.379676	1
-35	2	patatas	2018-04-29 16:47:34.409586	2018-04-29 16:47:34.409586	1
-36	2	alcachofas	2018-04-29 16:48:04.336442	2018-04-29 16:48:04.336442	1
-37	2	espárragos	2018-04-29 16:48:16.183045	2018-04-29 16:48:16.183045	1
-38	2	aguacate	2018-04-29 16:48:25.341223	2018-04-29 16:48:25.341223	1
-39	2	brotes de soja	2018-04-29 16:48:36.135112	2018-04-29 16:48:36.135112	1
-40	2	remolacha	2018-04-29 16:48:46.922769	2018-04-29 16:48:46.922769	1
-41	2	coles de bruselas	2018-04-29 16:49:01.155576	2018-04-29 16:49:01.155576	1
-43	2	coliflor	2018-04-29 16:49:33.742891	2018-04-29 16:49:33.742891	1
-44	2	apio	2018-04-29 16:49:37.719649	2018-04-29 16:49:37.719649	1
-42	2	repollo	2018-04-29 16:49:16.220869	2018-04-29 16:49:16.220869	1
-45	2	pepinos	2018-04-29 16:50:11.265928	2018-04-29 16:50:11.265928	1
-46	2	berenjenas	2018-04-29 16:50:21.500135	2018-04-29 16:50:21.500135	1
-47	2	pimientos verdes y rojos	2018-04-29 16:50:34.725302	2018-04-29 16:50:34.725302	1
-48	2	pimientosjícama	2018-04-29 16:50:45.933356	2018-04-29 16:50:45.933356	1
-49	2	hongos	2018-04-29 16:50:55.70585	2018-04-29 16:50:55.70585	1
-50	2	quimbombó	2018-04-29 16:51:05.137866	2018-04-29 16:51:05.137866	1
-51	2	cebollas	2018-04-29 16:51:15.114223	2018-04-29 16:51:15.114223	1
-52	2	arveja china	2018-04-29 16:51:29.875766	2018-04-29 16:51:29.875766	1
-53	2	judías verdes	2018-04-29 16:51:42.657364	2018-04-29 16:51:42.657364	1
-54	2	tomates	2018-04-29 16:52:00.522683	2018-04-29 16:52:00.522683	1
-55	2	jugos de verduras	2018-04-29 16:52:18.420366	2018-04-29 16:52:18.420366	1
-56	2	calabacín	2018-04-29 16:52:31.068205	2018-04-29 16:52:31.068205	1
-57	3	cortes magros de carne de res	2018-04-29 16:52:59.203414	2018-04-29 16:52:59.203414	1
-58	3	ternera	2018-04-29 16:53:18.82171	2018-04-29 16:53:18.82171	1
-59	3	cerdo	2018-04-29 16:53:27.772636	2018-04-29 16:53:27.772636	1
-60	3	jamón y cordero	2018-04-29 16:53:39.810403	2018-04-29 16:53:39.810403	1
-61	3	embutidos reducidos en grasa	2018-04-29 16:53:51.561924	2018-04-29 16:53:51.561924	1
-62	3	embutidospollo sin piel y pavo	2018-04-29 16:54:05.19889	2018-04-29 16:54:05.19889	1
-63	3	carne picada de pollo y pavo	2018-04-29 16:54:26.031908	2018-04-29 16:54:26.031908	1
-65	3	trucha	2018-04-29 16:57:01.011359	2018-04-29 16:57:01.011359	1
-66	3	almejas	2018-04-29 16:57:07.979398	2018-04-29 16:57:07.979398	1
-64	3	salmón	2018-04-29 16:55:41.484795	2018-04-29 16:55:41.484795	1
-67	3	arenque	2018-04-29 16:57:42.449435	2018-04-29 16:57:42.449435	1
-68	3	cangrejo	2018-04-29 16:58:05.974756	2018-04-29 16:58:05.974756	1
-69	3	langosta	2018-04-29 16:58:54.182219	2018-04-29 16:58:54.182219	1
-70	3	mejillones	2018-04-29 16:59:02.613682	2018-04-29 16:59:02.613682	1
-71	3	pulpo	2018-04-29 16:59:10.706295	2018-04-29 16:59:10.706295	1
-72	3	ostras	2018-04-29 16:59:20.535307	2018-04-29 16:59:20.535307	1
-73	3	vieiras	2018-04-29 16:59:29.656921	2018-04-29 16:59:29.656921	1
-74	3	calamares	2018-04-29 16:59:37.464665	2018-04-29 16:59:37.464665	1
-75	3	atún enlatado	2018-04-29 16:59:47.564188	2018-04-29 16:59:47.564188	1
-76	3	huevos de pollo	2018-04-29 17:00:28.865386	2018-04-29 17:00:28.865386	1
-77	3	huevos de pato	2018-04-29 17:00:43.589687	2018-04-29 17:00:43.589687	1
-78	4	Leche baja en grasa	2018-04-29 17:01:27.226608	2018-04-29 17:01:27.226608	1
-79	4	yogur	2018-04-29 17:01:40.891922	2018-04-29 17:01:40.891922	1
-80	4	queso (como el cheddar, mozzarella, suizo, parmesano, tiras de queso, requesón)	2018-04-29 17:02:00.97745	2018-04-29 17:02:00.97745	1
-81	4	pudín	2018-04-29 17:02:12.168309	2018-04-29 17:02:12.168309	1
-82	4	helado	2018-04-29 17:02:29.811119	2018-04-29 17:02:29.811119	1
-83	4	leche de soja	2018-04-29 17:02:51.809098	2018-04-29 17:02:51.809098	1
-84	5	Manzanas	2018-04-29 17:03:30.928589	2018-04-29 17:03:30.928589	1
-85	5	compota de manzanas	2018-04-29 17:03:45.203944	2018-04-29 17:03:45.203944	1
-86	5	albaricoques	2018-04-29 17:03:59.983709	2018-04-29 17:03:59.983709	1
-87	5	bananas	2018-04-29 17:04:12.141034	2018-04-29 17:04:12.141034	1
-88	5	bayas (fresas, arándanos, frambuesas)	2018-04-29 17:04:27.097005	2018-04-29 17:04:27.097005	1
-89	5	jugos de frutas (sin azúcar)	2018-04-29 17:04:52.037925	2018-04-29 17:04:52.037925	1
-90	5	toronja	2018-04-29 17:05:07.355478	2018-04-29 17:05:07.355478	1
-91	5	uvas	2018-04-29 17:05:17.537972	2018-04-29 17:05:17.537972	1
-92	5	kiwis	2018-04-29 17:05:26.760147	2018-04-29 17:05:26.760147	1
-93	5	mangos	2018-04-29 17:05:35.26587	2018-04-29 17:05:35.26587	1
-94	5	melones (cantalupo, melón tuna, sandía)	2018-04-29 17:05:43.136078	2018-04-29 17:05:43.136078	1
-95	5	nectarinas	2018-04-29 17:06:18.935932	2018-04-29 17:06:18.935932	1
-96	5	naranjas	2018-04-29 17:06:27.140425	2018-04-29 17:06:27.140425	1
-97	5	papayas	2018-04-29 17:06:37.599725	2018-04-29 17:06:37.599725	1
-98	5	duraznos	2018-04-29 17:06:48.452894	2018-04-29 17:06:48.452894	1
-99	5	peras	2018-04-29 17:06:57.006538	2018-04-29 17:06:57.006538	1
-100	5	ciruelas	2018-04-29 17:07:04.814222	2018-04-29 17:07:04.814222	1
-101	5	piña	2018-04-29 17:07:13.325088	2018-04-29 17:07:13.325088	1
-102	5	pasas	2018-04-29 17:07:21.390469	2018-04-29 17:07:21.390469	1
-103	5	ciruelas	2018-04-29 17:07:33.362892	2018-04-29 17:07:33.362892	1
-104	5	carambolas	2018-04-29 17:07:40.370742	2018-04-29 17:07:40.370742	1
-105	5	mandarinas	2018-04-29 17:07:46.893328	2018-04-29 17:07:46.893328	1
-\.
+INSERT INTO alimento (id_alimento, id_grupo_alimenticio, nombre) 
+VALUES (1, 1, 'arroz blanco'),
+(2, 1, 'arroz integral'),
+(3, 1, 'trigo sarraceno'),
+(4, 1, 'trigo integral (trigo partido)'),
+(5, 1, 'harina de avena') ,
+(6, 1, 'palomitas de maíz'),
+(7, 1, 'cebada de grano entero'),
+(8, 1, 'harina de maíz integral'),
+(9, 1, 'centeno integral'),
+(10, 1, 'pan integral'),
+(11, 1, 'galletas de trigo integral'),
+(12, 1, 'pasta de trigo integral'),
+(13, 1, 'copos de cereales integrales de trigo'),
+(14, 1, 'tortillas de trigo integral'),
+(15, 1, 'arroz salvaje'),
+(16, 1, 'pan de maíz'),
+(17, 1, 'tortillas de maíz'),
+(18, 1, 'cuscús'),
+(19, 1, 'galletas'),
+(20, 2, 'col china'),
+(21, 2, 'brócoli'),
+(22, 2, 'berza'),
+(23, 2, 'col rizada'),
+(24, 2, 'espinaca'),
+(25, 2, 'calabaza bellota'),
+(26, 2, 'calabaza moscada'),
+(27, 2, 'zanahorias'),
+(28, 2, 'calabaza'),
+(29, 2, 'pimientos rojos'),
+(30, 2, 'batatas'),
+(31, 2, 'tomates'),
+(32, 2, 'jugo de tomate'),
+(33, 2, 'maíz'),
+(34, 2, 'guisantes'),
+(35, 2, 'patatas'),
+(36, 2, 'alcachofas'),
+(37, 2, 'espárragos'),
+(38, 2, 'aguacate'),
+(39, 2, 'brotes de soja'),
+(40, 2, 'remolacha'),
+(41, 2, 'coles de bruselas'),
+(43, 2, 'coliflor'),
+(44, 2, 'apio'),
+(42, 2, 'repollo'),
+(45, 2, 'pepinos'),
+(46, 2, 'berenjenas')	,
+(47, 2, 'pimientos verdes y rojos'),
+(48, 2, 'pimientosjícama'),
+(49, 2, 'hongos'),
+(50, 2, 'quimbombó'),
+(51, 2, 'cebollas'),
+(52, 2, 'arveja china'),
+(53, 2, 'judías verdes'),
+(54, 2, 'tomates'),
+(55, 2, 'jugos de verduras'),
+(56, 2, 'calabacín'),
+(57, 3, 'cortes magros de carne de res'),
+(58, 3, 'ternera'),
+(59, 3, 'cerdo'),
+(60, 3, 'jamón y cordero'),
+(61, 3, 'embutidos reducidos en grasa'),
+(62, 3, 'embutidospollo sin piel y pavo'),
+(63, 3, 'carne picada de pollo y pavo'),
+(65, 3, 'trucha'),
+(66, 3, 'almejas'),
+(64, 3, 'salmón'),
+(67, 3, 'arenque'),
+(68, 3, 'cangrejo'),
+(69, 3, 'langosta'),
+(70, 3, 'mejillones'),
+(71, 3, 'pulpo'),
+(72, 3, 'ostras')	,
+(73, 3, 'vieiras'),
+(74, 3, 'calamares'),
+(75, 3, 'atún enlatado'),
+(76, 3, 'huevos de pollo'),
+(77, 3, 'huevos de pato'),
+(78, 4, 'Leche baja en grasa'),
+(79, 4, 'yogur'),
+(80, 4, 'queso (como el cheddar, mozzarella, suizo, parmesano, tiras de queso, requesón)'),
+(81, 4, 'pudín'),
+(82, 4, 'helado'),
+(83, 4, 'leche de soja'),
+(84, 5, 'Manzanas'),
+(85, 5, 'compota de manzanas'),
+(86, 5, 'albaricoques'),
+(87, 5, 'bananas'),
+(88, 5, 'bayas (fresas, arándanos, frambuesas)'),
+(89, 5, 'jugos de frutas (sin azúcar)'),
+(90, 5, 'toronja'),
+(91, 5, 'uvas'),
+(92, 5, 'kiwis'),
+(93, 5, 'mangos'),
+(94, 5, 'melones (cantalupo, melón tuna, sandía)'),
+(95, 5, 'nectarinas'),
+(96, 5, 'naranjas'),
+(97, 5, 'papayas'),
+(98, 5, 'duraznos'),
+(99, 5, 'peras'),
+(100, 5, 'ciruelas'),   
+(101, 5, 'piña'),
+(102, 5, 'pasas'),
+(103, 5, 'ciruelas'),
+(104, 5, 'carambolas'),
+(105, 5, 'mandarinas');
+
+
+SELECT pg_catalog.setval('id_alimento_seq', 105, true);
 
 
 --
 -- Data for Name: app_movil; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
-COPY app_movil (id_app_movil, sistema_operativo, url_descarga, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-2	Ios	https://saschanutric.com/	2018-04-29 12:17:50.397657	2018-04-29 12:17:50.397657	1
-1	Android	https://saschanutric.com/Android	2018-04-29 12:16:44.458	2018-04-29 12:16:44.458	1
-\.
+INSERT INTO app_movil (id_app_movil, sistema_operativo, url_descarga) 
+VALUES (1, 'Android', 'https://saschanutric.com/Android'),
+(2, 'IOS', 'https://saschanutric.com/');
+
+
+SELECT pg_catalog.setval('id_app_movil_seq', 2, true);
 
 
 --
 -- Data for Name: bloque_horario; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
-COPY bloque_horario (id_bloque_horario, hora_inicio, hora_fin, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-2	07:00:00	08:00:00	2018-04-29 13:29:32.441887-04	2018-04-29 13:29:32.441887	1
-3	08:00:00	09:00:00	2018-04-29 13:29:44.24225-04	2018-04-29 13:29:44.24225	1
-4	09:00:00	10:00:00	2018-04-29 13:29:57.010425-04	2018-04-29 13:29:57.010425	1
-5	11:00:00	12:00:00	2018-04-29 13:30:05.586403-04	2018-04-29 13:30:05.586403	1
-1	06:00:00	07:00:00	2018-04-29 13:27:39.964-04	2018-04-29 13:27:39.964	1
-\.
+INSERT INTO bloque_horario (id_bloque_horario, hora_inicio, hora_fin) 
+VALUES (1, '06:00:00', '07:00:00'),
+(2, '07:00:00', '08:00:00'),
+(3, '08:00:00', '09:00:00'),
+(4, '09:00:00', '10:00:00'),
+(5, '11:00:00', '12:00:00');
 
 
---
--- Data for Name: calificacion; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY calificacion (id_criterio, id_valoracion, id_visita, id_orden_servicio, fecha_creacion, fecha_actualizacion, estatus, id_calificacion) FROM stdin;
-\.
-
-
---
--- Data for Name: cita; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY cita (id_cita, id_orden_servicio, id_tipo_cita, id_bloque_horario, fecha, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-\.
+SELECT pg_catalog.setval('id_bloque_horario_seq', 5, true);
 
 
 --
 -- Data for Name: cliente; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
-COPY cliente (id_cliente, id_usuario, id_genero, id_estado, id_estado_civil, id_rango_edad, cedula, nombres, apellidos, telefono, direccion, fecha_nacimiento, tipo_cliente, fecha_consolidado, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	1	1	2	1	3	V-24160052	Jose Alberto	Guerrero Carrillo	0414-5495292	Urb. El Amanecer, Cabudare	1994-06-07	1	\N	2018-04-19 22:12:23.435	2018-04-19 22:12:23.435	1
-\.
+INSERT INTO cliente (id_cliente, id_usuario, id_genero, id_estado, id_estado_civil, id_rango_edad, cedula, nombres, apellidos, telefono, direccion, fecha_nacimiento, tipo_cliente, fecha_consolidado)
+VALUES (1, 1, 1, 2, 1, 3, 'V-24160052', 'Jose Alberto', 'Guerrero Carrillo', '0414-5495292', 'Urb. El Amanecer, Cabudare', '1994-06-07', 1, null);
 
 
---
--- Data for Name: comentario; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY comentario (id_comentario, id_cliente, id_respuesta, contenido, respuesta, id_tipo_comentario, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	1	1	contenido	respuesta	2	2018-04-30 22:51:00.809818	2018-04-30 22:51:00.809818	1
-\.
+SELECT pg_catalog.setval('id_cliente_seq', 1, true);
 
 
 --
 -- Data for Name: comida; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
-COPY comida (id_comida, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	Desayuno	2018-04-28 21:53:48.786998	2018-04-28 21:53:48.786998	1
-2	Almuerzo	2018-04-28 21:54:10.699942	2018-04-28 21:54:10.699942	1
-3	Cena	2018-04-28 21:54:23.134874	2018-04-28 21:54:23.134874	1
-4	Meriendas	2018-04-28 21:54:42.891521	2018-04-28 21:54:42.891521	1
-5		2018-04-29 12:15:47.85841	2018-04-29 12:15:47.85841	1
-\.
+INSERT INTO comida (id_comida, nombre) 
+VALUES (1, 'Desayuno'),
+(2, 'Merienda de la mañana'),
+(3, 'Almuerzo'),
+(4, 'Merienda de la tarde'),
+(5, 'Cena'),
+(6, 'Merienda de la noche');
 
 
---
--- Data for Name: condicion_garantia; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY condicion_garantia (id_condicion_garantia, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	condiciones de garantias	2018-04-29 19:10:20.818	2018-04-29 19:10:20.818	1
-2	garantias	2018-04-29 19:11:34.003742	2018-04-29 19:11:34.003742	1
-\.
-
-
---
--- Data for Name: contenido; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY contenido (id_contenido, titulo, texto, url_imagen, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-\.
-
-
---
--- Data for Name: criterio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY criterio (id_criterio, id_tipo_criterio, id_tipo_valoracion, nombre, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	1	1	nombre	descripcion	2018-04-30 13:49:08.234671	2018-04-30 13:49:08.234671	1
-\.
-
-
---
--- Data for Name: detalle_plan_dieta; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY detalle_plan_dieta (id_detalle_plan_dieta, id_plan_dieta, id_comida, id_grupo_alimenticio, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-2	1	1	1	2018-04-29 19:41:41.888408	2018-04-29 19:41:41.888408	1
-\.
-
-
---
--- Data for Name: detalle_plan_ejercicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY detalle_plan_ejercicio (id_detalle_plan_ejercicio, id_plan_ejercicio, id_ejercicio, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-\.
-
-
---
--- Data for Name: detalle_plan_suplemento; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY detalle_plan_suplemento (id_detalle_plan_suplemento, id_plan_suplemento, id_suplemento, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-\.
-
-
---
--- Data for Name: detalle_regimen_alimento; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY detalle_regimen_alimento (id_regimen_dieta, id_alimento, fecha_creacion, fecha_actualizacion, estatus, id_detalle_regimen_alimento) FROM stdin;
-\.
-
-
---
--- Data for Name: detalle_visita; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY detalle_visita (id_visita, id_parametro, valor, fecha_creacion, fecha_actualizacion, estatus, id_detalle_visita) FROM stdin;
-\.
-
-
---
--- Data for Name: dia_laborable; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY dia_laborable (id_dia_laborable, dia, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-\.
-
-
---
--- Data for Name: ejercicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY ejercicio (id_ejercicio, nombre, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-\.
-
-
---
--- Data for Name: empleado; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY empleado (id_empleado, id_usuario, id_genero, cedula, nombres, apellidos, telefono, correo, direccion, estatus, fecha_creacion, fecha_actualizacion) FROM stdin;
-\.
-
-
---
--- Data for Name: especialidad; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY especialidad (id_especialidad, nombre, fecha_actualizacion, fecha_creacion, estatus) FROM stdin;
-\.
-
-
---
--- Data for Name: especialidad_empleado; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY especialidad_empleado (id_empleado, id_especialidad, fecha_creacion, fecha_actualizacion, estatus, id_especialidad_empleado) FROM stdin;
-\.
-
-
---
--- Data for Name: especialidad_servicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY especialidad_servicio (id_servicio, id_especialidad, fecha_creacion, fecha_actualizacion, estatus, id_especialidad_servicio) FROM stdin;
-\.
+SELECT pg_catalog.setval('id_comida_seq', 6, true);
 
 
 --
 -- Data for Name: estado; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
-COPY estado (id_estado, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	Lara	2018-04-12 23:54:14.138	2018-04-12 23:54:14.138	1
-2	Carabobo	2018-04-12 23:54:14.138	2018-04-12 23:54:14.138	1
-3	Anzoategui	2018-04-12 23:54:14.138	2018-04-12 23:54:14.138	1
-4	Aragua	2018-04-12 23:54:14.138	2018-04-12 23:54:14.138	1
-5	Nueva Esparta	2018-04-12 23:54:14.138	2018-04-12 23:54:14.138	1
-6	Distrito Capital	2018-04-12 23:54:14.138	2018-04-12 23:54:14.138	1
-7	Zulia	2018-04-12 23:54:14.138	2018-04-12 23:54:14.138	1
-8	Mérida	2018-04-12 23:54:14.138	2018-04-12 23:54:14.138	1
-\.
+INSERT INTO estado VALUES (1, 'Lara', '2018-04-12 23:54:14.138-04:30', '2018-04-12 23:54:14.138-04:30', 1);
+INSERT INTO estado VALUES (2, 'Carabobo', '2018-04-12 23:54:14.138-04:30', '2018-04-12 23:54:14.138-04:30', 1);
+INSERT INTO estado VALUES (3, 'Anzoategui', '2018-04-12 23:54:14.138-04:30', '2018-04-12 23:54:14.138-04:30', 1);
+INSERT INTO estado VALUES (4, 'Aragua', '2018-04-12 23:54:14.138-04:30', '2018-04-12 23:54:14.138-04:30', 1);
+INSERT INTO estado VALUES (5, 'Nueva Esparta', '2018-04-12 23:54:14.138-04:30', '2018-04-12 23:54:14.138-04:30', 1);
+INSERT INTO estado VALUES (6, 'Distrito Capital', '2018-04-12 23:54:14.138-04:30', '2018-04-12 23:54:14.138-04:30', 1);
+INSERT INTO estado VALUES (7, 'Zulia', '2018-04-12 23:54:14.138-04:30', '2018-04-12 23:54:14.138-04:30', 1);
+INSERT INTO estado VALUES (8, 'Mérida', '2018-04-12 23:54:14.138-04:30', '2018-04-12 23:54:14.138-04:30', 1);
+
+
+SELECT pg_catalog.setval('id_estado_seq', 8, true);
 
 
 --
 -- Data for Name: estado_civil; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
-COPY estado_civil (id_estado_civil, nombre) FROM stdin;
-2	Comprometido/a
-1	Soltero/a
-4	Divorciado/a
-3	Casado/a
-5	Viudo/a
-\.
-
-
---
--- Data for Name: frecuencia; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY frecuencia (id_frecuencia, id_tiempo, repeticiones, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-\.
-
-
---
--- Data for Name: funcionalidad; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY funcionalidad (id_funcionalidad, id_funcionalidad_padre, nombre, icono, orden, nivel, estatus, url_vista) FROM stdin;
-\.
-
-
---
--- Data for Name: garantia_servicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY garantia_servicio (id_condicion_garantia, id_servicio, fecha_creacion, fecha_actualizacion, estatus, id_garantia_servicio) FROM stdin;
-1	1	2018-04-29 19:16:25.946971	2018-04-29 19:16:25.946971	1	1
-\.
+INSERT INTO estado_civil VALUES (2, 'Comprometido/a');
+INSERT INTO estado_civil VALUES (1, 'Soltero/a');
+INSERT INTO estado_civil VALUES (4, 'Divorciado/a');
+INSERT INTO estado_civil VALUES (3, 'Casado/a');
+INSERT INTO estado_civil VALUES (5, 'Viudo/a');
 
 
 --
 -- Data for Name: genero; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
-COPY genero (id_genero, nombre) FROM stdin;
-2	Femenino
-1	Masculino
-\.
+
+INSERT INTO genero VALUES (2, 'Femenino');
+INSERT INTO genero VALUES (1, 'Masculino');
+
+
+SELECT pg_catalog.setval('id_genero_seq', 1, true);
 
 
 --
 -- Data for Name: grupo_alimenticio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
-COPY grupo_alimenticio (id_grupo_alimenticio, id_unidad, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	1	Granos	2018-04-29 16:01:38.561615	2018-04-29 16:01:38.561615	1
-2	1	Vegetales	2018-04-29 16:11:24.341823	2018-04-29 16:11:24.341823	1
-3	1	Carne	2018-04-29 16:11:50.193224	2018-04-29 16:11:50.193224	1
-4	1	Lácteos	2018-04-29 16:12:13.445518	2018-04-29 16:12:13.445518	1
-5	1	Fruta	2018-04-29 16:12:54.655452	2018-04-29 16:12:54.655452	1
-\.
-
-
---
--- Data for Name: horario_empleado; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY horario_empleado (id_empleado, id_bloque_horario, id_dia_laborable, fecha_creacion, fecha_actualizacion, estatus, id_horario_empleado) FROM stdin;
-\.
-
-
---
--- Name: id_agenda_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_agenda_seq', 1, false);
-
-
---
--- Name: id_alimento_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_alimento_seq', 105, true);
-
-
---
--- Name: id_app_movil_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_app_movil_seq', 2, true);
-
-
---
--- Name: id_bloque_horario_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_bloque_horario_seq', 5, true);
-
-
---
--- Name: id_calificacion_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_calificacion_seq', 1, false);
-
-
---
--- Name: id_cita_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_cita_seq', 1, false);
-
-
---
--- Name: id_cliente_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_cliente_seq', 1, true);
-
-
---
--- Name: id_comentario_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_comentario_seq', 1, true);
-
-
---
--- Name: id_comida_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_comida_seq', 5, true);
-
-
---
--- Name: id_condicion_garantia_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_condicion_garantia_seq', 2, true);
-
-
---
--- Name: id_contenido_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_contenido_seq', 1, false);
-
-
---
--- Name: id_criterio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_criterio_seq', 1, true);
-
-
---
--- Name: id_detalle_plan_dieta_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_detalle_plan_dieta_seq', 4, true);
-
-
---
--- Name: id_detalle_plan_ejercicio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_detalle_plan_ejercicio_seq', 1, false);
-
-
---
--- Name: id_detalle_plan_suplemento_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_detalle_plan_suplemento_seq', 1, false);
-
-
---
--- Name: id_detalle_regimen_alimento_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('id_detalle_regimen_alimento_seq', 1, false);
-
-
---
--- Name: id_detalle_visita_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('id_detalle_visita_seq', 1, false);
-
-
---
--- Name: id_dia_laborable_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_dia_laborable_seq', 1, false);
-
-
---
--- Name: id_ejercicio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_ejercicio_seq', 1, false);
-
-
---
--- Name: id_empleado_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_empleado_seq', 1, false);
-
-
---
--- Name: id_especialidad_empleado_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('id_especialidad_empleado_seq', 1, false);
-
-
---
--- Name: id_especialidad_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_especialidad_seq', 1, false);
-
-
---
--- Name: id_especialidad_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('id_especialidad_servicio_seq', 1, false);
-
-
---
--- Name: id_estado_civil_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('id_estado_civil_seq', 1, false);
-
-
---
--- Name: id_estado_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_estado_seq', 8, true);
-
-
---
--- Name: id_frecuencia_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_frecuencia_seq', 1, false);
-
+INSERT INTO grupo_alimenticio (id_grupo_alimenticio, id_unidad, nombre)
+VALUES (1, 1, 'Granos'),
+(2, 1, 'Vegetales'), 
+(3, 1, 'Carne'),
+(4, 1, 'Lácteos'),
+(5, 1, 'Fruta');
+
+
+SELECT pg_catalog.setval('id_grupo_alimenticio_seq', 5, true);
 
 --
 -- Name: id_funcionalidad_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
+INSERT INTO funcionalidad VALUES (1, NULL, 'Dashboard', 'fa fa-leaf', 1, 1, 1, 'dashboard.html');
+INSERT INTO funcionalidad VALUES (2, NULL, 'Registros Básicos', 'fa fa-edit', 2, 1, 1, '');
+INSERT INTO funcionalidad VALUES (3, NULL, 'Configuración', 'fa fa-cogs', 3, 1, 1, '');
+INSERT INTO funcionalidad VALUES (4, NULL, 'Visitas', 'fa fa-calendar', 4, 1, 1, '');
+INSERT INTO funcionalidad VALUES (5, NULL, 'Ofertas y promociones', 'fa fa-tags', 5, 1, 1, '');
+INSERT INTO funcionalidad VALUES (6, NULL, 'Reportes', 'fa fa-bar-chart-o', 6, 1, 1, '');
+INSERT INTO funcionalidad VALUES (7, NULL, 'Administración del Sistema', 'fa fa-wrench', 7, 1, 1, '');
 
-SELECT pg_catalog.setval('id_funcionalidad_seq', 1, false);
-
-
---
--- Name: id_garantia_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('id_garantia_servicio_seq', 1, true);
-
-
---
--- Name: id_genero_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('id_genero_seq', 1, true);
+SELECT pg_catalog.setval('id_funcionalidad_seq', 7, true);
 
 
---
--- Name: id_grupo_alimenticio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
+INSERT INTO negocio (id_negocio, razon_social, rif, url_logo, mision, vision, objetivo, telefono, correo, latitud, longitud)
+VALUES(1, 'Sascha', '1-3211111112111', 'https://res.cloudinary.com/saschanutric/image/upload/v1524779283/logosascha.png', 'mision', 'vision', 'objetivo', '555-5555555', 'saschanutric@gmail.com', 10.0768150, -69.3545490);
 
-SELECT pg_catalog.setval('id_grupo_alimenticio_seq', 5, true);
-
-
---
--- Name: id_horario_empleado_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('id_horario_empleado_seq', 1, false);
-
-
---
--- Name: id_incidencia_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_incidencia_seq', 1, true);
-
-
---
--- Name: id_motivo_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_motivo_seq', 1, true);
-
-
---
--- Name: id_negocio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
 
 SELECT pg_catalog.setval('id_negocio_seq', 1, true);
 
 
---
--- Name: id_orden_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
+INSERT INTO rango_edad VALUES (1, 'Bebe', 0, 1, '2018-04-19 21:11:06.606-04:30', '2018-04-19 21:11:06.606-04:30', 1);
+INSERT INTO rango_edad VALUES (2, 'Niño/a', 1, 12, '2018-04-19 21:11:19.305-04:30', '2018-04-19 21:11:19.305-04:30', 1);
+INSERT INTO rango_edad VALUES (3, 'Joven ', 12, 30, '2018-04-19 21:11:32.739-04:30', '2018-04-19 21:11:32.739-04:30', 1);
+INSERT INTO rango_edad VALUES (4, 'Adulto', 30, 60, '2018-04-19 21:11:41.765-04:30', '2018-04-19 21:11:41.765-04:30', 1);
+INSERT INTO rango_edad VALUES (5, 'Adulto mayor', 60, 120, '2018-04-19 21:12:03.981-04:30', '2018-04-19 21:12:03.981-04:30', 1);
 
-SELECT pg_catalog.setval('id_orden_servicio_seq', 1, false);
-
-
---
--- Name: id_parametro_cliente_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('id_parametro_cliente_seq', 2, true);
-
-
---
--- Name: id_parametro_promocion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('id_parametro_promocion_seq', 1, false);
-
-
---
--- Name: id_parametro_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_parametro_seq', 1, true);
-
-
---
--- Name: id_parametro_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('id_parametro_servicio_seq', 1, false);
-
-
---
--- Name: id_plan_dieta_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_plan_dieta_seq', 2, true);
-
-
---
--- Name: id_plan_ejercicio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_plan_ejercicio_seq', 2, true);
-
-
---
--- Name: id_plan_suplemento_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_plan_suplemento_seq', 1, true);
-
-
---
--- Name: id_precio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('id_precio_seq', 2, true);
-
-
---
--- Name: id_preferencia_cliente_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('id_preferencia_cliente_seq', 1, false);
-
-
---
--- Name: id_promocion_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_promocion_seq', 1, true);
-
-
---
--- Name: id_rango_edad_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
 
 SELECT pg_catalog.setval('id_rango_edad_seq', 5, true);
 
 
---
--- Name: id_reclamo_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
+INSERT INTO tipo_unidad (id_tipo_unidad, nombre)
+VALUES ('Masa'),
+('Moneda'),
+('Tiempo');
 
-SELECT pg_catalog.setval('id_reclamo_seq', 1, false);
-
-
---
--- Name: id_red_social_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_red_social_seq', 1, false);
-
-
---
--- Name: id_regimen_dieta_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_regimen_dieta_seq', 1, false);
-
-
---
--- Name: id_regimen_ejercicio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_regimen_ejercicio_seq', 1, false);
-
-
---
--- Name: id_regimen_suplemento_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_regimen_suplemento_seq', 1, false);
-
-
---
--- Name: id_respuesta_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_respuesta_seq', 1, true);
-
-
---
--- Name: id_rol_funcionalidad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('id_rol_funcionalidad_seq', 1, false);
-
-
---
--- Name: id_rol_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_rol_seq', 1, false);
-
-
---
--- Name: id_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_servicio_seq', 1, true);
-
-
---
--- Name: id_slide_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_slide_seq', 1, false);
-
-
---
--- Name: id_solicitud_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_solicitud_servicio_seq', 1, false);
-
-
---
--- Name: id_suplemento_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_suplemento_seq', 1, false);
-
-
---
--- Name: id_tiempo_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_tiempo_seq', 1, false);
-
-
---
--- Name: id_tipo_cita_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('id_tipo_cita_seq', 1, true);
-
-
---
--- Name: id_tipo_comentario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('id_tipo_comentario_seq', 2, true);
-
-
---
--- Name: id_tipo_criterio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('id_tipo_criterio_seq', 1, true);
-
-
---
--- Name: id_tipo_dieta_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_tipo_dieta_seq', 1, true);
-
-
---
--- Name: id_tipo_incidencia_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_tipo_incidencia_seq', 1, true);
-
-
---
--- Name: id_tipo_motivo_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_tipo_motivo_seq', 1, true);
-
-
---
--- Name: id_tipo_orden_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('id_tipo_orden_seq', 1, true);
-
-
---
--- Name: id_tipo_parametro_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_tipo_parametro_seq', 1, true);
-
-
---
--- Name: id_tipo_respuesta_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_tipo_respuesta_seq', 1, true);
-
-
---
--- Name: id_tipo_unidad_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
 
 SELECT pg_catalog.setval('id_tipo_unidad_seq', 3, true);
 
 
---
--- Name: id_tipo_valoracion_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
+INSERT INTO unidad (id_unidad, id_tipo_unidad, nombre, abreviatura, simbolo) 
+VALUES (1, 1, 'Gramo', 'gr', 'gr'),
+(3, 2, 'Bolivares Fuertes', 'VEF', 'BsF'),
+(4,	1, 'Tonelada', 'ton', 'ton'),
+(5, 1, 'Kilogramo', 'Kg', 'Kg'),
+(6, 1,  'Miligramo', 'mg',  'mg'),
+(7, 3,  'Hora', 'h', 'h'),
+(8, 3,  'Minuto', 'min', 'm'),
+(9, 3,  'Segundo', 'seg', 's'),
+(10, 2, 'Dólar estadounidense', 'USD', '$');
 
-SELECT pg_catalog.setval('id_tipo_valoracion_seq', 1, true);
-
-
---
--- Name: id_unidad_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
 
 SELECT pg_catalog.setval('id_unidad_seq', 10, true);
 
 
---
--- Name: id_usuario_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
+INSERT INTO usuario (id_usuario, nombre_usuario, correo, contrasenia, salt, ultimo_acceso, id_rol)
+VALUES (1, 'jguerrero', 'guerrero.c.jose.a@gmail.com', '$2a$12$Zsfm7hKFFwzszEOGSuOS7ePL179wk2RfxNBObxu.Un/gZtVjHunj6', '$2a$12$Zsfm7hKFFwzszEOGSuOS7e', null, null);
+
 
 SELECT pg_catalog.setval('id_usuario_seq', 1, true);
-
-
---
--- Name: id_valoracion_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_valoracion_seq', 1, false);
-
-
---
--- Name: id_visita_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
---
-
-SELECT pg_catalog.setval('id_visita_seq', 1, false);
-
-
---
--- Data for Name: incidencia; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY incidencia (id_incidencia, id_tipo_incidencia, id_motivo, descripcion, fecha_creacion, fecha_actualizacion, estatus, id_agenda) FROM stdin;
-\.
-
-
---
--- Data for Name: motivo; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY motivo (id_motivo, id_tipo_motivo, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	1	descripcion	2018-04-30 14:00:54.022162	2018-04-30 14:00:54.022162	1
-\.
-
-
---
--- Data for Name: negocio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY negocio (id_negocio, razon_social, rif, url_logo, mision, vision, objetivo, telefono, correo, latitud, longitud, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	Sascha	1-3211111112111	https://res.cloudinary.com/saschanutric/image/upload/v1524779283/logosascha.png	mision2	vision2	objetivo2	555-5555555	saschanutric@gmail.com	10.0768150	-69.3545490	2018-04-27 19:36:48.598	2018-04-27 19:36:48.598	1
-\.
-
-
---
--- Data for Name: orden_servicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY orden_servicio (id_orden_servicio, id_solicitud_servicio, id_tipo_orden, id_meta, fecha_emision, fecha_caducidad, id_reclamo, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-\.
-
-
---
--- Data for Name: parametro; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY parametro (id_parametro, id_tipo_parametro, id_unidad, tipo_valor, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	1	1	1	nombre parametro	2018-04-30 16:55:35.418238	2018-04-30 16:55:35.418238	1
-\.
-
-
---
--- Data for Name: parametro_cliente; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY parametro_cliente (id_cliente, id_parametro, valor, fecha_creacion, fecha_actualizacion, estatus, id_parametro_cliente) FROM stdin;
-1	1	12.0000	2018-04-30 17:16:59.287469	2018-04-30 17:16:59.287469	1	1
-\.
-
-
---
--- Data for Name: parametro_promocion; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY parametro_promocion (id_parametro, id_promocion, valor_minimo, valor_maximo, fecha_creacion, fecha_actualizacion, estatus, id_parametro_promocion) FROM stdin;
-\.
-
-
---
--- Data for Name: parametro_servicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY parametro_servicio (id_servicio, id_parametro, valor_minimo, valor_maximo, fecha_creacion, fecha_actualizacion, estatus, id_parametro_servicio) FROM stdin;
-\.
-
-
---
--- Data for Name: plan_dieta; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY plan_dieta (id_plan_dieta, id_tipo_dieta, nombre, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	1	Nutricional Deportiva	mas informacion	2018-04-26 22:28:08.231389	2018-04-26 22:28:08.231389	1
-\.
-
-
---
--- Data for Name: plan_ejercicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY plan_ejercicio (id_plan_ejercicio, nombre, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-2	Caminar	todo los dias	2018-04-28 13:22:03.5738	2018-04-28 13:22:03.5738	1
-\.
-
-
---
--- Data for Name: plan_suplemento; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY plan_suplemento (id_plan_suplemento, nombre, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	suplemento	suplemento	2018-04-28 13:24:19.168145	2018-04-28 13:24:19.168145	1
-\.
-
-
---
--- Data for Name: precio; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY precio (id_precio, id_unidad, nombre, fecha_creacion, fecha_actualizacion, estatus, valor) FROM stdin;
-2	3	ochenta	2018-04-28 16:05:40.523271	2018-04-28 16:05:40.523271	1	80
-\.
-
-
---
--- Data for Name: preferencia_cliente; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY preferencia_cliente (id_cliente, id_especialidad, fecha_creacion, fecha_actualizacion, estatus, id_preferencia_cliente) FROM stdin;
-\.
-
-
---
--- Data for Name: promocion; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY promocion (id_promocion, id_servicio, nombre, descripcion, valido_desde, valido_hasta, id_genero, id_estado_civil, id_rango_edad, id_estado, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	1	nombre	descripcion	2018-04-30	2018-05-30	1	1	4	1	2018-04-30 14:41:55.828093	2018-04-30 14:41:55.828093	1
-\.
-
-
---
--- Data for Name: rango_edad; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY rango_edad (id_rango_edad, nombre, minimo, maximo, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	Bebe	0	1	2018-04-19 21:11:06.606	2018-04-19 21:11:06.606	1
-2	Niño/a	1	12	2018-04-19 21:11:19.305	2018-04-19 21:11:19.305	1
-3	Joven 	12	30	2018-04-19 21:11:32.739	2018-04-19 21:11:32.739	1
-4	Adulto	30	60	2018-04-19 21:11:41.765	2018-04-19 21:11:41.765	1
-5	Adulto mayor	60	120	2018-04-19 21:12:03.981	2018-04-19 21:12:03.981	1
-\.
-
-
---
--- Data for Name: reclamo; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY reclamo (id_reclamo, id_motivo, id_orden_servicio, id_respuesta, respuesta, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-\.
-
-
---
--- Data for Name: red_social; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY red_social (id_red_social, nombre, url_base, url_logo, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-\.
-
-
---
--- Data for Name: regimen_dieta; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY regimen_dieta (id_regimen_dieta, id_detalle_plan_dieta, id_cliente, cantidad, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-\.
-
-
---
--- Data for Name: regimen_ejercicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY regimen_ejercicio (id_regimen_ejercicio, id_plan_ejercicio, id_cliente, id_frecuencia, id_tiempo, duracion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-\.
-
-
---
--- Data for Name: regimen_suplemento; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY regimen_suplemento (id_regimen_suplemento, id_plan_suplemento, id_cliente, id_frecuencia, cantidad, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-\.
-
-
---
--- Data for Name: respuesta; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY respuesta (id_respuesta, id_tipo_respuesta, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	1	descripcion	2018-04-30 20:22:21.134494	2018-04-30 20:22:21.134494	1
-\.
-
-
---
--- Data for Name: rol; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY rol (id_rol, nombre, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-\.
-
-
---
--- Data for Name: rol_funcionalidad; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY rol_funcionalidad (id_rol, id_funcionalidad, fecha_creacion, fecha_actualizacion, estatus, id_rol_funcionalidad) FROM stdin;
-\.
-
-
---
--- Data for Name: servicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY servicio (id_servicio, id_plan_dieta, id_plan_ejercicio, id_plan_suplemento, nombre, descripcion, url_imagen, id_precio, numero_visitas, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	1	2	1	Plan para Adultos Mayores	Un nutricionista calificado realiza una evaluación de tu estado nutricional	https://res.cloudinary.com/saschanutric/image/upload/v1524936642/nutricionadultos.jpg	2	5	2018-04-28 13:38:46.242099	2018-04-28 13:38:46.242099	1
-\.
-
-
---
--- Data for Name: slide; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY slide (id_slide, titulo, descripcion, orden, url_imagen, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-\.
-
-
---
--- Data for Name: solicitud_servicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY solicitud_servicio (id_solicitud_servicio, id_cliente, id_motivo, id_respuesta, id_servicio, respuesta, id_promocion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-\.
-
-
---
--- Data for Name: suplemento; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY suplemento (id_suplemento, id_unidad, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-\.
-
-
---
--- Data for Name: tiempo; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY tiempo (id_tiempo, nombre, abreviatura, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-\.
-
-
---
--- Data for Name: tipo_cita; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY tipo_cita (id_tipo_cita, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	Criterio	2018-04-26 15:17:34.87	2018-04-26 15:17:58.572	1
-\.
-
-
---
--- Data for Name: tipo_comentario; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY tipo_comentario (id_tipo_comentario, nombre, estatus, fecha_actualizacion, fecha_creacion) FROM stdin;
-2	nuevo comentario	1	2018-04-30 21:20:17.782	2018-04-30 21:20:17.782
-\.
-
-
---
--- Data for Name: tipo_criterio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY tipo_criterio (id_tipo_criterio, nombre, estatus, fecha_actualizacion, fecha_creacion) FROM stdin;
-1	Criterio	1	2018-04-26 16:23:34.800573	2018-04-26 16:23:34.800573
-\.
-
-
---
--- Data for Name: tipo_dieta; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY tipo_dieta (id_tipo_dieta, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	Nutricional deportiva	2018-04-26 14:41:11.711	2018-04-26 14:41:11.711	1
-\.
-
-
---
--- Data for Name: tipo_incidencia; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY tipo_incidencia (id_tipo_incidencia, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	nuevo motivo	2018-04-26 17:33:09.924	2018-04-26 17:33:09.924	1
-\.
-
-
---
--- Data for Name: tipo_motivo; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY tipo_motivo (id_tipo_motivo, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	motivo                                            	2018-04-26 18:08:25.981343	2018-04-26 18:08:25.981343	1
-\.
-
-
---
--- Data for Name: tipo_orden; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY tipo_orden (id_tipo_orden, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	nueva orden	2018-04-26 18:42:16.06	2018-04-26 18:42:16.06	1
-\.
-
-
---
--- Data for Name: tipo_parametro; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY tipo_parametro (id_tipo_parametro, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	nueva parametro	2018-04-26 18:56:58.785	2018-04-26 18:56:58.785	1
-\.
-
-
---
--- Data for Name: tipo_respuesta; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY tipo_respuesta (id_tipo_respuesta, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	nueva respuesta	2018-04-26 20:00:24.576	2018-04-26 20:00:24.576	1
-\.
-
-
---
--- Data for Name: tipo_unidad; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY tipo_unidad (id_tipo_unidad, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-2	moneda	2018-04-28 16:01:38.443991	2018-04-28 16:01:38.443991	1
-1	Masa	2018-04-26 20:11:18.444	2018-04-26 20:11:18.444	1
-3	Tiempo	2018-04-29 15:46:00.58441	2018-04-29 15:46:00.58441	1
-\.
-
-
---
--- Data for Name: tipo_valoracion; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY tipo_valoracion (id_tipo_valoracion, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	Buena	2018-04-26 20:12:24.532	2018-04-26 20:12:24.532	1
-\.
-
-
---
--- Data for Name: unidad; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY unidad (id_unidad, id_tipo_unidad, nombre, abreviatura, fecha_creacion, fecha_actualizacion, estatus, simbolo) FROM stdin;
-1	1	gramos	gm	2018-04-26 20:56:51.086	2018-04-26 20:56:51.086	1	g
-5	1	kilogramo	K	2018-04-29 15:29:55.229859	2018-04-29 15:29:55.229859	1	k
-7	3	Hora	h	2018-04-29 15:30:26.023738	2018-04-29 15:30:26.023738	1	h
-8	3	Minuto	min	2018-04-29 15:30:41.183499	2018-04-29 15:30:41.183499	1	m
-9	3	Segundo	seg	2018-04-29 15:31:00.859754	2018-04-29 15:31:00.859754	1	s
-10	2	Dólar estadounidense	USD	2018-04-29 15:37:05.908467	2018-04-29 15:37:05.908467	1	$
-6	1	milligramo	mg	2018-04-29 15:30:10.690033	2018-04-29 15:30:10.690033	1	mg
-3	2	Bolivares Fuertes	VEF	2018-04-28 16:04:41.417766	2018-04-28 16:04:41.417766	1	BsF
-4	1	tonelada	ton	2018-04-29 15:29:26.717019	2018-04-29 15:29:26.717019	1	ton
-\.
-
-
---
--- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY usuario (id_usuario, nombre_usuario, correo, contrasenia, salt, fecha_creacion, fecha_actualizacion, ultimo_acceso, estatus, id_rol) FROM stdin;
-1	jguerrero	guerrero.c.jose.a@gmail.com	$2a$12$Zsfm7hKFFwzszEOGSuOS7ePL179wk2RfxNBObxu.Un/gZtVjHunj6	$2a$12$Zsfm7hKFFwzszEOGSuOS7e	2018-04-19 22:12:23.435	2018-04-19 22:12:23.435	\N	1	\N
-\.
-
-
---
--- Data for Name: valoracion; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY valoracion (id_valoracion, id_tipo_valoracion, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-\.
-
-
---
--- Data for Name: visita; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY visita (id_visita, numero, fecha_atencion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-\.
 
 
 --
@@ -4058,7 +3051,7 @@ ALTER TABLE ONLY plan_suplemento
 
 
 --
--- Name: precio_id_precio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: precio_id_precio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY precio
@@ -4194,7 +3187,7 @@ ALTER TABLE ONLY tipo_cita
 
 
 --
--- Name: tipo_comentario_id_tipo_comentario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: tipo_comentario_id_tipo_comentario_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY tipo_comentario
@@ -4837,7 +3830,7 @@ ALTER TABLE ONLY plan_dieta
 
 
 --
--- Name: precio_id_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: precio_id_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY precio
@@ -5093,16 +4086,16 @@ ALTER TABLE ONLY valoracion
 
 
 --
--- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: byqkxhkjgnspco
 --
 
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM postgres;
-GRANT ALL ON SCHEMA public TO postgres;
+REVOKE ALL ON SCHEMA public FROM byqkxhkjgnspco;
+GRANT ALL ON SCHEMA public TO byqkxhkjgnspco;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
 --
--- PostgreSQL database dump complete
+-- byqkxhkjgnspcoQL database dump complete
 --
 
