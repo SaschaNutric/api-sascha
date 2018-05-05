@@ -40,6 +40,29 @@ function saveUnidad(req, res, next){
 	})
 	.save()
 	.then(function(data){
+		res.status(200).json({
+			error: false,
+			data: data
+		});
+	})
+	.catch(function (err) {
+		res.status(500)
+		.json({
+			error: true,
+			data: {message: err.message}
+		});
+	});
+}
+
+function saveUnidad2(req, res, next){
+	Unidad.forge({
+ 		id_tipo_unidad: req.body.id_tipo_unidad, 
+        nombre: req.body.nombre,
+        abreviatura: req.body.abreviatura,
+        simbolo: req.body.simbolo,
+	})
+	.save()
+	.then(function(data){
 		Unidad.query(function (q) {
 			q.where('unidad.id_unidad', '=', data.get('id_unidad'));
 	        q.innerJoin('tipo_unidad', function () {
@@ -63,7 +86,6 @@ function saveUnidad(req, res, next){
 		});
 	});
 }
-
 function getUnidadById(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') 

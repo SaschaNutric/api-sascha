@@ -31,7 +31,14 @@ function getSolicitud_servicios(req, res, next) {
 function saveSolicitud_servicio(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	Solicitud_servicio.forge({ id_cliente:req.body.id_cliente ,id_motivo:req.body.id_motivo ,id_respuesta:req.body.id_respuesta ,id_servicio:req.body.id_servicio ,respuesta:req.body.respuesta ,id_promocion:req.body.id_promocion  })
+	Solicitud_servicio.forge({ 
+		id_cliente:req.body.id_cliente,
+		id_motivo:req.body.id_motivo,
+		id_respuesta:req.body.id_respuesta,
+		id_servicio:req.body.id_servicio,
+		respuesta:req.body.respuesta,
+		id_promocion:req.body.id_promocion  
+	})
 	.save()
 	.then(function(data){
 		res.status(200).json({
