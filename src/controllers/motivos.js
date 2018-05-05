@@ -32,6 +32,32 @@ function getMotivos(req, res, next) {
     });
 }
 
+function getMotivosDeSolicitud(req, res, next) {
+	Motivos.query(function (qb) {
+   		qb.where('motivo.estatus', '=', 1);
+   		qb.where('motivo.id_tipo_motivo', '=', 1);
+	})
+	.fetch()
+	.then(function(data) {
+		if (!data)
+			return res.status(404).json({ 
+				error: true, 
+				data: { mensaje: 'No hay dato registrados' } 
+			});
+
+		return res.status(200).json({
+			error: false,
+			data: data
+		});
+	})
+	.catch(function (err) {
+     	return res.status(500).json({
+			error: true,
+			data: { mensaje: err.message }
+		});
+    });
+}
+
 function saveMotivo(req, res, next){
 	console.log(JSON.stringify(req.body));
 
@@ -203,6 +229,7 @@ function deleteMotivo(req, res, next) {
 
 module.exports = {
 	getMotivos,
+	getMotivosDeSolicitud,
 	saveMotivo,
 	getMotivoById,
 	getMotivo_tipo,

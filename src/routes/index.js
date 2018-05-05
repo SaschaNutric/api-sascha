@@ -280,6 +280,7 @@ module.exports = (function () {
   api.delete('/incidencia/:id',              incidenciasCtrl.deleteIncidencia);  
 
   api.get('/motivos',                        motivosCtrl.getMotivos);
+  api.get('/motivos/solicitud',              motivosCtrl.getMotivosDeSolicitud); 
   api.post('/motivos',                       motivosCtrl.saveMotivo);
   api.get('/motivo/:id',                     motivosCtrl.getMotivoById);  
   api.put('/motivo/:id',                     motivosCtrl.updateMotivo);
