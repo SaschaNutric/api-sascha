@@ -2695,6 +2695,24 @@ VALUES (1, 'Solicitud'),
 SELECT pg_catalog.setval('id_tipo_motivo_seq', 6, true);
 
 
+INSERT INTO tipo_cita (id_tipo_cita, nombre)
+VALUES (1, 'Diagnostico'),
+(2, 'Control'),
+(3, 'Reprogramada');
+
+
+SELECT pg_catalog.setval('id_tipo_cita_seq', 3, true);
+
+
+INSERT INTO tipo_orden (id_tipo_orden, nombre)
+VALUES (1, 'Normal'),
+(2, 'Garantía'),
+(3, 'Promoción');
+
+
+SELECT pg_catalog.setval('id_tipo_orden_seq', 3, true);
+
+
 INSERT INTO motivo(id_motivo, id_tipo_motivo, descripcion)
 VALUES (1, 1, 'Alcanzar peso ideal'),
 (2, 1, 'Control de patología'),
