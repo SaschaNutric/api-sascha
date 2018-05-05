@@ -2654,6 +2654,8 @@ INSERT INTO funcionalidad VALUES (4, NULL, 'Visitas', 'fa fa-calendar', 4, 1, 1,
 INSERT INTO funcionalidad VALUES (5, NULL, 'Ofertas y promociones', 'fa fa-tags', 5, 1, 1, '');
 INSERT INTO funcionalidad VALUES (6, NULL, 'Reportes', 'fa fa-bar-chart-o', 6, 1, 1, '');
 INSERT INTO funcionalidad VALUES (7, NULL, 'Administración del Sistema', 'fa fa-wrench', 7, 1, 1, '');
+INSERT INTO funcionalidad VALUES (8, 2, 'Unidades', 'fa fa-chevron-right', 1, 2, 1, 'regi_unidad.html');
+INSERT INTO funcionalidad VALUES (9, 2, 'Tipos de Parámetros', 'fa fa-chevron-right', 2, 2, 1, 'regi_tipo_parametro.html');
 
 SELECT pg_catalog.setval('id_funcionalidad_seq', 7, true);
 

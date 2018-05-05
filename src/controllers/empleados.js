@@ -31,7 +31,16 @@ function getEmpleados(req, res, next) {
 function saveEmpleado(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	Empleado.forge({ id_usuario:req.body.id_usuario ,id_genero:req.body.id_genero ,cedula:req.body.cedula ,nombres:req.body.nombres ,apellidos:req.body.apellidos ,telefono:req.body.telefono ,correo:req.body.correo ,direccion:req.body.direccion  })
+	Empleado.forge({ 
+		id_usuario: req.body.id_usuario, 
+		id_genero: req.body.id_genero,
+		cedula: req.body.cedula,
+		nombres: req.body.nombres,
+		apellidos: req.body.apellidos,
+		telefono: req.body.telefono,
+		correo: req.body.correo,
+		direccion: req.body.direccion  
+	})
 	.save()
 	.then(function(data){
 		res.status(200).json({

@@ -5,11 +5,10 @@ const Unidad  = require('../models/unidad');
 
 function getUnidades(req, res, next) {
 	Unidades.query(function (q) {
-        q
-         .innerJoin('tipo_unidad', function () {
+        q.innerJoin('tipo_unidad', function () {
                 this.on('unidad.id_tipo_unidad', '=', 'tipo_unidad.id_tipo_unidad');
             });
-	q.where('unidad.estatus', '=', 1);
+		q.where('unidad.estatus', '=', 1);
 	})
 	.fetch({ withRelated: ['tipo_unidad'] })
 	.then(function(data) {
