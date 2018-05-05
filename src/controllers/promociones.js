@@ -41,6 +41,7 @@ function savePromocion(req, res, next){
 		id_servicio: req.body.id_servicio,
 		nombre: req.body.nombre,
 		descripcion: req.body.descripcion,
+		descuento:   req.body.descuento,
 		id_genero: req.body.id_genero,
 		id_estado_civil: req.body.id_estado_civil,
 		id_rango_edad: req.body.id_rango_edad
@@ -117,6 +118,7 @@ function updatePromocion(req, res, next) {
 			id_servicio: req.body.id_servicio || data.get('id_servicio'),
 			nombre: req.body.nombre || data.get('nombre'),
 			descripcion: req.body.descripcion || data.get('descripcion'),
+			descuento:   req.body.descuento   || data.get('descuento'),
 			id_genero: req.body.id_genero || data.get('id_genero'),
 			id_estado_civil: req.body.id_estado_civil || data.get('id_estado_civil'),
 			id_rango_edad: req.body.id_rango_edad || data.get('id_rango_edad')

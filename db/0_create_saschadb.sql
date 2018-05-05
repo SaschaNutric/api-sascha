@@ -2553,14 +2553,20 @@ SELECT pg_catalog.setval('id_app_movil_seq', 2, true);
 --
 
 INSERT INTO bloque_horario (id_bloque_horario, hora_inicio, hora_fin) 
-VALUES (1, '06:00:00', '07:00:00'),
-(2, '07:00:00', '08:00:00'),
-(3, '08:00:00', '09:00:00'),
-(4, '09:00:00', '10:00:00'),
-(5, '11:00:00', '12:00:00');
+VALUES (1, '07:00:00', '08:00:00'),
+(2, '08:00:00', '09:00:00'),
+(3, '09:00:00', '10:00:00'),
+(4, '10:00:00', '11:00:00'),
+(5, '11:00:00', '12:00:00'),
+(6, '12:00:00', '13:00:00'),
+(7, '13:00:00', '14:00:00'),
+(8, '14:00:00', '15:00:00'),
+(9, '15:00:00', '16:00:00'),
+(10, '16:00:00', '17:00:00'),
+(11, '17:00:00', '18:00:00');
 
 
-SELECT pg_catalog.setval('id_bloque_horario_seq', 5, true);
+SELECT pg_catalog.setval('id_bloque_horario_seq', 11, true);
 
 
 --
@@ -2675,6 +2681,27 @@ INSERT INTO rango_edad VALUES (5, 'Adulto mayor', 60, 120, '2018-04-19 21:12:03.
 
 
 SELECT pg_catalog.setval('id_rango_edad_seq', 5, true);
+
+
+INSERT INTO tipo_motivo(id_tipo_motivo, nombre)
+VALUES (1, 'Solicitud'),
+(2, 'Reclamo'),
+(3, 'Incidencia'),
+(4, 'Queja'),
+(5, 'Sugerencia'),
+(6, 'Pregunta');
+
+
+SELECT pg_catalog.setval('id_tipo_motivo_seq', 6, true);
+
+
+INSERT INTO motivo(id_motivo, id_tipo_motivo, descripcion)
+VALUES (1, 1, 'Alcanzar peso ideal'),
+(2, 1, 'Control de patología'),
+(3, 1, 'Entrenamiento para atletas');
+
+
+SELECT pg_catalog.setval('id_motivo_seq', 3, true);
 
 
 INSERT INTO tipo_unidad (id_tipo_unidad, nombre)
