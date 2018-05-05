@@ -2,8 +2,6 @@
 
 const TipoUnidades = require('../collections/tipo_unidades');
 const TipoUnidad   = require('../models/tipo_unidad');
-const ViewTiposUnidades = require('../collections/view_tipos_unidades');
-const ViewTipoUnidad    = require('../models/view_tipo_unidad');
 
 function getTipoUnidades(req, res, next) {
 	TipoUnidades.query(function (qb) {
@@ -187,6 +185,5 @@ module.exports = {
 	saveTipoUnidad,
 	getTipoUnidadById,
 	updateTipoUnidad,
-	deleteTipoUnidad,
-	getTipoUnidadesConUnidades
+	deleteTipoUnidad
 }
