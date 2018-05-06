@@ -5,7 +5,7 @@ const TipoValoracion  = require('../models/tipo_valoracion');
 
 function getTipoValoraciones(req, res, next) {
 	TipoValoraciones.query(function (qb) {
-   		qb.where('tipo_valoraciones.estatus', '=', 1);
+   		qb.where('tipo_valoracion.estatus', '=', 1);
 	})
 	.fetch()
 	.then(function(data) {
