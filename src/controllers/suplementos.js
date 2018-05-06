@@ -7,7 +7,7 @@ function getSuplementos(req, res, next) {
 	Suplementos.query(function (qb) {
    		qb.where('suplemento.estatus', '=', 1);
 	})
-	.fetch()
+	.fetch({ withRelated: ['unidad', 'unidad.tipo_unidad'] })
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -57,7 +57,7 @@ function getSuplementoById(req, res, next) {
 		});
 
 	Suplemento.forge({ id_suplemento: id, estatus: 1 })
-	.fetch()
+	.fetch({ withRelated: ['unidad', 'unidad.tipo_unidad'] })
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
