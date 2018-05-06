@@ -4,8 +4,13 @@ const Valoraciones 	= require('../collections/valoraciones');
 const Valoracion  	= require('../models/valoracion');
 
 function getValoraciones(req, res, next) {
-	Valoraciones.query({})
-	.fetch({ columns: ['id_tipo_valoracion','nombre'] })
+	Valoraciones.query(function (q) {
+        q.innerJoin('tipo_valoracion', function () {
+                this.on('valoracion.id_tipo_valoracion', '=', 'tipo_valoracion.id_tipo_valoracion');
+            });
+		q.where('valoracion.estatus', '=', 1);
+	})
+	.fetch({ withRelated: ['tipo_valoracion'] })
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -32,10 +37,20 @@ function saveValoracion(req, res, next){
 	Valoracion.forge({ id_tipo_valoracion:req.body.id_tipo_valoracion ,nombre:req.body.nombre  })
 	.save()
 	.then(function(data){
-		res.status(200).json({
-			error: false,
-			data: data
-		});
+		Valoracion.query(function (q) {
+			q.where('valoracion.id_valoracion', '=', data.get('id_valoracion'));
+	        q.innerJoin('tipo_valoracion', function () {
+                this.on('valoracion.id_tipo_valoracion', '=', data.get('id_tipo_valoracion'));
+            });
+			q.where('valoracion.estatus', '=', 1);
+		})
+		.fetch({ withRelated: ['tipo_valoracion'] })
+		.then(function(valoracion) {
+			res.status(200).json({
+				error: false,
+				data: valoracion
+			});
+		})
 	})
 	.catch(function (err) {
 		res.status(500)
@@ -54,8 +69,15 @@ function getValoracionById(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 
-	Valoracion.forge({ id_valoracion: id, estatus: 1 })
-	.fetch()
+	Valoracion.query(function (q) {
+        	q
+         	.innerJoin('tipo_valoracion', function () {
+                this.on('valoracion.id_tipo_valoracion', '=', 'tipo_valoracion.id_tipo_valoracion')
+                	.andOn('id_valoracion', '=', id)
+             		.andOn('valoracion.estatus', '=', 1);
+            });
+	})
+	.fetch({ withRelated: ['tipo_valoracion'] })
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
