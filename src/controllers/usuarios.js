@@ -18,7 +18,7 @@ const REFRESH_TOKEN      = process.env.REFRESH_TOKEN      || '';
 
 function getUsuarios(req, res, next) {
 	Usuarios.query(function (q) {
-	q.innerJoin('rol', function(){
+	q.innerJoin('rol', function() {
 		this.on('usuario.id_rol', '=', 'rol.id_rol');
 		});
 		q.where: ('usuario.estatus', '=', 1);	
