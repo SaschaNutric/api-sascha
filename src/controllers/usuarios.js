@@ -17,15 +17,10 @@ const MAIL_CLIENT_SECRET = process.env.MAIL_CLIENT_SECRET || '';
 const REFRESH_TOKEN      = process.env.REFRESH_TOKEN      || '';
 
 function getUsuarios(req, res, next) {
-	Usuarios.query(function (q) {
-	q.innerJoin('rol', function() {
-		this.on('usuario.id_rol', '=', 'rol.id_rol');
-		});
-		q.where: ('usuario.estatus', '=', 1);	
-	})	
+	Usuarios.query({ where: { estatus: 1 } })
 	.fetch({ withRelated: ['rol'] })
-	.then(function(data) {
-		if (!data)
+	.then(function(usuarios) {
+		if (!usuarios)
 			return res.status(404).json({ 
 				error: true, 
 				data: { mensaje: 'No hay usuarios registrados' } 
