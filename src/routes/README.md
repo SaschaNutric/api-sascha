@@ -35,7 +35,7 @@ Informacion sobre el contenido manejado sobre cada rutas de la api-sascha
     * [tiporespuestas](#tiporespuestas)
     * [tipounidades](#tipounidades)
     * [tipovaloraciones](#tipovaloraciones)
-
+    * [tiponotificaciones](#tiponotificaciones)
 * [agendas](#agendas)
 * [alimentos](#alimentos)
 * [calificaciones](#calificaciones)
@@ -853,6 +853,15 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
     ├─DELETE─/tipovaloracion/:id   * Elimina.
 ```
 [[ver json]](https://api-sascha.herokuapp.com/tipovaloraciones)
+
+# Tipo Notificaciones
+
+```
+    ├─GET────/tiponotificaciones       * Retorna todos.
+    ├─PUT────/tiponotificaciones/:id   * Actualiza.
+```
+[[ver json]](https://api-sascha.herokuapp.com/tiponotificaciones)
+
 
 # Unidades
 
