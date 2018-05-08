@@ -18,7 +18,7 @@ const REFRESH_TOKEN      = process.env.REFRESH_TOKEN      || '';
 
 function getUsuarios(req, res, next) {
 	Usuarios.query({ where: { estatus: 1 } })
-	.fetch({ columns: ['id_usuario', 'correo', 'nombre_usuario', 'fecha_creacion', 'fecha_actualizacion', 'ultimo_acceso' ] })
+	.fetch({ withRelated: ['rol'] })
 	.then(function(usuarios) {
 		if (!usuarios)
 			return res.status(404).json({ 
