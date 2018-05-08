@@ -69,6 +69,7 @@ const tipo_parametrosCtrl         = require('../controllers/tipo_parametros');
 const tipo_respuestasCtrl         = require('../controllers/tipo_respuestas');
 const tipo_unidadesCtrl           = require('../controllers/tipo_unidades');
 const tipo_valoracionesCtrl       = require('../controllers/tipo_valoraciones');
+const tipo_notificacionesCtrl     = require('../controllers/tipo_notificaciones');
 const unidadesCtrl                = require('../controllers/unidades');
 const usuariosCtrl                = require('../controllers/usuarios');
 const valoracionesCtrl            = require('../controllers/valoraciones');
@@ -480,6 +481,9 @@ module.exports = (function () {
   api.get('/tipomotivo/:id',                 tipo_motivosCtrl.getTipoMotivoById);  
   api.put('/tipomotivo/:id',                 tipo_motivosCtrl.updateTipoMotivo);
   api.delete('/tipomotivo/:id',              tipo_motivosCtrl.deleteTipoMotivo);
+  
+  api.get('/tiponotificaciones',             tipo_notificacionesCtrl.getTipoNotificaciones);
+  api.put('/tiponotificaciones/:id',         tipo_notificacionesCtrl.updateTipoNotificacion);
 
   api.get('/tipoordenes',                    tipo_ordenesCtrl.getTipoOrdenes);
   api.post('/tipoordenes',                   tipo_ordenesCtrl.saveTipoOrden);
