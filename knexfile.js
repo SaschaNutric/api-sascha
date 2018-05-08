@@ -11,7 +11,7 @@ module.exports = {
 		connection: {
 			host:     "localhost",
 			user:     "postgres",
-			password: "1234",
+			password: "postgres",
 			database: "saschadb",
 			charset:  "utf-8"
 		}

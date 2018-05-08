@@ -231,7 +231,7 @@ function get$(echo $objectos)(req, res, next) {
 	.catch(function (err) {
      	return res.status(500).json({
 			error: true,
-			data: { mensaje: err.message }
+			data: data
 		});
     });
 }
@@ -253,7 +253,7 @@ function save$(echo $objecto)(req, res, next){
 		res.status(500)
 		.json({
 			error: true,
-			data: {message: err.message}
+			data: data
 		});
 	});
 }
@@ -272,7 +272,7 @@ function get$(echo $objecto)ById(req, res, next) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'dato no encontrado' } 
+				data: data
 			});
 		return res.status(200).json({ 
 			error : false, 
@@ -308,7 +308,7 @@ function update$(echo $objecto)(req, res, next) {
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

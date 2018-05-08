@@ -10,6 +10,13 @@ function getPromociones(req, res, next) {
 	.fetch({
 		withRelated: [
 			'servicio',
+			'servicio.plan_dieta',
+			'servicio.plan_dieta.tipo_dieta',
+			'servicio.plan_ejercicio',
+			'servicio.plan_suplemento',
+			'servicio.precio',
+			'servicio.precio.unidad',
+			'servicio.precio.unidad.tipo_unidad',
 			'genero',
 			'estado_civil',
 			'rango_edad'
