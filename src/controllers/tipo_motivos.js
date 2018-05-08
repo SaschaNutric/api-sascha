@@ -54,7 +54,7 @@ function getTipoMotivosCanalEscucha(req, res, next) {
 			tipoMotivos.push({
 				id_tipo_motivo: tipoMotivo.id_tipo_motivo,
 				es_canal_escucha: tipoMotivo.canal_escucha,
-				nombre: tipoMotivo.nombre,
+				nombre: tipoMotivo.nombre.trim(),
 				motivos: motivos
 			})
 		});
