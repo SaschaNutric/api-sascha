@@ -281,6 +281,8 @@ module.exports = (function () {
 
   api.get('/motivos',                        motivosCtrl.getMotivos);
   api.get('/motivos/solicitud',              motivosCtrl.getMotivosDeSolicitud); 
+  api.get('/motivos/queja',                  motivosCtrl.getMotivosDeQueja); 
+  api.get('/motivos/sugerencia',             motivosCtrl.getMotivosDeSugerencia); 
   api.post('/motivos',                       motivosCtrl.saveMotivo);
   api.get('/motivo/:id',                     motivosCtrl.getMotivoById);  
   api.put('/motivo/:id',                     motivosCtrl.updateMotivo);
