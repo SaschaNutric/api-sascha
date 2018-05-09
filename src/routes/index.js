@@ -1,6 +1,7 @@
 var express                       = require('express');
 
 const agendasCtrl                 = require('../controllers/agendas');
+const ayudasCtrl                  = require('../controllers/ayudas');
 const alimentosCtrl               = require('../controllers/alimentos');
 const appmovilesCtrl              = require('../controllers/app_moviles');
 const bloquehorariosCtrl          = require('../controllers/bloque_horarios');
@@ -95,6 +96,12 @@ module.exports = (function () {
   api.get('/agenda/:id',                     agendasCtrl.getAgendaById);  
   api.put('/agenda/:id',                     agendasCtrl.updateAgenda);
   api.delete('/agenda/:id',                  agendasCtrl.deleteAgenda);  
+
+  api.get('/ayudas',                         ayudasCtrl.getAyudas);
+  api.post('/ayudas',                        ayudasCtrl.saveAyuda);
+  api.get('/ayuda/:id',                      ayudasCtrl.getAyudaById);  
+  api.put('/ayuda/:id',                      ayudasCtrl.updateAyuda);
+  api.delete('/ayuda/:id',                   ayudasCtrl.deleteAyuda);  
 
   api.get('/alimentos',                      alimentosCtrl.getAlimentos);
   api.post('/alimentos',                     alimentosCtrl.saveAlimento);
