@@ -80,7 +80,17 @@ function getServicioById(req, res, next) {
 		});
 
 	Servicio.forge({ id_servicio: id, estatus: 1 })
-	.fetch()
+	.fetch({
+		withRelated: [
+			'plan_dieta',
+			'plan_ejercicio',
+			'plan_suplemento',
+			'especialidad',
+			'precio',
+			'precio.unidad',
+			'precio.unidad.tipo_unidad'
+		]
+	})
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
@@ -101,6 +111,8 @@ function getServicioById(req, res, next) {
 }
 
 function saveServicio(req, res, next){
+		console.log(req)
+		console.log(req.files)
 		if (req.files.imagen) {
 			const imagen = req.files.imagen
 			cloudinary.uploader.upload(imagen.path, function(result) {
