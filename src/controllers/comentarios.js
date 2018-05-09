@@ -8,14 +8,12 @@ function getComentarios(req, res, next) {
    		qb.where('comentario.estatus', '=', 1);
 	})
 	.fetch({ withRelated: [
-		'cliente',
-		'cliente.estado',
-		'cliente.estado_civil',
-		'cliente.genero',
-		'cliente.rango_edad',
+		'id_comentario',
+		'id_cliente',
 		'respuesta',
 		'respuesta.tipo_respuesta',
-		'tipo_comentario'
+		'motivo',
+		'motivo.tipo_motivo'
 		]})
 	.then(function(data) {
 		if (!data)
@@ -32,7 +30,7 @@ function getComentarios(req, res, next) {
 	.catch(function (err) {
      	return res.status(500).json({
 			error: true,
-			data: { mensaje: err.message }
+			data: data
 		});
     });
 }
@@ -40,19 +38,27 @@ function getComentarios(req, res, next) {
 function saveComentario(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	Comentario.forge({ id_cliente:req.body.id_cliente ,id_respuesta:req.body.id_respuesta ,contenido:req.body.contenido ,respuesta:req.body.respuesta ,id_tipo_comentario:req.body.id_tipo_comentario  })
+	Comentario.forge({ 
+		id_cliente: req.body.id_cliente,
+		id_respuesta: req.body.id_respuesta || null,
+		id_motivo: req.body.id_motivo, 
+		contenido: req.body.contenido ,
+		respuesta: req.body.respuesta  
+	})
 	.save()
 	.then(function(data){
 		res.status(200).json({
 			error: false,
-			data: data
+			data: [{
+				msg: "Registro Creado"
+			}]
 		});
 	})
 	.catch(function (err) {
 		res.status(500)
 		.json({
 			error: true,
-			data: {message: err.message}
+			data: data
 		});
 	});
 }
@@ -66,12 +72,19 @@ function getComentarioById(req, res, next) {
 		});
 
 	Comentario.forge({ id_comentario: id, estatus: 1 })
-	.fetch({ withRelated: ['cliente','respuesta','tipo_comentario']})
+	.fetch({ withRelated: [
+		'id_comentario',
+		'id_cliente',
+		'respuesta',
+		'respuesta.tipo_respuesta',
+		'motivo',
+		'motivo.tipo_motivo'
+		]})
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'dato no encontrado' } 
+				data: data
 			});
 		return res.status(200).json({ 
 			error : false, 
@@ -101,9 +114,15 @@ function updateComentario(req, res, next) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'Solicitud no encontrada' } 
+				data: data 
 			});
-		data.save({ id_cliente:req.body.id_cliente || data.get('id_cliente'),id_respuesta:req.body.id_respuesta || data.get('id_respuesta'),contenido:req.body.contenido || data.get('contenido'),respuesta:req.body.respuesta || data.get('respuesta'),id_tipo_comentario:req.body.id_tipo_comentario || data.get('id_tipo_comentario') })
+		data.save({ 
+			id_cliente: req.body.id_cliente 	|| data.get('id_cliente'),
+			id_respuesta: req.body.id_respuesta || data.get('id_respuesta') || null,
+			id_motivo: req.body.id_motivo 		|| data.get('id_motivo'), 
+			contenido: req.body.contenido 		|| data.get('contenido'),
+			respuesta: req.body.respuesta  		|| data.get('respuesta')
+		})
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
@@ -171,4 +190,3 @@ module.exports = {
 	updateComentario,
 	deleteComentario
 }
-
