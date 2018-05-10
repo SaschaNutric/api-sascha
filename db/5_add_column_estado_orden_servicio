@@ -1,0 +1,1 @@
+ALTER TABLE orden_servicio ADD COLUMN estado integer DEFAULT 1;

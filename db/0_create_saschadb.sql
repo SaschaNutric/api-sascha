@@ -2228,6 +2228,7 @@ ALTER TABLE tipo_incidencia OWNER TO postgres;
 CREATE TABLE tipo_motivo (
     id_tipo_motivo integer DEFAULT nextval('id_tipo_motivo_seq'::regclass) NOT NULL,
     nombre character(50) DEFAULT ''::bpchar NOT NULL,
+    canal_escucha boolean DEFAULT TRUE NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
     fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
     estatus integer DEFAULT 1 NOT NULL
@@ -2405,21 +2406,32 @@ CREATE VIEW vista_cliente AS
     a.fecha_nacimiento,
     a.telefono,
     a.direccion,
-    d.id_estado,
-    d.nombre AS estado,
     a.tipo_cliente,
     e.nombre AS rango_edad,
     e.id_rango_edad
-   FROM ((((cliente a
+   FROM (((cliente a
      JOIN genero b ON ((a.id_genero = b.id_genero)))
      JOIN estado_civil c ON ((a.id_estado_civil = c.id_estado_civil)))
-     JOIN estado d ON ((a.id_estado = d.id_estado)))
      LEFT JOIN rango_edad e ON ((a.id_rango_edad = e.id_rango_edad)))
   WHERE (a.estatus = 1);
 
 
 ALTER TABLE vista_cliente OWNER TO postgres;
 
+
+CREATE VIEW vista_cliente_ordenes AS
+    SELECT a.id_cliente,
+    a.id_usuario,
+    ARRAY(SELECT id_orden_servicio 
+          FROM orden_servicio b 
+          JOIN solicitud_servicio c 
+          ON b.id_solicitud_servicio = c.id_solicitud_servicio
+          WHERE c.id_cliente = a.id_cliente
+          AND b.estado = 1) AS ordenes
+    FROM cliente a
+    WHERE a.estatus = 1;
+
+ALTER TABLE vista_cliente_ordenes OWNER TO postgres;
 
 --
 -- Data for Name: alimento; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -2595,6 +2607,14 @@ VALUES (1, 'Desayuno'),
 
 SELECT pg_catalog.setval('id_comida_seq', 6, true);
 
+INSERT INTO dia_laborable(id_dia_laborable, dia)
+VALUES (0, 'Domingo'),
+(1, 'Lunes'),
+(2, 'Martes'),
+(3, 'Miercoles'),
+(4, 'Jueves'),
+(5, 'Viernes'),
+(6, 'Sábado');
 
 --
 -- Data for Name: estado; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -2612,6 +2632,15 @@ INSERT INTO estado VALUES (8, 'Mérida', '2018-04-12 23:54:14.138-04:30', '2018-
 
 SELECT pg_catalog.setval('id_estado_seq', 8, true);
 
+INSERT INTO especialidad (id_especialidad, nombre)
+VALUES (1, 'Adelgazar'),
+(2, 'Aumentar Peso'),
+(3, 'Ganar Masa Muscular'),
+(4, 'Definición de Musculo'),
+(5, 'Control de Patología'),
+(6, 'Atención Deportiva');
+
+SELECT pg_catalog.setval('id_especialidad_seq', 6, true);
 
 --
 -- Data for Name: estado_civil; Type: TABLE DATA; Schema: public; Owner: postgres
