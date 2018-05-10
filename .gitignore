@@ -62,3 +62,9 @@ package-lock.json
 
 # hitorial de base de dato
 db/*.hsql
+
+# Images folder
+imagenes/
+
+# Production Database credentials
+herokudb.json

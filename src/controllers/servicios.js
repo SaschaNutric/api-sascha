@@ -111,65 +111,30 @@ function getServicioById(req, res, next) {
 }
 
 function saveServicio(req, res, next){
-		console.log(req)
-		console.log(req.files)
-		if (req.files.imagen) {
-			const imagen = req.files.imagen
-			cloudinary.uploader.upload(imagen.path, function(result) {
-				if (result.error) {
-					transaction.rollback();
-					return res.status(500).json({
-							error: true,
-							data: { message: err.message }
-						});
-				} 
-
-				// usuario.avatarNombre = result.public_id		
-				Servicio.forge({
-					id_plan_dieta:      req.body.id_plan_dieta,
-					id_plan_ejercicio:  req.body.id_plan_ejercicio, 
-					id_plan_suplemento: req.body.id_plan_suplemento,
-					id_especialidad:    req.body.id_especialidad || null,
-					nombre:             req.body.nombre, 
-					descripcion:        req.body.descripcion, 
-					url_imagen:         result.url, 
-					id_precio:          req.body.id_precio, 
-					numero_visitas:     req.body.numero_visitas
-				})
-				.save()
-				.then(function(data){
-					res.status(200).json({
-						error: false,
-						data: {
-							mensaje: "Servicio Creado satisfactoriamente",
-							data: data,
-						}
-					});
-				})
-				.catch(function (err) {
-					res.status(500)
-					.json({
+	if (req.files.imagen) {
+		const imagen = req.files.imagen
+		cloudinary.uploader.upload(imagen.path, function(result) {
+			if (result.error) {
+				return res.status(500).json({
 						error: true,
-						data: {message: err.message}
+						data: { message: result.error }
 					});
-				});
-				
-			})
-		}
-		else {
+			} 
+
+			// usuario.avatarNombre = result.public_id		
 			Servicio.forge({
 				id_plan_dieta:      req.body.id_plan_dieta,
-				id_plan_ejercicio:  req.body.id_plan_ejercicio,
+				id_plan_ejercicio:  req.body.id_plan_ejercicio, 
 				id_plan_suplemento: req.body.id_plan_suplemento,
 				id_especialidad:    req.body.id_especialidad || null,
-				nombre:             req.body.nombre,
-				descripcion:        req.body.descripcion,
-				url_imagen:         'https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png',
-				id_precio:          req.body.id_precio,
+				nombre:             req.body.nombre, 
+				descripcion:        req.body.descripcion, 
+				url_imagen:         result.url, 
+				id_precio:          req.body.id_precio, 
 				numero_visitas:     req.body.numero_visitas
 			})
 			.save()
-			.then(function (data) {
+			.then(function(data){
 				res.status(200).json({
 					error: false,
 					data: {
@@ -180,12 +145,44 @@ function saveServicio(req, res, next){
 			})
 			.catch(function (err) {
 				res.status(500)
-					.json({
-						error: true,
-						data: { message: err.message }
-					});
+				.json({
+					error: true,
+					data: {message: err.message}
+				});
 			});
-		}
+			
+		})
+	}
+	else {
+		Servicio.forge({
+			id_plan_dieta:      req.body.id_plan_dieta,
+			id_plan_ejercicio:  req.body.id_plan_ejercicio,
+			id_plan_suplemento: req.body.id_plan_suplemento,
+			id_especialidad:    req.body.id_especialidad || null,
+			nombre:             req.body.nombre,
+			descripcion:        req.body.descripcion,
+			url_imagen:         'https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png',
+			id_precio:          req.body.id_precio,
+			numero_visitas:     req.body.numero_visitas
+		})
+		.save()
+		.then(function (data) {
+			res.status(200).json({
+				error: false,
+				data: {
+					mensaje: "Servicio Creado satisfactoriamente",
+					data: data,
+				}
+			});
+		})
+		.catch(function (err) {
+			res.status(500)
+				.json({
+					error: true,
+					data: { message: err.message }
+				});
+		});
+	}
 }
 
 function updateServicio(req, res, next) {
