@@ -69,6 +69,7 @@ function getAgendaPorEmpleado(req, res, next) {
 				tipo_cita:       agenda.tipo_cita,
 				fecha_inicio: 	`${JSON.stringify(agenda.fecha).substr(1,10)}T${agenda.hora_inicio}Z`,
 				fecha_fin: 		`${JSON.stringify(agenda.fecha).substr(1, 10)}T${agenda.hora_fin}Z`,
+				horario:        `${agenda.hora_inicio}-${agenda.hora_fin}`
 			})
 		})
 		return res.status(200).json({
