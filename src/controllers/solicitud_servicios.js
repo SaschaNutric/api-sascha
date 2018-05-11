@@ -199,9 +199,13 @@ function getMiServicioActivo(req, res, next) {
 				error: true, 
 				data: { mensaje: 'dato no encontrado' } 
 			});
+		var servicios: any = [];
+		for (var i = data.length - 1; i >= 0; i--) {
+			servicios.push(data[i].servicio) 
+		}
 		return res.status(200).json({ 
 			error : false, 
-			data : data 
+			data : servicios 
 		});
 	})
 	.catch(function(err){
