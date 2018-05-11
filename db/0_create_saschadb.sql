@@ -2435,6 +2435,55 @@ CREATE VIEW vista_cliente_ordenes AS
 
 ALTER TABLE vista_cliente_ordenes OWNER TO postgres;
 
+
+CREATE VIEW vista_cliente_servicio_activo AS
+    SELECT a.id_orden_servicio, 
+        b.id_solicitud_servicio, 
+        d.id_cliente, 
+        (d.nombres || ' ' || d.apellidos) AS nombre_cliente, 
+        c.id_servicio, 
+        c.nombre as nombre_servicio
+    FROM orden_servicio a 
+    JOIN solicitud_servicio b ON a.id_solicitud_servicio = b.id_solicitud_servicio
+    JOIN servicio c ON b.id_servicio = c.id_servicio
+    JOIN cliente d ON b.id_cliente = d.id_cliente
+    WHERE a.estatus = 1 AND b.estatus = 1 AND c.estatus = 1 AND d.estatus = 1;
+
+ALTER TABLE vista_cliente_servicio_activo OWNER TO byqkxhkjgnspco;
+
+
+CREATE VIEW vista_agenda AS
+SELECT a.id_agenda, 
+    i.id_empleado,
+    (i.nombres || ' ' || i.apellidos) AS nombre_empleado,
+    b.id_cliente, 
+    (b.nombres || ' ' || b.apellidos) AS nombre_cliente, 
+    c.id_servicio, 
+    c.nombre AS nombre_servicio,
+    d.id_tipo_cita, 
+    e.nombre AS tipo_cita, 
+    d.fecha, 
+    f.hora_inicio, 
+    f.hora_fin
+FROM agenda a
+    JOIN cliente b ON a.id_cliente = b.id_cliente
+    JOIN orden_servicio g ON a.id_orden_servicio = g.id_orden_servicio
+    JOIN solicitud_servicio h ON g.id_solicitud_servicio = h.id_solicitud_servicio
+    JOIN servicio c ON c.id_servicio = h.id_servicio
+    JOIN cita d ON a.id_cita = d.id_cita
+    JOIN tipo_cita e ON d.id_tipo_cita = e.id_tipo_cita
+    JOIN bloque_horario f ON d.id_bloque_horario = f.id_bloque_horario
+    JOIN empleado i ON a.id_empleado = i.id_empleado
+WHERE a.estatus = 1 
+    AND b.estatus = 1 
+    AND c.estatus = 1 
+    AND d.estatus = 1
+    AND g.estatus = 1 
+    AND g.estado = 1
+    AND i.estatus = 1;
+    
+ALTER TABLE vista_cliente_servicio_activo OWNER TO byqkxhkjgnspco;
+
 --
 -- Data for Name: alimento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
