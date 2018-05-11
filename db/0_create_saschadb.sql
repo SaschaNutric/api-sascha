@@ -2022,6 +2022,8 @@ CREATE TABLE respuesta (
 
 ALTER TABLE respuesta OWNER TO postgres;
 
+
+
 --
 -- Name: rol; Type: TABLE; Schema: public; Owner: postgres
 --
