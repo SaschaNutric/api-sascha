@@ -34,14 +34,34 @@ function getParametros(req, res, next) {
 }
 
 function saveParametro(req, res, next){
-	console.log(JSON.stringify(req.body));
-
-	Parametro.forge({ id_tipo_parametro:req.body.id_tipo_parametro ,id_unidad:req.body.id_unidad ,tipo_valor:req.body.tipo_valor ,nombre:req.body.nombre  })
+	Parametro.forge({ 
+		id_tipo_parametro:req.body.id_tipo_parametro,
+		id_unidad:req.body.id_unidad,
+		tipo_valor:req.body.tipo_valor,
+		nombre:req.body.nombre  
+	})
 	.save()
 	.then(function(data){
-		res.status(200).json({
-			error: false,
-			data: data
+		Parametro.forge({ id_parametro: data.get('id_parametro'), estatus: 1 })
+		.fetch({
+			withRelated: [
+				'tipo_parametro',
+				'unidad',
+				'unidad.tipo_unidad'
+			]
+		})
+		.then(function(parametro){
+			return res.status(200).json({
+				error: false,
+				data: parametro
+			});
+		})
+		.catch(function (err) {
+			res.status(500)
+				.json({
+					error: true,
+					data: { message: err.message }
+				});
 		});
 	})
 	.catch(function (err) {
