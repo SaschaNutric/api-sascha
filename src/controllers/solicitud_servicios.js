@@ -198,7 +198,7 @@ function saveSolicitud_servicio(req, res, next){
 													transaction.commit();
 													return res.status(200).json({
 														error: false,
-														data: `Solicitud aprobada y agendada satisfactoriamente para ${cita.get('fecha')}`
+														data: { mensaje: `Solicitud aprobada y agendada satisfactoriamente para ${cita.get('fecha')}` }
 													});
 												})
 												.catch(function (err) {
