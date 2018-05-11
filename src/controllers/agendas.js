@@ -113,7 +113,7 @@ function getAgendaById(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 
-	Agenda.forge({ id_agenda: id })
+	VistaAgenda.forge({ id_agenda: id })
 	.fetch()
 	.then(function(data) {
 		if(!data) 
