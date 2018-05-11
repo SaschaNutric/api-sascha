@@ -7,7 +7,10 @@ function getPrecios(req, res, next) {
 	Precios.query(function (qb) {
    		qb.where('precio.estatus', '=', 1);
 	})
-	.fetch({ columns: ['id_precio','id_unidad','nombre','valor'] })
+	.fetch({ withRelated: [
+		'unidad',
+		'unidad.tipo_unidad'
+		]})
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -37,6 +40,10 @@ function savePrecio(req, res, next){
 		valor:req.body.valor  
 	})
 	.save()
+	.fetch({ withRelated: [
+		'unidad',
+		'unidad.tipo_unidad'
+		]})
 	.then(function(data){
 		res.status(200).json({
 			error: false,
@@ -60,8 +67,11 @@ function getPrecioById(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 
-	Precio.forge({ id_precio })
-	.fetch()
+	Precio.forge({ id_precio, estatus: 1 })
+	.fetch({ withRelated: [
+		'unidad',
+		'unidad.tipo_unidad'
+		]})
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
@@ -91,7 +101,10 @@ function updatePrecio(req, res, next) {
 	}
 
 	Precio.forge({ id_precio })
-	.fetch()
+	.fetch({ withRelated: [
+		'unidad',
+		'unidad.tipo_unidad'
+		]})
 	.then(function(data){
 		if(!data) 
 			return res.status(404).json({ 

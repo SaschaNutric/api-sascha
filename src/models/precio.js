@@ -1,7 +1,7 @@
 'use strict'
 
 const Bookshelf = require('../commons/bookshelf');
-const Unidad      = require('./unidad');
+const Unidad    = require('./unidad');
 
 let Precio = Bookshelf.Model.extend({
   tableName: 'precio',

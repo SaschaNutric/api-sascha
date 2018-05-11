@@ -5,7 +5,6 @@ const Precio         = require('./precio');
 const PlanDieta 	   = require('./plan_dieta');
 const PlanEjercicio  = require('./plan_ejercicio');
 const PlanSuplemento = require('./plan_suplemento');
-const TipoDieta      = require('./tipo_dieta');
 const Especialidad   = require('./especialidad');
 
 let Servicio = Bookshelf.Model.extend({

@@ -298,6 +298,45 @@ function getSolicitud_servicioById(req, res, next) {
 	});
 }
 
+function getMiServicioActivo(req, res, next) {
+	const id = Number.parseInt(req.params.id);
+	if (!id || id == 'NaN') 
+		return res.status(400).json({ 
+			error: true, 
+			data: { mensaje: 'Solicitud incorrecta' } 
+		});
+
+	Solicitud_servicios.query(function (qb) {
+   		qb.where('solicitud_servicio.estatus', '=', 1);
+   		qb.where('id_cliente', '=', id);
+	})
+	.fetch({ withRelated: [
+		'servicio'
+		]})
+	.then(function(data) {
+		if(!data) 
+			return res.status(404).json({ 
+				error: true, 
+				data: { mensaje: 'dato no encontrado' } 
+			});
+		var servicios= [];
+		for (var i = data.length - 1; i >= 0; i--) {
+			servicios.push(data[i]) 
+		}
+		return res.status(200).json({ 
+			error : false, 
+			data : data,
+			servicios: servicios 
+		});
+	})
+	.catch(function(err){
+		return res.status(500).json({ 
+			error: false, 
+			data: { mensaje: err.message } 
+		})
+	});
+}
+
 function updateSolicitud_servicio(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') {
@@ -380,6 +419,7 @@ module.exports = {
 	getSolicitud_servicios,
 	saveSolicitud_servicio,
 	getSolicitud_servicioById,
+	getMiServicioActivo,
 	updateSolicitud_servicio,
 	deleteSolicitud_servicio
 }
