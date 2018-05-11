@@ -72,7 +72,7 @@ function saveSolicitud_servicio(req, res, next){
 				.save()
 				.then(function (solicitud) {
 					return res.status(200).json({
-						error: false,
+						error: true,
 						data: { mensaje: 'Cliente ha rechazado el precio del servicio' }
 					})
 				})
@@ -80,7 +80,7 @@ function saveSolicitud_servicio(req, res, next){
 					res.status(500)
 						.json({
 							error: true,
-							data: { message: err.message }
+							data: { mensaje: err.message }
 						});
 				});
 			}
@@ -111,7 +111,7 @@ function saveSolicitud_servicio(req, res, next){
 							return res.status(500)
 								.json({
 									error: true,
-									data: { message: err.message }
+									data: { mensaje: err.message }
 								});
 						});
 					}
@@ -155,7 +155,7 @@ function saveSolicitud_servicio(req, res, next){
 									return res.status(500)
 										.json({
 											error: true,
-											data: { message: err.message }
+											data: { mensaje: err.message }
 										});
 								});
 			
@@ -206,7 +206,7 @@ function saveSolicitud_servicio(req, res, next){
 													return res.status(500)
 														.json({
 															error: true,
-															data: { message: err.message }
+															data: { mensaje: err.message }
 														});
 												});
 											})
@@ -215,7 +215,7 @@ function saveSolicitud_servicio(req, res, next){
 												return res.status(500)
 													.json({
 														error: true,
-														data: { message: err.message }
+														data: { mensaje: err.message }
 													});
 											});
 										})
@@ -224,7 +224,7 @@ function saveSolicitud_servicio(req, res, next){
 											return res.status(500)
 												.json({
 													error: true,
-													data: { message: err.message }
+													data: { mensaje: err.message }
 												});
 										});
 									})
@@ -233,7 +233,7 @@ function saveSolicitud_servicio(req, res, next){
 										return res.status(500)
 											.json({
 												error: true,
-												data: { message: err.message }
+												data: { mensaje: err.message }
 											});
 									});
 								})
@@ -244,7 +244,7 @@ function saveSolicitud_servicio(req, res, next){
 							return res.status(500)
 								.json({
 									error: true,
-									data: { message: err.message }
+									data: { mensaje: err.message }
 								});
 						})
 					}
@@ -253,7 +253,7 @@ function saveSolicitud_servicio(req, res, next){
 					return res.status(500)
 						.json({
 							error: true,
-							data: { message: err.message }
+							data: { mensaje: err.message }
 						});
 				})
 			}
@@ -262,7 +262,7 @@ function saveSolicitud_servicio(req, res, next){
 			return res.status(500)
 				.json({
 					error: true,
-					data: { message: err.message }
+					data: { mensaje: err.message }
 				});
 		});
 
