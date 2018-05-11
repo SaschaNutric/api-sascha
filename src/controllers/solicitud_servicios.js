@@ -187,7 +187,9 @@ function getMiServicioActivo(req, res, next) {
 		});
 
 	Solicitud_servicio.forge({ id_cliente: id, estatus: 1 })
-	.fetch()
+	.fetch({ withRelated: [
+		'servicio'
+		]})
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 

@@ -436,6 +436,7 @@ module.exports = (function () {
   api.delete('/slide/:id',                   slidesCtrl.deleteSlide);
 
   api.get('/solicitudes',                    solicitudServiciosCtrl.getSolicitud_servicios);
+  api.get('/solicitudes/cliente/:id',        solicitudServiciosCtrl.getMiServicioActivo);
   api.post('/solicitudes',                   solicitudServiciosCtrl.saveSolicitud_servicio);
   api.get('/solicitud/:id',                  solicitudServiciosCtrl.getSolicitud_servicioById);  
   api.put('/solicitud/:id',                  solicitudServiciosCtrl.updateSolicitud_servicio);
