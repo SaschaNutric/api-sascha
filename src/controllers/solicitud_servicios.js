@@ -147,8 +147,6 @@ function saveSolicitud_servicio(req, res, next){
 				data: { message: err.message }
 			});
 	})
-	
-
 }
 
 function getSolicitud_servicioById(req, res, next) {
@@ -160,6 +158,35 @@ function getSolicitud_servicioById(req, res, next) {
 		});
 
 	Solicitud_servicio.forge({ id_solicitud_servicio: id, estatus: 1 })
+	.fetch()
+	.then(function(data) {
+		if(!data) 
+			return res.status(404).json({ 
+				error: true, 
+				data: { mensaje: 'dato no encontrado' } 
+			});
+		return res.status(200).json({ 
+			error : false, 
+			data : data 
+		});
+	})
+	.catch(function(err){
+		return res.status(500).json({ 
+			error: false, 
+			data: { mensaje: err.message } 
+		})
+	});
+}
+
+function getMiServicioActivo(req, res, next) {
+	const id = Number.parseInt(req.params.id);
+	if (!id || id == 'NaN') 
+		return res.status(400).json({ 
+			error: true, 
+			data: { mensaje: 'Solicitud incorrecta' } 
+		});
+
+	Solicitud_servicio.forge({ id_cliente: id, estatus: 1 })
 	.fetch()
 	.then(function(data) {
 		if(!data) 
@@ -262,6 +289,7 @@ module.exports = {
 	getSolicitud_servicios,
 	saveSolicitud_servicio,
 	getSolicitud_servicioById,
+	getMiServicioActivo,
 	updateSolicitud_servicio,
 	deleteSolicitud_servicio
 }
