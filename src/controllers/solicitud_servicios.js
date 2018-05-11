@@ -205,7 +205,8 @@ function getMiServicioActivo(req, res, next) {
 		}
 		return res.status(200).json({ 
 			error : false, 
-			data : servicios 
+			data : data,
+			servicios: servicios 
 		});
 	})
 	.catch(function(err){
