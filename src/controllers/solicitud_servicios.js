@@ -186,7 +186,10 @@ function getMiServicioActivo(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 
-	Solicitud_servicio.forge({ id_cliente: id, estatus: 1 })
+	Solicitud_servicios.query(function (qb) {
+   		qb.where('solicitud_servicio.estatus', '=', 1);
+   		qb.where('id_cliente', '=', id);
+	})
 	.fetch({ withRelated: [
 		'servicio'
 		]})
