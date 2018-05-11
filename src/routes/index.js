@@ -537,6 +537,7 @@ module.exports = (function () {
   api.put('/usuario/:id',                    usuariosCtrl.updateUsuario);
   api.delete('/usuario/:id',                 usuariosCtrl.deleteUsuario);
   api.post('/login',                         usuariosCtrl.singIn);
+  api.post('/login/intranet',                usuariosCtrl.singInEmpleado);
 
   api.get('/valoraciones',                   valoracionesCtrl.getValoraciones);
   api.post('/valoraciones',                  valoracionesCtrl.saveValoracion);
