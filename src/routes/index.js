@@ -120,7 +120,7 @@ module.exports = (function () {
   api.post('/bloquehorarios',                bloquehorariosCtrl.saveBloque_horario);
   api.get('/bloquehorario/:id',              bloquehorariosCtrl.getBloque_horarioById);  
   api.put('/bloquehorario/:id',              bloquehorariosCtrl.updateBloque_horario);
-  api.delete('/bloque/horario/:id',          bloquehorariosCtrl.deleteBloque_horario);  
+  api.delete('/bloquehorario/:id',          bloquehorariosCtrl.deleteBloque_horario);  
 
   api.get('/calificaciones',                 calificacionesCtrl.getCalificaciones);
   api.post('/calificaciones',                calificacionesCtrl.saveCalificacion);
