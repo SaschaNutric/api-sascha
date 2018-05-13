@@ -2,12 +2,13 @@
 
 const PlanSuplementos = require('../collections/plan_suplementos');
 const PlanSuplemento  = require('../models/plan_suplemento');
+const Bluebird        = require('bluebird');
 
 function getPlanSuplementos(req, res, next) {
 	PlanSuplementos.query(function (qb) {
    		qb.where('plan_suplemento.estatus', '=', 1);
 	})
-	.fetch({ columns: ['id_plan_suplemento', 'nombre', 'descripcion','fecha_creacion', 'fecha_actualizacion', 'estatus'] })
+	.fetch({ withRelated: ['suplementos'] })
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -34,10 +35,22 @@ function savePlanSuplemento(req, res, next){
         descripcion: req.body.descripcion
 	})
 	.save()
-	.then(function(data){
+	.tap(function(plan) {
+		let suplementosAsignados = [];
+		Bluebird.map(req.body.suplementos, function(suplemento) {
+			plan.related('suplementos').create(suplemento)
+			suplementosAsignados.push(suplemento)
+		})
+		.then(function() {
+			plan.suplementos = suplementosAsignados;
+		});
+	})
+	.then(function(plan) {
+		let planSuplemento = plan.toJSON()
+		planSuplemento['suplementos'] = req.body.suplementos;	
 		res.status(200).json({
 			error: false,
-			data: data
+			data: planSuplemento
 		});
 	})
 	.catch(function (err) {
@@ -58,7 +71,7 @@ function getPlanSuplementoById(req, res, next) {
 		});
 
 	PlanSuplemento.forge({ id_plan_suplemento: id, estatus: 1 })
-	.fetch()
+	.fetch({ withRelated: ['suplementos'] })
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 

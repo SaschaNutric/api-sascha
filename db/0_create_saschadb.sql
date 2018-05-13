@@ -2784,6 +2784,14 @@ VALUES (1, 'Diagnostico'),
 SELECT pg_catalog.setval('id_tipo_cita_seq', 3, true);
 
 
+INSERT INTO tipo_criterio (id_tipo_criterio, nombre)
+VALUES (1, 'Servicio'),
+(2, 'Visita');
+
+
+SELECT pg_catalog.setval('id_tipo_criterio_seq', 2, true);
+
+
 INSERT INTO tipo_orden (id_tipo_orden, nombre)
 VALUES (1, 'Normal'),
 (2, 'Garantía'),
