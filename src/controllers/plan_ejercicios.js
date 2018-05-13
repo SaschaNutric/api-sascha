@@ -2,12 +2,13 @@
 
 const PlanEjercicios = require('../collections/plan_ejercicios');
 const PlanEjercicio  = require('../models/plan_ejercicio');
+const Bluebird = require('bluebird');
 
 function getPlanEjercicios(req, res, next) {
 	PlanEjercicios.query(function (qb) {
    		qb.where('plan_ejercicio.estatus', '=', 1);
 	})
-	.fetch({ columns: ['id_plan_ejercicio', 'nombre', 'descripcion', 'fecha_creacion', 'fecha_actualizacion', 'estatus'] })
+	.fetch({ withRelated: ['ejercicios'] })
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -34,10 +35,18 @@ function savePlanEjercicio(req, res, next){
         descripcion: req.body.descripcion
 	})
 	.save()
+	.tap(function(plan){
+		let ejerciciosAsignados = [];
+		Bluebird.map(req.body.ejercicios, function(ejercicio) {
+			plan.related('ejercicios').create(ejercicio);
+		});
+	})
 	.then(function(data){
+		let planEjercicio = data.toJSON();
+		planEjercicio['ejercicios'] = req.body.ejercicios;
 		res.status(200).json({
 			error: false,
-			data: data
+			data: planEjercicio
 		});
 	})
 	.catch(function (err) {
@@ -58,7 +67,7 @@ function getPlanEjercicioById(req, res, next) {
 		});
 
 	PlanEjercicio.forge({ id_plan_ejercicio: id, estatus: 1 })
-	.fetch()
+	.fetch({ withRelated: ['ejercicios'] })
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
