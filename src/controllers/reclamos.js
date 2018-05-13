@@ -7,7 +7,10 @@ function getReclamos(req, res, next) {
 	Reclamos.query(function (qb) {
    		qb.where('reclamo.estatus', '=', 1);
 	})
-	.fetch({ columns: ['id_motivo','id_orden_servicio','id_respuesta','respuesta'] })
+	.fetch({
+		withRelated: ['motivo', 'respuesta', 'ordenServicio'], 
+		columns: ['id_motivo','id_orden_servicio','id_respuesta', 'respuesta'] 
+	})
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -57,7 +60,10 @@ function getReclamoById(req, res, next) {
 		});
 
 	Reclamo.forge({ id_reclamo })
-	.fetch()
+	.fetch({
+		withRelated: ['motivo', 'respuesta', 'ordenServicio'],
+		columns: ['id_motivo', 'id_orden_servicio', 'id_respuesta', 'respuesta'] 
+	})
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
@@ -71,7 +77,7 @@ function getReclamoById(req, res, next) {
 	})
 	.catch(function(err){
 		return res.status(500).json({ 
-			error: false, 
+			error: false,
 			data: { mensaje: err.message } 
 		})
 	});

@@ -7,7 +7,7 @@ function getRed_sociales(req, res, next) {
 	Red_sociales.query(function (qb) {
    		qb.where('red_social.estatus', '=', 1);
 	})
-	.fetch({ columns: ['id_red_social','nombre','url_base','url_logo'] })
+	.fetch({ columns: ['id_red_social','nombre','usuario', 'url_base','url_logo'] })
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -31,7 +31,12 @@ function getRed_sociales(req, res, next) {
 function saveRed_social(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	Red_social.forge({ nombre:req.body.nombre ,url_base:req.body.url_base ,url_logo:req.body.url_logo })
+	Red_social.forge({ 
+		nombre:   req.body.nombre,
+		usuario:  req.body.usuario,
+		url_base: req.body.url_base, 
+		url_logo: req.body.url_logo 
+	})
 	.save()
 	.then(function(data){
 		res.status(200).json({
@@ -95,9 +100,10 @@ function updateRed_social(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ 
-			nombre:req.body.nombre || data.get('nombre'),
-			url_base:req.body.url_base || data.get('url_base'),
-			url_logo:req.body.url_logo || data.get('url_logo') 
+			nombre:   req.body.nombre   || data.get('nombre'),
+			usuario:  req.body.usuario  || data.get('usuario'),
+			url_base: req.body.url_base || data.get('url_base'),
+			url_logo: req.body.url_logo || data.get('url_logo') 
 		})
 		.then(function() {
 			return res.status(200).json({ 

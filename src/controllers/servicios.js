@@ -4,39 +4,10 @@ const Servicios  = require('../collections/servicios');
 const Servicio   = require('../models/servicio');
 const cloudinary = require('../../cloudinary');
 const Bookshelf  = require('../commons/bookshelf');
-/*
-.query(function (q) {
-        q.distinct()
-         .innerJoin('plan_dieta', function () {
-                this.on('servicio.id_plan_dieta', '=', 'plan_dieta.id_plan_dieta');
-            })
-         .innerJoin('tipo_dieta', function () {
-                this.on('tipo_dieta.id_tipo_dieta', '=', 'plan_dieta.id_tipo_dieta');
-            })
-         .innerJoin('plan_ejercicio', function () {
-                this.on('servicio.id_plan_ejercicio', '=', 'plan_ejercicio.id_plan_ejercicio');
-            })
-         .innerJoin('plan_suplemento', function () {
-                this.on('servicio.id_plan_suplemento', '=', 'plan_suplemento.id_plan_suplemento');
-            });
-	})
-*/
-/*
-'plan_dieta',
-		'plan_dieta.tipo_dieta',
-		'plan_ejercicio',
-		'plan_suplemento',
-		'precio',
-		'precio.unidad',
-		'precio.unidad.tipo_unidad'	
-*/
+
 async function getServicios(req, res, next) {
 	await Servicios
 	.query(function (qb) {
-   		//qb.innerJoin('plan_ejercicio', 'servicio.id_plan_ejercicio', 'plan_ejercicio.id_plan_ejercicio');
-   		//qb.innerJoin('plan_dieta', 'servicio.id_plan_dieta', 'plan_dieta.id_plan_dieta');
-   		//qb.innerJoin('plan_suplemento', 'servicio.id_plan_suplemento', 'plan_suplemento.id_plan_suplemento');
-   		//qb.innerJoin('precio', 'servicio.id_precio', 'precio.id_precio');
    		qb.groupBy('servicio.id_servicio');
    		qb.where('servicio.estatus', '=', 1);
 	})
@@ -52,7 +23,6 @@ async function getServicios(req, res, next) {
 		]
 	})
 	.then(function(data) {
-		//console.log(servicios.at(0).related('plan_dieta'));
 		if (!data)
 			return res.status(404).json({ 
 				error: true, 
