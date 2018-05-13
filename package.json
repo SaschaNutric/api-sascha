@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "bcryptjs": "^1.1.0",
+    "bluebird": "^3.5.1",
     "body-parser": "~1.17.1",
     "bookshelf": "^0.12.1",
     "cloudinary": "^1.9.1",
