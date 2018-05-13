@@ -3,6 +3,7 @@
 const Usuario       = require('../models/usuario');
 const Usuarios      = require('../collections/usuarios');
 const Cliente       = require('../models/cliente');
+const Empleado      = require('../models/empleado');
 const ViewCliente   = require('../models/v_cliente');
 const correoTemplate = require('../views/correoTemplate');
 const Bookshelf     = require('../commons/bookshelf');
@@ -295,11 +296,68 @@ function singIn(req, res) {
 	})
 }
 
+
+function singInEmpleado(req, res) {
+	if (!req.body.correo && !req.body.nombre_usuario)
+		return res.status(400).json({ error: true, data: { mensaje: 'Faltan parametros en el body' } });
+
+	let credenciales = {
+		correo: req.body.correo ? req.body.correo.toLowerCase() : null,
+		nombre_usuario: req.body.nombre_usuario ? req.body.nombre_usuario.toLowerCase() : null
+	}
+	Usuario.query(function (qb) {
+		qb.where('correo', credenciales.correo).orWhere('nombre_usuario', credenciales.nombre_usuario);
+		qb.where('contrasenia', req.body.contraseña);
+		qb.where('tipo_usuario', 2);
+		qb.where('estatus', 1);
+	})
+	.fetch()
+	.then(function (usuario) {
+		if (!usuario)
+			return res.status(404).json({
+				error: true,
+				data: { mensaje: 'Correo o contraseña inválido' }
+			});
+			Empleado.forge({ id_usuario: usuario.get('id_usuario') })
+			.fetch()
+			.then(function (empleado) {
+				if (!empleado)
+					return res.status(404).json({
+						error: true,
+						data: { mensaje: 'Empleado no encontrado' }
+					});
+				const data = {
+					mensaje: 'Inicio de sesión exitoso',
+					token: service.createToken(usuario),
+					empleado: empleado
+				}
+				return res.status(200).json({
+					error: false,
+					data: data
+				});
+			})
+			.catch(function (err) {
+				return res.status(500).json({
+					error: false,
+					data: { mensaje: err.message }
+				})
+			});
+	})
+	.catch(function (err) {
+		console.log(err.mensaje);
+		return res.status(500).json({
+			error: true,
+			data: { mensaje: err.message }
+		});
+	})
+}
+
 module.exports = {
 	getUsuarios,
 	getUsuarioById,
 	saveUsuario,
 	updateUsuario,
 	deleteUsuario,
-	singIn
+	singIn,
+	singInEmpleado
 }
