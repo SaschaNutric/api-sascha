@@ -7,11 +7,12 @@ function getCriterios(req, res, next) {
 	Criterios.query(function (qb) {
    		qb.where('criterio.estatus', '=', 1);
 	})
-	.fetch({
-		withRelated: [
+	.fetch({ withRelated: 
+		[
 			'tipo_criterio',
 			'tipo_valoracion'
-		] })
+		] 
+	})
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -33,13 +34,11 @@ function getCriterios(req, res, next) {
 }
 
 function saveCriterio(req, res, next){
-	console.log(JSON.stringify(req.body));
-
 	Criterio.forge({ 
-		id_tipo_criterio:req.body.id_tipo_criterio ,
-		id_tipo_valoracion:req.body.id_tipo_valoracion ,
-		nombre:req.body.nombre ,
-		descripcion:req.body.descripcion  
+		id_tipo_criterio: 	req.body.id_tipo_criterio ,
+		id_tipo_valoracion: req.body.id_tipo_valoracion ,
+		nombre: 			req.body.nombre ,
+		descripcion: 		req.body.descripcion  
 	})
 	.fetch({
 		withRelated: [
@@ -80,7 +79,8 @@ function getCriterioById(req, res, next) {
 		withRelated: [
 			'tipo_criterio',
 			'tipo_valoracion'
-		] })
+		] 
+	})
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 

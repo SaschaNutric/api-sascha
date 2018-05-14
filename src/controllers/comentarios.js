@@ -16,7 +16,7 @@ function getComentarios(req, res, next) {
 		'respuesta.tipo_respuesta',
 		'motivo',
 		'motivo.tipo_motivo'
-		]})
+	] })
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -32,7 +32,7 @@ function getComentarios(req, res, next) {
 	.catch(function (err) {
      	return res.status(500).json({
 			error: true,
-			data: data
+			data: { mensaje: err.message }
 		});
     });
 }
@@ -61,16 +61,14 @@ function saveComentario(req, res, next){
 	.then(function(data){
 		res.status(200).json({
 			error: false,
-			data: [{
-				msg: "Registro Creado"
-			}]
+			data: data
 		});
 	})
 	.catch(function (err) {
 		res.status(500)
 		.json({
 			error: true,
-			data: data
+			data: { mensaje: err.message }
 		});
 	});
 }
@@ -93,16 +91,16 @@ function getComentarioById(req, res, next) {
 		'respuesta.tipo_respuesta',
 		'motivo',
 		'motivo.tipo_motivo'
-		]})
+	] })
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: data
+				data: 'Comentario no encontrado'
 			});
 		return res.status(200).json({ 
-			error : false, 
-			data : data 
+			error: false, 
+			data: data 
 		});
 	})
 	.catch(function(err){
@@ -137,7 +135,7 @@ function updateComentario(req, res, next) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: data 
+				data: { mensaje: 'Comentario no encontrado' }
 			});
 		data.save({ 
 			id_cliente: req.body.id_cliente 	|| data.get('id_cliente'),
@@ -181,7 +179,7 @@ function deleteComentario(req, res, next) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'Solicitud no encontrad0' } 
+				data: { mensaje: 'Comentario no encontrado' } 
 			});
 
 		data.save({ estatus:  0 })

@@ -36,16 +36,14 @@ function saveAyuda(req, res, next){
 	.then(function(data){
 		res.status(200).json({
 			error: false,
-			data: [{
-				msg: "Registro Creado"
-			}]
+			data: data
 		});
 	})
 	.catch(function (err) {
 		res.status(500)
 		.json({
 			error: true,
-			data: data
+			data: { mensaje: err.message }
 		});
 	});
 }
@@ -64,7 +62,7 @@ function getAyudaById(req, res, next) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: data
+				data: { mensaje: 'Pregunta Frecuente no encontrada' } 
 			});
 		return res.status(200).json({ 
 			error : false, 
@@ -94,7 +92,7 @@ function updateAyuda(req, res, next) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: data 
+				data: { mensaje: 'Pregunta Frecuente no encontrada' } 
 			});
 		data.save({ 
 			pregunta:req.body.pregunta || data.get('pregunta'),
@@ -135,7 +133,7 @@ function deleteAyuda(req, res, next) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'Solicitud no encontrad0' } 
+				data: { mensaje: 'Pregunta frecuente no encontrada' } 
 			});
 
 		data.save({ estatus:  0 })

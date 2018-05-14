@@ -130,7 +130,7 @@ function deleteApp_movil(req, res, next) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'Solicitud no encontrad0' } 
+				data: { mensaje: 'Aplicación móvil no encontrada' } 
 			});
 
 		data.save({ estatus:  0 })

@@ -60,7 +60,7 @@ function getAlimentoById(req, res, next) {
 		});
 
 	Alimento.forge({ id_alimento: id, estatus: 1 })
-	.fetch()
+	.fetch({ withRelated: ['grupo_alimenticio', 'grupo_alimenticio.unidad'] })
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
@@ -136,7 +136,7 @@ function deleteAlimento(req, res, next) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'Solicitud no encontrad0' } 
+				data: { mensaje: 'Alimento no encontrado' } 
 			});
 
 		data.save({ estatus:  0 })

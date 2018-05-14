@@ -7,7 +7,19 @@ function getIncidencias(req, res, next) {
 	Incidencias.query(function (qb) {
    		qb.where('incidencia.estatus', '=', 1);
 	})
-	.fetch({ columns: ['id_incidencia','id_tipo_incidencia','id_motivo','descripcion','id_agenda'] })
+	.fetch({ 
+		withRelated: [
+			'tipoIncidencia', 
+			'motivo'
+		],
+		columns: [
+			'id_incidencia',
+			'tipoIncidencia',
+			'motivo',
+			'descripcion',
+			'id_agenda'
+		] 
+	})
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -57,7 +69,12 @@ function getIncidenciaById(req, res, next) {
 		});
 
 	Incidencia.forge({ id_incidencia: id })
-	.fetch()
+	.fetch({
+		withRelated: [
+			'tipoIncidencia',
+			'motivo'
+		]
+	})
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 

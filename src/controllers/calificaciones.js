@@ -1,7 +1,7 @@
 'use strict';
 
-const Calificaciones 	= require('../collections/calificaciones');
-const Calificacion  	= require('../models/calificacion');
+const Calificaciones = require('../collections/calificaciones');
+const Calificacion   = require('../models/calificacion');
 
 function getCalificaciones(req, res, next) {
 	Calificaciones.query(function (qb) {

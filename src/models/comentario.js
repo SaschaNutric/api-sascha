@@ -13,7 +13,8 @@ let Comentario = Bookshelf.Model.extend({
   },
   respuesta: function() { 
     return this.belongsTo( Respuesta, 'id_respuesta' ); 
-  },motivo: function() { 
+  },
+  motivo: function() { 
     return this.belongsTo( Motivo, 'id_motivo' ); 
   }
 });
