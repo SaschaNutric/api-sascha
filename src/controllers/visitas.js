@@ -93,10 +93,10 @@ function updateVisita(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ numero:req.body.numero || data.get('numero'),fecha_atencion:req.body.fecha_atencion || data.get('fecha_atencion') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data 
 			});
 		})
 		.catch(function(err) {

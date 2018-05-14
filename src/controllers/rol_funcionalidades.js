@@ -95,7 +95,7 @@ function updateRol_funcionalidad(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ id_funcionalidad:req.body.id_funcionalidad || data.get('id_funcionalidad'),id_rol:req.body.id_rol || data.get('id_rol') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

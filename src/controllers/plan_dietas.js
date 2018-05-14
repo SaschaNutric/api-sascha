@@ -210,7 +210,7 @@ function updatePlanDieta(req, res, next) {
         	nombre: req.body.nombre || data.get('nombre'), 
         	descripcion: req.body.descripcion || data.get('descripcion')
 		})
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

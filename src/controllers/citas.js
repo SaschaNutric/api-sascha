@@ -95,7 +95,7 @@ function updateCita(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ id_orden_servicio:req.body.id_orden_servicio || data.get('id_orden_servicio'),id_tipo_cita:req.body.id_tipo_cita || data.get('id_tipo_cita'),id_bloque_horario:req.body.id_bloque_horario || data.get('id_bloque_horario') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

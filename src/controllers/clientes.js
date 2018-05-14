@@ -92,7 +92,7 @@ const id = Number.parseInt(req.params.id);
             telefono : req.body.telefono || data.get('telefono'),
             direccion: req.body.direccion || data.get('direccion')
 		})
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

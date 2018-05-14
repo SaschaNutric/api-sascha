@@ -114,11 +114,26 @@ function updateParametro_cliente(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ id_cliente:req.body.id_cliente || data.get('id_cliente'),id_parametro:req.body.id_parametro || data.get('id_parametro'),valor:req.body.valor || data.get('valor') })
-		.then(function() {
+		data.save({ 
+			id_cliente:req.body.id_cliente || data.get('id_cliente'),
+			id_parametro:req.body.id_parametro || data.get('id_parametro'),
+			valor:req.body.valor || data.get('valor') 
+		})
+		.fetch({
+		withRelated: [
+			'parametro',
+			'parametro.tipo_parametro',
+			'parametro.unidad',
+			'parametro.unidad.tipo_unidad',
+			'cliente',
+			'cliente.estado',
+			'cliente.estado_civil',
+			'cliente.rango_edad'
+		]})
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data 
 			});
 		})
 		.catch(function(err) {

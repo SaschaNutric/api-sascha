@@ -94,8 +94,11 @@ function updateEjercicio(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ nombre:req.body.nombre || data.get('nombre'),descripcion:req.body.descripcion || data.get('descripcion') })
-		.then(function() {
+		data.save({ 
+			nombre:req.body.nombre || data.get('nombre'),
+			descripcion:req.body.descripcion || data.get('descripcion') 
+		})
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

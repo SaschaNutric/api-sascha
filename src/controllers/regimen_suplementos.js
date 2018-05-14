@@ -95,7 +95,7 @@ function updateRegimen_suplemento(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ id_plan_suplemento:req.body.id_plan_suplemento || data.get('id_plan_suplemento'),id_cliente:req.body.id_cliente || data.get('id_cliente'),id_frecuencia:req.body.id_frecuencia || data.get('id_frecuencia'),cantidad:req.body.cantidad || data.get('cantidad') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

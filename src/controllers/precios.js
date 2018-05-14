@@ -112,7 +112,11 @@ function updatePrecio(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ id_unidad:req.body.id_unidad || data.get('id_unidad'),nombre:req.body.nombre || data.get('nombre'),valor:req.body.valor || data.get('valor') })
-		.then(function() {
+		.fetch({ withRelated: [
+			'unidad',
+			'unidad.tipo_unidad'
+		]})
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

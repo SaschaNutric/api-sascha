@@ -101,7 +101,7 @@ function updateReclamo(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ id_motivo:req.body.id_motivo || data.get('id_motivo'),id_orden_servicio:req.body.id_orden_servicio || data.get('id_orden_servicio'),id_respuesta:req.body.id_respuesta || data.get('id_respuesta'),respuesta:req.body.respuesta || data.get('respuesta') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

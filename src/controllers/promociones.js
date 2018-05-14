@@ -75,7 +75,7 @@ function savePromocion(req, res, next){
 			.then(function (servicio) {
 				res.status(200).json({
 					error: false,
-					data: data
+					data: servicio
 				});
 			})
 			.catch(function (err) {
@@ -101,7 +101,7 @@ function savePromocion(req, res, next){
 		.then(function (servicio) {
 			res.status(200).json({
 				error: false,
-				data: data
+				data: servicio
 			});
 		})
 		.catch(function (err) {
@@ -176,10 +176,10 @@ function updatePromocion(req, res, next) {
 			id_estado_civil: req.body.id_estado_civil || data.get('id_estado_civil'),
 			id_rango_edad: req.body.id_rango_edad || data.get('id_rango_edad')
 		})
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data 
 			});
 		})
 		.catch(function(err) {

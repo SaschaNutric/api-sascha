@@ -219,7 +219,7 @@ function updateMotivo(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ id_tipo_motivo:req.body.id_tipo_motivo || data.get('id_tipo_motivo'),descripcion:req.body.descripcion || data.get('descripcion') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

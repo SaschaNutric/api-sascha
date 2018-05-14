@@ -95,7 +95,7 @@ function updateOrden_servicio(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ id_solicitud_servicio:req.body.id_solicitud_servicio || data.get('id_solicitud_servicio'),id_tipo_orden:req.body.id_tipo_orden || data.get('id_tipo_orden'),id_meta:req.body.id_meta || data.get('id_meta'),fecha_emision:req.body.fecha_emision || data.get('fecha_emision'),fecha_caducidad:req.body.fecha_caducidad || data.get('fecha_caducidad'),id_reclamo:req.body.id_reclamo || data.get('id_reclamo') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

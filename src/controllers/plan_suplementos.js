@@ -8,7 +8,10 @@ function getPlanSuplementos(req, res, next) {
 	PlanSuplementos.query(function (qb) {
    		qb.where('plan_suplemento.estatus', '=', 1);
 	})
-	.fetch({ withRelated: ['suplementos'] })
+	.fetch({ withRelated: [
+		'suplementos',
+		'suplementos.unidad'
+		] })
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -71,7 +74,10 @@ function getPlanSuplementoById(req, res, next) {
 		});
 
 	PlanSuplemento.forge({ id_plan_suplemento: id, estatus: 1 })
-	.fetch({ withRelated: ['suplementos'] })
+	.fetch({ withRelated: [
+		'suplementos',
+		'suplementos.unidad'
+		] })
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
@@ -101,7 +107,10 @@ function updatePlanSuplemento(req, res, next) {
 	}
 
 	PlanSuplemento.forge({ id_plan_suplemento: id, estatus: 1 })
-	.fetch()
+	.fetch({ withRelated: [
+		'suplementos',
+		'suplementos.unidad'
+		] })
 	.then(function(data){
 		if(!data) 
 			return res.status(404).json({ 
@@ -112,7 +121,7 @@ function updatePlanSuplemento(req, res, next) {
 			nombre: req.body.nombre || data.get('nombre'),
 			descripcion: req.body.descripcion || data.get('descripcion')
 		})
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

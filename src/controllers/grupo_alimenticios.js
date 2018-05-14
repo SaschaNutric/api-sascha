@@ -33,7 +33,10 @@ function saveGrupo_alimenticio(req, res, next){
 
 	Grupo_alimenticio.forge({ id_unidad:req.body.id_unidad ,nombre:req.body.nombre })
 	.save()
-	.fetch({ withRelated: ['unidad','unidad.tipo_unidad'] })
+	.fetch({ withRelated: [
+		'unidad',
+		'unidad.tipo_unidad'
+	] })
 	.then(function(data){
 		res.status(200).json({
 			error: false,
@@ -95,8 +98,18 @@ function updateGrupo_alimenticio(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ id_unidad:req.body.id_unidad || data.get('id_unidad'),nombre:req.body.nombre || data.get('nombre'),fecha_creacion:req.body.fecha_creacion || data.get('fecha_creacion'),fecha_actualizacion:req.body.fecha_actualizacion || data.get('fecha_actualizacion'),estatus:req.body.estatus || data.get('estatus') })
-		.then(function() {
+		data.save({ 
+			id_unidad:req.body.id_unidad || data.get('id_unidad'),
+			nombre:req.body.nombre || data.get('nombre'),
+			fecha_creacion:req.body.fecha_creacion || data.get('fecha_creacion'),
+			fecha_actualizacion:req.body.fecha_actualizacion || data.get('fecha_actualizacion'),
+			estatus:req.body.estatus || data.get('estatus') 
+		})
+		.fetch({ withRelated: [
+			'unidad',
+			'unidad.tipo_unidad'
+		] })
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

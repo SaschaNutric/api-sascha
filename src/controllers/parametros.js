@@ -124,8 +124,19 @@ function updateParametro(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ id_tipo_parametro:req.body.id_tipo_parametro || data.get('id_tipo_parametro'),id_unidad:req.body.id_unidad || data.get('id_unidad'),tipo_valor:req.body.tipo_valor || data.get('tipo_valor'),nombre:req.body.nombre || data.get('nombre') })
-		.then(function() {
+		data.save({
+		 	id_tipo_parametro:req.body.id_tipo_parametro 	|| data.get('id_tipo_parametro'),
+		 	id_unidad:req.body.id_unidad 					|| data.get('id_unidad'),
+		 	tipo_valor:req.body.tipo_valor 					|| data.get('tipo_valor'),
+		 	nombre:req.body.nombre 							|| data.get('nombre') 
+		})
+		.fetch({
+		withRelated: [
+			'tipo_parametro',
+			'unidad',
+			'unidad.tipo_unidad'
+		]})
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

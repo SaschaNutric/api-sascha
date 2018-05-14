@@ -95,7 +95,7 @@ function updateGenero(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ nombre:req.body.nombre || data.get('nombre') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

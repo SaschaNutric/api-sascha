@@ -94,8 +94,11 @@ function updateDetalle_plan_ejercicio(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ id_plan_ejercicio:req.body.id_plan_ejercicio || data.get('id_plan_ejercicio'),id_ejercicio:req.body.id_ejercicio || data.get('id_ejercicio') })
-		.then(function() {
+		data.save({ 
+			id_plan_ejercicio:req.body.id_plan_ejercicio || data.get('id_plan_ejercicio'),
+			id_ejercicio:req.body.id_ejercicio || data.get('id_ejercicio') 
+		})
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

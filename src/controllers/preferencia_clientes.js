@@ -95,7 +95,7 @@ function updatePreferencia_cliente(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ id_cliente:req.body.id_cliente || data.get('id_cliente'),id_especialidad:req.body.id_especialidad || data.get('id_especialidad') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

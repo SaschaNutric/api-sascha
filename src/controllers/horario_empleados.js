@@ -7,7 +7,12 @@ function getHorario_empleados(req, res, next) {
 	Horario_empleados.query(function (qb) {
    		qb.where('horario_empleado.estatus', '=', 1);
 	})
-	.fetch({ columns: ['id_horario_empleado','id_empleado','id_bloque_horario','id_dia_laborable'] })
+	.fetch({
+		withRelated: [
+			'empleado',
+			'bloque_horario',
+			'dia_laborable'
+		] })
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -31,8 +36,18 @@ function getHorario_empleados(req, res, next) {
 function saveHorario_empleado(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	Horario_empleado.forge({ id_empleado:req.body.id_empleado ,id_bloque_horario:req.body.id_bloque_horario ,id_dia_laborable:req.body.id_dia_laborable  })
+	Horario_empleado.forge({ 
+		id_empleado:req.body.id_empleado ,
+		id_bloque_horario:req.body.id_bloque_horario ,
+		id_dia_laborable:req.body.id_dia_laborable  
+	})
 	.save()
+	.fetch({
+		withRelated: [
+			'empleado',
+			'bloque_horario',
+			'dia_laborable'
+	] })
 	.then(function(data){
 		res.status(200).json({
 			error: false,
@@ -56,25 +71,34 @@ function getHorario_empleadoById(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 
-	Horario_empleado.forge({ id_horario_empleado: id })
-	.fetch()
+	Horario_empleados.query(function (qb) {
+   		qb.where('horario_empleado.estatus', '=', 1);
+   		qb.where('id_horario_empleado.estatus', '=', id);
+	})
+	.fetch({
+		withRelated: [
+			'empleado',
+			'bloque_horario',
+			'dia_laborable'
+		] })
 	.then(function(data) {
-		if(!data) 
+		if (!data)
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'dato no encontrado' } 
+				data: { mensaje: 'No hay dato registrados' } 
 			});
-		return res.status(200).json({ 
-			error : false, 
-			data : data 
+
+		return res.status(200).json({
+			error: false,
+			data: data
 		});
 	})
-	.catch(function(err){
-		return res.status(500).json({ 
-			error: false, 
-			data: { mensaje: err.message } 
-		})
-	});
+	.catch(function (err) {
+     	return res.status(500).json({
+			error: true,
+			data: { mensaje: err.message }
+		});
+    });
 }
 
 function updateHorario_empleado(req, res, next) {
@@ -87,7 +111,12 @@ function updateHorario_empleado(req, res, next) {
 	}
 
 	Horario_empleado.forge({ id_horario_empleado: id })
-	.fetch()
+	.fetch({
+		withRelated: [
+			'empleado',
+			'bloque_horario',
+			'dia_laborable'
+		] })
 	.then(function(data){
 		if(!data) 
 			return res.status(404).json({ 
@@ -95,7 +124,7 @@ function updateHorario_empleado(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ id_empleado:req.body.id_empleado || data.get('id_empleado'),id_bloque_horario:req.body.id_bloque_horario || data.get('id_bloque_horario'),id_dia_laborable:req.body.id_dia_laborable || data.get('id_dia_laborable') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

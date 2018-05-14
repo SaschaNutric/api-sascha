@@ -94,8 +94,11 @@ function updateAyuda(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Pregunta Frecuente no encontrada' } 
 			});
-		data.save({ pregunta:req.body.pregunta || data.get('pregunta'),respuesta:req.body.respuesta || data.get('respuesta') })
-		.then(function() {
+		data.save({ 
+			pregunta:req.body.pregunta || data.get('pregunta'),
+			respuesta:req.body.respuesta || data.get('respuesta') 
+		})
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

@@ -95,7 +95,7 @@ function updateEspecialidad_servicio(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ id_servicio:req.body.id_servicio || data.get('id_servicio'),id_especialidad:req.body.id_especialidad || data.get('id_especialidad') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

@@ -36,6 +36,10 @@ function saveRespuesta(req, res, next){
 
 	Respuesta.forge({ id_tipo_respuesta:req.body.id_tipo_respuesta ,descripcion:req.body.descripcion  })
 	.save()
+	.fetch({
+		withRelated: [
+			'tipo_respuesta'
+		] })
 	.then(function(data){
 		res.status(200).json({
 			error: false,

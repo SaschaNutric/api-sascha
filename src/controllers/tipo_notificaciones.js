@@ -49,7 +49,7 @@ function updateTipoNotificacion(req, res, next) {
             data.save({
                 mensaje: req.body.mensaje || data.get('mensaje')
             })
-                .then(function () {
+                .then(function (data) {
                     return res.status(200).json({
                         error: false,
                         data: data
