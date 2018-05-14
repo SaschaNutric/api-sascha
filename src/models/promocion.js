@@ -3,8 +3,9 @@
 const Bookshelf 	= require('../commons/bookshelf');
 const Servicio  	= require('./servicio');
 const Genero  		= require('./genero');
-const EstadoCivil  	= require('./estado_civil');
+const EstadoCivil = require('./estado_civil');
 const RangoEdad  	= require('./rango_edad');
+const Parametro   = require('./parametro');
 
 let Promocion = Bookshelf.Model.extend({
   tableName: 'promocion',
@@ -20,6 +21,9 @@ let Promocion = Bookshelf.Model.extend({
   },
   rango_edad: function() {
     return this.belongsTo(RangoEdad, 'id_rango_edad');
+  },
+  parametros: function() {
+    return this.belongsToMany(Parametro, 'parametro_promocion','id_promocion', 'id_parametro');
   }
 });
 

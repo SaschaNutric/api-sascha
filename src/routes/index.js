@@ -322,17 +322,19 @@ module.exports = (function () {
   api.put('/parametrocliente/:id',           parametroClientesCtrl.updateParametro_cliente);
   api.delete('/parametrocliente/:id',        parametroClientesCtrl.deleteParametro_cliente);
 
-  api.get('/parametropromociones',           parametroPromocionesCtrl.getParametro_promociones);
-  api.post('/parametropromociones',          parametroPromocionesCtrl.saveParametro_promocion);
-  api.get('/parametropromocione/:id',        parametroPromocionesCtrl.getParametro_promocionById);
-  api.put('/parametropromocione/:id',        parametroPromocionesCtrl.updateParametro_promocion);
-  api.delete('/parametropromocione/:id',     parametroPromocionesCtrl.deleteParametro_promocion);
+  api.get('/parametropromociones',               parametroPromocionesCtrl.getParametro_promociones);
+  api.get('/parametros/promocion/:id_promocion', parametroPromocionesCtrl.getParametrosByPromocion);  
+  api.post('/parametropromociones',              parametroPromocionesCtrl.saveParametro_promocion);
+  api.get('/parametropromocione/:id',            parametroPromocionesCtrl.getParametro_promocionById);
+  api.put('/parametropromocione/:id',            parametroPromocionesCtrl.updateParametro_promocion);
+  api.delete('/parametropromocione/:id',         parametroPromocionesCtrl.deleteParametro_promocion);
 
-  api.get('/parametroservicios',             parametroServiciosCtrl.getParametro_servicios);
-  api.post('/parametroservicios',            parametroServiciosCtrl.saveParametro_servicio);
-  api.get('/parametroservicio/:id',          parametroServiciosCtrl.getParametro_servicioById);
-  api.put('/parametroservicio/:id',          parametroServiciosCtrl.updateParametro_servicio);
-  api.delete('/parametroservicio/:id',       parametroServiciosCtrl.deleteParametro_servicio);
+  api.get('/parametroservicios',                 parametroServiciosCtrl.getParametro_servicios);
+  api.get('/parametros/servicio/:id_servicio',   parametroServiciosCtrl.getParametrosByServicio);  
+  api.post('/parametroservicios',                parametroServiciosCtrl.saveParametro_servicio);
+  api.get('/parametroservicio/:id',              parametroServiciosCtrl.getParametro_servicioById);
+  api.put('/parametroservicio/:id',              parametroServiciosCtrl.updateParametro_servicio);
+  api.delete('/parametroservicio/:id',           parametroServiciosCtrl.deleteParametro_servicio);
  
   api.get('/plandietas',                     plan_dietasCtrl.getPlanDietas);
   api.post('/plandietas',                    plan_dietasCtrl.savePlanDieta);

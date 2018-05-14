@@ -19,7 +19,9 @@ async function getServicios(req, res, next) {
 			'especialidad',
 			'precio',
 			'precio.unidad',
-			'precio.unidad.tipo_unidad'
+			'precio.unidad.tipo_unidad',
+			'parametros',
+			'parametros.unidad'
 		]
 	})
 	.then(function(data) {
@@ -58,7 +60,9 @@ function getServicioById(req, res, next) {
 			'especialidad',
 			'precio',
 			'precio.unidad',
-			'precio.unidad.tipo_unidad'
+			'precio.unidad.tipo_unidad',
+			'parametros',
+			'parametros.unidad'
 		]
 	})
 	.then(function(data) {
