@@ -8,8 +8,10 @@ function getComentarios(req, res, next) {
    		qb.where('comentario.estatus', '=', 1);
 	})
 	.fetch({ withRelated: [
-		'id_comentario',
-		'id_cliente',
+		'cliente',
+		'cliente.estado_civil',
+		'cliente.genero',
+		'cliente.rango_edad',
 		'respuesta',
 		'respuesta.tipo_respuesta',
 		'motivo',
@@ -73,8 +75,10 @@ function getComentarioById(req, res, next) {
 
 	Comentario.forge({ id_comentario: id, estatus: 1 })
 	.fetch({ withRelated: [
-		'id_comentario',
-		'id_cliente',
+		'cliente',
+		'cliente.estado_civil',
+		'cliente.genero',
+		'cliente.rango_edad',
 		'respuesta',
 		'respuesta.tipo_respuesta',
 		'motivo',
@@ -123,7 +127,7 @@ function updateComentario(req, res, next) {
 			contenido: req.body.contenido 		|| data.get('contenido'),
 			respuesta: req.body.respuesta  		|| data.get('respuesta')
 		})
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data
