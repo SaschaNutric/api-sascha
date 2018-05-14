@@ -321,7 +321,8 @@ function getMiServicioActivo(req, res, next) {
 			});
 		var servicios= [];
 		for (var i = data.length - 1; i >= 0; i--) {
-			servicios.push(data[i]) 
+			servicios.push(data[i]);
+			
 		}
 		return res.status(200).json({ 
 			error : false, 

@@ -9,6 +9,9 @@ function getComentarios(req, res, next) {
 	})
 	.fetch({ withRelated: [
 		'cliente',
+		'cliente.estado_civil',
+		'cliente.genero',
+		'cliente.rango_edad',
 		'respuesta',
 		'respuesta.tipo_respuesta',
 		'motivo',
@@ -71,6 +74,9 @@ function getComentarioById(req, res, next) {
 	Comentario.forge({ id_comentario: id, estatus: 1 })
 	.fetch({ withRelated: [
 		'cliente',
+		'cliente.estado_civil',
+		'cliente.genero',
+		'cliente.rango_edad',
 		'respuesta',
 		'respuesta.tipo_respuesta',
 		'motivo',
