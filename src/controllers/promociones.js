@@ -27,10 +27,17 @@ function getPromociones(req, res, next) {
 				error: true, 
 				data: { mensaje: 'No hay dato registrados' } 
 			});
-
+		let dataJSON = data.toJSON().map(function(promocion) {
+			let validoDesde = JSON.stringify(promocion.valido_desde);
+			let validoHasta = JSON.stringify(promocion.valido_hasta);
+			promocion.valido_desde = validoDesde.substr(1,10);
+			promocion.valido_hasta = validoHasta.substr(1,10);
+			return promocion;
+		});
+		console.log(dataJSON);
 		return res.status(200).json({
 			error: false,
-			data: data
+			data: dataJSON
 		});
 	})
 	.catch(function (err) {
@@ -43,30 +50,65 @@ function getPromociones(req, res, next) {
 
 function savePromocion(req, res, next){
 	console.log(JSON.stringify(req.body));
-
-	Promocion.forge({
-		id_servicio: req.body.id_servicio,
-		nombre: req.body.nombre,
-		descripcion: req.body.descripcion,
-		descuento:   req.body.descuento,
-		id_genero: req.body.id_genero,
-		id_estado_civil: req.body.id_estado_civil,
-		id_rango_edad: req.body.id_rango_edad
-	})
-	.save()
-	.then(function(servicio){
-		res.status(200).json({
-			error: false,
-			data: data
+	if (req.files.imagen) {
+		const imagen = req.files.imagen
+		cloudinary.uploader.upload(imagen.path, function (result) {
+			if (result.error) {
+				return res.status(500).json({
+					error: true,
+					data: { message: result.error }
+				});
+			}
+			Promocion.forge({
+				id_servicio:     req.body.id_servicio,
+				nombre:          req.body.nombre,
+				descripcion:     req.body.descripcion,
+				descuento:       req.body.descuento,
+				url_imagen:      result.url,
+				id_genero:       req.body.id_genero,
+				id_estado_civil: req.body.id_estado_civil,
+				id_rango_edad:   req.body.id_rango_edad
+			})
+			.save()
+			.then(function (servicio) {
+				res.status(200).json({
+					error: false,
+					data: data
+				});
+			})
+			.catch(function (err) {
+				res.status(500).json({
+					error: true,
+					data: { message: err.message }
+				});
+			});		
 		});
-	})
-	.catch(function (err) {
-		res.status(500)
-		.json({
-			error: true,
-			data: {message: err.message}
+	}
+	else {
+		Promocion.forge({
+			id_servicio:     req.body.id_servicio,
+			nombre:          req.body.nombre,
+			descripcion:     req.body.descripcion,
+			descuento:       req.body.descuento,
+			url_imagen:      'https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png',
+			id_genero:       req.body.id_genero,
+			id_estado_civil: req.body.id_estado_civil,
+			id_rango_edad:   req.body.id_rango_edad
+		})
+		.save()
+		.then(function (servicio) {
+			res.status(200).json({
+				error: false,
+				data: data
+			});
+		})
+		.catch(function (err) {
+			res.status(500).json({
+				error: true,
+				data: { message: err.message }
+			});
 		});
-	});
+	}
 }
 
 function getPromocionById(req, res, next) {
