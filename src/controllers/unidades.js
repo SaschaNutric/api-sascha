@@ -145,10 +145,10 @@ function updateUnidad(req, res, next) {
         	abreviatura: req.body.abreviatura 		|| data.get('abreviatura'),
         	simbolo: req.body.simbolo		 		|| data.get('simbolo')
 		})
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data
 			});
 		})
 		.catch(function(err) {

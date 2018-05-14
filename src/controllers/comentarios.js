@@ -48,6 +48,16 @@ function saveComentario(req, res, next){
 		respuesta: req.body.respuesta  
 	})
 	.save()
+	.fetch({ withRelated: [
+		'cliente',
+		'cliente.estado_civil',
+		'cliente.genero',
+		'cliente.rango_edad',
+		'respuesta',
+		'respuesta.tipo_respuesta',
+		'motivo',
+		'motivo.tipo_motivo'
+		]})
 	.then(function(data){
 		res.status(200).json({
 			error: false,
@@ -113,7 +123,16 @@ function updateComentario(req, res, next) {
 	}
 
 	Comentario.forge({ id_comentario: id, estatus: 1 })
-	.fetch()
+	.fetch({ withRelated: [
+		'cliente',
+		'cliente.estado_civil',
+		'cliente.genero',
+		'cliente.rango_edad',
+		'respuesta',
+		'respuesta.tipo_respuesta',
+		'motivo',
+		'motivo.tipo_motivo'
+		]})
 	.then(function(data){
 		if(!data) 
 			return res.status(404).json({ 

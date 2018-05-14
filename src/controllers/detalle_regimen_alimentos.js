@@ -94,8 +94,11 @@ function updateDetalle_regimen_alimento(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ id_regimen_dieta:req.body.id_regimen_dieta || data.get('id_regimen_dieta'),id_alimento:req.body.id_alimento || data.get('id_alimento') })
-		.then(function() {
+		data.save({ 
+			id_regimen_dieta:req.body.id_regimen_dieta || data.get('id_regimen_dieta'),
+			id_alimento:req.body.id_alimento || data.get('id_alimento') 
+		})
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

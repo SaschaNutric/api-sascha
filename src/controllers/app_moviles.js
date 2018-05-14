@@ -95,7 +95,7 @@ function updateApp_movil(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ sistema_operativo:req.body.sistema_operativo || data.get('sistema_operativo'),url_descarga:req.body.url_descarga || data.get('url_descarga') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

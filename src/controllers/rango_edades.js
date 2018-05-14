@@ -95,7 +95,7 @@ function updateRango_edad(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ nombre:req.body.nombre || data.get('nombre'),minimo:req.body.minimo || data.get('minimo'),maximo:req.body.maximo || data.get('maximo') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

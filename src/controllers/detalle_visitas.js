@@ -94,8 +94,12 @@ function updateDetalle_visita(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ id_visita:req.body.id_visita || data.get('id_visita'),id_parametro:req.body.id_parametro || data.get('id_parametro'),valor:req.body.valor || data.get('valor') })
-		.then(function() {
+		data.save({ 
+			id_visita:req.body.id_visita || data.get('id_visita'),
+			id_parametro:req.body.id_parametro || data.get('id_parametro'),
+			valor:req.body.valor || data.get('valor') 
+		})
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

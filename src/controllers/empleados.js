@@ -103,8 +103,17 @@ function updateEmpleado(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ id_usuario:req.body.id_usuario || data.get('id_usuario'),id_genero:req.body.id_genero || data.get('id_genero'),cedula:req.body.cedula || data.get('cedula'),nombres:req.body.nombres || data.get('nombres'),apellidos:req.body.apellidos || data.get('apellidos'),telefono:req.body.telefono || data.get('telefono'),correo:req.body.correo || data.get('correo'),direccion:req.body.direccion || data.get('direccion') })
-		.then(function() {
+		data.save({ 
+			id_usuario:req.body.id_usuario || data.get('id_usuario'),
+			id_genero:req.body.id_genero || data.get('id_genero'),
+			cedula:req.body.cedula || data.get('cedula'),
+			nombres:req.body.nombres || data.get('nombres'),
+			apellidos:req.body.apellidos || data.get('apellidos'),
+			telefono:req.body.telefono || data.get('telefono'),
+			correo:req.body.correo || data.get('correo'),
+			direccion:req.body.direccion || data.get('direccion') 
+		})
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

@@ -95,7 +95,7 @@ function updateParametro_promocion(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ id_parametro:req.body.id_parametro || data.get('id_parametro'),id_promocion:req.body.id_promocion || data.get('id_promocion'),valor_minimo:req.body.valor_minimo || data.get('valor_minimo'),valor_maximo:req.body.valor_maximo || data.get('valor_maximo') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

@@ -171,10 +171,10 @@ function updateUsuario(req, res, next) {
 		usuario.save({
 			correo:  req.body.correo || usuario.get('correo')
 		})
-		.then(function() {
+		.then(function(usuario) {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Usuario actualizada' } 
+				data: usuario.omit('contrasenia', 'salt')
 			});
 		})
 		.catch(function(err) {
@@ -333,7 +333,7 @@ function singInEmpleado(req, res) {
 				}
 				return res.status(200).json({
 					error: false,
-					data: data
+					data: empleado
 				});
 			})
 			.catch(function (err) {

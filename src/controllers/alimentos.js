@@ -101,7 +101,7 @@ function updateAlimento(req, res, next) {
 			id_grupo_alimenticio: req.body.id_grupo_alimenticio || data.get('id_grupo_alimenticio'),
 			nombre: req.body.nombre || data.get('nombre')
 		})
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

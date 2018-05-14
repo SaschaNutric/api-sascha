@@ -139,7 +139,20 @@ function updateNegocio(req, res, next) {
 		 	latitud: req.body.latitud 			|| data.get('latitud'), 
 		 	longitud: req.body.longitud 		|| data.get('longitud')
 		})
-		.then(function() {
+		.fetch({ columns: [
+		'id_negocio',
+		 'razon_social', 
+		 'rif', 
+		 'url_logo', 
+		 'mision', 
+		 'vision', 
+		 'objetivo', 
+		 'telefono', 
+		 'correo', 
+		 'latitud', 
+		 'longitud'
+		] })
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

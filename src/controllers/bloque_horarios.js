@@ -94,8 +94,11 @@ function updateBloque_horario(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ hora_inicio:req.body.hora_inicio || data.get('hora_inicio'),hora_fin:req.body.hora_fin || data.get('hora_fin') })
-		.then(function() {
+		data.save({ 
+			hora_inicio:req.body.hora_inicio || data.get('hora_inicio'),
+			hora_fin:req.body.hora_fin || data.get('hora_fin') 
+		})
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

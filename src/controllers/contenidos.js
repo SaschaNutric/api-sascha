@@ -95,7 +95,7 @@ function updateContenido(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ titulo:req.body.titulo || data.get('titulo'),texto:req.body.texto || data.get('texto'),url_imagen:req.body.url_imagen || data.get('url_imagen') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

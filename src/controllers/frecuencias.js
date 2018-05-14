@@ -95,7 +95,7 @@ function updateFrecuencia(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ id_tiempo:req.body.id_tiempo || data.get('id_tiempo'),repeticiones:req.body.repeticiones || data.get('repeticiones') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

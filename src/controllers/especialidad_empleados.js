@@ -95,7 +95,7 @@ function updateEspecialidad_empleado(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ id_empleado:req.body.id_empleado || data.get('id_empleado'),id_especialidad:req.body.id_especialidad || data.get('id_especialidad') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

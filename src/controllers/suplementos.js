@@ -95,7 +95,7 @@ function updateSuplemento(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ id_unidad:req.body.id_unidad || data.get('id_unidad'),nombre:req.body.nombre || data.get('nombre') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

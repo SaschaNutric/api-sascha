@@ -95,7 +95,7 @@ function updateIncidencia(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ id_tipo_incidencia:req.body.id_tipo_incidencia || data.get('id_tipo_incidencia'),id_motivo:req.body.id_motivo || data.get('id_motivo'),descripcion:req.body.descripcion || data.get('descripcion'),id_agenda:req.body.id_agenda || data.get('id_agenda') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

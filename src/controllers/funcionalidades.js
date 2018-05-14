@@ -95,7 +95,7 @@ function updateFuncionalidad(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ id_funcionalidad_padre:req.body.id_funcionalidad_padre || data.get('id_funcionalidad_padre'),nombre:req.body.nombre || data.get('nombre'),icono:req.body.icono || data.get('icono'),orden:req.body.orden || data.get('orden'),nivel:req.body.nivel || data.get('nivel'),estatus:req.body.estatus || data.get('estatus'),url_vista:req.body.url_vista || data.get('url_vista') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

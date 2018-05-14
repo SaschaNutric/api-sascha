@@ -43,6 +43,17 @@ function saveGarantia_servicio(req, res, next){
 
 	Garantia_servicio.forge({ id_condicion_garantia:req.body.id_condicion_garantia ,id_servicio:req.body.id_servicio  })
 	.save()
+	.fetch({
+		withRelated: [
+			'servicio',
+			'servicio.plan_dieta',
+			'servicio.plan_ejercicio',
+			'servicio.plan_suplemento',
+			'servicio.precio',
+			'servicio.precio.unidad',
+			'servicio.precio.unidad.tipo_unidad',
+			'condicion_garantia'
+	] })
 	.then(function(data){
 		res.status(200).json({
 			error: false,
@@ -104,7 +115,21 @@ function updateGarantia_servicio(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ id_condicion_garantia:req.body.id_condicion_garantia || data.get('id_condicion_garantia'),id_servicio:req.body.id_servicio || data.get('id_servicio') })
+		data.save({ 
+			id_condicion_garantia:req.body.id_condicion_garantia || data.get('id_condicion_garantia'),
+			id_servicio:req.body.id_servicio || data.get('id_servicio') 
+		})
+		.fetch({
+		withRelated: [
+			'servicio',
+			'servicio.plan_dieta',
+			'servicio.plan_ejercicio',
+			'servicio.plan_suplemento',
+			'servicio.precio',
+			'servicio.precio.unidad',
+			'servicio.precio.unidad.tipo_unidad',
+			'condicion_garantia'
+		] })
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 

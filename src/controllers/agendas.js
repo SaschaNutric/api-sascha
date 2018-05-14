@@ -152,7 +152,7 @@ function updateAgenda(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ id_empleado:req.body.id_empleado || data.get('id_empleado'),id_cliente:req.body.id_cliente || data.get('id_cliente'),id_orden_servicio:req.body.id_orden_servicio || data.get('id_orden_servicio'),id_visita:req.body.id_visita || data.get('id_visita'),id_incidencia:req.body.id_incidencia || data.get('id_incidencia'),id_cita:req.body.id_cita || data.get('id_cita') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

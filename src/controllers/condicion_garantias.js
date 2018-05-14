@@ -95,7 +95,7 @@ function updateCondicion_garantia(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ descripcion:req.body.descripcion || data.get('descripcion') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

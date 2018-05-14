@@ -41,6 +41,15 @@ function saveDetalle_plan_dieta(req, res, next){
 
 	Detalle_plan_dieta.forge({ id_plan_dieta:req.body.id_plan_dieta ,id_comida:req.body.id_comida ,id_grupo_alimenticio:req.body.id_grupo_alimenticio  })
 	.save()
+	.fetch({
+		withRelated: [
+			'plan_dieta',
+			'plan_dieta.tipo_dieta',
+			'comida',
+			'grupo_alimenticio',
+			'grupo_alimenticio.unidad',
+			'grupo_alimenticio.unidad.tipo_unidad'
+		] })
 	.then(function(data){
 		res.status(200).json({
 			error: false,
@@ -65,7 +74,15 @@ function getDetalle_plan_dietaById(req, res, next) {
 		});
 
 	Detalle_plan_dieta.forge({ id_detalle_plan_dieta: id, estatus: 1 })
-	.fetch()
+	.fetch({
+		withRelated: [
+			'plan_dieta',
+			'plan_dieta.tipo_dieta',
+			'comida',
+			'grupo_alimenticio',
+			'grupo_alimenticio.unidad',
+			'grupo_alimenticio.unidad.tipo_unidad'
+	] })
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
@@ -102,8 +119,21 @@ function updateDetalle_plan_dieta(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ id_plan_dieta:req.body.id_plan_dieta || data.get('id_plan_dieta'),id_comida:req.body.id_comida || data.get('id_comida'),id_grupo_alimenticio:req.body.id_grupo_alimenticio || data.get('id_grupo_alimenticio') })
-		.then(function() {
+		data.save({ 
+			id_plan_dieta:req.body.id_plan_dieta || data.get('id_plan_dieta'),
+			id_comida:req.body.id_comida || data.get('id_comida'),
+			id_grupo_alimenticio:req.body.id_grupo_alimenticio || data.get('id_grupo_alimenticio') 
+		})
+		.fetch({
+		withRelated: [
+			'plan_dieta',
+			'plan_dieta.tipo_dieta',
+			'comida',
+			'grupo_alimenticio',
+			'grupo_alimenticio.unidad',
+			'grupo_alimenticio.unidad.tipo_unidad'
+		] })
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

@@ -95,7 +95,7 @@ function updateParametro_servicio(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ id_servicio:req.body.id_servicio || data.get('id_servicio'),id_parametro:req.body.id_parametro || data.get('id_parametro'),valor_minimo:req.body.valor_minimo || data.get('valor_minimo'),valor_maximo:req.body.valor_maximo || data.get('valor_maximo') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data
