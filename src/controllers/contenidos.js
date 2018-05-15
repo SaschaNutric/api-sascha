@@ -2,6 +2,7 @@
 
 const Contenidos 	= require('../collections/contenidos');
 const Contenido  	= require('../models/contenido');
+const cloudinary = require('../../cloudinary');
 
 function getContenidos(req, res, next) {
 	Contenidos.query(function (qb) {
@@ -29,9 +30,29 @@ function getContenidos(req, res, next) {
 }
 
 function saveContenido(req, res, next){
-	console.log(JSON.stringify(req.body));
+		if (req.files.imagen) {
+		const imagen = req.files.imagen
+		cloudinary.uploader.upload(imagen.path, function(result) {
+			if (result.error) {
+				return res.status(500).json({
+						error: true,
+						data: { message: result.error }
+					});
+			} 
+			saveWithImagen(req,result.url);
+		});
+	}
+	else {
+		saveWithImagen(req,'https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png');
+	}
+}
 
-	Contenido.forge({ titulo:req.body.titulo ,texto:req.body.texto ,url_imagen:req.body.url_imagen  })
+function saveWithImagen(req,image){
+	Contenido.forge({
+	 titulo:req.body.titulo ,
+	 texto:req.body.texto ,
+	 url_imagen: image  
+	})
 	.save()
 	.then(function(data){
 		res.status(200).json({
