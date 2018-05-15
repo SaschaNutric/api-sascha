@@ -37,7 +37,7 @@ async function getServicios(req, res, next) {
 				let parametros = [];
 				servicio.parametros.map(function(parametro) {
 					parametros.push({
-						id_parametros: parametro.id_parametro,
+						id_parametro_servicio: parametro.id_parametro_servicio,
 						nombre: parametro.parametro.nombre,
 						valor_minimo: parametro.valor_minimo,
 						valor_maximo: parametro.valor_maximo,
@@ -120,7 +120,7 @@ function getServicioById(req, res, next) {
 				let servicio = data.toJSON();
 				servicio.parametros.map(function(parametro) {
 					parametros.push({
-						id_parametros: parametro.id_parametro,
+						id_parametro_servicio: parametro.id_parametro_servicio,
 						nombre: parametro.parametro.nombre,
 						valor_minimo: parametro.valor_minimo,
 						valor_maximo: parametro.valor_maximo,
