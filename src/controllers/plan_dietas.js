@@ -9,7 +9,7 @@ function getPlanDietas(req, res, next) {
         q.innerJoin('tipo_dieta', function () {
 			this.on('plan_dieta.id_tipo_dieta', '=', 'tipo_dieta.id_tipo_dieta');
 		});
-		q.where('estatus', '=', 1);
+		q.where('plan_dieta.estatus', '=', 1);
 	})
 	.fetch({ withRelated: ['tipo_dieta', 'detalle.comida', 'detalle.grupoAlimenticio'] })
 	.then(function(data) {

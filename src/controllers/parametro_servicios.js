@@ -29,9 +29,12 @@ function getParametro_servicios(req, res, next) {
 }
 
 function saveParametro_servicio(req, res, next){
-	console.log(JSON.stringify(req.body));
-
-	Parametro_servicio.forge({ id_servicio:req.body.id_servicio ,id_parametro:req.body.id_parametro ,valor_minimo:req.body.valor_minimo ,valor_maximo:req.body.valor_maximo  })
+	Parametro_servicio.forge({ 
+		id_servicio: req.body.id_servicio,
+		id_parametro: req.body.id_parametro, 
+		valor_minimo: req.body.valor_minimo || null, 
+		valor_maximo: req.body.valor_maximo || null
+	})
 	.save()
 	.then(function(data){
 		res.status(200).json({
@@ -45,6 +48,38 @@ function saveParametro_servicio(req, res, next){
 			error: true,
 			data: {message: err.message}
 		});
+	});
+}
+
+function getParametrosByServicio(req, res, next) {
+	const id_servicio = Number.parseInt(req.params.id_servicio);
+	if (!id_servicio || id_servicio == 'NaN')
+		return res.status(400).json({
+			error: true,
+			data: { mensaje: 'Petición inválida' }
+		});
+
+	Parametro_servicios.query(function (qb) {
+		qb.where('id_servicio', '=', id_servicio);
+		qb.where('estatus', '=', 1);
+	})
+	.fetch({ withRelated: ['parametro'] })
+	.then(function (data) {
+		if (!data)
+			return res.status(404).json({
+				error: true,
+				data: { mensaje: 'Registros no encontrado' }
+			});
+		return res.status(200).json({
+			error: false,
+			data: data
+		});
+	})
+	.catch(function (err) {
+		return res.status(500).json({
+			error: false,
+			data: { mensaje: err.message }
+		})
 	});
 }
 
@@ -94,7 +129,10 @@ function updateParametro_servicio(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ id_servicio:req.body.id_servicio || data.get('id_servicio'),id_parametro:req.body.id_parametro || data.get('id_parametro'),valor_minimo:req.body.valor_minimo || data.get('valor_minimo'),valor_maximo:req.body.valor_maximo || data.get('valor_maximo') })
+		data.save({ 
+			valor_minimo: req.body.valor_minimo || data.get('valor_minimo'),
+			valor_maximo: req.body.valor_maximo || data.get('valor_maximo') 
+		})
 		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
@@ -130,7 +168,7 @@ function deleteParametro_servicio(req, res, next) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'Solicitud no encontrad0' } 
+				data: { mensaje: 'Parametro en el servicio no encontrado' } 
 			});
 
 		data.save({ estatus:  0 })
@@ -160,5 +198,6 @@ module.exports = {
 	saveParametro_servicio,
 	getParametro_servicioById,
 	updateParametro_servicio,
-	deleteParametro_servicio
+	deleteParametro_servicio,
+	getParametrosByServicio
 }

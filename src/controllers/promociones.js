@@ -19,7 +19,9 @@ function getPromociones(req, res, next) {
 			'servicio.precio.unidad.tipo_unidad',
 			'genero',
 			'estado_civil',
-			'rango_edad'
+			'rango_edad',
+			'parametros',
+			'parametros.unidad'
 		]})
 	.then(function(data) {
 		if (!data)
@@ -125,7 +127,9 @@ function getPromocionById(req, res, next) {
 			'servicio',
 			'genero',
 			'estado_civil',
-			'rango_edad'
+			'rango_edad',
+			'parametros',
+			'parametros.unidad'
 		]})
 	.then(function(data) {
 		if(!data) 
