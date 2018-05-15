@@ -22,7 +22,7 @@ function getTipoParametros(req, res, next) {
 				parametros.push({
 					id_parametro:   parametro.id_parametro,
 					nombre:      parametro.nombre,
-					id_unidad: parametro.id_unidad,
+					unidad: parametro.unidad,
 					tipo_valor:     parametro.tipo_valor
 				});
 			});
