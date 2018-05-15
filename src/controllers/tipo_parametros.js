@@ -19,12 +19,14 @@ function getTipoParametros(req, res, next) {
 		data.toJSON().map(function(tipoParametro) {
 			let parametros = [];
 			tipoParametro.parametros.map(function(parametro) {
+				if(parametro.estatus == 1 ) {
 				parametros.push({
 					id_parametro:   parametro.id_parametro,
 					nombre:      parametro.nombre,
 					unidad: parametro.unidad,
 					tipo_valor:     parametro.tipo_valor
 				});
+				}
 			});
 
 			tipo_parametros.push({
