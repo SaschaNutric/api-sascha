@@ -46,11 +46,6 @@ function saveCriterio(req, res, next){
 			'tipo_valoracion'
 	] })
 	.save()
-	.fetch({
-		withRelated: [
-			'tipo_criterio',
-			'tipo_valoracion'
-		] })
 	.then(function(data){
 		res.status(200).json({
 			error: false,
