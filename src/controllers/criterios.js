@@ -110,7 +110,6 @@ function updateCriterio(req, res, next) {
 	}
 
 	Criterio.forge({ id_criterio: id, estatus: 1 })
-	.fetch()
 	.then(function(data){
 		if(!data) 
 			return res.status(404).json({ 
