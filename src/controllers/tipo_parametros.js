@@ -7,7 +7,7 @@ function getTipoParametros(req, res, next) {
 	TipoParametros.query(function (qb) {
    		qb.where('tipo_parametro.estatus', '=', 1);
 	})
-	.fetch({ withRelated: ['parametros'] })
+	.fetch({ withRelated: ['parametros','parametros.unidad'] })
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -30,7 +30,7 @@ function getTipoParametros(req, res, next) {
 			tipo_parametros.push({
 				id_tipo_parametro: tipoParametro.id_tipo_parametro,
 				nombre:         tipoParametro.nombre,
-				unidades:       parametros
+				parametros:       parametros
 			})
 		});
 		return res.status(200).json({
