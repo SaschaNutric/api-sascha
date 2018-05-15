@@ -110,7 +110,11 @@ function updateCriterio(req, res, next) {
 	}
 
 	Criterio.forge({ id_criterio: id, estatus: 1 })
-	.fetch()
+	.fetch({
+		withRelated: [
+			'tipo_criterio',
+			'tipo_valoracion'
+		] })
 	.then(function(data){
 		if(!data) 
 			return res.status(404).json({ 
