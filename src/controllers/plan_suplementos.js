@@ -111,25 +111,20 @@ function updatePlanSuplemento(req, res, next) {
 		'suplementos',
 		'suplementos.unidad'
 		] })
-	.then(function(data1){
-		if(!data1) 
+	.then(function(data){
+		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({
-			nombre: req.body.nombre || data1.get('nombre'),
-			descripcion: req.body.descripcion || data1.get('descripcion')
+			nombre: req.body.nombre || data.get('nombre'),
+			descripcion: req.body.descripcion || data.get('descripcion')
 		})
 		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
-				data: {
-					id_plan_suplemento: data.get('id_plan_suplemento'),
-					nombre: data.get('nombre'),
-					descripcion: data.get('descripcion'),
-					suplemento: data1.get('suplemento')
-				}
+				data: data
 			});
 		})
 		.catch(function(err) {
