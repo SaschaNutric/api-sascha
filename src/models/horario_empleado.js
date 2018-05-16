@@ -11,11 +11,11 @@ let Horario_empleado = Bookshelf.Model.extend({
   empleado: function(){
     return this.belongsTo(Empleado, 'id_empleado');
   },
-  bloque_horario: function(){
-    return this.belongsTo(Bloque_horario, 'id_bloque_horario');
-  },
-  dia_laborable: function(){
-    return this.belongsTo(Dia_laborable, 'id_dia_laborable');
+  bloque_horarios: function() {
+    return this.hasMany(Bloque_horario, 'id_bloque_horario');
+  }
+  dia_laborables: function(){
+    return this.hasMany(Dia_laborable, 'id_dia_laborable');
   }
 });
 

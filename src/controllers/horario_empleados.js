@@ -5,7 +5,8 @@ const Horario_empleado  	= require('../models/horario_empleado');
 
 function getHorario_empleados(req, res, next) {
 	Horario_empleados.query(function (qb) {
-   		qb.where('horario_empleado.estatus', '=', 1);
+   		qb.where('horario_empleado.estatus', '=', 1)
+   		.groupBy('id_empleado');
 	})
 	.fetch({
 		withRelated: [
