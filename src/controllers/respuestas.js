@@ -34,12 +34,12 @@ function getRespuestas(req, res, next) {
 function saveRespuesta(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	Respuesta.forge({ id_tipo_respuesta:req.body.id_tipo_respuesta ,descripcion:req.body.descripcion  })
+	Respuesta.forge({ 
+		id_tipo_respuesta: req.body.id_tipo_respuesta, 
+		descripcion: req.body.descripcion,
+		aprobado: req.body.aprobado
+	})
 	.save()
-	.fetch({
-		withRelated: [
-			'tipo_respuesta'
-		] })
 	.then(function(data){
 		res.status(200).json({
 			error: false,
@@ -104,7 +104,11 @@ function updateRespuesta(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ id_tipo_respuesta:req.body.id_tipo_respuesta || data.get('id_tipo_respuesta'),descripcion:req.body.descripcion || data.get('descripcion') })
+		data.save({ 
+			id_tipo_respuesta:req.body.id_tipo_respuesta || data.get('id_tipo_respuesta'),
+			descripcion:req.body.descripcion || data.get('descripcion'),
+			aprobado: req.body.aprobado || data.get('aprobado')
+		})
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
