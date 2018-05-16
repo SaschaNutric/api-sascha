@@ -509,7 +509,7 @@ module.exports = (function () {
   api.put('/tipoparametro/:id',              tipo_parametrosCtrl.updateTipoParametro);
   api.delete('/tipoparametro/:id',           tipo_parametrosCtrl.deleteTipoParametro);
 
-  api.get('/tiporespuestas',                 tipo_respuestasCtrl.getTipoRespuestas);
+  api.get('/tiporespuestas',                 tipo_motivosCtrl.getTipoMotivosSinSolicitud);
   api.post('/tiporespuestas',                tipo_respuestasCtrl.saveTipoRespuesta);
   api.get('/tiporespuesta/:id',              tipo_respuestasCtrl.getTipoRespuestaById);  
   api.put('/tiporespuesta/:id',              tipo_respuestasCtrl.updateTipoRespuesta);
