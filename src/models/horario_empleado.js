@@ -1,9 +1,9 @@
 'use strict'
 
-const Bookshelf 		= require('../commons/bookshelf');
+const Bookshelf 		  = require('../commons/bookshelf');
 const Bloque_horario 	= require('./bloque_horario');
 const Dia_laborable 	= require('./dia_laborable');
-const Empleado 			= require('./empleado');
+const Empleado 			  = require('./empleado');
 
 let Horario_empleado = Bookshelf.Model.extend({
   tableName: 'horario_empleado',
