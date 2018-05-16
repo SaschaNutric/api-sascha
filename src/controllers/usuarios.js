@@ -6,6 +6,7 @@ const Cliente       = require('../models/cliente');
 const Empleado      = require('../models/empleado');
 const ViewCliente   = require('../models/v_cliente');
 const correoTemplate = require('../views/correoTemplate');
+const correoEmpleadoTemplate = require('../views/correoEmpleadoTemplate');
 const Bookshelf     = require('../commons/bookshelf');
 const Bcrypt        = require("bcryptjs");
 const Crypto        = require("crypto");
@@ -150,7 +151,7 @@ function saveUsuario(req, res, next) {
 				transportador.sendMail(opcionesCorreo)
 				.then(function() {
 					const usuarioGuardado = {
-						id_usuario:     usuario.get('id_suscripcion'),
+						id_usuario:     usuario.get('id_usuario'),
 						correo:         usuario.get('correo'),
 						nombre_usuario: usuario.get('nombre_usuario'),
 						token:          service.createToken(usuario),
@@ -174,6 +175,80 @@ function saveUsuario(req, res, next) {
 			transaction.rollback();
 			return res.status(500).json({ error: true, data: { mensaje: err.message } });
 		});
+	});
+}
+
+function saveUsuarioEmpleado(req, res, next) {
+	if(!req.body.id_empleado)
+		return res.status(400).json({
+			error: true,
+			data: { mensaje: 'Petición inválida' }
+		})
+	Bookshelf.transaction(function (transaction) {
+		const salt = Bcrypt.genSaltSync(12);
+		const hash = Bcrypt.hashSync(req.body.contraseña, salt);
+		const nuevoUsuario = {
+			correo: req.body.correo.toLowerCase(),
+			contrasenia: hash,
+			salt: salt
+		}
+
+		Usuario.forge(nuevoUsuario)
+			.save(null, { transacting: transaction })
+			.then(function (usuario) {
+				Empleado.forge({ id_empleado: req.body.id_empleado })
+				.fetch()	
+				.then(function (empleado) {
+					empleado.save({ id_usuario: usuario.get('id_usuario') })
+					.then(function(empleado) {
+
+						const transportador = nodemailer.createTransport({
+							host: 'smtp.gmail.com',
+							auth: {
+								type: 'OAuth2',
+								user: MAIL_USER,
+								clientId: MAIL_CLIENT_ID,
+								clientSecret: MAIL_CLIENT_SECRET,
+								refreshToken: REFRESH_TOKEN
+							}
+						});
+
+						const opcionesCorreo = {
+							from: MAIL_USER,
+							to: usuario.get('correo'),
+							subject: 'Asignación de Credenciales al Sistema',
+							html: correoEmpleadoTemplate(`${empleado.get('nombres')} ${empleado.get('apellidos')}`,
+								usuario.get('correo'),
+								req.body.contraseña)
+						}
+
+						transportador.sendMail(opcionesCorreo)
+							.then(function () {
+								const usuarioGuardado = {
+									id_usuario: usuario.get('id_usuario'),
+									correo: usuario.get('correo'),
+									token: service.createToken(usuario),
+									mensaje: 'Confirmación de correo enviada exitosamente'
+								}
+								transaction.commit();
+								return res.status(201).json({ error: false, data: usuarioGuardado });
+							})
+							.catch(function (err) {
+								transaction.rollback();
+								return res.status(500).json({ error: true, data: { mensaje: err.message } });
+							});
+					})
+
+					})
+					.catch(function (err) {
+						transaction.rollback();
+						return res.status(500).json({ error: true, data: { mensaje: err.message } });
+					});
+			})
+			.catch(function (err) {
+				transaction.rollback();
+				return res.status(500).json({ error: true, data: { mensaje: err.message } });
+			});
 	});
 }
 
