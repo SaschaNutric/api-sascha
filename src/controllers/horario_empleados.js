@@ -1,7 +1,9 @@
 'use strict';
 
-const Horario_empleados 	= require('../collections/horario_empleados');
-const Horario_empleado  	= require('../models/horario_empleado');
+const Horario_empleados = require('../collections/horario_empleados');
+const Horario_empleado  = require('../models/horario_empleado');
+const Bloques_Horarios    = require('../models/bloque_horario');
+const Bluebird          = require('bluebird');
 
 function getHorario_empleados(req, res, next) {
 	Horario_empleados.query(function (qb) {
@@ -11,7 +13,8 @@ function getHorario_empleados(req, res, next) {
 		withRelated: [
 			'bloque_horario',
 			'dia_laborable'
-		] })
+		]
+	})
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -32,34 +35,38 @@ function getHorario_empleados(req, res, next) {
     });
 }
 
-function saveHorario_empleado(req, res, next){
-	console.log(JSON.stringify(req.body));
-
-	Horario_empleado.forge({ 
-		id_empleado:req.body.id_empleado ,
-		id_bloque_horario:req.body.id_bloque_horario ,
-		id_dia_laborable:req.body.id_dia_laborable  
+function saveHorario_empleado(req, res, next) {
+	Bluebird.map(req.body.bloques_horarios, function(horario) {
+		Horario_empleado.forge({
+			id_empleado: req.body.id_empleado,
+			id_bloque_horario: horario.id_bloque_horario,
+			id_dia_laborable: req.body.id_dia_laborable  
+		})
+		.save()
 	})
-	.save()
-	.fetch({
-		withRelated: [
-			'empleado',
-			'bloque_horario',
-			'dia_laborable'
-	] })
-	.then(function(data){
-		res.status(200).json({
-			error: false,
-			data: data
-		});
+	.then(function(next) {
+		Horario_empleados.forge({ id_empleado: req.body.id_empleado })
+		.fetch()
+		.then(function(data) {
+			res.status(200).json({
+				id_empleado: req.body.id_empleado,
+				id_dia_laborable: req.body.id_dia_laborable,
+				bloques_horarios: horarios
+			});
+		})
+		.catch(function(err) {
+			return res.status(500).json({
+				error: true,
+				data: { mensaje: err.message }
+			})
+		})
 	})
 	.catch(function (err) {
-		res.status(500)
-		.json({
+		return res.status(500).json({
 			error: true,
-			data: {message: err.message}
-		});
-	});
+			data: { mensaje: err.message }
+		})
+	})
 }
 
 function getHorario_empleadoById(req, res, next) {

@@ -30,7 +30,7 @@ function getContenidos(req, res, next) {
 }
 
 function saveContenido(req, res, next){
-		if (req.files.imagen) {
+	if (req.files.imagen) {
 		const imagen = req.files.imagen
 		cloudinary.uploader.upload(imagen.path, function(result) {
 			if (result.error) {
@@ -39,34 +39,52 @@ function saveContenido(req, res, next){
 						data: { message: result.error }
 					});
 			} 
-			saveWithImagen(req,result.url);
+			Contenido.forge({
+				titulo: req.body.titulo,
+				texto: req.body.texto,
+				url_imagen: result.url
+			})
+			.save()
+			.then(function (data) {
+				return res.status(200).json({
+					error: false,
+					data: data
+				});
+			})
+			.catch(function (err) {
+				return res.status(500)
+					.json({
+						error: true,
+						data: { message: err.message }
+					});
+			});
 		});
 	}
 	else {
-		saveWithImagen(req,'https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png');
+		Contenido.forge({
+			titulo: req.body.titulo,
+			texto: req.body.texto,
+			url_imagen: 'https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png'
+		})
+		.save()
+		.then(function (data) {
+			return res.status(200).json({
+				error: false,
+				data: data
+			});
+		})
+		.catch(function (err) {
+			return res.status(500)
+				.json({
+					error: true,
+					data: { message: err.message }
+				});
+		});
 	}
 }
 
 function saveWithImagen(req,image){
-	Contenido.forge({
-	 titulo:req.body.titulo ,
-	 texto:req.body.texto ,
-	 url_imagen: image  
-	})
-	.save()
-	.then(function(data){
-		res.status(200).json({
-			error: false,
-			data: data
-		});
-	})
-	.catch(function (err) {
-		res.status(500)
-		.json({
-			error: true,
-			data: {message: err.message}
-		});
-	});
+
 }
 
 function getContenidoById(req, res, next) {
