@@ -125,10 +125,9 @@ function saveSolicitud_servicio(req, res, next){
 						.then(function (empleadoBuscado) {
 							let horarioValido = false; 
 							empleadoBuscado.toJSON().horario.map(function(horario) {
-								console.log(horario)
-								let fechaPartes    = req.body.fecha.split('-'); 
-								let fechaSolicitud = new Date(fechaPartes[0], fechaPartes[1] - 1, fechaPartes[2]);
-								console.log('dia: ' + fechaSolicitud.getDay() + ' Bloque: ' + req.body.id_bloque_horario);
+								let fechaSolicitud = new Date(req.body.fecha);
+								console.log(horario.id_dia_laborable + ' == ' + fechaSolicitud.getUTCDay() 
+									+ ' && ' + horario.id_bloque_horario + ' == ' + req.body.id_bloque_horario);
 								if (horario.id_dia_laborable == fechaSolicitud.getUTCDay() 
 									&& horario.id_bloque_horario == req.body.id_bloque_horario) {
 										horarioValido = true;

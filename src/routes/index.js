@@ -397,17 +397,17 @@ module.exports = (function () {
   api.put('/regimen/dieta/:id',              regimenDietasCtrl.updateRegimen_dieta);
   api.delete('/regimen/dieta/:id',           regimenDietasCtrl.deleteRegimen_dieta);  
 
-  api.get('/regimenejercicios',              regimenEjerciciosCtrl.getRegimen_ejercicios);
-  api.post('/regimenejercicios',             regimenEjerciciosCtrl.saveRegimen_ejercicio);
-  api.get('/regimenejercicio/:id',           regimenEjerciciosCtrl.getRegimen_ejercicioById);  
-  api.put('/regimenejercicio/:id',           regimenEjerciciosCtrl.updateRegimen_ejercicio);
-  api.delete('/regimenejercicio/:id',        regimenEjerciciosCtrl.deleteRegimen_ejercicio);  
+  api.get('/regimen/ejercicios',             regimenEjerciciosCtrl.getRegimen_ejercicios);
+  api.post('/regimen/ejercicios',            regimenEjerciciosCtrl.saveRegimen_ejercicio);
+  api.get('/regimen/ejercicio/:id',          regimenEjerciciosCtrl.getRegimen_ejercicioById);  
+  api.put('/regimen/ejercicio/:id',          regimenEjerciciosCtrl.updateRegimen_ejercicio);
+  api.delete('/regimen/ejercicio/:id',       regimenEjerciciosCtrl.deleteRegimen_ejercicio);  
 
-  api.get('/regimensuplementos',             regimenSuplementosCtrl.getRegimen_suplementos);
-  api.post('/regimensuplementos',            regimenSuplementosCtrl.saveRegimen_suplemento);
-  api.get('/regimensuplemento/:id',          regimenSuplementosCtrl.getRegimen_suplementoById);  
-  api.put('/regimensuplemento/:id',          regimenSuplementosCtrl.updateRegimen_suplemento);
-  api.delete('/regimensuplemento/:id',       regimenSuplementosCtrl.deleteRegimen_suplemento);  
+  api.get('/regimen/suplementos',            regimenSuplementosCtrl.getRegimen_suplementos);
+  api.post('/regimen/suplementos',           regimenSuplementosCtrl.saveRegimen_suplemento);
+  api.get('/regimen/suplemento/:id',         regimenSuplementosCtrl.getRegimen_suplementoById);  
+  api.put('/regimen/suplemento/:id',         regimenSuplementosCtrl.updateRegimen_suplemento);
+  api.delete('/regimen/suplemento/:id',      regimenSuplementosCtrl.deleteRegimen_suplemento);  
 
   api.get('/respuestas',                     respuestasCtrl.getRespuestas);
   api.post('/respuestas',                    respuestasCtrl.saveRespuesta);

@@ -639,15 +639,57 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 
 # regimenDietas
 
-[[ver json]](https://api-sascha.herokuapp.com/regimendietas)
+```
+    ├─GET────/regimen/dietas          * Retorna todos.
+    ├─POST───/regimen/dietas          * Guarda. 
+    ├─GET────/regimen/dieta/:id       * Retorna por id.
+    ├─PUT────/regimen/dieta/:id       * Actualiza.
+    ├─DELETE─/regimen/dieta/:id       * Elimina.
+    ├─Body─{ 
+        "id_detalle_plan_dieta": 0,
+        "id_cliente": 0,
+        "cantidad": 1  
+    }  
+```
+
+[[ver json]](https://api-sascha.herokuapp.com/regimen/dietas)
 
 # regimenEjercicios
 
-[[ver json]](https://api-sascha.herokuapp.com/regimenejercicios)
+```
+    ├─GET────/regimen/ejercicios          * Retorna todos.
+    ├─POST───/regimen/ejercicios          * Guarda. 
+    ├─GET────/regimen/ejercicio/:id       * Retorna por id.
+    ├─PUT────/regimen/ejercicio/:id       * Actualiza.
+    ├─DELETE─/regimen/ejercicio/:id       * Elimina.
+    ├─Body─{
+        "id_plan_ejercicio":0 ,
+        "id_cliente":0 ,
+        "id_frecuencia":0 ,
+        "id_tiempo":1,
+        duracion:1
+    }  
+```
+
+[[ver json]](https://api-sascha.herokuapp.com/regimen/ejercicios)
 
 # regimenSuplementos
 
-[[ver json]](https://api-sascha.herokuapp.com/regimensuplementos)
+```
+    ├─GET────/regimen/suplementos          * Retorna todos.
+    ├─POST───/regimen/suplementos          * Guarda. 
+    ├─GET────/regimen/suplemento/:id       * Retorna por id.
+    ├─PUT────/regimen/suplemento/:id       * Actualiza.
+    ├─DELETE─/regimen/suplemento/:id       * Elimina.
+    ├─Body─{ 
+        "id_plan_suplemento":0,
+        "id_cliente":0 ,
+        "id_frecuencia":1 ,
+        "cantidad":1
+    }
+```
+
+[[ver json]](https://api-sascha.herokuapp.com/regimen/suplementos)
 
 # respuestas
 
