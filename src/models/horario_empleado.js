@@ -13,8 +13,8 @@ let Horario_empleado = Bookshelf.Model.extend({
   },
   bloque_horarios: function() {
     return this.hasMany(Bloque_horario, 'id_bloque_horario');
-  }
-  dia_laborables: function(){
+  },
+  dia_laborables: function() {
     return this.hasMany(Dia_laborable, 'id_dia_laborable');
   }
 });
