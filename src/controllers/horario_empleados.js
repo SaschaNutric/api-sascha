@@ -35,7 +35,7 @@ function getHorario_empleados(req, res, next) {
     });
 }
 
-function saveHorario_empleado(req, res, next){
+function saveHorario_empleado(req, res, next) {
 	Bluebird.map(req.body.bloques_horarios, function(horario) {
 		Horario_empleado.forge({
 			id_empleado: req.body.id_empleado,
@@ -46,24 +46,12 @@ function saveHorario_empleado(req, res, next){
 	})
 	.then(function(next) {
 		Horario_empleados.forge({ id_empleado: req.body.id_empleado })
-			.fetch()
-			.then(function (bloque) {
-				console.log(bloque);
-				horarios.push(bloque.toJSON());
-				console.log(horarios);
-			})
-			.catch(function(err) {
-				return res.status(500).json({ 
-					error: true,
-					data: { mensaje: err.message }
-				})
-			})
-		})
+		.fetch()
 		.then(function(data) {
 			res.status(200).json({
-			id_empleado: req.body.id_empleado,
-			id_dia_laborable: req.body.id_dia_laborable,
-			bloques_horarios: horarios
+				id_empleado: req.body.id_empleado,
+				id_dia_laborable: req.body.id_dia_laborable,
+				bloques_horarios: horarios
 			});
 		})
 		.catch(function(err) {
@@ -73,12 +61,12 @@ function saveHorario_empleado(req, res, next){
 			})
 		})
 	})
-	.catch(function(err) {
-		res.status(500).json({
+	.catch(function (err) {
+		return res.status(500).json({
 			error: true,
-			data: { message: err.message }
-		});
-	});
+			data: { mensaje: err.message }
+		})
+	})
 }
 
 function getHorario_empleadoById(req, res, next) {
