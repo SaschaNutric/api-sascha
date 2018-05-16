@@ -10,10 +10,7 @@ const ParametroServicio = require('./parametro_servicio');
 
 let Servicio = Bookshelf.Model.extend({
   tableName: 'servicio',
-  idAttribute: 'id_servicio',
-  precio: function() {
-    return this.belongsTo(Precio, 'id_precio');
-  }, 
+  idAttribute: 'id_servicio', 
   plan_dieta: function() {
     return this.belongsTo(PlanDieta, 'id_plan_dieta');
   },

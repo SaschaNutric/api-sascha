@@ -17,9 +17,6 @@ async function getServicios(req, res, next) {
 			'plan_ejercicio',
 			'plan_suplemento',
 			'especialidad',
-			'precio',
-			'precio.unidad',
-			'precio.unidad.tipo_unidad',
 			'parametros',
 			'parametros.parametro',
 			'parametros.parametro.unidad'
@@ -49,6 +46,7 @@ async function getServicios(req, res, next) {
 					nombre: servicio.nombre,
 					descripcion: servicio.descripcion,
 					url_imagen: servicio.url_imagen,
+					precio: servicio.precio,
 					numero_visitas: servicio.numero_visitas,
 					especialidad: {
 						id_especialidad: servicio.especialidad.id_especialidad,
@@ -60,7 +58,7 @@ async function getServicios(req, res, next) {
 						descripcion: servicio.plan_dieta.descripcion
 					},
 					plan_ejercicio: servicio.plan_ejercicio ? { 
-						id_plan_ejercicio: servicio.plan_dieta.id_plan_ejercicio,
+						id_plan_ejercicio: servicio.plan_ejercicio.id_plan_ejercicio,
 						nombre: servicio.plan_ejercicio.nombre,
 						descripcion: servicio.plan_ejercicio.descripcion
 					} : null,
@@ -101,9 +99,6 @@ function getServicioById(req, res, next) {
 			'plan_ejercicio',
 			'plan_suplemento',
 			'especialidad',
-			'precio',
-			'precio.unidad',
-			'precio.unidad.tipo_unidad',
 			'parametros',
 			'parametros.parametro',
 			'parametros.parametro.unidad'
@@ -132,6 +127,7 @@ function getServicioById(req, res, next) {
 					nombre: servicio.nombre,
 					descripcion: servicio.descripcion,
 					url_imagen: servicio.url_imagen,
+					precio: servicio.precio,
 					numero_visitas: servicio.numero_visitas,
 					especialidad: {
 						id_especialidad: servicio.especialidad.id_especialidad,
@@ -143,7 +139,7 @@ function getServicioById(req, res, next) {
 						descripcion: servicio.plan_dieta.descripcion
 					},
 					plan_ejercicio: servicio.plan_ejercicio ? { 
-						id_plan_ejercicio: servicio.plan_dieta.id_plan_ejercicio,
+						id_plan_ejercicio: servicio.plan_ejercicio.id_plan_ejercicio,
 						nombre: servicio.plan_ejercicio.nombre,
 						descripcion: servicio.plan_ejercicio.descripcion
 					} : null,
@@ -187,7 +183,7 @@ function saveServicio(req, res, next){
 				nombre:             req.body.nombre, 
 				descripcion:        req.body.descripcion, 
 				url_imagen:         result.url, 
-				id_precio:          req.body.id_precio, 
+				precio:             req.body.precio, 
 				numero_visitas:     req.body.numero_visitas
 			})
 			.save()
@@ -219,7 +215,7 @@ function saveServicio(req, res, next){
 			nombre:             req.body.nombre,
 			descripcion:        req.body.descripcion,
 			url_imagen:         'https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png',
-			id_precio:          req.body.id_precio,
+			precio:          req.body.precio,
 			numero_visitas:     req.body.numero_visitas
 		})
 		.save()
@@ -262,7 +258,7 @@ function updateServicio(req, res, next) {
         	nombre: req.body.nombre || data.get('nombre'), 
         	descripcion: req.body.descripcion || data.get('descripcion'), 
         	url_imagen: req.body.url_imagen || data.get('url_imagen'), 
-        	id_precio: req.body.id_precio || data.get('id_precio'), 
+        	precio: req.body.precio || data.get('precio'), 
         	numero_visita: req.body.numero_visita || data.get('numero_visita')
 		})
 		.then(function(servicio) {

@@ -218,15 +218,16 @@ module.exports = (function () {
 
   api.get('/empleados',                      empleadosCtrl.getEmpleados);
   api.post('/empleados',                     empleadosCtrl.saveEmpleado);
-  api.get('/empleado/:id',                   empleadosCtrl.getEmpleadoById);  
+  api.get('/empleado/:id',                   empleadosCtrl.getEmpleadoById);
+  api.post('/empleado/cedula',               empleadosCtrl.getEmpleadoByCedula); 
   api.put('/empleado/:id',                   empleadosCtrl.updateEmpleado);
   api.delete('/empleado/:id',                empleadosCtrl.deleteEmpleado);   
 
   api.get('/especialidades',                 especialidadesCtrl.getEspecialidades);
   api.post('/especialidades',                especialidadesCtrl.saveEspecialidad);
-  api.get('/especialidade/:id',              especialidadesCtrl.getEspecialidadById);  
-  api.put('/especialidade/:id',              especialidadesCtrl.updateEspecialidad);
-  api.delete('/especialidade/:id',           especialidadesCtrl.deleteEspecialidad);   
+  api.get('/especialidad/:id',              especialidadesCtrl.getEspecialidadById);  
+  api.put('/especialidad/:id',              especialidadesCtrl.updateEspecialidad);
+  api.delete('/especialidad/:id',           especialidadesCtrl.deleteEspecialidad);   
 
   api.get('/especialidadeempleados',         especialidadeEmpleadosCtrl.getEspecialidad_empleados);
   api.post('/especialidadeempleados',        especialidadeEmpleadosCtrl.saveEspecialidad_empleado);
@@ -509,7 +510,7 @@ module.exports = (function () {
   api.put('/tipoparametro/:id',              tipo_parametrosCtrl.updateTipoParametro);
   api.delete('/tipoparametro/:id',           tipo_parametrosCtrl.deleteTipoParametro);
 
-  api.get('/tiporespuestas',                 tipo_respuestasCtrl.getTipoRespuestas);
+  api.get('/tiporespuestas',                 tipo_motivosCtrl.getTipoMotivosSinSolicitud);
   api.post('/tiporespuestas',                tipo_respuestasCtrl.saveTipoRespuesta);
   api.get('/tiporespuesta/:id',              tipo_respuestasCtrl.getTipoRespuestaById);  
   api.put('/tiporespuesta/:id',              tipo_respuestasCtrl.updateTipoRespuesta);
@@ -540,6 +541,7 @@ module.exports = (function () {
   api.delete('/usuario/:id',                 usuariosCtrl.deleteUsuario);
   api.post('/login',                         usuariosCtrl.singIn);
   api.post('/login/intranet',                usuariosCtrl.singInEmpleado);
+  api.get('/usuarios/empleados',             usuariosCtrl.getUsuariosEmpleados);
 
   api.get('/valoraciones',                   valoracionesCtrl.getValoraciones);
   api.post('/valoraciones',                  valoracionesCtrl.saveValoracion);

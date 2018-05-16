@@ -13,9 +13,6 @@ function getGarantia_servicios(req, res, next) {
 			'servicio.plan_dieta',
 			'servicio.plan_ejercicio',
 			'servicio.plan_suplemento',
-			'servicio.precio',
-			'servicio.precio.unidad',
-			'servicio.precio.unidad.tipo_unidad',
 			'condicion_garantia'
 		] })
 	.then(function(data) {
@@ -49,9 +46,6 @@ function saveGarantia_servicio(req, res, next){
 			'servicio.plan_dieta',
 			'servicio.plan_ejercicio',
 			'servicio.plan_suplemento',
-			'servicio.precio',
-			'servicio.precio.unidad',
-			'servicio.precio.unidad.tipo_unidad',
 			'condicion_garantia'
 	] })
 	.then(function(data){
@@ -125,9 +119,6 @@ function updateGarantia_servicio(req, res, next) {
 			'servicio.plan_dieta',
 			'servicio.plan_ejercicio',
 			'servicio.plan_suplemento',
-			'servicio.precio',
-			'servicio.precio.unidad',
-			'servicio.precio.unidad.tipo_unidad',
 			'condicion_garantia'
 		] })
 		.then(function() {
