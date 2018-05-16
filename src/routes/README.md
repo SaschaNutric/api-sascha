@@ -531,7 +531,7 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
     ├─DELETE─/frecuencia/:id       * Elimina.
     ├─Body─{ 
         "id_tiempo": 1,
-        "repeticiones": "cada tiempo"  
+        "repeticiones": 1
     }
 ```
 
