@@ -30,27 +30,59 @@ function getRed_sociales(req, res, next) {
 
 function saveRed_social(req, res, next){
 	console.log(JSON.stringify(req.body));
-
-	Red_social.forge({ 
-		nombre:   req.body.nombre,
-		usuario:  req.body.usuario,
-		url_base: req.body.url_base, 
-		url_logo: req.body.url_logo 
-	})
-	.save()
-	.then(function(data){
-		res.status(200).json({
-			error: false,
-			data: data
+	if (req.files.imagen) {
+		const imagen = req.files.imagen
+		cloudinary.uploader.upload(imagen.path, function (result) {
+			if (result.error) {
+				return res.status(500).json({
+					error: true,
+					data: { message: result.error }
+				});
+			}
+			Red_social.forge({ 
+				nombre:   req.body.nombre,
+				usuario:  req.body.usuario,
+				url_base: req.body.url_base, 
+				url_logo: result.url
+			})
+			.save()
+			.then(function(data){
+				res.status(200).json({
+					error: false,
+					data: data
+				});
+			})
+			.catch(function (err) {
+				res.status(500)
+				.json({
+					error: true,
+					data: {message: err.message}
+				});
+			});
 		});
-	})
-	.catch(function (err) {
-		res.status(500)
-		.json({
-			error: true,
-			data: {message: err.message}
+	}
+	else {
+		Red_social.forge({
+			nombre: req.body.nombre,
+			usuario: req.body.usuario,
+			url_base: req.body.url_base,
+			url_logo: 'https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png'
+		})
+		.save()
+		.then(function (data) {
+			res.status(200).json({
+				error: false,
+				data: data
+			});
+		})
+		.catch(function (err) {
+			res.status(500)
+				.json({
+					error: true,
+					data: { message: err.message }
+				});
 		});
-	});
+	}
 }
 
 function getRed_socialById(req, res, next) {
