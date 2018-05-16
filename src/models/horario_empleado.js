@@ -1,8 +1,8 @@
 'use strict'
 
 const Bookshelf 		= require('../commons/bookshelf');
-const Bloque_horario 	= require('./bloque_horario');
-const Dia_laborable 	= require('./dia_laborable');
+const Bloque_horarios 	= require('../collections/bloque_horarios');
+const Dia_laborables 	= require('../collections/dia_laborables');
 const Empleado 			= require('./empleado');
 
 let Horario_empleado = Bookshelf.Model.extend({
@@ -12,10 +12,10 @@ let Horario_empleado = Bookshelf.Model.extend({
     return this.hasMany(Empleado, 'id_empleado');
   },
   bloque_horario: function(){
-    return this.hasMany(Bloque_horario, 'id_bloque_horario');
+    return this.hasMany(Bloque_horarios, 'id_bloque_horario');
   },
   dia_laborable: function(){
-    return this.hasMany(Dia_laborable, 'id_dia_laborable');
+    return this.hasMany(Dia_laborables, 'id_dia_laborable');
   }
 });
 
