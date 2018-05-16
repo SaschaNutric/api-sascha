@@ -17,9 +17,6 @@ async function getServicios(req, res, next) {
 			'plan_ejercicio',
 			'plan_suplemento',
 			'especialidad',
-			'precio',
-			'precio.unidad',
-			'precio.unidad.tipo_unidad',
 			'parametros',
 			'parametros.parametro',
 			'parametros.parametro.unidad'
@@ -49,6 +46,7 @@ async function getServicios(req, res, next) {
 					nombre: servicio.nombre,
 					descripcion: servicio.descripcion,
 					url_imagen: servicio.url_imagen,
+					precio: servicio.precio,
 					numero_visitas: servicio.numero_visitas,
 					especialidad: {
 						id_especialidad: servicio.especialidad.id_especialidad,
@@ -101,9 +99,6 @@ function getServicioById(req, res, next) {
 			'plan_ejercicio',
 			'plan_suplemento',
 			'especialidad',
-			'precio',
-			'precio.unidad',
-			'precio.unidad.tipo_unidad',
 			'parametros',
 			'parametros.parametro',
 			'parametros.parametro.unidad'
@@ -132,6 +127,7 @@ function getServicioById(req, res, next) {
 					nombre: servicio.nombre,
 					descripcion: servicio.descripcion,
 					url_imagen: servicio.url_imagen,
+					precio: servicio.precio,
 					numero_visitas: servicio.numero_visitas,
 					especialidad: {
 						id_especialidad: servicio.especialidad.id_especialidad,
