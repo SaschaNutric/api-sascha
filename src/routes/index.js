@@ -536,6 +536,7 @@ module.exports = (function () {
 
   api.get('/usuarios',                       usuariosCtrl.getUsuarios);
   api.post('/suscripciones',                 usuariosCtrl.saveUsuario);
+  api.post('/usuarios',                      usuariosCtrl.saveUsuarioEmpleado);
   api.get('/usuario/:id',                    usuariosCtrl.getUsuarioById);
   api.put('/usuario/:id',                    usuariosCtrl.updateUsuario);
   api.delete('/usuario/:id',                 usuariosCtrl.deleteUsuario);

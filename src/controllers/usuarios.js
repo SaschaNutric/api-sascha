@@ -6,6 +6,7 @@ const Cliente       = require('../models/cliente');
 const Empleado      = require('../models/empleado');
 const ViewCliente   = require('../models/v_cliente');
 const correoTemplate = require('../views/correoTemplate');
+const correoEmpleadoTemplate = require('../views/correoEmpleadoTemplate');
 const Bookshelf     = require('../commons/bookshelf');
 const Bcrypt        = require("bcryptjs");
 const Crypto        = require("crypto");
@@ -42,8 +43,9 @@ function getUsuarios(req, res, next) {
 
 function getUsuariosEmpleados(req, res, next) {
 	Usuarios.query(function(qb) {
+		qb.select('*').from('usuario').innerJoin('empleado', 'usuario.id_usuario', '=', 'empleado.id_usuario');
 		qb.where('tipo_usuario', '=', 2);
-		qb.where('estatus', '=', 1);
+		qb.where('usuario.estatus', '=', 1);
 	})
 		.fetch({ withRelated: ['rol'] })
 		.then(function (usuarios) {
@@ -150,7 +152,7 @@ function saveUsuario(req, res, next) {
 				transportador.sendMail(opcionesCorreo)
 				.then(function() {
 					const usuarioGuardado = {
-						id_usuario:     usuario.get('id_suscripcion'),
+						id_usuario:     usuario.get('id_usuario'),
 						correo:         usuario.get('correo'),
 						nombre_usuario: usuario.get('nombre_usuario'),
 						token:          service.createToken(usuario),
@@ -177,6 +179,83 @@ function saveUsuario(req, res, next) {
 	});
 }
 
+function saveUsuarioEmpleado(req, res, next) {
+	if (!req.body.id_empleado || !req.body.id_rol || !req.body.correo || !req.body.contraseña)
+		return res.status(400).json({
+			error: true,
+			data: { mensaje: 'Petición inválida' }
+		})
+	Bookshelf.transaction(function (transaction) {
+		const salt = Bcrypt.genSaltSync(12);
+		const hash = Bcrypt.hashSync(req.body.contraseña, salt);
+		const nuevoUsuario = {
+			correo: req.body.correo.toLowerCase(),
+			contrasenia: hash,
+			salt: salt,
+			id_rol: req.body.id_rol,
+			tipo_usuario: 2
+		}
+
+		Usuario.forge(nuevoUsuario)
+			.save(null, { transacting: transaction })
+			.then(function (usuario) {
+				Empleado.forge({ id_empleado: req.body.id_empleado })
+				.fetch()	
+				.then(function (empleado) {
+					empleado.save({ id_usuario: usuario.get('id_usuario') })
+					.then(function(empleado) {
+
+						const transportador = nodemailer.createTransport({
+							host: 'smtp.gmail.com',
+							auth: {
+								type: 'OAuth2',
+								user: MAIL_USER,
+								clientId: MAIL_CLIENT_ID,
+								clientSecret: MAIL_CLIENT_SECRET,
+								refreshToken: REFRESH_TOKEN
+							}
+						});
+
+						const opcionesCorreo = {
+							from: MAIL_USER,
+							to: usuario.get('correo'),
+							subject: 'Asignación de Credenciales al Sistema',
+							html: correoEmpleadoTemplate(`${empleado.get('nombres')} ${empleado.get('apellidos')}`,
+								usuario.get('correo'),
+								req.body.contraseña)
+						}
+
+						transportador.sendMail(opcionesCorreo)
+							.then(function () {
+								const usuarioGuardado = {
+									id_usuario: usuario.get('id_usuario'),
+									correo: usuario.get('correo'),
+									empleado: empleado,
+									token: service.createToken(usuario),
+									mensaje: 'Confirmación de correo enviada exitosamente'
+								}
+								transaction.commit();
+								return res.status(201).json({ error: false, data: usuarioGuardado });
+							})
+							.catch(function (err) {
+								transaction.rollback();
+								return res.status(500).json({ error: true, data: { mensaje: err.message } });
+							});
+					})
+
+					})
+					.catch(function (err) {
+						transaction.rollback();
+						return res.status(500).json({ error: true, data: { mensaje: err.message } });
+					});
+			})
+			.catch(function (err) {
+				transaction.rollback();
+				return res.status(500).json({ error: true, data: { mensaje: err.message } });
+			});
+	});
+}
+
 function updateUsuario(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') {
@@ -186,16 +265,22 @@ function updateUsuario(req, res, next) {
 		});
 	}
 
-	Usuario.forge({ id_suscripcion: id, estatus: 1 })
+	if(!req.body.id_rol)
+		return res.status(400).json({
+			error: true,
+			data: { mensaje: 'Solicitud incorrecta' }
+		});
+
+	Usuario.forge({ id_usuario: id, estatus: 1 })
 	.fetch()
 	.then(function(usuario){
 		if(!usuario) 
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'Usuario no encontrada' } 
+				data: { mensaje: 'Usuario no encontrado' } 
 			});
 		usuario.save({
-			correo:  req.body.correo || usuario.get('correo')
+			id_rol:  req.body.id_rol || usuario.get('id_rol')
 		})
 		.then(function(usuario) {
 			return res.status(200).json({ 
@@ -267,6 +352,7 @@ function singIn(req, res) {
 	}
 	Usuario.query(function(qb) { 
 		qb.where('correo', credenciales.correo).orWhere('nombre_usuario', credenciales.nombre_usuario);
+		qb.where('tipo_usuario', '=', 1);
 		qb.where('estatus', 1); 
 	})
 	.fetch()
@@ -383,6 +469,7 @@ module.exports = {
 	getUsuarioById,
 	getUsuariosEmpleados,
 	saveUsuario,
+	saveUsuarioEmpleado,
 	updateUsuario,
 	deleteUsuario,
 	singIn,
