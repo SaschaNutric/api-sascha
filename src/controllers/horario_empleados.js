@@ -36,25 +36,69 @@ function getHorario_empleados(req, res, next) {
 }
 
 function saveHorario_empleado(req, res, next) {
-	Bluebird.map(req.body.bloques_horarios, function(horario) {
-		Horario_empleado.forge({
-			id_empleado: req.body.id_empleado,
-			id_bloque_horario: horario.id_bloque_horario,
-			id_dia_laborable: req.body.id_dia_laborable  
+	if(!req.body.id_empleado || !req.body.id_dia_laborable || !req.body.bloques_horarios)
+		return res.status(400).json({
+			error: true,
+			data: { mensaje: 'Petición inválida' }
 		})
-		.save()
+	Horario_empleados.query(function(qb) {
+		qb.where('id_empleado', '=', req.body.id_empleado)
+		  .andWhere('id_dia_laborable', '=', req.body.id_dia_laborable)
+		  .delete();
 	})
-	.then(function(next) {
-		Horario_empleados.forge({ id_empleado: req.body.id_empleado })
-		.fetch()
-		.then(function(data) {
-			res.status(200).json({
+	.fetch()
+	.then(function(nose) {
+		Bluebird.map(req.body.bloques_horarios, function(horario) {
+			Horario_empleado.forge({
 				id_empleado: req.body.id_empleado,
-				id_dia_laborable: req.body.id_dia_laborable,
-				bloques_horarios: horarios
-			});
+				id_bloque_horario: horario.id_bloque_horario,
+				id_dia_laborable: req.body.id_dia_laborable  
+			})
+			.save()
 		})
-		.catch(function(err) {
+		.then(function(datos) {
+			Horario_empleados.query(function(qb) {
+				qb.where('id_empleado', '=', req.body.id_empleado)
+				qb.where('id_dia_laborable', '=', req.body.id_dia_laborable)
+				qb.where('estatus', '=', 1); 
+			})
+			.fetch({ withRelated: ['empleado', 'dia_laborable', 'bloque_horario'] })
+			.then(function(data) {
+				let nuevaData = data.toJSON();
+				console.log(nuevaData[0])
+				let bloques = [];				
+				nuevaData.map(function(horario) {
+					bloques.push({ 
+						id_bloque_horario: horario.bloque_horario.id_bloque_horario, 
+						hora_inicio: JSON.stringify(horario.bloque_horario.hora_inicio).substr(1,5)
+					})
+				})
+	
+				let empleadoHorario = {
+					empleado: {
+						id_empleado: nuevaData[0].empleado.id_empleado,
+						nombre_completo: `${nuevaData[0].empleado.nombres} ${nuevaData[0].empleado.apellidos}`,
+					},
+					dia_laborable: {
+						id_dia_laborable: nuevaData[0].dia_laborable.id_dia_laborable,
+						dia: nuevaData[0].dia_laborable.dia
+					},
+					bloques_horarios: bloques
+				}	
+	
+				res.status(200).json({
+					error: false,
+					data: empleadoHorario
+				});
+			})
+			.catch(function(err) {
+				return res.status(500).json({
+					error: true,
+					data: { mensaje: err.message }
+				})
+			})
+		})
+		.catch(function (err) {
 			return res.status(500).json({
 				error: true,
 				data: { mensaje: err.message }
