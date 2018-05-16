@@ -179,7 +179,7 @@ function saveUsuario(req, res, next) {
 }
 
 function saveUsuarioEmpleado(req, res, next) {
-	if(!req.body.id_empleado)
+	if (!req.body.id_empleado || !req.body.id_rol || !req.body.correo || !req.body.contraseña)
 		return res.status(400).json({
 			error: true,
 			data: { mensaje: 'Petición inválida' }
@@ -190,7 +190,9 @@ function saveUsuarioEmpleado(req, res, next) {
 		const nuevoUsuario = {
 			correo: req.body.correo.toLowerCase(),
 			contrasenia: hash,
-			salt: salt
+			salt: salt,
+			id_rol: req.body.id_rol,
+			tipo_usuario: 2
 		}
 
 		Usuario.forge(nuevoUsuario)
