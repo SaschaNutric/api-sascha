@@ -7,7 +7,10 @@ function getEmpleados(req, res, next) {
 	Empleados.query(function (qb) {
    		qb.where('empleado.estatus', '=', 1);
 	})
-	.fetch({ columns: ['id_empleado','id_usuario','id_genero','cedula','nombres','apellidos','telefono','correo','direccion'] })
+	.fetch({
+		withRelated: [
+		'horario'	
+	] })
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
