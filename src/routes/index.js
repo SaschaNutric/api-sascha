@@ -225,9 +225,9 @@ module.exports = (function () {
 
   api.get('/especialidades',                 especialidadesCtrl.getEspecialidades);
   api.post('/especialidades',                especialidadesCtrl.saveEspecialidad);
-  api.get('/especialidade/:id',              especialidadesCtrl.getEspecialidadById);  
-  api.put('/especialidade/:id',              especialidadesCtrl.updateEspecialidad);
-  api.delete('/especialidade/:id',           especialidadesCtrl.deleteEspecialidad);   
+  api.get('/especialidad/:id',              especialidadesCtrl.getEspecialidadById);  
+  api.put('/especialidad/:id',              especialidadesCtrl.updateEspecialidad);
+  api.delete('/especialidad/:id',           especialidadesCtrl.deleteEspecialidad);   
 
   api.get('/especialidadeempleados',         especialidadeEmpleadosCtrl.getEspecialidad_empleados);
   api.post('/especialidadeempleados',        especialidadeEmpleadosCtrl.saveEspecialidad_empleado);
