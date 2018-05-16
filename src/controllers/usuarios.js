@@ -229,6 +229,7 @@ function saveUsuarioEmpleado(req, res, next) {
 								const usuarioGuardado = {
 									id_usuario: usuario.get('id_usuario'),
 									correo: usuario.get('correo'),
+									empleado: empleado,
 									token: service.createToken(usuario),
 									mensaje: 'Confirmación de correo enviada exitosamente'
 								}
