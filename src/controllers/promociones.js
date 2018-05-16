@@ -28,7 +28,7 @@ function getPromociones(req, res, next) {
 			promocion.parametros.map(function(parametro) {
 				if(parametro.estatus == 1){
 					parametros.push({
-						id_parametro_servicio: parametro.id_parametro_servicio,
+						id_parametro_promocion: parametro.id_parametro_promocion,
 						nombre: parametro.parametro.nombre,
 						valor_minimo: parametro.valor_minimo,
 						valor_maximo: parametro.valor_maximo
@@ -148,7 +148,7 @@ function getPromocionById(req, res, next) {
 			promocion.parametros.map(function(parametro) {
 				if(parametro.estatus == 1){
 					parametros.push({
-						id_parametro_servicio: parametro.id_parametro_servicio,
+						id_parametro_promocion: parametro.id_parametro_promocion,
 						nombre: parametro.parametro.nombre,
 						valor_minimo: parametro.valor_minimo,
 						valor_maximo: parametro.valor_maximo
