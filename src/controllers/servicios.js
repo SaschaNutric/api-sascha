@@ -33,6 +33,7 @@ async function getServicios(req, res, next) {
 			data.toJSON().map(function(servicio) {
 				let parametros = [];
 				servicio.parametros.map(function(parametro) {
+					if(parametro.estatus == 1){
 					parametros.push({
 						id_parametro_servicio: parametro.id_parametro_servicio,
 						nombre: parametro.parametro.nombre,
@@ -40,6 +41,7 @@ async function getServicios(req, res, next) {
 						valor_maximo: parametro.valor_maximo,
 						unidad: parametro.parametro.unidad.abrevitura
 					})
+				}
 				});
 				servicios.push({
 					id_servicio: servicio.id_servicio,
@@ -114,6 +116,7 @@ function getServicioById(req, res, next) {
 				let parametros = [];
 				let servicio = data.toJSON();
 				servicio.parametros.map(function(parametro) {
+					if(parametro.estatus == 1){
 					parametros.push({
 						id_parametro_servicio: parametro.id_parametro_servicio,
 						nombre: parametro.parametro.nombre,
@@ -121,6 +124,7 @@ function getServicioById(req, res, next) {
 						valor_maximo: parametro.valor_maximo,
 						unidad: parametro.parametro.unidad.abrevitura
 					})
+				}
 				});
 				let servicioObtenido = {
 					id_servicio: servicio.id_servicio,
