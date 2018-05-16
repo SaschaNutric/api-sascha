@@ -86,6 +86,40 @@ function getEmpleadoById(req, res, next) {
 	});
 }
 
+function getEmpleadoByCedula(req, res, next) {
+	if (!req.body.cedula)
+		return res.status(400).json({
+			error: true,
+			data: { mensaje: 'Petición inválida' }
+		});
+	const cedulaExp = /^[V|E|J|P]-[0-9]{5,9}$/;
+	if (!cedulaExp.test(req.body.cedula))
+		return res.status(400).json({
+			error: true,
+			data: { mensaje: 'Petición inválida. Formato de cédula inválido Ej. V-1234567' }
+		});
+
+	Empleado.forge({ cedula: req.body.cedula })
+	.fetch()
+	.then(function (data) {
+		if (!data)
+			return res.status(404).json({
+				error: true,
+				data: { mensaje: 'dato no encontrado' }
+			});
+		return res.status(200).json({
+			error: false,
+			data: data
+		});
+	})
+	.catch(function (err) {
+		return res.status(500).json({
+			error: false,
+			data: { mensaje: err.message }
+		})
+	});
+}
+
 function updateEmpleado(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') {
@@ -178,5 +212,6 @@ module.exports = {
 	saveEmpleado,
 	getEmpleadoById,
 	updateEmpleado,
-	deleteEmpleado
+	deleteEmpleado,
+	getEmpleadoByCedula
 }

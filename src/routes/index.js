@@ -218,7 +218,8 @@ module.exports = (function () {
 
   api.get('/empleados',                      empleadosCtrl.getEmpleados);
   api.post('/empleados',                     empleadosCtrl.saveEmpleado);
-  api.get('/empleado/:id',                   empleadosCtrl.getEmpleadoById);  
+  api.get('/empleado/:id',                   empleadosCtrl.getEmpleadoById);
+  api.post('/empleado/cedula',               empleadosCtrl.getEmpleadoByCedula); 
   api.put('/empleado/:id',                   empleadosCtrl.updateEmpleado);
   api.delete('/empleado/:id',                empleadosCtrl.deleteEmpleado);   
 
@@ -541,7 +542,6 @@ module.exports = (function () {
   api.post('/login',                         usuariosCtrl.singIn);
   api.post('/login/intranet',                usuariosCtrl.singInEmpleado);
   api.get('/usuarios/empleados',             usuariosCtrl.getUsuariosEmpleados);
-  //api.post('/empleadosporcedula',            usuariosCtrl.getEmpleados);
 
   api.get('/valoraciones',                   valoracionesCtrl.getValoraciones);
   api.post('/valoraciones',                  valoracionesCtrl.saveValoracion);
