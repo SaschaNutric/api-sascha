@@ -43,8 +43,9 @@ function getUsuarios(req, res, next) {
 
 function getUsuariosEmpleados(req, res, next) {
 	Usuarios.query(function(qb) {
+		qb.select('*').from('usuario').innerJoin('empleado', 'usuario.id_usuario', '=', 'empleado.id_usuario');
 		qb.where('tipo_usuario', '=', 2);
-		qb.where('estatus', '=', 1);
+		qb.where('usuario.estatus', '=', 1);
 	})
 		.fetch({ withRelated: ['rol'] })
 		.then(function (usuarios) {
