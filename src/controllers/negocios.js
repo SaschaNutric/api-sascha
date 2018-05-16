@@ -50,6 +50,8 @@ function saveNegocio(req, res, next){
 					});
 			} 
 			saveWithImage(req,result.url);
+		});
+	}
 	else {
 		saveWithImage(req,'https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png');
 	}
