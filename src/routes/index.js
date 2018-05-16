@@ -326,9 +326,9 @@ module.exports = (function () {
   api.get('/parametropromociones',               parametroPromocionesCtrl.getParametro_promociones);
   api.get('/parametros/promocion/:id_promocion', parametroPromocionesCtrl.getParametrosByPromocion);  
   api.post('/parametropromociones',              parametroPromocionesCtrl.saveParametro_promocion);
-  api.get('/parametropromocione/:id',            parametroPromocionesCtrl.getParametro_promocionById);
-  api.put('/parametropromocione/:id',            parametroPromocionesCtrl.updateParametro_promocion);
-  api.delete('/parametropromocione/:id',         parametroPromocionesCtrl.deleteParametro_promocion);
+  api.get('/parametropromocion/:id',            parametroPromocionesCtrl.getParametro_promocionById);
+  api.put('/parametropromocion/:id',            parametroPromocionesCtrl.updateParametro_promocion);
+  api.delete('/parametropromocion/:id',         parametroPromocionesCtrl.deleteParametro_promocion);
 
   api.get('/parametroservicios',                 parametroServiciosCtrl.getParametro_servicios);
   api.get('/parametros/servicio/:id_servicio',   parametroServiciosCtrl.getParametrosByServicio);  
