@@ -58,7 +58,7 @@ async function getServicios(req, res, next) {
 						descripcion: servicio.plan_dieta.descripcion
 					},
 					plan_ejercicio: servicio.plan_ejercicio ? { 
-						id_plan_ejercicio: servicio.plan_dieta.id_plan_ejercicio,
+						id_plan_ejercicio: servicio.plan_ejercicio.id_plan_ejercicio,
 						nombre: servicio.plan_ejercicio.nombre,
 						descripcion: servicio.plan_ejercicio.descripcion
 					} : null,
@@ -139,7 +139,7 @@ function getServicioById(req, res, next) {
 						descripcion: servicio.plan_dieta.descripcion
 					},
 					plan_ejercicio: servicio.plan_ejercicio ? { 
-						id_plan_ejercicio: servicio.plan_dieta.id_plan_ejercicio,
+						id_plan_ejercicio: servicio.plan_ejercicio.id_plan_ejercicio,
 						nombre: servicio.plan_ejercicio.nombre,
 						descripcion: servicio.plan_ejercicio.descripcion
 					} : null,
