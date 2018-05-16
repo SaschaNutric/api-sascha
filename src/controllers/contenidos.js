@@ -39,11 +39,11 @@ function saveContenido(req, res, next){
 						data: { message: result.error }
 					});
 			} 
-			saveWithImage(req,result.url);
+			saveWithImagen(req,result.url);
 		});
 	}
 	else {
-		saveWithImage(req,'https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png');
+		saveWithImagen(req,'https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png');
 	}
 }
 
