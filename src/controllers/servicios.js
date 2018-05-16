@@ -183,7 +183,7 @@ function saveServicio(req, res, next){
 				nombre:             req.body.nombre, 
 				descripcion:        req.body.descripcion, 
 				url_imagen:         result.url, 
-				id_precio:          req.body.id_precio, 
+				precio:             req.body.precio, 
 				numero_visitas:     req.body.numero_visitas
 			})
 			.save()
@@ -215,7 +215,7 @@ function saveServicio(req, res, next){
 			nombre:             req.body.nombre,
 			descripcion:        req.body.descripcion,
 			url_imagen:         'https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png',
-			id_precio:          req.body.id_precio,
+			precio:          req.body.precio,
 			numero_visitas:     req.body.numero_visitas
 		})
 		.save()
@@ -258,7 +258,7 @@ function updateServicio(req, res, next) {
         	nombre: req.body.nombre || data.get('nombre'), 
         	descripcion: req.body.descripcion || data.get('descripcion'), 
         	url_imagen: req.body.url_imagen || data.get('url_imagen'), 
-        	id_precio: req.body.id_precio || data.get('id_precio'), 
+        	precio: req.body.precio || data.get('precio'), 
         	numero_visita: req.body.numero_visita || data.get('numero_visita')
 		})
 		.then(function(servicio) {
