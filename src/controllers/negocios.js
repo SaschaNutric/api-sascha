@@ -2,6 +2,7 @@
 
 const Negocios = require('../collections/negocios');
 const Negocio  = require('../models/negocio');
+const cloudinary = require('../../cloudinary');
 
 function getNegocios(req, res, next) {
 	Negocios.query({ where: { estatus: 1 } })
@@ -39,12 +40,27 @@ function getNegocios(req, res, next) {
 }
 
 function saveNegocio(req, res, next){
-	console.log(JSON.stringify(req.body));
+	if (req.files.imagen) {
+		const imagen = req.files.imagen
+		cloudinary.uploader.upload(imagen.path, function(result) {
+			if (result.error) {
+				return res.status(500).json({
+						error: true,
+						data: { message: result.error }
+					});
+			} 
+			saveWithImage(req,result.url);
+	else {
+		saveWithImage(req,'https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png');
+	}
+	
+}
 
+function saveWithImage(req,url_logo){
 	Negocio.forge({
 		 razon_social: req.body.razon_social, 
 		 rif: req.body.rif, 
-		 url_logo: req.body.url_logo, 
+		 url_logo: url_logo, 
 		 mision: req.body.mision, 
 		 vision: req.body.vision, 
 		 objetivo: req.body.objetivo, 
@@ -68,6 +84,7 @@ function saveNegocio(req, res, next){
 		});
 	});
 }
+
 
 function getNegocioById(req, res, next) {
 	const id = Number.parseInt(req.params.id);
