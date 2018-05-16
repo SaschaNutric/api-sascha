@@ -7,12 +7,10 @@ const Bluebird          = require('bluebird');
 
 function getHorario_empleados(req, res, next) {
 	Horario_empleados.query(function (qb) {
-   		qb.where('horario_empleado.estatus', '=', 1)
-   		.groupBy('id_empleado');
+   		qb.where('horario_empleado.estatus', '=', 1);
 	})
 	.fetch({
 		withRelated: [
-			'empleado',
 			'bloque_horario',
 			'dia_laborable'
 		]

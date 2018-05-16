@@ -7,7 +7,7 @@ let Empleado = Bookshelf.Model.extend({
   tableName: 'empleado',
   idAttribute: 'id_empleado',
   horario: function(){
-    return this.belongsTo(Horario_Empleado, 'id_empleado');
+    return this.hasMany(Horario_Empleado, 'id_empleado');
   }
 });
 
