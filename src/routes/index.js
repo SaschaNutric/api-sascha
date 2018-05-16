@@ -540,6 +540,8 @@ module.exports = (function () {
   api.delete('/usuario/:id',                 usuariosCtrl.deleteUsuario);
   api.post('/login',                         usuariosCtrl.singIn);
   api.post('/login/intranet',                usuariosCtrl.singInEmpleado);
+  api.get('/usuarios/empleados',             usuariosCtrl.getUsuariosEmpleados);
+  //api.post('/empleadosporcedula',            usuariosCtrl.getEmpleados);
 
   api.get('/valoraciones',                   valoracionesCtrl.getValoraciones);
   api.post('/valoraciones',                  valoracionesCtrl.saveValoracion);

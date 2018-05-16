@@ -40,6 +40,32 @@ function getUsuarios(req, res, next) {
     });
 }
 
+function getUsuariosEmpleados(req, res, next) {
+	Usuarios.query(function(qb) {
+		qb.where('tipo_usuario', '=', 2);
+		qb.where('estatus', '=', 1);
+	})
+		.fetch({ withRelated: ['rol'] })
+		.then(function (usuarios) {
+			if (!usuarios)
+				return res.status(404).json({
+					error: true,
+					data: { mensaje: 'No hay usuarios registrados' }
+				});
+
+			return res.status(200).json({
+				error: false,
+				data: usuarios
+			});
+		})
+		.catch(function (err) {
+			return res.status(500).json({
+				error: true,
+				data: { mensaje: err.message }
+			});
+		});
+}
+
 function getUsuarioById(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') 
@@ -355,6 +381,7 @@ function singInEmpleado(req, res) {
 module.exports = {
 	getUsuarios,
 	getUsuarioById,
+	getUsuariosEmpleados,
 	saveUsuario,
 	updateUsuario,
 	deleteUsuario,
