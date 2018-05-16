@@ -7,6 +7,7 @@ const PlanEjercicio  = require('./plan_ejercicio');
 const PlanSuplemento = require('./plan_suplemento');
 const Especialidad   = require('./especialidad');
 const ParametroServicio = require('./parametro_servicio');
+const Condicion_garantia = require('./condicion_garantia');
 
 let Servicio = Bookshelf.Model.extend({
   tableName: 'servicio',
@@ -25,6 +26,9 @@ let Servicio = Bookshelf.Model.extend({
   },
   parametros: function() {
     return this.hasMany(ParametroServicio, 'id_servicio');
+  },
+  condiciones_garantia: function() {
+    return this.belongsToMany(Condicion_garantia, 'garantia_servicio', 'id_servicio', 'id_condicion_garantia');
   }
 });
 

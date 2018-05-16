@@ -16,7 +16,8 @@ async function getServicios(req, res, next) {
 			'plan_suplemento',
 			'especialidad',
 			'parametros',
-			'parametros.parametro'
+			'parametros.parametro',
+			'condiciones_garantia'
 		]
 	})
 	.then(function(data) {
@@ -38,6 +39,15 @@ async function getServicios(req, res, next) {
 					})
 				}
 				});
+				let condiciones = [];
+				servicio.condiciones_garantia.map(function (condicion) {
+					if (condicion.estatus == 1) {
+						condiciones.push({
+							id_condicion_garantia: condicion.id_condicion_garantia,
+							descripcion: condicion.descripcion
+						})
+					}
+				})
 				servicios.push({
 					id_servicio: servicio.id_servicio,
 					nombre: servicio.nombre,
@@ -64,7 +74,8 @@ async function getServicios(req, res, next) {
 						nombre: servicio.plan_suplemento.nombre,
 						descripcion: servicio.plan_suplemento.descripcion
 					} : null,
-					parametros: parametros
+					parametros: parametros,
+					condiciones_garantia: condiciones
 				})
 			})
 		
@@ -98,7 +109,7 @@ function getServicioById(req, res, next) {
 			'especialidad',
 			'parametros',
 			'parametros.parametro',
-			'parametros.parametro.unidad'
+			'condiciones_garantia'
 		]
 	})
 	.then(function(data) {
@@ -117,10 +128,18 @@ function getServicioById(req, res, next) {
 						nombre: parametro.parametro.nombre,
 						valor_minimo: parametro.valor_minimo,
 						valor_maximo: parametro.valor_maximo,
-						unidad: parametro.parametro.unidad.abrevitura
 					})
 				}
 				});
+				let condiciones = [];
+				servicio.condiciones_garantia.map(function(condicion) {
+					if(condicion.estatus == 1) {
+						condiciones.push({
+							id_condicion_garantia: condicion.id_condicion_garantia,
+							descripcion: condicion.descripcion
+						})
+					}
+				})
 				let servicioObtenido = {
 					id_servicio: servicio.id_servicio,
 					nombre: servicio.nombre,
@@ -147,7 +166,8 @@ function getServicioById(req, res, next) {
 						nombre: servicio.plan_suplemento.nombre,
 						descripcion: servicio.plan_suplemento.descripcion
 					} : null,
-					parametros: parametros
+					parametros: parametros,
+					condiciones_garantia: condiciones
 				}
 		return res.status(200).json({ 
 			error: false, 

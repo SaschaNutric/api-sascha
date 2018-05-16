@@ -2,6 +2,7 @@
 
 const Condicion_garantias 	= require('../collections/condicion_garantias');
 const Condicion_garantia  	= require('../models/condicion_garantia');
+const Bluebird = require('bluebird');
 
 function getCondicion_garantias(req, res, next) {
 	Condicion_garantias.query(function (qb) {

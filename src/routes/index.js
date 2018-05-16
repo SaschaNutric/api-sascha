@@ -262,7 +262,7 @@ module.exports = (function () {
   api.get('/garantias',                      garantiaServiciosCtrl.getGarantia_servicios);
   api.post('/garantias',                     garantiaServiciosCtrl.saveGarantia_servicio);
   api.get('/garantia/:id',                   garantiaServiciosCtrl.getGarantia_servicioById);  
-  api.put('/garantia/:id',                   garantiaServiciosCtrl.updateGarantia_servicio);
+  api.put('/servicio/:id/garantias',         garantiaServiciosCtrl.updateGarantia_servicio);
   api.delete('/garantia/:id',                garantiaServiciosCtrl.deleteGarantia_servicio);   
 
   api.get('/generos',                        generosCtrl.getGeneros);
