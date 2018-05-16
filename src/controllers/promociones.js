@@ -22,11 +22,24 @@ function getPromociones(req, res, next) {
 				error: true, 
 				data: { mensaje: 'No hay dato registrados' } 
 			});
+			
 		let dataJSON = data.toJSON().map(function(promocion) {
+			let parametros = [];
+			promocion.parametros.map(function(parametro) {
+				if(parametro.estatus == 1){
+					parametros.push({
+						id_parametro_servicio: parametro.id_parametro_servicio,
+						nombre: parametro.parametro.nombre,
+						valor_minimo: parametro.valor_minimo,
+						valor_maximo: parametro.valor_maximo
+					})
+				}
+			})			
 			let validoDesde = JSON.stringify(promocion.valido_desde);
 			let validoHasta = JSON.stringify(promocion.valido_hasta);
 			promocion.valido_desde = validoDesde.substr(1,10);
 			promocion.valido_hasta = validoHasta.substr(1,10);
+			promocion.parametros = parametros;
 			return promocion;
 		});
 		console.log(dataJSON);
@@ -130,9 +143,28 @@ function getPromocionById(req, res, next) {
 				error: true, 
 				data: { mensaje: 'dato no encontrado' } 
 			});
+					let promocion = data.toJSON();
+			let parametros = [];
+			promocion.parametros.map(function(parametro) {
+				if(parametro.estatus == 1){
+					parametros.push({
+						id_parametro_servicio: parametro.id_parametro_servicio,
+						nombre: parametro.parametro.nombre,
+						valor_minimo: parametro.valor_minimo,
+						valor_maximo: parametro.valor_maximo
+					})
+				}
+			})			
+			let validoDesde = JSON.stringify(promocion.valido_desde);
+			let validoHasta = JSON.stringify(promocion.valido_hasta);
+			promocion.valido_desde = validoDesde.substr(1,10);
+			promocion.valido_hasta = validoHasta.substr(1,10);
+			promocion.parametros = parametros;
+		
+	
 		return res.status(200).json({ 
 			error : false, 
-			data : data 
+			data : promocion 
 		});
 	})
 	.catch(function(err){
