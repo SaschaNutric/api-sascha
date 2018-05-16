@@ -21,7 +21,8 @@ async function getServicios(req, res, next) {
 			'precio.unidad',
 			'precio.unidad.tipo_unidad',
 			'parametros',
-			'parametros.unidad'
+			'parametros.parametro',
+			'parametros.parametro.unidad'
 		]
 	})
 	.then(function(data) {
@@ -30,9 +31,51 @@ async function getServicios(req, res, next) {
 				error: true, 
 				data: { mensaje: 'No hay servicios registrados' } 
 			});
+	
+			let servicios = [];
+			data.toJSON().map(function(servicio) {
+				let parametros = [];
+				servicio.parametros.map(function(parametro) {
+					parametros.push({
+						id_parametros: parametro.id_parametro,
+						nombre: parametro.parametro.nombre,
+						valor_minimo: parametro.valor_minimo,
+						valor_maximo: parametro.valor_maximo,
+						unidad: parametro.parametro.unidad.abrevitura
+					})
+				});
+				servicios.push({
+					id_servicio: servicio.id_servicio,
+					nombre: servicio.nombre,
+					descripcion: servicio.descripcion,
+					url_imagen: servicio.url_imagen,
+					numero_visitas: servicio.numero_visitas,
+					especialidad: {
+						id_especialidad: servicio.especialidad.id_especialidad,
+						nombre: servicio.especialidad.nombre
+					},
+					plan_dieta: { 
+						id_plan_dieta: servicio.plan_dieta.id_plan_dieta,
+						nombre: servicio.plan_dieta.nombre,
+						descripcion: servicio.plan_dieta.descripcion
+					},
+					plan_ejercicio: servicio.plan_ejercicio ? { 
+						id_plan_ejercicio: servicio.plan_dieta.id_plan_ejercicio,
+						nombre: servicio.plan_ejercicio.nombre,
+						descripcion: servicio.plan_ejercicio.descripcion
+					} : null,
+					plan_suplemento: servicio.plan_suplemento ? { 
+						id_plan_suplemento: servicio.plan_suplemento.id_plan_suplemento,
+						nombre: servicio.plan_suplemento.nombre,
+						descripcion: servicio.plan_suplemento.descripcion
+					} : null,
+					parametros: parametros
+				})
+			})
+	
 		return res.status(200).json({
 			error: false,
-			data: data
+			data: servicios
 		});
 	})
 	.catch(function (err) {
@@ -62,7 +105,8 @@ function getServicioById(req, res, next) {
 			'precio.unidad',
 			'precio.unidad.tipo_unidad',
 			'parametros',
-			'parametros.unidad'
+			'parametros.parametro',
+			'parametros.parametro.unidad'
 		]
 	})
 	.then(function(data) {
@@ -71,9 +115,48 @@ function getServicioById(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Servicio no encontrado' } 
 			});
+		
+				let parametros = [];
+				let servicio = data.toJSON();
+				servicio.parametros.map(function(parametro) {
+					parametros.push({
+						id_parametros: parametro.id_parametro,
+						nombre: parametro.parametro.nombre,
+						valor_minimo: parametro.valor_minimo,
+						valor_maximo: parametro.valor_maximo,
+						unidad: parametro.parametro.unidad.abrevitura
+					})
+				});
+				let servicioObtenido = {
+					id_servicio: servicio.id_servicio,
+					nombre: servicio.nombre,
+					descripcion: servicio.descripcion,
+					url_imagen: servicio.url_imagen,
+					numero_visitas: servicio.numero_visitas,
+					especialidad: {
+						id_especialidad: servicio.especialidad.id_especialidad,
+						nombre: servicio.especialidad.nombre
+					},
+					plan_dieta: { 
+						id_plan_dieta: servicio.plan_dieta.id_plan_dieta,
+						nombre: servicio.plan_dieta.nombre,
+						descripcion: servicio.plan_dieta.descripcion
+					},
+					plan_ejercicio: servicio.plan_ejercicio ? { 
+						id_plan_ejercicio: servicio.plan_dieta.id_plan_ejercicio,
+						nombre: servicio.plan_ejercicio.nombre,
+						descripcion: servicio.plan_ejercicio.descripcion
+					} : null,
+					plan_suplemento: servicio.plan_suplemento ? { 
+						id_plan_suplemento: servicio.plan_suplemento.id_plan_suplemento,
+						nombre: servicio.plan_suplemento.nombre,
+						descripcion: servicio.plan_suplemento.descripcion
+					} : null,
+					parametros: parametros
+				}
 		return res.status(200).json({ 
 			error: false, 
-			data: data
+			data: servicioObtenido
 		});
 	})
 	.catch(function(err){
