@@ -31,7 +31,10 @@ function getFrecuencias(req, res, next) {
 function saveFrecuencia(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	Frecuencia.forge({ id_tiempo:req.body.id_tiempo ,repeticiones:req.body.repeticiones  })
+	Frecuencia.forge({ 
+		id_tiempo:req.body.id_tiempo ,
+		repeticiones:req.body.repeticiones  
+	})
 	.save()
 	.then(function(data){
 		res.status(200).json({

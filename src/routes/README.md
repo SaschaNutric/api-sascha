@@ -291,6 +291,17 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 
 # tiempos
 
+```
+    ├─GET────/tiempos         * Retorna todos.
+    ├─POST───/tiempos         * Guarda. 
+    ├─GET────/tiempo/:id      * Retorna por id.
+    ├─PUT────/tiempo/:id      * Actualiza.
+    ├─DELETE─/tiempo/:id      * Elimina.
+    ├─Body─{
+        "nombre":"",
+        "abreviatura":""  
+    }
+```
 [[ver json]](https://api-sascha.herokuapp.com/tiempos)
 
 # tipocitas
@@ -511,6 +522,18 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 [[ver json]](https://api-sascha.herokuapp.com/especialidadeservicios)
 
 # frecuencias
+
+```
+    ├─GET────/frecuencias           * Retorna todos.
+    ├─POST───/frecuencias           * Guarda. 
+    ├─GET────/frecuencia/:id        * Retorna por id.
+    ├─PUT────/frecuencia/:id        * Actualiza.
+    ├─DELETE─/frecuencia/:id       * Elimina.
+    ├─Body─{ 
+        "id_tiempo": 1,
+        "repeticiones": "cada tiempo"  
+    }
+```
 
 [[ver json]](https://api-sascha.herokuapp.com/frecuencias)
 
