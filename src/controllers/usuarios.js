@@ -263,16 +263,22 @@ function updateUsuario(req, res, next) {
 		});
 	}
 
-	Usuario.forge({ id_suscripcion: id, estatus: 1 })
+	if(!req.body.id_rol)
+		return res.status(400).json({
+			error: true,
+			data: { mensaje: 'Solicitud incorrecta' }
+		});
+
+	Usuario.forge({ id_usuario: id, estatus: 1 })
 	.fetch()
 	.then(function(usuario){
 		if(!usuario) 
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'Usuario no encontrada' } 
+				data: { mensaje: 'Usuario no encontrado' } 
 			});
 		usuario.save({
-			correo:  req.body.correo || usuario.get('correo')
+			id_rol:  req.body.id_rol || usuario.get('id_rol')
 		})
 		.then(function(usuario) {
 			return res.status(200).json({ 
@@ -344,6 +350,7 @@ function singIn(req, res) {
 	}
 	Usuario.query(function(qb) { 
 		qb.where('correo', credenciales.correo).orWhere('nombre_usuario', credenciales.nombre_usuario);
+		qb.where('tipo_usuario', '=', 1);
 		qb.where('estatus', 1); 
 	})
 	.fetch()
@@ -460,6 +467,7 @@ module.exports = {
 	getUsuarioById,
 	getUsuariosEmpleados,
 	saveUsuario,
+	saveUsuarioEmpleado,
 	updateUsuario,
 	deleteUsuario,
 	singIn,
