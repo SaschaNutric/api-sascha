@@ -262,7 +262,8 @@ function updateServicio(req, res, next) {
 			numero_visita: req.body.numero_visita || data.get('numero_visita'),
 			id_plan_dieta: req.body.id_plan_dieta || data.get('id_plan_dieta'),
 			id_plan_ejercicio: req.body.id_plan_ejercicio || data.get('id_plan_ejercicio'),
-			id_plan_suplemento: req.body.id_plan_suplemento || data.get('id_plan_suplemento')
+			id_plan_suplemento: req.body.id_plan_suplemento || data.get('id_plan_suplemento'),
+			id_especialidad: req.body.id_especialidad || data.get('id_especialidad')
 		})
 		.then(function(servicio) {
 			return res.status(200).json({ 
