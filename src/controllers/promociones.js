@@ -10,16 +10,12 @@ function getPromociones(req, res, next) {
 	.fetch({
 		withRelated: [
 			'servicio',
-			'servicio.plan_dieta',
-			'servicio.plan_dieta.tipo_dieta',
-			'servicio.plan_ejercicio',
-			'servicio.plan_suplemento',
 			'genero',
 			'estado_civil',
 			'rango_edad',
 			'parametros',
-			'parametros.unidad'
-		]})
+			'parametros.parametro'
+	]})
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -126,7 +122,7 @@ function getPromocionById(req, res, next) {
 			'estado_civil',
 			'rango_edad',
 			'parametros',
-			'parametros.unidad'
+			'parametros.parametro'
 		]})
 	.then(function(data) {
 		if(!data) 

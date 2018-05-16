@@ -6,9 +6,7 @@ const cloudinary = require('../../cloudinary');
 const Bookshelf  = require('../commons/bookshelf');
 
 async function getServicios(req, res, next) {
-	await Servicios
-	.query(function (qb) {
-   		qb.groupBy('servicio.id_servicio');
+	Servicios.query(function (qb) {
    		qb.where('servicio.estatus', '=', 1);
 	})
 	.fetch({
@@ -18,8 +16,7 @@ async function getServicios(req, res, next) {
 			'plan_suplemento',
 			'especialidad',
 			'parametros',
-			'parametros.parametro',
-			'parametros.parametro.unidad'
+			'parametros.parametro'
 		]
 	})
 	.then(function(data) {
@@ -28,7 +25,6 @@ async function getServicios(req, res, next) {
 				error: true, 
 				data: { mensaje: 'No hay servicios registrados' } 
 			});
-	
 			let servicios = [];
 			data.toJSON().map(function(servicio) {
 				let parametros = [];
@@ -37,8 +33,7 @@ async function getServicios(req, res, next) {
 						id_parametro_servicio: parametro.id_parametro_servicio,
 						nombre: parametro.parametro.nombre,
 						valor_minimo: parametro.valor_minimo,
-						valor_maximo: parametro.valor_maximo,
-						unidad: parametro.parametro.unidad.abrevitura
+						valor_maximo: parametro.valor_maximo
 					})
 				});
 				servicios.push({
@@ -70,7 +65,7 @@ async function getServicios(req, res, next) {
 					parametros: parametros
 				})
 			})
-	
+		
 		return res.status(200).json({
 			error: false,
 			data: servicios
