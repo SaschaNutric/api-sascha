@@ -129,7 +129,7 @@ function saveSolicitud_servicio(req, res, next){
 								let fechaPartes    = req.body.fecha.split('-'); 
 								let fechaSolicitud = new Date(fechaPartes[0], fechaPartes[1] - 1, fechaPartes[2]);
 								console.log('dia: ' + fechaSolicitud.getDay() + ' Bloque: ' + req.body.id_bloque_horario);
-								if (horario.id_dia_laborable == fechaSolicitud.getDay() 
+								if (horario.id_dia_laborable == fechaSolicitud.getUTCDay() 
 									&& horario.id_bloque_horario == req.body.id_bloque_horario) {
 										horarioValido = true;
 									}
