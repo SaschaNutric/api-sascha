@@ -410,6 +410,7 @@ module.exports = (function () {
   api.delete('/regimen/suplemento/:id',      regimenSuplementosCtrl.deleteRegimen_suplemento);  
 
   api.get('/respuestas',                     respuestasCtrl.getRespuestas);
+  api.get('/respuestas/tipomotivo/:id',      respuestasCtrl.getRespuestasTipoMotivo);
   api.post('/respuestas',                    respuestasCtrl.saveRespuesta);
   api.get('/respuesta/:id',                  respuestasCtrl.getRespuestaById);  
   api.put('/respuesta/:id',                  respuestasCtrl.updateRespuesta);
