@@ -262,7 +262,7 @@ module.exports = (function () {
   api.get('/garantias',                      garantiaServiciosCtrl.getGarantia_servicios);
   api.post('/garantias',                     garantiaServiciosCtrl.saveGarantia_servicio);
   api.get('/garantia/:id',                   garantiaServiciosCtrl.getGarantia_servicioById);  
-  api.put('/garantia/:id',                   garantiaServiciosCtrl.updateGarantia_servicio);
+  api.put('/servicio/:id/garantias',         garantiaServiciosCtrl.updateGarantia_servicio);
   api.delete('/garantia/:id',                garantiaServiciosCtrl.deleteGarantia_servicio);   
 
   api.get('/generos',                        generosCtrl.getGeneros);
@@ -326,9 +326,9 @@ module.exports = (function () {
   api.get('/parametropromociones',               parametroPromocionesCtrl.getParametro_promociones);
   api.get('/parametros/promocion/:id_promocion', parametroPromocionesCtrl.getParametrosByPromocion);  
   api.post('/parametropromociones',              parametroPromocionesCtrl.saveParametro_promocion);
-  api.get('/parametropromocione/:id',            parametroPromocionesCtrl.getParametro_promocionById);
-  api.put('/parametropromocione/:id',            parametroPromocionesCtrl.updateParametro_promocion);
-  api.delete('/parametropromocione/:id',         parametroPromocionesCtrl.deleteParametro_promocion);
+  api.get('/parametropromocion/:id',            parametroPromocionesCtrl.getParametro_promocionById);
+  api.put('/parametropromocion/:id',            parametroPromocionesCtrl.updateParametro_promocion);
+  api.delete('/parametropromocion/:id',         parametroPromocionesCtrl.deleteParametro_promocion);
 
   api.get('/parametroservicios',                 parametroServiciosCtrl.getParametro_servicios);
   api.get('/parametros/servicio/:id_servicio',   parametroServiciosCtrl.getParametrosByServicio);  
@@ -536,6 +536,7 @@ module.exports = (function () {
 
   api.get('/usuarios',                       usuariosCtrl.getUsuarios);
   api.post('/suscripciones',                 usuariosCtrl.saveUsuario);
+  api.post('/usuarios',                      usuariosCtrl.saveUsuarioEmpleado);
   api.get('/usuario/:id',                    usuariosCtrl.getUsuarioById);
   api.put('/usuario/:id',                    usuariosCtrl.updateUsuario);
   api.delete('/usuario/:id',                 usuariosCtrl.deleteUsuario);

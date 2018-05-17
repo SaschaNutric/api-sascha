@@ -6,9 +6,7 @@ const cloudinary = require('../../cloudinary');
 const Bookshelf  = require('../commons/bookshelf');
 
 async function getServicios(req, res, next) {
-	await Servicios
-	.query(function (qb) {
-   		qb.groupBy('servicio.id_servicio');
+	Servicios.query(function (qb) {
    		qb.where('servicio.estatus', '=', 1);
 	})
 	.fetch({
@@ -19,7 +17,7 @@ async function getServicios(req, res, next) {
 			'especialidad',
 			'parametros',
 			'parametros.parametro',
-			'parametros.parametro.unidad'
+			'condiciones_garantia'
 		]
 	})
 	.then(function(data) {
@@ -28,19 +26,28 @@ async function getServicios(req, res, next) {
 				error: true, 
 				data: { mensaje: 'No hay servicios registrados' } 
 			});
-	
 			let servicios = [];
 			data.toJSON().map(function(servicio) {
 				let parametros = [];
 				servicio.parametros.map(function(parametro) {
+					if(parametro.estatus == 1){
 					parametros.push({
 						id_parametro_servicio: parametro.id_parametro_servicio,
 						nombre: parametro.parametro.nombre,
 						valor_minimo: parametro.valor_minimo,
-						valor_maximo: parametro.valor_maximo,
-						unidad: parametro.parametro.unidad.abrevitura
+						valor_maximo: parametro.valor_maximo
 					})
+				}
 				});
+				let condiciones = [];
+				servicio.condiciones_garantia.map(function (condicion) {
+					if (condicion.estatus == 1) {
+						condiciones.push({
+							id_condicion_garantia: condicion.id_condicion_garantia,
+							descripcion: condicion.descripcion
+						})
+					}
+				})
 				servicios.push({
 					id_servicio: servicio.id_servicio,
 					nombre: servicio.nombre,
@@ -67,10 +74,11 @@ async function getServicios(req, res, next) {
 						nombre: servicio.plan_suplemento.nombre,
 						descripcion: servicio.plan_suplemento.descripcion
 					} : null,
-					parametros: parametros
+					parametros: parametros,
+					condiciones_garantia: condiciones
 				})
 			})
-	
+		
 		return res.status(200).json({
 			error: false,
 			data: servicios
@@ -101,7 +109,7 @@ function getServicioById(req, res, next) {
 			'especialidad',
 			'parametros',
 			'parametros.parametro',
-			'parametros.parametro.unidad'
+			'condiciones_garantia'
 		]
 	})
 	.then(function(data) {
@@ -114,14 +122,24 @@ function getServicioById(req, res, next) {
 				let parametros = [];
 				let servicio = data.toJSON();
 				servicio.parametros.map(function(parametro) {
+					if(parametro.estatus == 1){
 					parametros.push({
 						id_parametro_servicio: parametro.id_parametro_servicio,
 						nombre: parametro.parametro.nombre,
 						valor_minimo: parametro.valor_minimo,
 						valor_maximo: parametro.valor_maximo,
-						unidad: parametro.parametro.unidad.abrevitura
 					})
+				}
 				});
+				let condiciones = [];
+				servicio.condiciones_garantia.map(function(condicion) {
+					if(condicion.estatus == 1) {
+						condiciones.push({
+							id_condicion_garantia: condicion.id_condicion_garantia,
+							descripcion: condicion.descripcion
+						})
+					}
+				})
 				let servicioObtenido = {
 					id_servicio: servicio.id_servicio,
 					nombre: servicio.nombre,
@@ -148,7 +166,8 @@ function getServicioById(req, res, next) {
 						nombre: servicio.plan_suplemento.nombre,
 						descripcion: servicio.plan_suplemento.descripcion
 					} : null,
-					parametros: parametros
+					parametros: parametros,
+					condiciones_garantia: condiciones
 				}
 		return res.status(200).json({ 
 			error: false, 
@@ -259,7 +278,11 @@ function updateServicio(req, res, next) {
         	descripcion: req.body.descripcion || data.get('descripcion'), 
         	url_imagen: req.body.url_imagen || data.get('url_imagen'), 
         	precio: req.body.precio || data.get('precio'), 
-        	numero_visita: req.body.numero_visita || data.get('numero_visita')
+			numero_visitas: req.body.numero_visitas || data.get('numero_visitas'),
+			id_plan_dieta: req.body.id_plan_dieta || data.get('id_plan_dieta'),
+			id_plan_ejercicio: req.body.id_plan_ejercicio || data.get('id_plan_ejercicio'),
+			id_plan_suplemento: req.body.id_plan_suplemento || data.get('id_plan_suplemento'),
+			id_especialidad: req.body.id_especialidad || data.get('id_especialidad')
 		})
 		.then(function(servicio) {
 			return res.status(200).json({ 
