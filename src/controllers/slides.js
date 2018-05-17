@@ -2,6 +2,7 @@
 
 const Slides 	= require('../collections/slides');
 const Slide  	= require('../models/slide');
+const cloudinary = require('../../cloudinary');
 
 function getSlides(req, res, next) {
 	Slides.query(function (qb) {

@@ -2,6 +2,7 @@
 
 const Red_sociales 	= require('../collections/red_sociales');
 const Red_social  	= require('../models/red_social');
+const cloudinary = require('../../cloudinary');
 
 function getRed_sociales(req, res, next) {
 	Red_sociales.query(function (qb) {
