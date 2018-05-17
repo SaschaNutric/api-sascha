@@ -62,7 +62,7 @@ function getRegimen_ejercicioById(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 
-	Regimen_ejercicio.forge({ id_regimen_ejercicio })
+	Regimen_ejercicio.forge({ id_regimen_ejercicio: id })
 	.fetch()
 	.then(function(data) {
 		if(!data) 
