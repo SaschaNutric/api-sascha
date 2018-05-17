@@ -494,6 +494,8 @@ module.exports = (function () {
   api.put('/tipomotivo/:id',                 tipo_motivosCtrl.updateTipoMotivo);
   api.delete('/tipomotivo/:id',              tipo_motivosCtrl.deleteTipoMotivo);
   api.get('/tipomotivos/canalescucha',       tipo_motivosCtrl.getTipoMotivosCanalEscucha);
+  api.post('/tipomotivos/canalescucha',      comentariosCtrl.saveComentario);
+
   
   api.get('/tiponotificaciones',             tipo_notificacionesCtrl.getTipoNotificaciones);
   api.put('/tiponotificaciones/:id',         tipo_notificacionesCtrl.updateTipoNotificacion);
