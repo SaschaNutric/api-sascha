@@ -45,7 +45,7 @@ function saveComentario(req, res, next){
 		id_respuesta: req.body.id_respuesta || null,
 		id_motivo: req.body.id_motivo, 
 		contenido: req.body.contenido ,
-		respuesta: req.body.respuesta  
+		respuesta: req.body.respuesta || null
 	})
 	.save()
 	.then(function(data){
