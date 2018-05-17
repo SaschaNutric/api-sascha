@@ -2,10 +2,11 @@
 
 const Slides 	= require('../collections/slides');
 const Slide  	= require('../models/slide');
+const cloudinary = require('../../cloudinary');
 
 function getSlides(req, res, next) {
 	Slides.query(function (qb) {
-   		qb.where('slide.estatus', '=', 1);
+		qb.where('slide.estatus', '=', 1).orderBy('orden');
 	})
 	.fetch({ columns: ['id_slide','titulo','descripcion','orden','url_imagen'] })
 	.then(function(data) {
@@ -28,26 +29,60 @@ function getSlides(req, res, next) {
     });
 }
 
-function saveSlide(req, res, next){
+function saveSlide(req, res, next) {
 	console.log(JSON.stringify(req.body));
+	if (req.files.imagen) {
+		const imagen = req.files.imagen
+		cloudinary.uploader.upload(imagen.path, function (result) {
+			if (result.error) {
+				return res.status(500).json({
+					error: true,
+					data: { message: result.error }
+				});
+			}
 
-	Slide.forge({ titulo:req.body.titulo ,descripcion:req.body.descripcion ,orden:req.body.orden ,url_imagen:req.body.url_imagen  })
-	.save()
-	.then(function(data){
-		res.status(200).json({
-			error: false,
-			data: [{
-				msg: "Registro Creado"
-			}]
+			Slide.forge({ 
+				titulo:      req.body.titulo || null, 
+				descripcion: req.body.descripcion || null,
+				orden:       req.body.orden || null,
+				url_imagen:  result.url  
+			})
+			.save()
+			.then(function(data){
+				res.status(200).json({
+					error: false,
+					data: data
+				});
+			})
+			.catch(function (err) {
+				res.status(500).json({
+					error: true,
+					data: {message: err.message}
+				});
+			});
+		})
+	}
+	else {
+		Slide.forge({
+			titulo:      req.body.titulo || null,
+			descripcion: req.body.descripcion || null,
+			orden:       req.body.orden || null,
+			url_imagen:  'https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png'
+		})
+		.save()
+		.then(function (data) {
+			res.status(200).json({
+				error: false,
+				data: data
+			});
+		})
+		.catch(function (err) {
+			res.status(500).json({
+				error: true,
+				data: { message: err.message }
+			});
 		});
-	})
-	.catch(function (err) {
-		res.status(500)
-		.json({
-			error: true,
-			data: {message: err.message}
-		});
-	});
+	}
 }
 
 function getSlideById(req, res, next) {
@@ -96,7 +131,12 @@ function updateSlide(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ titulo:req.body.titulo || data.get('titulo'),descripcion:req.body.descripcion || data.get('descripcion'),orden:req.body.orden || data.get('orden'),url_imagen:req.body.url_imagen || data.get('url_imagen') })
+		data.save({ 
+			titulo:      req.body.titulo      || data.get('titulo'),
+			descripcion: req.body.descripcion || data.get('descripcion'),
+			orden:       req.body.orden       || data.get('orden'), 
+			url_imagen:  req.body.url_imagen  || data.get('url_imagen') 
+		})
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 

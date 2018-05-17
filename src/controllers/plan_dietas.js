@@ -11,7 +11,11 @@ function getPlanDietas(req, res, next) {
 		});
 		q.where('plan_dieta.estatus', '=', 1);
 	})
-	.fetch({ withRelated: ['tipo_dieta', 'detalle.comida', 'detalle.grupoAlimenticio'] })
+	.fetch({ withRelated: [
+		'tipo_dieta',
+		'detalle.comida', 
+		'detalle.grupoAlimenticio'
+	] })
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -24,17 +28,17 @@ function getPlanDietas(req, res, next) {
 			let comidasAsignadas = [];
 			plan.detalle.map(function (comida) {
 				let index = comidasAsignadas.map(function (comidaAsignada) {
-												return comidaAsignada.id_comida;
-											})
-											.indexOf(comida.id_comida);
+					return comidaAsignada.id_comida;
+				})
+				.indexOf(comida.id_comida);
 				if (index == -1) {
 					comidasAsignadas.push({
 						id_comida: comida.comida.id_comida,
 						nombre:    comida.comida.nombre,
 						grupos_alimenticios: [{ 
-								id_grupo_alimenticio: comida.grupoAlimenticio.id_grupo_alimenticio,
-								nombre:               comida.grupoAlimenticio.nombre
-							}]
+							id_grupo_alimenticio: comida.grupoAlimenticio.id_grupo_alimenticio,
+							nombre:               comida.grupoAlimenticio.nombre
+						}]
 					})
 				}
 				else {

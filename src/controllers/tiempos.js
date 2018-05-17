@@ -31,7 +31,10 @@ function getTiempos(req, res, next) {
 function saveTiempo(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	Tiempo.forge({ nombre:req.body.nombre ,abreviatura:req.body.abreviatura  })
+	Tiempo.forge({
+	 nombre:req.body.nombre ,
+	 abreviatura:req.body.abreviatura  
+	})
 	.save()
 	.then(function(data){
 		res.status(200).json({

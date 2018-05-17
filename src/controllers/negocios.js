@@ -49,42 +49,63 @@ function saveNegocio(req, res, next){
 						data: { message: result.error }
 					});
 			} 
-			saveWithImage(req,result.url);
+			Negocio.forge({
+				razon_social: req.body.razon_social,
+				rif: req.body.rif,
+				url_logo: result.url,
+				mision: req.body.mision,
+				vision: req.body.vision,
+				objetivo: req.body.objetivo,
+				telefono: req.body.telefono,
+				correo: req.body.correo,
+				latitud: req.body.latitud,
+				longitud: req.body.longitud
+			})
+			.save()
+			.then(function (data) {
+				res.status(200).json({
+					error: false,
+					data: data
+				});
+			})
+			.catch(function (err) {
+				res.status(500)
+					.json({
+						error: true,
+						data: { message: err.message }
+					});
+			});
 		});
 	}
 	else {
-		saveWithImage(req,'https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png');
+		Negocio.forge({
+			razon_social: req.body.razon_social,
+			rif: req.body.rif,
+			url_logo: 'https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png',
+			mision: req.body.mision,
+			vision: req.body.vision,
+			objetivo: req.body.objetivo,
+			telefono: req.body.telefono,
+			correo: req.body.correo,
+			latitud: req.body.latitud,
+			longitud: req.body.longitud
+		})
+		.save()
+		.then(function (data) {
+			res.status(200).json({
+				error: false,
+				data: data
+			});
+		})
+		.catch(function (err) {
+			res.status(500)
+				.json({
+					error: true,
+					data: { message: err.message }
+				});
+		});
 	}
 	
-}
-
-function saveWithImage(req,url_logo){
-	Negocio.forge({
-		 razon_social: req.body.razon_social, 
-		 rif: req.body.rif, 
-		 url_logo: url_logo, 
-		 mision: req.body.mision, 
-		 vision: req.body.vision, 
-		 objetivo: req.body.objetivo, 
-		 telefono: req.body.telefono, 
-		 correo: req.body.correo, 
-		 latitud: req.body.latitud, 
-		 longitud: req.body.longitud
-	})
-	.save()
-	.then(function(data){
-		res.status(200).json({
-			error: false,
-			data: data
-		});
-	})
-	.catch(function (err) {
-		res.status(500)
-		.json({
-			error: true,
-			data: {message: err.message}
-		});
-	});
 }
 
 

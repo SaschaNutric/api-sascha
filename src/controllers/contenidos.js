@@ -83,10 +83,6 @@ function saveContenido(req, res, next){
 	}
 }
 
-function saveWithImagen(req,image){
-
-}
-
 function getContenidoById(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') 

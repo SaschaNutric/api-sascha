@@ -31,7 +31,13 @@ function getRegimen_ejercicios(req, res, next) {
 function saveRegimen_ejercicio(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	Regimen_ejercicio.forge({ id_plan_ejercicio:req.body.id_plan_ejercicio ,id_cliente:req.body.id_cliente ,id_frecuencia:req.body.id_frecuencia ,id_tiempo:req.body.id_tiempo ,duracion:req.body.duracion  })
+	Regimen_ejercicio.forge({
+	 id_plan_ejercicio:req.body.id_plan_ejercicio ,
+	 id_cliente:req.body.id_cliente ,
+	 id_frecuencia:req.body.id_frecuencia ,
+	 id_tiempo:req.body.id_tiempo ,
+	 duracion:req.body.duracion  
+	})
 	.save()
 	.then(function(data){
 		res.status(200).json({
@@ -56,7 +62,7 @@ function getRegimen_ejercicioById(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 
-	Regimen_ejercicio.forge({ id_regimen_ejercicio })
+	Regimen_ejercicio.forge({ id_regimen_ejercicio: id })
 	.fetch()
 	.then(function(data) {
 		if(!data) 

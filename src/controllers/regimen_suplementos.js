@@ -31,7 +31,12 @@ function getRegimen_suplementos(req, res, next) {
 function saveRegimen_suplemento(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	Regimen_suplemento.forge({ id_plan_suplemento:req.body.id_plan_suplemento ,id_cliente:req.body.id_cliente ,id_frecuencia:req.body.id_frecuencia ,cantidad:req.body.cantidad  })
+	Regimen_suplemento.forge({ 
+		id_plan_suplemento:req.body.id_plan_suplemento ,
+		id_cliente:req.body.id_cliente ,
+		id_frecuencia:req.body.id_frecuencia ,
+		cantidad:req.body.cantidad  
+	})
 	.save()
 	.then(function(data){
 		res.status(200).json({
