@@ -3,12 +3,13 @@
 const Bookshelf 		  = require('../commons/bookshelf');
 const Bloque_horario 	= require('./bloque_horario');
 const Dia_laborable 	= require('./dia_laborable');
-const Empleado 			  = require('./empleado');
+require('./empleado');
 
 let Horario_empleado = Bookshelf.Model.extend({
   tableName: 'horario_empleado',
+  idAttribute: 'id_horario_empleado',
   empleado: function(){
-    return this.belongsTo(Empleado, 'id_empleado');
+    return this.belongsTo('Empleado', 'id_empleado');
   },
   bloque_horario: function(){
     return this.belongsTo(Bloque_horario, 'id_bloque_horario');

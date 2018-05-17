@@ -2,6 +2,8 @@
 
 const Promociones = require('../collections/promociones');
 const Promocion  = require('../models/promocion');
+const cloudinary = require('../../cloudinary');
+
 
 function getPromociones(req, res, next) {
 	Promociones.query(function (qb) {
