@@ -31,7 +31,11 @@ function getRegimen_dietas(req, res, next) {
 function saveRegimen_dieta(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	Regimen_dieta.forge({ id_detalle_plan_dieta:req.body.id_detalle_plan_dieta ,id_cliente:req.body.id_cliente ,cantidad:req.body.cantidad  })
+	Regimen_dieta.forge({ 
+		id_detalle_plan_dieta:req.body.id_detalle_plan_dieta ,
+		id_cliente:req.body.id_cliente ,
+		cantidad:req.body.cantidad  
+	})
 	.save()
 	.then(function(data){
 		res.status(200).json({
