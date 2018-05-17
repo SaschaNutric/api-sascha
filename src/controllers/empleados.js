@@ -9,7 +9,10 @@ function getEmpleados(req, res, next) {
 	})
 	.fetch({
 		withRelated: [
-		'horario'	
+		'horario',
+		'horario.bloque_horario',
+		'horario.dia_laborable'
+
 	] })
 	.then(function(data) {
 		if (!data)
