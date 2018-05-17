@@ -1127,6 +1127,18 @@ CREATE SEQUENCE id_parametro_seq
 
 ALTER TABLE id_parametro_seq OWNER TO postgres;
 
+
+CREATE SEQUENCE id_parametro_meta_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE id_parametro_meta_seq OWNER TO byqkxhkjgnspco;
+
+
 --
 -- Name: id_parametro_servicio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
@@ -1768,6 +1780,23 @@ CREATE TABLE parametro_promocion (
 
 
 ALTER TABLE parametro_promocion OWNER TO postgres;
+
+
+CREATE TABLE parametro_meta (
+    id_parametro_meta integer DEFAULT nextval('id_parametro_meta_seq'::regclass) NOT NULL,
+    id_orden_servicio integer NOT NULL,
+    id_parametro integer NOT NULL,
+    valor_minimo integer NOT NULL,
+    valor_maximo integer NOT NULL,
+    fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
+    fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
+    estatus integer DEFAULT 1 NOT NULL
+);
+
+
+ALTER TABLE parametro_meta OWNER TO postgres;
+
+
 
 --
 -- Name: parametro_servicio; Type: TABLE; Schema: public; Owner: postgres
@@ -2454,12 +2483,24 @@ ALTER TABLE vista_cliente_servicio_activo OWNER TO byqkxhkjgnspco;
 
 CREATE VIEW vista_agenda AS
 SELECT a.id_agenda, 
+    g.id_orden_servicio,
     i.id_empleado,
     (i.nombres || ' ' || i.apellidos) AS nombre_empleado,
     b.id_cliente, 
-    (b.nombres || ' ' || b.apellidos) AS nombre_cliente, 
+    (b.nombres || ' ' || b.apellidos) AS nombre_cliente,
+    b.direccion AS direccion_cliente,
+    b.telefono AS telefono_cliente,
+    b.fecha_nacimiento AS fecha_nacimiento_cliente,
+    date_part('years', age(b.fecha_nacimiento)) AS edad_cliente,
     c.id_servicio, 
     c.nombre AS nombre_servicio,
+    C.numero_visitas AS duracion_servicio,
+    (SELECT count(visita.id_visita) FROM visita JOIN agenda 
+    ON agenda.id_visita = visita.id_visita 
+    WHERE agenda.id_orden_servicio = g.id_orden_servicio) AS visitas_realizadas,
+    c.id_plan_dieta,
+    c.id_plan_ejercicio,
+    c.id_plan_suplemento,
     d.id_tipo_cita, 
     e.nombre AS tipo_cita, 
     d.fecha, 
@@ -2482,7 +2523,7 @@ WHERE a.estatus = 1
     AND g.estado = 1
     AND i.estatus = 1;
     
-ALTER TABLE vista_cliente_servicio_activo OWNER TO byqkxhkjgnspco;
+ALTER TABLE vista_agenda OWNER TO byqkxhkjgnspco;
 
 --
 -- Data for Name: alimento; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -3148,6 +3189,18 @@ ALTER TABLE ONLY parametro
 --
 -- Name: parametro_promocion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
+
+ALTER TABLE ONLY parametro_meta
+    ADD CONSTRAINT parametro_meta_pkey PRIMARY KEY (id_orden_servicio, id_parametro);
+
+
+ALTER TABLE ONLY parametro_meta
+    ADD CONSTRAINT parametro_meta_id_orden_servicio_fkey FOREIGN KEY (id_orden_servicio) REFERENCES orden_servicio(id_orden_servicio);
+
+
+ALTER TABLE ONLY parametro_meta
+    ADD CONSTRAINT parametro_meta_id_parametro_fkey FOREIGN KEY (id_parametro) REFERENCES parametro(id_parametro);
+
 
 ALTER TABLE ONLY parametro_promocion
     ADD CONSTRAINT parametro_promocion_pkey PRIMARY KEY (id_parametro, id_promocion);

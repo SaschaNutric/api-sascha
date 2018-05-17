@@ -3,7 +3,7 @@
 const Bookshelf   = require('../commons/bookshelf');
 const EstadoCivil = require('./estado_civil');
 const RangoEdad   = require('./rango_edad');
-const Genero   = require('./genero');
+const Genero      = require('./genero');
 
 let Cliente = Bookshelf.Model.extend({
 	tableName: 'cliente',

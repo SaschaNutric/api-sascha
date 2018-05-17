@@ -2,7 +2,7 @@
 
 const Bookshelf = require('../commons/bookshelf');
 const Parametro = require('./parametro');
-const Cliente  	= require('./cliente');
+require('./cliente');
 
 let Parametro_cliente = Bookshelf.Model.extend({
   tableName: 'parametro_cliente',
@@ -11,7 +11,7 @@ let Parametro_cliente = Bookshelf.Model.extend({
     return this.belongsTo(Parametro, 'id_parametro');
   },
   cliente: function() {
-    return this.belongsTo(Cliente, 'id_cliente');
+    return this.belongsTo('Cliente', 'id_cliente');
   }
 });
 
