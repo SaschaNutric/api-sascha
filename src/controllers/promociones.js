@@ -77,7 +77,9 @@ function savePromocion(req, res, next){
 				url_imagen:      result.url,
 				id_genero:       req.body.id_genero,
 				id_estado_civil: req.body.id_estado_civil,
-				id_rango_edad:   req.body.id_rango_edad
+				id_rango_edad:   req.body.id_rango_edad,
+				valido_desde : req.body.valido_desde,
+				valido_hasta : req.body.valido_hasta
 			})
 			.save()
 			.then(function (servicio) {
@@ -103,7 +105,9 @@ function savePromocion(req, res, next){
 			url_imagen:      'https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png',
 			id_genero:       req.body.id_genero,
 			id_estado_civil: req.body.id_estado_civil,
-			id_rango_edad:   req.body.id_rango_edad
+			id_rango_edad:   req.body.id_rango_edad,
+			valido_desde : req.body.valido_desde,
+			valido_hasta : req.body.valido_hasta
 		})
 		.save()
 		.then(function (servicio) {
