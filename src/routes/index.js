@@ -278,6 +278,7 @@ module.exports = (function () {
   api.delete('/grupoalimenticio/:id',        grupoalimenticiosCtrl.deleteGrupo_alimenticio); 
 
   api.get('/horarioempleados',               horarioEmpleadosCtrl.getHorario_empleados);
+  api.post('/horarioporempleadoydia',        horarioEmpleadosCtrl.getHorariByEmpleadoAndDia);  
   api.post('/horarioempleados',              horarioEmpleadosCtrl.saveHorario_empleado);
   api.get('/horarioempleado/:id',            horarioEmpleadosCtrl.getHorario_empleadoById);  
   api.put('/horarioempleado/:id',            horarioEmpleadosCtrl.updateHorario_empleado);

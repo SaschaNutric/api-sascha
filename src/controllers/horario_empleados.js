@@ -209,6 +209,57 @@ function getHorario_empleadoById(req, res, next) {
     });
 }
 
+
+function getHorariByEmpleadoAndDia(req, res, next) {
+	if (!req.body.id_empleado || !req.body.id_dia_laborable)
+		return res.status(400).json({
+			error: true,
+			data: { mensaje: 'Petición inválida. Faltan campos en el body' }
+		})
+
+	Horario_empleados.query(function (qb) {
+		qb.where('horario_empleado.id_empleado', '=', req.body.id_empleado);
+		qb.where('horario_empleado.id_dia_laborable', '=', req.body.id_dia_laborable)
+		qb.where('horario_empleado.estatus', '=', 1);
+	})
+		.fetch({
+			withRelated: [
+				'empleado',
+				'bloque_horario',
+				'dia_laborable'
+			]
+		})
+		.then(function (data) {
+			let nuevaData = data.toJSON();
+			if (nuevaData.length == 0)
+				return res.status(404).json({
+					error: true,
+					data: { mensaje: 'No hay datos registrados' }
+				});
+
+			let bloques = []
+			nuevaData.map(function (registro) {
+				bloques.push({
+					id_bloque_horario: registro.bloque_horario.id_bloque_horario,
+					hora_inicio: registro.bloque_horario.hora_inicio,
+					hora_fin: registro.bloque_horario.hora_fin
+				})
+				
+			})
+			
+			return res.status(200).json({
+				error: false,
+				data: { bloques_horarios: bloques }
+			});
+		})
+		.catch(function (err) {
+			return res.status(500).json({
+				error: true,
+				data: { mensaje: err.message }
+			});
+		});
+}
+
 function updateHorario_empleado(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') {
@@ -296,6 +347,7 @@ module.exports = {
 	getHorario_empleados,
 	saveHorario_empleado,
 	getHorario_empleadoById,
+	getHorariByEmpleadoAndDia,
 	updateHorario_empleado,
 	deleteHorario_empleado
 }
