@@ -14,7 +14,6 @@ function getParametro_clientes(req, res, next) {
 			'parametro.unidad',
 			'parametro.unidad.tipo_unidad',
 			'cliente',
-			'cliente.estado',
 			'cliente.estado_civil',
 			'cliente.rango_edad'
 		]})

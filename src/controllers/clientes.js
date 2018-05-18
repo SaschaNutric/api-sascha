@@ -42,9 +42,11 @@ function getClienteById(req, res, next) {
 		});
 
 	ViewCliente.forge({ id_cliente: id })
+//	.fetch({ withRelated: ['perfil'] })
 	.fetch({ columns: ['id_cliente', 'cedula', 'nombres', 'apellidos', 
 						'telefono', 'genero', 'estado_civil', 'direccion', 
-						'fecha_nacimiento', 'tipo_cliente', 'rango_edad'] })
+						'fecha_nacimiento', 'tipo_cliente', 'rango_edad'],
+			withRelated: ['perfil'] })
 	.then(function(cliente) {
 		if(!cliente) 
 			return res.status(404).json({ 

@@ -114,16 +114,154 @@ function getAgendaById(req, res, next) {
 		});
 
 	VistaAgenda.forge({ id_agenda: id })
-	.fetch()
+	.fetch({
+		withRelated: [
+			'perfil',
+			'perfil.parametro',
+			'perfil.parametro.tipo_parametro',			
+			'perfil.parametro.unidad',
+			'metas',
+			'metas.parametro',
+			'metas.parametro.tipo_parametro',			
+			'metas.parametro.unidad',
+			'servicio',
+			'servicio.plan_dieta',
+			'servicio.plan_dieta.tipo_dieta',
+			'servicio.plan_dieta.detalle.comida',
+			'servicio.plan_dieta.detalle.grupoAlimenticio',
+			'servicio.plan_dieta.detalle.grupoAlimenticio.unidad',			
+			'servicio.plan_ejercicio',
+			'servicio.plan_ejercicio.ejercicios',
+			'servicio.plan_suplemento',
+			'servicio.plan_suplemento.suplementos',
+			'servicio.plan_suplemento.suplementos.unidad',
+			'servicio.especialidad',
+		]
+	})
 	.then(function(data) {
-		if(!data) 
-			return res.status(404).json({ 
-				error: true, 
-				data: { mensaje: 'dato no encontrado' } 
+		if (!data)
+			return res.status(404).json({
+				error: true,
+				data: { mensaje: 'Agenda no encontrada' }
 			});
+
+		let agenda = data.toJSON();
+		let metas = [];
+		agenda.metas.map(function(meta) {
+			metas.push({
+				id_parametro_meta: meta.id_parametro_meta,
+				id_parametro: meta.id_parametro,
+				parametro: meta.parametro.nombre,
+				valor_minimo: meta.valor_minimo,
+				valor_maximo: meta.valor_maximo,
+				tipo_parametro: meta.parametro.tipo_parametro.nombre,
+				unidad: meta.parametro.unidad.nombre,
+				unidad_abreviatura: meta.parametro.unidad.abreviatura
+			});
+		});
+		let perfil = [];
+		agenda.perfil.map(function(parametro) {
+			perfil.push({
+				id_parametro_cliente: parametro.id_parametro_cliente,
+				id_parametro: parametro.id_parametro,
+				parametro: parametro.parametro.nombre,
+				valor: parametro.valor,
+				tipo_parametro: parametro.parametro.tipo_parametro.nombre,
+				unidad: parametro.parametro.unidad.nombre,
+				unidad_abreviatura: parametro.parametro.unidad.abreviatura
+			});
+		});
+		let comidasPlanDieta = [];
+		agenda.servicio.plan_dieta.detalle.map(function (comida) {
+			let index = comidasPlanDieta.map(function (comidaAsignada) {
+											return comidaAsignada.id_comida;
+										})
+										.indexOf(comida.id_comida);
+			if (index == -1) {
+				comidasPlanDieta.push({
+					id_comida: comida.comida.id_comida,
+					nombre: comida.comida.nombre,
+					grupos_alimenticios: [{
+						id_grupo_alimenticio: comida.grupoAlimenticio.id_grupo_alimenticio,
+						nombre: comida.grupoAlimenticio.nombre,
+						unidad: comida.grupoAlimenticio.unidad.nombre,
+						unidad_abreviatura: comida.grupoAlimenticio.unidad.abreviatura
+					}]
+				})
+			}
+			else {
+				comidasPlanDieta[index].grupos_alimenticios.push({
+					id_grupo_alimenticio: comida.grupoAlimenticio.id_grupo_alimenticio,
+					nombre: comida.grupoAlimenticio.nombre,
+					unidad: comida.grupoAlimenticio.unidad.nombre,
+					unidad_abreviatura: comida.grupoAlimenticio.unidad.abreviatura
+				})
+			}
+		})
+		let ejercicios = [];
+		agenda.servicio.plan_ejercicio.ejercicios.map(function(ejercicio) {
+			ejercicios.push({
+				id_ejercicio: ejercicio.id_ejercicio,
+				nombre: ejercicio.nombre
+			})
+		});
+		let suplementos = [];
+		agenda.servicio.plan_suplemento.suplementos.map(function (suplemento) {
+			suplementos.push({
+				id_suplemento: suplemento.id_suplemento,
+				nombre: suplemento.nombre,
+				unidad: suplemento.unidad.nombre,
+				unidad_abreviatura: suplemento.unidad.abreviatura
+			})
+		});
+		let nuevaAgenda = {
+			id_agenda:    agenda.id_agenda,
+			id_tipo_cita: agenda.id_tipo_cita,
+			tipo_cita:    agenda.tipo_cita,
+			fecha:       JSON.stringify(agenda.fecha).substr(1,10),
+			hora_inicio: JSON.stringify(agenda.hora_inicio).substr(1,5),
+			hora_fin:    JSON.stringify(agenda.hora_fin).substr(1,5),
+			cliente: {
+				id_cliente: agenda.id_cliente,
+				nombre_completo: agenda.nombre_cliente,
+				direccion: agenda.direccion_cliente,
+				telefono: agenda.telefono_cliente,
+				edad: agenda.edad_cliente,
+				fecha_nacimiento: JSON.stringify(agenda.fecha_nacimiento_cliente).substr(1,10),
+				perfil: perfil
+			},
+			orden_servicio: {
+				id_orden_servicio: agenda.id_orden_servicio,
+				visitas_realizadas: agenda.visitas_realizadas,
+				metas: metas,
+				servicio: {
+					id_servicio: agenda.id_servicio,
+					nombre: agenda.nombre_servicio,
+					numero_visitas: agenda.duracion_servicio,
+					especialidad: agenda.servicio.especialidad.nombre,
+					plan_dieta: {
+						id_plan_dieta: agenda.servicio.plan_dieta.id_plan_dieta,
+						nombre: agenda.servicio.plan_dieta.nombre,
+						tipo_dieta: agenda.servicio.plan_dieta.tipo_dieta.nombre,
+						comidas: comidasPlanDieta
+					},
+					plan_ejercicio: {
+						id_plan_ejercicio: agenda.servicio.plan_ejercicio.id_plan_ejercicio,
+						nombre: agenda.servicio.plan_ejercicio.nombre,
+						ejercicios: ejercicios
+					},
+					plan_suplemento: {
+						id_plan_suplemento: agenda.servicio.plan_suplemento.id_plan_suplemento,
+						nombre: agenda.servicio.plan_suplemento.nombre,
+						suplementos: suplementos
+					}
+				}
+			}
+		}
+
 		return res.status(200).json({ 
 			error : false, 
-			data : data 
+			data : nuevaAgenda 
 		});
 	})
 	.catch(function(err){
