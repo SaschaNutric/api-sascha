@@ -140,6 +140,48 @@ function updateTipoParametro(req, res, next) {
 	})
 }
 
+
+function updateTipoParametroFiltrable(req, res, next) {
+	const id = Number.parseInt(req.params.id);
+	if (!id || id == 'NaN') {
+		return res.status(400).json({
+			error: true,
+			data: { mensaje: 'Solicitud incorrecta' }
+		});
+	}
+
+	TipoParametro.forge({ id_tipo_parametro: id, estatus: 1 })
+		.fetch()
+		.then(function (data) {
+			if (!data)
+				return res.status(404).json({
+					error: true,
+					data: { mensaje: 'Tipo parametro no encontrado' }
+				});
+			data.save({
+				filtrable: req.body.filtrable
+			})
+			.then(function (data) {
+				return res.status(200).json({
+					error: false,
+					data: data
+				});
+			})
+			.catch(function (err) {
+				return res.status(500).json({
+					error: true,
+					data: { mensaje: err.message }
+				});
+			})
+		})
+		.catch(function (err) {
+			return res.status(500).json({
+				error: true,
+				data: { mensaje: err.message }
+			});
+		})
+}
+
 function deleteTipoParametro(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') {
@@ -154,10 +196,10 @@ function deleteTipoParametro(req, res, next) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'Solicitud no encontrad0' } 
+				data: { mensaje: 'Solicitud no encontrado' } 
 			});
 
-		data.save({ estatus:  0 })
+		data.save({ estatus: 0 })
 		.then(function() {
 			return res.status(200).json({ 
 				error: false,
@@ -184,5 +226,6 @@ module.exports = {
 	saveTipoParametro,
 	getTipoParametroById,
 	updateTipoParametro,
+	updateTipoParametroFiltrable,
 	deleteTipoParametro
 }
