@@ -234,7 +234,7 @@ function getHorariByEmpleadoAndDia(req, res, next) {
 			if (nuevaData.length == 0)
 				return res.status(404).json({
 					error: true,
-					data: { mensaje: 'No hay datos registrados' }
+					data: { mensaje: 'El empleado no trabaja ese dia' }
 				});
 
 			let bloques = []
