@@ -32,6 +32,7 @@ function getTipoParametros(req, res, next) {
 			tipo_parametros.push({
 				id_tipo_parametro: tipoParametro.id_tipo_parametro,
 				nombre:         tipoParametro.nombre,
+				filtrable: tipoParametro.filtrable,
 				parametros:       parametros
 			})
 		});
