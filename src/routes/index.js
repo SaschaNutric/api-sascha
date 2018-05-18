@@ -507,6 +507,7 @@ module.exports = (function () {
   api.delete('/tipoorden/:id',               tipo_ordenesCtrl.deleteTipoOrden);
 
   api.get('/tipoparametros',                 tipo_parametrosCtrl.getTipoParametros);
+  api.get('/tipoparametros/filtrables',      tipo_parametrosCtrl.getTipoParametrosFiltrable);
   api.post('/tipoparametros',                tipo_parametrosCtrl.saveTipoParametro);
   api.get('/tipoparametro/:id',              tipo_parametrosCtrl.getTipoParametroById);  
   api.put('/tipoparametro/:id',              tipo_parametrosCtrl.updateTipoParametro);
