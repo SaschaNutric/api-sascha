@@ -7,7 +7,7 @@ function getTipoMotivos(req, res, next) {
 	TipoMotivos.query(function (qb) {
    		qb.where('tipo_motivo.estatus', '=', 1);
 	})
-	.fetch()
+	.fetch({ withRelated: ['motivos'] })
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
