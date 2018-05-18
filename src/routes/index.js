@@ -490,6 +490,7 @@ module.exports = (function () {
   api.put('/tipoincidencia/:id',             tipo_incidenciasCtrl.updateTipoIncidencia);
   api.delete('/tipoincidencia/:id',          tipo_incidenciasCtrl.deleteTipoIncidencia);
 
+  api.get('/tipomotivos/todos',              tipo_motivosCtrl.getTipoMotivos);
   api.get('/tipomotivos',                    tipo_motivosCtrl.getTipoMotivosSinSolicitud);
   api.post('/tipomotivos',                   tipo_motivosCtrl.saveTipoMotivo);
   api.get('/tipomotivo/:id',                 tipo_motivosCtrl.getTipoMotivoById);  

@@ -14,10 +14,27 @@ function getTipoMotivos(req, res, next) {
 				error: true, 
 				data: { mensaje: 'No hay datos registrados' } 
 			});
-
+		let tipoMotivos = [];
+		data.toJSON().map(function (tipoMotivo) {
+			let motivos = [];
+			tipoMotivo.motivos.map(function (motivo) {
+				if (motivo.estatus == 1) {
+					motivos.push({
+						id_motivo: motivo.id_motivo,
+						descripcion: motivo.descripcion
+					})
+				}
+			});
+			tipoMotivos.push({
+				id_tipo_motivo: tipoMotivo.id_tipo_motivo,
+				es_canal_escucha: tipoMotivo.canal_escucha,
+				nombre: tipoMotivo.nombre.trim(),
+				motivos: motivos
+			})
+		});
 		return res.status(200).json({
 			error: false,
-			data: data
+			data: tipoMotivos
 		});
 	})
 	.catch(function (err) {
