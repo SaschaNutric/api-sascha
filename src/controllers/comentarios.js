@@ -45,7 +45,7 @@ function saveComentario(req, res, next){
 		id_respuesta: req.body.id_respuesta || null,
 		id_motivo: req.body.id_motivo, 
 		contenido: req.body.contenido ,
-		respuesta: req.body.respuesta || null
+		mensaje: req.body.mensaje || null
 	})
 	.save()
 	.then(function(data){
@@ -111,16 +111,6 @@ function updateComentario(req, res, next) {
 	}
 
 	Comentario.forge({ id_comentario: id, estatus: 1 })
-	.fetch({ withRelated: [
-		'cliente',
-		'cliente.estado_civil',
-		'cliente.genero',
-		'cliente.rango_edad',
-		'respuesta',
-		'respuesta.tipo_respuesta',
-		'motivo',
-		'motivo.tipo_motivo'
-		]})
 	.then(function(data){
 		if(!data) 
 			return res.status(404).json({ 
@@ -132,7 +122,7 @@ function updateComentario(req, res, next) {
 			id_respuesta: req.body.id_respuesta || data.get('id_respuesta') || null,
 			id_motivo: req.body.id_motivo 		|| data.get('id_motivo'), 
 			contenido: req.body.contenido 		|| data.get('contenido'),
-			respuesta: req.body.respuesta  		|| data.get('respuesta')
+			mensaje: req.body.mensaje  			|| data.get('mensaje')
 		})
 		.then(function(data) {
 			return res.status(200).json({ 
