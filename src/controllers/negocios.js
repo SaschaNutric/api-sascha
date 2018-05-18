@@ -167,43 +167,69 @@ function updateNegocio(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({
-			razon_social: req.body.razon_social || data.get('razon_social'), 
-		 	rif: req.body.rif 					|| data.get('rif'), 
-		 	url_logo: req.body.url_logo 		|| data.get('id_tipo_negocio'), 
-		 	mision: req.body.mision 			|| data.get('url_logo'), 
-		 	vision: req.body.vision 			|| data.get('vision'), 
-		 	objetivo: req.body.objetivo 		|| data.get('objetivo'), 
-		 	telefono: req.body.telefono 		|| data.get('telefono'), 
-		 	correo: req.body.correo 			|| data.get('correo'), 
-		 	latitud: req.body.latitud 			|| data.get('latitud'), 
-		 	longitud: req.body.longitud 		|| data.get('longitud')
-		})
-		.fetch({ columns: [
-		'id_negocio',
-		 'razon_social', 
-		 'rif', 
-		 'url_logo', 
-		 'mision', 
-		 'vision', 
-		 'objetivo', 
-		 'telefono', 
-		 'correo', 
-		 'latitud', 
-		 'longitud'
-		] })
-		.then(function(data) {
-			return res.status(200).json({ 
-				error: false, 
-				data: data
+		console.log(data.get('url_logo').substr(65))
+		if (req.files.imagen && req.files.imagen.name != data.get('url_logo').substr(65)) {
+			const imagen = req.files.imagen
+			cloudinary.uploader.upload(imagen.path, function(result) {
+				if (result.error) {
+					return res.status(500).json({
+							error: true,
+							data: { message: result.error }
+						});
+				}
+
+				data.save({
+					razon_social: req.body.razon_social || data.get('razon_social'), 
+					rif: req.body.rif 					|| data.get('rif'), 
+					url_logo: result.url, 
+					mision: req.body.mision             || data.get('mision'), 
+					vision: req.body.vision 			|| data.get('vision'), 
+					objetivo: req.body.objetivo 		|| data.get('objetivo'), 
+					telefono: req.body.telefono 		|| data.get('telefono'), 
+					correo: req.body.correo 			|| data.get('correo'), 
+					latitud: req.body.latitud 			|| data.get('latitud'), 
+					longitud: req.body.longitud 		|| data.get('longitud')
+				})
+				.then(function(data) {
+					return res.status(200).json({ 
+						error: false, 
+						data: data
+					});
+				})
+				.catch(function(err) {
+					return res.status(500).json({ 
+						error : true, 
+						data : { mensaje : err.message } 
+					});
+				})
 			});
-		})
-		.catch(function(err) {
-			return res.status(500).json({ 
-				error : true, 
-				data : { mensaje : err.message } 
-			});
-		})
+		}
+		else {
+			data.save({
+				razon_social: req.body.razon_social || data.get('razon_social'),
+				rif: req.body.rif || data.get('rif'),
+				url_logo: data.get('url_logo'),
+				mision: req.body.mision || data.get('mision'),
+				vision: req.body.vision || data.get('vision'),
+				objetivo: req.body.objetivo || data.get('objetivo'),
+				telefono: req.body.telefono || data.get('telefono'),
+				correo: req.body.correo || data.get('correo'),
+				latitud: req.body.latitud || data.get('latitud'),
+				longitud: req.body.longitud || data.get('longitud')
+			})
+			.then(function (data) {
+				return res.status(200).json({
+					error: false,
+					data: data
+				});
+			})
+			.catch(function (err) {
+				return res.status(500).json({
+					error: true,
+					data: { mensaje: err.message }
+				});
+			})
+		}
 	})
 	.catch(function(err) {
 		return res.status(500).json({ 

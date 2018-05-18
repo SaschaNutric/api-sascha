@@ -6,41 +6,70 @@ const Bloques_Horarios    = require('../models/bloque_horario');
 const Bluebird          = require('bluebird');
 
 function getHorario_empleados(req, res, next) {
-	Horario_empleados.query(function (qb) {
-   		qb.where('horario_empleado.estatus', '=', 1);
+	Horario_empleados.query(function(qb) {
+		qb.where('estatus', '=', 1); 
 	})
-	.fetch({
-		withRelated: [
-			'bloque_horario',
-			'dia_laborable'
-		]
-	})
+	.fetch({ withRelated: ['empleado', 'dia_laborable', 'bloque_horario'] })
 	.then(function(data) {
-		if (!data)
-			return res.status(404).json({ 
-				error: true, 
-				data: { mensaje: 'No hay dato registrados' } 
-			});
+		let nuevaData = data.toJSON();
+		let empleados = [];
+		nuevaData.map(function(registro) {
+			let index = empleados.map(function (empleado) {
+											return empleado.id_empleado;
+										})
+										.indexOf(registro.id_empleado);
+			if (index == -1) {
+				empleados.push({
+					id_empleado: registro.empleado.id_empleado,
+					nombre: `${registro.empleado.nombres} ${registro.empleado.apellidos}`,
+					dias_laborables: [{ 
+						id_dia_laborable: registro.dia_laborable.id_dia_laborable,
+						dia: registro.dia_laborable.dia,
+						bloques_horarios: [{
+							id_bloque_horario: registro.bloque_horario.id_bloque_horario,
+							hora_inicio: registro.bloque_horario.hora_inicio
+						}]
+					}]
+				})
+			}
+			else {
+				let diaIndex = empleados[index].dias_laborables.map(function (dia) {
+													return dia.id_dia_laborable;
+												})
+												.indexOf(registro.id_dia_laborable);
+				if(diaIndex == -1) {
+					empleados[index].dias_laborables.push({
+						id_dia_laborable: registro.dia_laborable.id_dia_laborable,
+						dia: registro.dia_laborable.dia,
+						bloques_horarios: [{
+							id_bloque_horario: registro.bloque_horario.id_bloque_horario,
+							hora_inicio: registro.bloque_horario.hora_inicio
+						}]
+					})
+				}
+				else {
+					empleados[index].dias_laborables[diaIndex].bloques_horarios.push({
+						id_bloque_horario: registro.bloque_horario.id_bloque_horario,
+						hora_inicio: registro.bloque_horario.hora_inicio
+					})
+				}
+			}
+		});
 
-		return res.status(200).json({
+		res.status(200).json({
 			error: false,
-			data: data
+			data: empleados
 		});
 	})
-	.catch(function (err) {
-     	return res.status(500).json({
+	.catch(function(err) {
+		return res.status(500).json({
 			error: true,
 			data: { mensaje: err.message }
-		});
-    });
+		})
+	})
 }
 
 function saveHorario_empleado(req, res, next) {
-	if(!req.body.id_empleado || !req.body.id_dia_laborable || !req.body.bloques_horarios)
-		return res.status(400).json({
-			error: true,
-			data: { mensaje: 'Petición inválida' }
-		})
 	Horario_empleados.query(function(qb) {
 		qb.where('id_empleado', '=', req.body.id_empleado)
 		  .andWhere('id_dia_laborable', '=', req.body.id_dia_laborable)
