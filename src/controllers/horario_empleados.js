@@ -151,8 +151,8 @@ function getHorario_empleadoById(req, res, next) {
 		});
 
 	Horario_empleados.query(function (qb) {
+		qb.where('id_empleado', '=', id);
    		qb.where('horario_empleado.estatus', '=', 1);
-   		qb.where('id_horario_empleado.estatus', '=', id);
 	})
 	.fetch({
 		withRelated: [
@@ -161,15 +161,44 @@ function getHorario_empleadoById(req, res, next) {
 			'dia_laborable'
 		] })
 	.then(function(data) {
-		if (!data)
-			return res.status(404).json({ 
-				error: true, 
-				data: { mensaje: 'No hay dato registrados' } 
+		let nuevaData = data.toJSON();
+		if (nuevaData.length == 0)
+			return res.status(404).json({
+				error: true,
+				data: { mensaje: 'No hay datos registrados' }
 			});
 
+		let dias = []
+		nuevaData.map(function(registro) {
+			let diaIndex = dias.map(function (dia) {
+									return dia.id_dia_laborable;
+								})
+								.indexOf(registro.id_dia_laborable);
+			if(diaIndex == -1) {
+				dias.push({
+					id_dia_laborable: registro.dia_laborable.id_dia_laborable,
+					dia: registro.dia_laborable.dia,
+					bloques_horarios: [{
+						id_bloque_horario: registro.bloque_horario.id_bloque_horario,
+						hora_inicio: registro.bloque_horario.hora_inicio
+					}]
+				})
+			}
+			else {
+				dias[diaIndex].bloques_horarios.push({
+					id_bloque_horario: registro.bloque_horario.id_bloque_horario,
+					hora_inicio: registro.bloque_horario.hora_inicio
+				})
+			}
+		});
+		let empleado = {
+			id_empleado: nuevaData[0].empleado.id_empleado,
+			nombre: `${nuevaData[0].empleado.nombres} ${nuevaData[0].empleado.apellidos}`,
+			dias_laborables: dias 
+		}
 		return res.status(200).json({
 			error: false,
-			data: data
+			data: empleado
 		});
 	})
 	.catch(function (err) {
