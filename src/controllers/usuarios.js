@@ -104,7 +104,6 @@ function saveUsuario(req, res, next) {
 		const hash = Bcrypt.hashSync(req.body.contraseña, salt);
 		const nuevoUsuario = {
 			correo:         req.body.correo.toLowerCase(),
-			nombre_usuario: req.body.nombre_usuario.toLowerCase(),
 			contrasenia:    hash,
 			salt:           salt
 		}
@@ -185,74 +184,70 @@ function saveUsuarioEmpleado(req, res, next) {
 			error: true,
 			data: { mensaje: 'Petición inválida' }
 		})
-	Bookshelf.transaction(function (transaction) {
-		const salt = Bcrypt.genSaltSync(12);
-		const hash = Bcrypt.hashSync(req.body.contraseña, salt);
-		const nuevoUsuario = {
-			correo: req.body.correo.toLowerCase(),
-			contrasenia: hash,
-			salt: salt,
-			id_rol: req.body.id_rol,
-			tipo_usuario: 2
-		}
+	
+	const salt = Bcrypt.genSaltSync(12);
+	const hash = Bcrypt.hashSync(req.body.contraseña, salt);
+	const nuevoUsuario = {
+		correo: req.body.correo.toLowerCase(),
+		contrasenia: hash,
+		salt: salt,
+		id_rol: req.body.id_rol,
+		tipo_usuario: 2
+	}
 
-		Usuario.forge(nuevoUsuario)
-			.save(null, { transacting: transaction })
-			.then(function (usuario) {
-				Empleado.forge({ id_empleado: req.body.id_empleado })
-				.fetch()	
-				.then(function (empleado) {
-					empleado.save({ id_usuario: usuario.get('id_usuario') })
-					.then(function(empleado) {
+	Usuario.forge()
+	.save(nuevoUsuario)
+	.then(function (usuario) {
+		Empleado.forge({ id_empleado: req.body.id_empleado })
+		.fetch()	
+		.then(function (empleado) {
+			empleado.save({ id_usuario: usuario.get('id_usuario') })
+			.then(function(elEmpleado) {
 
-						const transportador = nodemailer.createTransport({
-							host: 'smtp.gmail.com',
-							auth: {
-								type: 'OAuth2',
-								user: MAIL_USER,
-								clientId: MAIL_CLIENT_ID,
-								clientSecret: MAIL_CLIENT_SECRET,
-								refreshToken: REFRESH_TOKEN
-							}
-						});
+				const transportador = nodemailer.createTransport({
+					host: 'smtp.gmail.com',
+					auth: {
+						type: 'OAuth2',
+						user: MAIL_USER,
+						clientId: MAIL_CLIENT_ID,
+						clientSecret: MAIL_CLIENT_SECRET,
+						refreshToken: REFRESH_TOKEN
+					}
+				});
 
-						const opcionesCorreo = {
-							from: MAIL_USER,
-							to: usuario.get('correo'),
-							subject: 'Asignación de Credenciales al Sistema',
-							html: correoEmpleadoTemplate(`${empleado.get('nombres')} ${empleado.get('apellidos')}`,
-								usuario.get('correo'),
-								req.body.contraseña)
-						}
+				const opcionesCorreo = {
+					from: MAIL_USER,
+					to: usuario.get('correo'),
+					subject: 'Asignación de Credenciales al Sistema',
+					html: correoEmpleadoTemplate(`${elEmpleado.get('nombres')} ${elEmpleado.get('apellidos')}`,
+						usuario.get('correo'),
+						req.body.contraseña)
+				}
 
-						transportador.sendMail(opcionesCorreo)
-							.then(function () {
-								const usuarioGuardado = {
-									id_usuario: usuario.get('id_usuario'),
-									correo: usuario.get('correo'),
-									empleado: empleado,
-									token: service.createToken(usuario),
-									mensaje: 'Confirmación de correo enviada exitosamente'
-								}
-								transaction.commit();
-								return res.status(201).json({ error: false, data: usuarioGuardado });
-							})
-							.catch(function (err) {
-								transaction.rollback();
-								return res.status(500).json({ error: true, data: { mensaje: err.message } });
-							});
-					})
-
-					})
-					.catch(function (err) {
-						transaction.rollback();
-						return res.status(500).json({ error: true, data: { mensaje: err.message } });
-					});
+				transportador.sendMail(opcionesCorreo)
+				.then(function () {
+					const usuarioGuardado = {
+						id_usuario: usuario.get('id_usuario'),
+						correo: usuario.get('correo'),
+						empleado:elEmpleado,
+						mensaje: 'Confirmación de correo enviada exitosamente'
+					}
+					return res.status(201).json({ error: false, data: usuarioGuardado });
+				})
+				.catch(function (err) {
+					return res.status(500).json({ error: true, data: { mensaje: err.message } });
+				});
 			})
 			.catch(function (err) {
-				transaction.rollback();
 				return res.status(500).json({ error: true, data: { mensaje: err.message } });
 			});
+		})
+		.catch(function (err) {
+			return res.status(500).json({ error: true, data: { mensaje: err.message } });
+		});
+	})
+	.catch(function (err) {
+		return res.status(500).json({ error: true, data: { mensaje: err.message } });
 	});
 }
 
@@ -418,7 +413,7 @@ function singInEmpleado(req, res) {
 		nombre_usuario: req.body.nombre_usuario ? req.body.nombre_usuario.toLowerCase() : null
 	}
 	Usuario.query(function (qb) {
-		qb.where('correo', credenciales.correo).orWhere('nombre_usuario', credenciales.nombre_usuario);
+		qb.where('correo', credenciales.correo);
 		qb.where('contrasenia', req.body.contraseña);
 		qb.where('tipo_usuario', 2);
 		qb.where('estatus', 1);
