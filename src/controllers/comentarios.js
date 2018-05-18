@@ -110,20 +110,24 @@ function updateComentario(req, res, next) {
 		});
 	}
 
-	Comentario.forge({ id_comentario: id, estatus: 1 })
+Comentario.forge({ id_comentario: id, estatus: 1 })
+	.fetch()
 	.then(function(data){
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'Comentario no encontrado' }
+				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ 
+		console.log(req.body);
+		let body = { 
 			id_cliente: req.body.id_cliente 	|| data.get('id_cliente'),
 			id_respuesta: req.body.id_respuesta || data.get('id_respuesta') || null,
 			id_motivo: req.body.id_motivo 		|| data.get('id_motivo'), 
 			contenido: req.body.contenido 		|| data.get('contenido'),
 			mensaje: req.body.mensaje  			|| data.get('mensaje')
-		})
+		}; 
+		console.log(body);
+		data.save(body)
 		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
@@ -144,6 +148,7 @@ function updateComentario(req, res, next) {
 		});
 	})
 }
+
 
 function deleteComentario(req, res, next) {
 	const id = Number.parseInt(req.params.id);
