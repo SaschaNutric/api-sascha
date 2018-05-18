@@ -488,14 +488,13 @@ module.exports = (function () {
   api.put('/tipoincidencia/:id',             tipo_incidenciasCtrl.updateTipoIncidencia);
   api.delete('/tipoincidencia/:id',          tipo_incidenciasCtrl.deleteTipoIncidencia);
 
-  api.get('/tipomotivos',                    tipo_motivosCtrl.getTipoMotivos);
+  api.get('/tipomotivos',                    tipo_motivosCtrl.getTipoMotivosSinSolicitud);
   api.post('/tipomotivos',                   tipo_motivosCtrl.saveTipoMotivo);
   api.get('/tipomotivo/:id',                 tipo_motivosCtrl.getTipoMotivoById);  
   api.put('/tipomotivo/:id',                 tipo_motivosCtrl.updateTipoMotivo);
   api.delete('/tipomotivo/:id',              tipo_motivosCtrl.deleteTipoMotivo);
   api.get('/tipomotivos/canalescucha',       tipo_motivosCtrl.getTipoMotivosCanalEscucha);
   api.post('/tipomotivos/canalescucha',      comentariosCtrl.saveComentario);
-
   
   api.get('/tiponotificaciones',             tipo_notificacionesCtrl.getTipoNotificaciones);
   api.put('/tiponotificaciones/:id',         tipo_notificacionesCtrl.updateTipoNotificacion);
@@ -512,7 +511,7 @@ module.exports = (function () {
   api.put('/tipoparametro/:id',              tipo_parametrosCtrl.updateTipoParametro);
   api.delete('/tipoparametro/:id',           tipo_parametrosCtrl.deleteTipoParametro);
 
-  api.get('/tiporespuestas',                 tipo_motivosCtrl.getTipoMotivosSinSolicitud);
+  api.get('/tiporespuestas',                 tipo_respuestasCtrl.getTipoRespuestas);
   api.post('/tiporespuestas',                tipo_respuestasCtrl.saveTipoRespuesta);
   api.get('/tiporespuesta/:id',              tipo_respuestasCtrl.getTipoRespuestaById);  
   api.put('/tiporespuesta/:id',              tipo_respuestasCtrl.updateTipoRespuesta);

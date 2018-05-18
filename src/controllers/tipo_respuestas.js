@@ -5,27 +5,43 @@ const TipoRespuesta  = require('../models/tipo_respuesta');
 
 function getTipoRespuestas(req, res, next) {
 	TipoRespuestas.query(function (qb) {
-   		qb.where('tipo_respuesta.estatus', '=', 1);
+		qb.where('tipo_respuesta.estatus', '=', 1);
 	})
-	.fetch()
-	.then(function(data) {
+	.fetch({ withRelated: ['respuestas'] })
+	.then(function (data) {
 		if (!data)
-			return res.status(404).json({ 
-				error: true, 
-				data: { mensaje: 'No hay dato registrados' } 
+			return res.status(404).json({
+				error: true,
+				data: { mensaje: 'No hay datos registrados' }
 			});
-
+		let tipoRespuestas = [];
+		data.toJSON().map(function (tipoRespuesta) {
+			let respuestas = [];
+			tipoRespuesta.repuestas.map(function (respuesta) {
+				if (respuesta.estatus == 1) {
+					respuestas.push({
+						id_respuesta: respuesta.id_respuesta,
+						descripcion: respuesta.descripcion
+					})
+				}
+			});
+			tipoRespuestas.push({
+				id_tipo_respuesta: tipoRespuesta.id_tipo_respuesta,
+				nombre: tipoRespuesta.nombre.trim(),
+				respuestas: respuestas
+			})
+		});
 		return res.status(200).json({
 			error: false,
-			data: data
+			data: tipoRespuestas
 		});
 	})
 	.catch(function (err) {
-     	return res.status(500).json({
+		return res.status(500).json({
 			error: true,
 			data: { mensaje: err.message }
 		});
-    });
+	});
 }
 
 function saveTipoRespuesta(req, res, next){
