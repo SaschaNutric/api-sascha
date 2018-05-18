@@ -14,11 +14,10 @@ function getTipoRespuestas(req, res, next) {
 				error: true,
 				data: { mensaje: 'No hay datos registrados' }
 			});
-		/*
 		let tipoRespuestas = [];
 		data.toJSON().map(function (tipoRespuesta) {
 			let respuestas = [];
-			tipoRespuesta.repuestas.map(function (respuesta) {
+			tipoRespuesta.respuestas.map(function (respuesta) {
 				if (respuesta.estatus == 1) {
 					respuestas.push({
 						id_respuesta: respuesta.id_respuesta,
@@ -31,7 +30,7 @@ function getTipoRespuestas(req, res, next) {
 				nombre: tipoRespuesta.nombre.trim(),
 				respuestas: respuestas
 			})
-		});*/
+		});
 		return res.status(200).json({
 			error: false,
 			data: data
