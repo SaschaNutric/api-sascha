@@ -211,7 +211,7 @@ function getHorario_empleadoById(req, res, next) {
 
 
 function getHorariByEmpleadoAndDia(req, res, next) {
-	if (!req.body.id_empleado || !req.body.id_dia_laborable)
+	if (!req.body.id_empleado || req.body.id_dia_laborable > 6 || req.body.id_dia_laborable < 0)
 		return res.status(400).json({
 			error: true,
 			data: { mensaje: 'Petición inválida. Faltan campos en el body' }
