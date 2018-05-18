@@ -33,7 +33,7 @@ function getTipoRespuestas(req, res, next) {
 		});
 		return res.status(200).json({
 			error: false,
-			data: data
+			data: tipoRespuestas
 		});
 	})
 	.catch(function (err) {
