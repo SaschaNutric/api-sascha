@@ -10,9 +10,6 @@ let Parametro_cliente = Bookshelf.Model.extend({
   parametro: function() {
     return this.belongsTo(Parametro, 'id_parametro');
   },
-  cliente: function() {
-    return this.belongsTo('Cliente', 'id_cliente');
-  }
 });
 
 module.exports = Bookshelf.model('Parametro_cliente', Parametro_cliente);

@@ -166,6 +166,7 @@ function getAgendaById(req, res, next) {
 				id_parametro: parametro.id_parametro,
 				parametro: parametro.parametro.nombre,
 				valor: parametro.valor,
+				tipo_valor: parametro.parametro.tipo_valor,
 				tipo_parametro: parametro.parametro.tipo_parametro.nombre,
 				unidad: parametro.parametro.unidad.nombre,
 				unidad_abreviatura: parametro.parametro.unidad.abreviatura
