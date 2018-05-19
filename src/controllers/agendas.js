@@ -161,6 +161,7 @@ function getAgendaById(req, res, next) {
 		});
 		let perfil = [];
 		agenda.perfil.map(function(parametro) {
+			if(parametro.parametro.estatus ==1)
 			perfil.push({
 				id_parametro_cliente: parametro.id_parametro_cliente,
 				id_parametro: parametro.id_parametro,
