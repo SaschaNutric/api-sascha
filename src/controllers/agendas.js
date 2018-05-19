@@ -252,7 +252,7 @@ function getAgendaById(req, res, next) {
 						nombre: agenda.servicio.plan_ejercicio.nombre,
 						ejercicios: ejercicios
 					}:null,
-					plan_suplemento: agenda.ejercicio.plan_suplemento? {
+					plan_suplemento: agenda.servicio.plan_suplemento?{
 						id_plan_suplemento: agenda.servicio.plan_suplemento.id_plan_suplemento,
 						nombre: agenda.servicio.plan_suplemento.nombre,
 						suplementos: suplementos
