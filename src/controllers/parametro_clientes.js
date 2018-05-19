@@ -30,8 +30,6 @@ function getParametro_clientes(req, res, next) {
 						id_parametro: perfil.id_parametro,
 						nombre: perfil.parametro.nombre,
 						tipo_parametro: perfil.parametro.tipo_parametro.nombre,
-						tipo_valor: perfil.parametro.tipo_valor,
-						unidad: perfil.parametro.unidad.abreviatura
 					},
 					valor: perfil.valor
 				}

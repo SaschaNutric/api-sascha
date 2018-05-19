@@ -169,8 +169,8 @@ function getAgendaById(req, res, next) {
 				valor: parametro.valor,
 				tipo_valor: parametro.parametro.tipo_valor,
 				tipo_parametro: parametro.parametro.tipo_parametro.nombre,
-				unidad: parametro.parametro.unidad.nombre,
-				unidad_abreviatura: parametro.parametro.unidad.abreviatura
+				unidad: parametro.parametro.unidad ? parametro.parametro.unidad.nombre : null ,
+				unidad_abreviatura: parametro.parametro.unidad ? parametro.parametro.unidad.abreviatura : null
 			});
 		});
 		let comidasPlanDieta = [];
@@ -247,16 +247,16 @@ function getAgendaById(req, res, next) {
 						tipo_dieta: agenda.servicio.plan_dieta.tipo_dieta.nombre,
 						comidas: comidasPlanDieta
 					},
-					plan_ejercicio: {
+					plan_ejercicio: agenda.servicio.plan_ejercicio? {
 						id_plan_ejercicio: agenda.servicio.plan_ejercicio.id_plan_ejercicio,
 						nombre: agenda.servicio.plan_ejercicio.nombre,
 						ejercicios: ejercicios
-					},
-					plan_suplemento: {
+					}:null,
+					plan_suplemento: agenda.ejercicio.plan_suplemento? {
 						id_plan_suplemento: agenda.servicio.plan_suplemento.id_plan_suplemento,
 						nombre: agenda.servicio.plan_suplemento.nombre,
 						suplementos: suplementos
-					}
+					}:null
 				}
 			}
 		}
