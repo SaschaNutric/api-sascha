@@ -105,10 +105,6 @@ function updateGrupo_alimenticio(req, res, next) {
 			fecha_actualizacion:req.body.fecha_actualizacion || data.get('fecha_actualizacion'),
 			estatus:req.body.estatus || data.get('estatus') 
 		})
-		.fetch({ withRelated: [
-			'unidad',
-			'unidad.tipo_unidad'
-		] })
 		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
