@@ -153,11 +153,6 @@ function saveVisita(req, res, next){
 								})
 							})
 							.then(function(data4) {
-								t.commit();
-								return res.status(201).json({
-									error: false,
-									data: { mensaje: 'Visita registrada satisfactoriamente' }
-								})
 							})
 							.catch(function (err) {
 								t.rollback();
