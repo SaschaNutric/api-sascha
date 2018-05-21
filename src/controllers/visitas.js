@@ -153,6 +153,7 @@ function saveVisita(req, res, next){
 								})
 							})
 							.then(function(data4) {
+								t.commit();
 							})
 							.catch(function (err) {
 								t.rollback();
