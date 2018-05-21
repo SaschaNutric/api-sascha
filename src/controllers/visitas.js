@@ -50,7 +50,7 @@ function saveVisita(req, res, next){
 			fecha_atencion: req.body.fecha_atencion 
 		})
 		.save(null, { transacting: t })
-		.then(function(data){
+		.then(function(visita){
 			if(req.body.id_tipo_cita == 1) {
 				Bluebird.map(req.body.perfil, function(registro) {
 					ParametroCliente.forge({ 
@@ -61,7 +61,7 @@ function saveVisita(req, res, next){
 
 					DetalleVisita.forge({
 						id_parametro: registro.id_parametro,
-						id_cliente: req.body.id_cliente,
+						id_visita: visita.get('id_visita'), 
 						valor: registro.valor
 					}).save(null, { transacting: t })
 				})
