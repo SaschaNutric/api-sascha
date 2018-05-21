@@ -7,7 +7,7 @@ function getGrupo_alimenticios(req, res, next) {
 	Grupo_alimenticios.query(function (qb) {
    		qb.where('grupo_alimenticio.estatus', '=', 1);
 	})
-	.fetch({ withRelated: ['unidad','unidad.tipo_unidad'] })
+	.fetch({ withRelated: ['unidad','unidad.tipo_unidad', 'alimentos'] })
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
