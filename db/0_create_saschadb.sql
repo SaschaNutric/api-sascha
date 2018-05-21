@@ -2484,6 +2484,7 @@ ALTER TABLE vista_cliente_servicio_activo OWNER TO byqkxhkjgnspco;
 CREATE VIEW vista_agenda AS
 SELECT a.id_agenda, 
     g.id_orden_servicio,
+    j.id_visita,
     i.id_empleado,
     (i.nombres || ' ' || i.apellidos) AS nombre_empleado,
     b.id_cliente, 
@@ -2511,18 +2512,19 @@ FROM agenda a
     JOIN orden_servicio g ON a.id_orden_servicio = g.id_orden_servicio
     JOIN solicitud_servicio h ON g.id_solicitud_servicio = h.id_solicitud_servicio
     JOIN servicio c ON c.id_servicio = h.id_servicio
-    JOIN cita d ON a.id_cita = d.id_cita
+    JOIN cita d ON d.id_cita = a.id_cita
     JOIN tipo_cita e ON d.id_tipo_cita = e.id_tipo_cita
     JOIN bloque_horario f ON d.id_bloque_horario = f.id_bloque_horario
-    JOIN empleado i ON a.id_empleado = i.id_empleado
+    JOIN empleado i ON i.id_empleado = a.id_empleado
+    JOIN visita j ON j.id_agenda = a.id_agenda
 WHERE a.estatus = 1 
     AND b.estatus = 1 
     AND c.estatus = 1 
     AND d.estatus = 1
     AND g.estatus = 1 
     AND g.estado = 1
-    AND i.estatus = 1;
-    
+    AND i.estatus = 1
+    AND j.estatus = 1;
 ALTER TABLE vista_agenda OWNER TO byqkxhkjgnspco;
 
 CREATE VIEW vista_frecuencia AS
