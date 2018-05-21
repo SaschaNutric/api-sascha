@@ -184,6 +184,7 @@ function getAgendaById(req, res, next) {
 					id_comida: comida.comida.id_comida,
 					nombre: comida.comida.nombre,
 					grupos_alimenticios: [{
+						id_detalle_plan_dieta: comida.id_detalle_plan_dieta,
 						id_grupo_alimenticio: comida.grupoAlimenticio.id_grupo_alimenticio,
 						nombre: comida.grupoAlimenticio.nombre,
 						unidad: comida.grupoAlimenticio.unidad.nombre,
@@ -193,6 +194,7 @@ function getAgendaById(req, res, next) {
 			}
 			else {
 				comidasPlanDieta[index].grupos_alimenticios.push({
+					id_detalle_plan_dieta: comida.id_detalle_plan_dieta,
 					id_grupo_alimenticio: comida.grupoAlimenticio.id_grupo_alimenticio,
 					nombre: comida.grupoAlimenticio.nombre,
 					unidad: comida.grupoAlimenticio.unidad.nombre,

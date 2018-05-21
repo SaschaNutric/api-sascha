@@ -93,7 +93,6 @@ CREATE TABLE agenda (
     id_empleado integer NOT NULL,
     id_cliente integer NOT NULL,
     id_orden_servicio integer NOT NULL,
-    id_visita integer,
     id_cita integer NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
     fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
@@ -2410,6 +2409,7 @@ ALTER TABLE valoracion OWNER TO postgres;
 
 CREATE TABLE visita (
     id_visita integer DEFAULT nextval('id_visita_seq'::regclass) NOT NULL,
+    id_agenda integer NOT NULL,
     numero integer NOT NULL,
     fecha_atencion date NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
@@ -2496,7 +2496,7 @@ SELECT a.id_agenda,
     c.nombre AS nombre_servicio,
     C.numero_visitas AS duracion_servicio,
     (SELECT count(visita.id_visita) FROM visita JOIN agenda 
-    ON agenda.id_visita = visita.id_visita 
+    ON agenda.id_agenda = visita.id_agenda 
     WHERE agenda.id_orden_servicio = g.id_orden_servicio) AS visitas_realizadas,
     c.id_plan_dieta,
     c.id_plan_ejercicio,
@@ -3568,9 +3568,8 @@ ALTER TABLE ONLY agenda
 -- Name: agenda_id_visita_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY agenda
-    ADD CONSTRAINT agenda_id_visita_fkey FOREIGN KEY (id_visita) REFERENCES visita(id_visita);
-
+ALTER TABLE ONLY visita
+    ADD CONSTRAINT visita_id_agenda_fkey FOREIGN KEY (id_agenda) REFERENCES agenda(id_agenda);
 
 --
 -- Name: alimento_id_grupo_alimenticio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
