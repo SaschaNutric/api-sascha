@@ -4,12 +4,12 @@ const Visitas 	= require('../collections/visitas');
 const Visita  	= require('../models/visita');
 const Bookshelf = require('../commons/bookshelf');
 const Bluebird  = require('bluebird');
-const ParametroCliente  = require('../models/parametro_cliente');
-const DetalleVisita     = require('../models/detalle_visita');
-const RegimenSuplemento = require('../models/regimen_suplemento');
-const RegimenEjercicio  = require('../models/regimen_ejercicio');
-const RegimenDieta      = require('../models/regimen_dieta');
-const DetalleRegimenAlimento = require('../models/detalle_regimen_alimento');
+const ParametrosCliente  = require('../collections/parametro_clientes');
+const DetallesVisita     = require('../collections/detalle_visitas');
+const RegimenSuplementos = require('../collections/regimen_suplementos');
+const RegimenEjercicios  = require('../collections/regimen_ejercicios');
+const RegimenDietas      = require('../collections/regimen_dietas');
+const DetalleRegimenAlimentos = require('../collections/detalle_regimen_alimentos');
 
 function getVisitas(req, res, next) {
 	Visitas.query({})
@@ -35,7 +35,7 @@ function getVisitas(req, res, next) {
 }
 
 function saveVisita(req, res, next){
-	if (!req.body.id_cliente          || !req.body.id_agenda      ||
+	if (!req.body.id_agenda      ||
 		!req.body.fecha_atencion      || !req.body.perfil         ||
 		!req.body.regimen_suplementos || !req.body.regimen_dietas ||
 		!req.body.regimen_ejercicios  || !req.body.id_tipo_cita)
@@ -51,89 +51,60 @@ function saveVisita(req, res, next){
 		})
 		.save(null, { transacting: t })
 		.then(function(visita){
-			Bluebird.map(req.body.perfil, function(registro) {
-				ParametroCliente.forge({ 
-					id_parametro: registro.id_parametro, 
-					id_cliente: req.body.id_cliente, 
-					valor: registro.valor 
-				})
-				.save(null, { transacting: t })
-				.then()
-				.catch(function (err) {
-					t.rollback();
-					res.status(500).json({
-						error: true,
-						data: { message: err.message }
-					});
-				})
-				DetalleVisita.forge({
-					id_parametro: registro.id_parametro,
-					id_visita: visita.get('id_visita'), 
-					valor: registro.valor
-				})
-				.save(null, { transacting: t })
-				.then()
-				.catch(function (err) {
-					t.rollback();
-					res.status(500).json({
-						error: true,
-						data: { message: err.message }
-					});
-				})
-			})
-			.then(function(data) {
-				Bluebird.map(req.body.regimen_suplementos, function(suplemento) {
-					RegimenSuplemento.forge({
-						id_suplemento: suplemento.id_suplemento,
-						id_frecuencia: suplemento.id_frecuencia,
-						id_cliente:    req.body.id_cliente,
-						cantidad:      suplemento.cantidad,
+
+				let parametros_perfil = ParametrosCliente.forge(req.body.perfil);
+				parametros_perfil.invokeThen('save', null, { transacting: t })
+				.then(function(parametros) {
+					let detalles = req.body.perfil.map(function(parametro) {
+						return {
+							id_parametro: parametro.id_parametro,
+							id_visita: visita.get('id_visita'),
+							valor: parametro.valor
+						}
 					})
-					.save(null, { transacting: t })
-					.then()
-					.catch(function (err) {
-						t.rollback();
-						res.status(500).json({
-							error: true,
-							data: { message: err.message }
-						});
-					})
-				})
-				.then(function (data2) {
-					Bluebird.map(req.body.regimen_ejercicios, function (ejercicio) {
-						RegimenEjercicio.forge({
-							id_ejercicio:  ejercicio.id_ejercicio,
-							id_frecuencia: ejercicio.id_frecuencia,
-							id_cliente:    req.body.id_cliente,
-							id_tiempo:     ejercicio.id_tiempo,
-							duracion:      ejercicio.duracion,
-						})
-						.save(null, { transacting: t })
-						.then()
-						.catch(function (err) {
-							t.rollback();
-							res.status(500).json({
-								error: true,
-								data: { message: err.message }
-							});
-						})
-					})
-					.then(function(data3) {
-						Bluebird.map(req.body.regimen_dietas, function (dieta) {							
-							RegimenDieta.forge({
-								id_detalle_plan_dieta: dieta.id_detalle_plan_dieta,
-								id_cliente: req.body.id_cliente,
-								cantidad: dieta.cantidad,
-							})
-							.save(null, { transacting: t })
-							.then(function(regimendieta) {
-								Bluebird.map(registro.alimentos, function(alimento) {
-									DetalleRegimenAlimento.forge({
-										id_regimen_dieta: regimendieta.get('id_regimen_dieta'),
-										id_alimento: alimento.id_alimento
+
+					let detalles_visita = DetallesVisita.forge(detalles);
+					detalles_visita.invokeThen('save', null, { transacting: t })
+					.then(function (detalles) {
+						let regimen_suplementos =	RegimenSuplementos.forge(req.body.regimen_suplementos);
+						regimen_suplementos.invokeThen('save', null, { transacting: t })
+						.then(function(suplementos) {
+							let regimen_ejercicios = RegimenEjercicios.forge(req.body.regimen_ejercicios)
+							regimen_ejercicios.invokeThen('save', null, { transacting: t })
+							.then(function(ejercicios) {
+								let dietas = req.body.regimen_dietas.map(function(dieta){
+									return {
+										id_detalle_plan_dieta: dieta.id_detalle_plan_dieta,
+										id_cliente:            dieta.id_cliente,
+										cantidad:              dieta.cantidad
+									}
+								})
+		
+								let regimen_dietas = RegimenDietas.forge(dietas)
+								regimen_dietas.invokeThen('save', null, { transacting: t })
+								.then(function(regimendietas) {
+									Bluebird.map(regimendietas, function(regimen) {
+										let regimen_json = regimen.toJSON();
+										let alimentos = []
+										req.body.regimen_dietas.map(function(dieta) {
+											if (dieta.id_detalle_plan_dieta == regimen_json.id_detalle_plan_dieta && 
+												dieta.id_cliente == regimen_json.id_cliente) {
+												dieta.alimentos.map(function(alimento) {
+													alimentos.push({
+														id_alimento: alimento.id_alimento,
+														id_regimen_dieta: regimen_json.id_regimen_dieta
+													})
+												})	
+											}
+										})
+
+										let regimen_alimentos = DetalleRegimenAlimentos.forge(alimentos);
+										return regimen_alimentos.invokeThen('save', null, { transacting: t })
 									})
-									.save(null, { transacting: t })
-									.then()
+									.then(function() {
+										t.commit();
+										return res.status(200).json({ error: false, data: { mensaje: 'Registro exitoso' } })
+									})
 									.catch(function (err) {
 										t.rollback();
 										res.status(500).json({
@@ -141,18 +112,23 @@ function saveVisita(req, res, next){
 											data: { message: err.message }
 										});
 									})
-								})	
+								})
+								.catch(function (err) {
+									t.rollback();
+									res.status(500).json({
+										error: true,
+										data: { message: err.message }
+									});
+								})
+								
 							})
-							.catch(function (err) {
+							.catch (function (err) {
 								t.rollback();
 								res.status(500).json({
 									error: true,
 									data: { message: err.message }
 								});
 							})
-						})
-						.then(function(data4) {
-							t.commit();
 						})
 						.catch(function (err) {
 							t.rollback();
@@ -177,22 +153,15 @@ function saveVisita(req, res, next){
 						data: { message: err.message }
 					});
 				})
-			})
-			.catch(function(err) {
-				t.rollback();
-				res.status(500).json({
-					error: true,
-					data: { message: err.message }
-				});
-			})
 		})
 		.catch(function (err) {
 			t.rollback();
 			res.status(500).json({
 				error: true,
-				data: {message: err.message}
+				data: { message: err.message }
 			});
-		});
+		})
+			
 	});
 }
 
