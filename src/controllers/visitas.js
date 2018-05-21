@@ -35,10 +35,10 @@ function getVisitas(req, res, next) {
 }
 
 function saveVisita(req, res, next){
-	if (req.body.id_cliente          || req.body.id_agenda      ||
-		req.body.fecha_atencion      || req.body.perfil         ||
-		req.body.regimen_suplementos || req.body.regimen_dietas ||
-		req.body.regimen_ejercicios)
+	if (!req.body.id_cliente          || !req.body.id_agenda      ||
+		!req.body.fecha_atencion      || !req.body.perfil         ||
+		!req.body.regimen_suplementos || !req.body.regimen_dietas ||
+		!req.body.regimen_ejercicios)
 		return res.status(400).json({
 			error: true,
 			data: { mensaje: 'Petición inválida' }
