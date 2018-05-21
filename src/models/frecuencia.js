@@ -3,7 +3,7 @@
 const Bookshelf = require('../commons/bookshelf');
 
 let Frecuencia = Bookshelf.Model.extend({
-  tableName: 'frecuencia',
+  tableName: 'vista_frecuencia',
   idAttribute: 'id_frecuencia'
 });
 

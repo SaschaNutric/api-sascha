@@ -2525,6 +2525,17 @@ WHERE a.estatus = 1
     
 ALTER TABLE vista_agenda OWNER TO byqkxhkjgnspco;
 
+CREATE VIEW vista_frecuencia AS
+	SELECT a.id_frecuencia,
+    	   a.repeticiones || ' veces por ' || b.nombre as frecuencia
+    FROM frecuencia a
+    JOIN tiempo b
+    ON a.id_tiempo = b.id_tiempo
+    WHERE a.estatus = 1;
+    
+ALTER TABLE vista_frecuencia OWNER TO byqkxhkjgnspco;
+
+
 --
 -- Data for Name: alimento; Type: TABLE DATA; Schema: public; Owner: postgres
 --

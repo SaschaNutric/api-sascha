@@ -5,14 +5,14 @@ const Frecuencia  	= require('../models/frecuencia');
 
 function getFrecuencias(req, res, next) {
 	Frecuencias.query(function (qb) {
-   		qb.where('frecuencia.estatus', '=', 1);
+
 	})
-	.fetch({ columns: ['id_frecuencia','id_tiempo','repeticiones'] })
+	.fetch()
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'No hay dato registrados' } 
+				data: { mensaje: 'No hay datos registrados' } 
 			});
 
 		return res.status(200).json({
