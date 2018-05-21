@@ -57,13 +57,30 @@ function saveVisita(req, res, next){
 						id_parametro: registro.id_parametro, 
 						id_cliente: req.body.id_cliente, 
 						valor: registro.valor 
-					}).save(null, { transacting: t })
-
+					})
+					.save(null, { transacting: t })
+					.then()
+					.catch(function (err) {
+						t.rollback();
+						res.status(500).json({
+							error: true,
+							data: { message: err.message }
+						});
+					})
 					DetalleVisita.forge({
 						id_parametro: registro.id_parametro,
 						id_visita: visita.get('id_visita'), 
 						valor: registro.valor
-					}).save(null, { transacting: t })
+					})
+					.save(null, { transacting: t })
+					.then()
+					.catch(function (err) {
+						t.rollback();
+						res.status(500).json({
+							error: true,
+							data: { message: err.message }
+						});
+					})
 				})
 				.then(function(data) {
 					Bluebird.map(req.body.regimen_suplementos, function(registro) {
@@ -74,6 +91,14 @@ function saveVisita(req, res, next){
 							cantidad:      registro.cantidad,
 						})
 						.save(null, { transacting: t })
+						.then()
+						.catch(function (err) {
+							t.rollback();
+							res.status(500).json({
+								error: true,
+								data: { message: err.message }
+							});
+						})
 					})
 					.then(function (data2) {
 						Bluebird.map(req.body.regimen_ejercicios, function (registro) {
@@ -85,6 +110,14 @@ function saveVisita(req, res, next){
 								duracion:      registro.duracion,
 							})
 							.save(null, { transacting: t })
+							.then()
+							.catch(function (err) {
+								t.rollback();
+								res.status(500).json({
+									error: true,
+									data: { message: err.message }
+								});
+							})
 						})
 						.then(function(data3) {
 							Bluebird.map(req.body.regimen_dietas, function (registro) {							
@@ -101,6 +134,14 @@ function saveVisita(req, res, next){
 											id_alimento: alimento.id_alimento
 										})
 										.save(null, { transacting: t })
+										.then()
+										.catch(function (err) {
+											t.rollback();
+											res.status(500).json({
+												error: true,
+												data: { message: err.message }
+											});
+										})
 									})	
 								})
 								.catch(function (err) {
