@@ -2,7 +2,7 @@
 
 const Bookshelf = require('../commons/bookshelf');
 const Unidad = require('./unidad');
-const Alimento = require('./alimento')
+require('./alimento')
 
 let Grupo_alimenticio = Bookshelf.Model.extend({
   tableName: 'grupo_alimenticio',
