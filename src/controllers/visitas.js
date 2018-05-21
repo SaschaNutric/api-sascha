@@ -103,6 +103,13 @@ function saveVisita(req, res, next){
 										.save(null, { transacting: t })
 									})	
 								})
+								.catch(function (err) {
+									t.rollback();
+									res.status(500).json({
+										error: true,
+										data: { message: err.message }
+									});
+								})
 							})
 							.then(function(data4) {
 								t.commit();
