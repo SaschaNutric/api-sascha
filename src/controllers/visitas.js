@@ -38,7 +38,7 @@ function saveVisita(req, res, next){
 	if (!req.body.id_cliente          || !req.body.id_agenda      ||
 		!req.body.fecha_atencion      || !req.body.perfil         ||
 		!req.body.regimen_suplementos || !req.body.regimen_dietas ||
-		!req.body.regimen_ejercicios)
+		!req.body.regimen_ejercicios  || !req.body.id_tipo_cita)
 		return res.status(400).json({
 			error: true,
 			data: { mensaje: 'Petición inválida' }
@@ -78,10 +78,10 @@ function saveVisita(req, res, next){
 					.then(function (data2) {
 						Bluebird.map(req.body.regimen_ejercicios, function (registro) {
 							RegimenEjercicio.forge({
-								id_ejercicio:  registro.id_suplemento,
+								id_ejercicio:  registro.id_ejercicio,
 								id_frecuencia: registro.id_frecuencia,
 								id_cliente:    req.body.id_cliente,
-								id_tiempo:     req.body.id_tiempo,
+								id_tiempo:     registro.id_tiempo,
 								duracion:      registro.duracion,
 							})
 							.save(null, { transacting: t })
