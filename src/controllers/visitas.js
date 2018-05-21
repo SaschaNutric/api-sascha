@@ -82,12 +82,12 @@ function saveVisita(req, res, next){
 				})
 			})
 			.then(function(data) {
-				Bluebird.map(req.body.regimen_suplementos, function(registro) {
+				Bluebird.map(req.body.regimen_suplementos, function(suplemento) {
 					RegimenSuplemento.forge({
-						id_suplemento: registro.id_suplemento,
-						id_frecuencia: registro.id_frecuencia,
+						id_suplemento: suplemento.id_suplemento,
+						id_frecuencia: suplemento.id_frecuencia,
 						id_cliente:    req.body.id_cliente,
-						cantidad:      registro.cantidad,
+						cantidad:      suplemento.cantidad,
 					})
 					.save(null, { transacting: t })
 					.then()
@@ -100,13 +100,13 @@ function saveVisita(req, res, next){
 					})
 				})
 				.then(function (data2) {
-					Bluebird.map(req.body.regimen_ejercicios, function (registro) {
+					Bluebird.map(req.body.regimen_ejercicios, function (ejercicio) {
 						RegimenEjercicio.forge({
-							id_ejercicio:  registro.id_ejercicio,
-							id_frecuencia: registro.id_frecuencia,
+							id_ejercicio:  ejercicio.id_ejercicio,
+							id_frecuencia: ejercicio.id_frecuencia,
 							id_cliente:    req.body.id_cliente,
-							id_tiempo:     registro.id_tiempo,
-							duracion:      registro.duracion,
+							id_tiempo:     ejercicio.id_tiempo,
+							duracion:      ejercicio.duracion,
 						})
 						.save(null, { transacting: t })
 						.then()
@@ -119,11 +119,11 @@ function saveVisita(req, res, next){
 						})
 					})
 					.then(function(data3) {
-						Bluebird.map(req.body.regimen_dietas, function (registro) {							
+						Bluebird.map(req.body.regimen_dietas, function (dieta) {							
 							RegimenDieta.forge({
-								id_detalle_plan_dieta: registro.id_detalle_plan_dieta,
+								id_detalle_plan_dieta: dieta.id_detalle_plan_dieta,
 								id_cliente: req.body.id_cliente,
-								cantidad: registro.cantidad,
+								cantidad: dieta.cantidad,
 							})
 							.save(null, { transacting: t })
 							.then(function(regimendieta) {
