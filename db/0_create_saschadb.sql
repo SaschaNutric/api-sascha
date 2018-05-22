@@ -93,7 +93,6 @@ CREATE TABLE agenda (
     id_empleado integer NOT NULL,
     id_cliente integer NOT NULL,
     id_orden_servicio integer NOT NULL,
-    id_visita integer,
     id_cita integer NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
     fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
@@ -2410,6 +2409,7 @@ ALTER TABLE valoracion OWNER TO postgres;
 
 CREATE TABLE visita (
     id_visita integer DEFAULT nextval('id_visita_seq'::regclass) NOT NULL,
+    id_agenda integer NOT NULL,
     numero integer NOT NULL,
     fecha_atencion date NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
@@ -2484,6 +2484,7 @@ ALTER TABLE vista_cliente_servicio_activo OWNER TO byqkxhkjgnspco;
 CREATE VIEW vista_agenda AS
 SELECT a.id_agenda, 
     g.id_orden_servicio,
+    j.id_visita,
     i.id_empleado,
     (i.nombres || ' ' || i.apellidos) AS nombre_empleado,
     b.id_cliente, 
@@ -2496,7 +2497,7 @@ SELECT a.id_agenda,
     c.nombre AS nombre_servicio,
     C.numero_visitas AS duracion_servicio,
     (SELECT count(visita.id_visita) FROM visita JOIN agenda 
-    ON agenda.id_visita = visita.id_visita 
+    ON agenda.id_agenda = visita.id_agenda 
     WHERE agenda.id_orden_servicio = g.id_orden_servicio) AS visitas_realizadas,
     c.id_plan_dieta,
     c.id_plan_ejercicio,
@@ -2511,19 +2512,31 @@ FROM agenda a
     JOIN orden_servicio g ON a.id_orden_servicio = g.id_orden_servicio
     JOIN solicitud_servicio h ON g.id_solicitud_servicio = h.id_solicitud_servicio
     JOIN servicio c ON c.id_servicio = h.id_servicio
-    JOIN cita d ON a.id_cita = d.id_cita
+    JOIN cita d ON d.id_cita = a.id_cita
     JOIN tipo_cita e ON d.id_tipo_cita = e.id_tipo_cita
     JOIN bloque_horario f ON d.id_bloque_horario = f.id_bloque_horario
-    JOIN empleado i ON a.id_empleado = i.id_empleado
+    JOIN empleado i ON i.id_empleado = a.id_empleado
+    JOIN visita j ON j.id_agenda = a.id_agenda
 WHERE a.estatus = 1 
     AND b.estatus = 1 
     AND c.estatus = 1 
     AND d.estatus = 1
     AND g.estatus = 1 
     AND g.estado = 1
-    AND i.estatus = 1;
-    
+    AND i.estatus = 1
+    AND j.estatus = 1;
 ALTER TABLE vista_agenda OWNER TO byqkxhkjgnspco;
+
+CREATE VIEW vista_frecuencia AS
+	SELECT a.id_frecuencia,
+    	   a.repeticiones || ' veces por ' || b.nombre as frecuencia
+    FROM frecuencia a
+    JOIN tiempo b
+    ON a.id_tiempo = b.id_tiempo
+    WHERE a.estatus = 1;
+    
+ALTER TABLE vista_frecuencia OWNER TO byqkxhkjgnspco;
+
 
 --
 -- Data for Name: alimento; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -3557,9 +3570,8 @@ ALTER TABLE ONLY agenda
 -- Name: agenda_id_visita_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY agenda
-    ADD CONSTRAINT agenda_id_visita_fkey FOREIGN KEY (id_visita) REFERENCES visita(id_visita);
-
+ALTER TABLE ONLY visita
+    ADD CONSTRAINT visita_id_agenda_fkey FOREIGN KEY (id_agenda) REFERENCES agenda(id_agenda);
 
 --
 -- Name: alimento_id_grupo_alimenticio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres

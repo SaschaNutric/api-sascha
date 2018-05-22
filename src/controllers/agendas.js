@@ -7,10 +7,10 @@ const VistaAgendas = require('../collections/vista_agendas');
 const VistaAgenda = require('../models/vista_agenda');
 
 function getAgendas(req, res, next) {
-	Agendas.query(function (qb) {
+	VistaAgendas.query(function (qb) {
    		qb.where('agenda.estatus', '=', 1);
 	})
-	.fetch({ columns: ['id_empleado','id_cliente','id_orden_servicio','id_visita', 'id_cita'] })
+	.fetch()
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -59,6 +59,7 @@ function getAgendaPorEmpleado(req, res, next) {
 		data.toJSON().map(function (agenda) {
 			agendas.push({
 				id_agenda:       agenda.id_agenda,
+				id_visita:       agenda.id_visita,
 				id_empleado:     agenda.id_empleado,
 				nombre_empleado: agenda.nombre_empleado,
 				id_cliente:      agenda.id_cliente,
@@ -120,6 +121,13 @@ function getAgendaById(req, res, next) {
 			'perfil.parametro',
 			'perfil.parametro.tipo_parametro',			
 			'perfil.parametro.unidad',
+			'regimen_dieta',
+			'regimen_dieta.alimentos',
+			'regimen_dieta.detalle',		
+			'regimen_suplemento',
+			'regimen_suplemento.suplemento',
+			'regimen_ejercicio',
+			'regimen_ejercicio.ejercicio',
 			'metas',
 			'metas.parametro',
 			'metas.parametro.tipo_parametro',			
@@ -161,14 +169,16 @@ function getAgendaById(req, res, next) {
 		});
 		let perfil = [];
 		agenda.perfil.map(function(parametro) {
+			if(parametro.parametro.estatus ==1)
 			perfil.push({
 				id_parametro_cliente: parametro.id_parametro_cliente,
 				id_parametro: parametro.id_parametro,
 				parametro: parametro.parametro.nombre,
 				valor: parametro.valor,
+				tipo_valor: parametro.parametro.tipo_valor,
 				tipo_parametro: parametro.parametro.tipo_parametro.nombre,
-				unidad: parametro.parametro.unidad.nombre,
-				unidad_abreviatura: parametro.parametro.unidad.abreviatura
+				unidad: parametro.parametro.unidad ? parametro.parametro.unidad.nombre : null ,
+				unidad_abreviatura: parametro.parametro.unidad ? parametro.parametro.unidad.abreviatura : null
 			});
 		});
 		let comidasPlanDieta = [];
@@ -177,45 +187,144 @@ function getAgendaById(req, res, next) {
 											return comidaAsignada.id_comida;
 										})
 										.indexOf(comida.id_comida);
-			if (index == -1) {
-				comidasPlanDieta.push({
-					id_comida: comida.comida.id_comida,
-					nombre: comida.comida.nombre,
-					grupos_alimenticios: [{
+			if (index == -1) {	
+				let regimenIndex = agenda.regimen_dieta.map(function (regimen) {
+					return regimen.id_detalle_plan_dieta 
+				})
+				.indexOf(comida.id_detalle_plan_dieta); 
+				
+				if (regimenIndex == -1) {
+					comidasPlanDieta.push({
+						id_comida: comida.comida.id_comida,
+						nombre: comida.comida.nombre,
+						grupos_alimenticios: [{
+							id_detalle_plan_dieta: comida.id_detalle_plan_dieta,
+							id_grupo_alimenticio: comida.grupoAlimenticio.id_grupo_alimenticio,
+							nombre: comida.grupoAlimenticio.nombre,
+							//cantidad: regimen.cantidad,
+							//alimentos: alimentos,
+							unidad: comida.grupoAlimenticio.unidad.nombre,
+							unidad_abreviatura: comida.grupoAlimenticio.unidad.abreviatura
+						}]
+					})
+				}
+				else {
+					let alimentos = [];
+					agenda.regimen_dieta[regimenIndex].alimentos.map(function (alimento) {
+						alimentos.push({
+							id_alimento: alimento.id_alimento,
+							nombre: alimento.nombre
+						})
+					})
+					comidasPlanDieta.push({
+						id_comida: comida.comida.id_comida,
+						nombre: comida.comida.nombre,
+						grupos_alimenticios: [{
+							id_detalle_plan_dieta: comida.id_detalle_plan_dieta,
+							id_grupo_alimenticio: comida.grupoAlimenticio.id_grupo_alimenticio,
+							nombre: comida.grupoAlimenticio.nombre,
+							cantidad: agenda.regimen_dieta[regimenIndex].cantidad,
+							alimentos: alimentos,
+							unidad: comida.grupoAlimenticio.unidad.nombre,
+							unidad_abreviatura: comida.grupoAlimenticio.unidad.abreviatura
+						}]
+					})
+				}
+			}
+			else {
+				let regimenIndex = agenda.regimen_dieta.map(function (regimen) {
+					return regimen.id_detalle_plan_dieta
+				})
+				.indexOf(comida.id_detalle_plan_dieta);
+
+				if (regimenIndex == -1) { 
+					comidasPlanDieta[index].grupos_alimenticios.push({
+						id_detalle_plan_dieta: comida.id_detalle_plan_dieta,
 						id_grupo_alimenticio: comida.grupoAlimenticio.id_grupo_alimenticio,
 						nombre: comida.grupoAlimenticio.nombre,
+						//cantidad: regimen.cantidad,
+						//alimentos: alimentos,
 						unidad: comida.grupoAlimenticio.unidad.nombre,
 						unidad_abreviatura: comida.grupoAlimenticio.unidad.abreviatura
-					}]
+					})
+				}
+				else {
+					let alimentos = [];
+					agenda.regimen_dieta[regimenIndex].alimentos.map(function (alimento) {
+						alimentos.push({
+							id_alimento: alimento.id_alimento,
+							nombre: alimento.nombre
+						})
+					});
+					comidasPlanDieta[index].grupos_alimenticios.push({
+						id_detalle_plan_dieta: comida.id_detalle_plan_dieta,
+						id_grupo_alimenticio: comida.grupoAlimenticio.id_grupo_alimenticio,
+						nombre: comida.grupoAlimenticio.nombre,
+						cantidad: agenda.regimen_dieta[regimenIndex].cantidad,
+						alimentos: alimentos,
+						unidad: comida.grupoAlimenticio.unidad.nombre,
+						unidad_abreviatura: comida.grupoAlimenticio.unidad.abreviatura
+					})
+				}
+			}
+		})
+
+		let ejercicios = [];
+		agenda.servicio.plan_ejercicio.ejercicios.map(function(ejercicio) {
+			let ejercicioIndex = agenda.regimen_ejercicio.map(function(regimen) {
+				return regimen.id_ejercicio
+			})
+			.indexOf(ejercicio.id_ejercicio);
+			
+			if(ejercicioIndex == -1) {
+				ejercicios.push({
+					id_ejercicio: ejercicio.id_ejercicio,
+					//id_tiempo: regimen.id_tiempo,
+					//duracion: regimen.duracion,
+					nombre: ejercicio.nombre
 				})
 			}
 			else {
-				comidasPlanDieta[index].grupos_alimenticios.push({
-					id_grupo_alimenticio: comida.grupoAlimenticio.id_grupo_alimenticio,
-					nombre: comida.grupoAlimenticio.nombre,
-					unidad: comida.grupoAlimenticio.unidad.nombre,
-					unidad_abreviatura: comida.grupoAlimenticio.unidad.abreviatura
-				})
+				ejercicios.push({
+					id_ejercicio: ejercicio.id_ejercicio,
+					id_tiempo: agenda.regimen_ejercicio[ejercicioIndex].id_tiempo,
+					duracion: agenda.regimen_ejercicio[ejercicioIndex].duracion,
+					nombre: ejercicio.nombre
+				});
 			}
-		})
-		let ejercicios = [];
-		agenda.servicio.plan_ejercicio.ejercicios.map(function(ejercicio) {
-			ejercicios.push({
-				id_ejercicio: ejercicio.id_ejercicio,
-				nombre: ejercicio.nombre
-			})
 		});
 		let suplementos = [];
 		agenda.servicio.plan_suplemento.suplementos.map(function (suplemento) {
-			suplementos.push({
-				id_suplemento: suplemento.id_suplemento,
-				nombre: suplemento.nombre,
-				unidad: suplemento.unidad.nombre,
-				unidad_abreviatura: suplemento.unidad.abreviatura
+			let suplementoIndex = agenda.regimen_suplemento.map(function (regimen) {
+				return regimen.id_suplemento
 			})
+			.indexOf(suplemento.id_suplemento);
+			
+			if(suplementoIndex == -1) {
+				suplementos.push({
+					id_suplemento: suplemento.id_suplemento,
+					nombre: suplemento.nombre,
+					//frecuencia: regimen.id_frecuencia,
+					//cantidad: regimen.cantidad,
+					unidad: suplemento.unidad.nombre,
+					unidad_abreviatura: suplemento.unidad.abreviatura
+				})
+			}
+			else {
+				suplementos.push({
+					id_suplemento: suplemento.id_suplemento,
+					nombre: suplemento.nombre,
+					frecuencia: agenda.regimen_suplemento[suplementoIndex].id_frecuencia,
+					cantidad: agenda.regimen_suplemento[suplementoIndex].cantidad,
+					unidad: suplemento.unidad.nombre,
+					unidad_abreviatura: suplemento.unidad.abreviatura
+				})
+			}
+			
 		});
 		let nuevaAgenda = {
 			id_agenda:    agenda.id_agenda,
+			id_visita:    agenda.id_visita,
 			id_tipo_cita: agenda.id_tipo_cita,
 			tipo_cita:    agenda.tipo_cita,
 			fecha:       JSON.stringify(agenda.fecha).substr(1,10),
@@ -245,23 +354,23 @@ function getAgendaById(req, res, next) {
 						tipo_dieta: agenda.servicio.plan_dieta.tipo_dieta.nombre,
 						comidas: comidasPlanDieta
 					},
-					plan_ejercicio: {
+					plan_ejercicio: agenda.servicio.plan_ejercicio? {
 						id_plan_ejercicio: agenda.servicio.plan_ejercicio.id_plan_ejercicio,
 						nombre: agenda.servicio.plan_ejercicio.nombre,
 						ejercicios: ejercicios
-					},
-					plan_suplemento: {
+					}:null,
+					plan_suplemento: agenda.servicio.plan_suplemento?{
 						id_plan_suplemento: agenda.servicio.plan_suplemento.id_plan_suplemento,
 						nombre: agenda.servicio.plan_suplemento.nombre,
 						suplementos: suplementos
-					}
+					}:null
 				}
 			}
 		}
 
 		return res.status(200).json({ 
-			error : false, 
-			data : nuevaAgenda 
+			error: false, 
+			data:  nuevaAgenda 
 		});
 	})
 	.catch(function(err){

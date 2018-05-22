@@ -93,7 +93,7 @@ function savePlanDieta(req, res, next){
 												return comidaAsignada.id_comida; 
 										})
 										.indexOf(comida.id_comida);
-			if(index == -1) {
+			if (index == -1) {
 				comidasAsignadas.push({ 
 					id_comida: comida.id_comida, 
 					grupos_alimenticios: [{ id_grupo_alimenticio: comida.id_grupo_alimenticio }] 
