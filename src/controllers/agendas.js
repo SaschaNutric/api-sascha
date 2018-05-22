@@ -288,6 +288,7 @@ function getAgendaById(req, res, next) {
 				ejercicios.push({
 					id_ejercicio: ejercicio.id_ejercicio,
 					id_tiempo: agenda.regimen_ejercicio[ejercicioIndex].id_tiempo,
+					id_frecuencia: agenda.regimen_ejercicio[ejercicioIndex].id_frecuencia,					
 					duracion: agenda.regimen_ejercicio[ejercicioIndex].duracion,
 					nombre: ejercicio.nombre
 				});
