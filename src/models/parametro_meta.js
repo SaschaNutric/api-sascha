@@ -8,10 +8,12 @@ let ParametroMeta = Bookshelf.Model.extend({
     tableName: 'parametro_meta',
     idAttribute: 'id_parametro_meta',
     parametro: function () {
-        return this.belongsTo(Parametro, 'id_parametro');
+        return this.belongsTo(Parametro, 'id_parametro')
+    			.query({ where: { 'parametro.estatus': 1 } });
     },
     orden_servicio: function () {
-        return this.belongsTo(OrdenServicio, 'id_orden_servicio');
+        return this.belongsTo(OrdenServicio, 'id_orden_servicio')
+    			.query({ where: { 'orden_servicio.estatus': 1 } });
     }
 });
 

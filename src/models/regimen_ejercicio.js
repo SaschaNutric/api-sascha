@@ -7,7 +7,8 @@ let Regimen_ejercicio = Bookshelf.Model.extend({
   tableName: 'regimen_ejercicio',
   idAttribute: 'id_regimen_ejercicio',
   ejercicio: function () {
-    return this.belongsTo(Ejercicio, 'id_ejercicio');
+    return this.belongsTo(Ejercicio, 'id_ejercicio')
+    			.query({ where: { 'ejercicio.estatus': 1 } });
   }
 });
 

@@ -7,7 +7,8 @@ let Usuario = Bookshelf.Model.extend({
 	tableName: 'usuario',
 	idAttribute: 'id_usuario',
 	rol: function() {
-    return this.belongsTo(Rol, 'id_rol');
+    return this.belongsTo(Rol, 'id_rol')
+    			.query({ where: { 'rol.estatus': 1 } });
   }
 });
 

@@ -8,7 +8,8 @@ let Parametro_cliente = Bookshelf.Model.extend({
   tableName: 'parametro_cliente',
   idAttribute: 'id_parametro_cliente',
   parametro: function() {
-    return this.belongsTo(Parametro, 'id_parametro');
+    return this.belongsTo(Parametro, 'id_parametro')
+    			.query({ where: { 'parametro.estatus': 1 } });
   },
 });
 

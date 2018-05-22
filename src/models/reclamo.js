@@ -9,13 +9,16 @@ let Reclamo = Bookshelf.Model.extend({
   tableName: 'reclamo',
   idAttribute: 'id_reclamo',
   motivo: function() {
-    return this.belongsTo(Motivo, 'id_motivo');
+    return this.belongsTo(Motivo, 'id_motivo')
+          .query({ where: { 'motivo.estatus': 1 } });
   },
   respuesta: function() {
-    return this.belongsTo(Respuesta, 'id_respuesta');
+    return this.belongsTo(Respuesta, 'id_respuesta')
+          .query({ where: { 'respuesta.estatus': 1 } });
   },
   ordenServicio: function() {
-    return this.hasOne(OrdenServicio, 'id_orden_servicio');
+    return this.hasOne(OrdenServicio, 'id_orden_servicio')
+          .query({ where: { 'orden_servicio.estatus': 1 } });
   }
 });
 

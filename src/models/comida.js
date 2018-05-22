@@ -7,7 +7,8 @@ let Comida = Bookshelf.Model.extend({
   tableName: 'comida',
   idAttribute: 'id_comida',
   gruposAlimenticios: function () {
-    return this.belongsToMany(GrupoAlimenticio, 'detalle_plan_dieta', 'id_comida', 'id_grupo_alimenticio');
+    return this.belongsToMany(GrupoAlimenticio, 'detalle_plan_dieta', 'id_comida', 'id_grupo_alimenticio')
+    			.query({ where: { 'grupo_alimenticio.estatus': 1 } });
   }
 });
 
