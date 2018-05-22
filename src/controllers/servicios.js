@@ -273,32 +273,64 @@ function updateServicio(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({
-        	nombre: req.body.nombre || data.get('nombre'), 
-        	descripcion: req.body.descripcion || data.get('descripcion'), 
-        	url_imagen: req.body.url_imagen || data.get('url_imagen'), 
-        	precio: req.body.precio || data.get('precio'), 
-			numero_visitas: req.body.numero_visitas || data.get('numero_visitas'),
-			id_plan_dieta: req.body.id_plan_dieta || data.get('id_plan_dieta'),
-			id_plan_ejercicio: req.body.id_plan_ejercicio || data.get('id_plan_ejercicio'),
-			id_plan_suplemento: req.body.id_plan_suplemento || data.get('id_plan_suplemento'),
-			id_especialidad: req.body.id_especialidad || data.get('id_especialidad')
-		})
-		.then(function(servicio) {
-			return res.status(200).json({ 
-				error: false, 
-				data: { 
-					mensaje: 'Registro de servicio actualizado',
-					servicio: servicio
+		if (req.files.imagen && req.files.imagen.name != data.get('url_imagen').substr(65)) {
+			const imagen = req.files.imagen
+			cloudinary.uploader.upload(imagen.path, function(result) {
+				if (result.error) {
+					return res.status(500).json({
+						error: true,
+						data: { message: result.error }
+					});
 				}
+				data.save({
+        			nombre: 			req.body.nombre 			|| data.get('nombre'), 
+        			descripcion: 		req.body.descripcion 		|| data.get('descripcion'), 
+        			url_imagen: 		result.url,
+        			precio: 			req.body.precio 			|| data.get('precio'), 
+					numero_visitas: 	req.body.numero_visitas 	|| data.get('numero_visitas'),
+					id_plan_dieta: 		req.body.id_plan_dieta 		|| data.get('id_plan_dieta'),
+					id_plan_ejercicio: 	req.body.id_plan_ejercicio 	|| data.get('id_plan_ejercicio'),
+					id_plan_suplemento: req.body.id_plan_suplemento || data.get('id_plan_suplemento'),
+					id_especialidad: 	req.body.id_especialidad 	|| data.get('id_especialidad')
+				})
+				.then(function(data) {
+					return res.status(200).json({ 
+						error: false, 
+						data: data
+					});
+				})
+				.catch(function(err) {
+					return res.status(500).json({ 
+						error : true, 
+						data : { mensaje : err.message } 
+					});
+				})
 			});
-		})
-		.catch(function(err) {
-			return res.status(500).json({ 
-				error : true, 
-				data : { mensaje : err.message } 
-			});
-		})
+		} else {
+			data.save({
+        		nombre: 			req.body.nombre 			|| data.get('nombre'), 
+        		descripcion: 		req.body.descripcion 		|| data.get('descripcion'), 
+        		url_imagen: 		req.body.url_imagen 		|| data.get('url_imagen'), 
+        		precio: 			req.body.precio 			|| data.get('precio'), 
+				numero_visitas: 	req.body.numero_visitas 	|| data.get('numero_visitas'),
+				id_plan_dieta: 		req.body.id_plan_dieta 		|| data.get('id_plan_dieta'),
+				id_plan_ejercicio: 	req.body.id_plan_ejercicio 	|| data.get('id_plan_ejercicio'),
+				id_plan_suplemento: req.body.id_plan_suplemento || data.get('id_plan_suplemento'),
+				id_especialidad: 	req.body.id_especialidad 	|| data.get('id_especialidad')
+			})
+			.then(function (data) {
+				return res.status(200).json({
+					error: false,
+					data: data
+				});
+			})
+			.catch(function (err) {
+				return res.status(500).json({
+					error: true,
+					data: { mensaje: err.message }
+				});
+			})
+		}
 	})
 	.catch(function(err) {
 		return res.status(500).json({ 

@@ -132,24 +132,54 @@ function updateRed_social(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ 
-			nombre:   req.body.nombre   || data.get('nombre'),
-			usuario:  req.body.usuario  || data.get('usuario'),
-			url_base: req.body.url_base || data.get('url_base'),
-			url_logo: req.body.url_logo || data.get('url_logo') 
-		})
-		.then(function() {
-			return res.status(200).json({ 
-				error: false, 
-				data: data
+		if (req.files.imagen && req.files.imagen.name != data.get('url_logo').substr(65)) {
+			const imagen = req.files.imagen
+			cloudinary.uploader.upload(imagen.path, function(result) {
+				if (result.error) {
+					return res.status(500).json({
+						error: true,
+						data: { message: result.error }
+					});
+				}
+				data.save({ 
+					nombre:   req.body.nombre   || data.get('nombre'),
+					usuario:  req.body.usuario  || data.get('usuario'),
+					url_base: req.body.url_base || data.get('url_base'),
+					url_logo: result.url
+				})
+				.then(function(data) {
+					return res.status(200).json({ 
+						error: false, 
+						data: data
+					});
+				})
+				.catch(function(err) {
+					return res.status(500).json({ 
+						error : true, 
+						data : { mensaje : err.message } 
+					});
+				})
 			});
-		})
-		.catch(function(err) {
-			return res.status(500).json({ 
-				error : true, 
-				data : { mensaje : err.message } 
-			});
-		})
+		} else {
+			data.save({ 
+				nombre:   req.body.nombre   || data.get('nombre'),
+				usuario:  req.body.usuario  || data.get('usuario'),
+				url_base: req.body.url_base || data.get('url_base'),
+				url_logo: req.body.url_logo || data.get('url_logo') 
+			})
+			.then(function (data) {
+				return res.status(200).json({
+					error: false,
+					data: data
+				});
+			})
+			.catch(function (err) {
+				return res.status(500).json({
+					error: true,
+					data: { mensaje: err.message }
+				});
+			})
+		}
 	})
 	.catch(function(err) {
 		return res.status(500).json({ 
