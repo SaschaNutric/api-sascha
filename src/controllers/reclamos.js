@@ -8,7 +8,7 @@ function getReclamos(req, res, next) {
    		qb.where('reclamo.estatus', '=', 1);
 	})
 	.fetch({
-		withRelated: ['motivo', 'respuesta', 'ordenServicio'], 
+		withRelated: ['motivo', 'respuesta', 'ordenServicio','cliente'], 
 		columns: ['id_reclamo','id_motivo','id_cliente','id_orden_servicio','id_respuesta', 'respuesta', 'fecha_creacion'] 
 	})
 	.then(function(data) {
