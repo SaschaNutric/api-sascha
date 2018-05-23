@@ -9,7 +9,7 @@ function getReclamos(req, res, next) {
 	})
 	.fetch({
 		withRelated: ['motivo', 'respuesta', 'ordenServicio'], 
-		columns: ['id_motivo','id_orden_servicio','id_respuesta', 'respuesta', 'fecha_creacion'] 
+		columns: ['id_reclamo','id_motivo','id_orden_servicio','id_respuesta', 'respuesta', 'fecha_creacion'] 
 	})
 	.then(function(data) {
 		if (!data)
