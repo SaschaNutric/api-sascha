@@ -49,7 +49,6 @@ box-shadow: 4px 7px 14px -1px rgba(99,99,99,1);">
 		 			    	    <!-- EN "NOMBRE" va el name de quien envia el menssaje -->
 		 			    	    <!--Nos falto lo del asunto -->
 		 			    		<p>Hola ${nombre}! Gracias por Registrarte en Sascha, ahora necesitas descargar nuestra aplicacion movil para disfrutar de nuestros servicios con un calificado grupo de nutricionistas.</p>
-		 			    		<p>Nombre de Usuario: ${nombre_usuario}</p>
 		 			    		<p>Correo: <a style="text-decoration:none;" href="">${correo}</a></p>
 		 			    		<p>Contraseña: ${contraseña}</p>
 		 			    		<h3 style="color:#3da3cb; font-family:arial">DESCARGAR</h3>
