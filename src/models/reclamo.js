@@ -19,8 +19,7 @@ let Reclamo = Bookshelf.Model.extend({
           .query({ where: { 'respuesta.estatus': 1 } });
   },
     cliente: function() {
-    return this.belongsTo(Cliente, 'id_cliente')
-          .query({ where: {} });
+    return this.belongsTo(Cliente, 'id_cliente');
   },
   ordenServicio: function() {
     return this.hasOne(OrdenServicio, 'id_orden_servicio')
