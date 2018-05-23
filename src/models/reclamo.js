@@ -4,6 +4,8 @@ const Bookshelf     = require('../commons/bookshelf');
 const OrdenServicio = require('./orden_servicio');
 const Respuesta     = require('./respuesta');
 const Motivo        = require('./motivo');
+const Cliente        = require('./cliente');
+
 
 let Reclamo = Bookshelf.Model.extend({
   tableName: 'reclamo',
@@ -15,6 +17,10 @@ let Reclamo = Bookshelf.Model.extend({
   respuesta: function() {
     return this.belongsTo(Respuesta, 'id_respuesta')
           .query({ where: { 'respuesta.estatus': 1 } });
+  },
+    cliente: function() {
+    return this.belongsTo(Cliente, 'id_cliente')
+          .query({ where: {} });
   },
   ordenServicio: function() {
     return this.hasOne(OrdenServicio, 'id_orden_servicio')
