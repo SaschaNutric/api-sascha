@@ -39,7 +39,7 @@ function getVisitas(req, res, next) {
 
 function saveVisita(req, res, next){
 	if (!req.body.id_agenda || !req.body.fecha || !req.body.id_cliente || 
-		!req.body.id_bloque_horario   || req.body.id_empleado          ||
+		!req.body.id_bloque_horario   || !req.body.id_empleado          ||
 		!req.body.fecha_atencion      || !req.body.perfil              ||
 		!req.body.regimen_suplementos || !req.body.regimen_dietas      ||
 		!req.body.regimen_ejercicios  || !req.body.id_tipo_cita)
