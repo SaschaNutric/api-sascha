@@ -34,7 +34,12 @@ function getReclamos(req, res, next) {
 function saveReclamo(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	Reclamo.forge({ id_motivo:req.body.id_motivo ,id_orden_servicio:req.body.id_orden_servicio ,id_respuesta:req.body.id_respuesta ,respuesta:req.body.respuesta  })
+	Reclamo.forge({ 
+		id_motivo:req.body.id_motivo ,
+		id_orden_servicio:req.body.id_orden_servicio ,
+		id_respuesta:req.body.id_respuesta ,
+		respuesta:req.body.respuesta  
+	})
 	.save()
 	.then(function(data){
 		res.status(200).json({

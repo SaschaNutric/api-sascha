@@ -658,6 +658,20 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 
 # reclamos
 
+```
+    ├─GET────/reclamos          * Retorna todos.
+    ├─POST───/reclamos          * Guarda. 
+    ├─GET────/reclamo/:id       * Retorna por id.
+    ├─PUT────/reclamo/:id       * Actualiza.
+    ├─DELETE─/reclamo/:id       * Elimina.
+    ├─Body─{ 
+        "id_motivo":0,
+        "id_orden_servicio":0,
+        "id_respuesta":0,
+        "respuesta":""
+    }
+```
+
 [[ver json]](https://api-sascha.herokuapp.com/reclamos)
 
 # regimenDietas
