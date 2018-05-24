@@ -131,24 +131,54 @@ function updateSlide(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ 
-			titulo:      req.body.titulo      || data.get('titulo'),
-			descripcion: req.body.descripcion || data.get('descripcion'),
-			orden:       req.body.orden       || data.get('orden'), 
-			url_imagen:  req.body.url_imagen  || data.get('url_imagen') 
-		})
-		.then(function() {
-			return res.status(200).json({ 
-				error: false, 
-				data: data
+		if (req.files.imagen && req.files.imagen.name != data.get('url_imagen').substr(65)) {
+			const imagen = req.files.imagen
+			cloudinary.uploader.upload(imagen.path, function(result) {
+				if (result.error) {
+					return res.status(500).json({
+						error: true,
+						data: { message: result.error }
+					});
+				}
+				data.save({ 
+					titulo:      req.body.titulo      || data.get('titulo'),
+					descripcion: req.body.descripcion || data.get('descripcion'),
+					orden:       req.body.orden       || data.get('orden'), 
+					url_imagen:  result.url
+				})
+				.then(function(data) {
+					return res.status(200).json({ 
+						error: false, 
+						data: data
+					});
+				})
+				.catch(function(err) {
+					return res.status(500).json({ 
+						error : true, 
+						data : { mensaje : err.message } 
+					});
+				})
 			});
-		})
-		.catch(function(err) {
-			return res.status(500).json({ 
-				error : true, 
-				data : { mensaje : err.message } 
-			});
-		})
+		} else {
+			data.save({ 
+				titulo:      req.body.titulo      || data.get('titulo'),
+				descripcion: req.body.descripcion || data.get('descripcion'),
+				orden:       req.body.orden       || data.get('orden'), 
+				url_imagen:  req.body.url_imagen  || data.get('url_imagen') 
+			})
+			.then(function (data) {
+				return res.status(200).json({
+					error: false,
+					data: data
+				});
+			})
+			.catch(function (err) {
+				return res.status(500).json({
+					error: true,
+					data: { mensaje: err.message }
+				});
+			})
+		}
 	})
 	.catch(function(err) {
 		return res.status(500).json({ 

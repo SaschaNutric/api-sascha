@@ -7,7 +7,8 @@ let Empleado = Bookshelf.Model.extend({
   tableName: 'empleado',
   idAttribute: 'id_empleado',
   horario: function(){
-    return this.hasMany('Horario_empleado', 'id_empleado');
+    return this.hasMany('Horario_empleado', 'id_empleado')
+    .query({ where: { 'horario_empleado.estatus': 1 } });
   }
 });
 

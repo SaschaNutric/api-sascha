@@ -13,22 +13,28 @@ let Servicio = Bookshelf.Model.extend({
   tableName: 'servicio',
   idAttribute: 'id_servicio', 
   plan_dieta: function() {
-    return this.belongsTo(PlanDieta, 'id_plan_dieta');
+    return this.belongsTo(PlanDieta, 'id_plan_dieta')
+          .query({ where: { 'plan_dieta.estatus': 1 } });
   },
   plan_ejercicio: function() {
-    return this.belongsTo(PlanEjercicio, 'id_plan_ejercicio');
+    return this.belongsTo(PlanEjercicio, 'id_plan_ejercicio')
+          .query({ where: { 'plan_ejercicio.estatus': 1 } });
   },
   plan_suplemento: function() {
-    return this.belongsTo(PlanSuplemento, 'id_plan_suplemento');
+    return this.belongsTo(PlanSuplemento, 'id_plan_suplemento')
+          .query({ where: { 'plan_suplemento.estatus': 1 } });
   },
   especialidad: function() {
-    return this.belongsTo(Especialidad, 'id_especialidad');
+    return this.belongsTo(Especialidad, 'id_especialidad')
+    .query({ where: { 'especialidad.estatus': 1 } });
   },
   parametros: function() {
-    return this.hasMany(ParametroServicio, 'id_servicio');
+    return this.hasMany(ParametroServicio, 'id_servicio')
+          .query({ where: { 'parametro_servicio.estatus': 1 } });
   },
   condiciones_garantia: function() {
-    return this.belongsToMany(Condicion_garantia, 'garantia_servicio', 'id_servicio', 'id_condicion_garantia');
+    return this.belongsToMany(Condicion_garantia, 'garantia_servicio', 'id_servicio', 'id_condicion_garantia')
+    .query({ where: { 'condicion_garantia.estatus': 1 } });
   }
 });
 

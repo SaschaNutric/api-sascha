@@ -7,7 +7,8 @@ let Suplemento = Bookshelf.Model.extend({
   tableName: 'suplemento',
   idAttribute: 'id_suplemento',
   unidad: function() {
-    return this.belongsTo(Unidad, 'id_unidad');
+    return this.belongsTo(Unidad, 'id_unidad')
+    			.query({ where: { 'unidad.estatus': 1 } });
   }
 });
 

@@ -9,9 +9,11 @@ let Regimen_dieta = Bookshelf.Model.extend({
   idAttribute: 'id_regimen_dieta',
   alimentos: function () {
     return this.belongsToMany(Alimento, 'detalle_regimen_alimento', 'id_regimen_dieta', 'id_alimento')
+    			.query({ where: { 'alimento.estatus': 1 } });
   },
   detalle: function () {
-    return this.belongsTo(DetallePlanDieta, 'id_detalle_plan_dieta');
+    return this.belongsTo(DetallePlanDieta, 'id_detalle_plan_dieta')
+    			.query({ where: { 'detalle_plan_dieta.estatus': 1 } });
   }
 });
 

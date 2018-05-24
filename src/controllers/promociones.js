@@ -198,27 +198,62 @@ function updatePromocion(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({
-			id_servicio: req.body.id_servicio || data.get('id_servicio'),
-			nombre: req.body.nombre || data.get('nombre'),
-			descripcion: req.body.descripcion || data.get('descripcion'),
-			descuento:   req.body.descuento   || data.get('descuento'),
-			id_genero: req.body.id_genero || data.get('id_genero'),
-			id_estado_civil: req.body.id_estado_civil || data.get('id_estado_civil'),
-			id_rango_edad: req.body.id_rango_edad || data.get('id_rango_edad')
-		})
-		.then(function(data) {
-			return res.status(200).json({ 
-				error: false, 
-				data: data 
+		if (req.files.imagen && req.files.imagen.name != data.get('url_imagen').substr(65)) {
+			const imagen = req.files.imagen
+			cloudinary.uploader.upload(imagen.path, function(result) {
+				if (result.error) {
+					return res.status(500).json({
+						error: true,
+						data: { message: result.error }
+					});
+				}
+				data.save({
+					id_servicio: 		req.body.id_servicio 		|| data.get('id_servicio'),
+					nombre: 	 		req.body.nombre 			|| data.get('nombre'),
+					descripcion: 		req.body.descripcion 		|| data.get('descripcion'),
+					descuento:   		req.body.descuento   		|| data.get('descuento'),
+					url_imagen:  		result.url, 
+					id_genero: 	 		req.body.id_genero 			|| data.get('id_genero'),
+					id_estado_civil: 	req.body.id_estado_civil 	|| data.get('id_estado_civil'),
+					id_rango_edad: 		req.body.id_rango_edad 		|| data.get('id_rango_edad')
+				})
+				.then(function(data) {
+					return res.status(200).json({ 
+						error: false, 
+						data: data
+					});
+				})
+				.catch(function(err) {
+					return res.status(500).json({ 
+						error : true, 
+						data : { mensaje : err.message } 
+					});
+				})
 			});
-		})
-		.catch(function(err) {
-			return res.status(500).json({ 
-				error : true, 
-				data : { mensaje : err.message } 
-			});
-		})
+		} else {
+			data.save({
+				id_servicio: 			req.body.id_servicio 		|| data.get('id_servicio'),
+				nombre: 				req.body.nombre 			|| data.get('nombre'),
+				descripcion: 			req.body.descripcion 		|| data.get('descripcion'),
+				descuento:   			req.body.descuento   		|| data.get('descuento'),
+				url_imagen:  			req.body.url_imagen   		|| data.get('url_imagen'),
+				id_genero: 				req.body.id_genero 			|| data.get('id_genero'),
+				id_estado_civil: 		req.body.id_estado_civil 	|| data.get('id_estado_civil'),
+				id_rango_edad: 			req.body.id_rango_edad 		|| data.get('id_rango_edad')
+			})
+			.then(function (data) {
+				return res.status(200).json({
+					error: false,
+					data: data
+				});
+			})
+			.catch(function (err) {
+				return res.status(500).json({
+					error: true,
+					data: { mensaje: err.message }
+				});
+			})
+		}
 	})
 	.catch(function(err) {
 		return res.status(500).json({ 

@@ -7,7 +7,8 @@ let Precio = Bookshelf.Model.extend({
   tableName: 'precio',
   idAttribute: 'id_precio',
   unidad: function() {
-    return this.belongsTo(Unidad, 'id_unidad');
+    return this.belongsTo(Unidad, 'id_unidad')
+    			.query({ where: { 'unidad.estatus': 1 } });
   }
 });
 

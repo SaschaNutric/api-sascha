@@ -8,8 +8,15 @@ function getReclamos(req, res, next) {
    		qb.where('reclamo.estatus', '=', 1);
 	})
 	.fetch({
-		withRelated: ['motivo', 'respuesta', 'ordenServicio'], 
-		columns: ['id_motivo','id_orden_servicio','id_respuesta', 'respuesta'] 
+		withRelated: [
+		'motivo', 
+		'respuesta', 
+		'ordenServicio',
+		'ordenServicio.solicitud',
+		'ordenServicio.solicitud.cliente',
+		'ordenServicio.solicitud.servicio',
+		'ordenServicio.solicitud.servicio.condiciones_garantia'
+		]
 	})
 	.then(function(data) {
 		if (!data)
@@ -17,10 +24,29 @@ function getReclamos(req, res, next) {
 				error: true, 
 				data: { mensaje: 'No hay dato registrados' } 
 			});
+		let arrayReclamos = data.toJSON();
+		let reclamos = [];
+		arrayReclamos.map(function(reclamo) {
+			console.log(reclamo);
+			reclamos.push({
+				id_reclamo: reclamo.id_reclamo,
+				id_motivo: reclamo.id_reclamo,
+				id_respuesta: reclamo.id_respuesta,
+				id_orden_servicio: reclamo.id_orden_servicio,
+				respuesta: reclamo.respuesta,
+				motivo: reclamo.motivo.descripcion,
+				fecha: reclamo.fecha_creacion,
+				id_servicio: reclamo.ordenServicio.solicitud.servicio.id_servicio,
+				servicio: reclamo.ordenServicio.solicitud.servicio.nombre,
+				condiciones_garantia : reclamo.ordenServicio.solicitud.servicio.condiciones_garantia,
+				id_cliente: reclamo.ordenServicio.solicitud.cliente.id_cliente,
+				cliente: reclamo.ordenServicio.solicitud.cliente.nombres,
+			});
+		});
 
 		return res.status(200).json({
 			error: false,
-			data: data
+			data: reclamos
 		});
 	})
 	.catch(function (err) {
@@ -34,7 +60,12 @@ function getReclamos(req, res, next) {
 function saveReclamo(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	Reclamo.forge({ id_motivo:req.body.id_motivo ,id_orden_servicio:req.body.id_orden_servicio ,id_respuesta:req.body.id_respuesta ,respuesta:req.body.respuesta  })
+	Reclamo.forge({ 
+		id_motivo:req.body.id_motivo ,
+		id_orden_servicio:req.body.id_orden_servicio ,
+		id_respuesta:req.body.id_respuesta || null,
+		respuesta:req.body.respuesta || null 
+	})
 	.save()
 	.then(function(data){
 		res.status(200).json({
@@ -59,7 +90,7 @@ function getReclamoById(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 
-	Reclamo.forge({ id_reclamo })
+	Reclamo.forge({ id_reclamo: id, estatus : 1 })
 	.fetch({
 		withRelated: ['motivo', 'respuesta', 'ordenServicio'],
 		columns: ['id_motivo', 'id_orden_servicio', 'id_respuesta', 'respuesta'] 
@@ -92,7 +123,7 @@ function updateReclamo(req, res, next) {
 		});
 	}
 
-	Reclamo.forge({ id_reclamo })
+	Reclamo.forge({ id_reclamo: id, estatus:1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 

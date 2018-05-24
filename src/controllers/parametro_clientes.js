@@ -23,17 +23,20 @@ function getParametro_clientes(req, res, next) {
 			let parametro_cliente = data.toJSON();
 			let perfiles = []
 			parametro_cliente.map(function (perfil) {
-				let parametro_perfil = {
-					id_parametro_cliente : perfil.id_parametro_cliente,
-					id_cliente: perfil.id_cliente,
-					parametro: {
-						id_parametro: perfil.id_parametro,
-						nombre: perfil.parametro.nombre,
-						tipo_parametro: perfil.parametro.tipo_parametro.nombre,
-					},
-					valor: perfil.valor
+				if (JSON.stringify(perfil.parametro) != '{}') {
+					let parametro_perfil = {
+						id_parametro_cliente : perfil.id_parametro_cliente,
+						id_cliente: perfil.id_cliente,
+						parametro: {
+							id_parametro: perfil.id_parametro,
+							nombre: perfil.parametro.nombre,
+							tipo_parametro: perfil.parametro.tipo_parametro.nombre,
+						},
+						valor: perfil.valor,
+						unidad: perfil.parametro.unidad ? perfil.parametro.unidad.abreviatura : ''
+					}
+					perfiles.push(parametro_perfil)
 				}
-				perfiles.push(parametro_perfil)
 			})
 			return res.status(200).json({
 				error: false,
@@ -47,6 +50,68 @@ function getParametro_clientes(req, res, next) {
 			});
 		});
 }
+
+function getParametro_clientesByIdCliente(req, res, next) {
+	console.log(req.params)
+	const id = Number.parseInt(req.params.id_cliente);
+	if (!id || id == 'NaN')
+		return res.status(400).json({
+			error: true,
+			data: { mensaje: 'Solicitud incorrecta' }
+		});
+
+	Parametro_clientes.query(function (qb) {
+		qb.where('parametro_cliente.estatus', '=', 1);
+		qb.where('parametro_cliente.id_cliente', '=', id);
+	})
+		.fetch({
+			withRelated: [
+				'parametro',
+				'parametro.tipo_parametro',
+				'parametro.unidad'
+			]
+		})
+		.then(function (data) {
+			if (!data)
+				return res.status(404).json({
+					error: true,
+					data: { mensaje: 'No hay dato registrados' }
+				});
+			let parametro_cliente = data.toJSON();
+			let perfiles = []
+			parametro_cliente.map(function (perfil) {
+				if (JSON.stringify(perfil.parametro) != '{}') {
+					let abreviatura = '';
+					if (perfil.parametro.id_unidad != null) {
+						abreviatura = perfil.parametro.unidad.abreviatura;
+					}
+					let parametro_perfil = {
+						id_parametro_cliente : perfil.id_parametro_cliente,
+						id_cliente: perfil.id_cliente,
+						parametro: {
+							id_parametro: perfil.id_parametro,
+							nombre: perfil.parametro.nombre,
+							tipo_parametro: perfil.parametro.tipo_parametro.nombre,
+						},
+						valor: perfil.valor,
+						unidad: abreviatura
+					}
+					perfiles.push(parametro_perfil)
+				}
+			})
+			return res.status(200).json({
+				error: false,
+				data: perfiles
+			});
+		})
+		.catch(function (err) {
+			return res.status(500).json({
+				error: true,
+				data: { mensaje: err.message }
+			});
+		});
+}
+
 
 function saveParametro_cliente(req, res, next) {
 	console.log(JSON.stringify(req.body));
@@ -204,6 +269,7 @@ function deleteParametro_cliente(req, res, next) {
 
 module.exports = {
 	getParametro_clientes,
+	getParametro_clientesByIdCliente,
 	saveParametro_cliente,
 	getParametro_clienteById,
 	updateParametro_cliente,

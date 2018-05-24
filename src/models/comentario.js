@@ -9,13 +9,16 @@ let Comentario = Bookshelf.Model.extend({
   tableName: 'comentario',
   idAttribute: 'id_comentario',
   cliente: function() { 
-    return this.belongsTo( Cliente, 'id_cliente' ); 
+    return this.belongsTo( Cliente, 'id_cliente' )
+          .query({ where: { 'cliente.estatus': 1 } }); 
   },
   respuesta: function() { 
-    return this.belongsTo( Respuesta, 'id_respuesta' ); 
+    return this.belongsTo( Respuesta, 'id_respuesta' )
+          .query({ where: { 'respuesta.estatus': 1 } }); 
   },
   motivo: function() { 
-    return this.belongsTo( Motivo, 'id_motivo' ); 
+    return this.belongsTo( Motivo, 'id_motivo' )
+          .query({ where: { 'motivo.estatus': 1 } }); 
   }
 });
 

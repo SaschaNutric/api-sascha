@@ -6,7 +6,8 @@ let ViewCliente = Bookshelf.Model.extend({
 	tableName: 'vista_cliente',
 	idAttribute: 'id_cliente',
 	perfil: function () {
-		return this.hasMany('Parametro_cliente', 'id_cliente');
+		return this.hasMany('Parametro_cliente', 'id_cliente')
+    	.query({ where: { 'parametro_cliente.estatus': 1 } });
 	}
 });
 
