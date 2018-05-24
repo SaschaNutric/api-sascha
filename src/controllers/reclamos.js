@@ -14,7 +14,8 @@ function getReclamos(req, res, next) {
 		'ordenServicio',
 		'ordenServicio.solicitud',
 		'ordenServicio.solicitud.cliente',
-		'ordenServicio.solicitud.servicio'
+		'ordenServicio.solicitud.servicio',
+		'ordenServicio.solicitud.servicio.condiciones_garantia'
 		]
 	})
 	.then(function(data) {
@@ -37,8 +38,9 @@ function getReclamos(req, res, next) {
 				fecha: reclamo.fecha_creacion,
 				id_servicio: reclamo.ordenServicio.solicitud.servicio.id_servicio,
 				servicio: reclamo.ordenServicio.solicitud.servicio.nombre,
+				condiciones_garantia : reclamo.ordenServicio.solicitud.servicio.condiciones_garantia,
 				id_cliente: reclamo.ordenServicio.solicitud.cliente.id_cliente,
-				cliente: reclamo.ordenServicio.solicitud.cliente.nombres
+				cliente: reclamo.ordenServicio.solicitud.cliente.nombres,
 			});
 		});
 
