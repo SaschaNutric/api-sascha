@@ -63,7 +63,7 @@ function saveReclamo(req, res, next){
 	Reclamo.forge({ 
 		id_motivo:req.body.id_motivo ,
 		id_orden_servicio:req.body.id_orden_servicio ,
-		id_respuesta:req.body.id_respuesta ,
+		id_respuesta:req.body.id_respuesta || null,
 		respuesta:req.body.respuesta || null 
 	})
 	.save()
