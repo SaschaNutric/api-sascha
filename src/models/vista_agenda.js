@@ -1,11 +1,11 @@
 'use strict'
 
-const Bookshelf = require('../commons/bookshelf');
-const Servicio  = require('./servicio');
-const ParametroCliente = require('./parametro_cliente');
-const ParametroMeta = require('./parametro_meta');
-const RegimenDieta  = require('./regimen_dieta');
-const RegimenSuplemento  = require('./regimen_suplemento');
+const Bookshelf         = require('../commons/bookshelf');
+const Servicio          = require('./servicio');
+const ParametroCliente  = require('./parametro_cliente');
+const ParametroMeta     = require('./parametro_meta');
+const RegimenDieta      = require('./regimen_dieta');
+const RegimenSuplemento = require('./regimen_suplemento');
 const RegimenEjercicio  = require('./regimen_ejercicio');
 
 let VistaAgenda = Bookshelf.Model.extend({

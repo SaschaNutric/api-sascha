@@ -14,7 +14,7 @@ let Regimen_suplemento = Bookshelf.Model.extend({
   frecuencia: function () {
     return this.belongsTo(Frecuencia, 'id_frecuencia')
     			.query({ where: { 'frecuencia.estatus': 1 } });
-  }
+  },
 });
 
 module.exports = Bookshelf.model('Regimen_suplemento', Regimen_suplemento);
