@@ -2516,7 +2516,7 @@ FROM agenda a
     JOIN tipo_cita e ON d.id_tipo_cita = e.id_tipo_cita
     JOIN bloque_horario f ON d.id_bloque_horario = f.id_bloque_horario
     JOIN empleado i ON i.id_empleado = a.id_empleado
-    JOIN visita j ON j.id_agenda = a.id_agenda
+    LEFT JOIN visita j ON j.id_agenda = a.id_agenda
 WHERE a.estatus = 1 
     AND b.estatus = 1 
     AND c.estatus = 1 
@@ -2524,8 +2524,30 @@ WHERE a.estatus = 1
     AND g.estatus = 1 
     AND g.estado = 1
     AND i.estatus = 1
-    AND j.estatus = 1;
 ALTER TABLE vista_agenda OWNER TO byqkxhkjgnspco;
+
+
+CREATE VIEW vista_visita AS 
+    SELECT a.id_visita,
+    a.numero,
+    a.fecha_atencion,
+    b.id_agenda,
+    e.id_empleado,
+    e.nombres || ' ' || e.apellidos AS nombre_empleado,
+    h.id_servicio,
+    h.nombre AS nombre_servicio,
+    h.numero_visitas,
+    c.id_cliente,
+    d.id_orden_servicio
+    FROM visita a 
+    JOIN agenda b ON b.id_agenda = a.id_agenda
+    JOIN cliente c ON c.id_cliente = b.id_cliente
+    JOIN orden_servicio d ON d.id_orden_servicio = b.id_orden_servicio
+    JOIN empleado e ON e.id_empleado = b.id_empleado
+    JOIN solicitud_servicio g ON g.id_solicitud_servicio = d.id_solicitud_servicio
+    JOIN servicio h ON h.id_servicio = g.id_servicio
+    WHERE a.estatus = 1 AND b.estatus = 1 AND c.estatus = 1;
+ALTER TABLE vista_visita OWNER TO byqkxhkjgnspco;
 
 CREATE VIEW vista_frecuencia AS
 	SELECT a.id_frecuencia,

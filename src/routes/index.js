@@ -37,6 +37,7 @@ const negociosCtrl                = require('../controllers/negocios');
 const ordenServiciosCtrl          = require('../controllers/orden_servicios');
 const parametrosCtrl              = require('../controllers/parametros');
 const parametroClientesCtrl       = require('../controllers/parametro_clientes');
+const parametroMetasCtrl          = require('../controllers/parametros_meta');
 const parametroPromocionesCtrl    = require('../controllers/parametro_promociones');
 const parametroServiciosCtrl      = require('../controllers/parametro_servicios');
 const plan_dietasCtrl             = require('../controllers/plan_dietas');
@@ -327,6 +328,10 @@ module.exports = (function () {
   api.put('/parametrocliente/:id',           parametroClientesCtrl.updateParametro_cliente);
   api.delete('/parametrocliente/:id',        parametroClientesCtrl.deleteParametro_cliente);
 
+  api.post('/parametrometas',                parametroMetasCtrl.saveParametroMeta);
+  api.put('/parametrometa/:id',             parametroMetasCtrl.updateParametroMeta);
+  api.delete('/parametrometa/:id',          parametroMetasCtrl.deleteParametroMeta);
+
   api.get('/parametropromociones',               parametroPromocionesCtrl.getParametro_promociones);
   api.get('/parametros/promocion/:id_promocion', parametroPromocionesCtrl.getParametrosByPromocion);  
   api.post('/parametropromociones',              parametroPromocionesCtrl.saveParametro_promocion);
@@ -560,7 +565,7 @@ module.exports = (function () {
   api.put('/valoracion/:id',                 valoracionesCtrl.updateValoracion);
   api.delete('/valoracion/:id',              valoracionesCtrl.deleteValoracion);  
 
-  api.get('/visitas',                        visitasCtrl.getVisitas);
+  api.post('/cliente/visitas',                visitasCtrl.getVisitasByClienteAndOrden);
   api.post('/visitas',                       visitasCtrl.saveVisita);
   api.get('/visita/:id',                     visitasCtrl.getVisitaById);  
   api.put('/visita/:id',                     visitasCtrl.updateVisita);
