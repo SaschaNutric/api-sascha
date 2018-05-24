@@ -90,7 +90,7 @@ function getReclamoById(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 
-	Reclamo.forge({ id_reclamo })
+	Reclamo.forge({ id_reclamo: id, estatus : 1 })
 	.fetch({
 		withRelated: ['motivo', 'respuesta', 'ordenServicio'],
 		columns: ['id_motivo', 'id_orden_servicio', 'id_respuesta', 'respuesta'] 
@@ -123,7 +123,7 @@ function updateReclamo(req, res, next) {
 		});
 	}
 
-	Reclamo.forge({ id_reclamo })
+	Reclamo.forge({ id_reclamo: id, estatus:1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 
