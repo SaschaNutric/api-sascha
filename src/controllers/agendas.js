@@ -670,6 +670,292 @@ function getAgendaPorCliente(req, res, next) {
 	});
 }
 
+
+function getMiServicios(req, res, next) {
+	const id = Number.parseInt(req.params.id_cliente);
+	if (!id || id == 'NaN') 
+		return res.status(400).json({ 
+			error: true, 
+			data: { mensaje: 'Solicitud incorrecta' } 
+		});
+	VistaAgendas.query(function (qb) {
+		qb.where('id_cliente', '=', id);
+		qb.orderBy('fecha_creacion','ASC'); 
+	})
+	.fetch({
+		withRelated: [
+			'perfil',
+			'perfil.parametro',
+			'perfil.parametro.tipo_parametro',			
+			'perfil.parametro.unidad',
+			'regimen_dieta',
+			'regimen_dieta.alimentos',
+			'regimen_dieta.detalle',		
+			'regimen_suplemento',
+			'regimen_suplemento.suplemento',
+			'regimen_ejercicio',
+			'regimen_ejercicio.ejercicio',
+			'metas',
+			'metas.parametro',
+			'metas.parametro.tipo_parametro',			
+			'metas.parametro.unidad',
+			'servicio',
+			'servicio.plan_dieta',
+			'servicio.plan_dieta.tipo_dieta',
+			'servicio.plan_dieta.detalle.comida',
+			'servicio.plan_dieta.detalle.grupoAlimenticio',
+			'servicio.plan_dieta.detalle.grupoAlimenticio.unidad',			
+			'servicio.plan_ejercicio',
+			'servicio.plan_ejercicio.ejercicios',
+			'servicio.plan_suplemento',
+			'servicio.plan_suplemento.suplementos',
+			'servicio.plan_suplemento.suplementos.unidad',
+			'servicio.especialidad',
+		]
+	})
+	.then(function(data) {
+		if (!data)
+			return res.status(404).json({
+				error: true,
+				data: { mensaje: 'Agenda no encontrada' }
+			});
+		let agendas = data.toJSON();
+		let visitas_realizadas = [];
+		
+		let agenda = agendas[0];
+		let metas = [];
+		agenda.metas.map(function(meta) {
+			if (JSON.stringify(meta.parametro) != '{}') {
+				metas.push({
+					id_parametro_meta: meta.id_parametro_meta,
+					id_parametro: meta.id_parametro,
+					parametro: meta.parametro.nombre,
+					valor_minimo: meta.valor_minimo,
+					valor_maximo: meta.valor_maximo,
+					tipo_parametro: meta.parametro.tipo_parametro.nombre,
+					unidad: meta.parametro.unidad.nombre,
+					unidad_abreviatura: meta.parametro.unidad.abreviatura
+				});
+			}
+		});
+		let perfil = [];
+		agenda.perfil.map(function(parametro) {
+			if(parametro.parametro.estatus ==1)
+			perfil.push({
+				id_parametro_cliente: parametro.id_parametro_cliente,
+				id_parametro: parametro.id_parametro,
+				parametro: parametro.parametro.nombre,
+				valor: parametro.valor,
+				tipo_valor: parametro.parametro.tipo_valor,
+				tipo_parametro: parametro.parametro.tipo_parametro.nombre,
+				unidad: parametro.parametro.unidad ? parametro.parametro.unidad.nombre : null ,
+				unidad_abreviatura: parametro.parametro.unidad ? parametro.parametro.unidad.abreviatura : null
+			});
+		});
+		let comidasPlanDieta = [];
+		agenda.servicio.plan_dieta.detalle.map(function (comida) {
+			let index = comidasPlanDieta.map(function (comidaAsignada) {
+											return comidaAsignada.id_comida;
+										})
+										.indexOf(comida.id_comida);
+			if (index == -1) {	
+				let regimenIndex = agenda.regimen_dieta.map(function (regimen) {
+					return regimen.id_detalle_plan_dieta 
+				})
+				.indexOf(comida.id_detalle_plan_dieta); 
+				
+				if (regimenIndex == -1) {
+					comidasPlanDieta.push({
+						id_comida: comida.comida.id_comida,
+						nombre: comida.comida.nombre,
+						grupos_alimenticios: [{
+							id_detalle_plan_dieta: comida.id_detalle_plan_dieta,
+							id_grupo_alimenticio: comida.grupoAlimenticio.id_grupo_alimenticio,
+							nombre: comida.grupoAlimenticio.nombre,
+							//cantidad: regimen.cantidad,
+							//alimentos: alimentos,
+							unidad: comida.grupoAlimenticio.unidad.nombre,
+							unidad_abreviatura: comida.grupoAlimenticio.unidad.abreviatura
+						}]
+					})
+				}
+				else {
+					let alimentos = [];
+					agenda.regimen_dieta[regimenIndex].alimentos.map(function (alimento) {
+						alimentos.push({
+							id_alimento: alimento.id_alimento,
+							nombre: alimento.nombre
+						})
+					})
+					comidasPlanDieta.push({
+						id_comida: comida.comida.id_comida,
+						nombre: comida.comida.nombre,
+						grupos_alimenticios: [{
+							id_detalle_plan_dieta: comida.id_detalle_plan_dieta,
+							id_grupo_alimenticio: comida.grupoAlimenticio.id_grupo_alimenticio,
+							nombre: comida.grupoAlimenticio.nombre,
+							cantidad: agenda.regimen_dieta[regimenIndex].cantidad,
+							alimentos: alimentos,
+							unidad: comida.grupoAlimenticio.unidad.nombre,
+							unidad_abreviatura: comida.grupoAlimenticio.unidad.abreviatura
+						}]
+					})
+				}
+			}
+			else {
+				let regimenIndex = agenda.regimen_dieta.map(function (regimen) {
+					return regimen.id_detalle_plan_dieta
+				})
+				.indexOf(comida.id_detalle_plan_dieta);
+
+				if (regimenIndex == -1) { 
+					comidasPlanDieta[index].grupos_alimenticios.push({
+						id_detalle_plan_dieta: comida.id_detalle_plan_dieta,
+						id_grupo_alimenticio: comida.grupoAlimenticio.id_grupo_alimenticio,
+						nombre: comida.grupoAlimenticio.nombre,
+						//cantidad: regimen.cantidad,
+						//alimentos: alimentos,
+						unidad: comida.grupoAlimenticio.unidad.nombre,
+						unidad_abreviatura: comida.grupoAlimenticio.unidad.abreviatura
+					})
+				}
+				else {
+					let alimentos = [];
+					agenda.regimen_dieta[regimenIndex].alimentos.map(function (alimento) {
+						alimentos.push({
+							id_alimento: alimento.id_alimento,
+							nombre: alimento.nombre
+						})
+					});
+					comidasPlanDieta[index].grupos_alimenticios.push({
+						id_detalle_plan_dieta: comida.id_detalle_plan_dieta,
+						id_grupo_alimenticio: comida.grupoAlimenticio.id_grupo_alimenticio,
+						nombre: comida.grupoAlimenticio.nombre,
+						cantidad: agenda.regimen_dieta[regimenIndex].cantidad,
+						alimentos: alimentos,
+						unidad: comida.grupoAlimenticio.unidad.nombre,
+						unidad_abreviatura: comida.grupoAlimenticio.unidad.abreviatura
+					})
+				}
+			}
+		})
+
+		let ejercicios = [];
+		agenda.servicio.plan_ejercicio.ejercicios.map(function(ejercicio) {
+			let ejercicioIndex = agenda.regimen_ejercicio.map(function(regimen) {
+				return regimen.id_ejercicio
+			})
+			.indexOf(ejercicio.id_ejercicio);
+			
+			if(ejercicioIndex == -1) {
+				ejercicios.push({
+					id_ejercicio: ejercicio.id_ejercicio,
+					//id_tiempo: regimen.id_tiempo,
+					//duracion: regimen.duracion,
+					nombre: ejercicio.nombre
+				})
+			}
+			else {
+				ejercicios.push({
+					id_ejercicio: ejercicio.id_ejercicio,
+					nombre: ejercicio.nombre,
+					descripcion: ejercicio.descripcion,
+					id_tiempo: agenda.regimen_ejercicio[ejercicioIndex].id_tiempo,
+					tiempo: agenda.regimen_ejercicio[ejercicioIndex].nombre,
+					tiempo_abreviatura: agenda.regimen_ejercicio[ejercicioIndex].abreviatura,
+					frecuencia: agenda.regimen_ejercicio[ejercicioIndex].id_frecuencia,
+					duracion: agenda.regimen_ejercicio[ejercicioIndex].duracion
+				});
+			}
+		});
+		let suplementos = [];
+		agenda.servicio.plan_suplemento.suplementos.map(function (suplemento) {
+			let suplementoIndex = agenda.regimen_suplemento.map(function (regimen) {
+				return regimen.id_suplemento
+			})
+			.indexOf(suplemento.id_suplemento);
+			
+			if(suplementoIndex == -1) {
+				suplementos.push({
+					id_suplemento: suplemento.id_suplemento,
+					nombre: suplemento.nombre,
+					//frecuencia: regimen.id_frecuencia,
+					//cantidad: regimen.cantidad,
+					unidad: suplemento.unidad.nombre,
+					unidad_abreviatura: suplemento.unidad.abreviatura
+				})
+			}
+			else {
+				suplementos.push({
+					id_suplemento: suplemento.id_suplemento,
+					nombre: suplemento.nombre,
+					frecuencia: agenda.regimen_suplemento[suplementoIndex].id_frecuencia,
+					cantidad: agenda.regimen_suplemento[suplementoIndex].cantidad,
+					unidad: suplemento.unidad.nombre,
+					unidad_abreviatura: suplemento.unidad.abreviatura
+				})
+			}
+			
+		});
+		let nuevaAgenda = {
+			id_agenda:    agenda.id_agenda,
+			id_visita:    agenda.id_visita,
+			id_tipo_cita: agenda.id_tipo_cita,
+			tipo_cita:    agenda.tipo_cita,
+			fecha:       JSON.stringify(agenda.fecha).substr(1,10),
+			hora_inicio: JSON.stringify(agenda.hora_inicio).substr(1,5),
+			hora_fin:    JSON.stringify(agenda.hora_fin).substr(1,5),
+			cliente: {
+				id_cliente: agenda.id_cliente,
+				nombre_completo: agenda.nombre_cliente,
+				direccion: agenda.direccion_cliente,
+				telefono: agenda.telefono_cliente,
+				edad: agenda.edad_cliente,
+				fecha_nacimiento: JSON.stringify(agenda.fecha_nacimiento_cliente).substr(1,10),
+				perfil: perfil
+			},
+			orden_servicio: {
+				id_orden_servicio: agenda.id_orden_servicio,
+				visitas_realizadas: agenda.visitas_realizadas,
+				metas: metas,
+				servicio: {
+					id_servicio: agenda.id_servicio,
+					nombre: agenda.nombre_servicio,
+					numero_visitas: agenda.duracion_servicio,
+					especialidad: agenda.servicio.especialidad.nombre,
+					plan_dieta: {
+						id_plan_dieta: agenda.servicio.plan_dieta.id_plan_dieta,
+						nombre: agenda.servicio.plan_dieta.nombre,
+						tipo_dieta: agenda.servicio.plan_dieta.tipo_dieta.nombre,
+						comidas: comidasPlanDieta
+					},
+					plan_ejercicio: agenda.servicio.plan_ejercicio? {
+						id_plan_ejercicio: agenda.servicio.plan_ejercicio.id_plan_ejercicio,
+						nombre: agenda.servicio.plan_ejercicio.nombre,
+						ejercicios: ejercicios
+					}:null,
+					plan_suplemento: agenda.servicio.plan_suplemento?{
+						id_plan_suplemento: agenda.servicio.plan_suplemento.id_plan_suplemento,
+						nombre: agenda.servicio.plan_suplemento.nombre,
+						suplementos: suplementos
+					}:null
+				}
+			}
+		}
+
+		return res.status(200).json({ 
+			error: false, 
+			data:  nuevaAgenda 
+		});
+	})
+	.catch(function(err){
+		return res.status(500).json({ 
+			error: false, 
+			data: { mensaje: err.message } 
+		})
+	});
+}
+
 function updateAgenda(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') {

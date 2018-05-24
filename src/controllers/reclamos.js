@@ -8,8 +8,14 @@ function getReclamos(req, res, next) {
    		qb.where('reclamo.estatus', '=', 1);
 	})
 	.fetch({
-		withRelated: ['motivo', 'respuesta', 'ordenServicio'], 
-		columns: ['id_motivo','id_orden_servicio','id_respuesta', 'respuesta', 'fecha_creacion'] 
+		withRelated: [
+		'motivo', 
+		'respuesta', 
+		'ordenServicio',
+		'ordenServicio.solicitud',
+		'ordenServicio.solicitud.cliente',
+		'ordenServicio.solicitud.servicio'
+		]
 	})
 	.then(function(data) {
 		if (!data)
@@ -17,10 +23,28 @@ function getReclamos(req, res, next) {
 				error: true, 
 				data: { mensaje: 'No hay dato registrados' } 
 			});
+		let arrayReclamos = data.toJSON();
+		let reclamos = [];
+		arrayReclamos.map(function(reclamo) {
+			console.log(reclamo);
+			reclamos.push({
+				id_reclamo: reclamo.id_reclamo,
+				id_motivo: reclamo.id_reclamo,
+				id_respuesta: reclamo.id_respuesta,
+				id_orden_servicio: reclamo.id_orden_servicio,
+				respuesta: reclamo.respuesta,
+				motivo: reclamo.motivo.descripcion,
+				fecha: reclamo.fecha_creacion,
+				id_servicio: reclamo.ordenServicio.solicitud.servicio.id_servicio,
+				servicio: reclamo.ordenServicio.solicitud.servicio.nombre,
+				id_cliente: reclamo.ordenServicio.solicitud.cliente.id_cliente,
+				cliente: reclamo.ordenServicio.solicitud.cliente.nombres
+			});
+		});
 
 		return res.status(200).json({
 			error: false,
-			data: data
+			data: reclamos
 		});
 	})
 	.catch(function (err) {
