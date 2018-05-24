@@ -2,6 +2,7 @@
 
 const Visitas 	= require('../collections/visitas');
 const Visita  	= require('../models/visita');
+const VistaVisita    = require('../models/vista_visita');
 const Bookshelf = require('../commons/bookshelf');
 const Bluebird  = require('bluebird');
 const Empleado  = require('../models/empleado');
@@ -14,19 +15,52 @@ const RegimenEjercicios  = require('../collections/regimen_ejercicios');
 const RegimenDietas      = require('../collections/regimen_dietas');
 const DetalleRegimenAlimentos = require('../collections/detalle_regimen_alimentos');
 
-function getVisitas(req, res, next) {
-	Visitas.query({})
-	.fetch({ columns: ['id_visita','numero','fecha_atencion'] })
+function getVisitasByClienteAndOrden(req, res, next) {
+	VistaVisita.query(function (qb) {
+		qb.where('id_cliente', '=', req.body.id_cliente);
+		qb.where('id_orden_servicio', '=', req.body.id_orden_servicio);
+		qb.orderBy('numero');
+	})
+	.fetchAll({ withRelated: ['parametros', 'parametros.parametro', 'parametros.parametro.unidad' ]})
 	.then(function(data) {
-		if (!data)
+		let nuevaData = data.toJSON()
+		let visitas = [];
+		nuevaData.map(function (visita) {
+			let parametros = [];
+			visita.parametros.map(function (parametro) {
+				parametros.push({
+					id_parametro: parametro.id_parametro,
+					nombre: parametro.parametro.nombre,
+					valor: parametro.valor,
+					tipo_valor: parametro.parametro.tipo_valor,
+					unidad: parametro.parametro.unidad ? parametro.parametro.unidad.nombre : null,
+					unidad_abreviatura: parametro.parametro.unidad ? parametro.parametro.unidad.abreviatura : null
+				})
+			})
+			visitas.push({
+				id_visita:         visita.id_visita,
+				numero:            visita.numero,
+				fecha_atencion:    JSON.stringify(visita.fecha_atencion).substr(1, 10),
+				id_servicio:       visita.id_servicio,
+				nombre_servicio:   visita.nombre_servicio,
+				numero_visitas:    visita.numero_visitas,
+				id_empleado:       visita.id_empleado,
+				nombre_empleado:   visita.nombre_empleado,
+				id_cliente:        visita.id_cliente,
+				id_orden_servicio: visita.id_orden_servicio,
+				id_agenda:         visita.id_agenda,
+				parametros:        parametros
+			})
+		})
+		if (visitas.length == 0)
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'No hay dato registrados' } 
+				data: { mensaje: 'No hay visitas registradas' } 
 			});
 
 		return res.status(200).json({
 			error: false,
-			data: data
+			data: visitas
 		});
 	})
 	.catch(function (err) {
@@ -355,7 +389,7 @@ function deleteVisita(req, res, next) {
 }
 
 module.exports = {
-	getVisitas,
+	getVisitasByClienteAndOrden,
 	saveVisita,
 	getVisitaById,
 	updateVisita,
