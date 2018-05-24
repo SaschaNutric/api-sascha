@@ -5,7 +5,8 @@ const Reclamo  	= require('../models/reclamo');
 
 function getReclamos(req, res, next) {
 	Reclamos.query(function (qb) {
-   		qb.where('reclamo.estatus', '=', 1);
+		   qb.where('reclamo.estatus', '=', 1);
+		   qb.whereNull('reclamo.id_respuesta');
 	})
 	.fetch({
 		withRelated: [
