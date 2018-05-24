@@ -9,7 +9,7 @@ function getReclamos(req, res, next) {
 	})
 	.fetch({
 		withRelated: ['motivo', 'respuesta', 'ordenServicio'], 
-		columns: ['id_motivo','id_orden_servicio','id_respuesta', 'respuesta'] 
+		columns: ['id_motivo','id_orden_servicio','id_respuesta', 'respuesta', 'fecha_creacion'] 
 	})
 	.then(function(data) {
 		if (!data)
@@ -38,7 +38,7 @@ function saveReclamo(req, res, next){
 		id_motivo:req.body.id_motivo ,
 		id_orden_servicio:req.body.id_orden_servicio ,
 		id_respuesta:req.body.id_respuesta ,
-		respuesta:req.body.respuesta  
+		respuesta:req.body.respuesta || null 
 	})
 	.save()
 	.then(function(data){
