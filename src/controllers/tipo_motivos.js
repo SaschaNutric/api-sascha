@@ -143,7 +143,7 @@ function getTipoMotivosReclamo(req, res, next) {
 				error: true,
 				data: { mensaje: 'No hay datos registrados' }
 			});
-		let tipoMotivos = [];
+		let tipoMotivos = {};
 		data.toJSON().map(function (tipoMotivo) {
 			let motivos = [];
 			tipoMotivo.motivos.map(function (motivo) {
@@ -154,11 +154,11 @@ function getTipoMotivosReclamo(req, res, next) {
 					})
 				}
 			});
-			tipoMotivos.push({
+			tipoMotivos = {
 				id_tipo_motivo: tipoMotivo.id_tipo_motivo,
 				nombre: tipoMotivo.nombre.trim(),
 				motivos: motivos
-			})
+			};
 		});
 		return res.status(200).json({
 			error: false,
