@@ -28,11 +28,10 @@ function getReclamos(req, res, next) {
 		let reclamos = [];
 
 		arrayReclamos.map(function(reclamo) {
-			
 			if (JSON.stringify(reclamo.ordenServicio)!= '{}') {
 				reclamos.push({
 					id_reclamo: reclamo.id_reclamo,
-					id_motivo: reclamo.id_reclamo,
+					id_motivo: reclamo.id_motivo,
 					id_respuesta: reclamo.id_respuesta,
 					id_orden_servicio: reclamo.id_orden_servicio,
 					respuesta: reclamo.respuesta,

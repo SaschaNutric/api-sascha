@@ -131,6 +131,48 @@ function getTipoMotivosSinSolicitud(req, res, next) {
 	});
 }
 
+function getTipoMotivosReclamo(req, res, next) {
+	TipoMotivos.query(function (qb) {
+		qb.where('tipo_motivo.nombre', '=', 'Reclamo');
+		qb.where('tipo_motivo.estatus', '=', 1);
+	})
+	.fetch({ withRelated: ['motivos'] })
+	.then(function (data) {
+		if (!data)
+			return res.status(404).json({
+				error: true,
+				data: { mensaje: 'No hay datos registrados' }
+			});
+		let tipoMotivos = [];
+		data.toJSON().map(function (tipoMotivo) {
+			let motivos = [];
+			tipoMotivo.motivos.map(function (motivo) {
+				if (motivo.estatus == 1) {
+					motivos.push({
+						id_motivo: motivo.id_motivo,
+						descripcion: motivo.descripcion
+					})
+				}
+			});
+			tipoMotivos.push({
+				id_tipo_motivo: tipoMotivo.id_tipo_motivo,
+				nombre: tipoMotivo.nombre.trim(),
+				motivos: motivos
+			})
+		});
+		return res.status(200).json({
+			error: false,
+			data: tipoMotivos
+		});
+	})
+	.catch(function (err) {
+		return res.status(500).json({
+			error: true,
+			data: { mensaje: err.message }
+		});
+	});
+}
+
 function saveTipoMotivo(req, res, next){
 	console.log(JSON.stringify(req.body));
 
@@ -269,5 +311,6 @@ module.exports = {
 	updateTipoMotivo,
 	deleteTipoMotivo,
 	getTipoMotivosCanalEscucha,
-	getTipoMotivosSinSolicitud
+	getTipoMotivosSinSolicitud,
+	getTipoMotivosReclamo
 }
