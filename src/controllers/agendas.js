@@ -405,8 +405,10 @@ function getAgendaPorCliente(req, res, next) {
 			'regimen_dieta',
 			'regimen_dieta.alimentos',
 			'regimen_dieta.detalle',		
+			'frecuencia',
 			'regimen_suplemento',
 			'regimen_suplemento.suplemento',
+			'regimen_suplemento.frecuencia',
 			'regimen_ejercicio',
 			'regimen_ejercicio.ejercicio',
 			'metas',
@@ -469,9 +471,9 @@ function getAgendaPorCliente(req, res, next) {
 		let comidasPlanDieta = [];
 		agenda.servicio.plan_dieta.detalle.map(function (comida) {
 			let index = comidasPlanDieta.map(function (comidaAsignada) {
-											return comidaAsignada.id_comida;
-										})
-										.indexOf(comida.id_comida);
+				return comidaAsignada.id_comida;
+			})
+			.indexOf(comida.id_comida);
 			if (index == -1) {	
 				let regimenIndex = agenda.regimen_dieta.map(function (regimen) {
 					return regimen.id_detalle_plan_dieta 
@@ -603,6 +605,7 @@ function getAgendaPorCliente(req, res, next) {
 				suplementos.push({
 					id_suplemento: suplemento.id_suplemento,
 					nombre: suplemento.nombre,
+					id_frecuencia: agenda.regimen_suplemento[suplementoIndex].id_frecuencia,
 					frecuencia: agenda.regimen_suplemento[suplementoIndex].id_frecuencia,
 					cantidad: agenda.regimen_suplemento[suplementoIndex].cantidad,
 					unidad: suplemento.unidad.nombre,
@@ -659,7 +662,7 @@ function getAgendaPorCliente(req, res, next) {
 
 		return res.status(200).json({ 
 			error: false, 
-			data:  nuevaAgenda 
+			data:  data
 		});
 	})
 	.catch(function(err){
