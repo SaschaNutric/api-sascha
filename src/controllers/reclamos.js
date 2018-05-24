@@ -26,22 +26,26 @@ function getReclamos(req, res, next) {
 			});
 		let arrayReclamos = data.toJSON();
 		let reclamos = [];
+
 		arrayReclamos.map(function(reclamo) {
-			console.log(reclamo);
-			reclamos.push({
-				id_reclamo: reclamo.id_reclamo,
-				id_motivo: reclamo.id_reclamo,
-				id_respuesta: reclamo.id_respuesta,
-				id_orden_servicio: reclamo.id_orden_servicio,
-				respuesta: reclamo.respuesta,
-				motivo: reclamo.motivo.descripcion,
-				fecha: reclamo.fecha_creacion,
-				id_servicio: reclamo.ordenServicio.solicitud.servicio.id_servicio,
-				servicio: reclamo.ordenServicio.solicitud.servicio.nombre,
-				condiciones_garantia : reclamo.ordenServicio.solicitud.servicio.condiciones_garantia,
-				id_cliente: reclamo.ordenServicio.solicitud.cliente.id_cliente,
-				cliente: reclamo.ordenServicio.solicitud.cliente.nombres,
-			});
+			
+			if (JSON.stringify(reclamo.ordenServicio)!= '{}') {
+				reclamos.push({
+					id_reclamo: reclamo.id_reclamo,
+					id_motivo: reclamo.id_reclamo,
+					id_respuesta: reclamo.id_respuesta,
+					id_orden_servicio: reclamo.id_orden_servicio,
+					respuesta: reclamo.respuesta,
+					motivo: reclamo.motivo.descripcion,
+					fecha: reclamo.fecha_creacion,
+					id_servicio: reclamo.ordenServicio.solicitud.servicio.id_servicio,
+					servicio: reclamo.ordenServicio.solicitud.servicio.nombre,
+					condiciones_garantia : reclamo.ordenServicio.solicitud.servicio.condiciones_garantia,
+					id_cliente: reclamo.ordenServicio.solicitud.cliente.id_cliente,
+					cliente: reclamo.ordenServicio.solicitud.cliente.nombres,
+				});	
+			}
+			
 		});
 
 		return res.status(200).json({
