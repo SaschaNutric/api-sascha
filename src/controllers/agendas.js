@@ -143,7 +143,6 @@ function getAgendaPorEmpleado(req, res, next) {
 }
 
 function saveAgenda(req, res, next){
-	console.log(JSON.stringify(req.body));
 
 	Agenda.forge({ id_empleado:req.body.id_empleado ,id_cliente:req.body.id_cliente ,id_orden_servicio:req.body.id_orden_servicio ,id_visita:req.body.id_visita ,id_incidencia:req.body.id_incidencia ,id_cita:req.body.id_cita  })
 	.save()
@@ -699,7 +698,6 @@ function getMiServicios(req, res, next) {
 		
 		for (var i = agendas.length - 1; i >= 0; i--) {
 			let agenda = agendas[i];
-			console.log(agenda.orden);
 			servicios.push({
 				"servicio": agenda.servicio,
 				"estado": agenda.orden.estado
