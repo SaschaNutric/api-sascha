@@ -95,7 +95,8 @@ module.exports = (function () {
   api.get('/agendas',                        agendasCtrl.getAgendas);
   api.post('/agendas/empleado/:id_empleado', agendasCtrl.getAgendaPorEmpleado);  
   api.get('/planes/cliente/:id_cliente',     agendasCtrl.getPlanPorCliente);  
-  api.get('/servicios/cliente/:id_cliente',  agendasCtrl.getMiServicios);  
+  api.get('/servicios/cliente/:id_cliente',  agendasCtrl.getMiServicios);
+  api.get('/orden_servicios/cliente/:id_cliente', agendasCtrl.getMiOrdenServicios);
   api.post('/agendas',                       agendasCtrl.saveAgenda);
   api.get('/agenda/:id',                     agendasCtrl.getAgendaById);  
   api.put('/agenda/:id',                     agendasCtrl.updateAgenda);
@@ -438,6 +439,7 @@ module.exports = (function () {
   api.delete('/role/:id',                    rolesCtrl.deleteRol);
 
   api.get('/servicios',                      serviciosCtrl.getServicios);
+  api.get('/servicios/especialidad/:id',     serviciosCtrl.getServiciosPorEspecialidad);
   api.post('/servicios',                     serviciosCtrl.saveServicio);
   api.get('/servicio/:id',                   serviciosCtrl.getServicioById);
   api.put('/servicio/:id',                   serviciosCtrl.updateServicio);

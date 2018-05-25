@@ -225,6 +225,7 @@ function getAgendaById(req, res, next) {
 							id_detalle_plan_dieta: comida.id_detalle_plan_dieta,
 							id_grupo_alimenticio: comida.grupoAlimenticio.id_grupo_alimenticio,
 							nombre: comida.grupoAlimenticio.nombre,
+							id_regimen_dieta: agenda.regimen_dieta[regimenIndex].id_regimen_dieta,
 							cantidad: agenda.regimen_dieta[regimenIndex].cantidad,
 							alimentos: alimentos,
 							unidad: comida.grupoAlimenticio.unidad.nombre,
@@ -262,6 +263,7 @@ function getAgendaById(req, res, next) {
 						id_detalle_plan_dieta: comida.id_detalle_plan_dieta,
 						id_grupo_alimenticio: comida.grupoAlimenticio.id_grupo_alimenticio,
 						nombre: comida.grupoAlimenticio.nombre,
+						id_regimen_dieta: agenda.regimen_dieta[regimenIndex].id_regimen_dieta, 
 						cantidad: agenda.regimen_dieta[regimenIndex].cantidad,
 						alimentos: alimentos,
 						unidad: comida.grupoAlimenticio.unidad.nombre,
@@ -289,6 +291,7 @@ function getAgendaById(req, res, next) {
 			else {
 				ejercicios.push({
 					id_ejercicio: ejercicio.id_ejercicio,
+					id_regimen_ejercicio: agenda.regimen_ejercicio[ejercicioIndex].id_regimen_ejercicio,
 					id_tiempo: agenda.regimen_ejercicio[ejercicioIndex].id_tiempo,
 					id_frecuencia: agenda.regimen_ejercicio[ejercicioIndex].id_frecuencia,					
 					duracion: agenda.regimen_ejercicio[ejercicioIndex].duracion,
@@ -317,13 +320,13 @@ function getAgendaById(req, res, next) {
 				suplementos.push({
 					id_suplemento: suplemento.id_suplemento,
 					nombre: suplemento.nombre,
+					id_regimen_suplemento: agenda.regimen_suplemento[suplementoIndex].id_regimen_suplemento, 
 					frecuencia: agenda.regimen_suplemento[suplementoIndex].id_frecuencia,
 					cantidad: agenda.regimen_suplemento[suplementoIndex].cantidad,
 					unidad: suplemento.unidad.nombre,
 					unidad_abreviatura: suplemento.unidad.abreviatura
 				})
 			}
-			
 		});
 		let nuevaAgenda = {
 			id_agenda:    agenda.id_agenda,
@@ -656,14 +659,51 @@ function getMiServicios(req, res, next) {
 		
 		for (var i = agendas.length - 1; i >= 0; i--) {
 			let agenda = agendas[i];
-			console.log(i);
-			console.log(agenda.servicio.fecha_creacion);
 			servicios.push(agenda.servicio);
 		}
 		
 		return res.status(200).json({ 
 			error: false, 
 			data: servicios
+		});
+	})
+	.catch(function(err){
+		return res.status(500).json({ 
+			error: false, 
+			data: { mensaje: err.message } 
+		})
+	});
+}
+
+function getMiOrdenServicios(req, res, next) {
+	const id = Number.parseInt(req.params.id_cliente);
+	if (!id || id == 'NaN') 
+		return res.status(400).json({ 
+			error: true, 
+			data: { mensaje: 'Solicitud incorrecta' } 
+		});
+	VistaAgendas.query(function (qb) {
+		qb.where('id_cliente', '=', id);
+		qb.orderBy('fecha_creacion','ASC'); 
+	})
+	.fetch()
+	.then(function(data) {
+		if (!data)
+			return res.status(404).json({
+				error: true,
+				data: { mensaje: 'Agenda no encontrada' }
+			});
+		let agendas = data.toJSON();
+		let orden_servicios = [];
+		
+		for (var i = agendas.length - 1; i >= 0; i--) {
+			let agenda = agendas[i];
+			orden_servicios.push(agenda.id_orden_servicio);
+		}
+		
+		return res.status(200).json({ 
+			error: false, 
+			data: orden_servicios
 		});
 	})
 	.catch(function(err){
@@ -757,6 +797,7 @@ module.exports = {
 	saveAgenda,
 	getAgendaById,
 	getPlanPorCliente,
+	getMiOrdenServicios,
 	getMiServicios,
 	updateAgenda,
 	deleteAgenda,
