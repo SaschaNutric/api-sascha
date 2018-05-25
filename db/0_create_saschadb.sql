@@ -2507,7 +2507,8 @@ SELECT a.id_agenda,
     e.nombre AS tipo_cita, 
     d.fecha, 
     f.hora_inicio, 
-    f.hora_fin
+    f.hora_fin,
+    a.fecha_creacion
 FROM agenda a
     JOIN cliente b ON a.id_cliente = b.id_cliente
     JOIN orden_servicio g ON a.id_orden_servicio = g.id_orden_servicio
@@ -2526,7 +2527,7 @@ WHERE a.estatus = 1
     AND g.estatus = 1 
     AND g.estado = 1
     AND i.estatus = 1;
-    
+
 ALTER TABLE vista_agenda OWNER TO byqkxhkjgnspco;
 
 

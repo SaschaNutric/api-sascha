@@ -7,6 +7,8 @@ const Bookshelf = require('../commons/bookshelf');
 const Bluebird  = require('bluebird');
 const Empleado  = require('../models/empleado');
 const Agenda    = require('../models/agenda');
+const VistaAgenda    = require('../models/agenda');
+const OrdenServicio  = require('../models/orden_servicio');
 const Cita      = require('../models/cita');
 const ParametrosCliente  = require('../collections/parametro_clientes');
 const DetallesVisita     = require('../collections/detalle_visitas');
@@ -402,23 +404,89 @@ function saveVisitaControl(req, res, next) {
 			error: true,
 			data: { mensaje: 'Petición inválida' }
 		});
-	Visita.forge({
-		id_agenda: req.body.id_agenda,
-		numero: req.body.numero,
-		fecha_atencion: req.body.fecha_atencion
+	VistaAgenda.forge({
+		id_agenda: req.body.id_agenda
 	})
-	.save()
-	.then(function (visita) {		
-		return res.status(200).json({
-			error: false,
-			data: visita
-		})
-	})
-	.catch(function(err) {
-		return res.status(500).json({
-			error: false,
-			data: { mensaje: err.message }
-		})
+	.fetch()
+	.then(function (agenda) {
+		if (agenda.toJSON().numero_visitas == req.body.numero) {
+			Bookshelf.transaction(function (t) {
+				Visita.forge({
+					id_agenda: req.body.id_agenda,
+					numero: req.body.numero,
+					fecha_atencion: req.body.fecha_atencion
+				})
+				.save(null, { transacting: t })
+				.then(function (visita) {	
+					VistaAgenda.forge({ id_agenda: req.body.id_agenda })
+					.fetch()
+					.then(function(agenda) {
+						OrdenServicio.forge({ id_orden_servicio: agenda.get('id_orden_servicio') })
+						.fetch()
+						.then(function (orden) {
+							orden.save({ estado: 5 }, { transacting: t })
+							.then(function(orden) {
+								t.commit()
+								res.status(200).json({
+									error: false,
+									data: visita
+								})
+							})
+							.catch(function (err) {
+								t.rollback()
+								return res.status(500).json({
+									error: false,
+									data: { mensaje: err.message }
+								})
+							})
+						})
+						.catch(function (err) {
+							t.rollback()
+							return res.status(500).json({
+								error: false,
+								data: { mensaje: err.message }
+							})
+						})
+					})
+					.catch(function (err) {
+						t.rollback()
+						return res.status(500).json({
+							error: false,
+							data: { mensaje: err.message }
+						})
+					})
+				})
+				.catch(function(err) {
+					t.rollback()
+					return res.status(500).json({
+						error: false,
+						data: { mensaje: err.message }
+					})
+				})
+			});
+		}
+		else {
+			Visita.forge({
+				id_agenda: req.body.id_agenda,
+				numero: req.body.numero,
+				fecha_atencion: req.body.fecha_atencion
+			})
+			.save(null, { transacting: t })
+			.then(function (visita) {
+				t.commit()
+				res.status(200).json({
+					error: false,
+					data: visita
+				})
+			})
+			.catch(function (err) {
+				t.rollback()
+				return res.status(500).json({
+					error: false,
+					data: { mensaje: err.message }
+				})
+			})
+		}
 	})
 }
 
@@ -532,6 +600,7 @@ function deleteVisita(req, res, next) {
 module.exports = {
 	getVisitasByClienteAndOrden,
 	saveVisitaControl,
+	saveProximaCita,
 	saveVisita,
 	getVisitaById,
 	updateVisita,
