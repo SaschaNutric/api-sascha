@@ -33,10 +33,6 @@ function saveGrupo_alimenticio(req, res, next){
 
 	Grupo_alimenticio.forge({ id_unidad:req.body.id_unidad ,nombre:req.body.nombre })
 	.save()
-	.fetch({ withRelated: [
-		'unidad',
-		'unidad.tipo_unidad'
-	] })
 	.then(function(data){
 		res.status(200).json({
 			error: false,
