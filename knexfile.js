@@ -14,7 +14,8 @@ module.exports = {
 			password: "postgres",
 			database: "saschadb",
 			charset:  "utf-8"
-		}
+		},
+		pool: { min: 10, max: 50 }		
 	},
 
 	production: {
@@ -25,6 +26,7 @@ module.exports = {
 			password: DB_PASS,
 			database: DB_NAME,
 			charset:  DB_CHARSET
-		}
+		},
+		pool: { min: 10, max: 50 }
 	}
 }

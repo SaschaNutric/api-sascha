@@ -2502,6 +2502,7 @@ SELECT a.id_agenda,
     c.id_plan_dieta,
     c.id_plan_ejercicio,
     c.id_plan_suplemento,
+    d.id_cita,     
     d.id_tipo_cita, 
     e.nombre AS tipo_cita, 
     d.fecha, 
@@ -2521,9 +2522,11 @@ WHERE a.estatus = 1
     AND b.estatus = 1 
     AND c.estatus = 1 
     AND d.estatus = 1
+    AND d.id_tipo_cita <> 3
     AND g.estatus = 1 
     AND g.estado = 1
-    AND i.estatus = 1
+    AND i.estatus = 1;
+    
 ALTER TABLE vista_agenda OWNER TO byqkxhkjgnspco;
 
 

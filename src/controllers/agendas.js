@@ -31,6 +31,61 @@ function getAgendas(req, res, next) {
     });
 }
 
+function getProximaCitaPorCliente(req, res, next) {
+	const id_cliente = Number.parseInt(req.params.id_cliente);
+	if (!id_cliente || id_cliente == 'NaN')
+		return res.status(400).json({
+			error: true,
+			data: { mensaje: 'Solicitud incorrecta' }
+		});
+
+	VistaAgendas.query(function (qb) {
+		qb.where('id_cliente', '=', id_cliente);
+		qb.whereRaw('id_visita is null');
+		qb.orderByRaw('fecha ASC');
+	})
+		.fetch()
+		.then(function (data) {
+			let data_json = data.toJSON()
+			if (data_json.length == 0)
+				return res.status(404).json({
+					error: true,
+					data: { mensaje: 'No hay proxima cita agendada para el cliente' }
+				});
+			
+			let agenda = data_json[0];
+			
+			let nuevaAgenda = {
+				id_agenda: agenda.id_agenda,
+				id_visita: agenda.id_visita,
+				id_empleado: agenda.id_empleado,
+				nombre_empleado: agenda.nombre_empleado,
+				id_cliente: agenda.id_cliente,
+				nombre_cliente: agenda.nombre_cliente,
+				id_servicio: agenda.id_servicio,
+				nombre_servicio: agenda.nombre_servicio,
+				id_cita: agenda.id_cita,
+				id_tipo_cita: agenda.id_tipo_cita,
+				tipo_cita: agenda.tipo_cita,
+				fecha: JSON.stringify(agenda.fecha).substr(1, 10),
+				hora_inicio: JSON.stringify(agenda.hora_inicio).substr(1, 5),
+				hora_fin: JSON.stringify(agenda.hora_fin).substr(1, 5)
+			}
+			
+			return res.status(200).json({
+				error: false,
+				data: nuevaAgenda
+			});
+		})
+		.catch(function (err) {
+			return res.status(500).json({
+				error: true,
+				data: { mensaje: err.message }
+			});
+		});
+
+}
+
 function getAgendaPorEmpleado(req, res, next) {
 	const id_empleado = Number.parseInt(req.params.id_empleado);
 	if (!id_empleado || id_empleado == 'NaN')
@@ -66,6 +121,7 @@ function getAgendaPorEmpleado(req, res, next) {
 				nombre_cliente:  agenda.nombre_cliente,
 				id_servicio:     agenda.id_servicio,
 				nombre_servicio: agenda.nombre_servicio,
+				id_cita:         agenda.id_cita,           
 				id_tipo_cita:    agenda.id_tipo_cita,
 				tipo_cita:       agenda.tipo_cita,
 				fecha_inicio: 	`${JSON.stringify(agenda.fecha).substr(1,10)}T${agenda.hora_inicio}Z`,
@@ -331,6 +387,7 @@ function getAgendaById(req, res, next) {
 		let nuevaAgenda = {
 			id_agenda:    agenda.id_agenda,
 			id_visita:    agenda.id_visita,
+			id_cita:      agenda.id_cita,
 			id_tipo_cita: agenda.id_tipo_cita,
 			tipo_cita:    agenda.tipo_cita,
 			fecha:       JSON.stringify(agenda.fecha).substr(1,10),
@@ -408,6 +465,8 @@ function getPlanPorCliente(req, res, next) {
 			'regimen_suplemento.suplemento',
 			'regimen_ejercicio',
 			'regimen_ejercicio.ejercicio',
+			'regimen_ejercicio.tiempo',
+			'regimen_ejercicio.frecuencia',
 			'servicio',
 			'servicio.plan_dieta',
 			'servicio.plan_dieta.tipo_dieta',
@@ -415,7 +474,7 @@ function getPlanPorCliente(req, res, next) {
 			'servicio.plan_dieta.detalle.grupoAlimenticio',
 			'servicio.plan_dieta.detalle.grupoAlimenticio.unidad',			
 			'servicio.plan_ejercicio',
-			'servicio.plan_ejercicio.ejercicios',
+			'servicio.plan_ejercicio.ejercicios',			
 			'servicio.plan_suplemento',
 			'servicio.plan_suplemento.suplementos',
 			'servicio.plan_suplemento.suplementos.unidad',
@@ -432,7 +491,6 @@ function getPlanPorCliente(req, res, next) {
 		let visitas_realizadas = [];
 		
 		let agenda = agendas[0];
-		
 		let comidasPlanDieta = [];
 		agenda.servicio.plan_dieta.detalle.map(function (comida) {
 			let index = comidasPlanDieta.map(function (comidaAsignada) {
@@ -444,12 +502,11 @@ function getPlanPorCliente(req, res, next) {
 					return regimen.id_detalle_plan_dieta 
 				})
 				.indexOf(comida.id_detalle_plan_dieta); 
+
+				let grupoAlimenticios = [];
 				
-				if (regimenIndex == -1) {
-					comidasPlanDieta.push({
-						id_comida: comida.comida.id_comida,
-						nombre: comida.comida.nombre,
-						grupos_alimenticios: [{
+				if (JSON.stringify(comida.grupoAlimenticio) != '{}') {
+					grupoAlimenticios = [{
 							id_detalle_plan_dieta: comida.id_detalle_plan_dieta,
 							id_grupo_alimenticio: comida.grupoAlimenticio.id_grupo_alimenticio,
 							nombre: comida.grupoAlimenticio.nombre,
@@ -457,7 +514,14 @@ function getPlanPorCliente(req, res, next) {
 							//alimentos: alimentos,
 							unidad: comida.grupoAlimenticio.unidad.nombre,
 							unidad_abreviatura: comida.grupoAlimenticio.unidad.abreviatura
-						}]
+						}];
+				}
+
+				if (regimenIndex == -1) {
+					comidasPlanDieta.push({
+						id_comida: comida.comida.id_comida,
+						nombre: comida.comida.nombre,
+						grupos_alimenticios: []
 					})
 				}
 				else {
@@ -471,7 +535,7 @@ function getPlanPorCliente(req, res, next) {
 					comidasPlanDieta.push({
 						id_comida: comida.comida.id_comida,
 						nombre: comida.comida.nombre,
-						grupos_alimenticios: [{
+						grupos_alimenticios: comida.grupoAlimenticio? [{
 							id_detalle_plan_dieta: comida.id_detalle_plan_dieta,
 							id_grupo_alimenticio: comida.grupoAlimenticio.id_grupo_alimenticio,
 							nombre: comida.grupoAlimenticio.nombre,
@@ -479,7 +543,7 @@ function getPlanPorCliente(req, res, next) {
 							alimentos: alimentos,
 							unidad: comida.grupoAlimenticio.unidad.nombre,
 							unidad_abreviatura: comida.grupoAlimenticio.unidad.abreviatura
-						}]
+						}]: []
 					})
 				}
 			}
@@ -490,15 +554,7 @@ function getPlanPorCliente(req, res, next) {
 				.indexOf(comida.id_detalle_plan_dieta);
 
 				if (regimenIndex == -1) { 
-					comidasPlanDieta[index].grupos_alimenticios.push({
-						id_detalle_plan_dieta: comida.id_detalle_plan_dieta,
-						id_grupo_alimenticio: comida.grupoAlimenticio.id_grupo_alimenticio,
-						nombre: comida.grupoAlimenticio.nombre,
-						//cantidad: regimen.cantidad,
-						//alimentos: alimentos,
-						unidad: comida.grupoAlimenticio.unidad.nombre,
-						unidad_abreviatura: comida.grupoAlimenticio.unidad.abreviatura
-					})
+					comidasPlanDieta[index].grupos_alimenticios = []
 				}
 				else {
 					let alimentos = [];
@@ -528,24 +584,17 @@ function getPlanPorCliente(req, res, next) {
 			})
 			.indexOf(ejercicio.id_ejercicio);
 			
-			if(ejercicioIndex == -1) {
-				ejercicios.push({
-					id_ejercicio: ejercicio.id_ejercicio,
-					//id_tiempo: regimen.id_tiempo,
-					//duracion: regimen.duracion,
-					nombre: ejercicio.nombre
-				})
-			}
-			else {
+			if(ejercicioIndex != -1) {
 				ejercicios.push({
 					id_ejercicio: ejercicio.id_ejercicio,
 					nombre: ejercicio.nombre,
 					descripcion: ejercicio.descripcion,
+					duracion: agenda.regimen_ejercicio[ejercicioIndex].duracion,
 					id_tiempo: agenda.regimen_ejercicio[ejercicioIndex].id_tiempo,
-					tiempo: agenda.regimen_ejercicio[ejercicioIndex].nombre,
-					tiempo_abreviatura: agenda.regimen_ejercicio[ejercicioIndex].abreviatura,
-					frecuencia: agenda.regimen_ejercicio[ejercicioIndex].id_frecuencia,
-					duracion: agenda.regimen_ejercicio[ejercicioIndex].duracion
+					tiempo: agenda.regimen_ejercicio[ejercicioIndex].tiempo.nombre,
+					tiempo_abreviatura: agenda.regimen_ejercicio[ejercicioIndex].tiempo.abreviatura,
+					id_frecuencia: agenda.regimen_ejercicio[ejercicioIndex].id_frecuencia,
+					frecuencia: agenda.regimen_ejercicio[ejercicioIndex].frecuencia.frecuencia				
 				});
 			}
 		});
@@ -556,17 +605,7 @@ function getPlanPorCliente(req, res, next) {
 			})
 			.indexOf(suplemento.id_suplemento);
 			
-			if(suplementoIndex == -1) {
-				suplementos.push({
-					id_suplemento: suplemento.id_suplemento,
-					nombre: suplemento.nombre,
-					//frecuencia: regimen.id_frecuencia,
-					//cantidad: regimen.cantidad,
-					unidad: suplemento.unidad.nombre,
-					unidad_abreviatura: suplemento.unidad.abreviatura
-				})
-			}
-			else {
+			if(suplementoIndex != -1) {
 				suplementos.push({
 					id_suplemento: suplemento.id_suplemento,
 					nombre: suplemento.nombre,
@@ -613,7 +652,7 @@ function getPlanPorCliente(req, res, next) {
 
 		return res.status(200).json({ 
 			error: false, 
-			data:  nuevaAgenda
+			data: nuevaAgenda
 		});
 	})
 	.catch(function(err){
@@ -638,6 +677,7 @@ function getMiServicios(req, res, next) {
 	})
 	.fetch({
 		withRelated: [
+			'orden',
 			'servicio',
 			'servicio.plan_dieta',
 			'servicio.plan_ejercicio',
@@ -659,7 +699,11 @@ function getMiServicios(req, res, next) {
 		
 		for (var i = agendas.length - 1; i >= 0; i--) {
 			let agenda = agendas[i];
-			servicios.push(agenda.servicio);
+			console.log(agenda.orden);
+			servicios.push({
+				"servicio": agenda.servicio,
+				"estado": agenda.orden.estado
+			});
 		}
 		
 		return res.status(200).json({ 
@@ -801,5 +845,6 @@ module.exports = {
 	getMiServicios,
 	updateAgenda,
 	deleteAgenda,
-	getAgendaPorEmpleado
+	getAgendaPorEmpleado,
+	getProximaCitaPorCliente
 }
