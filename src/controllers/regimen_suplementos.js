@@ -7,7 +7,7 @@ function getRegimen_suplementos(req, res, next) {
 	Regimen_suplementos.query(function (qb) {
    		qb.where('regimen_suplemento.estatus', '=', 1);
 	})
-	.fetch({ columns: ['id_plan_suplemento','id_cliente','id_frecuencia','cantidad'] })
+	.fetch({ columns: ['id_regimen_suplemento','id_suplemento','id_cliente','id_frecuencia','cantidad'] })
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -32,7 +32,7 @@ function saveRegimen_suplemento(req, res, next){
 	console.log(JSON.stringify(req.body));
 
 	Regimen_suplemento.forge({ 
-		id_plan_suplemento:req.body.id_plan_suplemento ,
+		id_suplemento:req.body.id_suplemento ,
 		id_cliente:req.body.id_cliente ,
 		id_frecuencia:req.body.id_frecuencia ,
 		cantidad:req.body.cantidad  
@@ -132,7 +132,7 @@ function deleteRegimen_suplemento(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 	}
-	Regimen_suplemento.forge({ id_regimen_suplemento })
+	Regimen_suplemento.forge({ id_regimen_suplemento :id })
 	.fetch()
 	.then(function(data){
 		if(!data) 

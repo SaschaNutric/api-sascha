@@ -7,7 +7,7 @@ function getRegimen_ejercicios(req, res, next) {
 	Regimen_ejercicios.query(function (qb) {
    		qb.where('regimen_ejercicio.estatus', '=', 1);
 	})
-	.fetch({ columns: ['id_plan_ejercicio','id_cliente','id_frecuencia','id_tiempo','duracion'] })
+	.fetch({ columns: ['id_regimen_ejercicio','id_ejercicio','id_cliente','id_frecuencia','id_tiempo','duracion'] })
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -134,7 +134,7 @@ function deleteRegimen_ejercicio(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 	}
-	Regimen_ejercicio.forge({ id_regimen_ejercicio })
+	Regimen_ejercicio.forge({ id_regimen_ejercicio : id })
 	.fetch()
 	.then(function(data){
 		if(!data) 

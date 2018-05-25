@@ -175,7 +175,7 @@ function deleteRegimen_dieta(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 	}
-	Regimen_dieta.forge({ id_regimen_dieta })
+	Regimen_dieta.forge({ id_regimen_dieta : id })
 	.fetch()
 	.then(function(data){
 		if(!data) 
