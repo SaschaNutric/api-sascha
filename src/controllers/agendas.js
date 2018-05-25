@@ -447,8 +447,8 @@ function getPlanPorCliente(req, res, next) {
 				.indexOf(comida.id_detalle_plan_dieta); 
 
 				let grupoAlimenticios = [];
+				
 				if (JSON.stringify(comida.grupoAlimenticio) != '{}') {
-					console.log(JSON.stringify(comida.grupoAlimenticio));
 					grupoAlimenticios = [{
 							id_detalle_plan_dieta: comida.id_detalle_plan_dieta,
 							id_grupo_alimenticio: comida.grupoAlimenticio.id_grupo_alimenticio,
@@ -464,7 +464,7 @@ function getPlanPorCliente(req, res, next) {
 					comidasPlanDieta.push({
 						id_comida: comida.comida.id_comida,
 						nombre: comida.comida.nombre,
-						grupos_alimenticios: grupoAlimenticios
+						grupos_alimenticios: []
 					})
 				}
 				else {
@@ -497,15 +497,7 @@ function getPlanPorCliente(req, res, next) {
 				.indexOf(comida.id_detalle_plan_dieta);
 
 				if (regimenIndex == -1) { 
-					comidasPlanDieta[index].grupos_alimenticios.push({
-						id_detalle_plan_dieta: comida.id_detalle_plan_dieta,
-						id_grupo_alimenticio: comida.grupoAlimenticio.id_grupo_alimenticio,
-						nombre: comida.grupoAlimenticio.nombre,
-						//cantidad: regimen.cantidad,
-						//alimentos: alimentos,
-						unidad: comida.grupoAlimenticio.unidad.nombre,
-						unidad_abreviatura: comida.grupoAlimenticio.unidad.abreviatura
-					})
+					comidasPlanDieta[index].grupos_alimenticios = []
 				}
 				else {
 					let alimentos = [];
@@ -535,15 +527,7 @@ function getPlanPorCliente(req, res, next) {
 			})
 			.indexOf(ejercicio.id_ejercicio);
 			
-			if(ejercicioIndex == -1) {
-				ejercicios.push({
-					id_ejercicio: ejercicio.id_ejercicio,
-					//id_tiempo: regimen.id_tiempo,
-					//duracion: regimen.duracion,
-					nombre: ejercicio.nombre
-				})
-			}
-			else {
+			if(ejercicioIndex != -1) {
 				ejercicios.push({
 					id_ejercicio: ejercicio.id_ejercicio,
 					nombre: ejercicio.nombre,
@@ -564,17 +548,7 @@ function getPlanPorCliente(req, res, next) {
 			})
 			.indexOf(suplemento.id_suplemento);
 			
-			if(suplementoIndex == -1) {
-				suplementos.push({
-					id_suplemento: suplemento.id_suplemento,
-					nombre: suplemento.nombre,
-					//frecuencia: regimen.id_frecuencia,
-					//cantidad: regimen.cantidad,
-					unidad: suplemento.unidad.nombre,
-					unidad_abreviatura: suplemento.unidad.abreviatura
-				})
-			}
-			else {
+			if(suplementoIndex != -1) {
 				suplementos.push({
 					id_suplemento: suplemento.id_suplemento,
 					nombre: suplemento.nombre,
