@@ -638,6 +638,7 @@ function getMiServicios(req, res, next) {
 	})
 	.fetch({
 		withRelated: [
+			'orden',
 			'servicio',
 			'servicio.plan_dieta',
 			'servicio.plan_ejercicio',
@@ -659,7 +660,11 @@ function getMiServicios(req, res, next) {
 		
 		for (var i = agendas.length - 1; i >= 0; i--) {
 			let agenda = agendas[i];
-			servicios.push(agenda.servicio);
+			console.log(agenda.orden);
+			servicios.push({
+				"servicio": agenda.servicio,
+				"estado": agenda.orden.estado
+			});
 		}
 		
 		return res.status(200).json({ 

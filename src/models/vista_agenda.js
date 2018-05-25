@@ -1,6 +1,7 @@
 'use strict'
 
 const Bookshelf         = require('../commons/bookshelf');
+const Orden             = require('./orden_servicio');
 const Servicio          = require('./servicio');
 const ParametroCliente  = require('./parametro_cliente');
 const ParametroMeta     = require('./parametro_meta');
@@ -11,6 +12,10 @@ const RegimenEjercicio  = require('./regimen_ejercicio');
 let VistaAgenda = Bookshelf.Model.extend({
     tableName: 'vista_agenda',
     idAttribute: 'id_agenda',
+    orden: function() {
+        return this.belongsTo(Orden, 'id_orden_servicio')
+                .query({ where: { 'orden_servicio.estatus': 1 } });
+    },
     servicio: function() {
         return this.belongsTo(Servicio, 'id_servicio')
                 .query({ where: { 'servicio.estatus': 1 } });
