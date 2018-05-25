@@ -225,6 +225,7 @@ function getAgendaById(req, res, next) {
 							id_detalle_plan_dieta: comida.id_detalle_plan_dieta,
 							id_grupo_alimenticio: comida.grupoAlimenticio.id_grupo_alimenticio,
 							nombre: comida.grupoAlimenticio.nombre,
+							id_regimen_dieta: agenda.regimen_dieta[regimenIndex].id_regimen_dieta,
 							cantidad: agenda.regimen_dieta[regimenIndex].cantidad,
 							alimentos: alimentos,
 							unidad: comida.grupoAlimenticio.unidad.nombre,
@@ -262,6 +263,7 @@ function getAgendaById(req, res, next) {
 						id_detalle_plan_dieta: comida.id_detalle_plan_dieta,
 						id_grupo_alimenticio: comida.grupoAlimenticio.id_grupo_alimenticio,
 						nombre: comida.grupoAlimenticio.nombre,
+						id_regimen_dieta: agenda.regimen_dieta[regimenIndex].id_regimen_dieta, 
 						cantidad: agenda.regimen_dieta[regimenIndex].cantidad,
 						alimentos: alimentos,
 						unidad: comida.grupoAlimenticio.unidad.nombre,
@@ -289,6 +291,7 @@ function getAgendaById(req, res, next) {
 			else {
 				ejercicios.push({
 					id_ejercicio: ejercicio.id_ejercicio,
+					id_regimen_ejercicio: agenda.regimen_ejercicio[ejercicioIndex].id_regimen_ejercicio,
 					id_tiempo: agenda.regimen_ejercicio[ejercicioIndex].id_tiempo,
 					id_frecuencia: agenda.regimen_ejercicio[ejercicioIndex].id_frecuencia,					
 					duracion: agenda.regimen_ejercicio[ejercicioIndex].duracion,
@@ -317,13 +320,13 @@ function getAgendaById(req, res, next) {
 				suplementos.push({
 					id_suplemento: suplemento.id_suplemento,
 					nombre: suplemento.nombre,
+					id_regimen_suplemento: agenda.regimen_suplemento[suplementoIndex].id_regimen_suplemento, 
 					frecuencia: agenda.regimen_suplemento[suplementoIndex].id_frecuencia,
 					cantidad: agenda.regimen_suplemento[suplementoIndex].cantidad,
 					unidad: suplemento.unidad.nombre,
 					unidad_abreviatura: suplemento.unidad.abreviatura
 				})
 			}
-			
 		});
 		let nuevaAgenda = {
 			id_agenda:    agenda.id_agenda,
