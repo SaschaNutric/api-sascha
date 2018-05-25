@@ -408,6 +408,8 @@ function getPlanPorCliente(req, res, next) {
 			'regimen_suplemento.suplemento',
 			'regimen_ejercicio',
 			'regimen_ejercicio.ejercicio',
+			'regimen_ejercicio.tiempo',
+			'regimen_ejercicio.frecuencia',
 			'servicio',
 			'servicio.plan_dieta',
 			'servicio.plan_dieta.tipo_dieta',
@@ -415,7 +417,7 @@ function getPlanPorCliente(req, res, next) {
 			'servicio.plan_dieta.detalle.grupoAlimenticio',
 			'servicio.plan_dieta.detalle.grupoAlimenticio.unidad',			
 			'servicio.plan_ejercicio',
-			'servicio.plan_ejercicio.ejercicios',
+			'servicio.plan_ejercicio.ejercicios',			
 			'servicio.plan_suplemento',
 			'servicio.plan_suplemento.suplementos',
 			'servicio.plan_suplemento.suplementos.unidad',
@@ -541,11 +543,12 @@ function getPlanPorCliente(req, res, next) {
 					id_ejercicio: ejercicio.id_ejercicio,
 					nombre: ejercicio.nombre,
 					descripcion: ejercicio.descripcion,
+					duracion: agenda.regimen_ejercicio[ejercicioIndex].duracion,
 					id_tiempo: agenda.regimen_ejercicio[ejercicioIndex].id_tiempo,
-					tiempo: agenda.regimen_ejercicio[ejercicioIndex].nombre,
-					tiempo_abreviatura: agenda.regimen_ejercicio[ejercicioIndex].abreviatura,
-					frecuencia: agenda.regimen_ejercicio[ejercicioIndex].id_frecuencia,
-					duracion: agenda.regimen_ejercicio[ejercicioIndex].duracion
+					tiempo: agenda.regimen_ejercicio[ejercicioIndex].tiempo.nombre,
+					tiempo_abreviatura: agenda.regimen_ejercicio[ejercicioIndex].tiempo.abreviatura,
+					id_frecuencia: agenda.regimen_ejercicio[ejercicioIndex].id_frecuencia,
+					frecuencia: agenda.regimen_ejercicio[ejercicioIndex].frecuencia.frecuencia				
 				});
 			}
 		});
@@ -613,7 +616,7 @@ function getPlanPorCliente(req, res, next) {
 
 		return res.status(200).json({ 
 			error: false, 
-			data:  nuevaAgenda
+			data: nuevaAgenda
 		});
 	})
 	.catch(function(err){

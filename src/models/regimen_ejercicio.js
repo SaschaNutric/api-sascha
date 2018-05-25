@@ -13,12 +13,11 @@ let Regimen_ejercicio = Bookshelf.Model.extend({
     			.query({ where: { 'ejercicio.estatus': 1 } });
   },
   frecuencia: function () {
-    return this.belongsTo(Frecuencia, 'id_frecuencia')
-    			.query({ where: { 'frecuencia.estatus': 1 } });
+    return this.belongsTo(Frecuencia, 'id_frecuencia');
   },
   tiempo: function () {
     return this.belongsTo(Tiempo, 'id_tiempo')
-    			.query({ where: { 'tiempo.estatus': 1 } });
+    			     .query({ where: { 'tiempo.estatus': 1 } });
   },
 });
 
