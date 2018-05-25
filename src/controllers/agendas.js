@@ -434,7 +434,7 @@ function getPlanPorCliente(req, res, next) {
 		let visitas_realizadas = [];
 		
 		let agenda = agendas[0];
-		
+		console.log(JSON.stringify(agenda));
 		let comidasPlanDieta = [];
 		agenda.servicio.plan_dieta.detalle.map(function (comida) {
 			let index = comidasPlanDieta.map(function (comidaAsignada) {
