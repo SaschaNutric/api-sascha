@@ -2,6 +2,8 @@
 
 const Incidencias 	= require('../collections/incidencias');
 const Incidencia  	= require('../models/incidencia');
+const Bookshelf = require('../commons/bookshelf');
+const Cita = require('../models/cita');
 
 function getIncidencias(req, res, next) {
 	Incidencias.query(function (qb) {
@@ -41,21 +43,55 @@ function getIncidencias(req, res, next) {
 }
 
 function saveIncidencia(req, res, next){
-	console.log(JSON.stringify(req.body));
-
-	Incidencia.forge({ id_tipo_incidencia:req.body.id_tipo_incidencia ,id_motivo:req.body.id_motivo ,descripcion:req.body.descripcion ,id_agenda:req.body.id_agenda  })
-	.save()
-	.then(function(data){
-		res.status(200).json({
-			error: false,
-			data: data
-		});
-	})
-	.catch(function (err) {
-		res.status(500)
-		.json({
+	if (!req.body.id_tipo_incidencia || !req.body.id_motivo
+		|| !req.body.descripcion     || !req.body.id_cita)
+		return res.status(400).json({
 			error: true,
-			data: {message: err.message}
+			data: { mensaje: 'Petición inválida' }
+		})
+		
+	Bookshelf.transaction(function(t) {
+		Incidencia.forge({ 
+			id_tipo_incidencia: req.body.id_tipo_incidencia,
+			id_motivo: req.body.id_motivo,
+			descripcion: req.body.descripcion,
+			id_agenda: req.body.id_agenda
+		})
+		.save(null, { transacting: t })
+		.then(function(data) {
+			Cita.forge({ id_cita: req.body.id_cita })
+			.fetch()
+			.then(function(cita) {
+				cita.save({ id_tipo_cita: 3 })
+				.then(function(citaActualizada) {
+					t.commit();
+					res.status(200).json({
+						error: false,
+						data: data
+					});
+				})
+				.catch(function (err) {
+					t.rollback();
+					res.status(500).json({
+						error: true,
+						data: { message: err.message }
+					});
+				});
+			})
+			.catch(function (err) {
+				t.rollback();
+				res.status(500).json({
+					error: true,
+					data: { message: err.message }
+				});
+			});
+		})
+		.catch(function (err) {
+			t.rollback();
+			res.status(500).json({
+				error: true,
+				data: {message: err.message}
+			});
 		});
 	});
 }

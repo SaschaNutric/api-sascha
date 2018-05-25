@@ -66,6 +66,7 @@ function getAgendaPorEmpleado(req, res, next) {
 				nombre_cliente:  agenda.nombre_cliente,
 				id_servicio:     agenda.id_servicio,
 				nombre_servicio: agenda.nombre_servicio,
+				id_cita:         agenda.id_cita,           
 				id_tipo_cita:    agenda.id_tipo_cita,
 				tipo_cita:       agenda.tipo_cita,
 				fecha_inicio: 	`${JSON.stringify(agenda.fecha).substr(1,10)}T${agenda.hora_inicio}Z`,
@@ -331,6 +332,7 @@ function getAgendaById(req, res, next) {
 		let nuevaAgenda = {
 			id_agenda:    agenda.id_agenda,
 			id_visita:    agenda.id_visita,
+			id_cita:      agenda.id_cita,
 			id_tipo_cita: agenda.id_tipo_cita,
 			tipo_cita:    agenda.tipo_cita,
 			fecha:       JSON.stringify(agenda.fecha).substr(1,10),
