@@ -410,21 +410,23 @@ function singInEmpleado(req, res) {
 
 	let credenciales = {
 		correo: req.body.correo ? req.body.correo.toLowerCase() : null,
-		nombre_usuario: req.body.nombre_usuario ? req.body.nombre_usuario.toLowerCase() : null
+		//nombre_usuario: req.body.nombre_usuario ? req.body.nombre_usuario.toLowerCase() : null
 	}
+	
 	Usuario.query(function (qb) {
 		qb.where('correo', credenciales.correo);
-		qb.where('contrasenia', req.body.contraseña);
 		qb.where('tipo_usuario', 2);
 		qb.where('estatus', 1);
 	})
 	.fetch()
 	.then(function (usuario) {
 		if (!usuario)
-			return res.status(404).json({
-				error: true,
-				data: { mensaje: 'Correo o contraseña inválido' }
-			});
+		return res.status(404).json({
+			error: true,
+			data: { mensaje: 'Correo o contraseña inválido' }
+		});
+		const esContrasenia = Bcrypt.compareSync(req.body.contraseña, usuario.get('contrasenia'));
+		if(esContrasenia) {
 			Empleado.forge({ id_usuario: usuario.get('id_usuario') })
 			.fetch()
 			.then(function (empleado) {
@@ -449,7 +451,13 @@ function singInEmpleado(req, res) {
 					data: { mensaje: err.message }
 				})
 			});
-	})
+		}else{
+			return res.status(404).json({ 
+				error: true, 
+				data: { mensaje: 'contraseña inválida' } 
+			});
+		}
+		})
 	.catch(function (err) {
 		console.log(err.mensaje);
 		return res.status(500).json({
