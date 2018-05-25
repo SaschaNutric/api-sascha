@@ -35,6 +35,8 @@ function getVisitasByClienteAndOrden(req, res, next) {
 		let visitas = [];
 		let metas   = [];
 		
+		console.log(JSON.stringify(nuevaData));
+
 		nuevaData[0].metas.map(function (meta) {
 			if (JSON.stringify(meta.parametro) != '{}') {
 				metas.push({

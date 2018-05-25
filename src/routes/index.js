@@ -570,7 +570,7 @@ module.exports = (function () {
   api.put('/valoracion/:id',                 valoracionesCtrl.updateValoracion);
   api.delete('/valoracion/:id',              valoracionesCtrl.deleteValoracion);  
 
-  api.post('/cliente/visitas',                visitasCtrl.getVisitasByClienteAndOrden);
+  api.post('/cliente/visitas',               visitasCtrl.getVisitasByClienteAndOrden);
   api.post('/visitas',                       visitasCtrl.saveVisita);
   api.get('/visita/:id',                     visitasCtrl.getVisitaById);  
   api.put('/visita/:id',                     visitasCtrl.updateVisita);
