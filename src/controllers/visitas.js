@@ -34,6 +34,12 @@ function getVisitasByClienteAndOrden(req, res, next) {
 	]})
 	.then(function(data) {
 		let nuevaData = data.toJSON()
+		if (nuevaData.length == 0) {
+			return res.status(404).json({
+				error: true,
+				data: { mensaje: 'Aun no tiene visitas registradas'}
+			})
+		}
 		let visitas = [];
 		let metas   = [];
 		
