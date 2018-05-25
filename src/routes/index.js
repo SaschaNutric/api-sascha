@@ -97,6 +97,8 @@ module.exports = (function () {
   api.get('/planes/cliente/:id_cliente',     agendasCtrl.getPlanPorCliente);  
   api.get('/servicios/cliente/:id_cliente',  agendasCtrl.getMiServicios);
   api.get('/orden_servicios/cliente/:id_cliente', agendasCtrl.getMiOrdenServicios);
+  api.get('/proximavisita/cliente/:id_cliente', agendasCtrl.getProximaCitaPorCliente);
+  
   api.post('/agendas',                       agendasCtrl.saveAgenda);
   api.get('/agenda/:id',                     agendasCtrl.getAgendaById);  
   api.put('/agenda/:id',                     agendasCtrl.updateAgenda);

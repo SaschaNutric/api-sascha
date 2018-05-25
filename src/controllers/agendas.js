@@ -31,6 +31,61 @@ function getAgendas(req, res, next) {
     });
 }
 
+function getProximaCitaPorCliente(req, res, next) {
+	const id_cliente = Number.parseInt(req.params.id_cliente);
+	if (!id_cliente || id_cliente == 'NaN')
+		return res.status(400).json({
+			error: true,
+			data: { mensaje: 'Solicitud incorrecta' }
+		});
+
+	VistaAgendas.query(function (qb) {
+		qb.where('id_cliente', '=', id_cliente);
+		qb.whereRaw('id_visita is null');
+		qb.orderByRaw('fecha ASC');
+	})
+		.fetch()
+		.then(function (data) {
+			let data_json = data.toJSON()
+			if (data_json.length == 0)
+				return res.status(404).json({
+					error: true,
+					data: { mensaje: 'No hay proxima cita agendada para el cliente' }
+				});
+			
+			let agenda = data_json[0];
+			
+			let nuevaAgenda = {
+				id_agenda: agenda.id_agenda,
+				id_visita: agenda.id_visita,
+				id_empleado: agenda.id_empleado,
+				nombre_empleado: agenda.nombre_empleado,
+				id_cliente: agenda.id_cliente,
+				nombre_cliente: agenda.nombre_cliente,
+				id_servicio: agenda.id_servicio,
+				nombre_servicio: agenda.nombre_servicio,
+				id_cita: agenda.id_cita,
+				id_tipo_cita: agenda.id_tipo_cita,
+				tipo_cita: agenda.tipo_cita,
+				fecha: JSON.stringify(agenda.fecha).substr(1, 10),
+				hora_inicio: JSON.stringify(agenda.hora_inicio).substr(1, 5),
+				hora_fin: JSON.stringify(agenda.hora_fin).substr(1, 5)
+			}
+			
+			return res.status(200).json({
+				error: false,
+				data: nuevaAgenda
+			});
+		})
+		.catch(function (err) {
+			return res.status(500).json({
+				error: true,
+				data: { mensaje: err.message }
+			});
+		});
+
+}
+
 function getAgendaPorEmpleado(req, res, next) {
 	const id_empleado = Number.parseInt(req.params.id_empleado);
 	if (!id_empleado || id_empleado == 'NaN')
@@ -66,6 +121,7 @@ function getAgendaPorEmpleado(req, res, next) {
 				nombre_cliente:  agenda.nombre_cliente,
 				id_servicio:     agenda.id_servicio,
 				nombre_servicio: agenda.nombre_servicio,
+				id_cita:         agenda.id_cita,           
 				id_tipo_cita:    agenda.id_tipo_cita,
 				tipo_cita:       agenda.tipo_cita,
 				fecha_inicio: 	`${JSON.stringify(agenda.fecha).substr(1,10)}T${agenda.hora_inicio}Z`,
@@ -330,6 +386,7 @@ function getAgendaById(req, res, next) {
 		let nuevaAgenda = {
 			id_agenda:    agenda.id_agenda,
 			id_visita:    agenda.id_visita,
+			id_cita:      agenda.id_cita,
 			id_tipo_cita: agenda.id_tipo_cita,
 			tipo_cita:    agenda.tipo_cita,
 			fecha:       JSON.stringify(agenda.fecha).substr(1,10),
@@ -786,5 +843,6 @@ module.exports = {
 	getMiServicios,
 	updateAgenda,
 	deleteAgenda,
-	getAgendaPorEmpleado
+	getAgendaPorEmpleado,
+	getProximaCitaPorCliente
 }
