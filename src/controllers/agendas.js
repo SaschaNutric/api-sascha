@@ -434,7 +434,6 @@ function getPlanPorCliente(req, res, next) {
 		let visitas_realizadas = [];
 		
 		let agenda = agendas[0];
-		
 		let comidasPlanDieta = [];
 		agenda.servicio.plan_dieta.detalle.map(function (comida) {
 			let index = comidasPlanDieta.map(function (comidaAsignada) {
@@ -446,12 +445,11 @@ function getPlanPorCliente(req, res, next) {
 					return regimen.id_detalle_plan_dieta 
 				})
 				.indexOf(comida.id_detalle_plan_dieta); 
-				
-				if (regimenIndex == -1) {
-					comidasPlanDieta.push({
-						id_comida: comida.comida.id_comida,
-						nombre: comida.comida.nombre,
-						grupos_alimenticios: [{
+
+				let grupoAlimenticios = [];
+				if (JSON.stringify(comida.grupoAlimenticio) != '{}') {
+					console.log(JSON.stringify(comida.grupoAlimenticio));
+					grupoAlimenticios = [{
 							id_detalle_plan_dieta: comida.id_detalle_plan_dieta,
 							id_grupo_alimenticio: comida.grupoAlimenticio.id_grupo_alimenticio,
 							nombre: comida.grupoAlimenticio.nombre,
@@ -459,7 +457,14 @@ function getPlanPorCliente(req, res, next) {
 							//alimentos: alimentos,
 							unidad: comida.grupoAlimenticio.unidad.nombre,
 							unidad_abreviatura: comida.grupoAlimenticio.unidad.abreviatura
-						}]
+						}];
+				}
+
+				if (regimenIndex == -1) {
+					comidasPlanDieta.push({
+						id_comida: comida.comida.id_comida,
+						nombre: comida.comida.nombre,
+						grupos_alimenticios: grupoAlimenticios
 					})
 				}
 				else {
@@ -473,7 +478,7 @@ function getPlanPorCliente(req, res, next) {
 					comidasPlanDieta.push({
 						id_comida: comida.comida.id_comida,
 						nombre: comida.comida.nombre,
-						grupos_alimenticios: [{
+						grupos_alimenticios: comida.grupoAlimenticio? [{
 							id_detalle_plan_dieta: comida.id_detalle_plan_dieta,
 							id_grupo_alimenticio: comida.grupoAlimenticio.id_grupo_alimenticio,
 							nombre: comida.grupoAlimenticio.nombre,
@@ -481,7 +486,7 @@ function getPlanPorCliente(req, res, next) {
 							alimentos: alimentos,
 							unidad: comida.grupoAlimenticio.unidad.nombre,
 							unidad_abreviatura: comida.grupoAlimenticio.unidad.abreviatura
-						}]
+						}]: []
 					})
 				}
 			}
@@ -641,6 +646,7 @@ function getMiServicios(req, res, next) {
 	})
 	.fetch({
 		withRelated: [
+			'orden',
 			'servicio',
 			'servicio.plan_dieta',
 			'servicio.plan_ejercicio',
@@ -662,7 +668,11 @@ function getMiServicios(req, res, next) {
 		
 		for (var i = agendas.length - 1; i >= 0; i--) {
 			let agenda = agendas[i];
-			servicios.push(agenda.servicio);
+			console.log(agenda.orden);
+			servicios.push({
+				"servicio": agenda.servicio,
+				"estado": agenda.orden.estado
+			});
 		}
 		
 		return res.status(200).json({ 
