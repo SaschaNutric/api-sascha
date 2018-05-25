@@ -115,22 +115,55 @@ function getParametro_clientesByIdCliente(req, res, next) {
 
 function saveParametro_cliente(req, res, next) {
 	console.log(JSON.stringify(req.body));
+	Parametro_cliente.forge({ 
+		id_cliente: req.body.id_cliente, 
+		id_parametro: req.body.id_parametro, 
+		valor: req.body.valor || null
+	})
+	.save()
+	.then(function (data) {
+		Parametro_cliente.forge({ id_parametro_cliente: data.get('id_parametro_cliente'), estatus: 1 })
+		.fetch({
+			withRelated: [
+				'parametro',
+				'parametro.tipo_parametro',
+				'parametro.unidad',
+			]
+		})
+		.then(function (parametro) {
+			let parametro_json = parametro.toJSON();
 
-	Parametro_cliente.forge({ id_cliente: req.body.id_cliente, id_parametro: req.body.id_parametro, valor: req.body.valor })
-		.save()
-		.then(function (data) {
-			res.status(200).json({
+			let nuevoParametro = {
+				id_parametro_cliente: parametro_json.id_parametro_cliente,
+				id_cliente: parametro_json.id_cliente,
+				id_parametro: parametro_json.id_parametro,
+				nombre: parametro_json.parametro.nombre,
+				valor: parametro_json.valor,
+				tipo_parametro: parametro_json.parametro.tipo_parametro.nombre,
+				unidad: parametro_json.parametro.unidad ? parametro_json.parametro.unidad.nombre : null,
+				unidad_abreviatura: parametro_json.parametro.unidad ? parametro_json.parametro.unidad.abreviatura : null,
+
+			}
+			return res.status(200).json({
+				error: false,
+				data: nuevoParametro
+			});
+		})
+		.catch(function (err) {
+			console.log(err.message)
+			return res.status(200).json({
 				error: false,
 				data: data
 			});
 		})
-		.catch(function (err) {
-			res.status(500)
-				.json({
-					error: true,
-					data: { message: err.message }
-				});
-		});
+	})
+	.catch(function (err) {
+		res.status(500)
+			.json({
+				error: true,
+				data: { message: err.message }
+			});
+	});
 }
 
 function getParametro_clienteById(req, res, next) {
@@ -191,34 +224,20 @@ function updateParametro_cliente(req, res, next) {
 					data: { mensaje: 'Solicitud no encontrada' }
 				});
 			data.save({
-				id_cliente: req.body.id_cliente || data.get('id_cliente'),
-				id_parametro: req.body.id_parametro || data.get('id_parametro'),
 				valor: req.body.valor || data.get('valor')
 			})
-				.fetch({
-					withRelated: [
-						'parametro',
-						'parametro.tipo_parametro',
-						'parametro.unidad',
-						'parametro.unidad.tipo_unidad',
-						'cliente',
-						'cliente.estado',
-						'cliente.estado_civil',
-						'cliente.rango_edad'
-					]
-				})
-				.then(function (data) {
-					return res.status(200).json({
-						error: false,
-						data: data
-					});
-				})
-				.catch(function (err) {
-					return res.status(500).json({
-						error: true,
-						data: { mensaje: err.message }
-					});
-				})
+			.tap(function (data) {
+				return res.status(200).json({
+					error: false,
+					data: data
+				});
+			})
+			.catch(function (err) {
+				return res.status(500).json({
+					error: true,
+					data: { mensaje: err.message }
+				});
+			})
 		})
 		.catch(function (err) {
 			return res.status(500).json({
@@ -245,11 +264,11 @@ function deleteParametro_cliente(req, res, next) {
 					data: { mensaje: 'Solicitud no encontrad0' }
 				});
 
-			data.save({ estatus: 0 })
+			data.destroy()
 				.then(function () {
 					return res.status(200).json({
 						error: false,
-						data: { mensaje: 'Registro eliminado' }
+						data: { mensaje: 'Parametro del cliente eliminado' }
 					});
 				})
 				.catch(function (err) {
