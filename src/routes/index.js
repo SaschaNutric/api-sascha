@@ -503,6 +503,7 @@ module.exports = (function () {
   api.get('/tipomotivos/todos',              tipo_motivosCtrl.getTipoMotivos);
   api.get('/tipomotivos',                    tipo_motivosCtrl.getTipoMotivosSinSolicitud);
   api.get('/tipomotivos/reclamo',            tipo_motivosCtrl.getTipoMotivosReclamo);
+  api.get('/tipomotivos/incidencia',         tipo_motivosCtrl.getTipoMotivosIncidencia);  
   api.post('/tipomotivos',                   tipo_motivosCtrl.saveTipoMotivo);
   api.get('/tipomotivo/:id',                 tipo_motivosCtrl.getTipoMotivoById);  
   api.put('/tipomotivo/:id',                 tipo_motivosCtrl.updateTipoMotivo);
