@@ -164,9 +164,14 @@ function saveProximaCita (req, res, next) {
 							})
 							.save(null, { transacting: t })
 							.then(function (agenda) {
-								res.status(200)
+								t.commit();
+								res.status(200).json({
+									error: false,
+									data: { mensaje: 'Próxima cita agendada satisfactoriamente' }
+								})
 							})
 							.catch(function (err) {
+								t.rollback();
 								res.status(500).json({
 									error: true,
 									data: { mensaje: err.message }
@@ -174,6 +179,7 @@ function saveProximaCita (req, res, next) {
 							})
 						})
 						.catch(function (err) {
+							t.rollback();
 							res.status(500).json({
 								error: true,
 								data: { mensaje: err.message }
@@ -477,16 +483,14 @@ function saveVisitaControl(req, res, next) {
 				numero: req.body.numero,
 				fecha_atencion: req.body.fecha_atencion
 			})
-			.save(null, { transacting: t })
+			.save()
 			.then(function (visita) {
-				t.commit()
 				res.status(200).json({
 					error: false,
 					data: visita
 				})
 			})
 			.catch(function (err) {
-				t.rollback()
 				return res.status(500).json({
 					error: false,
 					data: { mensaje: err.message }
