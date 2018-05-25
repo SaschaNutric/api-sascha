@@ -21,10 +21,35 @@ function getVisitasByClienteAndOrden(req, res, next) {
 		qb.where('id_orden_servicio', '=', req.body.id_orden_servicio);
 		qb.orderBy('numero');
 	})
-	.fetchAll({ withRelated: ['parametros', 'parametros.parametro', 'parametros.parametro.unidad' ]})
+	.fetchAll({ withRelated: [
+		'parametros',
+		'parametros.parametro',
+		'parametros.parametro.unidad',
+		'metas',
+		'metas.parametro',
+		'metas.parametro.tipo_parametro',
+		'metas.parametro.unidad',
+	]})
 	.then(function(data) {
 		let nuevaData = data.toJSON()
 		let visitas = [];
+		let metas   = [];
+		
+		nuevaData[0].metas.map(function (meta) {
+			if (JSON.stringify(meta.parametro) != '{}') {
+				metas.push({
+					id_parametro_meta: meta.id_parametro_meta,
+					id_parametro: meta.id_parametro,
+					parametro: meta.parametro.nombre,
+					valor_minimo: meta.valor_minimo,
+					valor_maximo: meta.valor_maximo,
+					tipo_parametro: meta.parametro.tipo_parametro.nombre,
+					unidad: meta.parametro.unidad ? meta.parametro.unidad.nombre : null,
+					unidad_abreviatura: meta.parametro.unidad ? meta.parametro.unidad.abreviatura : null
+				});
+			}
+		});
+		
 		nuevaData.map(function (visita) {
 			let parametros = [];
 			visita.parametros.map(function (parametro) {
@@ -49,6 +74,7 @@ function getVisitasByClienteAndOrden(req, res, next) {
 				id_cliente:        visita.id_cliente,
 				id_orden_servicio: visita.id_orden_servicio,
 				id_agenda:         visita.id_agenda,
+				metas:             metas,
 				parametros:        parametros
 			})
 		})
