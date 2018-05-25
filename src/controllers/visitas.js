@@ -35,20 +35,22 @@ function getVisitasByClienteAndOrden(req, res, next) {
 		let visitas = [];
 		let metas   = [];
 		
-		nuevaData[0].metas.map(function (meta) {
-			if (JSON.stringify(meta.parametro) != '{}') {
-				metas.push({
-					id_parametro_meta: meta.id_parametro_meta,
-					id_parametro: meta.id_parametro,
-					parametro: meta.parametro.nombre,
-					valor_minimo: meta.valor_minimo,
-					valor_maximo: meta.valor_maximo,
-					tipo_parametro: meta.parametro.tipo_parametro.nombre,
-					unidad: meta.parametro.unidad ? meta.parametro.unidad.nombre : null,
-					unidad_abreviatura: meta.parametro.unidad ? meta.parametro.unidad.abreviatura : null
-				});
-			}
-		});
+		if (nuevaData[0].metas && nuevaData[0].metas.length > 0) {
+			nuevaData[0].metas.map(function (meta) {
+				if (JSON.stringify(meta.parametro) != '{}') {
+					metas.push({
+						id_parametro_meta: meta.id_parametro_meta,
+						id_parametro: meta.id_parametro,
+						parametro: meta.parametro.nombre,
+						valor_minimo: meta.valor_minimo,
+						valor_maximo: meta.valor_maximo,
+						tipo_parametro: meta.parametro.tipo_parametro.nombre,
+						unidad: meta.parametro.unidad ? meta.parametro.unidad.nombre : null,
+						unidad_abreviatura: meta.parametro.unidad ? meta.parametro.unidad.abreviatura : null
+					});
+				}
+			});
+		}
 		
 		nuevaData.map(function (visita) {
 			let parametros = [];
@@ -95,6 +97,92 @@ function getVisitasByClienteAndOrden(req, res, next) {
 			data: { mensaje: err.message }
 		});
     });
+}
+
+function saveProximaCita (req, res, next) {
+	if (!req.body.fecha             || !req.body.id_tipo_cita ||
+		!req.body.id_orden_servicio || !req.body.id_cliente   ||
+		!req.body.id_bloque_horario || !req.body.id_empleado)
+		return res.status(400).json({
+			error: true,
+			data: { mensaje: 'Petición inválida' }
+		});
+	let query = `select empleado.*, ARRAY(select id_agenda from agenda inner join cita on cita.id_cita = agenda.id_cita where agenda.id_empleado = empleado.id_empleado and cita.id_bloque_horario = ${req.body.id_bloque_horario} and cita.fecha='${req.body.fecha}' and agenda.estatus = 1) as agenda_consultada from empleado where empleado.id_empleado = ${req.body.id_empleado}`;
+	Bookshelf.knex.raw(query)
+	.then(function (result) {
+		let empleado = result.rows[0]
+		if (empleado.agenda_consultada.length > 0) {
+			return res.status(200).json({
+				error: true,
+				data: { mensaje: `${empleado.nombres} ${empleado.apellidos} ya tiene una cita agendada el ${req.body.fecha} en el horario seleccionado` }
+			})
+		}
+		else {
+			Empleado.query(function (qb) {
+				qb.where('empleado.id_empleado', '=', req.body.id_empleado);
+				qb.where('empleado.estatus', 1);
+			})
+			.fetch({ withRelated: ['horario'] })
+			.then(function (empleadoBuscado) {
+				let horarioValido = false;
+				let fechaSolicitud = new Date(req.body.fecha);
+				empleadoBuscado.toJSON().horario.map(function (horario) {
+					if (horario.id_dia_laborable == fechaSolicitud.getUTCDay()
+						&& horario.id_bloque_horario == req.body.id_bloque_horario) {
+						horarioValido = true;
+					}
+				})
+				if (!horarioValido) {
+					return res.status(200).json({
+						error: true,
+						data: { mensaje: `${empleadoBuscado.get('nombres')} ${empleadoBuscado.get('apellidos')} no trabaja los dia ${fechaSolicitud.getUTCDate} en el horario seleccionado` }
+					})
+				}
+				else {
+					Bookshelf.transaction(function (t) {
+						Cita.forge({
+							id_orden_servicio: req.body.id_orden_servicio,
+							id_tipo_cita: req.body.id_tipo_cita,
+							id_bloque_horario: req.body.id_bloque_horario,
+							fecha: req.body.fecha,
+						})
+						.save(null, { transacting: t })
+						.then(function (cita) {
+							Agenda.forge({
+								id_empleado: req.body.id_empleado,
+								id_cliente: req.body.id_cliente,
+								id_orden_servicio: req.body.id_orden_servicio,
+								id_cita: cita.get('id_cita')
+							})
+							.save(null, { transacting: t })
+							.then(function (agenda) {
+								res.status(200)
+							})
+							.catch(function (err) {
+								res.status(500).json({
+									error: true,
+									data: { mensaje: err.message }
+								})
+							})
+						})
+						.catch(function (err) {
+							res.status(500).json({
+								error: true,
+								data: { mensaje: err.message }
+							})
+						})
+
+					})
+				}
+			})
+			.catch(function (err) {
+				res.status(500).json({
+					error: true,
+					data: { mensaje: err.message }
+				})
+			})
+		}
+	})			
 }
 
 function saveVisita(req, res, next){
@@ -307,6 +395,33 @@ function saveVisita(req, res, next){
 	})
 }
 
+
+function saveVisitaControl(req, res, next) {
+	if (!req.body.id_agenda || !req.body.numero || !req.body.fecha_atencion)
+		return res.status(400).json({
+			error: true,
+			data: { mensaje: 'Petición inválida' }
+		});
+	Visita.forge({
+		id_agenda: req.body.id_agenda,
+		numero: req.body.numero,
+		fecha_atencion: req.body.fecha_atencion
+	})
+	.save()
+	.then(function (visita) {		
+		return res.status(200).json({
+			error: false,
+			data: visita
+		})
+	})
+	.catch(function(err) {
+		return res.status(500).json({
+			error: false,
+			data: { mensaje: err.message }
+		})
+	})
+}
+
 function getVisitaById(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') 
@@ -416,6 +531,7 @@ function deleteVisita(req, res, next) {
 
 module.exports = {
 	getVisitasByClienteAndOrden,
+	saveVisitaControl,
 	saveVisita,
 	getVisitaById,
 	updateVisita,
