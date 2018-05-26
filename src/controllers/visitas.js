@@ -21,7 +21,7 @@ function getVisitasByClienteAndOrden(req, res, next) {
 	VistaVisita.query(function (qb) {
 		qb.where('id_cliente', '=', req.body.id_cliente);
 		qb.where('id_orden_servicio', '=', req.body.id_orden_servicio);
-		qb.orderBy('numero');
+		qb.orderByRaw('numero ASC');
 	})
 	.fetchAll({ withRelated: [
 		'parametros',

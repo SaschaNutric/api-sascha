@@ -123,6 +123,7 @@ async function getServiciosPorEspecialidad(req, res, next) {
 				data: { mensaje: 'No hay servicios registrados' } 
 			});
 			let servicios = [];
+			let especialidad = {};
 			data.toJSON().map(function(servicio) {
 				let parametros = [];
 				servicio.parametros.map(function(parametro) {
@@ -144,6 +145,11 @@ async function getServiciosPorEspecialidad(req, res, next) {
 						})
 					}
 				})
+				especialidad =  {
+					id_especialidad: servicio.especialidad.id_especialidad,
+					nombre: servicio.especialidad.nombre
+				}
+
 				servicios.push({
 					id_servicio: servicio.id_servicio,
 					nombre: servicio.nombre,
@@ -151,10 +157,6 @@ async function getServiciosPorEspecialidad(req, res, next) {
 					url_imagen: servicio.url_imagen,
 					precio: servicio.precio,
 					numero_visitas: servicio.numero_visitas,
-					especialidad: {
-						id_especialidad: servicio.especialidad.id_especialidad,
-						nombre: servicio.especialidad.nombre
-					},
 					plan_dieta: { 
 						id_plan_dieta: servicio.plan_dieta.id_plan_dieta,
 						nombre: servicio.plan_dieta.nombre,
@@ -177,7 +179,10 @@ async function getServiciosPorEspecialidad(req, res, next) {
 		
 		return res.status(200).json({
 			error: false,
-			data: servicios
+			data: {
+				"especialidad":especialidad,
+				"servicios":servicios
+			}
 		});
 	})
 	.catch(function (err) {
