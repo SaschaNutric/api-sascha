@@ -247,7 +247,7 @@ function getTipoMotivoById(req, res, next) {
 		});
 
 	TipoMotivo.forge({ id_tipo_motivo: id, estatus: 1 })
-	.fetch()
+	.fetch({ withRelated: ['motivos'] })
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
