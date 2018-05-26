@@ -453,7 +453,7 @@ function getPlanPorCliente(req, res, next) {
 		});
 	VistaAgendas.query(function (qb) {
 		qb.where('id_cliente', '=', id);
-		qb.orderBy('fecha_creacion','ASC'); 
+		qb.orderBy('fecha_creacion','DES'); 
 	})
 	.fetch({
 		withRelated: [
