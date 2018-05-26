@@ -34,6 +34,7 @@ async function getServicios(req, res, next) {
 					if(parametro.estatus == 1){
 					parametros.push({
 						id_parametro_servicio: parametro.id_parametro_servicio,
+						id_parametro: parametro.parametro.id_parametro,
 						nombre: parametro.parametro.nombre,
 						valor_minimo: parametro.valor_minimo,
 						valor_maximo: parametro.valor_maximo
