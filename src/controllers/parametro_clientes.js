@@ -2,7 +2,8 @@
 
 const Parametro_clientes = require('../collections/parametro_clientes');
 const Parametro_cliente = require('../models/parametro_cliente');
-
+const DetalleVisita = require('../models/detalle_visita');
+const Bookshelf = require('../commons/bookshelf');
 function getParametro_clientes(req, res, next) {
 	Parametro_clientes.query(function (qb) {
 		qb.where('parametro_cliente.estatus', '=', 1);
@@ -114,6 +115,46 @@ function getParametro_clientesByIdCliente(req, res, next) {
 
 
 function saveParametro_cliente(req, res, next) {
+	Bookshelf.transaction(function (t) {
+		Parametro_cliente.forge({
+			id_cliente: req.body.id_cliente,
+			id_parametro: req.body.id_parametro,
+			valor: req.body.valor || null
+		})
+			.save(null, { transacting: t })
+			.then(function (parametro) {
+				DetalleVisita.forge({
+					id_visita: req.body.id_visita,
+					id_parametro: parametro.get('id_parametro'),
+					valor: parametro.get('valor')
+				})
+					.save(null, { transacting: t })
+					.then(function (detalle) {
+						t.commit()
+						res.status(200).json({
+							error: false,
+							data: parametro
+						})
+					})
+					.catch(function (err) {
+						t.rollback()
+						res.status(500).json({
+							error: true,
+							data: { mensaje: err.message }
+						})
+					})
+			})
+			.catch(function (err) {
+				t.rollback();
+				res.status(500).json({
+					error: true,
+					data: { mensaje: err.message }
+				})
+			})
+	})
+}
+/*
+function saveParametro_cliente(req, res, next) {
 	console.log(JSON.stringify(req.body));
 	Parametro_cliente.forge({ 
 		id_cliente: req.body.id_cliente, 
@@ -165,7 +206,7 @@ function saveParametro_cliente(req, res, next) {
 			});
 	});
 }
-
+*/
 function getParametro_clienteById(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN')
