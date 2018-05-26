@@ -31,7 +31,7 @@ function getFuncionalidades(req, res, next) {
 function saveFuncionalidad(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	Funcionalidad.forge({ id_funcionalidad_padre:req.body.id_funcionalidad_padre ,nombre:req.body.nombre ,icono:req.body.icono ,orden:req.body.orden ,nivel:req.body.nivel ,estatus:req.body.estatus ,url_vista:req.body.url_vista  })
+	Funcionalidad.forge({id_funcionalidad:req.body.id_funcionalidad, id_funcionalidad_padre:req.body.id_funcionalidad_padre ,nombre:req.body.nombre ,icono:req.body.icono ,orden:req.body.orden ,nivel:req.body.nivel ,estatus:req.body.estatus ,url_vista:req.body.url_vista  })
 	.save()
 	.then(function(data){
 		res.status(200).json({

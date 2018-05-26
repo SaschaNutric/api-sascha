@@ -7,7 +7,7 @@ function getRoles(req, res, next) {
 	Roles.query(function (qb) {
    		qb.where('rol.estatus', '=', 1);
 	})
-	.fetch({ columns: ['id_rol','nombre','descripcion'] })
+	.fetch({withRelated: ['funcionalidades'] } )
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
