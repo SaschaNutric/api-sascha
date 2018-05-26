@@ -1,0 +1,2013 @@
+--
+-- Data for Name: tipo_unidad; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.tipo_unidad (id_tipo_unidad, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+1	Longitud	2018-05-03 22:06:22.883	2018-05-03 22:06:22.883	0
+2	Vegetariana	2018-05-03 23:54:58.037	2018-05-03 23:54:58.037	0
+3	Hiper Calórica	2018-05-04 00:00:39.546	2018-05-04 00:00:39.546	0
+4		2018-05-03 22:08:04.122	2018-05-03 22:08:04.122	0
+5		2018-05-03 22:08:06.972	2018-05-03 22:08:06.972	0
+6		2018-05-03 22:51:57.372	2018-05-03 22:51:57.372	0
+7	Longitud	2018-05-04 01:42:14.943	2018-05-04 01:42:14.943	0
+8	Longitud	2018-05-04 01:55:54.712	2018-05-04 01:55:54.712	0
+9	Prueba para eliminar	2018-05-04 11:49:27.413	2018-05-04 11:49:27.413	0
+10	Prueba	2018-05-05 18:35:14.549	2018-05-05 18:35:14.549	0
+11	Prueba	2018-05-05 19:02:53.293	2018-05-05 19:02:53.293	0
+12	Tamaño	2018-05-04 03:37:03.083	2018-05-04 03:37:03.083	1
+13	Prueba	2018-05-05 19:03:28.346	2018-05-05 19:03:28.346	0
+14	Hola	2018-05-08 19:24:58.117	2018-05-08 19:24:58.117	0
+15	parametro	2018-05-04 14:58:41.433	2018-05-04 14:58:41.433	0
+16	Parámetro	2018-05-11 00:15:18.494	2018-05-11 00:15:18.494	1
+17	menta	2018-05-07 17:32:17.579	2018-05-07 17:32:17.579	0
+18	dfjdk	2018-05-05 23:30:37.684	2018-05-05 23:30:37.684	0
+19	Prueba1232	2018-05-05 22:26:30.267	2018-05-05 22:26:30.267	0
+2	Moneda	2018-05-03 21:21:21.405	2018-05-03 21:21:21.405	0
+15	Volumen	2018-05-04 14:57:09.318	2018-05-04 14:57:09.318	0
+30	algo1	2018-05-15 14:21:09.69	2018-05-15 14:21:09.69	0
+3	Tiempo	2018-05-03 21:21:21.405	2018-05-03 21:21:21.405	1
+22	Proteina	2018-05-06 01:48:16.581	2018-05-06 01:48:16.581	0
+23	Proteina	2018-05-06 01:49:23.169	2018-05-06 01:49:23.169	0
+28	Vitaminas	2018-05-09 15:59:29.099	2018-05-09 15:59:29.099	0
+31	Parametro	2018-05-23 18:04:38.785051	2018-05-23 18:04:38.785051	1
+13	Unidad	2018-05-04 04:42:00.053	2018-05-04 04:42:00.053	0
+1	Masa	2018-05-03 21:21:21.405	2018-05-03 21:21:21.405	1
+25	HOLA	2018-05-06 02:29:17.655	2018-05-06 02:29:17.655	0
+24	prueba	2018-05-06 02:26:37.767	2018-05-06 02:26:37.767	0
+32	Volumen	2018-05-24 02:01:34.473348	2018-05-24 02:01:34.473348	1
+33	Unidad	2018-05-24 02:02:31.524911	2018-05-24 02:02:31.524911	1
+35	AAAA	2018-05-24 21:58:26.16	2018-05-24 21:58:26.16	0
+34	asasa	2018-05-24 21:44:29.513	2018-05-24 21:44:29.513	0
+36	Examen	2018-05-25 03:34:31.212931	2018-05-25 03:34:31.212931	1
+\.
+
+
+
+
+
+--
+-- Data for Name: agenda; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.agenda (id_agenda, id_empleado, id_cliente, id_orden_servicio, id_cita, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+14	3	10	15	15	2018-05-16 15:22:54.035123	2018-05-16 15:22:54.035123	1
+15	2	14	16	16	2018-05-18 09:16:03.006819	2018-05-18 09:16:03.006819	1
+16	2	9	17	17	2018-05-18 14:20:55.24229	2018-05-18 14:20:55.24229	1
+17	2	15	18	18	2018-05-20 02:40:55.350281	2018-05-20 02:40:55.350281	1
+18	2	9	17	19	2018-05-24 03:18:23.236765	2018-05-24 03:18:23.236765	1
+19	3	14	19	20	2018-05-25 02:54:46.154182	2018-05-25 02:54:46.154182	1
+20	2	11	20	21	2018-05-25 03:18:15.107102	2018-05-25 03:18:15.107102	1
+21	3	3	21	22	2018-05-25 04:44:54.591342	2018-05-25 04:44:54.591342	1
+22	2	9	17	23	2018-05-25 11:27:57.101757	2018-05-25 11:27:57.101757	1
+23	7	10	22	24	2018-05-25 12:30:25.962757	2018-05-25 12:30:25.962757	1
+24	3	27	23	25	2018-05-25 13:07:27.642912	2018-05-25 13:07:27.642912	1
+25	1	21	24	26	2018-05-25 14:21:40.919048	2018-05-25 14:21:40.919048	1
+26	1	21	25	27	2018-05-25 14:47:41.348201	2018-05-25 14:47:41.348201	1
+27	1	21	25	28	2018-05-25 14:59:59.912891	2018-05-25 14:59:59.912891	1
+\.
+
+
+--
+-- Data for Name: alimento; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.alimento (id_alimento, id_grupo_alimenticio, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+1	1	arroz blanco	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+2	1	arroz integral	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+3	1	trigo sarraceno	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+4	1	trigo integral (trigo partido)	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+5	1	harina de avena	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+6   1   Cotufas o Palomitas de maíz 2018-05-03 21:23:35.504 2018-05-03 21:23:35.504 1
+7	1	cebada de grano entero	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+8	1	harina de maíz integral	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+9	1	centeno integral	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+10	1	pan integral	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+11	1	galletas de trigo integral	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+12	1	pasta de trigo integral	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+13	1	copos de cereales integrales de trigo	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+14	1	tortillas de trigo integral	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+15	1	arroz salvaje	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+16	1	pan de maíz	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+17	1	tortillas de maíz	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+18	1	cuscús	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+19	1	galletas	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+20	2	col china	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+21	2	brócoli	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+22	2	berza	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+23	2	col rizada	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+24	2	espinaca	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+25	2	calabaza bellota	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+26	2	calabaza moscada	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+27	2	zanahorias	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+28	2	calabaza	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+29	2	pimientos rojos	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+30	2	batatas	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+31	2	tomates	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+32	2	jugo de tomate	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+33	2	maíz	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+34	2	guisantes	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+35	2	patatas	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+36	2	alcachofas	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+37	2	espárragos	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+38  2   aguacate    2018-05-03 21:23:35.504 2018-05-03 21:23:35.504 1
+39	2	brotes de soja	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+40	2	remolacha	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+41  2   coles de bruselas   2018-05-03 21:23:35.504946  2018-05-03 21:23:35.504946  1
+42  2   repollo 2018-05-03 21:23:35.504946  2018-05-03 21:23:35.504946  1
+43	2	coliflor	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+44	2	apio	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+45	2	pepinos	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+46	2	berenjenas	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+47	2	pimientos verdes y rojos	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+48	2	pimientosjícama	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+49	2	hongos	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+50	2	quimbombó	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+51	2	cebollas	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+52  2   arveja china    2018-05-03 21:23:35.504 2018-05-03 21:23:35.504 1
+53	2	judías verdes	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+54	2	tomates	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+55	2	jugos de verduras	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+56	2	calabacín	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+57	3	cortes magros de carne de res	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+58	3	ternera	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+59	3	cerdo	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+60	3	jamón y cordero	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+61	3	embutidos reducidos en grasa	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+62	3	embutidospollo sin piel y pavo	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+63	3	carne picada de pollo y pavo	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+64  3   salmón  2018-05-03 21:23:35.504946  2018-05-03 21:23:35.504946  1
+65	3	almejas	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+66	3	arenque	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+67	3	cangrejo	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+68	3	langosta	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+69	3	mejillones	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+70	3	pulpo	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+71	3	ostras	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+72	3	vieiras	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+73	3	calamares	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+74	3	atún enlatado	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+75	3	huevos de pollo	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+76	3	huevos de pato	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+77	4	Leche baja en grasa	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+78	4	yogur	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+79	4	queso (como el cheddar, mozzarella, suizo, parmesano, tiras de queso, requesón)	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+80	4	pudín	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+81	4	helado	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+82	4	leche de soja	2018-05-03 21:23:35.504946	2018-05-03 21:23:35.504946	1
+83  6  Manzanas    2018-05-03 21:23:35.504 2018-05-03 21:23:35.504 1
+84  6  compota de manzanas 2018-05-03 21:23:35.504 2018-05-03 21:23:35.504 1
+85	6	albaricoques	2018-05-03 21:23:35.504	2018-05-03 21:23:35.504	1
+86  6  bananas 2018-05-03 21:23:35.504 2018-05-03 21:23:35.504 1
+87  6  bayas (fresas, arándanos, frambuesas)   2018-05-03 21:23:35.504 2018-05-03 21:23:35.504 1
+88  6  jugos de frutas (sin azúcar)    2018-05-03 21:23:35.504 2018-05-03 21:23:35.504 1
+89  6  toronja 2018-05-03 21:23:35.504 2018-05-03 21:23:35.504 1
+90  6  uvas    2018-05-03 21:23:35.504 2018-05-03 21:23:35.504 1
+91  6  kiwis   2018-05-03 21:23:35.504 2018-05-03 21:23:35.504 1
+92  6  mangos  2018-05-03 21:23:35.504 2018-05-03 21:23:35.504 1
+93  6  melones (cantalupo, melón tuna, sandía) 2018-05-03 21:23:35.504 2018-05-03 21:23:35.504 1
+94  6  nectarinas  2018-05-03 21:23:35.504 2018-05-03 21:23:35.504 1
+95  6  naranjas    2018-05-03 21:23:35.504 2018-05-03 21:23:35.504 1
+96  6  papayas 2018-05-03 21:23:35.504 2018-05-03 21:23:35.504 1
+97  6  duraznos    2018-05-03 21:23:35.504 2018-05-03 21:23:35.504 1
+98  6  peras   2018-05-03 21:23:35.504 2018-05-03 21:23:35.504 1
+99 6  ciruelas    2018-05-03 21:23:35.504 2018-05-03 21:23:35.504 1
+100 6  piña    2018-05-03 21:23:35.504 2018-05-03 21:23:35.504 1
+101 6  pasas   2018-05-03 21:23:35.504 2018-05-03 21:23:35.504 1
+102 6  ciruelas    2018-05-03 21:23:35.504 2018-05-03 21:23:35.504 1
+103 6  carambolas  2018-05-03 21:23:35.504 2018-05-03 21:23:35.504 1
+104 6  mandarinas  2018-05-03 21:23:35.504 2018-05-03 21:23:35.504 1
+105 5   caraotas    2018-05-21 07:21:40.302597  2018-05-21 07:21:40.302597  1
+106 5   lentejas    2018-05-21 07:21:54.296801  2018-05-21 07:21:54.296801  1
+107	3	trucha	2018-05-25 02:36:27.898515	2018-05-25 02:36:27.898515	1
+\.
+
+
+--
+-- Data for Name: grupo_alimenticio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.grupo_alimenticio (id_grupo_alimenticio, id_unidad, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+1   1   Granos  2018-05-03 21:22:37.89743   2018-05-03 21:22:37.89743   1
+2   1   Vegetales   2018-05-03 21:22:37.89743   2018-05-03 21:22:37.89743   1
+3   1   Proteína Animal 2018-05-03 21:22:37.897 2018-05-03 21:22:37.897 1
+4   1   Lácteos 2018-05-03 21:22:37.89743   2018-05-03 21:22:37.89743   1
+5   1   Proteína Vegetal    2018-05-06 01:51:55.529 2018-05-06 01:51:55.529 1
+6  40  Fruta   2018-05-25 02:30:30.559528  2018-05-25 02:30:30.559528  1
+\.
+
+
+--
+-- Data for Name: app_movil; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.app_movil (id_app_movil, sistema_operativo, url_descarga, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+1	Android	https://saschanutric.com/Android	2018-04-29 12:16:44.458	2018-04-29 12:16:44.458	1
+2	IOS	https://saschanutric.com/	2018-04-29 12:17:50.397	2018-04-29 12:17:50.397	1
+\.
+
+
+--
+-- Data for Name: ayuda; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.ayuda (id_ayuda, pregunta, respuesta, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+1			2018-05-09 13:50:39.235	2018-05-09 13:50:39.235	0
+3	¿Como visualizo mi progreso?	Ingresa en la opcion Mi evolucion en el menu principal.	2018-05-09 13:54:35.571984	2018-05-09 13:54:35.571984	1
+7	Como descargo la aplicacion?	Para descargar la aplicacion debes suscribirte en la web y te llegara un correo con el enlace de descarga	2018-05-11 02:44:19.443	2018-05-11 02:44:19.443	0
+8	Pregunta	algo	2018-05-11 02:52:45.107	2018-05-11 02:52:45.107	0
+9	Pregunta 1	Respuesta 1	2018-05-11 03:18:06.069	2018-05-11 03:18:06.069	0
+10	Pregunta 2	Respuesta 2	2018-05-11 03:19:27.773	2018-05-11 03:19:27.773	0
+11	Pregunta 3	Respuesta 3	2018-05-11 03:22:02.187	2018-05-11 03:22:02.187	0
+12	Pregunta de Prueba	Respuesta de prueba	2018-05-11 14:48:43.683	2018-05-11 14:48:43.683	0
+13	Pregunta de prueba 5	respuesta de prueba 5	2018-05-13 22:49:32.461	2018-05-13 22:49:32.461	0
+6	Como descargo la aplicacion?	Para descargar la aplicacion debes suscribirte en la web y te llegara un correo con el enlace de descarga	2018-05-11 02:44:17.579	2018-05-11 02:44:17.579	0
+5	Como solicito una cita?	Tienes que descargar la aplicacion web para solicitar una cita	2018-05-11 02:42:29.839	2018-05-11 02:42:29.839	0
+4	¿Como califico mi servicio?	Puedes calificar cada visita realizada en la opcion del menu principal Mi evolución.	2018-05-09 13:56:34.917	2018-05-09 13:56:34.917	0
+17	Pregunta	Respuesta 1	2018-05-15 14:29:45.991	2018-05-15 14:29:45.991	0
+15	pregunta 6	respuesta 6	2018-05-15 14:24:20.849	2018-05-15 14:24:20.849	0
+16	pregunta 7	Respuesta 1	2018-05-15 14:26:31.507	2018-05-15 14:26:31.507	0
+22	20000	20000	2018-05-15 14:45:56.314	2018-05-15 14:45:56.314	0
+20	asasasa	asasasa	2018-05-15 14:40:26.527	2018-05-15 14:40:26.527	0
+21	asasasa	asasasa	2018-05-15 14:44:15.323	2018-05-15 14:44:15.323	0
+23	finale	finale	2018-05-15 14:48:09.996	2018-05-15 14:48:09.996	0
+19	pregunta prueba 1212121	as	2018-05-15 14:35:05.353	2018-05-15 14:35:05.353	0
+18	pregunta pruebaa	Respuesta 1	2018-05-15 14:31:49.566	2018-05-15 14:31:49.566	0
+24	asasasa	asasasa	2018-05-15 15:01:55.894	2018-05-15 15:01:55.894	0
+25			2018-05-15 15:15:22.596	2018-05-15 15:15:22.596	0
+27	asasasa	asasa	2018-05-24 21:46:55.079	2018-05-24 21:46:55.079	0
+26	asasa	asasa	2018-05-24 21:43:09.767	2018-05-24 21:43:09.767	0
+28	asasasa	asasa	2018-05-24 21:48:33.36	2018-05-24 21:48:33.36	0
+29	asasasssssssssssssssssssss	asssssssssssssssssssssssssssss	2018-05-24 21:49:33.415	2018-05-24 21:49:33.415	0
+35	111	1111	2018-05-24 22:08:25.128	2018-05-24 22:08:25.128	0
+14	Como descargo la aplicacion?3	Debes Registrarte para tener acceso al enlace de descarga de la aplicacion	2018-05-15 14:19:50.568	2018-05-15 14:19:50.568	0
+2	¿Como reprogramo mi cita?	Ingresa en la opcion Mi evolucion en el menu secundario y presiona el boton reprogramar en la parte de visitas.	2018-05-09 13:53:56.159	2018-05-09 13:53:56.159	1
+30	1111111111	111111	2018-05-24 21:50:24.482	2018-05-24 21:50:24.482	0
+31	2222222	2222222	2018-05-24 21:54:07.919	2018-05-24 21:54:07.919	0
+32	33	33	2018-05-24 21:55:44.784	2018-05-24 21:55:44.784	0
+33	444	4444	2018-05-24 21:56:42.063	2018-05-24 21:56:42.063	0
+34	555	555	2018-05-24 21:57:44.084	2018-05-24 21:57:44.084	0
+36	1111	1111	2018-05-24 22:13:01.318	2018-05-24 22:13:01.318	0
+\.
+
+
+--
+-- Data for Name: bloque_horario; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.bloque_horario (id_bloque_horario, hora_inicio, hora_fin, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+2	08:00:00	09:00:00	2018-05-05 20:59:06.159568+00	2018-05-05 20:59:06.159568	1
+3	09:00:00	10:00:00	2018-05-05 20:59:06.159568+00	2018-05-05 20:59:06.159568	1
+4	10:00:00	11:00:00	2018-05-05 20:59:06.159568+00	2018-05-05 20:59:06.159568	1
+5	11:00:00	12:00:00	2018-05-05 20:59:06.159568+00	2018-05-05 20:59:06.159568	1
+6	12:00:00	13:00:00	2018-05-05 20:59:06.159568+00	2018-05-05 20:59:06.159568	1
+7	13:00:00	14:00:00	2018-05-05 20:59:06.159568+00	2018-05-05 20:59:06.159568	1
+8	14:00:00	15:00:00	2018-05-05 20:59:06.159568+00	2018-05-05 20:59:06.159568	1
+9	15:00:00	16:00:00	2018-05-05 20:59:06.159568+00	2018-05-05 20:59:06.159568	1
+10	16:00:00	17:00:00	2018-05-05 20:59:06.159568+00	2018-05-05 20:59:06.159568	1
+11	17:00:00	18:00:00	2018-05-05 20:59:06.159568+00	2018-05-05 20:59:06.159568	1
+15	10:00:00	10:30:00	2018-05-10 19:24:24.532+00	2018-05-10 19:24:24.532	1
+12	07:00:00	07:30:00	2018-05-05 21:53:58.114+00	2018-05-05 21:53:58.114	0
+13	08:00:00	08:30:00	2018-05-10 19:02:00.982+00	2018-05-10 19:02:00.982	0
+1	09:00:00	09:30:00	2018-05-05 20:59:06.159+00	2018-05-05 20:59:06.159	0
+14	09:00:00	08:00:00	2018-05-10 19:15:44.254+00	2018-05-10 19:15:44.254	0
+\.
+
+
+--
+-- Data for Name: calificacion; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.calificacion (id_criterio, id_valoracion, id_visita, id_orden_servicio, fecha_creacion, fecha_actualizacion, estatus, id_calificacion) FROM stdin;
+\.
+
+
+--
+-- Data for Name: cita; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.cita (id_cita, id_orden_servicio, id_tipo_cita, id_bloque_horario, fecha, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+15	15	1	6	2018-05-18	2018-05-16 15:22:54.035123	2018-05-16 15:22:54.035123	1
+16	16	1	4	2018-05-18	2018-05-18 09:16:03.006819	2018-05-18 09:16:03.006819	1
+17	17	1	6	2018-05-18	2018-05-18 14:20:55.24229	2018-05-18 14:20:55.24229	1
+18	18	1	4	2018-05-23	2018-05-20 02:40:55.350281	2018-05-20 02:40:55.350281	1
+19	17	2	3	2018-06-01	2018-05-24 03:18:23.236765	2018-05-24 03:18:23.236765	1
+20	19	1	4	2018-05-25	2018-05-25 02:54:46.154182	2018-05-25 02:54:46.154182	1
+21	20	1	7	2018-05-25	2018-05-25 03:18:15.107102	2018-05-25 03:18:15.107102	1
+22	21	1	7	2018-05-25	2018-05-25 04:44:54.591342	2018-05-25 04:44:54.591342	1
+23	17	2	3	2018-06-05	2018-05-25 11:27:57.101757	2018-05-25 11:27:57.101757	1
+24	22	1	10	2018-05-28	2018-05-25 12:30:25.962757	2018-05-25 12:30:25.962757	1
+25	23	1	3	2018-05-28	2018-05-25 13:07:27.642912	2018-05-25 13:07:27.642912	1
+26	24	1	5	2018-05-25	2018-05-25 14:21:40.919048	2018-05-25 14:21:40.919048	1
+27	25	1	6	2018-05-25	2018-05-25 14:47:41.348201	2018-05-25 14:47:41.348201	1
+28	25	2	6	2018-06-01	2018-05-25 14:59:59.912891	2018-05-25 14:59:59.912891	1
+\.
+
+
+--
+-- Data for Name: cliente; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.cliente (id_cliente, id_usuario, id_genero, id_estado_civil, id_rango_edad, cedula, nombres, apellidos, telefono, direccion, fecha_nacimiento, tipo_cliente, fecha_consolidado, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+10	10	2	1	\N	1234567	Luis	Puerta	02514445577	Calle 1	1991-08-07	1	\N	2018-05-08 19:56:58.022	2018-05-08 19:56:58.022	1
+4	4	3	1	\N	V-1234567	Ana Victoria	De Palma	0414-1234567	Barquisimeto	1994-03-18	1	\N	2018-05-04 04:20:04.623128	2018-05-04 04:20:04.623128	1
+5	5	3	1	\N	V-23482323	Yuri Angelica	Freitez Rodriguez	0426-1234567	Barquisimeto	1993-08-17	1	\N	2018-05-04 04:41:20.616108	2018-05-04 04:41:20.616108	1
+7	7	3	1	\N	24339727	karem	Alvarado	04121540000	centro	1994-10-15	1	\N	2018-05-04 12:16:41.781688	2018-05-04 12:16:41.781688	1
+6	6	3	1	\N	24339727	Victoria	Alvarado	04121540000	centro	1994-10-15	1	\N	2018-05-04 12:16:41.326	2018-05-04 12:16:41.326	1
+8	8	2	3	\N	V-1234567	Manuel	Crespo	0414-1456789	Barquisimeto	1966-05-15	1	\N	2018-05-04 12:49:23.314	2018-05-04 12:49:23.314	1
+3	3	2	1	\N	19727835	Leonardo Ramon	Pineda Suarez	0424-5042292	carrera 7 esquina calle 6 barrio el carmen	1991-05-13	1	\N	2018-05-02 01:04:03.02	2018-05-02 01:04:03.02	1
+9	9	3	1	\N	14399538	Hilmary	Nieto	04125558888	Calle Augusta	1990-09-12	1	\N	2018-05-08 19:55:38.660868	2018-05-08 19:55:38.660868	1
+11	11	2	1	\N	132415678	Abdel	Gainza	02515557789	Calle 2	1999-05-02	1	\N	2018-05-08 19:58:33.50811	2018-05-08 19:58:33.50811	1
+13	27	2	1	3	V-7654321	Pedro Andrés	Pérez Pérez	0426-0974563	Valencia	1990-05-10	1	\N	2018-05-18 01:46:48.480882	2018-05-18 01:46:48.480882	1
+14	28	3	1	4	13267403	Brillit	Pineda	584147313767	Carrera 7Entre Calle 5 y 6 Barrio El Carmen	1982-09-14	1	\N	2018-05-18 04:14:22.554423	2018-05-18 04:14:22.554423	1
+15	29	3	1	3	V-12345678	Victoria	De Palma	19083471	Barquisimeto	1994-07-31	1	\N	2018-05-20 02:35:16.25219	2018-05-20 02:35:16.25219	1
+16	38	2	1	3	24418784	Reiddys Jose	Rico Pacheco	04126746067	El tostao	1993-02-14	1	\N	2018-05-22 23:43:51.453248	2018-05-22 23:43:51.453248	1
+17	39	3	1	4	12249619	Nelida Josefina	Mujica Lucena	04260561381	El Sisal	1973-05-24	1	\N	2018-05-22 23:46:07.013871	2018-05-22 23:46:07.013871	1
+18	40	2	1	4	9617069	Alfredo Ramon	Lugo Gutierrez	04269356800	El sisal	1968-05-16	1	\N	2018-05-22 23:48:08.532657	2018-05-22 23:48:08.532657	1
+19	41	3	1	3	25412369	Pahola 	Aranguren Arevalo	04245172059	Fundalare	1993-11-09	1	\N	2018-05-22 23:50:25.552625	2018-05-22 23:50:25.552625	1
+20	42	3	1	3	22181169	Brisleidy Franchezka 	Lugo Mujica	04127894561	Santa Isabel	1994-05-14	1	\N	2018-05-22 23:53:17.826315	2018-05-22 23:53:17.826315	1
+21	43	3	1	4	14648397	Neida del Carmen	Mujica Lucena	04266503572	Santa Isabel carrera 8	1981-04-29	1	\N	2018-05-22 23:58:12.448836	2018-05-22 23:58:12.448836	1
+22	44	3	1	4	11284369	Katiuzka Nadezka	Arevalo 	04141593554	Fundalara	1970-09-02	1	\N	2018-05-22 23:59:59.283573	2018-05-22 23:59:59.283573	1
+23	45	2	1	3	22181763	Adonis Manuel	Chirinos Melendez	04245567910	Nueva Paz	1994-12-31	1	\N	2018-05-23 00:01:29.659402	2018-05-23 00:01:29.659402	1
+24	46	3	1	4	9617070	Nerva Luz	Lugo Gutierrez	02514426274	El Sisal	1961-07-11	1	\N	2018-05-23 00:03:43.804143	2018-05-23 00:03:43.804143	1
+25	47	3	1	4	19487563	Maria Franchezka	Perez Sanchez	04260561381	Urb El Sisal Av casa numero 75	1986-05-02	1	\N	2018-05-23 00:06:34.597911	2018-05-23 00:06:34.597911	1
+26	58	2	1	3	20008875	Karem	Alvarado	4121540000	Carrera 23 entre calles 8 y 9	1998-12-12	1	\N	2018-05-25 04:52:45.831201	2018-05-25 04:52:45.831201	1
+27	59	2	1	3	20666187	Enrique	Rodriguez	1234567	en mi casa	1991-08-07	1	\N	2018-05-25 12:45:15.774627	2018-05-25 12:45:15.774627	1
+28	60	3	1	3	20268748	Indira	Perez	02426-944220	San Carlos	1992-03-17	1	\N	2018-05-25 17:59:11.18125	2018-05-25 17:59:11.18125	1
+\.
+
+
+--
+-- Data for Name: comentario; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.comentario (id_comentario, id_cliente, id_respuesta, contenido, mensaje, fecha_creacion, fecha_actualizacion, estatus, id_motivo) FROM stdin;
+12	10	\N	El que ofrecen no se ajusta a mis necesidades	\N	2018-05-17 01:38:29.796992	2018-05-17 01:38:29.796992	1	21
+8	10	\N	Contenido de prueba	segir	2018-05-17 00:35:40.31	2018-05-17 00:35:40.31	1	10
+13	10	44	son muy malos	por favor no sea grosero. Feliz Dia!	2018-05-17 17:59:36.319	2018-05-17 17:59:36.319	1	25
+7	10	43	Contenido de prueba	busqueda de solucion	2018-05-17 00:33:55.085	2018-05-17 00:33:55.085	1	10
+10	10	45	Contenido de prueba	dkejr	2018-05-17 01:09:12.155	2018-05-17 01:09:12.155	1	21
+14	9	41	Deben mejorar.	prueba	2018-05-18 03:48:17.741	2018-05-18 03:48:17.741	1	23
+15	14	\N	Que mejore el rendimiento	\N	2018-05-18 10:07:55.838815	2018-05-18 10:07:55.838815	1	3
+11	10	43	este es otro comentario	En los proximos dias	2018-05-17 01:31:17.484	2018-05-17 01:31:17.484	1	3
+9	10	43	Contenido de prueba	prueba	2018-05-17 01:00:47.439	2018-05-17 01:00:47.439	1	21
+16	27	\N	QUEJA	\N	2018-05-25 13:11:04.404477	2018-05-25 13:11:04.404477	1	23
+17	21	\N	me trataron muy mal 	\N	2018-05-25 15:13:10.096531	2018-05-25 15:13:10.096531	1	23
+\.
+
+
+--
+-- Data for Name: comida; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.comida (id_comida, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+1	Desayuno	2018-05-03 21:25:14.685491	2018-05-03 21:25:14.685491	1
+2	Merienda de la mañana	2018-05-03 21:25:14.685491	2018-05-03 21:25:14.685491	1
+4	Merienda de la tarde	2018-05-03 21:25:14.685491	2018-05-03 21:25:14.685491	1
+6	Merienda de la noche	2018-05-03 21:25:14.685491	2018-05-03 21:25:14.685491	1
+3	Almuerzo	2018-05-03 21:25:14.685	2018-05-03 21:25:14.685	1
+5	Cena	2018-05-03 21:25:14.685	2018-05-03 21:25:14.685	1
+7	pruebaa	2018-05-07 18:16:04.568	2018-05-07 18:16:04.568	0
+8	Cena y media	2018-05-25 02:37:25.785	2018-05-25 02:37:25.785	0
+\.
+
+
+--
+-- Data for Name: condicion_garantia; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.condicion_garantia (id_condicion_garantia, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+4	Todas las promociones tienen 15 dias de garantia	2018-05-04 04:17:53.464	2018-05-04 04:17:53.464	1
+5	nueva 	2018-05-04 11:40:58.089	2018-05-04 11:40:58.089	0
+3		2018-05-04 04:12:51.81	2018-05-04 04:12:51.81	0
+6	Si el usuario falta a 1 visita, la garantia pierde validez	2018-05-11 00:00:26.855	2018-05-11 00:00:26.855	1
+7	La persona que realice el reclamo debe estar subscrita a la pagina	2018-05-25 03:58:54.829	2018-05-25 03:58:54.829	1
+\.
+
+
+--
+-- Data for Name: contenido; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.contenido (id_contenido, titulo, texto, url_imagen, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+1	Fija horarios para tus comidas	Lo ideal es que puedas fijar horarios para las cuatro comidas principales del día. Marcar horarios y respetarlos será un gran primer paso para comenzar a ser más saludable.	https://res.cloudinary.com/saschanutric/image/upload/v1525411646/Ganarpeso.jpg	2018-05-10 03:25:52.426	2018-05-10 03:25:52.426	1
+7	titulo intranet	contenido intranett		2018-05-11 00:18:47.075	2018-05-11 00:18:47.075	0
+5	tutulo intranet			2018-05-11 00:15:00.346	2018-05-11 00:15:00.346	0
+8	titulo intranet	contenido intranett		2018-05-11 00:18:47.954	2018-05-11 00:18:47.954	0
+6	tutulo intranet			2018-05-11 00:15:00.867	2018-05-11 00:15:00.867	0
+3	 Mastica despacio los alimentos	SNo es una carrera, para digerir correctamente los alimentos debes masticarlos por un tiempo considerable. Además te sentirás saciado más rápido y poco a poco notarás como tus porciones se hacen más pequeñas.	https://res.cloudinary.com/saschanutric/image/upload/v1525411725/controlobe.jpg	2018-05-10 03:35:04.932	2018-05-10 03:35:04.932	0
+4	Fija horarios para tus comidas	Lo ideal es que puedas fijar horarios para las cuatro comidas principales del día. Marcar horarios y respetarlos será un gran primer paso para comenzar a ser más saludable.		2018-05-10 23:59:42.705	2018-05-10 23:59:42.705	0
+9	algo	algo		2018-05-15 21:36:56.619	2018-05-15 21:36:56.619	0
+22	prueba guarda	asasasa	https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png	2018-05-15 22:16:29.065	2018-05-15 22:16:29.065	0
+25	prueba6	asasa	http://res.cloudinary.com/saschanutric/image/upload/v1526422932/gq6epfosgys72axtvv5h.jpg	2018-05-15 22:22:12.898	2018-05-15 22:22:12.898	0
+10	prueba1	prueba1		2018-05-15 21:40:49.754	2018-05-15 21:40:49.754	0
+11	prueba2	prueba2		2018-05-15 21:45:48.415	2018-05-15 21:45:48.415	0
+12	prueba2	prueba2		2018-05-15 21:45:48.823	2018-05-15 21:45:48.823	0
+26	1lalallalaa	1lalalalla	http://res.cloudinary.com/saschanutric/image/upload/v1526423818/mgdv8ehbcce6parmfut3.png	2018-05-15 22:36:59.147	2018-05-15 22:36:59.147	0
+13	prueba5	prueba5	http://res.cloudinary.com/saschanutric/image/upload/v1526422038/st4z2tqjarek8tcy9fja.jpg	2018-05-15 22:07:18.821	2018-05-15 22:07:18.821	0
+14	prueba5	prueba5	http://res.cloudinary.com/saschanutric/image/upload/v1526422047/crxa8kxie4jg3i4fshnh.jpg	2018-05-15 22:07:27.438	2018-05-15 22:07:27.438	0
+15	prueba5	prueba5	http://res.cloudinary.com/saschanutric/image/upload/v1526422052/gj2c4irxixspn3n5dcrv.jpg	2018-05-15 22:07:32.602	2018-05-15 22:07:32.602	0
+16	prueba5	asasasasa	http://res.cloudinary.com/saschanutric/image/upload/v1526422094/kmlbbpf3ap2mfdhcfunt.jpg	2018-05-15 22:08:14.63	2018-05-15 22:08:14.63	0
+17	prueba5	asasasa	https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png	2018-05-15 22:09:44.345	2018-05-15 22:09:44.345	0
+28	1prueba	asasa	http://res.cloudinary.com/saschanutric/image/upload/v1526424045/xcuk17m31uwob7ygd9w3.gif	2018-05-15 22:40:46.127	2018-05-15 22:40:46.127	0
+18	prueba5	asasasa	https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png	2018-05-15 22:09:50.282	2018-05-15 22:09:50.282	0
+19	prueba5	asasasa	https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png	2018-05-15 22:09:50.762	2018-05-15 22:09:50.762	0
+20	prueba5	asasasa	https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png	2018-05-15 22:09:51.535	2018-05-15 22:09:51.535	0
+21	prueba5	asasasa	https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png	2018-05-15 22:09:51.717	2018-05-15 22:09:51.717	0
+23	prueba guarda imagen	asasasa	http://res.cloudinary.com/saschanutric/image/upload/v1526422658/vesnexdhpxduaytkmisy.png	2018-05-15 22:17:39.267	2018-05-15 22:17:39.267	0
+27	1asasa	asasa	http://res.cloudinary.com/saschanutric/image/upload/v1526423905/d3lancfrn9x43wnuezxp.png	2018-05-15 22:38:26.064	2018-05-15 22:38:26.064	0
+24	prueba guarda imagen	asasasa	http://res.cloudinary.com/saschanutric/image/upload/v1526422720/p7b11i4fu6suzfq89cpf.png	2018-05-15 22:18:40.972	2018-05-15 22:18:40.972	0
+29	0prueba	asasasa	http://res.cloudinary.com/saschanutric/image/upload/v1526424121/iajnnkkvurdtig3gdrrb.png	2018-05-15 22:42:01.32	2018-05-15 22:42:01.32	0
+2	 Decide con tiempo	Siempre que hagas una dieta, fíjate  que la misma sea recomendada por algún profesional y no olvides que no existen remedios milagros que en un par de días te harán adelgazar.	http://res.cloudinary.com/saschanutric/image/upload/v1527223183/csxxogpb7tptxoslsh7y.jpg	2018-05-10 03:34:10.245	2018-05-10 03:34:10.245	1
+30	1que cono	asasas	http://res.cloudinary.com/saschanutric/image/upload/v1526424272/wfiulfpzmp9kcmvas3tc.png	2018-05-15 22:44:33.014	2018-05-15 22:44:33.014	0
+41			https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png	2018-05-16 05:11:14.922	2018-05-16 05:11:14.922	0
+42			https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png	2018-05-16 05:13:17.48	2018-05-16 05:13:17.48	0
+44			https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png	2018-05-16 05:23:30.571	2018-05-16 05:23:30.571	0
+56	+		http://res.cloudinary.com/saschanutric/image/upload/v1526452590/ljlsrrtggptyqxjjgm4k.png	2018-05-16 06:36:31.004	2018-05-16 06:36:31.004	0
+55	++++		http://res.cloudinary.com/saschanutric/image/upload/v1526452216/onzk83tmzpuz0cdq4yzi.png	2018-05-16 06:30:17.094	2018-05-16 06:30:17.094	0
+53	+++		http://res.cloudinary.com/saschanutric/image/upload/v1526451973/h0yvvlbuonpzpe7vfq6a.png	2018-05-16 06:26:13.603	2018-05-16 06:26:13.603	0
+54	+++		http://res.cloudinary.com/saschanutric/image/upload/v1526451987/yrco8qo0wq9x1wswjrai.png	2018-05-16 06:26:27.74	2018-05-16 06:26:27.74	0
+57	+asalslals		http://res.cloudinary.com/saschanutric/image/upload/v1526452676/jcmxfa5tjtv8y8jayd3b.png	2018-05-16 06:37:56.995	2018-05-16 06:37:56.995	0
+45	1111111111111111111111	1111111111111	http://res.cloudinary.com/saschanutric/image/upload/v1526449045/hkqvnjqh3bk2wvb7kwkd.png	2018-05-16 05:37:25.51	2018-05-16 05:37:25.51	0
+31	1ultima preba	asasasa	http://res.cloudinary.com/saschanutric/image/upload/v1526424405/ixo4wikvnbp9oevmfh3k.png	2018-05-15 22:46:45.686	2018-05-15 22:46:45.686	0
+46	222222222222222222222222222222	2222222	http://res.cloudinary.com/saschanutric/image/upload/v1526449263/fspd6ufk848kvm54lob9.png	2018-05-16 05:41:03.687	2018-05-16 05:41:03.687	0
+34	2222	222	http://res.cloudinary.com/saschanutric/image/upload/v1526446225/kkfg6edepyeenmt1mv0y.png	2018-05-16 04:50:25.828	2018-05-16 04:50:25.828	0
+36	4444	444	http://res.cloudinary.com/saschanutric/image/upload/v1526446537/e8zqqgohzmyu80h9r87q.png	2018-05-16 04:55:37.339	2018-05-16 04:55:37.339	0
+37	555	555	http://res.cloudinary.com/saschanutric/image/upload/v1526446622/df9hkyk46adpyxug7nus.png	2018-05-16 04:57:02.416	2018-05-16 04:57:02.416	0
+38	666666	666666	http://res.cloudinary.com/saschanutric/image/upload/v1526447166/yqezc0sqheodxgqij0hq.png	2018-05-16 05:06:06.348	2018-05-16 05:06:06.348	0
+39	777	777	http://res.cloudinary.com/saschanutric/image/upload/v1526447296/sx8fsxmmrzwybcn0lyj4.png	2018-05-16 05:08:17.219	2018-05-16 05:08:17.219	0
+40	888	888	http://res.cloudinary.com/saschanutric/image/upload/v1526447352/ct6bpmfpo8zs4z8mdfxb.png	2018-05-16 05:09:12.46	2018-05-16 05:09:12.46	0
+43	9999	9999	http://res.cloudinary.com/saschanutric/image/upload/v1526447935/dv5ey7wrs9dxgpgtza9z.jpg	2018-05-16 05:18:56.01	2018-05-16 05:18:56.01	0
+32	asasa	asasa	http://res.cloudinary.com/saschanutric/image/upload/v1526424845/gbp2hol8yjlncqswnkkc.png	2018-05-15 22:54:06.279	2018-05-15 22:54:06.279	0
+35	333	33	http://res.cloudinary.com/saschanutric/image/upload/v1526446342/co6rv4s8sjs17z7baozl.png	2018-05-16 04:52:23.198	2018-05-16 04:52:23.198	0
+33	11111	1111	http://res.cloudinary.com/saschanutric/image/upload/v1526445879/gliecxvpzxeegpnipjz4.png	2018-05-16 04:44:39.709	2018-05-16 04:44:39.709	0
+51	0prueba1111	asasa	http://res.cloudinary.com/saschanutric/image/upload/v1526451306/k6w3pmf3qwsjfxopj1oi.png	2018-05-16 06:15:07.109	2018-05-16 06:15:07.109	0
+58	finale		http://res.cloudinary.com/saschanutric/image/upload/v1526452779/dha73pebfuutwtsne4rg.png	2018-05-16 06:39:39.766	2018-05-16 06:39:39.766	0
+60	prueba final 2	asasasas	http://res.cloudinary.com/saschanutric/image/upload/v1526453214/kap7enavsxtldmyqdwzc.png	2018-05-16 06:46:55.257	2018-05-16 06:46:55.257	0
+59	prueba final	asasasasasa	http://res.cloudinary.com/saschanutric/image/upload/v1526453006/crb8rpqow9ucnvj5od4d.png	2018-05-16 06:43:27.133	2018-05-16 06:43:27.133	0
+48	00000000000000000	asasasasa	http://res.cloudinary.com/saschanutric/image/upload/v1526449896/fxd5f9ado0fjkgajw1sn.png	2018-05-16 05:51:37.201	2018-05-16 05:51:37.201	0
+49	0	0	http://res.cloudinary.com/saschanutric/image/upload/v1526451110/ekrki3fb1h6b8tv9iply.png	2018-05-16 06:11:50.968	2018-05-16 06:11:50.968	0
+52	---	asasasa	http://res.cloudinary.com/saschanutric/image/upload/v1526451834/gjxbqriroxqncuqkpwsy.png	2018-05-16 06:23:54.753	2018-05-16 06:23:54.753	0
+47	00000a	sasasasa	http://res.cloudinary.com/saschanutric/image/upload/v1526449679/dotdwbqyurppkbzcqusm.png	2018-05-16 05:47:59.848	2018-05-16 05:47:59.848	0
+50	00	000	http://res.cloudinary.com/saschanutric/image/upload/v1526451218/yi7vdn3nxai37awnkyeq.png	2018-05-16 06:13:38.379	2018-05-16 06:13:38.379	0
+62	1	asasasasasa	http://res.cloudinary.com/saschanutric/image/upload/v1526453419/fmnpsfxeriyddpe3ev28.png	2018-05-16 06:50:20.026	2018-05-16 06:50:20.026	0
+63	111111	111	http://res.cloudinary.com/saschanutric/image/upload/v1526509839/tkhafop1hugxnktazxjb.jpg	2018-05-16 22:30:39.43	2018-05-16 22:30:39.43	0
+61	Prueba final post	asasasasasa	http://res.cloudinary.com/saschanutric/image/upload/v1526453392/oyrprvgzjqtdjejft7jk.png	2018-05-16 06:49:52.702	2018-05-16 06:49:52.702	0
+64	Prueba	Hacer ejercicio es importante	http://res.cloudinary.com/saschanutric/image/upload/v1526652607/hzrsehfkyoec7hdm1zrb.png	2018-05-18 14:10:07.425	2018-05-18 14:10:07.425	0
+65	titulo intranet	asasasa	http://res.cloudinary.com/saschanutric/image/upload/v1527198243/ij7t1vf5bf7kyj0zx0g2.png	2018-05-24 21:44:03.719	2018-05-24 21:44:03.719	0
+67	asasa	asasasa	http://res.cloudinary.com/saschanutric/image/upload/v1527199535/bouezbipiukpz2pswyyl.png	2018-05-24 22:05:36.215	2018-05-24 22:05:36.215	0
+66	asasa	asasasa	http://res.cloudinary.com/saschanutric/image/upload/v1527199514/nsfw0zchtyresmei3jki.png	2018-05-24 22:05:15.104	2018-05-24 22:05:15.104	0
+68	asasas	asasasa	http://res.cloudinary.com/saschanutric/image/upload/v1527223204/radnz0cddjfkuj2or0mr.png	2018-05-25 04:40:05.102	2018-05-25 04:40:05.102	0
+\.
+
+
+--
+-- Data for Name: criterio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.criterio (id_criterio, id_tipo_criterio, nombre, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+10	1	Efectividad del plan	Valora la opinión del cliente con respecto a como se sintió con el plan	2018-05-13 00:33:19.082	2018-05-13 00:33:19.082	1
+16	2	Atención del nutricionista	Valora el trato del nutricionista hacia el cliente	2018-05-14 23:36:37.539	2018-05-14 23:36:37.539	1
+18	1	Costo	Valora el costo total del servicio.	2018-05-25 05:43:52.061449	2018-05-25 05:43:52.061449	1
+\.
+
+
+--
+-- Data for Name: detalle_plan_dieta; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.detalle_plan_dieta (id_detalle_plan_dieta, id_plan_dieta, id_comida, id_grupo_alimenticio, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+8	15	3	2	2018-05-13 23:39:43.417204	2018-05-13 23:39:43.417204	1
+10	17	1	4	2018-05-14 00:53:25.697579	2018-05-14 00:53:25.697579	1
+13	17	3	2	2018-05-14 00:53:26.053421	2018-05-14 00:53:26.053421	1
+23	20	3	1	2018-05-16 00:18:16.093336	2018-05-16 00:18:16.093336	1
+27	20	5	5	2018-05-16 00:18:16.097496	2018-05-16 00:18:16.097496	1
+33	22	3	2	2018-05-20 01:46:51.000932	2018-05-20 01:46:51.000932	1
+44	24	3	1	2018-05-25 02:27:56.399417	2018-05-25 02:27:56.399417	1
+46	24	5	2	2018-05-25 02:27:56.403656	2018-05-25 02:27:56.403656	1
+75	29	5	1	2018-05-25 05:50:22.151156	2018-05-25 05:50:22.151156	1
+12	17	3	3	2018-05-14 00:53:26.046409	2018-05-14 00:53:26.046409	1
+14	17	3	1	2018-05-14 00:53:26.324688	2018-05-14 00:53:26.324688	1
+16	20	1	4	2018-05-16 00:18:16.071826	2018-05-16 00:18:16.071826	1
+19	20	2	5	2018-05-16 00:18:16.084773	2018-05-16 00:18:16.084773	1
+26	20	5	3	2018-05-16 00:18:16.097253	2018-05-16 00:18:16.097253	1
+31	22	1	3	2018-05-20 01:46:50.984888	2018-05-20 01:46:50.984888	1
+32	22	1	4	2018-05-20 01:46:50.997531	2018-05-20 01:46:50.997531	1
+34	22	3	1	2018-05-20 01:46:51.002776	2018-05-20 01:46:51.002776	1
+42	24	1	3	2018-05-25 02:27:56.388352	2018-05-25 02:27:56.388352	1
+45	24	3	2	2018-05-25 02:27:56.400431	2018-05-25 02:27:56.400431	1
+76	29	3	3	2018-05-25 05:50:22.151312	2018-05-25 05:50:22.151312	1
+17	20	2	2	2018-05-16 00:18:16.079379	2018-05-16 00:18:16.079379	1
+24	20	3	3	2018-05-16 00:18:16.095845	2018-05-16 00:18:16.095845	1
+35	22	5	2	2018-05-20 01:46:51.005253	2018-05-20 01:46:51.005253	1
+43	24	3	3	2018-05-25 02:27:56.397186	2018-05-25 02:27:56.397186	1
+77	29	5	4	2018-05-25 05:50:22.153266	2018-05-25 05:50:22.153266	1
+21	20	4	3	2018-05-16 00:18:16.089428	2018-05-16 00:18:16.089428	1
+25	20	3	2	2018-05-16 00:18:16.09687	2018-05-16 00:18:16.09687	1
+36	22	3	3	2018-05-20 01:46:51.006065	2018-05-20 01:46:51.006065	1
+28	20	5	1	2018-05-16 00:18:16.098657	2018-05-16 00:18:16.098657	1
+37	22	5	5	2018-05-20 01:46:51.009538	2018-05-20 01:46:51.009538	1
+48	25	1	6	2018-05-25 04:35:21.034598	2018-05-25 04:35:21.034598	1
+50	25	3	1	2018-05-25 04:35:21.040113	2018-05-25 04:35:21.040113	1
+52	25	5	4	2018-05-25 04:35:21.044093	2018-05-25 04:35:21.044093	1
+29	20	5	4	2018-05-16 00:18:16.100107	2018-05-16 00:18:16.100107	1
+49	25	1	4	2018-05-25 04:35:21.03422	2018-05-25 04:35:21.03422	1
+51	25	5	6	2018-05-25 04:35:21.041854	2018-05-25 04:35:21.041854	1
+39	23	1	1	2018-05-21 08:33:22.046329	2018-05-21 08:33:22.046329	1
+53	26	3	4	2018-05-25 04:38:07.524473	2018-05-25 04:38:07.524473	1
+40	23	1	4	2018-05-21 08:33:22.047098	2018-05-21 08:33:22.047098	1
+54	26	1	4	2018-05-25 04:38:07.524473	2018-05-25 04:38:07.524473	1
+55	26	4	6	2018-05-25 04:38:07.525228	2018-05-25 04:38:07.525228	1
+56	26	5	4	2018-05-25 04:38:07.526672	2018-05-25 04:38:07.526672	1
+57	27	1	4	2018-05-25 04:45:30.656262	2018-05-25 04:45:30.656262	1
+59	27	3	2	2018-05-25 04:45:30.662608	2018-05-25 04:45:30.662608	1
+61	27	5	4	2018-05-25 04:45:30.666943	2018-05-25 04:45:30.666943	1
+58	27	1	6	2018-05-25 04:45:30.658659	2018-05-25 04:45:30.658659	1
+60	27	3	1	2018-05-25 04:45:30.663549	2018-05-25 04:45:30.663549	1
+62	27	5	6	2018-05-25 04:45:30.668015	2018-05-25 04:45:30.668015	1
+63	28	1	1	2018-05-25 05:41:04.121325	2018-05-25 05:41:04.121325	1
+70	28	5	4	2018-05-25 05:41:04.132846	2018-05-25 05:41:04.132846	1
+64	28	1	4	2018-05-25 05:41:04.121691	2018-05-25 05:41:04.121691	1
+68	28	3	3	2018-05-25 05:41:04.131466	2018-05-25 05:41:04.131466	1
+65	28	1	6	2018-05-25 05:41:04.123615	2018-05-25 05:41:04.123615	1
+71	28	4	6	2018-05-25 05:41:04.133895	2018-05-25 05:41:04.133895	1
+66	28	3	2	2018-05-25 05:41:04.12456	2018-05-25 05:41:04.12456	1
+67	28	3	1	2018-05-25 05:41:04.125261	2018-05-25 05:41:04.125261	1
+69	28	5	1	2018-05-25 05:41:04.132501	2018-05-25 05:41:04.132501	1
+72	29	1	4	2018-05-25 05:50:22.14653	2018-05-25 05:50:22.14653	1
+73	29	1	6	2018-05-25 05:50:22.147067	2018-05-25 05:50:22.147067	1
+74	29	3	1	2018-05-25 05:50:22.148669	2018-05-25 05:50:22.148669	1
+78	29	4	6	2018-05-25 05:50:22.156373	2018-05-25 05:50:22.156373	1
+5	15	1	4	2018-05-13 23:39:43.119241	2018-05-13 23:39:43.119241	1
+7	15	3	3	2018-05-13 23:39:43.403406	2018-05-13 23:39:43.403406	1
+9	15	3	1	2018-05-13 23:39:43.697757	2018-05-13 23:39:43.697757	1
+\.
+
+
+--
+-- Data for Name: detalle_plan_ejercicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.detalle_plan_ejercicio (id_detalle_plan_ejercicio, id_plan_ejercicio, id_ejercicio, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+1	9	3	2018-05-13 15:22:55.619244	2018-05-13 15:22:55.619244	1
+2	9	2	2018-05-13 15:22:55.625429	2018-05-13 15:22:55.625429	1
+3	12	4	2018-05-14 22:31:46.412912	2018-05-14 22:31:46.412912	1
+4	13	3	2018-05-20 01:49:41.399856	2018-05-20 01:49:41.399856	1
+5	13	2	2018-05-20 01:49:41.401408	2018-05-20 01:49:41.401408	1
+6	13	4	2018-05-20 01:49:41.403397	2018-05-20 01:49:41.403397	1
+7	13	1	2018-05-20 01:49:41.406533	2018-05-20 01:49:41.406533	1
+8	14	3	2018-05-21 09:29:29.967728	2018-05-21 09:29:29.967728	1
+\.
+
+
+--
+-- Data for Name: detalle_plan_suplemento; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.detalle_plan_suplemento (id_detalle_plan_suplemento, id_plan_suplemento, id_suplemento, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+10	13	2	2018-05-12 21:00:04.306187	2018-05-12 21:00:04.306187	1
+11	13	3	2018-05-12 21:00:04.356107	2018-05-12 21:00:04.356107	1
+12	14	2	2018-05-12 21:04:40.866666	2018-05-12 21:04:40.866666	1
+13	14	3	2018-05-12 21:04:40.877935	2018-05-12 21:04:40.877935	1
+14	15	2	2018-05-12 22:29:42.032775	2018-05-12 22:29:42.032775	1
+15	15	3	2018-05-12 22:29:42.032775	2018-05-12 22:29:42.032775	1
+16	16	2	2018-05-12 22:32:54.03679	2018-05-12 22:32:54.03679	1
+17	16	3	2018-05-12 22:32:54.042908	2018-05-12 22:32:54.042908	1
+18	17	3	2018-05-12 22:33:14.468555	2018-05-12 22:33:14.468555	1
+19	17	2	2018-05-12 22:33:14.474719	2018-05-12 22:33:14.474719	1
+20	18	2	2018-05-12 22:34:54.377338	2018-05-12 22:34:54.377338	1
+21	18	3	2018-05-12 22:34:54.386963	2018-05-12 22:34:54.386963	1
+22	19	3	2018-05-12 22:36:13.102157	2018-05-12 22:36:13.102157	1
+23	19	2	2018-05-12 22:36:13.109247	2018-05-12 22:36:13.109247	1
+24	20	2	2018-05-12 22:36:52.976086	2018-05-12 22:36:52.976086	1
+25	20	3	2018-05-12 22:36:52.984552	2018-05-12 22:36:52.984552	1
+26	21	3	2018-05-12 22:40:32.883845	2018-05-12 22:40:32.883845	1
+27	21	2	2018-05-12 22:40:32.883692	2018-05-12 22:40:32.883692	1
+28	22	2	2018-05-12 22:42:39.273119	2018-05-12 22:42:39.273119	1
+29	22	3	2018-05-12 22:42:39.274541	2018-05-12 22:42:39.274541	1
+30	23	2	2018-05-12 22:46:11.66185	2018-05-12 22:46:11.66185	1
+31	23	3	2018-05-12 22:46:11.668244	2018-05-12 22:46:11.668244	1
+32	24	2	2018-05-12 22:48:53.300654	2018-05-12 22:48:53.300654	1
+33	24	3	2018-05-12 22:48:53.300973	2018-05-12 22:48:53.300973	1
+34	25	3	2018-05-12 22:50:01.688937	2018-05-12 22:50:01.688937	1
+35	25	2	2018-05-12 22:50:01.689172	2018-05-12 22:50:01.689172	1
+36	26	3	2018-05-12 22:50:14.0286	2018-05-12 22:50:14.0286	1
+37	26	2	2018-05-12 22:50:14.034821	2018-05-12 22:50:14.034821	1
+38	36	3	2018-05-13 00:18:41.142887	2018-05-13 00:18:41.142887	1
+39	36	2	2018-05-13 00:18:41.143237	2018-05-13 00:18:41.143237	1
+40	37	3	2018-05-13 00:19:25.38963	2018-05-13 00:19:25.38963	1
+41	37	2	2018-05-13 00:19:25.389534	2018-05-13 00:19:25.389534	1
+42	50	2	2018-05-14 22:22:53.981901	2018-05-14 22:22:53.981901	1
+43	51	2	2018-05-14 22:39:40.340928	2018-05-14 22:39:40.340928	1
+44	52	2	2018-05-14 22:45:08.875698	2018-05-14 22:45:08.875698	1
+45	53	3	2018-05-14 22:46:58.224427	2018-05-14 22:46:58.224427	1
+46	54	3	2018-05-14 22:49:43.935963	2018-05-14 22:49:43.935963	1
+47	55	3	2018-05-14 22:51:20.909768	2018-05-14 22:51:20.909768	1
+48	59	3	2018-05-15 20:04:51.734921	2018-05-15 20:04:51.734921	1
+49	59	2	2018-05-15 20:04:51.736291	2018-05-15 20:04:51.736291	1
+50	60	3	2018-05-17 15:05:04.72991	2018-05-17 15:05:04.72991	1
+51	61	2	2018-05-20 01:48:16.617801	2018-05-20 01:48:16.617801	1
+52	61	3	2018-05-20 01:48:16.619021	2018-05-20 01:48:16.619021	1
+53	61	8	2018-05-20 01:48:16.62252	2018-05-20 01:48:16.62252	1
+54	62	3	2018-05-20 01:49:01.962916	2018-05-20 01:49:01.962916	1
+55	62	8	2018-05-20 01:49:01.963651	2018-05-20 01:49:01.963651	1
+56	63	8	2018-05-20 01:58:10.416143	2018-05-20 01:58:10.416143	1
+57	63	3	2018-05-20 01:58:10.417246	2018-05-20 01:58:10.417246	1
+58	64	8	2018-05-20 02:01:04.637688	2018-05-20 02:01:04.637688	1
+59	65	3	2018-05-20 02:11:40.705203	2018-05-20 02:11:40.705203	1
+60	65	8	2018-05-20 02:11:40.706618	2018-05-20 02:11:40.706618	1
+61	66	2	2018-05-20 02:15:47.914727	2018-05-20 02:15:47.914727	1
+62	66	8	2018-05-20 02:15:47.915363	2018-05-20 02:15:47.915363	1
+63	67	2	2018-05-20 02:20:50.006503	2018-05-20 02:20:50.006503	1
+64	67	8	2018-05-20 02:20:50.007538	2018-05-20 02:20:50.007538	1
+65	68	8	2018-05-20 02:27:48.582486	2018-05-20 02:27:48.582486	1
+66	68	2	2018-05-20 02:27:48.583884	2018-05-20 02:27:48.583884	1
+67	69	3	2018-05-21 09:28:39.036857	2018-05-21 09:28:39.036857	1
+\.
+
+
+--
+-- Data for Name: detalle_regimen_alimento; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.detalle_regimen_alimento (id_regimen_dieta, id_alimento, fecha_creacion, fecha_actualizacion, estatus, id_detalle_regimen_alimento) FROM stdin;
+24	1	2018-05-21 10:56:01.959995	2018-05-21 10:56:01.959995	1	8
+26	5	2018-05-21 11:02:05.639677	2018-05-21 11:02:05.639677	1	11
+26	7	2018-05-21 11:02:05.639677	2018-05-21 11:02:05.639677	1	12
+28	5	2018-05-24 03:18:23.236765	2018-05-24 03:18:23.236765	1	15
+28	7	2018-05-24 03:18:23.236765	2018-05-24 03:18:23.236765	1	16
+23	2	2018-05-24 22:48:37.363698	2018-05-24 22:48:37.363698	1	17
+23	3	2018-05-24 22:48:37.363698	2018-05-24 22:48:37.363698	1	18
+23	4	2018-05-24 22:48:37.363698	2018-05-24 22:48:37.363698	1	19
+23	5	2018-05-24 22:48:37.363698	2018-05-24 22:48:37.363698	1	20
+25	79	2018-05-25 06:00:39.982502	2018-05-25 06:00:39.982502	1	21
+25	80	2018-05-25 06:00:39.982502	2018-05-25 06:00:39.982502	1	22
+25	83	2018-05-25 06:00:39.982502	2018-05-25 06:00:39.982502	1	23
+27	79	2018-05-25 06:37:58.119591	2018-05-25 06:37:58.119591	1	28
+27	80	2018-05-25 06:37:58.119591	2018-05-25 06:37:58.119591	1	29
+29	79	2018-05-25 14:59:59.912891	2018-05-25 14:59:59.912891	1	30
+30	87	2018-05-25 14:59:59.912891	2018-05-25 14:59:59.912891	1	31
+31	2	2018-05-25 14:59:59.912891	2018-05-25 14:59:59.912891	1	32
+32	104	2018-05-25 14:59:59.912891	2018-05-25 14:59:59.912891	1	33
+33	80	2018-05-25 14:59:59.912891	2018-05-25 14:59:59.912891	1	34
+\.
+
+
+--
+-- Data for Name: detalle_visita; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.detalle_visita (id_visita, id_parametro, valor, fecha_creacion, fecha_actualizacion, estatus, id_detalle_visita) FROM stdin;
+4	44	\N	2018-05-21 07:55:26.191114	2018-05-21 07:55:26.191114	1	1
+4	40	55.0000	2018-05-21 07:55:26.191114	2018-05-21 07:55:26.191114	1	2
+10	38	\N	2018-05-21 08:46:05.552646	2018-05-21 08:46:05.552646	1	6
+11	42	\N	2018-05-21 08:56:54.027673	2018-05-21 08:56:54.027673	1	7
+18	41	\N	2018-05-21 10:24:01.940163	2018-05-21 10:24:01.940163	1	12
+20	43	\N	2018-05-21 10:33:51.688335	2018-05-21 10:33:51.688335	1	14
+23	48	\N	2018-05-21 10:42:13.189056	2018-05-21 10:42:13.189056	1	15
+24	49	\N	2018-05-21 10:47:14.173774	2018-05-21 10:47:14.173774	1	16
+25	50	\N	2018-05-21 10:49:26.27241	2018-05-21 10:49:26.27241	1	17
+27	51	\N	2018-05-21 10:52:57.703922	2018-05-21 10:52:57.703922	1	18
+28	52	\N	2018-05-21 10:56:01.959995	2018-05-21 10:56:01.959995	1	19
+29	52	\N	2018-05-21 11:02:05.639677	2018-05-21 11:02:05.639677	1	20
+29	39	\N	2018-05-21 11:02:05.639677	2018-05-21 11:02:05.639677	1	21
+29	44	\N	2018-05-21 11:02:05.639677	2018-05-21 11:02:05.639677	1	22
+29	51	\N	2018-05-21 11:02:05.639677	2018-05-21 11:02:05.639677	1	23
+30	46	84.0000	2018-05-24 03:18:23.236765	2018-05-24 03:18:23.236765	1	24
+29	61	\N	2018-05-25 09:25:56.900893	2018-05-25 09:25:56.900893	1	25
+29	73	\N	2018-05-25 10:30:20.399946	2018-05-25 10:30:20.399946	1	30
+31	86	\N	2018-05-25 11:10:34.723137	2018-05-25 11:10:34.723137	1	34
+31	84	\N	2018-05-25 11:26:02.776052	2018-05-25 11:26:02.776052	1	35
+33	38	\N	2018-05-25 15:03:28.55664	2018-05-25 15:03:28.55664	1	37
+33	75	\N	2018-05-25 15:04:25.937971	2018-05-25 15:04:25.937971	1	38
+\.
+
+
+--
+-- Data for Name: dia_laborable; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.dia_laborable (id_dia_laborable, dia, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+0	Domingo	2018-05-08 18:37:10.016034	2018-05-08 18:37:10.016034	1
+1	Lunes	2018-05-08 18:37:10.016034	2018-05-08 18:37:10.016034	1
+2	Martes	2018-05-08 18:37:10.016034	2018-05-08 18:37:10.016034	1
+3	Miercoles	2018-05-08 18:37:10.016034	2018-05-08 18:37:10.016034	1
+4	Jueves	2018-05-08 18:37:10.016034	2018-05-08 18:37:10.016034	1
+5	Viernes	2018-05-08 18:37:10.016034	2018-05-08 18:37:10.016034	1
+6	Sábado	2018-05-08 18:37:10.016034	2018-05-08 18:37:10.016034	1
+\.
+
+
+--
+-- Data for Name: ejercicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.ejercicio (id_ejercicio, nombre, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+6	Prueba		2018-05-18 07:20:04.033	2018-05-18 07:20:04.033	0
+2	Caminar	Ejercicio cardiovascular, se debe hacer a un ritmo regular sin mucho desgaste	2018-05-13 15:17:32.544381	2018-05-13 15:17:32.544381	1
+4	Correr	Ejercicio cardiovascular, se debe aplicar mucha velocidad en el ritmo	2018-05-13 15:20:24.576492	2018-05-13 15:20:24.576492	1
+1	Sentadillas		2018-05-07 17:39:36.312	2018-05-07 17:39:36.312	1
+3	Trotar	Ejercicio cardiovascular, se debe hacer rapido pero sin acelerar el paso	2018-05-13 15:18:37.218439	2018-05-13 15:18:37.218439	1
+7	Flexiones de brazos tradicionales		2018-05-25 03:44:59.33179	2018-05-25 03:44:59.33179	1
+8	Pistol squat o sentadillas a una pierna		2018-05-25 03:45:40.607318	2018-05-25 03:45:40.607318	1
+9	Saltos de rana		2018-05-25 03:46:03.228613	2018-05-25 03:46:03.228613	1
+5	Abdominales		2018-05-18 07:19:54.841	2018-05-18 07:19:54.841	0
+10	Abdominales		2018-05-25 03:46:59.035	2018-05-25 03:46:59.035	1
+11	Elevación de talón		2018-05-25 03:48:44.698705	2018-05-25 03:48:44.698705	1
+12	Steps		2018-05-25 03:48:50.263693	2018-05-25 03:48:50.263693	1
+13	Aerobicos 		2018-05-25 03:50:19.364115	2018-05-25 03:50:19.364115	1
+14	Pilates		2018-05-25 03:50:29.085534	2018-05-25 03:50:29.085534	1
+15	Estiramientos		2018-05-25 03:50:44.135542	2018-05-25 03:50:44.135542	1
+\.
+
+
+--
+-- Data for Name: empleado; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.empleado (id_empleado, id_usuario, id_genero, cedula, nombres, apellidos, telefono, correo, direccion, estatus, fecha_creacion, fecha_actualizacion, id_especialidad) FROM stdin;
+2	13	3	V-24164375	Skarly	Ruiz	0414-1234567	skarly.ruiz@gmail.com	Barquisimeto	1	2018-05-05 19:24:30.83944	2018-05-05 19:24:30.83944	\N
+3	20	3	V-24160052	Jose Alberto	Guerrero	0414-1234567	guerrero.c.jose.a@gmail.com	Barquisimeto	1	2018-05-05 19:25:18.573749	2018-05-05 19:25:18.573749	\N
+4	30	2	18727835	Dario	Piña	45476887698	leo1305pineda@hotmail.com	gfyh	1	2018-05-22 01:06:08.117	2018-05-22 01:06:08.117	\N
+5	4	2	22272210	Pedro Ali	Orellana	04266542920	pedroaliorellana@gmail.com	Andres Bello II, el Cuji	0	2018-05-24 21:04:23.868	2018-05-24 21:04:23.868	\N
+7	56	2	V-22272210	Pedro Ali	Orellana	04266542920	pedroaliorellana@gmail.com	Andres Bello II, el Cuji	1	2018-05-24 21:13:12.307	2018-05-24 21:13:12.307	\N
+1	57	3	V-21302860	Gabriela	Perez	0414-1234567	gabrielap2804@gmail.com	San Felipe	1	2018-05-05 19:23:25.614	2018-05-05 19:23:25.614	\N
+\.
+
+
+--
+-- Data for Name: especialidad; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.especialidad (id_especialidad, nombre, fecha_actualizacion, fecha_creacion, estatus) FROM stdin;
+1	Adelgazar	2018-05-09 21:30:55.609436	2018-05-09 21:30:55.609436	1
+2	Aumentar Peso	2018-05-09 21:30:55.609436	2018-05-09 21:30:55.609436	1
+3	Ganar Masa Muscular	2018-05-09 21:30:55.609436	2018-05-09 21:30:55.609436	1
+4	Definición de Musculo	2018-05-09 21:30:55.609436	2018-05-09 21:30:55.609436	1
+5	Control de Patología	2018-05-09 21:30:55.609436	2018-05-09 21:30:55.609436	1
+6	Atención Deportiva	2018-05-09 21:30:55.609436	2018-05-09 21:30:55.609436	1
+7	prueba1	2018-05-16 04:05:23.646	2018-05-16 04:05:23.646	0
+8	Aumento de Masa Muscular	2018-05-25 04:26:50.924	2018-05-25 04:26:50.924	0
+9	Aumento de masa muscular.	2018-05-25 04:34:19.161	2018-05-25 04:34:19.161	0
+10	Aumento de Masa Muscular	2018-05-25 04:37:39.619	2018-05-25 04:37:39.619	0
+11	Aumento de masa muscular.	2018-05-25 04:38:54.319	2018-05-25 04:38:54.319	0
+\.
+
+
+--
+-- Data for Name: estado_civil; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.estado_civil (id_estado_civil, nombre, estatus) FROM stdin;
+1	Soltero/a	1
+2	Comprometido/a	1
+3	Casado/a	1
+4	Divorciado/a	1
+5	Viudo/a	1
+\.
+
+
+--
+-- Data for Name: estado_solicitud; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.estado_solicitud (id_estado_solicitud, tipo, nombre) FROM stdin;
+1	1	Aprobado
+2	2	Rechazado por horario del empleado ocupado
+3	2	Rechazado por horario no laborable del empleado
+4	2	Rechazado por no aceptación del precio
+\.
+
+
+--
+-- Data for Name: frecuencia; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.frecuencia (id_frecuencia, id_tiempo, repeticiones, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+2	1	30	2018-05-16 18:35:05.571025	2018-05-16 18:35:05.571025	1
+3	3	2	2018-05-16 18:42:04.559503	2018-05-16 18:42:04.559503	1
+4	4	1	2018-05-16 18:53:35.526782	2018-05-16 18:53:35.526782	1
+\.
+
+
+--
+-- Data for Name: funcionalidad; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.funcionalidad (id_funcionalidad, id_funcionalidad_padre, nombre, icono, orden, nivel, estatus, url_vista) FROM stdin;
+1	\N	Dashboard	fa fa-leaf	1	1	1	dashboard.html
+2	\N	Registros Básicos	fa fa-edit	2	1	1	
+3	\N	Configuración	fa fa-cogs	3	1	1	
+4	\N	Visitas	fa fa-calendar	4	1	1	
+5	\N	Ofertas y promociones	fa fa-tags	5	1	1	
+6	\N	Reportes	fa fa-bar-chart-o	6	1	1	
+7	\N	Administración del Sistema	fa fa-wrench	7	1	1	
+8	2	Unidades	fa fa-chevron-right	1	2	1	regi_unidad.html
+9	2	Tipos de Parámetros	fa fa-chevron-right	2	2	1	regi_tipo_parametro.html
+10	2	Tipos de Contacto	fa fa-chevron-right	3	2	1	regi_tipo_contacto.html
+11	2	Planes	fa fa-chevron-right	4	2	1	
+12	11	Alimentos	fa fa-chevron-right	1	3	0	regi_alimentos.html
+13	11	Alimentos		1	3	1	regi_alimentos.html
+14	11	Comidas		2	3	1	regi_comidas.html
+15	11	Suplementos		3	3	1	regi_suplementos.html
+16	11	Ejercicios		4	3	1	regi_ejercicios.html
+17	11	Tipos de Dieta		5	3	1	regi_tipo_dieta.html
+18	2	Horario	fa fa-chevron-right	5	2	1	regi_horario.html
+19	2	Condiciones de Garantía	fa fa-chevron-right	6	2	1	regi_condiciones_garantia.html
+20	2	Tipos de Valoración	fa fa-chevron-right	7	2	1	regi_tipo_valoracion.html
+21	2	Especialidades	fa fa-chevron-right	8	2	1	regi_especialidad.html
+22	3	Parámetros	fa fa-chevron-right	1	2	1	conf_parametros.html
+23	3	Sistema	fa fa-chevron-right	2	2	1	
+24	23	Motivos y Respuestas		1	3	1	conf_sist_mensajes.html
+25	23	Notificaciones		2	3	1	conf_sist_notificacion.html
+26	23	Agenda		3	3	1	conf_agenda.html
+27	23	Criterios de Valoración		4	3	1	conf_sist_valoracion.html
+28	23	Filtros		5	3	1	conf_sist_filtros.html
+29	3	Servicios	fa fa-chevron-right	3	2	1	conf_servicios.html
+30	3	Planes	fa fa-chevron-right	4	2	1	
+31	30	Dietas		1	3	1	conf_plan_dieta.html
+32	30	Plan de Suplemento		2	3	1	conf_plan_suplemento.html
+33	30	Planes de Entrenamiento		3	3	1	conf_plan_actividad.html
+34	4	Atender	fa fa-chevron-right	1	2	1	visitas.html
+\.
+
+
+--
+-- Data for Name: garantia_servicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.garantia_servicio (id_condicion_garantia, id_servicio, fecha_creacion, fecha_actualizacion, estatus, id_garantia_servicio) FROM stdin;
+6	18	2018-05-16 09:09:53.624903	2018-05-16 09:09:53.624903	1	6
+4	18	2018-05-16 09:09:53.626958	2018-05-16 09:09:53.626958	1	7
+4	36	2018-05-16 10:47:55.807736	2018-05-16 10:47:55.807736	1	10
+6	36	2018-05-16 10:47:55.809182	2018-05-16 10:47:55.809182	1	11
+4	32	2018-05-16 10:52:48.575101	2018-05-16 10:52:48.575101	1	12
+6	32	2018-05-16 10:52:48.575362	2018-05-16 10:52:48.575362	1	13
+6	25	2018-05-16 11:01:40.424716	2018-05-16 11:01:40.424716	1	20
+6	42	2018-05-16 12:52:09.832037	2018-05-16 12:52:09.832037	1	22
+4	16	2018-05-18 08:01:06.721521	2018-05-18 08:01:06.721521	1	23
+6	16	2018-05-18 08:01:06.721936	2018-05-18 08:01:06.721936	1	24
+6	43	2018-05-18 14:17:18.404858	2018-05-18 14:17:18.404858	1	25
+4	44	2018-05-23 23:45:05.849557	2018-05-23 23:45:05.849557	1	26
+6	44	2018-05-23 23:45:05.84987	2018-05-23 23:45:05.84987	1	27
+6	45	2018-05-25 14:13:36.015313	2018-05-25 14:13:36.015313	1	28
+6	46	2018-05-25 14:46:46.330514	2018-05-25 14:46:46.330514	1	29
+\.
+
+
+--
+-- Data for Name: genero; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.genero (id_genero, nombre, estatus) FROM stdin;
+2	Masculino	1
+3	Femenino	1
+\.
+
+
+--
+-- Data for Name: horario_empleado; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.horario_empleado (id_empleado, id_bloque_horario, id_dia_laborable, fecha_creacion, fecha_actualizacion, estatus, id_horario_empleado) FROM stdin;
+2	6	2	2018-05-10 00:23:18.674469	2018-05-10 00:23:18.674469	1	7
+2	5	2	2018-05-10 00:23:22.665425	2018-05-10 00:23:22.665425	1	8
+2	4	2	2018-05-10 00:23:25.664365	2018-05-10 00:23:25.664365	1	9
+2	3	2	2018-05-10 00:23:28.713807	2018-05-10 00:23:28.713807	1	10
+2	2	2	2018-05-10 00:23:31.526306	2018-05-10 00:23:31.526306	1	11
+2	1	2	2018-05-10 00:23:33.977575	2018-05-10 00:23:33.977575	1	12
+2	1	3	2018-05-10 00:23:39.110475	2018-05-10 00:23:39.110475	1	13
+2	2	3	2018-05-10 00:23:43.072141	2018-05-10 00:23:43.072141	1	14
+2	3	3	2018-05-10 00:23:46.140875	2018-05-10 00:23:46.140875	1	15
+2	4	3	2018-05-10 00:23:49.130686	2018-05-10 00:23:49.130686	1	16
+2	5	3	2018-05-10 00:23:52.340654	2018-05-10 00:23:52.340654	1	17
+2	6	3	2018-05-10 00:23:55.053669	2018-05-10 00:23:55.053669	1	18
+1	7	4	2018-05-10 00:24:04.22502	2018-05-10 00:24:04.22502	1	19
+1	8	4	2018-05-10 00:24:08.593026	2018-05-10 00:24:08.593026	1	20
+1	9	4	2018-05-10 00:24:11.58286	2018-05-10 00:24:11.58286	1	21
+1	10	4	2018-05-10 00:24:15.511248	2018-05-10 00:24:15.511248	1	22
+1	11	4	2018-05-10 00:24:18.999856	2018-05-10 00:24:18.999856	1	23
+1	12	4	2018-05-10 00:24:21.709836	2018-05-10 00:24:21.709836	1	24
+2	4	1	2018-05-17 22:40:47.072894	2018-05-17 22:40:47.072894	1	118
+2	2	1	2018-05-17 22:40:47.072202	2018-05-17 22:40:47.072202	1	119
+2	6	1	2018-05-17 22:40:47.079303	2018-05-17 22:40:47.079303	1	120
+2	5	1	2018-05-17 22:40:47.081031	2018-05-17 22:40:47.081031	1	121
+3	2	1	2018-05-17 22:51:05.214862	2018-05-17 22:51:05.214862	1	129
+3	4	1	2018-05-17 22:51:05.215668	2018-05-17 22:51:05.215668	1	130
+3	3	1	2018-05-17 22:51:05.216432	2018-05-17 22:51:05.216432	1	131
+1	2	5	2018-05-18 04:28:43.084047	2018-05-18 04:28:43.084047	1	132
+1	4	5	2018-05-18 04:28:43.091178	2018-05-18 04:28:43.091178	1	133
+1	3	5	2018-05-18 04:28:43.091085	2018-05-18 04:28:43.091085	1	134
+1	5	5	2018-05-18 04:28:43.253403	2018-05-18 04:28:43.253403	1	135
+1	6	5	2018-05-18 04:28:43.288517	2018-05-18 04:28:43.288517	1	136
+1	7	5	2018-05-18 04:28:43.32715	2018-05-18 04:28:43.32715	1	137
+1	8	5	2018-05-18 04:28:43.445693	2018-05-18 04:28:43.445693	1	138
+1	9	5	2018-05-18 04:28:43.474479	2018-05-18 04:28:43.474479	1	139
+1	10	5	2018-05-18 04:28:43.551817	2018-05-18 04:28:43.551817	1	140
+1	11	5	2018-05-18 04:28:43.66796	2018-05-18 04:28:43.66796	1	141
+2	2	5	2018-05-18 04:29:03.392153	2018-05-18 04:29:03.392153	1	142
+2	3	5	2018-05-18 04:29:03.392153	2018-05-18 04:29:03.392153	1	143
+2	4	5	2018-05-18 04:29:03.399138	2018-05-18 04:29:03.399138	1	144
+2	6	5	2018-05-18 04:29:03.399873	2018-05-18 04:29:03.399873	1	145
+2	5	5	2018-05-18 04:29:03.399115	2018-05-18 04:29:03.399115	1	146
+2	8	5	2018-05-18 04:29:03.40128	2018-05-18 04:29:03.40128	1	147
+2	7	5	2018-05-18 04:29:03.403344	2018-05-18 04:29:03.403344	1	148
+2	11	5	2018-05-18 04:29:03.404748	2018-05-18 04:29:03.404748	1	149
+2	9	5	2018-05-18 04:29:03.405284	2018-05-18 04:29:03.405284	1	150
+2	10	5	2018-05-18 04:29:03.407658	2018-05-18 04:29:03.407658	1	151
+3	2	5	2018-05-18 08:23:51.104001	2018-05-18 08:23:51.104001	1	152
+3	3	5	2018-05-18 08:23:51.104332	2018-05-18 08:23:51.104332	1	153
+3	5	5	2018-05-18 08:23:51.107197	2018-05-18 08:23:51.107197	1	154
+3	4	5	2018-05-18 08:23:51.106284	2018-05-18 08:23:51.106284	1	155
+3	6	5	2018-05-18 08:23:51.113066	2018-05-18 08:23:51.113066	1	156
+3	7	5	2018-05-18 08:23:51.114153	2018-05-18 08:23:51.114153	1	157
+3	8	5	2018-05-18 08:23:51.11453	2018-05-18 08:23:51.11453	1	158
+3	9	5	2018-05-18 08:23:51.115441	2018-05-18 08:23:51.115441	1	159
+3	10	5	2018-05-18 08:23:51.117937	2018-05-18 08:23:51.117937	1	160
+3	11	5	2018-05-18 08:23:51.118742	2018-05-18 08:23:51.118742	1	161
+7	6	0	2018-05-25 05:17:45.937952	2018-05-25 05:17:45.937952	1	162
+7	4	0	2018-05-25 05:17:45.937673	2018-05-25 05:17:45.937673	1	163
+7	8	0	2018-05-25 05:17:45.949331	2018-05-25 05:17:45.949331	1	164
+7	9	1	2018-05-25 05:18:59.114757	2018-05-25 05:18:59.114757	1	171
+7	10	1	2018-05-25 05:18:59.115178	2018-05-25 05:18:59.115178	1	172
+7	11	1	2018-05-25 05:18:59.115856	2018-05-25 05:18:59.115856	1	173
+3	2	0	2018-05-17 21:18:53.985635	2018-05-17 21:18:53.985635	1	108
+3	3	0	2018-05-17 21:18:53.992003	2018-05-17 21:18:53.992003	1	109
+3	4	0	2018-05-17 21:18:54.289605	2018-05-17 21:18:54.289605	1	110
+3	6	0	2018-05-17 21:18:54.296284	2018-05-17 21:18:54.296284	1	111
+3	7	0	2018-05-17 21:18:54.594053	2018-05-17 21:18:54.594053	1	112
+1	2	1	2018-05-17 22:06:03.329189	2018-05-17 22:06:03.329189	1	113
+1	4	1	2018-05-17 22:06:03.335552	2018-05-17 22:06:03.335552	1	114
+1	3	1	2018-05-17 22:06:03.335448	2018-05-17 22:06:03.335448	1	115
+1	5	1	2018-05-17 22:06:03.648551	2018-05-17 22:06:03.648551	1	116
+1	6	1	2018-05-17 22:06:03.655956	2018-05-17 22:06:03.655956	1	117
+\.
+
+
+--
+-- Data for Name: incidencia; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.incidencia (id_incidencia, id_tipo_incidencia, id_motivo, descripcion, fecha_creacion, fecha_actualizacion, estatus, id_agenda) FROM stdin;
+\.
+
+
+--
+-- Data for Name: motivo; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.motivo (id_motivo, id_tipo_motivo, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+8	4	Recibi una mala atencion por parte del personal	2018-05-08 19:46:03.906	2018-05-08 19:46:03.906	0
+10	5	Agregar un nuevo servicio que se adapte a mis necesidades	2018-05-08 19:54:09.076285	2018-05-08 19:54:09.076285	1
+15	1	mas planes aerobicos 9	2018-05-14 18:39:54.938	2018-05-14 18:39:54.938	0
+3	5	Entrenamiento para atletas	2018-05-05 21:33:10.495	2018-05-05 21:33:10.495	1
+21	5	Deben contener mas ejercicios	2018-05-15 21:03:32.313605	2018-05-15 21:03:32.313605	1
+7	2	Necesito un nuevo pla11111111111111111111111	2018-05-08 19:45:52.107	2018-05-08 19:45:52.107	0
+9	1	El nutricionista debe mejorar la atención!	2018-05-08 19:51:02.393	2018-05-08 19:51:02.393	0
+22	2	El plan no me funciono del todo	2018-05-16 09:39:31.395	2018-05-16 09:39:31.395	0
+24	2	No hubo personal tratable	2018-05-17 17:17:44.706	2018-05-17 17:17:44.706	0
+5	4	El nutricionista no fue amableeaaaaaaaaaaa	2018-05-08 19:40:55.481	2018-05-08 19:40:55.481	0
+11	2	Adelgazar	2018-05-11 15:58:10.149	2018-05-11 15:58:10.149	0
+13	2	Prueba                      	2018-05-12 17:23:34.945	2018-05-12 17:23:34.945	0
+16	1	Holas	2018-05-14 18:53:36.2	2018-05-14 18:53:36.2	0
+17	1	dddd	2018-05-14 19:05:12.011	2018-05-14 19:05:12.011	0
+12	1	prueba indira	2018-05-11 16:01:56.998	2018-05-11 16:01:56.998	0
+6	5	Prueba de Sugerencia	2018-05-08 19:42:45.631	2018-05-08 19:42:45.631	0
+14	2	No habia Luz	2018-05-12 20:49:23.019	2018-05-12 20:49:23.019	0
+1	2	Prueba Reclamo	2018-05-05 21:33:10.495	2018-05-05 21:33:10.495	0
+18	5	Deben mejorar en la atencion a los clientes	2018-05-14 19:59:01.784	2018-05-14 19:59:01.784	0
+2	5	Control de patología	2018-05-05 21:33:10.495	2018-05-05 21:33:10.495	0
+19	4	mala atencion del personal 1	2018-05-14 19:59:41.061	2018-05-14 19:59:41.061	0
+26	2	El servicio esta muy caro	2018-05-17 17:57:35.942	2018-05-17 17:57:35.942	1
+25	4	Este servicio esta deficiente	2018-05-17 17:55:27.252	2018-05-17 17:55:27.252	0
+23	4	No hubo buen trato del Personal	2018-05-16 12:24:03.286	2018-05-16 12:24:03.286	1
+20	5	deben poner mas planes aerobicos	2018-05-14 20:00:56.176	2018-05-14 20:00:56.176	0
+27	1	Quiero alcanzar mi peso ideal	2018-05-18 08:57:46.58496	2018-05-18 08:57:46.58496	1
+28	1	Quiero controlar los efectos de mi patología	2018-05-18 08:58:14.132878	2018-05-18 08:58:14.132878	1
+29	1	Quiero una dieta que se ajuste a mis necesidades como deportista	2018-05-18 08:59:01.099511	2018-05-18 08:59:01.099511	1
+30	3	Fallas en el servicio eléctrico	2018-05-25 04:06:46.958489	2018-05-25 04:06:46.958489	1
+31	3	Estoy de vacaciones	2018-05-25 04:10:40.036207	2018-05-25 04:10:40.036207	1
+32	3	Imposibilidad de acudir a la cita	2018-05-25 04:20:29.980314	2018-05-25 04:20:29.980314	1
+33	3	Razones personales	2018-05-25 04:23:38.471	2018-05-25 04:23:38.471	0
+\.
+
+
+--
+-- Data for Name: negocio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.negocio (id_negocio, razon_social, rif, url_logo, mision, vision, objetivo, telefono, correo, latitud, longitud, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+8	Sascha Nutric .C.A prueba 	-2672434434	http://res.cloudinary.com/saschanutric/image/upload/v1527202592/dvemvzr2yksrbh0q1ea8.png	Generar información que apoya la gestión de actividades vinculadas a la prestación de servicios de nutricionistas, optimizando las gestiones del cliente, servicio, y post-servicio, además de ofrecer un canal de escucha al cliente.	Ser una de las principales organizaciones que apoye las actividades de nutricionistas para llevar a cabo sus actividades y tener un mejor manejo de la información y atención a sus clientes, ademas de ofrecer servicios y promociones. 	objetivo1	803478964382	saschanutric@gmail.com	10.0768150	-69.3545490	2018-05-08 15:04:44.215	2018-05-08 15:04:44.215	1
+\.
+
+
+--
+-- Data for Name: orden_servicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.orden_servicio (id_orden_servicio, id_solicitud_servicio, id_tipo_orden, id_meta, fecha_emision, fecha_caducidad, id_reclamo, fecha_creacion, fecha_actualizacion, estatus, estado) FROM stdin;
+17	70	1	\N	2018-05-18	2018-06-18	\N	2018-05-18 14:20:55.24229	2018-05-18 14:20:55.24229	1	1
+18	71	1	\N	2018-05-20	2018-06-20	\N	2018-05-20 02:40:55.350281	2018-05-20 02:40:55.350281	1	1
+16	69	1	\N	2018-05-18	2018-06-18	\N	2018-05-18 09:16:03.006	2018-05-18 09:16:03.006	1	4
+19	72	1	\N	2018-05-25	2018-06-25	\N	2018-05-25 02:54:46.154182	2018-05-25 02:54:46.154182	1	1
+20	74	1	\N	2018-05-25	2018-06-25	\N	2018-05-25 03:18:15.107102	2018-05-25 03:18:15.107102	1	1
+21	77	1	\N	2018-05-25	2018-06-25	\N	2018-05-25 04:44:54.591342	2018-05-25 04:44:54.591342	1	1
+15	68	1	\N	2018-05-16	2018-06-16	\N	2018-05-16 15:22:54.035	2018-05-16 15:22:54.035	1	4
+22	78	1	\N	2018-05-25	2018-06-25	\N	2018-05-25 12:30:25.962757	2018-05-25 12:30:25.962757	1	1
+23	79	1	\N	2018-05-25	2018-06-25	\N	2018-05-25 13:07:27.642912	2018-05-25 13:07:27.642912	1	1
+24	80	1	\N	2018-05-25	2018-06-25	\N	2018-05-25 14:21:40.919	2018-05-25 14:21:40.919	1	4
+25	81	1	\N	2018-05-25	2018-06-25	\N	2018-05-25 14:47:41.348	2018-05-25 14:47:41.348	1	4
+\.
+
+
+--
+-- Data for Name: parametro; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.parametro (id_parametro, id_tipo_parametro, id_unidad, tipo_valor, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+2	9	15	2	altura	2018-05-11 02:51:45.284	2018-05-11 02:51:45.284	0
+3	9	15	2	altura	2018-05-11 02:51:46.128	2018-05-11 02:51:46.128	0
+4	9	15	2	altura	2018-05-11 02:51:46.544	2018-05-11 02:51:46.544	0
+5	9	15	2	altura	2018-05-11 02:51:46.694	2018-05-11 02:51:46.694	0
+6	9	15	2	altura	2018-05-11 02:51:47.024	2018-05-11 02:51:47.024	0
+12	9	15	2	altura	2018-05-11 02:51:53.004	2018-05-11 02:51:53.004	0
+7	9	15	2	altura	2018-05-11 02:51:47.185	2018-05-11 02:51:47.185	0
+10	9	15	2	altura	2018-05-11 02:51:47.937	2018-05-11 02:51:47.937	0
+16	9	20	1	Altura	2018-05-11 03:09:02.981	2018-05-11 03:09:02.981	0
+15	9	3	1	altura	2018-05-11 03:01:01.501	2018-05-11 03:01:01.501	0
+8	9	15	2	altura	2018-05-11 02:51:47.509	2018-05-11 02:51:47.509	0
+14	9	15	2	altura	2018-05-11 02:51:54.629	2018-05-11 02:51:54.629	0
+11	9	15	2	altura	2018-05-11 02:51:52.839	2018-05-11 02:51:52.839	0
+9	9	15	2	altura	2018-05-11 02:51:47.656	2018-05-11 02:51:47.656	0
+13	9	15	2	altura	2018-05-11 02:51:53.068	2018-05-11 02:51:53.068	0
+18	13	17	2	diabetes	2018-05-11 05:19:06.082	2018-05-11 05:19:06.082	0
+20	12	10	2	azucar	2018-05-11 05:28:27.955	2018-05-11 05:28:27.955	0
+19	14	4	2	alta	2018-05-11 05:24:48.713	2018-05-11 05:24:48.713	0
+22	14	26	2	baja	2018-05-11 05:35:41.975	2018-05-11 05:35:41.975	0
+24	12	26	1	tierra	2018-05-11 05:43:24.165	2018-05-11 05:43:24.165	0
+25	9	6	2	estatura	2018-05-11 11:13:39.255	2018-05-11 11:13:39.255	0
+26	13	1	2	tensión 	2018-05-11 11:15:02.299	2018-05-11 11:15:02.299	0
+28	14	4	1	muy alta	2018-05-11 18:30:34.076	2018-05-11 18:30:34.076	0
+17	11	25	1	colesterol	2018-05-11 05:07:33.285	2018-05-11 05:07:33.285	0
+29	11	8	2	dfghj	2018-05-11 19:42:37.39	2018-05-11 19:42:37.39	0
+27	11	17	2	triglicerios	2018-05-11 11:46:44.971	2018-05-11 11:46:44.971	0
+32	15	18	2	asmatica	2018-05-12 01:23:22.998	2018-05-12 01:23:22.998	0
+31	11	21	2	triglicerios	2018-05-12 01:17:46.904	2018-05-12 01:17:46.904	0
+34	14	1	2	Prueba	2018-05-12 14:04:59.775	2018-05-12 14:04:59.775	0
+52	12	\N	1	Mariscos	2018-05-21 10:54:52.387218	2018-05-21 10:54:52.387218	1
+36	13	31	1	dfghjk	2018-05-12 15:17:13.134	2018-05-12 15:17:13.134	0
+35	13	8	2	Prueba2	2018-05-12 15:16:38.585	2018-05-12 15:16:38.585	0
+33	11	9	2	prueba	2018-05-12 03:28:26.65	2018-05-12 03:28:26.65	0
+30	13	4	1	dolor de cabeza	2018-05-12 01:02:30.478	2018-05-12 01:02:30.478	0
+53	9	5	2	Peso	2018-05-25 02:44:10.981	2018-05-25 02:44:10.981	0
+55	13	\N	1	Colitis ulcerosa	2018-05-25 02:48:22.069157	2018-05-25 02:48:22.069157	1
+23	13	6	1	Diabetes	2018-05-11 05:41:54.046	2018-05-11 05:41:54.046	0
+21	15	21	1	fumador	2018-05-11 05:32:37.304	2018-05-11 05:32:37.304	0
+37	14	13	1	muy alta	2018-05-12 15:20:06.774	2018-05-12 15:20:06.774	0
+39	12	\N	1	Mani	2018-05-12 21:41:30.143016	2018-05-12 21:41:30.143016	1
+40	9	5	2	Peso	2018-05-12 21:44:29.129135	2018-05-12 21:44:29.129135	1
+56	13	\N	1	Cáncer digestivo	2018-05-25 02:48:56.724551	2018-05-25 02:48:56.724551	1
+38	13	\N	1	Hipertensión	2018-05-12 20:52:53.052	2018-05-12 20:52:53.052	1
+42	13	\N	1	Diabetes	2018-05-18 06:35:59.665323	2018-05-18 06:35:59.665323	1
+43	13	\N	1	Dislipidemia	2018-05-18 06:36:20.026795	2018-05-18 06:36:20.026795	1
+44	12	\N	1	Gluten	2018-05-18 06:37:52.041773	2018-05-18 06:37:52.041773	1
+41	9	21	1	Prueba	2018-05-12 23:40:04.692	2018-05-12 23:40:04.692	0
+45	9	39	2	Altura	2018-05-19 20:05:14.341878	2018-05-19 20:05:14.341878	1
+46	9	41	2	Grasa Total	2018-05-21 09:27:08.243831	2018-05-21 09:27:08.243831	1
+47	9	39	2	Medida de cintura	2018-05-21 09:28:02.596369	2018-05-21 09:28:02.596369	1
+48	15	\N	1	Embarazo	2018-05-21 10:41:39.908244	2018-05-21 10:41:39.908244	1
+49	15	\N	1	Fumador	2018-05-21 10:46:43.234017	2018-05-21 10:46:43.234017	1
+50	14	\N	1	Yoga	2018-05-21 10:48:51.621113	2018-05-21 10:48:51.621113	1
+51	12	\N	1	Fresas	2018-05-21 10:52:43.383947	2018-05-21 10:52:43.383947	1
+58	11	\N	1	Prealbumina	2018-05-25 02:56:49.178799	2018-05-25 02:56:49.178799	1
+87	12	\N	1	Pescado	2018-05-25 04:10:58.417742	2018-05-25 04:10:58.417742	1
+57	11	1	2	Albumina	2018-05-25 02:56:13.413	2018-05-25 02:56:13.413	0
+61	11	1	2	Albumina	2018-05-25 03:03:22.666712	2018-05-25 03:03:22.666712	1
+59	11	\N	1	Transferrina	2018-05-25 02:57:19.433	2018-05-25 02:57:19.433	0
+62	11	6	2	Transferrina	2018-05-25 03:04:46.02674	2018-05-25 03:04:46.02674	1
+60	11	\N	1	RBP	2018-05-25 02:58:48.216	2018-05-25 02:58:48.216	0
+63	11	6	2	RBP	2018-05-25 03:05:37.015095	2018-05-25 03:05:37.015095	1
+54	9	\N	1	Indice de masa corporal	2018-05-25 02:47:11.306	2018-05-25 02:47:11.306	0
+64	9	42	2	Indice de masa corporal	2018-05-25 03:09:19.855662	2018-05-25 03:09:19.855662	1
+65	9	39	2	Masa muscular	2018-05-25 03:11:30.51356	2018-05-25 03:11:30.51356	1
+66	11	43	2	Ácido folico	2018-05-25 03:42:10.520449	2018-05-25 03:42:10.520449	1
+67	11	44	2	Colesterol	2018-05-25 03:42:51.983624	2018-05-25 03:42:51.983624	1
+68	11	45	2	Hemoglobina	2018-05-25 03:43:49.228958	2018-05-25 03:43:49.228958	1
+69	11	44	2	HDL	2018-05-25 03:44:15.95354	2018-05-25 03:44:15.95354	1
+70	11	44	2	Triglicerios	2018-05-25 03:47:19.964245	2018-05-25 03:47:19.964245	1
+71	11	44	2	LDL	2018-05-25 03:47:40.551635	2018-05-25 03:47:40.551635	1
+72	11	44	2	VLDL	2018-05-25 03:50:12.627207	2018-05-25 03:50:12.627207	1
+73	15	\N	1	Vegetariano	2018-05-25 03:50:47.626003	2018-05-25 03:50:47.626003	1
+74	13	\N	1	Vértigo	2018-05-25 03:51:15.186843	2018-05-25 03:51:15.186843	1
+75	13	\N	1	Artritis	2018-05-25 03:51:48.260398	2018-05-25 03:51:48.260398	1
+76	11	45	2	CHCM	2018-05-25 03:54:41.44982	2018-05-25 03:54:41.44982	1
+77	11	44	2	Calcio	2018-05-25 04:02:58.808898	2018-05-25 04:02:58.808898	1
+78	11	44	2	Urea	2018-05-25 04:03:33.191682	2018-05-25 04:03:33.191682	1
+79	11	44	2	Glucosa	2018-05-25 04:04:11.234197	2018-05-25 04:04:11.234197	1
+80	11	44	2	Bilirrubina	2018-05-25 04:05:08.097532	2018-05-25 04:05:08.097532	1
+81	11	44	2	Ácido úrico	2018-05-25 04:05:43.437776	2018-05-25 04:05:43.437776	1
+82	14	\N	1	Natación	2018-05-25 04:07:01.921928	2018-05-25 04:07:01.921928	1
+83	14	\N	1	Ciclismo	2018-05-25 04:07:23.757909	2018-05-25 04:07:23.757909	1
+84	14	\N	1	Tenis	2018-05-25 04:07:54.330242	2018-05-25 04:07:54.330242	1
+85	12	\N	1	Productos lácteos 	2018-05-25 04:10:00.694639	2018-05-25 04:10:00.694639	1
+86	12	\N	1	Trigo	2018-05-25 04:10:34.685938	2018-05-25 04:10:34.685938	1
+88	15	\N	1	Alcohólico 	2018-05-25 04:11:51.981956	2018-05-25 04:11:51.981956	1
+89	13	\N	1	Diabetes B	2018-05-25 04:41:11.419	2018-05-25 04:41:11.419	0
+\.
+
+
+--
+-- Data for Name: parametro_cliente; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.parametro_cliente (id_cliente, id_parametro, valor, fecha_creacion, fecha_actualizacion, estatus, id_parametro_cliente) FROM stdin;
+10	31	200000.0000	2018-05-17 16:39:12.694967	2018-05-17 16:39:12.694967	1	2
+10	17	150000.0000	2018-05-17 16:39:12.694967	2018-05-17 16:39:12.694967	1	3
+10	40	85.0000	2018-05-17 16:39:12.694967	2018-05-17 16:39:12.694967	1	4
+10	45	190.0000	2018-05-19 20:37:47.522686	2018-05-19 20:37:47.522686	1	6
+10	38	\N	2018-05-19 20:44:54.883464	2018-05-19 20:44:54.883464	1	7
+10	39	\N	2018-05-19 20:45:05.773767	2018-05-19 20:45:05.773767	1	8
+9	84	\N	2018-05-25 11:26:02.776052	2018-05-25 11:26:02.776052	1	80
+21	38	\N	2018-05-25 15:03:28.55664	2018-05-25 15:03:28.55664	1	82
+21	75	\N	2018-05-25 15:04:25.937971	2018-05-25 15:04:25.937971	1	83
+15	44	\N	2018-05-21 07:55:26.191114	2018-05-21 07:55:26.191114	1	13
+15	40	55.0000	2018-05-21 07:55:26.191114	2018-05-21 07:55:26.191114	1	14
+15	38	\N	2018-05-21 08:46:05.552646	2018-05-21 08:46:05.552646	1	20
+15	42	\N	2018-05-21 08:56:54.027673	2018-05-21 08:56:54.027673	1	21
+15	41	\N	2018-05-21 10:24:01.940163	2018-05-21 10:24:01.940163	1	28
+15	43	\N	2018-05-21 10:33:51.688335	2018-05-21 10:33:51.688335	1	30
+15	48	\N	2018-05-21 10:42:13.189056	2018-05-21 10:42:13.189056	1	33
+15	49	\N	2018-05-21 10:47:14.173774	2018-05-21 10:47:14.173774	1	34
+15	50	\N	2018-05-21 10:49:26.27241	2018-05-21 10:49:26.27241	1	35
+15	51	\N	2018-05-21 10:52:57.703922	2018-05-21 10:52:57.703922	1	37
+15	52	\N	2018-05-21 10:56:01.959995	2018-05-21 10:56:01.959995	1	38
+9	52	\N	2018-05-21 11:02:05.639677	2018-05-21 11:02:05.639677	1	39
+9	39	\N	2018-05-21 11:02:05.639677	2018-05-21 11:02:05.639677	1	40
+9	44	\N	2018-05-21 11:02:05.639677	2018-05-21 11:02:05.639677	1	41
+9	40	58.0000	2018-05-24 23:57:32.726345	2018-05-24 23:57:32.726345	1	44
+9	46	70.0000	2018-05-24 03:18:23.236	2018-05-24 03:18:23.236	1	43
+9	42	\N	2018-05-25 00:05:13.738507	2018-05-25 00:05:13.738507	1	45
+9	45	160.0000	2018-05-25 00:18:56.090366	2018-05-25 00:18:56.090366	1	50
+9	48	\N	2018-05-25 00:19:59.211628	2018-05-25 00:19:59.211628	1	51
+9	73	\N	2018-05-25 10:30:20.399946	2018-05-25 10:30:20.399946	1	74
+9	86	\N	2018-05-25 11:10:34.723137	2018-05-25 11:10:34.723137	1	79
+\.
+
+
+--
+-- Data for Name: parametro_meta; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.parametro_meta (id_parametro_meta, id_orden_servicio, id_parametro, valor_minimo, valor_maximo, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+1	15	17	60000	80000	2018-05-17 16:36:49.482792	2018-05-17 16:36:49.482792	1
+2	15	31	70000	90000	2018-05-17 16:36:49.482792	2018-05-17 16:36:49.482792	1
+3	15	40	70	75	2018-05-17 16:36:49.482792	2018-05-17 16:36:49.482792	1
+5	18	40	63	0	2018-05-24 06:26:31.484	2018-05-24 06:26:31.484	1
+7	17	40	60	0	2018-05-25 02:17:45.034243	2018-05-25 02:17:45.034243	1
+8	17	46	18	0	2018-05-25 02:18:47.542227	2018-05-25 02:18:47.542227	1
+\.
+
+
+--
+-- Data for Name: parametro_promocion; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.parametro_promocion (id_parametro, id_promocion, valor_minimo, valor_maximo, fecha_creacion, fecha_actualizacion, estatus, id_parametro_promocion) FROM stdin;
+38	30	\N	\N	2018-05-14 04:43:07.990698	2018-05-14 04:43:07.990698	1	2
+40	30	78	90	2018-05-14 04:43:54.15175	2018-05-14 04:43:54.15175	1	3
+41	30	\N	\N	2018-05-16 05:18:20.625331	2018-05-16 05:18:20.625331	1	14
+39	30	\N	\N	2018-05-16 05:23:56.5943	2018-05-16 05:23:56.5943	1	16
+39	17	\N	\N	2018-05-16 05:33:19.144458	2018-05-16 05:33:19.144458	1	17
+39	20	\N	\N	2018-05-16 05:35:54.462611	2018-05-16 05:35:54.462611	1	18
+38	17	\N	\N	2018-05-16 05:56:14.436737	2018-05-16 05:56:14.436737	1	23
+40	19	32	60	2018-05-16 08:23:02.619	2018-05-16 08:23:02.619	0	24
+38	27	\N	\N	2018-05-16 05:47:23.856	2018-05-16 05:47:23.856	0	22
+39	19	\N	\N	2018-05-16 05:40:16.337	2018-05-16 05:40:16.337	0	19
+38	19	\N	\N	2018-05-16 05:42:10.352	2018-05-16 05:42:10.352	0	21
+41	33	\N	\N	2018-05-16 15:31:32.95874	2018-05-16 15:31:32.95874	1	25
+44	35	\N	\N	2018-05-18 14:28:56.22784	2018-05-18 14:28:56.22784	1	26
+\.
+
+
+--
+-- Data for Name: parametro_servicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.parametro_servicio (id_servicio, id_parametro, valor_minimo, valor_maximo, fecha_creacion, fecha_actualizacion, estatus, id_parametro_servicio) FROM stdin;
+15	16	\N	\N	2018-05-15 05:40:14.584446	2018-05-15 05:40:14.584446	1	4
+15	17	\N	\N	2018-05-15 06:28:27.398	2018-05-15 06:28:27.398	0	5
+14	38	\N	\N	2018-05-14 04:27:38.645	2018-05-14 04:27:38.645	0	2
+14	39	\N	\N	2018-05-16 07:00:26.434	2018-05-16 07:00:26.434	0	9
+14	27	20	40	2018-05-15 06:31:33.298	2018-05-15 06:31:33.298	0	6
+14	40	80	120	2018-05-14 04:29:42.941	2018-05-14 04:29:42.941	0	3
+32	40	20	40	2018-05-16 07:11:15.363533	2018-05-16 07:11:15.363533	1	12
+42	38	\N	\N	2018-05-16 12:51:24.47307	2018-05-16 12:51:24.47307	1	13
+42	40	50	80	2018-05-16 12:51:45.543941	2018-05-16 12:51:45.543941	1	14
+15	39	\N	\N	2018-05-15 19:09:46.987	2018-05-15 19:09:46.987	0	7
+15	40	120	90	2018-05-18 08:02:41.015143	2018-05-18 08:02:41.015143	1	15
+43	38	\N	\N	2018-05-18 14:16:32.027197	2018-05-18 14:16:32.027197	1	16
+43	40	50	80	2018-05-18 14:16:57.801171	2018-05-18 14:16:57.801171	1	17
+45	74	\N	\N	2018-05-25 14:12:36.537303	2018-05-25 14:12:36.537303	1	18
+45	73	\N	\N	2018-05-25 14:13:21.212623	2018-05-25 14:13:21.212623	1	19
+46	74	\N	\N	2018-05-25 14:46:24.413492	2018-05-25 14:46:24.413492	1	20
+46	73	\N	\N	2018-05-25 14:46:36.815601	2018-05-25 14:46:36.815601	1	21
+\.
+
+
+--
+-- Data for Name: plan_dieta; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.plan_dieta (id_plan_dieta, id_tipo_dieta, nombre, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+3	2	Dieta green	Alimentacion a base de verduras y derivados de plantas y lacteos	2018-05-04 03:57:54.315135	2018-05-04 03:57:54.315135	1
+4	4	Dieta reto Meat	Alimentacion con alto contenido en proteinas que ayudaran a reducir ansiedades.	2018-05-04 04:05:49.664806	2018-05-04 04:05:49.664806	1
+5	11	Dieta Española.	Alimentacion saludable a base de alimentos ricos en micronutrientes del mediterranéo, combinando verduras, hierbas y condimentos.	2018-05-04 04:10:29.139279	2018-05-04 04:10:29.139279	1
+6	8	Dieta Elixir de la vida.	Alimentacion basada en grasas saludables, fibras y vitaminas que dan energias al cuerpo.	2018-05-04 04:13:25.782038	2018-05-04 04:13:25.782038	1
+7	12	Dieta Disociada.	Ayuda a perder el peso siguiendo reglas de alimentacion basica sin pasar hambre. Combina de manera inteligente las comidas.	2018-05-04 04:17:13.711453	2018-05-04 04:17:13.711453	1
+8	14	Plan sears.	Combinacion de carbos, proteinas y grasas en proporcion 40-30-30 en la divicion de cada plato.	2018-05-04 04:19:41.72225	2018-05-04 04:19:41.72225	1
+9	9	Dieta meditacion.	Basada en alimentos ecologicos ideal para personas que estan en sintonia con el cuidado del medio ambiente.	2018-05-04 04:24:44.871998	2018-05-04 04:24:44.871998	1
+10	15	Dieta vive mas.	Basada en solos productos derivado de la tierra.	2018-05-04 04:31:00.899168	2018-05-04 04:31:00.899168	1
+17	4	Dieta de prueba	Esta es una dieta de prueba	2018-05-14 00:53:25.336	2018-05-14 00:53:25.336	0
+13	4	Dieta de prueba	Esta es una dieta de prueba	2018-05-13 23:35:33.503	2018-05-13 23:35:33.503	0
+14	4	Dieta de prueba	Esta es una dieta de prueba	2018-05-13 23:39:02.852	2018-05-13 23:39:02.852	0
+15	4	Dieta de prueba	Esta es una dieta de prueba	2018-05-13 23:39:42.817	2018-05-13 23:39:42.817	0
+16	4	Dieta de prueba	Esta es una dieta de prueba	2018-05-13 23:52:49.1	2018-05-13 23:52:49.1	0
+12	4	Dieta de prueba 4	Esta es una dieta de prueba	2018-05-13 23:33:51.942	2018-05-13 23:33:51.942	0
+20	2	Plan de prueba 2	esto es un plan de prueba 2	2018-05-16 00:18:16.056	2018-05-16 00:18:16.056	0
+19	11	prueba	plan de prueba	2018-05-15 02:57:14.382	2018-05-15 02:57:14.382	0
+21	2	prueba 2000	prueba 2000	2018-05-16 06:33:16.335	2018-05-16 06:33:16.335	0
+22	4	Plan Dieta 	Plan de prueba 	2018-05-20 01:46:50.969128	2018-05-20 01:46:50.969128	1
+23	4	Plan Dieta 2	una sola comida al dia	2018-05-21 08:33:22.029208	2018-05-21 08:33:22.029208	1
+24	17	Especial Alergicos	Para las personas con alergias mas comunes en los alimentos	2018-05-25 02:27:56.373004	2018-05-25 02:27:56.373004	1
+25	23	Dieta líquida	Indicada a las personas que necesitan muy poca estimulación gastrointestinal o que estén pasando de la alimentación parental a la oral	2018-05-25 04:35:21.020491	2018-05-25 04:35:21.020491	1
+26	23	Dieta semilíquida	compuesta por alimentos de textura líquida y pastosa	2018-05-25 04:38:07.518091	2018-05-25 04:38:07.518091	1
+27	23	Dieta Blanda	Muy usada en la transición de una dieta semilíquida a una normal. Los alimentos son de textura blanda, pero enteros, con bajo contenido de fibra y grasas	2018-05-25 04:45:30.647766	2018-05-25 04:45:30.647766	1
+28	24	Dieta postparto sin lactancia	En la dieta postparto sin lactancia no  se debe saltar ninguna comida con el propósito de reducir la ingesta de calorías, ya que al final no resulta beneficioso.	2018-05-25 05:41:04.109305	2018-05-25 05:41:04.109305	1
+29	24	Dieta postparto y lactancia	Ayuda a recuperar el peso ideal de manera equilibrada y por otro lado, ayuda a que las mujeres estén bien nutridas durante la lactancia, momento en el que las necesidades de energía aumentan y se necesita un aporte calórico superior.	2018-05-25 05:50:22.138467	2018-05-25 05:50:22.138467	1
+\.
+
+
+--
+-- Data for Name: plan_ejercicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.plan_ejercicio (id_plan_ejercicio, nombre, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+4	Plan fitness.	Diseñado para persona que desean bajar de peso y tonificar su cuerpo.	2018-05-04 03:11:52.561595	2018-05-04 03:11:52.561595	1
+5	Plan pilates.	Entrenamiento fisico que ayuda a mejorar el equilibrio corporal, la estabilidad y la concentracion mental.	2018-05-04 03:27:09.433336	2018-05-04 03:27:09.433336	1
+6	Plan definicion muscular	Diseñado para aquellos que deseen aumentar y definir sus musculos. con la intencion de lucir un cuerpo libre de grasa.	2018-05-04 03:32:55.871983	2018-05-04 03:32:55.871983	1
+7	Plan running.	Esta actividad física para personas que les gusta correr y desean mejorar su capacidad atlética. Ideal para liberar el estrés	2018-05-04 03:35:35.261249	2018-05-04 03:35:35.261249	1
+8	Plan tonificacion.	Entrenamiento para persona cuyo objetivo es tonificar sus musculos y mejorar la apariencia de su cuerpo.	2018-05-04 03:45:58.553036	2018-05-04 03:45:58.553036	1
+10	prueba	esto es una prueba	2018-05-14 20:23:47.578	2018-05-14 20:23:47.578	0
+9	Plan Cardio 6	Plan de ejercicio perfecto para los que necesitan mejorar su salud y prevenir enfermedades cardiovasculares	2018-05-13 15:22:55.187	2018-05-13 15:22:55.187	1
+11			2018-05-14 21:23:20.049	2018-05-14 21:23:20.049	0
+3	Plan fitness.	Diseñado para persona que desean bajar de peso y tonificar su cuerpo. 	2018-05-04 03:09:40.397	2018-05-04 03:09:40.397	0
+12	plan de prueba 33	plan de prueba	2018-05-14 22:31:46.388	2018-05-14 22:31:46.388	0
+13	Plan de ejercicios	Plan de prueba	2018-05-20 01:49:41.389657	2018-05-20 01:49:41.389657	1
+14	Plan de Entrenamiento 2	ewr	2018-05-21 09:29:29.943753	2018-05-21 09:29:29.943753	1
+\.
+
+
+--
+-- Data for Name: plan_suplemento; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.plan_suplemento (id_plan_suplemento, nombre, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+4	Creatina	Ácido orgánico nitrogenado que se encuentra en los músculos y células nerviosas de algunos organismos vivos	2018-05-11 04:05:28.153037	2018-05-11 04:05:28.153037	1
+19	Plan Multivitamínico B	Fantástico plan compuesto por un gran conjunto de Vitaminas B que te aportarán mucha energía	2018-05-12 22:36:12.520741	2018-05-12 22:36:12.520741	1
+28	Plan Vitaminas Energeticas	Plan pensado para ganar energía diaría	2018-05-12 23:15:48.18157	2018-05-12 23:15:48.18157	1
+21	Plan Multivitamínico B	Fantástico plan compuesto por un gran conjunto de Vitaminas B que te aportarán mucha energía	2018-05-12 22:40:32.409	2018-05-12 22:40:32.409	0
+14	Multivitaminico	Fantastico plan de vitaminas para tener energia dia	2018-05-12 21:04:40.608	2018-05-12 21:04:40.608	0
+31	Otra prueba	Quiero ver si inserta en la tabla	2018-05-12 23:24:48.596	2018-05-12 23:24:48.596	0
+27	Plan Antiviral	Este plan es especial para evitar enfermedades virales	2018-05-12 23:11:12.626	2018-05-12 23:11:12.626	0
+30	plan de prueba 2	Este es la descripcion de un plan de pruebas	2018-05-12 23:20:14.476	2018-05-12 23:20:14.476	0
+15	Plan Multivitamínico B	Fantástico plan compuesto por un gran conjunto de Vitaminas B que te aportarán mucha energía	2018-05-12 22:29:41.143	2018-05-12 22:29:41.143	0
+16	Plan Multivitamínico B	Fantástico plan compuesto por un gran conjunto de Vitaminas B que te aportarán mucha energía	2018-05-12 22:32:53.368	2018-05-12 22:32:53.368	0
+17	Plan Multivitamínico B	Fantástico plan compuesto por un gran conjunto de Vitaminas B que te aportarán mucha energía	2018-05-12 22:33:14.027	2018-05-12 22:33:14.027	0
+18	Plan Multivitamínico B	Fantástico plan compuesto por un gran conjunto de Vitaminas B que te aportarán mucha energía	2018-05-12 22:34:53.869	2018-05-12 22:34:53.869	0
+20	Plan Multivitamínico B	Fantástico plan compuesto por un gran conjunto de Vitaminas B que te aportarán mucha energía	2018-05-12 22:36:52.514	2018-05-12 22:36:52.514	0
+22	Plan Multivitamínico B	Fantástico plan compuesto por un gran conjunto de Vitaminas B que te aportarán mucha energía	2018-05-12 22:42:38.524	2018-05-12 22:42:38.524	0
+24	Plan Multivitamínico B	Fantástico plan compuesto por un gran conjunto de Vitaminas B que te aportarán mucha energía	2018-05-12 22:48:52.63	2018-05-12 22:48:52.63	0
+23	Plan Multivitamínico B	Fantástico plan compuesto por un gran conjunto de Vitaminas B que te aportarán mucha energía	2018-05-12 22:46:11.029	2018-05-12 22:46:11.029	0
+25	Plan Multivitamínico B	Fantástico plan compuesto por un gran conjunto de Vitaminas B que te aportarán mucha energía	2018-05-12 22:50:01.183	2018-05-12 22:50:01.183	0
+26	Plan Multivitamínico B	Fantástico plan compuesto por un gran conjunto de Vitaminas B que te aportarán mucha energía	2018-05-12 22:50:13.448	2018-05-12 22:50:13.448	0
+33	Plan Suplemento 1	Descripcion	2018-05-12 23:35:37.32	2018-05-12 23:35:37.32	0
+29	Plan suplemento de prueba	Este plan de suplemento es de pruebas	2018-05-12 23:17:42.783	2018-05-12 23:17:42.783	0
+32	Ultima prueba	Descripcion de ultima prueba	2018-05-12 23:31:42.411	2018-05-12 23:31:42.411	0
+2	Vitamina C	Acido ascorbico que ayuda al crecimiento y reparacion de tejidos en todas las partes del cuerpo, piel, tendones, ligamentos y vasos sanguineos.	2018-05-04 06:18:25.454	2018-05-04 06:18:25.454	0
+3	Vitamina E	Antioxidante que protege el tegido corporal y ayuda a proteger contra los daños causados por los radicales libres.	2018-05-04 06:20:18.148	2018-05-04 06:20:18.148	0
+34	Registrando Plan	Descripcion	2018-05-13 00:14:11.625	2018-05-13 00:14:11.625	0
+35	Ultimo Plan de prueba	Descripcion	2018-05-13 00:17:53.617	2018-05-13 00:17:53.617	0
+42	aaaaaa	aaaa	2018-05-14 12:41:31.005	2018-05-14 12:41:31.005	0
+48	prueba1	plan de prueba	2018-05-14 20:17:01.867	2018-05-14 20:17:01.867	0
+51	plan de prueba3	plan de prueba3	2018-05-14 22:39:40.327	2018-05-14 22:39:40.327	0
+36	Plan otro mas de prueba 	Holaaaa	2018-05-13 00:18:40.058	2018-05-13 00:18:40.058	0
+58	ssssssssssssssssssssssssss	ssssssssssssssssssssssssss	2018-05-15 19:48:34.185	2018-05-15 19:48:34.185	0
+61	Plan de Suplemento	Plan de prueba	2018-05-20 01:48:16.597	2018-05-20 01:48:16.597	0
+47	alirio	aaallll	2018-05-14 15:01:14.538	2018-05-14 15:01:14.538	0
+39	dd444	ss	2018-05-14 02:28:44.208	2018-05-14 02:28:44.208	0
+41	leoooo	pruebaleoooo	2018-05-14 12:39:17.405	2018-05-14 12:39:17.405	0
+43	lealiiiiiiiiiiii	psuv viva chavez	2018-05-14 12:52:55.008	2018-05-14 12:52:55.008	0
+59	maduroooooooooooooooooooooo	maburrisssssssssssssssssssssssss	2018-05-15 20:04:51.719	2018-05-15 20:04:51.719	0
+49	plan de prueba	plan de prueba	2018-05-14 22:19:14.732	2018-05-14 22:19:14.732	0
+52	plan de prueba	plan pruebaaaa	2018-05-14 22:45:08.858	2018-05-14 22:45:08.858	0
+54	plan de prueba	jhj	2018-05-14 22:49:43.923	2018-05-14 22:49:43.923	0
+50	plan de prueba2	plan de prueba	2018-05-14 22:22:53.966	2018-05-14 22:22:53.966	0
+40	prueba	qq	2018-05-14 02:40:28.408	2018-05-14 02:40:28.408	0
+53	prueba	aaa	2018-05-14 22:46:58.157	2018-05-14 22:46:58.157	0
+55	prueba	dsadf	2018-05-14 22:51:20.899	2018-05-14 22:51:20.899	0
+38	prueba1	estp11111	2018-05-14 02:27:43.664	2018-05-14 02:27:43.664	0
+46	prueba10000000000	ppgg	2018-05-14 13:50:02.858	2018-05-14 13:50:02.858	0
+45	Prueba5	la prueba fantasma	2018-05-14 13:42:17.181	2018-05-14 13:42:17.181	0
+56	Prueba5	seguimos probando aun	2018-05-14 23:21:55.034	2018-05-14 23:21:55.034	0
+60	QQQQQQQQQQQQQQQQQQQ	QQQQQQQQQQQQQQQQQQQQ	2018-05-17 15:05:04.718	2018-05-17 15:05:04.718	0
+37	Ultimooooo plan de prueba	ultimoooooo	2018-05-13 00:19:24.533	2018-05-13 00:19:24.533	0
+44	wdcc	dcwedc	2018-05-14 13:40:37.727	2018-05-14 13:40:37.727	0
+57	xc	czx	2018-05-15 02:16:01.336	2018-05-15 02:16:01.336	0
+63	plan de suplementos prueba 2	esto es un plan de prueba	2018-05-20 01:58:10.406	2018-05-20 01:58:10.406	0
+64	plan de prueba 2	prueba	2018-05-20 02:01:04.629	2018-05-20 02:01:04.629	0
+66	prueba	esto es una prueba	2018-05-20 02:15:47.907386	2018-05-20 02:15:47.907386	1
+68	pueba 2000	kkk	2018-05-20 02:27:48.573806	2018-05-20 02:27:48.573806	1
+67	otra prueba 4	ppp	2018-05-20 02:20:49.997	2018-05-20 02:20:49.997	1
+69	Plan Suplemento 2	erw	2018-05-21 09:28:39.015097	2018-05-21 09:28:39.015097	1
+62	Plan de Suplementos	Plan de prueba	2018-05-20 01:49:01.954	2018-05-20 01:49:01.954	1
+65	plan de suplementos prueba 3	probando	2018-05-20 02:11:40.697	2018-05-20 02:11:40.697	1
+13	Multivitaminico5	Fantastico plan de vitaminas para tener energia dia	2018-05-12 21:00:03.966	2018-05-12 21:00:03.966	1
+\.
+
+--
+-- Data for Name: preferencia_cliente; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.preferencia_cliente (id_cliente, id_especialidad, fecha_creacion, fecha_actualizacion, estatus, id_preferencia_cliente) FROM stdin;
+\.
+
+
+--
+-- Data for Name: promocion; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.promocion (id_promocion, id_servicio, nombre, descripcion, valido_desde, valido_hasta, id_genero, id_estado_civil, id_rango_edad, fecha_creacion, fecha_actualizacion, estatus, descuento, url_imagen) FROM stdin;
+19	15	Promo Navidad	promocion para estas navidades	2018-05-05	2018-06-05	\N	\N	\N	2018-05-05 21:48:09.523	2018-05-05 21:48:09.523	1	10	\N
+32	16	promo mama feliz	promocion para las madres 	2018-05-16	2018-06-16	\N	\N	\N	2018-05-16 03:04:19.870691	2018-05-16 03:04:19.870691	1	15	https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png
+30	32	promo prueba	promocion de prueba	2018-05-12	2018-06-12	\N	\N	\N	2018-05-12 20:38:48.739	2018-05-12 20:38:48.739	0	15	\N
+17	14	Promo Ni una dieta mas	promocion para mantener tu peso	2018-05-05	2018-06-05	\N	\N	\N	2018-05-05 21:46:15.129	2018-05-05 21:46:15.129	0	24	\N
+34	37	Promo con fechas	validando el registro de fechas	2018-05-15	2018-06-06	\N	\N	\N	2018-05-17 02:11:34.843008	2018-05-17 02:11:34.843008	1	20	https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png
+33	18	prueba imagen	hgjg	2018-05-16	2018-06-16	3	1	2	2018-05-16 15:28:06.668	2018-05-16 15:28:06.668	0	20	http://res.cloudinary.com/saschanutric/image/upload/v1526484485/yt1lmirxcjt1v27kl0tm.jpg
+24	15	Promo Dia del Padre	promocion para dia del padre	2018-05-05	2018-06-05	\N	\N	\N	2018-05-05 21:55:52.598	2018-05-05 21:55:52.598	1	20	\N
+20	15	Promo Dia de San valentin	promocion para dia de los enamorados	2018-05-05	2018-06-05	\N	\N	\N	2018-05-05 21:49:09.878	2018-05-05 21:49:09.878	1	50	\N
+22	14	Promo infantil	promocion para niños y niñas	2018-05-05	2018-06-05	\N	\N	\N	2018-05-05 21:49:44.784	2018-05-05 21:49:44.784	1	30	\N
+27	14	Promo  Verano 2018	promocion para este verano del 2018	2018-05-05	2018-06-05	\N	\N	\N	2018-05-05 21:57:22.76	2018-05-05 21:57:22.76	1	30	\N
+35	43	Promocion Viernes 18	esto es una promo viernes 18	2018-05-18	2020-08-19	2	\N	3	2018-05-18 14:27:45.094765	2018-05-18 14:27:45.094765	1	10	http://res.cloudinary.com/saschanutric/image/upload/v1526653664/rresvhti97ksjazqss7b.jpg
+28	25	Promo Dia de las Madres 2018	promo para el dia de las madres	2018-05-08	2018-06-08	\N	\N	\N	2018-05-08 20:33:15.524	2018-05-08 20:33:15.524	1	55	\N
+\.
+
+
+--
+-- Data for Name: rango_edad; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.rango_edad (id_rango_edad, nombre, minimo, maximo, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+1	Bebe	0	1	2018-04-19 21:11:06.606	2018-04-19 21:11:06.606	1
+2	Niño/a	1	12	2018-04-19 21:11:19.305	2018-04-19 21:11:19.305	1
+3	Joven 	12	30	2018-04-19 21:11:32.739	2018-04-19 21:11:32.739	1
+4	Adulto	30	60	2018-04-19 21:11:41.765	2018-04-19 21:11:41.765	1
+5	Adulto mayor	60	120	2018-04-19 21:12:03.981	2018-04-19 21:12:03.981	1
+\.
+
+
+--
+-- Data for Name: reclamo; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.reclamo (id_reclamo, id_motivo, id_orden_servicio, id_respuesta, respuesta, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+17	26	15	\N	\N	2018-05-23 17:12:30.733841	2018-05-23 17:12:30.733841	1
+18	26	15	\N	\N	2018-05-23 17:12:45.433332	2018-05-23 17:12:45.433332	1
+19	26	15	42	\N	2018-05-24 02:56:39.525144	2018-05-24 02:56:39.525144	1
+20	26	15	42	\N	2018-05-24 03:16:30.372574	2018-05-24 03:16:30.372574	1
+16	26	15	28	\N	2018-05-23 16:53:50.869	2018-05-23 16:53:50.869	1
+22	26	16	\N	\N	2018-05-24 23:39:17.112254	2018-05-24 23:39:17.112254	1
+23	26	16	\N	\N	2018-05-25 00:11:38.758534	2018-05-25 00:11:38.758534	1
+25	26	15	\N	\N	2018-05-25 12:17:02.568782	2018-05-25 12:17:02.568782	1
+26	26	24	\N	\N	2018-05-25 14:33:26.712628	2018-05-25 14:33:26.712628	1
+24	26	15	28	\N	2018-05-25 12:12:30.823	2018-05-25 12:12:30.823	1
+27	26	25	\N	\N	2018-05-25 22:59:58.777525	2018-05-25 22:59:58.777525	1
+\.
+
+
+--
+-- Data for Name: red_social; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.red_social (id_red_social, nombre, url_base, url_logo, fecha_creacion, fecha_actualizacion, estatus, usuario) FROM stdin;
+3	Instagram	instagram.com		2018-05-11 03:53:23.748	2018-05-11 03:53:23.748	0	
+4	Linkedin	Linkedin.com		2018-05-11 03:58:33.261	2018-05-11 03:58:33.261	0	
+6	asasa	aasasa.com	http://res.cloudinary.com/saschanutric/image/upload/v1526518125/ijrvp3ks8bltfthpvrof.png	2018-05-17 00:48:45.96	2018-05-17 00:48:45.96	0	aasasa.com
+7	asasa	aasasa.com	http://res.cloudinary.com/saschanutric/image/upload/v1526518173/ouzun9rlbmbs6a7dxdhp.png	2018-05-17 00:49:34.253	2018-05-17 00:49:34.253	0	aasasa.com
+5	asasaas	asasasasas	http://res.cloudinary.com/saschanutric/image/upload/v1526517990/d7qubh0fbyqx2jhkgumy.png	2018-05-17 00:46:30.896	2018-05-17 00:46:30.896	0	asasasasas
+8	Instagram	instagram.com	http://res.cloudinary.com/saschanutric/image/upload/v1527189197/okrgq1c9yo2bqyxpwlka.png	2018-05-24 19:13:17.587	2018-05-24 19:13:17.587	0	instagram.com
+9	instagram	instagram.com	http://res.cloudinary.com/saschanutric/image/upload/v1527190499/xwunbmt6jgch1c2hoxpr.png	2018-05-24 19:34:59.505	2018-05-24 19:34:59.505	0	sascha
+1	Twitter	https://twitter.com/saschanutric	https://res.cloudinary.com/saschanutric/image/upload/v1525186802/twitter.png	2018-05-01 15:13:50.033	2018-05-01 15:13:50.033	1	
+11			https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png	2018-05-24 20:58:50.077	2018-05-24 20:58:50.077	0	
+13	Aa	AAA	http://res.cloudinary.com/saschanutric/image/upload/v1527199093/ia6wzuhdp85ikye2mjel.png	2018-05-24 21:58:13.479	2018-05-24 21:58:13.479	0	AAA
+12	asasa	asasa	http://res.cloudinary.com/saschanutric/image/upload/v1527198134/gof5yju6dap91qi7phrl.png	2018-05-24 21:42:15.049	2018-05-24 21:42:15.049	0	asasa
+14	aaaa	asasasa	http://res.cloudinary.com/saschanutric/image/upload/v1527200105/jb30ifdyla0a1sobtvtm.png	2018-05-24 22:15:05.728	2018-05-24 22:15:05.728	0	aaa
+10	Facebook	https://www.facebook.com/sascha.nutric.7	http://res.cloudinary.com/saschanutric/image/upload/v1527200979/vnprq59cobtadw3urd8m.png	2018-05-24 20:39:14.089	2018-05-24 20:39:14.089	1	Sascha
+2	Facebook	https://www.facebook.com/sascha.nutric.7	http://res.cloudinary.com/saschanutric/image/upload/v1527203159/uqhq7f8qelvupytrnllj.png	2018-05-01 16:04:42.758	2018-05-01 16:04:42.758	0	Sascha
+\.
+
+
+--
+-- Data for Name: regimen_dieta; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.regimen_dieta (id_regimen_dieta, id_detalle_plan_dieta, id_cliente, cantidad, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+24	39	15	33	2018-05-21 10:56:01.959995	2018-05-21 10:56:01.959995	1
+22	39	15	33	2018-05-21 10:52:57.703922	2018-05-21 10:52:57.703922	0
+21	40	15	34	2018-05-21 10:52:57.703922	2018-05-21 10:52:57.703922	0
+10	39	15	33	2018-05-21 10:24:01.940163	2018-05-21 10:24:01.940163	0
+14	39	15	33	2018-05-21 10:33:51.688335	2018-05-21 10:33:51.688335	0
+13	40	15	34	2018-05-21 10:33:51.688335	2018-05-21 10:33:51.688335	0
+16	39	15	33	2018-05-21 10:42:13.189056	2018-05-21 10:42:13.189056	0
+15	40	15	34	2018-05-21 10:42:13.189056	2018-05-21 10:42:13.189056	0
+18	39	15	33	2018-05-21 10:47:14.173774	2018-05-21 10:47:14.173774	0
+17	40	15	34	2018-05-21 10:47:14.173774	2018-05-21 10:47:14.173774	0
+20	39	15	33	2018-05-21 10:49:26.27241	2018-05-21 10:49:26.27241	0
+19	40	15	34	2018-05-21 10:49:26.27241	2018-05-21 10:49:26.27241	0
+9	40	15	34	2018-05-21 10:24:01.940163	2018-05-21 10:24:01.940163	0
+28	39	9	200	2018-05-24 03:18:23.236765	2018-05-24 03:18:23.236765	1
+23	40	15	9	2018-05-21 10:56:01.959	2018-05-21 10:56:01.959	1
+25	40	9	499	2018-05-21 11:02:05.639	2018-05-21 11:02:05.639	0
+26	39	9	200	2018-05-21 11:02:05.639	2018-05-21 11:02:05.639	0
+27	40	9	554	2018-05-24 03:18:23.236	2018-05-24 03:18:23.236	1
+29	49	21	100	2018-05-25 14:59:59.912891	2018-05-25 14:59:59.912891	1
+30	48	21	1	2018-05-25 14:59:59.912891	2018-05-25 14:59:59.912891	1
+31	50	21	100	2018-05-25 14:59:59.912891	2018-05-25 14:59:59.912891	1
+32	51	21	2	2018-05-25 14:59:59.912891	2018-05-25 14:59:59.912891	1
+33	52	21	400	2018-05-25 14:59:59.912891	2018-05-25 14:59:59.912891	1
+\.
+
+
+--
+-- Data for Name: regimen_ejercicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.regimen_ejercicio (id_regimen_ejercicio, id_cliente, id_frecuencia, id_tiempo, duracion, fecha_creacion, fecha_actualizacion, estatus, id_ejercicio) FROM stdin;
+3	10	4	2	3	2018-05-16 18:54:24.315562	2018-05-16 18:54:24.315562	1	4
+2	10	3	1	30	2018-05-16 18:48:14.444775	2018-05-16 18:48:14.444775	1	2
+18	15	3	2	30	2018-05-21 10:24:01.94	2018-05-21 10:24:01.94	1	3
+26	9	4	1	35	2018-05-21 11:02:05.639	2018-05-21 11:02:05.639	1	3
+\.
+
+
+--
+-- Data for Name: regimen_suplemento; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.regimen_suplemento (id_regimen_suplemento, id_cliente, id_frecuencia, cantidad, fecha_creacion, fecha_actualizacion, estatus, id_suplemento) FROM stdin;
+11	15	3	30	2018-05-21 10:24:01.94	2018-05-21 10:24:01.94	1	3
+20	9	3	350	2018-05-21 11:02:05.639	2018-05-21 11:02:05.639	0	3
+22	9	3	300	2018-05-24 03:18:23.236	2018-05-24 03:18:23.236	1	3
+23	9	3	300	2018-05-25 07:18:28.342	2018-05-25 07:18:28.342	0	3
+21	9	4	250	2018-05-24 03:18:23.236	2018-05-24 03:18:23.236	0	2
+19	9	4	205	2018-05-21 11:02:05.639	2018-05-21 11:02:05.639	1	2
+24	21	4	1	2018-05-25 14:59:59.912891	2018-05-25 14:59:59.912891	1	2
+25	21	4	2	2018-05-25 14:59:59.912891	2018-05-25 14:59:59.912891	1	3
+\.
+
+
+--
+-- Data for Name: respuesta; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.respuesta (id_respuesta, id_tipo_respuesta, descripcion, fecha_creacion, fecha_actualizacion, estatus, aprobado) FROM stdin;
+23	6	6	2018-05-16 03:00:51.658	2018-05-16 03:00:51.658	0	t
+21	4	4	2018-05-16 02:47:44.439	2018-05-16 02:47:44.439	0	f
+22	4	4	2018-05-16 02:54:36.454	2018-05-16 02:54:36.454	0	t
+13	2	2	2018-05-16 01:32:52.035	2018-05-16 01:32:52.035	0	\N
+15	2	2	2018-05-16 02:10:34.231	2018-05-16 02:10:34.231	0	\N
+16	2	2	2018-05-16 02:18:27.587	2018-05-16 02:18:27.587	0	\N
+19	2	2	2018-05-16 02:23:44.134	2018-05-16 02:23:44.134	0	\N
+20	2	2	2018-05-16 02:47:11.558	2018-05-16 02:47:11.558	0	t
+18	2	Prueba 20 mil	2018-05-16 02:20:56.14	2018-05-16 02:20:56.14	0	t
+14	2	Prueba	2018-05-16 01:34:35.047	2018-05-16 01:34:35.047	0	\N
+17	2	Prueba 20 mil	2018-05-16 02:20:23.511	2018-05-16 02:20:23.511	0	t
+24	2	Prueba reclamo	2018-05-16 03:14:53.603	2018-05-16 03:14:53.603	0	t
+25	2	prueba 20	2018-05-16 07:46:26.607	2018-05-16 07:46:26.607	0	t
+28	2	disculpe la molestia causada	2018-05-16 10:07:41.0876	2018-05-16 10:07:41.0876	1	f
+27	5	hola	2018-05-16 08:37:47.256	2018-05-16 08:37:47.256	0	\N
+31	5	tengo sueño	2018-05-16 10:24:28.949	2018-05-16 10:24:28.949	0	t
+30	2	hola mundo	2018-05-16 10:16:13.702	2018-05-16 10:16:13.702	0	f
+32	5	su sugerencia esta bien	2018-05-16 10:29:06.418	2018-05-16 10:29:06.418	0	t
+33	2	su reclamo sera procesado 	2018-05-16 12:24:31.594	2018-05-16 12:24:31.594	0	t
+29	6	prueba pregunta	2018-05-16 10:14:08.387	2018-05-16 10:14:08.387	0	f
+26	2	otra prueba	2018-05-16 08:19:46.684	2018-05-16 08:19:46.684	0	t
+36	6	prueba pregunta1	2018-05-17 17:04:20.585	2018-05-17 17:04:20.585	0	f
+38	4	Disculpe las molestia causada sera atendida	2018-05-17 17:15:59.951	2018-05-17 17:15:59.951	0	t
+34	2	Su reclamo sera procesado lo mas pronto posible	2018-05-17 15:28:39.628	2018-05-17 15:28:39.628	0	f
+37	4	prueba pregunta	2018-05-17 17:14:42.837	2018-05-17 17:14:42.837	0	f
+42	2	Su reclamo sera Procesado a la brevedad Posible	2018-05-17 18:10:19.236866	2018-05-17 18:10:19.236866	1	t
+45	5	Su sugerencia 	2018-05-17 18:11:45.136981	2018-05-17 18:11:45.136981	1	f
+44	4	No es relevante.	2018-05-17 18:11:08.476	2018-05-17 18:11:08.476	1	t
+43	5	Su Sugerencia sera tomada en cuenta	2018-05-17 18:10:45.624	2018-05-17 18:10:45.624	1	t
+41	4	Disculpe la molestia causada, lo resolveremos	2018-05-17 18:09:34.723	2018-05-17 18:09:34.723	1	t
+46	4	Disculpe 	2018-05-17 19:09:57.282	2018-05-17 19:09:57.282	1	f
+47	4	prueba queja	2018-05-17 19:15:28.747	2018-05-17 19:15:28.747	0	t
+39	5	prueba pregunta	2018-05-17 17:36:04.363	2018-05-17 17:36:04.363	0	t
+40	6	Se tomará en cuenta.	2018-05-17 17:36:36.275	2018-05-17 17:36:36.275	1	t
+35	2	Prueba Reclamo	2018-05-17 16:41:41.144	2018-05-17 16:41:41.144	0	t
+\.
+
+
+--
+-- Data for Name: rol; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.rol (id_rol, nombre, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+4	Nutricionista	Nutricionista 1	2018-05-11 11:44:51.229185	2018-05-11 11:44:51.229185	1
+5	Supervisor	Supervisor 1	2018-05-11 12:17:57.545278	2018-05-11 12:17:57.545278	1
+1			2018-05-07 04:22:29.95	2018-05-07 04:22:29.95	0
+12	Gerente	Gerente General 2	2018-05-15 21:05:46.5	2018-05-15 21:05:46.5	0
+13	Gerente	Gerente General 2	2018-05-15 21:13:04.22	2018-05-15 21:13:04.22	0
+15	Gerente	Gerente 2	2018-05-15 21:55:17.654	2018-05-15 21:55:17.654	0
+16	Gerente	Gerente 2	2018-05-15 22:01:24.622969	2018-05-15 22:01:24.622969	1
+2	Empleado	Empleado 3	2018-05-07 04:23:27.4	2018-05-07 04:23:27.4	0
+11	Empleado	Empleado 2	2018-05-14 02:54:35.495	2018-05-14 02:54:35.495	0
+3	Gerente	Gerente General 	2018-05-10 23:07:29.93	2018-05-10 23:07:29.93	0
+8	Nutricionista	Nutricionista 2	2018-05-14 02:48:53.604	2018-05-14 02:48:53.604	0
+9	Nutricionista	Nutricionista 3	2018-05-14 02:50:02.622	2018-05-14 02:50:02.622	0
+14	Nutricionista	Nutricionista 4	2018-05-15 21:30:35.042	2018-05-15 21:30:35.042	0
+7	Supervisor	Supervisor 2	2018-05-11 12:20:58.016	2018-05-11 12:20:58.016	0
+10	Supervisor	Supervisor 3	2018-05-14 02:50:46.138	2018-05-14 02:50:46.138	0
+6	Empleado	Empleado 1	2018-05-11 12:20:07.596	2018-05-11 12:20:07.596	1
+\.
+
+
+--
+-- Data for Name: rol_funcionalidad; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.rol_funcionalidad (id_rol, id_funcionalidad, fecha_creacion, fecha_actualizacion, estatus, id_rol_funcionalidad) FROM stdin;
+1	1	2018-05-15 21:00:09.755749	2018-05-15 21:00:09.755749	1	1
+1	3	2018-05-15 21:00:10.833993	2018-05-15 21:00:10.833993	1	2
+16	1	2018-05-15 22:01:25.726963	2018-05-15 22:01:25.726963	1	36
+16	2	2018-05-15 22:01:25.743831	2018-05-15 22:01:25.743831	1	37
+16	3	2018-05-15 22:01:25.746126	2018-05-15 22:01:25.746126	1	38
+16	4	2018-05-15 22:01:25.749304	2018-05-15 22:01:25.749304	1	39
+16	6	2018-05-15 22:01:25.760065	2018-05-15 22:01:25.760065	1	40
+16	5	2018-05-15 22:01:25.760536	2018-05-15 22:01:25.760536	1	41
+16	8	2018-05-15 22:01:25.935174	2018-05-15 22:01:25.935174	1	42
+16	7	2018-05-15 22:01:26.124259	2018-05-15 22:01:26.124259	1	43
+16	9	2018-05-15 22:01:26.131717	2018-05-15 22:01:26.131717	1	44
+\.
+
+
+--
+-- Data for Name: servicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.servicio (id_servicio, id_plan_dieta, id_plan_ejercicio, id_plan_suplemento, nombre, descripcion, url_imagen, numero_visitas, fecha_creacion, fecha_actualizacion, estatus, id_especialidad, precio) FROM stdin;
+26	3	3	2	prueba 2	eerer	https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png	3	2018-05-10 05:49:58.91	2018-05-10 05:49:58.91	0	1	1000000.00
+27	3	3	2	Adelgazante	Pierde peso con una buena alimentacion, ejercicios y suplementos de manera saludable.	https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png	6	2018-05-10 06:32:16.757	2018-05-10 06:32:16.757	0	1	1000000.00
+29	4	\N	\N	DFSDF	SDSFD	https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png	34	2018-05-10 15:56:00.395	2018-05-10 15:56:00.395	0	2	1000000.00
+28	4	\N	\N	DFSDF	SDSFD	https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png	34	2018-05-10 15:55:29.042	2018-05-10 15:55:29.042	0	2	1000000.00
+30	7	8	3	Control de peso 4	Ayuda a mantener tu peso con una adecuada alimentacion, ejercicios y suplementos de manera saludable.	http://res.cloudinary.com/saschanutric/image/upload/v1525968024/fzlolu5obywb5ogfi5vl.jpg	5	2018-05-10 16:00:24.716	2018-05-10 16:00:24.716	0	1	1000000.00
+31	3	\N	\N	Come Saludable	Te garantizamos que con este plan nutricional a tu medida alcanzaras tu peso ideal en tan solo 4 meses	http://res.cloudinary.com/saschanutric/image/upload/v1525970277/gdxxothohhrahualpdit.jpg	6	2018-05-10 16:37:58.134	2018-05-10 16:37:58.134	0	1	1000000.00
+14	7	8	3	Control de peso	Ayuda a mantener tu peso con una adecuada alimentacion, ejercicios y suplementos de manera saludable.	https://res.cloudinary.com/saschanutric/image/upload/v1525411646/Ganarpeso.jpg	5	2018-05-04 06:21:52.233	2018-05-04 06:21:52.233	0	1	1000000.00
+33	7	8	3	Control de peso	Ayuda a mantener tu peso con una adecuada alimentacion, ejercicios y suplementos de manera saludable.	https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png	5	2018-05-15 04:16:20.139	2018-05-15 04:16:20.139	0	1	1000000.00
+34	7	8	2	Control de peso	Ayuda a mantener tu peso con una adecuada alimentacion, ejercicios y suplementos de manera saludable.	https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png	5	2018-05-15 04:18:02.155	2018-05-15 04:18:02.155	0	1	1000000.00
+44	23	14	69	Servicio	Servicio de Prueba	http://res.cloudinary.com/saschanutric/image/upload/v1526960879/gxc9tsztoo7uozmehmcj.jpg	1	2018-05-20 02:00:56.402	2018-05-20 02:00:56.402	1	1	30.00
+35	7	8	\N	Control de peso	Ayuda a mantener tu peso con una adecuada alimentacion, ejercicios y suplementos de manera saludable.	https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png	5	2018-05-15 04:54:55.933	2018-05-15 04:54:55.933	0	1	1000000.00
+15	22	14	62	Adelgazante	Pierde peso con una buena alimentación, ejercicios y suplementos de manera saludable.	https://res.cloudinary.com/saschanutric/image/upload/v1525411725/controlobe.jpg	8	2018-05-04 06:33:20.488	2018-05-04 06:33:20.488	1	1	1500800.00
+42	4	\N	37	prueba 6	prueba con imagen	http://res.cloudinary.com/saschanutric/image/upload/v1526475050/unxab7inlkvmbk8sqpca.jpg	12	2018-05-16 12:50:51.025	2018-05-16 12:50:51.025	0	2	500000.00
+38	4	\N	\N	Hola	es para mi un placer conocerte	https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png	11	2018-05-16 12:27:48.241	2018-05-16 12:27:48.241	0	1	200000.00
+40	5	6	\N	prueba 4	123 equipo 3	https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png	3	2018-05-16 12:36:18.526	2018-05-16 12:36:18.526	0	5	23.00
+41	5	\N	\N	prueba 5	jfjfjdjd	https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png	23	2018-05-16 12:47:06.643	2018-05-16 12:47:06.643	0	3	100000.00
+39	8	6	\N	prueba 3	prueba 5	https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png	225	2018-05-16 12:33:09.254	2018-05-16 12:33:09.254	0	2	2333344.00
+32	9	6	2	Servicio de Prueba	Esto es un servicio de prueba	http://res.cloudinary.com/saschanutric/image/upload/v1526048729/ovlepzj1qe2up1u49p1d.png	4	2018-05-11 14:25:29.929	2018-05-11 14:25:29.929	0	3	1000000.00
+37	6	4	19	Duerme tranquilo	para cuando tienes mucho sueno y no puedes dormir	http://res.cloudinary.com/saschanutric/image/upload/v1526472211/roqur5ve40zwcoasn0ec.jpg	4	2018-05-16 12:03:32.486	2018-05-16 12:03:32.486	0	1	250000.00
+43	23	14	13	Servicio de Prueba Viernes 18	Esto es un servicio prueba viernes 18	http://res.cloudinary.com/saschanutric/image/upload/v1526652955/ce2ffm4fcx4oelf1fsia.jpg	12	2018-05-18 14:15:55.493	2018-05-18 14:15:55.493	1	3	23000.00
+36	23	13	69	Control de peso	Ayuda a mantener tu peso con una adecuada alimentacion, ejercicios y suplementos de manera saludable.	https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png	5	2018-05-16 05:11:02.225	2018-05-16 05:11:02.225	1	1	1000000.00
+18	22	14	69	Diabetes	Recomendado para mejorar el rendimiento de los deportistas con alimentacion saludable, suplemento y ejercicios.	https://res.cloudinary.com/saschanutric/image/upload/v1524936642/nutricionadultos.jpg	7	2018-05-04 06:46:58.261	2018-05-04 06:46:58.261	1	5	1000000.00
+17	22	13	62	Deportistas	Recomendado para mejorar el rendimiento de los deportistas con alimentacion saludable, suplemento y ejercicios.	https://res.cloudinary.com/saschanutric/image/upload/v1525412112/nutydep1.jpg	4	2018-05-04 06:42:21.011	2018-05-04 06:42:21.011	1	6	1000000.00
+25	23	14	69	Gluten Free	plan especial para personas intolerantes al gluten	https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png	8	2018-05-10 05:39:17.369	2018-05-10 05:39:17.369	1	5	1000000.00
+16	23	13	69	Plan post parto	Recupera tu peso despues del parto con la alimentacion adecuada, suplementos ejercicios optimos para las madres.	https://res.cloudinary.com/saschanutric/image/upload/v1525412269/nutricionembarazo.png	6	2018-05-04 06:38:00.676	2018-05-04 06:38:00.676	1	2	1000000.00
+19	22	14	62	Mantén tu figura ideal	Te ayudará a mantener tu cuerpo tonificado y bien definido con el mejor plan de alimentación y ejercicio para eso	http://res.cloudinary.com/saschanutric/image/upload/v1525910346/i9gxibt0flwpg4iwpojb.jpg	6	2018-05-09 23:59:06.723	2018-05-09 23:59:06.723	1	1	1000000.00
+45	5	7	13	Servicio prueba mayo 25	Prueba mayo 25	https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png	10	2018-05-25 14:12:05.610096	2018-05-25 14:12:05.610096	1	1	500.00
+46	25	7	13	servicio prueba 2	servicio prueba2	https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png	12	2018-05-25 14:46:11.619179	2018-05-25 14:46:11.619179	1	1	500.00
+\.
+
+
+--
+-- Data for Name: slide; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.slide (id_slide, titulo, descripcion, orden, url_imagen, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+1	slider	slider	1	https://res.cloudinary.com/saschanutric/image/upload/v1525185328/slider-1.jpg	2018-05-01 14:39:38.380687	2018-05-01 14:39:38.380687	1
+9	prueba2	prueba2	1	http://res.cloudinary.com/saschanutric/image/upload/v1526600272/y8dgxbcymfciumnpy29l.jpg	2018-05-17 23:37:53.132	2018-05-17 23:37:53.132	0
+10	prueba3	asasasasa	1	http://res.cloudinary.com/saschanutric/image/upload/v1526601035/v5tfamhje9ywns2xfi5m.gif	2018-05-17 23:50:35.838	2018-05-17 23:50:35.838	0
+7	prueba	prueba	6	http://res.cloudinary.com/saschanutric/image/upload/v1526599986/ufygkfbklicuvf18uqvi.png	2018-05-17 23:33:06.544	2018-05-17 23:33:06.544	0
+8	asasasa	asasasa	4	http://res.cloudinary.com/saschanutric/image/upload/v1526600117/labcvnptmc9gkh37xj77.png	2018-05-17 23:35:17.925	2018-05-17 23:35:17.925	0
+12	111	1111	1	http://res.cloudinary.com/saschanutric/image/upload/v1526613446/suopaoypncghcukzeq6e.png	2018-05-18 03:17:27.185	2018-05-18 03:17:27.185	0
+14	1111	111	1	http://res.cloudinary.com/saschanutric/image/upload/v1526613938/zblir7gf6tkkb8e4kqla.png	2018-05-18 03:25:39.041	2018-05-18 03:25:39.041	0
+13	1111	111	1	http://res.cloudinary.com/saschanutric/image/upload/v1526613927/v0propr5w9amrukkyoc3.png	2018-05-18 03:25:28.073	2018-05-18 03:25:28.073	0
+15	1111	111	1	http://res.cloudinary.com/saschanutric/image/upload/v1526614213/t1hogeze0r9ztgosg75j.png	2018-05-18 03:30:14.278	2018-05-18 03:30:14.278	0
+17	asasa	asasasa	1	http://res.cloudinary.com/saschanutric/image/upload/v1526614381/xb2h091b3xscs5bv6zij.png	2018-05-18 03:33:01.928	2018-05-18 03:33:01.928	0
+16	asasa	asasasa	1	http://res.cloudinary.com/saschanutric/image/upload/v1526614376/ehv3e2rdt183oymu4nar.png	2018-05-18 03:32:56.745	2018-05-18 03:32:56.745	0
+4	slider	slider	4	https://res.cloudinary.com/saschanutric/image/upload/v1525185456/slider-4.jpg	2018-05-01 14:41:19.553	2018-05-01 14:41:19.553	0
+2	slider	slider	2	https://res.cloudinary.com/saschanutric/image/upload/v1525185340/slider-2.png	2018-05-01 14:40:30.633	2018-05-01 14:40:30.633	0
+19	Prueba	Prueba 1 	5	http://res.cloudinary.com/saschanutric/image/upload/v1526652413/lmkhpf6h5spxoqrluesr.jpg	2018-05-18 14:06:53.337	2018-05-18 14:06:53.337	0
+20	asasa	asasasa	1	http://res.cloudinary.com/saschanutric/image/upload/v1527199493/hx2gxilaaasj8twpb2ci.png	2018-05-24 22:04:53.947	2018-05-24 22:04:53.947	0
+30	11111	22222	1	http://res.cloudinary.com/saschanutric/image/upload/v1527220888/rfb0pjaljfpxztrzreyw.jpg	2018-05-25 03:49:50.814	2018-05-25 03:49:50.814	0
+24	asasasaasa	aasasasa	3	http://res.cloudinary.com/saschanutric/image/upload/v1527221124/yuaewtzorxmfrpdsd37c.jpg	2018-05-25 03:11:03.283	2018-05-25 03:11:03.283	0
+25	yuju	yuju	1	http://res.cloudinary.com/saschanutric/image/upload/v1527218048/o6vtspyryzmusbrigj35.png	2018-05-25 03:14:09.113	2018-05-25 03:14:09.113	0
+3	slider12	slider12	3	https://res.cloudinary.com/saschanutric/image/upload/v1525185440/slider-3.jpg	2018-05-01 14:40:51.935	2018-05-01 14:40:51.935	1
+21	 slider3	 slider3	4	http://res.cloudinary.com/saschanutric/image/upload/v1527217562/hgltscjvarw3gcaqja5i.png	2018-05-25 03:06:03.2947	2018-05-25 03:06:03.2947	1
+22	slider	slider	8	http://res.cloudinary.com/saschanutric/image/upload/v1527217672/lfhim65qjnchu2ut7e8m.jpg	2018-05-25 03:07:52.910459	2018-05-25 03:07:52.910459	1
+23	 asasa	 asasasa	6	http://res.cloudinary.com/saschanutric/image/upload/v1527217749/jte3tcovhl5ajjbxisqm.jpg	2018-05-25 03:09:10.114666	2018-05-25 03:09:10.114666	1
+\.
+
+
+--
+-- Data for Name: solicitud_servicio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.solicitud_servicio (id_solicitud_servicio, id_cliente, id_motivo, id_respuesta, id_servicio, respuesta, id_promocion, fecha_creacion, fecha_actualizacion, estatus, id_estado_solicitud) FROM stdin;
+61	10	23	\N	16	\N	\N	2018-05-16 13:53:34.232556	2018-05-16 13:53:34.232556	1	3
+62	10	23	\N	16	\N	\N	2018-05-16 14:23:31.276401	2018-05-16 14:23:31.276401	1	3
+63	10	23	\N	16	\N	\N	2018-05-16 14:47:12.839979	2018-05-16 14:47:12.839979	1	3
+64	10	23	\N	16	\N	\N	2018-05-16 15:03:12.370151	2018-05-16 15:03:12.370151	1	3
+65	10	23	\N	16	\N	\N	2018-05-16 15:04:49.886054	2018-05-16 15:04:49.886054	1	3
+66	10	23	\N	16	\N	\N	2018-05-16 15:07:43.125238	2018-05-16 15:07:43.125238	1	3
+67	10	23	\N	16	\N	\N	2018-05-16 15:15:40.869506	2018-05-16 15:15:40.869506	1	3
+68	10	23	\N	16	\N	\N	2018-05-16 15:22:54.035123	2018-05-16 15:22:54.035123	1	1
+69	14	29	\N	19	\N	\N	2018-05-18 09:16:03.006819	2018-05-18 09:16:03.006819	1	1
+70	9	28	\N	43	\N	\N	2018-05-18 14:20:55.24229	2018-05-18 14:20:55.24229	1	1
+71	15	27	\N	44	\N	\N	2018-05-20 02:40:55.350281	2018-05-20 02:40:55.350281	1	1
+72	14	28	\N	44	\N	\N	2018-05-25 02:54:46.154182	2018-05-25 02:54:46.154182	1	1
+73	11	27	\N	44	\N	\N	2018-05-25 03:07:23.190819	2018-05-25 03:07:23.190819	1	4
+74	11	27	\N	44	\N	\N	2018-05-25 03:18:15.107102	2018-05-25 03:18:15.107102	1	1
+75	3	27	\N	36	\N	\N	2018-05-25 04:31:29.64388	2018-05-25 04:31:29.64388	1	2
+76	3	27	\N	17	\N	\N	2018-05-25 04:43:20.616549	2018-05-25 04:43:20.616549	1	2
+77	3	27	\N	17	\N	\N	2018-05-25 04:44:54.591342	2018-05-25 04:44:54.591342	1	1
+78	10	29	\N	43	\N	\N	2018-05-25 12:30:25.962757	2018-05-25 12:30:25.962757	1	1
+79	27	28	\N	43	\N	\N	2018-05-25 13:07:27.642912	2018-05-25 13:07:27.642912	1	1
+80	21	27	\N	45	\N	\N	2018-05-25 14:21:40.919048	2018-05-25 14:21:40.919048	1	1
+81	21	27	\N	46	\N	\N	2018-05-25 14:47:41.348201	2018-05-25 14:47:41.348201	1	1
+\.
+
+
+--
+-- Data for Name: suplemento; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.suplemento (id_suplemento, id_unidad, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+6	7	otra prueba	2018-05-06 08:41:38.565	2018-05-06 08:41:38.565	0
+4	17	prueba	2018-05-06 08:39:59.941	2018-05-06 08:39:59.941	0
+5	21	prueba2	2018-05-06 08:40:31.613	2018-05-06 08:40:31.613	0
+7	21	pruebaa	2018-05-06 08:43:06.174	2018-05-06 08:43:06.174	0
+8	6	Vitamina B7	2018-05-18 07:16:23.39343	2018-05-18 07:16:23.39343	1
+2	6	Vitamina C	2018-05-04 04:55:22.975	2018-05-04 04:55:22.975	1
+3	6	Vitamina E	2018-05-04 05:00:43.185	2018-05-04 05:00:43.185	1
+9	21	Aceite de Onagra	2018-05-25 03:17:55.998729	2018-05-25 03:17:55.998729	1
+10	1	Germen de Trigo	2018-05-25 03:18:50.934367	2018-05-25 03:18:50.934367	1
+11	6	Lecitina	2018-05-25 03:20:08.284569	2018-05-25 03:20:08.284569	1
+12	19	Omega 3	2018-05-25 03:20:31.854	2018-05-25 03:20:31.854	1
+13	6	Salvado de Trigo	2018-05-25 03:21:34.736	2018-05-25 03:21:34.736	0
+14	1	Salvado de Trigo	2018-05-25 03:22:05.718013	2018-05-25 03:22:05.718013	1
+15	1	Salvado de Avena	2018-05-25 03:22:22.467955	2018-05-25 03:22:22.467955	1
+16	40	Colageno	2018-05-25 03:24:38.678261	2018-05-25 03:24:38.678261	1
+17	40	Linaza	2018-05-25 03:25:23.507424	2018-05-25 03:25:23.507424	1
+18	40	Colageno	2018-05-25 03:26:16.013594	2018-05-25 03:26:16.013594	1
+19	40	Ácido Fólico 	2018-05-25 03:27:25.869005	2018-05-25 03:27:25.869005	1
+20	40	Ácido Fólico	2018-05-25 03:28:55.03	2018-05-25 03:28:55.03	0
+21	21	Aceite de Borraja	2018-05-25 03:29:46.399658	2018-05-25 03:29:46.399658	1
+22	21	Aceite de Casis	2018-05-25 03:30:08.689651	2018-05-25 03:30:08.689651	1
+23	21	Aceite de Linaza	2018-05-25 03:30:22.321593	2018-05-25 03:30:22.321593	1
+24	1	Jengibre	2018-05-25 03:31:44.416821	2018-05-25 03:31:44.416821	1
+25	6	Levadura de Cerveza	2018-05-25 03:32:01.109072	2018-05-25 03:32:01.109072	1
+26	6	Levadura de Arroz	2018-05-25 03:32:14.119865	2018-05-25 03:32:14.119865	1
+\.
+
+
+--
+-- Data for Name: tiempo; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.tiempo (id_tiempo, nombre, abreviatura, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+1	minutos	min	2018-05-16 18:14:32.132108	2018-05-16 18:14:32.132108	1
+2	horas	hrs	2018-05-16 18:14:57.831308	2018-05-16 18:14:57.831308	1
+3	dias	ds	2018-05-16 18:16:08.003548	2018-05-16 18:16:08.003548	1
+4	meses	mes	2018-05-16 18:16:21.091548	2018-05-16 18:16:21.091548	1
+5			2018-05-21 09:49:57.622069	2018-05-21 09:49:57.622069	1
+6			2018-05-21 09:53:55.111631	2018-05-21 09:53:55.111631	1
+7			2018-05-21 09:54:54.498029	2018-05-21 09:54:54.498029	1
+\.
+
+
+--
+-- Data for Name: tipo_cita; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.tipo_cita (id_tipo_cita, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+1	Diagnostico	2018-05-05 23:16:10.489235	2018-05-05 23:16:10.489235	1
+2	Control	2018-05-05 23:16:10.489235	2018-05-05 23:16:10.489235	1
+3	Reprogramada	2018-05-05 23:16:10.489235	2018-05-05 23:16:10.489235	1
+\.
+
+
+--
+-- Data for Name: tipo_criterio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.tipo_criterio (id_tipo_criterio, nombre, estatus, fecha_actualizacion, fecha_creacion) FROM stdin;
+1	Servicio	1	2018-05-13 00:01:08.357546	2018-05-13 00:01:08.357546
+2	Visita	1	2018-05-13 00:01:08.357546	2018-05-13 00:01:08.357546
+3	Prueba5	1	2018-05-14 23:07:07.569102	2018-05-14 23:07:07.569102
+\.
+
+
+--
+-- Data for Name: tipo_dieta; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.tipo_dieta (id_tipo_dieta, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+2	Vegetariana	2018-05-04 00:05:16.497627	2018-05-04 00:05:16.497627	1
+4	Protéica	2018-05-04 00:22:56.48831	2018-05-04 00:22:56.48831	1
+5	Prueba	2018-05-04 01:20:08.173	2018-05-04 01:20:08.173	0
+7	test	2018-05-04 01:26:12.186	2018-05-04 01:26:12.186	0
+6	Prueba	2018-05-04 01:20:09.438	2018-05-04 01:20:09.438	0
+9	Orgánica	2018-05-04 02:13:18.502796	2018-05-04 02:13:18.502796	1
+11	Mediterránea	2018-05-04 02:30:55.760495	2018-05-04 02:30:55.760495	1
+13	de la Zona	2018-05-04 02:36:03.899	2018-05-04 02:36:03.899	0
+3	Hipocalórica	2018-05-04 00:20:32.22	2018-05-04 00:20:32.22	1
+15	Vegana	2018-05-04 04:26:29.053636	2018-05-04 04:26:29.053636	1
+8	Hipercalórica	2018-05-04 02:07:42.552	2018-05-04 02:07:42.552	1
+10	Hiper Calórica	2018-05-04 02:29:00.656	2018-05-04 02:29:00.656	0
+16	hola	2018-05-04 14:55:17.206	2018-05-04 14:55:17.206	0
+18	hola	2018-05-06 03:02:33.843	2018-05-06 03:02:33.843	0
+12	Disociada	2018-05-04 02:34:01.453	2018-05-04 02:34:01.453	1
+19	Prueba3	2018-05-06 04:17:07.31	2018-05-06 04:17:07.31	0
+14	jnkj	2018-05-04 02:36:57.7	2018-05-04 02:36:57.7	0
+20	jnjn	2018-05-06 04:40:22.302	2018-05-06 04:40:22.302	0
+21	De maduro	2018-05-18 07:22:29.695	2018-05-18 07:22:29.695	0
+17	Otro	2018-05-04 14:58:03.392	2018-05-04 14:58:03.392	0
+22	Otro	2018-05-25 03:55:53.554767	2018-05-25 03:55:53.554767	1
+23	Progresión	2018-05-25 04:30:49.08298	2018-05-25 04:30:49.08298	1
+24	Alimentación y lactancia	2018-05-25 05:35:23.725092	2018-05-25 05:35:23.725092	1
+25	Adelgazar	2018-05-25 05:35:51.069336	2018-05-25 05:35:51.069336	1
+\.
+
+
+--
+-- Data for Name: tipo_incidencia; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.tipo_incidencia (id_tipo_incidencia, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+\.
+
+
+--
+-- Data for Name: tipo_motivo; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.tipo_motivo (id_tipo_motivo, nombre, fecha_creacion, fecha_actualizacion, estatus, canal_escucha) FROM stdin;
+1	Solicitud                                         	2018-05-05 21:11:23.612162	2018-05-05 21:11:23.612162	1	f
+2	Reclamo                                           	2018-05-05 21:11:23.612162	2018-05-05 21:11:23.612162	1	f
+4	Queja                                             	2018-05-05 21:11:23.612162	2018-05-05 21:11:23.612162	1	t
+5	Sugerencia                                        	2018-05-05 21:11:23.612162	2018-05-05 21:11:23.612162	1	t
+6	Pregunta                                          	2018-05-05 21:11:23.612162	2018-05-05 21:11:23.612162	1	t
+8	prueba3                                           	2018-05-12 16:53:01.948	2018-05-12 16:53:01.948	0	t
+7	Otro                                              	2018-05-12 16:12:45.08	2018-05-12 16:12:45.08	1	t
+9	Opinión                                           	2018-05-18 07:23:48.435	2018-05-18 07:23:48.435	1	t
+3	Incidencia                                        	2018-05-05 21:11:23.612	2018-05-05 21:11:23.612	1	f
+\.
+
+
+--
+-- Data for Name: tipo_notificacion; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.tipo_notificacion (id_tipo_notificacion, nombre, mensaje, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+1	Solicitud aprobada	Su solicitud para el servicios ha sido aprobada, y se ha agendado su cita	2018-05-08 18:36:38.537	2018-05-08 18:36:38.537	1
+4	Reclamo aprobado	Su solicitud para el servicios ha sido aprobada, y se ha agendado su cita	2018-05-08 18:36:38.537	2018-05-08 18:36:38.537	1
+3	Reclamo rechazado	Su solicitud para el servicios ha sido Rechazada porque no cumple con las condiciones	2018-05-08 18:36:38.537	2018-05-08 18:36:38.537	1
+2	Solicitud Rechazada	Su solicitud para el servicios ha sido Rechazada porque no cumple con las condiciones	2018-05-08 18:36:38.537	2018-05-08 18:36:38.537	1
+5	Incidencia	Notificación de Incidencia  procesada.	2018-05-08 18:36:38.537	2018-05-08 18:36:38.537	1
+\.
+
+
+--
+-- Data for Name: tipo_orden; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.tipo_orden (id_tipo_orden, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+1	Normal	2018-05-05 23:16:10.489235	2018-05-05 23:16:10.489235	1
+2	Garantía	2018-05-05 23:16:10.489235	2018-05-05 23:16:10.489235	1
+3	Promoción	2018-05-05 23:16:10.489235	2018-05-05 23:16:10.489235	1
+\.
+
+
+--
+-- Data for Name: tipo_parametro; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.tipo_parametro (id_tipo_parametro, nombre, fecha_creacion, fecha_actualizacion, estatus, filtrable) FROM stdin;
+2	Antropométrico	2018-05-04 02:46:20.575	2018-05-04 02:46:20.575	0	f
+3	Antropométrico	2018-05-04 02:46:20.919	2018-05-04 02:46:20.919	0	f
+4	Antropométrico	2018-05-04 02:46:21.42	2018-05-04 02:46:21.42	0	f
+5	Antropométrico	2018-05-04 02:56:00.679	2018-05-04 02:56:00.679	0	f
+6	Antropométrico	2018-05-04 03:00:14.994	2018-05-04 03:00:14.994	0	f
+7	Antropométrico	2018-05-04 03:08:48.962	2018-05-04 03:08:48.962	0	f
+8	Antropométrico	2018-05-04 03:09:56.988	2018-05-04 03:09:56.988	0	f
+9	Antropométrico	2018-05-04 03:20:06.355	2018-05-04 03:20:06.355	1	f
+10	Patologia	2018-05-04 04:25:50.309	2018-05-04 04:25:50.309	0	f
+18	Prueba2	2018-05-15 02:47:41.14	2018-05-15 02:47:41.14	0	f
+19	Prueba2	2018-05-15 02:48:29.848	2018-05-15 02:48:29.848	0	f
+14	Actividad	2018-05-07 17:33:33.789	2018-05-07 17:33:33.789	1	t
+15	Condición	2018-05-08 19:54:33.594	2018-05-08 19:54:33.594	1	f
+11	Exámen	2018-05-04 07:32:08.21	2018-05-04 07:32:08.21	1	f
+17	hola2	2018-05-11 02:49:25.003	2018-05-11 02:49:25.003	0	t
+16	Hola	2018-05-08 19:55:47.128	2018-05-08 19:55:47.128	0	t
+13	Patología	2018-05-05 01:09:03.888	2018-05-05 01:09:03.888	1	t
+12	Alergia	2018-05-04 11:51:21.281	2018-05-04 11:51:21.281	1	t
+20	Bioquímicos	2018-05-25 02:52:27.079	2018-05-25 02:52:27.079	0	f
+\.
+
+
+--
+-- Data for Name: tipo_respuesta; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.tipo_respuesta (id_tipo_respuesta, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+2	Aprobado	2018-05-04 15:23:39.979512	2018-05-04 15:23:39.979512	1
+3	Rechazado	2018-05-04 15:27:25.417146	2018-05-04 15:27:25.417146	1
+\.
+
+
+
+
+--
+-- Data for Name: tipo_valoracion; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.tipo_valoracion (id_tipo_valoracion, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+3	Nominal	2018-05-06 07:18:34.97	2018-05-06 07:18:34.97	1
+4	oooo	2018-05-06 07:22:40.792	2018-05-06 07:22:40.792	0
+2	Prueba	2018-05-06 07:14:16.22	2018-05-06 07:14:16.22	0
+5	Escala	2018-05-06 07:35:11.633485	2018-05-06 07:35:11.633485	1
+6	Prueba5	2018-05-14 23:06:32.814	2018-05-14 23:06:32.814	0
+7	Prueba5	2018-05-14 23:07:01	2018-05-14 23:07:01	0
+\.
+
+
+--
+-- Data for Name: unidad; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.unidad (id_unidad, id_tipo_unidad, nombre, abreviatura, fecha_creacion, fecha_actualizacion, estatus, simbolo) FROM stdin;
+1	1	Gramo	gr	2018-05-03 21:21:56.988516	2018-05-03 21:21:56.988516	1	gr
+4	1	Tonelada	ton	2018-05-03 21:21:56.988516	2018-05-03 21:21:56.988516	1	ton
+6	1	Miligramo	mg	2018-05-03 21:21:56.988516	2018-05-03 21:21:56.988516	1	mg
+8	3	Minuto	min	2018-05-03 21:21:56.988516	2018-05-03 21:21:56.988516	1	m
+13	3	Hora	h	2018-05-03 23:40:53.765939	2018-05-03 23:40:53.765939	1	\N
+12	2	Hora	h	2018-05-03 23:40:10.659	2018-05-03 23:40:10.659	0	\N
+7	3	Hora	h	2018-05-03 21:21:56.988	2018-05-03 21:21:56.988	0	h
+15	12	Centimetro	cm	2018-05-04 03:37:29.358	2018-05-04 03:37:29.358	0	\N
+16	3	Segundo	seg	2018-05-04 03:41:44.365372	2018-05-04 03:41:44.365372	1	\N
+18	3	Milisegundos	ms	2018-05-04 03:44:13.536243	2018-05-04 03:44:13.536243	1	\N
+5	1	Kilogramo	Kg	2018-05-03 21:21:56.988	2018-05-03 21:21:56.988	1	Kg
+22	3	Mes	mes	2018-05-05 00:55:27.293669	2018-05-05 00:55:27.293669	1	\N
+23	3	Día	D	2018-05-05 01:00:20.092192	2018-05-05 01:00:20.092192	1	\N
+14	3	segundos	sg	2018-05-04 01:43:15.688	2018-05-04 01:43:15.688	0	\N
+9	3	Segundo	segu	2018-05-03 21:21:56.988	2018-05-03 21:21:56.988	0	s
+24	12	Kilometro	km	2018-05-05 01:19:15.694186	2018-05-05 01:19:15.694186	1	\N
+34	20	prueba	du	2018-05-05 23:01:44.76	2018-05-05 23:01:44.76	0	\N
+28	2	Prueba	pd	2018-05-05 22:15:12.929	2018-05-05 22:15:12.929	0	\N
+30	2	Prueba	Pr	2018-05-05 22:23:15.245	2018-05-05 22:23:15.245	0	\N
+29	2	Prueba2	per	2018-05-05 22:17:06.189	2018-05-05 22:17:06.189	0	\N
+36	2	banco	ba	2018-05-09 20:15:08.017	2018-05-09 20:15:08.017	0	\N
+3	3	Bolivares Fuertess	VEF	2018-05-03 21:21:56.988	2018-05-03 21:21:56.988	0	BsF
+10	2	Dólar estadounidense	USD	2018-05-03 21:21:56.988	2018-05-03 21:21:56.988	0	$
+27	2	Euro	eur	2018-05-05 22:06:54.084	2018-05-05 22:06:54.084	0	\N
+17	3	Segundo	seg	2018-05-04 03:42:15.913	2018-05-04 03:42:15.913	0	\N
+37	2	pruebajjj	jjj	2018-05-14 02:44:52.192	2018-05-14 02:44:52.192	0	\N
+35	13	Masa M	MM	2018-05-07 17:33:03.619	2018-05-07 17:33:03.619	0	\N
+31	2	Prueba3	prjd	2018-05-05 22:25:13.275	2018-05-05 22:25:13.275	0	\N
+32	15	Pruebaa	sd	2018-05-05 22:30:36.261	2018-05-05 22:30:36.261	0	\N
+33	12	pruebaaaa	prue	2018-05-05 22:31:51.036	2018-05-05 22:31:51.036	0	\N
+38	1	zx	dsa	2018-05-15 15:15:33.467	2018-05-15 15:15:33.467	0	\N
+39	12	Centímetro	cm	2018-05-19 20:01:41.158802	2018-05-19 20:01:41.158802	1	\N
+41	12	Milimetro	mm	2018-05-21 09:25:53.821765	2018-05-21 09:25:53.821765	1	\N
+20	32	Litros	l	2018-05-05 00:48:58.136	2018-05-05 00:48:58.136	1	\N
+21	32	Mililitros	ml	2018-05-05 00:50:58.044	2018-05-05 00:50:58.044	1	\N
+26	1	Onza	oz	2018-05-05 22:04:14.016	2018-05-05 22:04:14.016	1	\N
+25	33	Porción	porc	2018-05-05 20:35:13.341	2018-05-05 20:35:13.341	1	\N
+40	33	Unidad	und	2018-05-21 04:42:26.796	2018-05-21 04:42:26.796	1	\N
+19	33	Unidades diarias	un/d	2018-05-04 04:50:00.567	2018-05-04 04:50:00.567	1	und
+42	1	Indice de masa corporal	kg/m	2018-05-25 03:08:10.926626	2018-05-25 03:08:10.926626	1	\N
+43	36	nanogramo por mililitro	ng/mL	2018-05-25 03:35:43.26355	2018-05-25 03:35:43.26355	1	\N
+44	36	miligramo por decilitro	mg/dL	2018-05-25 03:38:04.715859	2018-05-25 03:38:04.715859	1	\N
+45	36	gramo por decilitro	g/dL	2018-05-25 03:41:19.275015	2018-05-25 03:41:19.275015	1	\N
+\.
+
+
+--
+-- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.usuario (id_usuario, nombre_usuario, correo, contrasenia, salt, fecha_creacion, fecha_actualizacion, ultimo_acceso, estatus, id_rol, tipo_usuario) FROM stdin;
+3	leo1305pineda	leo1305pineda@gmail.com	$2a$12$C0BsgMEceajd7uKPlBBWCez55Tp1fRqHoIHAFBbloFI0yBsn9RACq	$2a$12$C0BsgMEceajd7uKPlBBWCe	2018-05-02 01:04:03.020666	2018-05-02 01:04:03.020666	\N	1	\N	1
+4	anadepalma	anavdepalma@gmail.com	$2a$12$Mwqr.FUDfESz.2JTEGS.GeaFQioU6/NTcGtobsz6ttUBCWBe4iyMO	$2a$12$Mwqr.FUDfESz.2JTEGS.Ge	2018-05-04 04:20:04.623128	2018-05-04 04:20:04.623128	\N	1	\N	1
+5	yurifreitez	yuri.freitez23@gmail.com	$2a$12$FuXADIvFWzlHdcxL9i/Jp.JEdzmelpy8n.dTW8nRFSzEO0epLq/4O	$2a$12$FuXADIvFWzlHdcxL9i/Jp.	2018-05-04 04:41:20.616108	2018-05-04 04:41:20.616108	\N	1	\N	1
+6	karem24	sk.karem@gmail.com	$2a$12$Grzrjqz5PxsmPfMMprQYvOPVWQ06v5nO7TqmLcsLvs0M6rQ9lRmfq	$2a$12$Grzrjqz5PxsmPfMMprQYvO	2018-05-04 12:16:41.326715	2018-05-04 12:16:41.326715	\N	1	\N	1
+7	karem24	sk.karem@gmail.com	$2a$12$u.Vd0ZlyEyJK03DdJPOjtucAr/orcZxrH.JTJ4X4WrUSAZS4CWBd.	$2a$12$u.Vd0ZlyEyJK03DdJPOjtu	2018-05-04 12:16:41.781688	2018-05-04 12:16:41.781688	\N	1	\N	1
+8	mcrespo	mcrespog@gmail.com	$2a$12$L/4SQGDgMM/yJspIUSzmH.n58zveSfylg7D2qwRynkN3FiIaURFsi	$2a$12$L/4SQGDgMM/yJspIUSzmH.	2018-05-04 12:49:23.314114	2018-05-04 12:49:23.314114	\N	1	\N	1
+9	hilmaryc	hilmarycn@gmail.com	$2a$12$V1skHO24j1N8G9VnxvVd2.viw4qeuRt8ycwpkCEbV7CFNEltoz.l.	$2a$12$V1skHO24j1N8G9VnxvVd2.	2018-05-08 19:55:38.660868	2018-05-08 19:55:38.660868	\N	1	\N	1
+10	luisp	luispuerta7@gmail.com	$2a$12$1y.W.Fum7oEXEq7jri2jReQY0EpcWSe./GSuHllsK.KZmday9REJm	$2a$12$1y.W.Fum7oEXEq7jri2jRe	2018-05-08 19:56:58.022212	2018-05-08 19:56:58.022212	\N	1	\N	1
+11	abdelg	abdelgainza@gmail.com	$2a$12$McDCUXWhy7Z70W9BJJ5KTuPrhb/TnXl.uOeU6Vmbjxayp5lpe92Vy	$2a$12$McDCUXWhy7Z70W9BJJ5KTu	2018-05-08 19:58:33.50811	2018-05-08 19:58:33.50811	\N	1	\N	1
+43		benemujica@hotmail.com	$2a$12$d3FMF6/AhrmtswdeIuHwj.d4KrYf0.8DSRyhNIEuX.dPuL.KDFjqG	$2a$12$d3FMF6/AhrmtswdeIuHwj.	2018-05-22 23:58:12.448836	2018-05-22 23:58:12.448836	\N	1	\N	1
+29		ana_veck@hotmail.com	$2a$12$2wKXgMabLP95q0js3wuGlOsX6lSYPaeQQeX1myHc6HpYJj5ja7mGu	$2a$12$2wKXgMabLP95q0js3wuGlO	2018-05-20 02:35:16.25219	2018-05-20 02:35:16.25219	\N	1	\N	1
+30		leo1305pineda@hotmail.com	$2a$12$kEtyMhCyP8Tam2pCXGLFQuSR4DG29KpIVypU1lVgE8p1waUJeyWpS	$2a$12$kEtyMhCyP8Tam2pCXGLFQu	2018-05-22 01:07:46.67021	2018-05-22 01:07:46.67021	\N	1	16	2
+12	gperez	gabrielaperez@gmail.com	12345678	12345678\n	2018-05-11 06:23:23.947	2018-05-11 06:23:23.947	\N	0	\N	2
+31		gabrielap2804@gmail.com	$2a$12$9qAcw5ys77OJo1wtV9uVo.4QGlApqCFao1Cv45UIRFliNG8CFmzEe	$2a$12$9qAcw5ys77OJo1wtV9uVo.	2018-05-22 02:55:29.971	2018-05-22 02:55:29.971	\N	0	5	2
+27		guerrero.c.jose.a@gmail.com	$2a$12$VDV0oNTZGsjStdoiQ.lGQuhW49QVsJzwHbomwYi9Z/KRHsca8D9We	$2a$12$VDV0oNTZGsjStdoiQ.lGQu	2018-05-18 01:46:48.480882	2018-05-18 01:46:48.480882	\N	1	\N	1
+28		brillit1409@gmail.com	$2a$12$gGTvQbafI8diHQWIccB3sehyZKseMlst8dMIoUYWTWeKZ4NTUmjKu	$2a$12$gGTvQbafI8diHQWIccB3se	2018-05-18 04:14:22.554423	2018-05-18 04:14:22.554423	\N	1	\N	1
+22		guerrero.c.jose.a@gmail.com	$2a$12$hKKl8lGhS1uwDXiM5cSeHejklWax673ryMb4T6Q1n4fDNYQoBszmG	$2a$12$hKKl8lGhS1uwDXiM5cSeHe	2018-05-16 13:16:57.900813	2018-05-16 13:16:57.900813	\N	0	2	2
+21		guerrero.c.jose.a@gmail.com	$2a$12$k4cZtpmz8K.aCznyJPeBlu2kZNx72lP8.HJoCyNnvFNEub490.u.q	$2a$12$k4cZtpmz8K.aCznyJPeBlu	2018-05-16 13:14:25.052201	2018-05-16 13:14:25.052201	\N	0	2	2
+24		guerrero.c.jose.a@gmail.com	$2a$12$pCGypTpoeH65uO5..cbWC.1OdV4rS77fWuALpuHRycUgQHMXt4r0.	$2a$12$pCGypTpoeH65uO5..cbWC.	2018-05-16 19:24:47.989999	2018-05-16 19:24:47.989999	\N	0	2	2
+23		guerrero.c.jose.a@gmail.com	$2a$12$YW17KOUBAnv0z..UHWCzwOrTv9XVFlFa2qf5ZKlrt5saCEMJRcvY6	$2a$12$YW17KOUBAnv0z..UHWCzwO	2018-05-16 13:19:23.432944	2018-05-16 13:19:23.432944	\N	0	2	2
+25		guerrero.c.jose.a@gmail.com	$2a$12$nShwDY13X19/GP9gPXmpjej6q0j56dYQq84fGS1S9mK3r0P.DQzbG	$2a$12$nShwDY13X19/GP9gPXmpje	2018-05-16 19:52:29.146	2018-05-16 19:52:29.146	\N	0	6	2
+32		gabrielap2804@gmail.com	$2a$12$UYx/XcbLvLrJ08H9D4hGduXwH5Q7PtE8OXzyxPqyT2qFbatKkHo9S	$2a$12$UYx/XcbLvLrJ08H9D4hGdu	2018-05-22 02:58:26.724	2018-05-22 02:58:26.724	\N	0	4	2
+33		gabrielap2804@gmail.com	$2a$12$cwigXvXg4xrb4hBDbIOpfuFrtrjII3rilVZ8i6HMVuVv9MU1IDEau	$2a$12$cwigXvXg4xrb4hBDbIOpfu	2018-05-22 03:00:24.529	2018-05-22 03:00:24.529	\N	0	5	2
+34		gabrielap2804@gmail.com	$2a$12$XcmDY9l8N6aFguOtpuzJ4OeeUXJXpJdrNs5JgpFj1fA9AcmlmHpga	$2a$12$XcmDY9l8N6aFguOtpuzJ4O	2018-05-22 03:03:47.142	2018-05-22 03:03:47.142	\N	0	6	2
+35		gabrielap2804@gmail.com	$2a$12$Kn5n8CMwdz6fXTzB5j.tquWpN2sbElSjsUSNIfWjbKzJm6oBKt9JG	$2a$12$Kn5n8CMwdz6fXTzB5j.tqu	2018-05-22 03:04:38.3	2018-05-22 03:04:38.3	\N	0	6	2
+36		gabrielap2804@gmail.com	$2a$12$pf6fl2kZtx55j7v87SkQ6u2m8doW56zb4t3uDdUQjEoxyrn6WY8NC	$2a$12$pf6fl2kZtx55j7v87SkQ6u	2018-05-22 03:04:57.916	2018-05-22 03:04:57.916	\N	0	16	2
+38		reiddysrico93@gmail.com	$2a$12$X9LpTALG7UOyker./r3fre5HJRd0Rj0QJRvfRsIodyoBkKUGgeuVi	$2a$12$X9LpTALG7UOyker./r3fre	2018-05-22 23:43:51.453248	2018-05-22 23:43:51.453248	\N	1	\N	1
+39		nelidafranchezka@hotmail.com	$2a$12$8DsvbobfjY.iUFv568bSr.lBT8P3XyRB2UvYCznxSxERKmzvtC2lS	$2a$12$8DsvbobfjY.iUFv568bSr.	2018-05-22 23:46:07.013871	2018-05-22 23:46:07.013871	\N	1	\N	1
+40		majoralfredo@hotmail.com	$2a$12$ahiiosHqx/tP94DW9vbPj.CNpRXrDqOYlX7H1X2QwzRifzUZ6ZvBq	$2a$12$ahiiosHqx/tP94DW9vbPj.	2018-05-22 23:48:08.532657	2018-05-22 23:48:08.532657	\N	1	\N	1
+41		paholaaranguren@gmail.com	$2a$12$TQiHezOz0CFgu7Lj.AjUg.BBpvD7RjIcuOPDqo04XstwAd0HX8kXS	$2a$12$TQiHezOz0CFgu7Lj.AjUg.	2018-05-22 23:50:25.552625	2018-05-22 23:50:25.552625	\N	1	\N	1
+42		franchezkabrisleidy@gmail.com	$2a$12$NZ43YRNHbFRuFtbx1Cye.edunh0Lu8fLIi4KOTTEIlx3fY5E4rMXm	$2a$12$NZ43YRNHbFRuFtbx1Cye.e	2018-05-22 23:53:17.826315	2018-05-22 23:53:17.826315	\N	1	\N	1
+44		katiuzka_arevalo1@hotmail.com	$2a$12$8KyzC/fHerN/zMclq8K7Fe7mLh.RN3aHZzQ4NxCn3eo1UTMvcF3E.	$2a$12$8KyzC/fHerN/zMclq8K7Fe	2018-05-22 23:59:59.283573	2018-05-22 23:59:59.283573	\N	1	\N	1
+45		a.ch_31@hotmail.com	$2a$12$xULibcz8P4vIgVVCHL8PF.nSiVQf2F7qdEL6IxTZr2BN93k.Zr8Am	$2a$12$xULibcz8P4vIgVVCHL8PF.	2018-05-23 00:01:29.659402	2018-05-23 00:01:29.659402	\N	1	\N	1
+46		nerva.lugo11@hotmail.com	$2a$12$TR3dW8yK6sNI9Jar1EqDTerTsSYmsQDbOho1TQw1fT8tdu75dFxKq	$2a$12$TR3dW8yK6sNI9Jar1EqDTe	2018-05-23 00:03:43.804143	2018-05-23 00:03:43.804143	\N	1	\N	1
+47		franchezka.14@hotmail.com	$2a$12$.uQLWc4Q/KqpVhhH4R0t4eUgNAr51FwKON95rMaxWxL4Gu0s9drBy	$2a$12$.uQLWc4Q/KqpVhhH4R0t4e	2018-05-23 00:06:34.597911	2018-05-23 00:06:34.597911	\N	1	\N	1
+37		gabrielap2804@gmail.com	$2a$12$4yOo7WQ1GQFxtIna1fOdwu.mrHlENQVUPQ6yW.3jFBbSBSPXZARD2	$2a$12$4yOo7WQ1GQFxtIna1fOdwu	2018-05-22 03:09:13.559	2018-05-22 03:09:13.559	\N	0	5	2
+48		gabrielap2804@gmail.com	$2a$12$3vv7DvCe/ENxsAwXtoG3p.y/k9U/BJ6xktfK0/Hbt48P8CMsWxNgm	$2a$12$3vv7DvCe/ENxsAwXtoG3p.	2018-05-24 02:17:19.441	2018-05-24 02:17:19.441	\N	0	5	2
+50		gabrielap2804@gmail.com	$2a$12$psh5MuI1hXRSCdkyxoDraeAUp3QThH1nQp1Er6aa7BuT/mnQ4qoI2	$2a$12$psh5MuI1hXRSCdkyxoDrae	2018-05-24 03:23:06.034	2018-05-24 03:23:06.034	\N	0	4	2
+49		gabrielap2804@gmail.com	$2a$12$8axJKSRAvdfV1zmv/egKqe.lJoh2d03.YBbzT/j9cTs.RpVS31uZa	$2a$12$8axJKSRAvdfV1zmv/egKqe	2018-05-24 02:17:42.761	2018-05-24 02:17:42.761	\N	0	5	2
+13	skarlyruiz	skarlyruiz@gmail.com	$2a$12$5fwgz377gcQXiUhzZRpZ2O2SEwUcyobmE/fHErlGm.M.BJESMT3pe	$2a$12$5fwgz377gcQXiUhzZRpZ2O	2018-05-11 06:25:59.566	2018-05-11 06:25:59.566	\N	1	5	2
+51		gabrielap2804@gmail.com	$2a$12$p8KKQIRBPucn7J7Ug3Ln8eakGW3TT.8v8T/.Au6yMlstNkWtPmfrS	$2a$12$p8KKQIRBPucn7J7Ug3Ln8e	2018-05-24 03:23:06.94	2018-05-24 03:23:06.94	\N	0	4	2
+52		gabrielap2804@gmail.com	$2a$12$YYNy5km4ywM2nA6d63UXkOOCQdsAUThAEiakFCDzLBPn94ah/.DMy	$2a$12$YYNy5km4ywM2nA6d63UXkO	2018-05-24 03:24:36.725	2018-05-24 03:24:36.725	\N	0	4	2
+53		gabrielap2804@gmail.com	$2a$12$kC6qH.l/uDNVcN6rTrhhau0.c61ZrV0qogqhd9TajXDjbkRc3v1A6	$2a$12$kC6qH.l/uDNVcN6rTrhhau	2018-05-24 03:26:45.992	2018-05-24 03:26:45.992	\N	0	4	2
+55		pedroaliorellana@gmail.com	$2a$12$80mMf1wqCLHZMm7xW5gSveBsFg.cxa1gHSbiM90b9JIVSjFvF67UW	$2a$12$80mMf1wqCLHZMm7xW5gSve	2018-05-24 21:13:42.398	2018-05-24 21:13:42.398	\N	0	16	2
+56		pedroaliorellana@gmail.com	$2a$12$Dg1SDotZHtMBuec8qAbRGOCC2q2zl8KhGe9.XmCqeYpBL3ezZAfM6	$2a$12$Dg1SDotZHtMBuec8qAbRGO	2018-05-24 21:31:29.123746	2018-05-24 21:31:29.123746	\N	1	16	2
+54		gabrielap2804@gmail.com	$2a$12$mvxW7pQ/6uITBoCI3ZB92OAnRuTCT.mQUSeKnUx91lX4W7D92/T8a	$2a$12$mvxW7pQ/6uITBoCI3ZB92O	2018-05-24 03:27:13.936	2018-05-24 03:27:13.936	\N	0	4	2
+57		gabrielap2804@gmail.com	$2a$12$Gs25ok7N4Vw1F.jaqaCvxuMQrRdAxwueGQaej8aBB5rkddo9qGYVi	$2a$12$Gs25ok7N4Vw1F.jaqaCvxu	2018-05-25 00:43:16.918846	2018-05-25 00:43:16.918846	\N	1	4	2
+20		guerrero.c.jose.a@gmail.com	$2a$12$9MVdrj1O6JyilI3HTMKVYOpbIcG4o4TVc/WWl6NAnjxvmXuiPLzBW	$2a$12$9MVdrj1O6JyilI3HTMKVYO	2018-05-16 13:11:00.862	2018-05-16 13:11:00.862	\N	1	4	2
+58		sk.karem@gmail.com	$2a$12$nZPgWQw81VHrKTwqMFi2p..DvKB4tDw.tIWfEchb/hMdlzCPx3QeO	$2a$12$nZPgWQw81VHrKTwqMFi2p.	2018-05-25 04:52:45.831201	2018-05-25 04:52:45.831201	\N	1	\N	1
+59		luis_puerta.7@hotmail.com	$2a$12$gVZHkhQLmL14S4N1KenKNe0Kv5BkYjUSer3wrZSvvx.b/xhR6vsvm	$2a$12$gVZHkhQLmL14S4N1KenKNe	2018-05-25 12:45:15.774627	2018-05-25 12:45:15.774627	\N	1	\N	1
+60		indiraepf03@gmail.com	$2a$12$Jsqb77NEgnu0nmOyF0bpH.MQRXMb9u2T/jTNiwQMHN51z/.63uCzi	$2a$12$Jsqb77NEgnu0nmOyF0bpH.	2018-05-25 17:59:11.18125	2018-05-25 17:59:11.18125	\N	1	\N	1
+\.
+
+
+--
+-- Data for Name: valoracion; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.valoracion (id_valoracion, id_tipo_valoracion, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+1	3	Excelente	2018-05-06 08:00:20.804	2018-05-06 08:00:20.804	1
+2	5	2	2018-05-06 08:02:26.808	2018-05-06 08:02:26.808	1
+5	5	1	2018-05-25 04:07:41.826102	2018-05-25 04:07:41.826102	1
+3	5	1	2018-05-25 04:07:12.018	2018-05-25 04:07:12.018	0
+4	5	1	2018-05-25 04:07:29.905	2018-05-25 04:07:29.905	0
+6	5	3	2018-05-25 04:46:34.05396	2018-05-25 04:46:34.05396	1
+7	5	3	2018-05-25 04:48:20.435	2018-05-25 04:48:20.435	0
+8	3	Regular	2018-05-25 04:49:38.386762	2018-05-25 04:49:38.386762	1
+\.
+
+
+--
+-- Data for Name: visita; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.visita (id_visita, numero, fecha_atencion, fecha_creacion, fecha_actualizacion, estatus, id_agenda) FROM stdin;
+4	1	2018-05-21	2018-05-21 07:55:26.191114	2018-05-21 07:55:26.191114	1	17
+10	11	2018-05-21	2018-05-21 08:46:05.552646	2018-05-21 08:46:05.552646	1	17
+11	11	2018-05-21	2018-05-21 08:56:54.027673	2018-05-21 08:56:54.027673	1	17
+18	31	2018-05-21	2018-05-21 10:24:01.940163	2018-05-21 10:24:01.940163	1	17
+20	31	2018-05-21	2018-05-21 10:33:51.688335	2018-05-21 10:33:51.688335	1	17
+23	31	2018-05-21	2018-05-21 10:42:13.189056	2018-05-21 10:42:13.189056	1	17
+24	31	2018-05-21	2018-05-21 10:47:14.173774	2018-05-21 10:47:14.173774	1	17
+25	31	2018-05-21	2018-05-21 10:49:26.27241	2018-05-21 10:49:26.27241	1	17
+27	31	2018-05-21	2018-05-21 10:52:57.703922	2018-05-21 10:52:57.703922	1	17
+28	31	2018-05-21	2018-05-21 10:56:01.959995	2018-05-21 10:56:01.959995	1	17
+29	1	2018-05-21	2018-05-21 11:02:05.639677	2018-05-21 11:02:05.639677	1	16
+30	2	2018-05-23	2018-05-24 03:18:23.236765	2018-05-24 03:18:23.236765	1	16
+31	3	2018-05-25	2018-05-25 11:09:20.024804	2018-05-25 11:09:20.024804	1	18
+32	1	2018-05-25	2018-05-25 14:59:59.912891	2018-05-25 14:59:59.912891	1	26
+33	2	2018-05-25	2018-05-25 15:02:34.282637	2018-05-25 15:02:34.282637	1	27
+\.
+
+
+--
+-- Name: id_agenda_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
