@@ -56,6 +56,7 @@ async function getServicios(req, res, next) {
 					url_imagen: servicio.url_imagen,
 					precio: servicio.precio,
 					numero_visitas: servicio.numero_visitas,
+					fecha_creacion: servicio.fecha_creacion,
 					especialidad: {
 						id_especialidad: servicio.especialidad.id_especialidad,
 						nombre: servicio.especialidad.nombre
