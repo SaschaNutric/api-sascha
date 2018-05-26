@@ -8,7 +8,7 @@ const Bookshelf  = require('../commons/bookshelf');
 async function getServicios(req, res, next) {
 	Servicios.query(function (qb) {
    		qb.where('servicio.estatus', '=', 1);
-   		qb.orderBy('servicio.fecha_creacion','ASC');
+   		qb.orderBy('servicio.fecha_creacion','DES');
 	})
 	.fetch({
 		withRelated: [
