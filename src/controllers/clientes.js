@@ -6,12 +6,11 @@ const Cliente   	= require('../models/cliente');
 const Bookshelf     = require('../commons/bookshelf');
 
 function getClientes(req, res, next) {
-	ViewClientes.query(function (qb) {
-   		qb.where('cliente.estatus', '=', 1);
-	})
+	ViewClientes.query(function (qb) {})
 	.fetch({ columns: ['id_cliente', 'cedula', 'nombres', 'apellidos', 
 						'telefono', 'genero', 'estado_civil', 'direccion', 
-						'fecha_nacimiento', 'tipo_cliente', 'rango_edad'] })
+						'fecha_nacimiento', 'tipo_cliente', 'rango_edad'],
+			withRelated: ['perfil'] })
 	.then(function(clientes) {
 		if (clientes.length == 0)
 			return res.status(404).json({ 
@@ -42,7 +41,6 @@ function getClienteById(req, res, next) {
 		});
 
 	ViewCliente.forge({ id_cliente: id })
-//	.fetch({ withRelated: ['perfil'] })
 	.fetch({ columns: ['id_cliente', 'cedula', 'nombres', 'apellidos', 
 						'telefono', 'genero', 'estado_civil', 'direccion', 
 						'fecha_nacimiento', 'tipo_cliente', 'rango_edad'],
