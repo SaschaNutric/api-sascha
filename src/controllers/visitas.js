@@ -21,7 +21,7 @@ function getVisitasByClienteAndOrden(req, res, next) {
 	if (!req.body.id_cliente || !req.body.id_orden_servicio )
 		return res.status(400).json({
 			error: true,
-			data: { mensaje: 'Petición inválida debes registrar una solicitud del servicio' }
+			data: { mensaje: 'Debes solicitar un servicio' }
 		});
 	VistaVisita.query(function (qb) {
 		qb.where('id_cliente', '=', req.body.id_cliente);
