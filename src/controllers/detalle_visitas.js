@@ -59,7 +59,10 @@ function getDetalle_visitaById(req, res, next) {
 
 	VistaVisita.forge({ id_visita: id })
 	.fetch({ withRelated: [
-		'detalles'
+		'detalles',
+		'detalles.parametro',
+		'detalles.parametro.tipo_parametro',
+		'detalles.parametro.unidad'
 	]})
 	.then(function(data) {
 		if(!data) 
