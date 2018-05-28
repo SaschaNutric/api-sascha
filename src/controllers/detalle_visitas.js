@@ -58,7 +58,9 @@ function getDetalle_visitaById(req, res, next) {
 		});
 
 	Visita.forge({ id_visita: id, estatus: 1 })
-	.fetch()
+	.fetch({ withRelated: [
+		'detalles'
+	]})
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
