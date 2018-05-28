@@ -30,7 +30,7 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
 --
--- Name: fun_asignar_rango_edad(); Type: FUNCTION; Schema: public; Owner: postgres
+-- Name: fun_asignar_rango_edad(); Type: FUNCTION; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE FUNCTION public.fun_asignar_rango_edad() RETURNS trigger
@@ -49,10 +49,10 @@ END
 $$;
 
 
-ALTER FUNCTION public.fun_asignar_rango_edad() OWNER TO postgres;
+ALTER FUNCTION public.fun_asignar_rango_edad() OWNER TO byqkxhkjgnspco;
 
 --
--- Name: fun_eliminar_cliente(); Type: FUNCTION; Schema: public; Owner: postgres
+-- Name: fun_eliminar_cliente(); Type: FUNCTION; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE FUNCTION public.fun_eliminar_cliente() RETURNS trigger
@@ -65,10 +65,10 @@ END
 $$;
 
 
-ALTER FUNCTION public.fun_eliminar_cliente() OWNER TO postgres;
+ALTER FUNCTION public.fun_eliminar_cliente() OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_agenda_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_agenda_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_agenda_seq
@@ -79,14 +79,14 @@ CREATE SEQUENCE public.id_agenda_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_agenda_seq OWNER TO postgres;
+ALTER TABLE public.id_agenda_seq OWNER TO byqkxhkjgnspco;
 
 SET default_tablespace = '';
 
 SET default_with_oids = false;
 
 --
--- Name: agenda; Type: TABLE; Schema: public; Owner: postgres
+-- Name: agenda; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.agenda (
@@ -101,10 +101,10 @@ CREATE TABLE public.agenda (
 );
 
 
-ALTER TABLE public.agenda OWNER TO postgres;
+ALTER TABLE public.agenda OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_alimento_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_alimento_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_alimento_seq
@@ -115,10 +115,10 @@ CREATE SEQUENCE public.id_alimento_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_alimento_seq OWNER TO postgres;
+ALTER TABLE public.id_alimento_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: alimento; Type: TABLE; Schema: public; Owner: postgres
+-- Name: alimento; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.alimento (
@@ -131,10 +131,10 @@ CREATE TABLE public.alimento (
 );
 
 
-ALTER TABLE public.alimento OWNER TO postgres;
+ALTER TABLE public.alimento OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_app_movil_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_app_movil_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_app_movil_seq
@@ -145,10 +145,10 @@ CREATE SEQUENCE public.id_app_movil_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_app_movil_seq OWNER TO postgres;
+ALTER TABLE public.id_app_movil_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: app_movil; Type: TABLE; Schema: public; Owner: postgres
+-- Name: app_movil; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.app_movil (
@@ -161,10 +161,10 @@ CREATE TABLE public.app_movil (
 );
 
 
-ALTER TABLE public.app_movil OWNER TO postgres;
+ALTER TABLE public.app_movil OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_ayuda_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_ayuda_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_ayuda_seq
@@ -175,10 +175,10 @@ CREATE SEQUENCE public.id_ayuda_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_ayuda_seq OWNER TO postgres;
+ALTER TABLE public.id_ayuda_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: ayuda; Type: TABLE; Schema: public; Owner: postgres
+-- Name: ayuda; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.ayuda (
@@ -191,10 +191,10 @@ CREATE TABLE public.ayuda (
 );
 
 
-ALTER TABLE public.ayuda OWNER TO postgres;
+ALTER TABLE public.ayuda OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_bloque_horario_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_bloque_horario_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_bloque_horario_seq
@@ -205,10 +205,10 @@ CREATE SEQUENCE public.id_bloque_horario_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_bloque_horario_seq OWNER TO postgres;
+ALTER TABLE public.id_bloque_horario_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: bloque_horario; Type: TABLE; Schema: public; Owner: postgres
+-- Name: bloque_horario; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.bloque_horario (
@@ -221,10 +221,10 @@ CREATE TABLE public.bloque_horario (
 );
 
 
-ALTER TABLE public.bloque_horario OWNER TO postgres;
+ALTER TABLE public.bloque_horario OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_calificacion_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_calificacion_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_calificacion_seq
@@ -235,10 +235,10 @@ CREATE SEQUENCE public.id_calificacion_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_calificacion_seq OWNER TO postgres;
+ALTER TABLE public.id_calificacion_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: calificacion; Type: TABLE; Schema: public; Owner: postgres
+-- Name: calificacion; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.calificacion (
@@ -253,10 +253,10 @@ CREATE TABLE public.calificacion (
 );
 
 
-ALTER TABLE public.calificacion OWNER TO postgres;
+ALTER TABLE public.calificacion OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_cita_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_cita_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_cita_seq
@@ -267,10 +267,10 @@ CREATE SEQUENCE public.id_cita_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_cita_seq OWNER TO postgres;
+ALTER TABLE public.id_cita_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: cita; Type: TABLE; Schema: public; Owner: postgres
+-- Name: cita; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.cita (
@@ -285,10 +285,10 @@ CREATE TABLE public.cita (
 );
 
 
-ALTER TABLE public.cita OWNER TO postgres;
+ALTER TABLE public.cita OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_cliente_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_cliente_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_cliente_seq
@@ -299,10 +299,10 @@ CREATE SEQUENCE public.id_cliente_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_cliente_seq OWNER TO postgres;
+ALTER TABLE public.id_cliente_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: cliente; Type: TABLE; Schema: public; Owner: postgres
+-- Name: cliente; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.cliente (
@@ -325,17 +325,17 @@ CREATE TABLE public.cliente (
 );
 
 
-ALTER TABLE public.cliente OWNER TO postgres;
+ALTER TABLE public.cliente OWNER TO byqkxhkjgnspco;
 
 --
--- Name: COLUMN cliente.estatus; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: COLUMN cliente.estatus; Type: COMMENT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COMMENT ON COLUMN public.cliente.estatus IS '1: Potencial 2: Consolidado';
 
 
 --
--- Name: id_comentario_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_comentario_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_comentario_seq
@@ -346,10 +346,10 @@ CREATE SEQUENCE public.id_comentario_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_comentario_seq OWNER TO postgres;
+ALTER TABLE public.id_comentario_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: comentario; Type: TABLE; Schema: public; Owner: postgres
+-- Name: comentario; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.comentario (
@@ -365,10 +365,10 @@ CREATE TABLE public.comentario (
 );
 
 
-ALTER TABLE public.comentario OWNER TO postgres;
+ALTER TABLE public.comentario OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_comida_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_comida_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_comida_seq
@@ -379,10 +379,10 @@ CREATE SEQUENCE public.id_comida_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_comida_seq OWNER TO postgres;
+ALTER TABLE public.id_comida_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: comida; Type: TABLE; Schema: public; Owner: postgres
+-- Name: comida; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.comida (
@@ -394,10 +394,10 @@ CREATE TABLE public.comida (
 );
 
 
-ALTER TABLE public.comida OWNER TO postgres;
+ALTER TABLE public.comida OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_condicion_garantia_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_condicion_garantia_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_condicion_garantia_seq
@@ -408,10 +408,10 @@ CREATE SEQUENCE public.id_condicion_garantia_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_condicion_garantia_seq OWNER TO postgres;
+ALTER TABLE public.id_condicion_garantia_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: condicion_garantia; Type: TABLE; Schema: public; Owner: postgres
+-- Name: condicion_garantia; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.condicion_garantia (
@@ -423,10 +423,10 @@ CREATE TABLE public.condicion_garantia (
 );
 
 
-ALTER TABLE public.condicion_garantia OWNER TO postgres;
+ALTER TABLE public.condicion_garantia OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_contenido_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_contenido_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_contenido_seq
@@ -437,10 +437,10 @@ CREATE SEQUENCE public.id_contenido_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_contenido_seq OWNER TO postgres;
+ALTER TABLE public.id_contenido_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: contenido; Type: TABLE; Schema: public; Owner: postgres
+-- Name: contenido; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.contenido (
@@ -454,10 +454,10 @@ CREATE TABLE public.contenido (
 );
 
 
-ALTER TABLE public.contenido OWNER TO postgres;
+ALTER TABLE public.contenido OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_criterio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_criterio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_criterio_seq
@@ -468,10 +468,10 @@ CREATE SEQUENCE public.id_criterio_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_criterio_seq OWNER TO postgres;
+ALTER TABLE public.id_criterio_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: criterio; Type: TABLE; Schema: public; Owner: postgres
+-- Name: criterio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.criterio (
@@ -486,10 +486,10 @@ CREATE TABLE public.criterio (
 );
 
 
-ALTER TABLE public.criterio OWNER TO postgres;
+ALTER TABLE public.criterio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_detalle_plan_dieta_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_detalle_plan_dieta_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_detalle_plan_dieta_seq
@@ -500,10 +500,10 @@ CREATE SEQUENCE public.id_detalle_plan_dieta_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_detalle_plan_dieta_seq OWNER TO postgres;
+ALTER TABLE public.id_detalle_plan_dieta_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: detalle_plan_dieta; Type: TABLE; Schema: public; Owner: postgres
+-- Name: detalle_plan_dieta; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.detalle_plan_dieta (
@@ -517,10 +517,10 @@ CREATE TABLE public.detalle_plan_dieta (
 );
 
 
-ALTER TABLE public.detalle_plan_dieta OWNER TO postgres;
+ALTER TABLE public.detalle_plan_dieta OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_detalle_plan_ejercicio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_detalle_plan_ejercicio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_detalle_plan_ejercicio_seq
@@ -531,10 +531,10 @@ CREATE SEQUENCE public.id_detalle_plan_ejercicio_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_detalle_plan_ejercicio_seq OWNER TO postgres;
+ALTER TABLE public.id_detalle_plan_ejercicio_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: detalle_plan_ejercicio; Type: TABLE; Schema: public; Owner: postgres
+-- Name: detalle_plan_ejercicio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.detalle_plan_ejercicio (
@@ -547,10 +547,10 @@ CREATE TABLE public.detalle_plan_ejercicio (
 );
 
 
-ALTER TABLE public.detalle_plan_ejercicio OWNER TO postgres;
+ALTER TABLE public.detalle_plan_ejercicio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_detalle_plan_suplemento_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_detalle_plan_suplemento_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_detalle_plan_suplemento_seq
@@ -561,10 +561,10 @@ CREATE SEQUENCE public.id_detalle_plan_suplemento_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_detalle_plan_suplemento_seq OWNER TO postgres;
+ALTER TABLE public.id_detalle_plan_suplemento_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: detalle_plan_suplemento; Type: TABLE; Schema: public; Owner: postgres
+-- Name: detalle_plan_suplemento; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.detalle_plan_suplemento (
@@ -577,10 +577,10 @@ CREATE TABLE public.detalle_plan_suplemento (
 );
 
 
-ALTER TABLE public.detalle_plan_suplemento OWNER TO postgres;
+ALTER TABLE public.detalle_plan_suplemento OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_detalle_regimen_alimento_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_detalle_regimen_alimento_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_detalle_regimen_alimento_seq
@@ -591,10 +591,10 @@ CREATE SEQUENCE public.id_detalle_regimen_alimento_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_detalle_regimen_alimento_seq OWNER TO postgres;
+ALTER TABLE public.id_detalle_regimen_alimento_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: detalle_regimen_alimento; Type: TABLE; Schema: public; Owner: postgres
+-- Name: detalle_regimen_alimento; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.detalle_regimen_alimento (
@@ -607,10 +607,10 @@ CREATE TABLE public.detalle_regimen_alimento (
 );
 
 
-ALTER TABLE public.detalle_regimen_alimento OWNER TO postgres;
+ALTER TABLE public.detalle_regimen_alimento OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_detalle_visita_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_detalle_visita_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_detalle_visita_seq
@@ -621,10 +621,10 @@ CREATE SEQUENCE public.id_detalle_visita_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_detalle_visita_seq OWNER TO postgres;
+ALTER TABLE public.id_detalle_visita_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: detalle_visita; Type: TABLE; Schema: public; Owner: postgres
+-- Name: detalle_visita; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.detalle_visita (
@@ -638,10 +638,10 @@ CREATE TABLE public.detalle_visita (
 );
 
 
-ALTER TABLE public.detalle_visita OWNER TO postgres;
+ALTER TABLE public.detalle_visita OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_dia_laborable_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_dia_laborable_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_dia_laborable_seq
@@ -652,10 +652,10 @@ CREATE SEQUENCE public.id_dia_laborable_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_dia_laborable_seq OWNER TO postgres;
+ALTER TABLE public.id_dia_laborable_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: dia_laborable; Type: TABLE; Schema: public; Owner: postgres
+-- Name: dia_laborable; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.dia_laborable (
@@ -667,10 +667,10 @@ CREATE TABLE public.dia_laborable (
 );
 
 
-ALTER TABLE public.dia_laborable OWNER TO postgres;
+ALTER TABLE public.dia_laborable OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_ejercicio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_ejercicio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_ejercicio_seq
@@ -681,10 +681,10 @@ CREATE SEQUENCE public.id_ejercicio_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_ejercicio_seq OWNER TO postgres;
+ALTER TABLE public.id_ejercicio_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: ejercicio; Type: TABLE; Schema: public; Owner: postgres
+-- Name: ejercicio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.ejercicio (
@@ -697,10 +697,10 @@ CREATE TABLE public.ejercicio (
 );
 
 
-ALTER TABLE public.ejercicio OWNER TO postgres;
+ALTER TABLE public.ejercicio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_empleado_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_empleado_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_empleado_seq
@@ -711,10 +711,10 @@ CREATE SEQUENCE public.id_empleado_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_empleado_seq OWNER TO postgres;
+ALTER TABLE public.id_empleado_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: empleado; Type: TABLE; Schema: public; Owner: postgres
+-- Name: empleado; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.empleado (
@@ -734,10 +734,10 @@ CREATE TABLE public.empleado (
 );
 
 
-ALTER TABLE public.empleado OWNER TO postgres;
+ALTER TABLE public.empleado OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_especialidad_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_especialidad_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_especialidad_seq
@@ -748,10 +748,10 @@ CREATE SEQUENCE public.id_especialidad_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_especialidad_seq OWNER TO postgres;
+ALTER TABLE public.id_especialidad_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: especialidad; Type: TABLE; Schema: public; Owner: postgres
+-- Name: especialidad; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.especialidad (
@@ -763,10 +763,10 @@ CREATE TABLE public.especialidad (
 );
 
 
-ALTER TABLE public.especialidad OWNER TO postgres;
+ALTER TABLE public.especialidad OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_estado_civil_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_estado_civil_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_estado_civil_seq
@@ -777,10 +777,10 @@ CREATE SEQUENCE public.id_estado_civil_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_estado_civil_seq OWNER TO postgres;
+ALTER TABLE public.id_estado_civil_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: estado_civil; Type: TABLE; Schema: public; Owner: postgres
+-- Name: estado_civil; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.estado_civil (
@@ -790,10 +790,10 @@ CREATE TABLE public.estado_civil (
 );
 
 
-ALTER TABLE public.estado_civil OWNER TO postgres;
+ALTER TABLE public.estado_civil OWNER TO byqkxhkjgnspco;
 
 --
--- Name: estado_solicitud; Type: TABLE; Schema: public; Owner: postgres
+-- Name: estado_solicitud; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.estado_solicitud (
@@ -803,10 +803,10 @@ CREATE TABLE public.estado_solicitud (
 );
 
 
-ALTER TABLE public.estado_solicitud OWNER TO postgres;
+ALTER TABLE public.estado_solicitud OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_frecuencia_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_frecuencia_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_frecuencia_seq
@@ -817,10 +817,10 @@ CREATE SEQUENCE public.id_frecuencia_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_frecuencia_seq OWNER TO postgres;
+ALTER TABLE public.id_frecuencia_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: frecuencia; Type: TABLE; Schema: public; Owner: postgres
+-- Name: frecuencia; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.frecuencia (
@@ -833,10 +833,10 @@ CREATE TABLE public.frecuencia (
 );
 
 
-ALTER TABLE public.frecuencia OWNER TO postgres;
+ALTER TABLE public.frecuencia OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_funcionalidad_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_funcionalidad_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_funcionalidad_seq
@@ -847,10 +847,10 @@ CREATE SEQUENCE public.id_funcionalidad_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_funcionalidad_seq OWNER TO postgres;
+ALTER TABLE public.id_funcionalidad_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: funcionalidad; Type: TABLE; Schema: public; Owner: postgres
+-- Name: funcionalidad; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.funcionalidad (
@@ -865,10 +865,10 @@ CREATE TABLE public.funcionalidad (
 );
 
 
-ALTER TABLE public.funcionalidad OWNER TO postgres;
+ALTER TABLE public.funcionalidad OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_garantia_servicio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_garantia_servicio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_garantia_servicio_seq
@@ -879,10 +879,10 @@ CREATE SEQUENCE public.id_garantia_servicio_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_garantia_servicio_seq OWNER TO postgres;
+ALTER TABLE public.id_garantia_servicio_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: garantia_servicio; Type: TABLE; Schema: public; Owner: postgres
+-- Name: garantia_servicio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.garantia_servicio (
@@ -895,10 +895,10 @@ CREATE TABLE public.garantia_servicio (
 );
 
 
-ALTER TABLE public.garantia_servicio OWNER TO postgres;
+ALTER TABLE public.garantia_servicio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_genero_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_genero_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_genero_seq
@@ -909,10 +909,10 @@ CREATE SEQUENCE public.id_genero_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_genero_seq OWNER TO postgres;
+ALTER TABLE public.id_genero_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: genero; Type: TABLE; Schema: public; Owner: postgres
+-- Name: genero; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.genero (
@@ -922,10 +922,10 @@ CREATE TABLE public.genero (
 );
 
 
-ALTER TABLE public.genero OWNER TO postgres;
+ALTER TABLE public.genero OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_grupo_alimenticio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_grupo_alimenticio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_grupo_alimenticio_seq
@@ -936,10 +936,10 @@ CREATE SEQUENCE public.id_grupo_alimenticio_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_grupo_alimenticio_seq OWNER TO postgres;
+ALTER TABLE public.id_grupo_alimenticio_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: grupo_alimenticio; Type: TABLE; Schema: public; Owner: postgres
+-- Name: grupo_alimenticio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.grupo_alimenticio (
@@ -952,10 +952,10 @@ CREATE TABLE public.grupo_alimenticio (
 );
 
 
-ALTER TABLE public.grupo_alimenticio OWNER TO postgres;
+ALTER TABLE public.grupo_alimenticio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_horario_empleado_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_horario_empleado_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_horario_empleado_seq
@@ -966,10 +966,10 @@ CREATE SEQUENCE public.id_horario_empleado_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_horario_empleado_seq OWNER TO postgres;
+ALTER TABLE public.id_horario_empleado_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: horario_empleado; Type: TABLE; Schema: public; Owner: postgres
+-- Name: horario_empleado; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.horario_empleado (
@@ -983,10 +983,10 @@ CREATE TABLE public.horario_empleado (
 );
 
 
-ALTER TABLE public.horario_empleado OWNER TO postgres;
+ALTER TABLE public.horario_empleado OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_especialidad_empleado_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_especialidad_empleado_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_especialidad_empleado_seq
@@ -997,10 +997,10 @@ CREATE SEQUENCE public.id_especialidad_empleado_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_especialidad_empleado_seq OWNER TO postgres;
+ALTER TABLE public.id_especialidad_empleado_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_especialidad_servicio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_especialidad_servicio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_especialidad_servicio_seq
@@ -1011,10 +1011,10 @@ CREATE SEQUENCE public.id_especialidad_servicio_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_especialidad_servicio_seq OWNER TO postgres;
+ALTER TABLE public.id_especialidad_servicio_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_estado_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_estado_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_estado_seq
@@ -1025,10 +1025,10 @@ CREATE SEQUENCE public.id_estado_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_estado_seq OWNER TO postgres;
+ALTER TABLE public.id_estado_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_incidencia_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_incidencia_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_incidencia_seq
@@ -1039,10 +1039,10 @@ CREATE SEQUENCE public.id_incidencia_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_incidencia_seq OWNER TO postgres;
+ALTER TABLE public.id_incidencia_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_motivo_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_motivo_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_motivo_seq
@@ -1053,10 +1053,10 @@ CREATE SEQUENCE public.id_motivo_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_motivo_seq OWNER TO postgres;
+ALTER TABLE public.id_motivo_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_negocio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_negocio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_negocio_seq
@@ -1067,10 +1067,10 @@ CREATE SEQUENCE public.id_negocio_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_negocio_seq OWNER TO postgres;
+ALTER TABLE public.id_negocio_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_orden_servicio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_orden_servicio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_orden_servicio_seq
@@ -1081,10 +1081,10 @@ CREATE SEQUENCE public.id_orden_servicio_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_orden_servicio_seq OWNER TO postgres;
+ALTER TABLE public.id_orden_servicio_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_parametro_cliente_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_parametro_cliente_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_parametro_cliente_seq
@@ -1095,10 +1095,10 @@ CREATE SEQUENCE public.id_parametro_cliente_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_parametro_cliente_seq OWNER TO postgres;
+ALTER TABLE public.id_parametro_cliente_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_parametro_meta_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_parametro_meta_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_parametro_meta_seq
@@ -1109,10 +1109,10 @@ CREATE SEQUENCE public.id_parametro_meta_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_parametro_meta_seq OWNER TO postgres;
+ALTER TABLE public.id_parametro_meta_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_parametro_promocion_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_parametro_promocion_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_parametro_promocion_seq
@@ -1123,10 +1123,10 @@ CREATE SEQUENCE public.id_parametro_promocion_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_parametro_promocion_seq OWNER TO postgres;
+ALTER TABLE public.id_parametro_promocion_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_parametro_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_parametro_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_parametro_seq
@@ -1137,10 +1137,10 @@ CREATE SEQUENCE public.id_parametro_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_parametro_seq OWNER TO postgres;
+ALTER TABLE public.id_parametro_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_parametro_servicio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_parametro_servicio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_parametro_servicio_seq
@@ -1151,10 +1151,10 @@ CREATE SEQUENCE public.id_parametro_servicio_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_parametro_servicio_seq OWNER TO postgres;
+ALTER TABLE public.id_parametro_servicio_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_plan_dieta_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_plan_dieta_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_plan_dieta_seq
@@ -1165,10 +1165,10 @@ CREATE SEQUENCE public.id_plan_dieta_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_plan_dieta_seq OWNER TO postgres;
+ALTER TABLE public.id_plan_dieta_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_plan_ejercicio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_plan_ejercicio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_plan_ejercicio_seq
@@ -1179,10 +1179,10 @@ CREATE SEQUENCE public.id_plan_ejercicio_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_plan_ejercicio_seq OWNER TO postgres;
+ALTER TABLE public.id_plan_ejercicio_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_plan_suplemento_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_plan_suplemento_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_plan_suplemento_seq
@@ -1193,10 +1193,10 @@ CREATE SEQUENCE public.id_plan_suplemento_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_plan_suplemento_seq OWNER TO postgres;
+ALTER TABLE public.id_plan_suplemento_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_precio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_precio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_precio_seq
@@ -1207,10 +1207,10 @@ CREATE SEQUENCE public.id_precio_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_precio_seq OWNER TO postgres;
+ALTER TABLE public.id_precio_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_preferencia_cliente_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_preferencia_cliente_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_preferencia_cliente_seq
@@ -1221,10 +1221,10 @@ CREATE SEQUENCE public.id_preferencia_cliente_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_preferencia_cliente_seq OWNER TO postgres;
+ALTER TABLE public.id_preferencia_cliente_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_promocion_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_promocion_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_promocion_seq
@@ -1235,10 +1235,10 @@ CREATE SEQUENCE public.id_promocion_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_promocion_seq OWNER TO postgres;
+ALTER TABLE public.id_promocion_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_rango_edad_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_rango_edad_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_rango_edad_seq
@@ -1249,10 +1249,10 @@ CREATE SEQUENCE public.id_rango_edad_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_rango_edad_seq OWNER TO postgres;
+ALTER TABLE public.id_rango_edad_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_reclamo_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_reclamo_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_reclamo_seq
@@ -1263,10 +1263,10 @@ CREATE SEQUENCE public.id_reclamo_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_reclamo_seq OWNER TO postgres;
+ALTER TABLE public.id_reclamo_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_red_social_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_red_social_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_red_social_seq
@@ -1277,10 +1277,10 @@ CREATE SEQUENCE public.id_red_social_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_red_social_seq OWNER TO postgres;
+ALTER TABLE public.id_red_social_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_regimen_dieta_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_regimen_dieta_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_regimen_dieta_seq
@@ -1291,10 +1291,10 @@ CREATE SEQUENCE public.id_regimen_dieta_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_regimen_dieta_seq OWNER TO postgres;
+ALTER TABLE public.id_regimen_dieta_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_regimen_ejercicio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_regimen_ejercicio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_regimen_ejercicio_seq
@@ -1305,10 +1305,10 @@ CREATE SEQUENCE public.id_regimen_ejercicio_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_regimen_ejercicio_seq OWNER TO postgres;
+ALTER TABLE public.id_regimen_ejercicio_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_regimen_suplemento_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_regimen_suplemento_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_regimen_suplemento_seq
@@ -1319,10 +1319,10 @@ CREATE SEQUENCE public.id_regimen_suplemento_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_regimen_suplemento_seq OWNER TO postgres;
+ALTER TABLE public.id_regimen_suplemento_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_respuesta_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_respuesta_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_respuesta_seq
@@ -1333,10 +1333,10 @@ CREATE SEQUENCE public.id_respuesta_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_respuesta_seq OWNER TO postgres;
+ALTER TABLE public.id_respuesta_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_rol_funcionalidad_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_rol_funcionalidad_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_rol_funcionalidad_seq
@@ -1347,10 +1347,10 @@ CREATE SEQUENCE public.id_rol_funcionalidad_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_rol_funcionalidad_seq OWNER TO postgres;
+ALTER TABLE public.id_rol_funcionalidad_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_rol_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_rol_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_rol_seq
@@ -1361,10 +1361,10 @@ CREATE SEQUENCE public.id_rol_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_rol_seq OWNER TO postgres;
+ALTER TABLE public.id_rol_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_servicio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_servicio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_servicio_seq
@@ -1375,10 +1375,10 @@ CREATE SEQUENCE public.id_servicio_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_servicio_seq OWNER TO postgres;
+ALTER TABLE public.id_servicio_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_slide_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_slide_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_slide_seq
@@ -1389,10 +1389,10 @@ CREATE SEQUENCE public.id_slide_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_slide_seq OWNER TO postgres;
+ALTER TABLE public.id_slide_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_solicitud_servicio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_solicitud_servicio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_solicitud_servicio_seq
@@ -1403,10 +1403,10 @@ CREATE SEQUENCE public.id_solicitud_servicio_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_solicitud_servicio_seq OWNER TO postgres;
+ALTER TABLE public.id_solicitud_servicio_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_suplemento_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_suplemento_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_suplemento_seq
@@ -1417,10 +1417,10 @@ CREATE SEQUENCE public.id_suplemento_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_suplemento_seq OWNER TO postgres;
+ALTER TABLE public.id_suplemento_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_tiempo_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_tiempo_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_tiempo_seq
@@ -1431,10 +1431,10 @@ CREATE SEQUENCE public.id_tiempo_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_tiempo_seq OWNER TO postgres;
+ALTER TABLE public.id_tiempo_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_tipo_cita_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_tipo_cita_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_tipo_cita_seq
@@ -1445,10 +1445,10 @@ CREATE SEQUENCE public.id_tipo_cita_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_tipo_cita_seq OWNER TO postgres;
+ALTER TABLE public.id_tipo_cita_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_tipo_criterio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_tipo_criterio_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_tipo_criterio_seq
@@ -1459,10 +1459,10 @@ CREATE SEQUENCE public.id_tipo_criterio_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_tipo_criterio_seq OWNER TO postgres;
+ALTER TABLE public.id_tipo_criterio_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_tipo_dieta_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_tipo_dieta_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_tipo_dieta_seq
@@ -1473,10 +1473,10 @@ CREATE SEQUENCE public.id_tipo_dieta_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_tipo_dieta_seq OWNER TO postgres;
+ALTER TABLE public.id_tipo_dieta_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_tipo_incidencia_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_tipo_incidencia_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_tipo_incidencia_seq
@@ -1487,10 +1487,10 @@ CREATE SEQUENCE public.id_tipo_incidencia_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_tipo_incidencia_seq OWNER TO postgres;
+ALTER TABLE public.id_tipo_incidencia_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_tipo_motivo_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_tipo_motivo_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_tipo_motivo_seq
@@ -1501,10 +1501,10 @@ CREATE SEQUENCE public.id_tipo_motivo_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_tipo_motivo_seq OWNER TO postgres;
+ALTER TABLE public.id_tipo_motivo_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_tipo_orden_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_tipo_orden_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_tipo_orden_seq
@@ -1515,10 +1515,10 @@ CREATE SEQUENCE public.id_tipo_orden_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_tipo_orden_seq OWNER TO postgres;
+ALTER TABLE public.id_tipo_orden_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_tipo_parametro_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_tipo_parametro_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_tipo_parametro_seq
@@ -1529,10 +1529,10 @@ CREATE SEQUENCE public.id_tipo_parametro_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_tipo_parametro_seq OWNER TO postgres;
+ALTER TABLE public.id_tipo_parametro_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_tipo_respuesta_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_tipo_respuesta_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_tipo_respuesta_seq
@@ -1543,10 +1543,10 @@ CREATE SEQUENCE public.id_tipo_respuesta_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_tipo_respuesta_seq OWNER TO postgres;
+ALTER TABLE public.id_tipo_respuesta_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_tipo_unidad_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_tipo_unidad_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_tipo_unidad_seq
@@ -1557,10 +1557,10 @@ CREATE SEQUENCE public.id_tipo_unidad_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_tipo_unidad_seq OWNER TO postgres;
+ALTER TABLE public.id_tipo_unidad_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_tipo_valoracion_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_tipo_valoracion_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_tipo_valoracion_seq
@@ -1571,10 +1571,10 @@ CREATE SEQUENCE public.id_tipo_valoracion_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_tipo_valoracion_seq OWNER TO postgres;
+ALTER TABLE public.id_tipo_valoracion_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_unidad_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_unidad_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_unidad_seq
@@ -1585,10 +1585,10 @@ CREATE SEQUENCE public.id_unidad_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_unidad_seq OWNER TO postgres;
+ALTER TABLE public.id_unidad_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_usuario_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_usuario_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_usuario_seq
@@ -1599,10 +1599,10 @@ CREATE SEQUENCE public.id_usuario_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_usuario_seq OWNER TO postgres;
+ALTER TABLE public.id_usuario_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_valoracion_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_valoracion_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_valoracion_seq
@@ -1613,10 +1613,10 @@ CREATE SEQUENCE public.id_valoracion_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_valoracion_seq OWNER TO postgres;
+ALTER TABLE public.id_valoracion_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: id_visita_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: id_visita_seq; Type: SEQUENCE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE SEQUENCE public.id_visita_seq
@@ -1627,10 +1627,10 @@ CREATE SEQUENCE public.id_visita_seq
     CACHE 1;
 
 
-ALTER TABLE public.id_visita_seq OWNER TO postgres;
+ALTER TABLE public.id_visita_seq OWNER TO byqkxhkjgnspco;
 
 --
--- Name: incidencia; Type: TABLE; Schema: public; Owner: postgres
+-- Name: incidencia; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.incidencia (
@@ -1645,10 +1645,10 @@ CREATE TABLE public.incidencia (
 );
 
 
-ALTER TABLE public.incidencia OWNER TO postgres;
+ALTER TABLE public.incidencia OWNER TO byqkxhkjgnspco;
 
 --
--- Name: motivo; Type: TABLE; Schema: public; Owner: postgres
+-- Name: motivo; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.motivo (
@@ -1661,10 +1661,10 @@ CREATE TABLE public.motivo (
 );
 
 
-ALTER TABLE public.motivo OWNER TO postgres;
+ALTER TABLE public.motivo OWNER TO byqkxhkjgnspco;
 
 --
--- Name: negocio; Type: TABLE; Schema: public; Owner: postgres
+-- Name: negocio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.negocio (
@@ -1685,10 +1685,10 @@ CREATE TABLE public.negocio (
 );
 
 
-ALTER TABLE public.negocio OWNER TO postgres;
+ALTER TABLE public.negocio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: orden_servicio; Type: TABLE; Schema: public; Owner: postgres
+-- Name: orden_servicio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.orden_servicio (
@@ -1706,10 +1706,10 @@ CREATE TABLE public.orden_servicio (
 );
 
 
-ALTER TABLE public.orden_servicio OWNER TO postgres;
+ALTER TABLE public.orden_servicio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: parametro; Type: TABLE; Schema: public; Owner: postgres
+-- Name: parametro; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.parametro (
@@ -1724,17 +1724,17 @@ CREATE TABLE public.parametro (
 );
 
 
-ALTER TABLE public.parametro OWNER TO postgres;
+ALTER TABLE public.parametro OWNER TO byqkxhkjgnspco;
 
 --
--- Name: COLUMN parametro.tipo_valor; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: COLUMN parametro.tipo_valor; Type: COMMENT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COMMENT ON COLUMN public.parametro.tipo_valor IS '1: Nominal  2: Numerico';
 
 
 --
--- Name: parametro_cliente; Type: TABLE; Schema: public; Owner: postgres
+-- Name: parametro_cliente; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.parametro_cliente (
@@ -1748,10 +1748,10 @@ CREATE TABLE public.parametro_cliente (
 );
 
 
-ALTER TABLE public.parametro_cliente OWNER TO postgres;
+ALTER TABLE public.parametro_cliente OWNER TO byqkxhkjgnspco;
 
 --
--- Name: parametro_meta; Type: TABLE; Schema: public; Owner: postgres
+-- Name: parametro_meta; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.parametro_meta (
@@ -1766,10 +1766,10 @@ CREATE TABLE public.parametro_meta (
 );
 
 
-ALTER TABLE public.parametro_meta OWNER TO postgres;
+ALTER TABLE public.parametro_meta OWNER TO byqkxhkjgnspco;
 
 --
--- Name: parametro_promocion; Type: TABLE; Schema: public; Owner: postgres
+-- Name: parametro_promocion; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.parametro_promocion (
@@ -1784,10 +1784,10 @@ CREATE TABLE public.parametro_promocion (
 );
 
 
-ALTER TABLE public.parametro_promocion OWNER TO postgres;
+ALTER TABLE public.parametro_promocion OWNER TO byqkxhkjgnspco;
 
 --
--- Name: parametro_servicio; Type: TABLE; Schema: public; Owner: postgres
+-- Name: parametro_servicio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.parametro_servicio (
@@ -1802,10 +1802,10 @@ CREATE TABLE public.parametro_servicio (
 );
 
 
-ALTER TABLE public.parametro_servicio OWNER TO postgres;
+ALTER TABLE public.parametro_servicio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: plan_dieta; Type: TABLE; Schema: public; Owner: postgres
+-- Name: plan_dieta; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.plan_dieta (
@@ -1819,10 +1819,10 @@ CREATE TABLE public.plan_dieta (
 );
 
 
-ALTER TABLE public.plan_dieta OWNER TO postgres;
+ALTER TABLE public.plan_dieta OWNER TO byqkxhkjgnspco;
 
 --
--- Name: plan_ejercicio; Type: TABLE; Schema: public; Owner: postgres
+-- Name: plan_ejercicio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.plan_ejercicio (
@@ -1835,10 +1835,10 @@ CREATE TABLE public.plan_ejercicio (
 );
 
 
-ALTER TABLE public.plan_ejercicio OWNER TO postgres;
+ALTER TABLE public.plan_ejercicio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: plan_suplemento; Type: TABLE; Schema: public; Owner: postgres
+-- Name: plan_suplemento; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.plan_suplemento (
@@ -1851,10 +1851,10 @@ CREATE TABLE public.plan_suplemento (
 );
 
 
-ALTER TABLE public.plan_suplemento OWNER TO postgres;
+ALTER TABLE public.plan_suplemento OWNER TO byqkxhkjgnspco;
 
 --
--- Name: precio; Type: TABLE; Schema: public; Owner: postgres
+-- Name: precio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.precio (
@@ -1868,10 +1868,10 @@ CREATE TABLE public.precio (
 );
 
 
-ALTER TABLE public.precio OWNER TO postgres;
+ALTER TABLE public.precio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: preferencia_cliente; Type: TABLE; Schema: public; Owner: postgres
+-- Name: preferencia_cliente; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.preferencia_cliente (
@@ -1884,10 +1884,10 @@ CREATE TABLE public.preferencia_cliente (
 );
 
 
-ALTER TABLE public.preferencia_cliente OWNER TO postgres;
+ALTER TABLE public.preferencia_cliente OWNER TO byqkxhkjgnspco;
 
 --
--- Name: promocion; Type: TABLE; Schema: public; Owner: postgres
+-- Name: promocion; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.promocion (
@@ -1908,10 +1908,10 @@ CREATE TABLE public.promocion (
 );
 
 
-ALTER TABLE public.promocion OWNER TO postgres;
+ALTER TABLE public.promocion OWNER TO byqkxhkjgnspco;
 
 --
--- Name: COLUMN promocion.id_estado_civil; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: COLUMN promocion.id_estado_civil; Type: COMMENT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COMMENT ON COLUMN public.promocion.id_estado_civil IS '
@@ -1919,7 +1919,7 @@ COMMENT ON COLUMN public.promocion.id_estado_civil IS '
 
 
 --
--- Name: rango_edad; Type: TABLE; Schema: public; Owner: postgres
+-- Name: rango_edad; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.rango_edad (
@@ -1933,10 +1933,10 @@ CREATE TABLE public.rango_edad (
 );
 
 
-ALTER TABLE public.rango_edad OWNER TO postgres;
+ALTER TABLE public.rango_edad OWNER TO byqkxhkjgnspco;
 
 --
--- Name: reclamo; Type: TABLE; Schema: public; Owner: postgres
+-- Name: reclamo; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.reclamo (
@@ -1951,10 +1951,10 @@ CREATE TABLE public.reclamo (
 );
 
 
-ALTER TABLE public.reclamo OWNER TO postgres;
+ALTER TABLE public.reclamo OWNER TO byqkxhkjgnspco;
 
 --
--- Name: red_social; Type: TABLE; Schema: public; Owner: postgres
+-- Name: red_social; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.red_social (
@@ -1969,10 +1969,10 @@ CREATE TABLE public.red_social (
 );
 
 
-ALTER TABLE public.red_social OWNER TO postgres;
+ALTER TABLE public.red_social OWNER TO byqkxhkjgnspco;
 
 --
--- Name: regimen_dieta; Type: TABLE; Schema: public; Owner: postgres
+-- Name: regimen_dieta; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.regimen_dieta (
@@ -1986,10 +1986,10 @@ CREATE TABLE public.regimen_dieta (
 );
 
 
-ALTER TABLE public.regimen_dieta OWNER TO postgres;
+ALTER TABLE public.regimen_dieta OWNER TO byqkxhkjgnspco;
 
 --
--- Name: regimen_ejercicio; Type: TABLE; Schema: public; Owner: postgres
+-- Name: regimen_ejercicio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.regimen_ejercicio (
@@ -2005,10 +2005,10 @@ CREATE TABLE public.regimen_ejercicio (
 );
 
 
-ALTER TABLE public.regimen_ejercicio OWNER TO postgres;
+ALTER TABLE public.regimen_ejercicio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: regimen_suplemento; Type: TABLE; Schema: public; Owner: postgres
+-- Name: regimen_suplemento; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.regimen_suplemento (
@@ -2023,10 +2023,10 @@ CREATE TABLE public.regimen_suplemento (
 );
 
 
-ALTER TABLE public.regimen_suplemento OWNER TO postgres;
+ALTER TABLE public.regimen_suplemento OWNER TO byqkxhkjgnspco;
 
 --
--- Name: respuesta; Type: TABLE; Schema: public; Owner: postgres
+-- Name: respuesta; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.respuesta (
@@ -2040,10 +2040,10 @@ CREATE TABLE public.respuesta (
 );
 
 
-ALTER TABLE public.respuesta OWNER TO postgres;
+ALTER TABLE public.respuesta OWNER TO byqkxhkjgnspco;
 
 --
--- Name: rol; Type: TABLE; Schema: public; Owner: postgres
+-- Name: rol; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.rol (
@@ -2056,10 +2056,10 @@ CREATE TABLE public.rol (
 );
 
 
-ALTER TABLE public.rol OWNER TO postgres;
+ALTER TABLE public.rol OWNER TO byqkxhkjgnspco;
 
 --
--- Name: rol_funcionalidad; Type: TABLE; Schema: public; Owner: postgres
+-- Name: rol_funcionalidad; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.rol_funcionalidad (
@@ -2072,10 +2072,10 @@ CREATE TABLE public.rol_funcionalidad (
 );
 
 
-ALTER TABLE public.rol_funcionalidad OWNER TO postgres;
+ALTER TABLE public.rol_funcionalidad OWNER TO byqkxhkjgnspco;
 
 --
--- Name: servicio; Type: TABLE; Schema: public; Owner: postgres
+-- Name: servicio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.servicio (
@@ -2095,10 +2095,10 @@ CREATE TABLE public.servicio (
 );
 
 
-ALTER TABLE public.servicio OWNER TO postgres;
+ALTER TABLE public.servicio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: slide; Type: TABLE; Schema: public; Owner: postgres
+-- Name: slide; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.slide (
@@ -2113,10 +2113,10 @@ CREATE TABLE public.slide (
 );
 
 
-ALTER TABLE public.slide OWNER TO postgres;
+ALTER TABLE public.slide OWNER TO byqkxhkjgnspco;
 
 --
--- Name: solicitud_servicio; Type: TABLE; Schema: public; Owner: postgres
+-- Name: solicitud_servicio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.solicitud_servicio (
@@ -2134,10 +2134,10 @@ CREATE TABLE public.solicitud_servicio (
 );
 
 
-ALTER TABLE public.solicitud_servicio OWNER TO postgres;
+ALTER TABLE public.solicitud_servicio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: suplemento; Type: TABLE; Schema: public; Owner: postgres
+-- Name: suplemento; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.suplemento (
@@ -2150,10 +2150,10 @@ CREATE TABLE public.suplemento (
 );
 
 
-ALTER TABLE public.suplemento OWNER TO postgres;
+ALTER TABLE public.suplemento OWNER TO byqkxhkjgnspco;
 
 --
--- Name: tiempo; Type: TABLE; Schema: public; Owner: postgres
+-- Name: tiempo; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.tiempo (
@@ -2166,10 +2166,10 @@ CREATE TABLE public.tiempo (
 );
 
 
-ALTER TABLE public.tiempo OWNER TO postgres;
+ALTER TABLE public.tiempo OWNER TO byqkxhkjgnspco;
 
 --
--- Name: tipo_cita; Type: TABLE; Schema: public; Owner: postgres
+-- Name: tipo_cita; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.tipo_cita (
@@ -2181,10 +2181,10 @@ CREATE TABLE public.tipo_cita (
 );
 
 
-ALTER TABLE public.tipo_cita OWNER TO postgres;
+ALTER TABLE public.tipo_cita OWNER TO byqkxhkjgnspco;
 
 --
--- Name: tipo_criterio; Type: TABLE; Schema: public; Owner: postgres
+-- Name: tipo_criterio; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.tipo_criterio (
@@ -2196,10 +2196,10 @@ CREATE TABLE public.tipo_criterio (
 );
 
 
-ALTER TABLE public.tipo_criterio OWNER TO postgres;
+ALTER TABLE public.tipo_criterio OWNER TO byqkxhkjgnspco;
 
 --
--- Name: tipo_dieta; Type: TABLE; Schema: public; Owner: postgres
+-- Name: tipo_dieta; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.tipo_dieta (
@@ -2211,10 +2211,10 @@ CREATE TABLE public.tipo_dieta (
 );
 
 
-ALTER TABLE public.tipo_dieta OWNER TO postgres;
+ALTER TABLE public.tipo_dieta OWNER TO byqkxhkjgnspco;
 
 --
--- Name: tipo_incidencia; Type: TABLE; Schema: public; Owner: postgres
+-- Name: tipo_incidencia; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.tipo_incidencia (
@@ -2226,10 +2226,10 @@ CREATE TABLE public.tipo_incidencia (
 );
 
 
-ALTER TABLE public.tipo_incidencia OWNER TO postgres;
+ALTER TABLE public.tipo_incidencia OWNER TO byqkxhkjgnspco;
 
 --
--- Name: tipo_motivo; Type: TABLE; Schema: public; Owner: postgres
+-- Name: tipo_motivo; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.tipo_motivo (
@@ -2242,10 +2242,10 @@ CREATE TABLE public.tipo_motivo (
 );
 
 
-ALTER TABLE public.tipo_motivo OWNER TO postgres;
+ALTER TABLE public.tipo_motivo OWNER TO byqkxhkjgnspco;
 
 --
--- Name: tipo_notificacion; Type: TABLE; Schema: public; Owner: postgres
+-- Name: tipo_notificacion; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.tipo_notificacion (
@@ -2258,10 +2258,10 @@ CREATE TABLE public.tipo_notificacion (
 );
 
 
-ALTER TABLE public.tipo_notificacion OWNER TO postgres;
+ALTER TABLE public.tipo_notificacion OWNER TO byqkxhkjgnspco;
 
 --
--- Name: tipo_orden; Type: TABLE; Schema: public; Owner: postgres
+-- Name: tipo_orden; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.tipo_orden (
@@ -2273,10 +2273,10 @@ CREATE TABLE public.tipo_orden (
 );
 
 
-ALTER TABLE public.tipo_orden OWNER TO postgres;
+ALTER TABLE public.tipo_orden OWNER TO byqkxhkjgnspco;
 
 --
--- Name: tipo_parametro; Type: TABLE; Schema: public; Owner: postgres
+-- Name: tipo_parametro; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.tipo_parametro (
@@ -2289,10 +2289,10 @@ CREATE TABLE public.tipo_parametro (
 );
 
 
-ALTER TABLE public.tipo_parametro OWNER TO postgres;
+ALTER TABLE public.tipo_parametro OWNER TO byqkxhkjgnspco;
 
 --
--- Name: tipo_respuesta; Type: TABLE; Schema: public; Owner: postgres
+-- Name: tipo_respuesta; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.tipo_respuesta (
@@ -2304,10 +2304,10 @@ CREATE TABLE public.tipo_respuesta (
 );
 
 
-ALTER TABLE public.tipo_respuesta OWNER TO postgres;
+ALTER TABLE public.tipo_respuesta OWNER TO byqkxhkjgnspco;
 
 --
--- Name: tipo_unidad; Type: TABLE; Schema: public; Owner: postgres
+-- Name: tipo_unidad; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.tipo_unidad (
@@ -2319,10 +2319,10 @@ CREATE TABLE public.tipo_unidad (
 );
 
 
-ALTER TABLE public.tipo_unidad OWNER TO postgres;
+ALTER TABLE public.tipo_unidad OWNER TO byqkxhkjgnspco;
 
 --
--- Name: tipo_valoracion; Type: TABLE; Schema: public; Owner: postgres
+-- Name: tipo_valoracion; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.tipo_valoracion (
@@ -2334,10 +2334,10 @@ CREATE TABLE public.tipo_valoracion (
 );
 
 
-ALTER TABLE public.tipo_valoracion OWNER TO postgres;
+ALTER TABLE public.tipo_valoracion OWNER TO byqkxhkjgnspco;
 
 --
--- Name: unidad; Type: TABLE; Schema: public; Owner: postgres
+-- Name: unidad; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.unidad (
@@ -2352,10 +2352,10 @@ CREATE TABLE public.unidad (
 );
 
 
-ALTER TABLE public.unidad OWNER TO postgres;
+ALTER TABLE public.unidad OWNER TO byqkxhkjgnspco;
 
 --
--- Name: usuario; Type: TABLE; Schema: public; Owner: postgres
+-- Name: usuario; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.usuario (
@@ -2373,17 +2373,17 @@ CREATE TABLE public.usuario (
 );
 
 
-ALTER TABLE public.usuario OWNER TO postgres;
+ALTER TABLE public.usuario OWNER TO byqkxhkjgnspco;
 
 --
--- Name: COLUMN usuario.estatus; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: COLUMN usuario.estatus; Type: COMMENT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 COMMENT ON COLUMN public.usuario.estatus IS '1: Activo 0: Eliminado';
 
 
 --
--- Name: valoracion; Type: TABLE; Schema: public; Owner: postgres
+-- Name: valoracion; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.valoracion (
@@ -2396,10 +2396,10 @@ CREATE TABLE public.valoracion (
 );
 
 
-ALTER TABLE public.valoracion OWNER TO postgres;
+ALTER TABLE public.valoracion OWNER TO byqkxhkjgnspco;
 
 --
--- Name: visita; Type: TABLE; Schema: public; Owner: postgres
+-- Name: visita; Type: TABLE; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TABLE public.visita (
@@ -2413,10 +2413,10 @@ CREATE TABLE public.visita (
 );
 
 
-ALTER TABLE public.visita OWNER TO postgres;
+ALTER TABLE public.visita OWNER TO byqkxhkjgnspco;
 
 --
--- Name: vista_agenda; Type: VIEW; Schema: public; Owner: postgres
+-- Name: vista_agenda; Type: VIEW; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE VIEW public.vista_agenda AS
@@ -2461,10 +2461,10 @@ CREATE VIEW public.vista_agenda AS
   WHERE ((a.estatus = 1) AND (b.estatus = 1) AND (c.estatus = 1) AND (d.estatus = 1) AND (d.id_tipo_cita <> 3) AND (g.estatus = 1) AND (g.estado = 1) AND (i.estatus = 1));
 
 
-ALTER TABLE public.vista_agenda OWNER TO postgres;
+ALTER TABLE public.vista_agenda OWNER TO byqkxhkjgnspco;
 
 --
--- Name: vista_cliente; Type: VIEW; Schema: public; Owner: postgres
+-- Name: vista_cliente; Type: VIEW; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE VIEW public.vista_cliente AS
@@ -2490,10 +2490,10 @@ CREATE VIEW public.vista_cliente AS
   WHERE (a.estatus = 1);
 
 
-ALTER TABLE public.vista_cliente OWNER TO postgres;
+ALTER TABLE public.vista_cliente OWNER TO byqkxhkjgnspco;
 
 --
--- Name: vista_cliente_ordenes; Type: VIEW; Schema: public; Owner: postgres
+-- Name: vista_cliente_ordenes; Type: VIEW; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE VIEW public.vista_cliente_ordenes AS
@@ -2507,10 +2507,10 @@ CREATE VIEW public.vista_cliente_ordenes AS
   WHERE (a.estatus = 1);
 
 
-ALTER TABLE public.vista_cliente_ordenes OWNER TO postgres;
+ALTER TABLE public.vista_cliente_ordenes OWNER TO byqkxhkjgnspco;
 
 --
--- Name: vista_cliente_servicio_activo; Type: VIEW; Schema: public; Owner: postgres
+-- Name: vista_cliente_servicio_activo; Type: VIEW; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE VIEW public.vista_cliente_servicio_activo AS
@@ -2527,10 +2527,10 @@ CREATE VIEW public.vista_cliente_servicio_activo AS
   WHERE ((a.estatus = 1) AND (b.estatus = 1) AND (c.estatus = 1) AND (d.estatus = 1));
 
 
-ALTER TABLE public.vista_cliente_servicio_activo OWNER TO postgres;
+ALTER TABLE public.vista_cliente_servicio_activo OWNER TO byqkxhkjgnspco;
 
 --
--- Name: vista_frecuencia; Type: VIEW; Schema: public; Owner: postgres
+-- Name: vista_frecuencia; Type: VIEW; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE VIEW public.vista_frecuencia AS
@@ -2541,10 +2541,10 @@ CREATE VIEW public.vista_frecuencia AS
   WHERE (a.estatus = 1);
 
 
-ALTER TABLE public.vista_frecuencia OWNER TO postgres;
+ALTER TABLE public.vista_frecuencia OWNER TO byqkxhkjgnspco;
 
 --
--- Name: vista_visita; Type: VIEW; Schema: public; Owner: postgres
+-- Name: vista_visita; Type: VIEW; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE VIEW public.vista_visita AS
@@ -2569,532 +2569,535 @@ CREATE VIEW public.vista_visita AS
   WHERE ((a.estatus = 1) AND (b.estatus = 1) AND (c.estatus = 1));
 
 
-ALTER TABLE public.vista_visita OWNER TO postgres;
+ALTER TABLE public.vista_visita OWNER TO byqkxhkjgnspco;
 
+--
+-- Name: id_agenda_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
 
-SELECT pg_catalog.setval('public.id_agenda_seq', 1, true);
+SELECT pg_catalog.setval('public.id_agenda_seq', 1, false);
 
 
 --
--- Name: id_alimento_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_alimento_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_alimento_seq', 1, true);
-
-
---
--- Name: id_app_movil_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_app_movil_seq', 1, true);
+SELECT pg_catalog.setval('public.id_alimento_seq', 1, false);
 
 
 --
--- Name: id_ayuda_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_app_movil_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_ayuda_seq', 1, true);
-
-
---
--- Name: id_bloque_horario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_bloque_horario_seq', 1, true);
+SELECT pg_catalog.setval('public.id_app_movil_seq', 1, false);
 
 
 --
--- Name: id_calificacion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_ayuda_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_ayuda_seq', 1, false);
+
+
+--
+-- Name: id_bloque_horario_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_bloque_horario_seq', 1, false);
+
+
+--
+-- Name: id_calificacion_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('public.id_calificacion_seq', 1, false);
 
 
 --
--- Name: id_cita_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_cita_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_cita_seq', 1, true);
-
-
---
--- Name: id_cliente_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_cliente_seq', 1, true);
+SELECT pg_catalog.setval('public.id_cita_seq', 1, false);
 
 
 --
--- Name: id_comentario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_cliente_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_comentario_seq', 1, true);
-
-
---
--- Name: id_comida_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_comida_seq', 1, true);
+SELECT pg_catalog.setval('public.id_cliente_seq', 1, false);
 
 
 --
--- Name: id_condicion_garantia_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_comentario_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_condicion_garantia_seq', 1, true);
-
-
---
--- Name: id_contenido_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_contenido_seq', 1, true);
+SELECT pg_catalog.setval('public.id_comentario_seq', 1, false);
 
 
 --
--- Name: id_criterio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_comida_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_criterio_seq', 1, true);
-
-
---
--- Name: id_detalle_plan_dieta_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_detalle_plan_dieta_seq', 1, true);
+SELECT pg_catalog.setval('public.id_comida_seq', 1, false);
 
 
 --
--- Name: id_detalle_plan_ejercicio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_condicion_garantia_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_detalle_plan_ejercicio_seq', 1, true);
-
-
---
--- Name: id_detalle_plan_suplemento_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_detalle_plan_suplemento_seq', 1, true);
+SELECT pg_catalog.setval('public.id_condicion_garantia_seq', 1, false);
 
 
 --
--- Name: id_detalle_regimen_alimento_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_contenido_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_detalle_regimen_alimento_seq', 1, true);
-
-
---
--- Name: id_detalle_visita_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_detalle_visita_seq', 1, true);
+SELECT pg_catalog.setval('public.id_contenido_seq', 1, false);
 
 
 --
--- Name: id_dia_laborable_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_criterio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_criterio_seq', 1, false);
+
+
+--
+-- Name: id_detalle_plan_dieta_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_detalle_plan_dieta_seq', 1, false);
+
+
+--
+-- Name: id_detalle_plan_ejercicio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_detalle_plan_ejercicio_seq', 1, false);
+
+
+--
+-- Name: id_detalle_plan_suplemento_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_detalle_plan_suplemento_seq', 1, false);
+
+
+--
+-- Name: id_detalle_regimen_alimento_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_detalle_regimen_alimento_seq', 1, false);
+
+
+--
+-- Name: id_detalle_visita_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_detalle_visita_seq', 1, false);
+
+
+--
+-- Name: id_dia_laborable_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('public.id_dia_laborable_seq', 1, false);
 
 
 --
--- Name: id_ejercicio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_ejercicio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_ejercicio_seq', 1, true);
-
-
---
--- Name: id_empleado_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_empleado_seq', 1, true);
+SELECT pg_catalog.setval('public.id_ejercicio_seq', 1, false);
 
 
 --
--- Name: id_especialidad_empleado_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_empleado_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_empleado_seq', 1, false);
+
+
+--
+-- Name: id_especialidad_empleado_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('public.id_especialidad_empleado_seq', 1, false);
 
 
 --
--- Name: id_especialidad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_especialidad_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_especialidad_seq', 1, true);
+SELECT pg_catalog.setval('public.id_especialidad_seq', 1, false);
 
 
 --
--- Name: id_especialidad_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_especialidad_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('public.id_especialidad_servicio_seq', 1, false);
 
 
 --
--- Name: id_estado_civil_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_estado_civil_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_estado_civil_seq', 1, true);
-
-
---
--- Name: id_estado_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_estado_seq', 1, true);
+SELECT pg_catalog.setval('public.id_estado_civil_seq', 1, false);
 
 
 --
--- Name: id_frecuencia_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_estado_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_frecuencia_seq', 1, true);
-
-
---
--- Name: id_funcionalidad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_funcionalidad_seq', 1, true);
+SELECT pg_catalog.setval('public.id_estado_seq', 1, false);
 
 
 --
--- Name: id_garantia_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_frecuencia_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_garantia_servicio_seq', 1, true);
-
-
---
--- Name: id_genero_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_genero_seq', 1, true);
+SELECT pg_catalog.setval('public.id_frecuencia_seq', 1, false);
 
 
 --
--- Name: id_grupo_alimenticio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_funcionalidad_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_grupo_alimenticio_seq', 1, true);
-
-
---
--- Name: id_horario_empleado_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_horario_empleado_seq', 1, true);
+SELECT pg_catalog.setval('public.id_funcionalidad_seq', 1, false);
 
 
 --
--- Name: id_incidencia_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_garantia_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_incidencia_seq', 1, true);
-
-
---
--- Name: id_motivo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_motivo_seq', 1, true);
+SELECT pg_catalog.setval('public.id_garantia_servicio_seq', 1, false);
 
 
 --
--- Name: id_negocio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_genero_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_negocio_seq', 1, true);
-
-
---
--- Name: id_orden_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_orden_servicio_seq', 1, true);
+SELECT pg_catalog.setval('public.id_genero_seq', 1, false);
 
 
 --
--- Name: id_parametro_cliente_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_grupo_alimenticio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_parametro_cliente_seq', 1, true);
-
-
---
--- Name: id_parametro_meta_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_parametro_meta_seq', 1, true);
+SELECT pg_catalog.setval('public.id_grupo_alimenticio_seq', 1, false);
 
 
 --
--- Name: id_parametro_promocion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_horario_empleado_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_parametro_promocion_seq', 1, true);
-
-
---
--- Name: id_parametro_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_parametro_seq', 1, true);
+SELECT pg_catalog.setval('public.id_horario_empleado_seq', 1, false);
 
 
 --
--- Name: id_parametro_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_incidencia_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_parametro_servicio_seq', 1, true);
-
-
---
--- Name: id_plan_dieta_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_plan_dieta_seq', 1, true);
+SELECT pg_catalog.setval('public.id_incidencia_seq', 1, false);
 
 
 --
--- Name: id_plan_ejercicio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_motivo_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_plan_ejercicio_seq', 1, true);
-
-
---
--- Name: id_plan_suplemento_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_plan_suplemento_seq', 1, true);
+SELECT pg_catalog.setval('public.id_motivo_seq', 0, false);
 
 
 --
--- Name: id_precio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_negocio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_precio_seq', 1, true);
+SELECT pg_catalog.setval('public.id_negocio_seq', 1, false);
 
 
 --
--- Name: id_preferencia_cliente_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_orden_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_orden_servicio_seq', 1, false);
+
+
+--
+-- Name: id_parametro_cliente_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_parametro_cliente_seq', 1, false);
+
+
+--
+-- Name: id_parametro_meta_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_parametro_meta_seq', 1, false);
+
+
+--
+-- Name: id_parametro_promocion_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_parametro_promocion_seq', 1, false);
+
+
+--
+-- Name: id_parametro_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_parametro_seq', 1, false);
+
+
+--
+-- Name: id_parametro_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_parametro_servicio_seq', 1, false);
+
+
+--
+-- Name: id_plan_dieta_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_plan_dieta_seq', 1, false);
+
+
+--
+-- Name: id_plan_ejercicio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_plan_ejercicio_seq', 1, false);
+
+
+--
+-- Name: id_plan_suplemento_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_plan_suplemento_seq', 1, false);
+
+
+--
+-- Name: id_precio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_precio_seq', 1, false);
+
+
+--
+-- Name: id_preferencia_cliente_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
 SELECT pg_catalog.setval('public.id_preferencia_cliente_seq', 1, false);
 
 
 --
--- Name: id_promocion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_promocion_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_promocion_seq', 1, true);
-
-
---
--- Name: id_rango_edad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_rango_edad_seq', 1, true);
+SELECT pg_catalog.setval('public.id_promocion_seq', 1, false);
 
 
 --
--- Name: id_reclamo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_rango_edad_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_reclamo_seq', 1, true);
-
-
---
--- Name: id_red_social_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_red_social_seq', 1, true);
+SELECT pg_catalog.setval('public.id_rango_edad_seq', 1, false);
 
 
 --
--- Name: id_regimen_dieta_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_reclamo_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_regimen_dieta_seq', 1, true);
-
-
---
--- Name: id_regimen_ejercicio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_regimen_ejercicio_seq', 1, true);
+SELECT pg_catalog.setval('public.id_reclamo_seq', 1, false);
 
 
 --
--- Name: id_regimen_suplemento_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_red_social_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_regimen_suplemento_seq', 1, true);
-
-
---
--- Name: id_respuesta_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_respuesta_seq', 1, true);
+SELECT pg_catalog.setval('public.id_red_social_seq', 1, false);
 
 
 --
--- Name: id_rol_funcionalidad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_regimen_dieta_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_rol_funcionalidad_seq', 1, true);
-
-
---
--- Name: id_rol_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_rol_seq', 1, true);
+SELECT pg_catalog.setval('public.id_regimen_dieta_seq', 1, false);
 
 
 --
--- Name: id_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_regimen_ejercicio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_servicio_seq', 1, true);
-
-
---
--- Name: id_slide_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_slide_seq', 1, true);
+SELECT pg_catalog.setval('public.id_regimen_ejercicio_seq', 1, false);
 
 
 --
--- Name: id_solicitud_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_regimen_suplemento_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_solicitud_servicio_seq', 1, true);
-
-
---
--- Name: id_suplemento_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_suplemento_seq', 1, true);
+SELECT pg_catalog.setval('public.id_regimen_suplemento_seq', 1, false);
 
 
 --
--- Name: id_tiempo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_respuesta_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_tiempo_seq', 1, true);
-
-
---
--- Name: id_tipo_cita_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_tipo_cita_seq', 1, true);
+SELECT pg_catalog.setval('public.id_respuesta_seq', 1, false);
 
 
 --
--- Name: id_tipo_criterio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_rol_funcionalidad_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_tipo_criterio_seq', 1, true);
-
-
---
--- Name: id_tipo_dieta_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_tipo_dieta_seq', 1, true);
+SELECT pg_catalog.setval('public.id_rol_funcionalidad_seq', 1, false);
 
 
 --
--- Name: id_tipo_incidencia_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_rol_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_tipo_incidencia_seq', 1, true);
-
-
---
--- Name: id_tipo_motivo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_tipo_motivo_seq', 1, true);
+SELECT pg_catalog.setval('public.id_rol_seq', 1, false);
 
 
 --
--- Name: id_tipo_orden_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_tipo_orden_seq', 1, true);
-
-
---
--- Name: id_tipo_parametro_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_tipo_parametro_seq', 1, true);
+SELECT pg_catalog.setval('public.id_servicio_seq', 1, false);
 
 
 --
--- Name: id_tipo_respuesta_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_slide_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_tipo_respuesta_seq', 1, true);
-
-
---
--- Name: id_tipo_unidad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_tipo_unidad_seq', 1, true);
+SELECT pg_catalog.setval('public.id_slide_seq', 1, false);
 
 
 --
--- Name: id_tipo_valoracion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_solicitud_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_tipo_valoracion_seq', 1, true);
-
-
---
--- Name: id_unidad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_unidad_seq', 1, true);
+SELECT pg_catalog.setval('public.id_solicitud_servicio_seq', 1, false);
 
 
 --
--- Name: id_usuario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_suplemento_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_usuario_seq', 1, true);
-
-
---
--- Name: id_valoracion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_valoracion_seq', 1, true);
+SELECT pg_catalog.setval('public.id_suplemento_seq', 1, false);
 
 
 --
--- Name: id_visita_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: id_tiempo_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
 --
 
-SELECT pg_catalog.setval('public.id_visita_seq', 1, true);
+SELECT pg_catalog.setval('public.id_tiempo_seq', 1, false);
 
 
 --
--- Name: agenda agenda_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: id_tipo_cita_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_tipo_cita_seq', 1, false);
+
+
+--
+-- Name: id_tipo_criterio_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_tipo_criterio_seq', 1, false);
+
+
+--
+-- Name: id_tipo_dieta_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_tipo_dieta_seq', 1, false);
+
+
+--
+-- Name: id_tipo_incidencia_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_tipo_incidencia_seq', 1, false);
+
+
+--
+-- Name: id_tipo_motivo_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_tipo_motivo_seq', 1, false);
+
+
+--
+-- Name: id_tipo_orden_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_tipo_orden_seq', 1, false);
+
+
+--
+-- Name: id_tipo_parametro_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_tipo_parametro_seq', 1, false);
+
+
+--
+-- Name: id_tipo_respuesta_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_tipo_respuesta_seq', 1, false);
+
+
+--
+-- Name: id_tipo_unidad_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_tipo_unidad_seq', 1, false);
+
+
+--
+-- Name: id_tipo_valoracion_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_tipo_valoracion_seq', 1, false);
+
+
+--
+-- Name: id_unidad_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_unidad_seq', 1, false);
+
+
+--
+-- Name: id_usuario_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_usuario_seq', 1, false);
+
+
+--
+-- Name: id_valoracion_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_valoracion_seq', 1, false);
+
+
+--
+-- Name: id_visita_seq; Type: SEQUENCE SET; Schema: public; Owner: byqkxhkjgnspco
+--
+
+SELECT pg_catalog.setval('public.id_visita_seq', 1, false);
+
+
+--
+-- Name: agenda agenda_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.agenda
@@ -3102,7 +3105,7 @@ ALTER TABLE ONLY public.agenda
 
 
 --
--- Name: alimento alimento_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: alimento alimento_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.alimento
@@ -3110,7 +3113,7 @@ ALTER TABLE ONLY public.alimento
 
 
 --
--- Name: app_movil app_movil_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: app_movil app_movil_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.app_movil
@@ -3118,7 +3121,7 @@ ALTER TABLE ONLY public.app_movil
 
 
 --
--- Name: ayuda ayuda_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: ayuda ayuda_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.ayuda
@@ -3126,7 +3129,7 @@ ALTER TABLE ONLY public.ayuda
 
 
 --
--- Name: bloque_horario bloque_horario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: bloque_horario bloque_horario_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.bloque_horario
@@ -3134,7 +3137,7 @@ ALTER TABLE ONLY public.bloque_horario
 
 
 --
--- Name: calificacion calificacion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: calificacion calificacion_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.calificacion
@@ -3142,7 +3145,7 @@ ALTER TABLE ONLY public.calificacion
 
 
 --
--- Name: cita cita_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: cita cita_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.cita
@@ -3150,7 +3153,7 @@ ALTER TABLE ONLY public.cita
 
 
 --
--- Name: cliente cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: cliente cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.cliente
@@ -3158,7 +3161,7 @@ ALTER TABLE ONLY public.cliente
 
 
 --
--- Name: comentario comentario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: comentario comentario_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.comentario
@@ -3166,7 +3169,7 @@ ALTER TABLE ONLY public.comentario
 
 
 --
--- Name: comida comida_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: comida comida_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.comida
@@ -3174,7 +3177,7 @@ ALTER TABLE ONLY public.comida
 
 
 --
--- Name: condicion_garantia condicion_garantia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: condicion_garantia condicion_garantia_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.condicion_garantia
@@ -3182,7 +3185,7 @@ ALTER TABLE ONLY public.condicion_garantia
 
 
 --
--- Name: contenido contenido_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: contenido contenido_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.contenido
@@ -3190,7 +3193,7 @@ ALTER TABLE ONLY public.contenido
 
 
 --
--- Name: criterio criterio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: criterio criterio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.criterio
@@ -3198,7 +3201,7 @@ ALTER TABLE ONLY public.criterio
 
 
 --
--- Name: detalle_plan_dieta detalle_plan_dieta_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: detalle_plan_dieta detalle_plan_dieta_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.detalle_plan_dieta
@@ -3206,7 +3209,7 @@ ALTER TABLE ONLY public.detalle_plan_dieta
 
 
 --
--- Name: detalle_plan_ejercicio detalle_plan_ejercicio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: detalle_plan_ejercicio detalle_plan_ejercicio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.detalle_plan_ejercicio
@@ -3214,7 +3217,7 @@ ALTER TABLE ONLY public.detalle_plan_ejercicio
 
 
 --
--- Name: detalle_plan_suplemento detalle_plan_suplemento_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: detalle_plan_suplemento detalle_plan_suplemento_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.detalle_plan_suplemento
@@ -3222,7 +3225,7 @@ ALTER TABLE ONLY public.detalle_plan_suplemento
 
 
 --
--- Name: detalle_regimen_alimento detalle_regimen_alimento_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: detalle_regimen_alimento detalle_regimen_alimento_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.detalle_regimen_alimento
@@ -3230,7 +3233,7 @@ ALTER TABLE ONLY public.detalle_regimen_alimento
 
 
 --
--- Name: detalle_visita detalle_visita_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: detalle_visita detalle_visita_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.detalle_visita
@@ -3238,7 +3241,7 @@ ALTER TABLE ONLY public.detalle_visita
 
 
 --
--- Name: dia_laborable dia_laborable_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: dia_laborable dia_laborable_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.dia_laborable
@@ -3246,7 +3249,7 @@ ALTER TABLE ONLY public.dia_laborable
 
 
 --
--- Name: ejercicio ejercicio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: ejercicio ejercicio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.ejercicio
@@ -3254,7 +3257,7 @@ ALTER TABLE ONLY public.ejercicio
 
 
 --
--- Name: empleado empleado_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: empleado empleado_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.empleado
@@ -3262,7 +3265,7 @@ ALTER TABLE ONLY public.empleado
 
 
 --
--- Name: especialidad especialidad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: especialidad especialidad_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.especialidad
@@ -3270,7 +3273,7 @@ ALTER TABLE ONLY public.especialidad
 
 
 --
--- Name: estado_civil estado_civil_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: estado_civil estado_civil_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.estado_civil
@@ -3278,7 +3281,7 @@ ALTER TABLE ONLY public.estado_civil
 
 
 --
--- Name: estado_solicitud estado_solicitud_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: estado_solicitud estado_solicitud_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.estado_solicitud
@@ -3286,7 +3289,7 @@ ALTER TABLE ONLY public.estado_solicitud
 
 
 --
--- Name: frecuencia frecuencia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: frecuencia frecuencia_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.frecuencia
@@ -3294,7 +3297,7 @@ ALTER TABLE ONLY public.frecuencia
 
 
 --
--- Name: funcionalidad funcionalidad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: funcionalidad funcionalidad_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.funcionalidad
@@ -3302,7 +3305,7 @@ ALTER TABLE ONLY public.funcionalidad
 
 
 --
--- Name: garantia_servicio garantia_servicio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: garantia_servicio garantia_servicio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.garantia_servicio
@@ -3310,7 +3313,7 @@ ALTER TABLE ONLY public.garantia_servicio
 
 
 --
--- Name: genero genero_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: genero genero_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.genero
@@ -3318,7 +3321,7 @@ ALTER TABLE ONLY public.genero
 
 
 --
--- Name: grupo_alimenticio grupo_alimenticio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: grupo_alimenticio grupo_alimenticio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.grupo_alimenticio
@@ -3326,7 +3329,7 @@ ALTER TABLE ONLY public.grupo_alimenticio
 
 
 --
--- Name: horario_empleado horario_empleado_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: horario_empleado horario_empleado_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.horario_empleado
@@ -3334,7 +3337,7 @@ ALTER TABLE ONLY public.horario_empleado
 
 
 --
--- Name: servicio id_servicio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: servicio id_servicio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.servicio
@@ -3342,7 +3345,7 @@ ALTER TABLE ONLY public.servicio
 
 
 --
--- Name: incidencia incidencia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: incidencia incidencia_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.incidencia
@@ -3350,7 +3353,7 @@ ALTER TABLE ONLY public.incidencia
 
 
 --
--- Name: motivo motivo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: motivo motivo_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.motivo
@@ -3358,7 +3361,7 @@ ALTER TABLE ONLY public.motivo
 
 
 --
--- Name: negocio negocio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: negocio negocio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.negocio
@@ -3366,7 +3369,7 @@ ALTER TABLE ONLY public.negocio
 
 
 --
--- Name: orden_servicio orden_servicio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: orden_servicio orden_servicio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.orden_servicio
@@ -3374,7 +3377,7 @@ ALTER TABLE ONLY public.orden_servicio
 
 
 --
--- Name: parametro_cliente parametro_cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: parametro_cliente parametro_cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.parametro_cliente
@@ -3382,7 +3385,7 @@ ALTER TABLE ONLY public.parametro_cliente
 
 
 --
--- Name: parametro_meta parametro_meta_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: parametro_meta parametro_meta_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.parametro_meta
@@ -3390,7 +3393,7 @@ ALTER TABLE ONLY public.parametro_meta
 
 
 --
--- Name: parametro parametro_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: parametro parametro_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.parametro
@@ -3398,7 +3401,7 @@ ALTER TABLE ONLY public.parametro
 
 
 --
--- Name: parametro_promocion parametro_promocion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: parametro_promocion parametro_promocion_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.parametro_promocion
@@ -3406,7 +3409,7 @@ ALTER TABLE ONLY public.parametro_promocion
 
 
 --
--- Name: parametro_servicio parametro_servicio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: parametro_servicio parametro_servicio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.parametro_servicio
@@ -3414,7 +3417,7 @@ ALTER TABLE ONLY public.parametro_servicio
 
 
 --
--- Name: plan_dieta plan_dieta_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: plan_dieta plan_dieta_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.plan_dieta
@@ -3422,7 +3425,7 @@ ALTER TABLE ONLY public.plan_dieta
 
 
 --
--- Name: plan_ejercicio plan_ejercicio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: plan_ejercicio plan_ejercicio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.plan_ejercicio
@@ -3430,7 +3433,7 @@ ALTER TABLE ONLY public.plan_ejercicio
 
 
 --
--- Name: plan_suplemento plan_suplemento_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: plan_suplemento plan_suplemento_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.plan_suplemento
@@ -3438,7 +3441,7 @@ ALTER TABLE ONLY public.plan_suplemento
 
 
 --
--- Name: precio precio_id_precio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: precio precio_id_precio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.precio
@@ -3446,7 +3449,7 @@ ALTER TABLE ONLY public.precio
 
 
 --
--- Name: preferencia_cliente preferencia_cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: preferencia_cliente preferencia_cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.preferencia_cliente
@@ -3454,7 +3457,7 @@ ALTER TABLE ONLY public.preferencia_cliente
 
 
 --
--- Name: promocion promocion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: promocion promocion_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.promocion
@@ -3462,7 +3465,7 @@ ALTER TABLE ONLY public.promocion
 
 
 --
--- Name: rango_edad rango_edad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: rango_edad rango_edad_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.rango_edad
@@ -3470,7 +3473,7 @@ ALTER TABLE ONLY public.rango_edad
 
 
 --
--- Name: reclamo reclamo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: reclamo reclamo_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.reclamo
@@ -3478,7 +3481,7 @@ ALTER TABLE ONLY public.reclamo
 
 
 --
--- Name: red_social red_social_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: red_social red_social_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.red_social
@@ -3486,7 +3489,7 @@ ALTER TABLE ONLY public.red_social
 
 
 --
--- Name: regimen_dieta regimen_dieta_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: regimen_dieta regimen_dieta_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.regimen_dieta
@@ -3494,7 +3497,7 @@ ALTER TABLE ONLY public.regimen_dieta
 
 
 --
--- Name: regimen_ejercicio regimen_ejercicio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: regimen_ejercicio regimen_ejercicio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.regimen_ejercicio
@@ -3502,7 +3505,7 @@ ALTER TABLE ONLY public.regimen_ejercicio
 
 
 --
--- Name: regimen_suplemento regimen_suplemento_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: regimen_suplemento regimen_suplemento_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.regimen_suplemento
@@ -3510,7 +3513,7 @@ ALTER TABLE ONLY public.regimen_suplemento
 
 
 --
--- Name: respuesta respuesta_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: respuesta respuesta_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.respuesta
@@ -3518,7 +3521,7 @@ ALTER TABLE ONLY public.respuesta
 
 
 --
--- Name: rol_funcionalidad rol_funcionalidad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: rol_funcionalidad rol_funcionalidad_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.rol_funcionalidad
@@ -3526,7 +3529,7 @@ ALTER TABLE ONLY public.rol_funcionalidad
 
 
 --
--- Name: rol rol_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: rol rol_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.rol
@@ -3534,7 +3537,7 @@ ALTER TABLE ONLY public.rol
 
 
 --
--- Name: slide slide_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: slide slide_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.slide
@@ -3542,7 +3545,7 @@ ALTER TABLE ONLY public.slide
 
 
 --
--- Name: solicitud_servicio solicitud_servicio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: solicitud_servicio solicitud_servicio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.solicitud_servicio
@@ -3550,7 +3553,7 @@ ALTER TABLE ONLY public.solicitud_servicio
 
 
 --
--- Name: suplemento suplemento_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: suplemento suplemento_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.suplemento
@@ -3558,7 +3561,7 @@ ALTER TABLE ONLY public.suplemento
 
 
 --
--- Name: tiempo tiempo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: tiempo tiempo_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.tiempo
@@ -3566,7 +3569,7 @@ ALTER TABLE ONLY public.tiempo
 
 
 --
--- Name: tipo_cita tipo_cita_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: tipo_cita tipo_cita_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.tipo_cita
@@ -3574,7 +3577,7 @@ ALTER TABLE ONLY public.tipo_cita
 
 
 --
--- Name: tipo_criterio tipo_criterio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: tipo_criterio tipo_criterio_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.tipo_criterio
@@ -3582,7 +3585,7 @@ ALTER TABLE ONLY public.tipo_criterio
 
 
 --
--- Name: tipo_dieta tipo_dieta_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: tipo_dieta tipo_dieta_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.tipo_dieta
@@ -3590,7 +3593,7 @@ ALTER TABLE ONLY public.tipo_dieta
 
 
 --
--- Name: tipo_incidencia tipo_incidencia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: tipo_incidencia tipo_incidencia_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.tipo_incidencia
@@ -3598,7 +3601,7 @@ ALTER TABLE ONLY public.tipo_incidencia
 
 
 --
--- Name: tipo_motivo tipo_motivo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: tipo_motivo tipo_motivo_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.tipo_motivo
@@ -3606,7 +3609,7 @@ ALTER TABLE ONLY public.tipo_motivo
 
 
 --
--- Name: tipo_orden tipo_orden_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: tipo_orden tipo_orden_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.tipo_orden
@@ -3614,7 +3617,7 @@ ALTER TABLE ONLY public.tipo_orden
 
 
 --
--- Name: tipo_parametro tipo_parametro_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: tipo_parametro tipo_parametro_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.tipo_parametro
@@ -3622,7 +3625,7 @@ ALTER TABLE ONLY public.tipo_parametro
 
 
 --
--- Name: tipo_respuesta tipo_respuesta_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: tipo_respuesta tipo_respuesta_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.tipo_respuesta
@@ -3630,7 +3633,7 @@ ALTER TABLE ONLY public.tipo_respuesta
 
 
 --
--- Name: tipo_unidad tipo_unidad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: tipo_unidad tipo_unidad_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.tipo_unidad
@@ -3638,7 +3641,7 @@ ALTER TABLE ONLY public.tipo_unidad
 
 
 --
--- Name: tipo_valoracion tipo_valoracion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: tipo_valoracion tipo_valoracion_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.tipo_valoracion
@@ -3646,7 +3649,7 @@ ALTER TABLE ONLY public.tipo_valoracion
 
 
 --
--- Name: unidad unidad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: unidad unidad_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.unidad
@@ -3654,7 +3657,7 @@ ALTER TABLE ONLY public.unidad
 
 
 --
--- Name: usuario usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: usuario usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.usuario
@@ -3662,7 +3665,7 @@ ALTER TABLE ONLY public.usuario
 
 
 --
--- Name: valoracion valoracion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: valoracion valoracion_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.valoracion
@@ -3670,7 +3673,7 @@ ALTER TABLE ONLY public.valoracion
 
 
 --
--- Name: visita visita_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: visita visita_pkey; Type: CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.visita
@@ -3678,28 +3681,28 @@ ALTER TABLE ONLY public.visita
 
 
 --
--- Name: fki_incidencia_id_agenda_fkey; Type: INDEX; Schema: public; Owner: postgres
+-- Name: fki_incidencia_id_agenda_fkey; Type: INDEX; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE INDEX fki_incidencia_id_agenda_fkey ON public.incidencia USING btree (id_agenda);
 
 
 --
--- Name: cliente dis_asignar_rango_edad; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: cliente dis_asignar_rango_edad; Type: TRIGGER; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TRIGGER dis_asignar_rango_edad AFTER INSERT ON public.cliente FOR EACH ROW EXECUTE PROCEDURE public.fun_asignar_rango_edad();
 
 
 --
--- Name: usuario dis_usuario_eliminada; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: usuario dis_usuario_eliminada; Type: TRIGGER; Schema: public; Owner: byqkxhkjgnspco
 --
 
 CREATE TRIGGER dis_usuario_eliminada AFTER UPDATE OF estatus ON public.usuario FOR EACH ROW WHEN ((new.estatus = 0)) EXECUTE PROCEDURE public.fun_eliminar_cliente();
 
 
 --
--- Name: agenda agenda_id_cita_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: agenda agenda_id_cita_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.agenda
@@ -3707,7 +3710,7 @@ ALTER TABLE ONLY public.agenda
 
 
 --
--- Name: agenda agenda_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: agenda agenda_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.agenda
@@ -3715,7 +3718,7 @@ ALTER TABLE ONLY public.agenda
 
 
 --
--- Name: agenda agenda_id_empleado_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: agenda agenda_id_empleado_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.agenda
@@ -3723,7 +3726,7 @@ ALTER TABLE ONLY public.agenda
 
 
 --
--- Name: agenda agenda_id_orden_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: agenda agenda_id_orden_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.agenda
@@ -3731,7 +3734,7 @@ ALTER TABLE ONLY public.agenda
 
 
 --
--- Name: alimento alimento_id_grupo_alimenticio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: alimento alimento_id_grupo_alimenticio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.alimento
@@ -3739,7 +3742,7 @@ ALTER TABLE ONLY public.alimento
 
 
 --
--- Name: calificacion calificacion_id_criterio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: calificacion calificacion_id_criterio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.calificacion
@@ -3747,7 +3750,7 @@ ALTER TABLE ONLY public.calificacion
 
 
 --
--- Name: calificacion calificacion_id_orden_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: calificacion calificacion_id_orden_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.calificacion
@@ -3755,7 +3758,7 @@ ALTER TABLE ONLY public.calificacion
 
 
 --
--- Name: calificacion calificacion_id_valoracion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: calificacion calificacion_id_valoracion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.calificacion
@@ -3763,7 +3766,7 @@ ALTER TABLE ONLY public.calificacion
 
 
 --
--- Name: calificacion calificacion_id_visita_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: calificacion calificacion_id_visita_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.calificacion
@@ -3771,7 +3774,7 @@ ALTER TABLE ONLY public.calificacion
 
 
 --
--- Name: cita cita_id_bloque_horario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: cita cita_id_bloque_horario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.cita
@@ -3779,7 +3782,7 @@ ALTER TABLE ONLY public.cita
 
 
 --
--- Name: cita cita_id_orden_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: cita cita_id_orden_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.cita
@@ -3787,7 +3790,7 @@ ALTER TABLE ONLY public.cita
 
 
 --
--- Name: cita cita_id_tipo_cita_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: cita cita_id_tipo_cita_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.cita
@@ -3795,7 +3798,7 @@ ALTER TABLE ONLY public.cita
 
 
 --
--- Name: cliente cliente_id_estado_civil_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: cliente cliente_id_estado_civil_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.cliente
@@ -3803,7 +3806,7 @@ ALTER TABLE ONLY public.cliente
 
 
 --
--- Name: cliente cliente_id_genero_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: cliente cliente_id_genero_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.cliente
@@ -3811,7 +3814,7 @@ ALTER TABLE ONLY public.cliente
 
 
 --
--- Name: cliente cliente_id_rango_edad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: cliente cliente_id_rango_edad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.cliente
@@ -3819,7 +3822,7 @@ ALTER TABLE ONLY public.cliente
 
 
 --
--- Name: cliente cliente_id_usuario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: cliente cliente_id_usuario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.cliente
@@ -3827,7 +3830,7 @@ ALTER TABLE ONLY public.cliente
 
 
 --
--- Name: comentario comentario_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: comentario comentario_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.comentario
@@ -3835,7 +3838,7 @@ ALTER TABLE ONLY public.comentario
 
 
 --
--- Name: comentario comentario_id_motivo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: comentario comentario_id_motivo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.comentario
@@ -3843,7 +3846,7 @@ ALTER TABLE ONLY public.comentario
 
 
 --
--- Name: comentario comentario_id_respuesta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: comentario comentario_id_respuesta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.comentario
@@ -3851,7 +3854,7 @@ ALTER TABLE ONLY public.comentario
 
 
 --
--- Name: criterio criterio_id_tipo_criterio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: criterio criterio_id_tipo_criterio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.criterio
@@ -3859,7 +3862,7 @@ ALTER TABLE ONLY public.criterio
 
 
 --
--- Name: criterio criterio_id_tipo_valoracion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: criterio criterio_id_tipo_valoracion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.criterio
@@ -3867,7 +3870,7 @@ ALTER TABLE ONLY public.criterio
 
 
 --
--- Name: detalle_plan_dieta detalle_plan_dieta_id_comida_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: detalle_plan_dieta detalle_plan_dieta_id_comida_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.detalle_plan_dieta
@@ -3875,7 +3878,7 @@ ALTER TABLE ONLY public.detalle_plan_dieta
 
 
 --
--- Name: detalle_plan_dieta detalle_plan_dieta_id_grupo_alimenticio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: detalle_plan_dieta detalle_plan_dieta_id_grupo_alimenticio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.detalle_plan_dieta
@@ -3883,7 +3886,7 @@ ALTER TABLE ONLY public.detalle_plan_dieta
 
 
 --
--- Name: detalle_plan_dieta detalle_plan_dieta_id_plan_dieta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: detalle_plan_dieta detalle_plan_dieta_id_plan_dieta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.detalle_plan_dieta
@@ -3891,7 +3894,7 @@ ALTER TABLE ONLY public.detalle_plan_dieta
 
 
 --
--- Name: detalle_plan_ejercicio detalle_plan_ejercicio_id_ejercicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: detalle_plan_ejercicio detalle_plan_ejercicio_id_ejercicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.detalle_plan_ejercicio
@@ -3899,7 +3902,7 @@ ALTER TABLE ONLY public.detalle_plan_ejercicio
 
 
 --
--- Name: detalle_plan_ejercicio detalle_plan_ejercicio_id_plan_ejercicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: detalle_plan_ejercicio detalle_plan_ejercicio_id_plan_ejercicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.detalle_plan_ejercicio
@@ -3907,7 +3910,7 @@ ALTER TABLE ONLY public.detalle_plan_ejercicio
 
 
 --
--- Name: detalle_plan_suplemento detalle_plan_suplemento_id_plan_suplemento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: detalle_plan_suplemento detalle_plan_suplemento_id_plan_suplemento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.detalle_plan_suplemento
@@ -3915,7 +3918,7 @@ ALTER TABLE ONLY public.detalle_plan_suplemento
 
 
 --
--- Name: detalle_plan_suplemento detalle_plan_suplemento_id_suplemento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: detalle_plan_suplemento detalle_plan_suplemento_id_suplemento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.detalle_plan_suplemento
@@ -3923,7 +3926,7 @@ ALTER TABLE ONLY public.detalle_plan_suplemento
 
 
 --
--- Name: detalle_regimen_alimento detalle_regimen_alimento_id_alimento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: detalle_regimen_alimento detalle_regimen_alimento_id_alimento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.detalle_regimen_alimento
@@ -3931,7 +3934,7 @@ ALTER TABLE ONLY public.detalle_regimen_alimento
 
 
 --
--- Name: detalle_regimen_alimento detalle_regimen_alimento_id_regimen_dieta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: detalle_regimen_alimento detalle_regimen_alimento_id_regimen_dieta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.detalle_regimen_alimento
@@ -3939,7 +3942,7 @@ ALTER TABLE ONLY public.detalle_regimen_alimento
 
 
 --
--- Name: detalle_visita detalle_visita_id_parametro_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: detalle_visita detalle_visita_id_parametro_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.detalle_visita
@@ -3947,7 +3950,7 @@ ALTER TABLE ONLY public.detalle_visita
 
 
 --
--- Name: detalle_visita detalle_visita_id_visita_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: detalle_visita detalle_visita_id_visita_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.detalle_visita
@@ -3955,7 +3958,7 @@ ALTER TABLE ONLY public.detalle_visita
 
 
 --
--- Name: empleado empleado_id_especialidad_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: empleado empleado_id_especialidad_fk; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.empleado
@@ -3963,7 +3966,7 @@ ALTER TABLE ONLY public.empleado
 
 
 --
--- Name: empleado empleado_id_genero_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: empleado empleado_id_genero_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.empleado
@@ -3971,7 +3974,7 @@ ALTER TABLE ONLY public.empleado
 
 
 --
--- Name: empleado empleado_id_usuario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: empleado empleado_id_usuario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.empleado
@@ -3979,7 +3982,7 @@ ALTER TABLE ONLY public.empleado
 
 
 --
--- Name: frecuencia frecuencia_tiempo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: frecuencia frecuencia_tiempo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.frecuencia
@@ -3987,7 +3990,7 @@ ALTER TABLE ONLY public.frecuencia
 
 
 --
--- Name: funcionalidad funcionalidad_id_funcionalidad_padre_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: funcionalidad funcionalidad_id_funcionalidad_padre_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.funcionalidad
@@ -3995,7 +3998,7 @@ ALTER TABLE ONLY public.funcionalidad
 
 
 --
--- Name: garantia_servicio garantia_servicio_id_condicion_garantia_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: garantia_servicio garantia_servicio_id_condicion_garantia_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.garantia_servicio
@@ -4003,7 +4006,7 @@ ALTER TABLE ONLY public.garantia_servicio
 
 
 --
--- Name: garantia_servicio garantia_servicio_id_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: garantia_servicio garantia_servicio_id_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.garantia_servicio
@@ -4011,7 +4014,7 @@ ALTER TABLE ONLY public.garantia_servicio
 
 
 --
--- Name: grupo_alimenticio grupo_alimenticio_id_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: grupo_alimenticio grupo_alimenticio_id_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.grupo_alimenticio
@@ -4019,7 +4022,7 @@ ALTER TABLE ONLY public.grupo_alimenticio
 
 
 --
--- Name: horario_empleado horario_empleado_id_bloque_horario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: horario_empleado horario_empleado_id_bloque_horario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.horario_empleado
@@ -4027,7 +4030,7 @@ ALTER TABLE ONLY public.horario_empleado
 
 
 --
--- Name: horario_empleado horario_empleado_id_dia_laborable_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: horario_empleado horario_empleado_id_dia_laborable_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.horario_empleado
@@ -4035,7 +4038,7 @@ ALTER TABLE ONLY public.horario_empleado
 
 
 --
--- Name: horario_empleado horario_empleado_id_empleado_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: horario_empleado horario_empleado_id_empleado_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.horario_empleado
@@ -4043,7 +4046,7 @@ ALTER TABLE ONLY public.horario_empleado
 
 
 --
--- Name: incidencia incidencia_id_agenda_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: incidencia incidencia_id_agenda_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.incidencia
@@ -4051,7 +4054,7 @@ ALTER TABLE ONLY public.incidencia
 
 
 --
--- Name: incidencia incidencia_id_motivo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: incidencia incidencia_id_motivo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.incidencia
@@ -4059,7 +4062,7 @@ ALTER TABLE ONLY public.incidencia
 
 
 --
--- Name: incidencia incidencia_id_tipo_incidencia_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: incidencia incidencia_id_tipo_incidencia_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.incidencia
@@ -4067,7 +4070,7 @@ ALTER TABLE ONLY public.incidencia
 
 
 --
--- Name: motivo motivo_id_tipo_motivo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: motivo motivo_id_tipo_motivo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.motivo
@@ -4075,7 +4078,7 @@ ALTER TABLE ONLY public.motivo
 
 
 --
--- Name: orden_servicio orden_servicio_id_reclamo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: orden_servicio orden_servicio_id_reclamo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.orden_servicio
@@ -4083,7 +4086,7 @@ ALTER TABLE ONLY public.orden_servicio
 
 
 --
--- Name: orden_servicio orden_servicio_id_solicitud_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: orden_servicio orden_servicio_id_solicitud_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.orden_servicio
@@ -4091,7 +4094,7 @@ ALTER TABLE ONLY public.orden_servicio
 
 
 --
--- Name: orden_servicio orden_servicio_id_tipo_orden_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: orden_servicio orden_servicio_id_tipo_orden_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.orden_servicio
@@ -4099,7 +4102,7 @@ ALTER TABLE ONLY public.orden_servicio
 
 
 --
--- Name: parametro_cliente parametro_cliente_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: parametro_cliente parametro_cliente_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.parametro_cliente
@@ -4107,7 +4110,7 @@ ALTER TABLE ONLY public.parametro_cliente
 
 
 --
--- Name: parametro_cliente parametro_cliente_id_parametro_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: parametro_cliente parametro_cliente_id_parametro_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.parametro_cliente
@@ -4115,7 +4118,7 @@ ALTER TABLE ONLY public.parametro_cliente
 
 
 --
--- Name: parametro_meta parametro_meta_id_orden_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: parametro_meta parametro_meta_id_orden_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.parametro_meta
@@ -4123,7 +4126,7 @@ ALTER TABLE ONLY public.parametro_meta
 
 
 --
--- Name: parametro_meta parametro_meta_id_parametro_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: parametro_meta parametro_meta_id_parametro_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.parametro_meta
@@ -4131,7 +4134,7 @@ ALTER TABLE ONLY public.parametro_meta
 
 
 --
--- Name: parametro_servicio parametro_servicio_id_parametro_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: parametro_servicio parametro_servicio_id_parametro_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.parametro_servicio
@@ -4139,7 +4142,7 @@ ALTER TABLE ONLY public.parametro_servicio
 
 
 --
--- Name: parametro_servicio parametro_servicio_id_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: parametro_servicio parametro_servicio_id_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.parametro_servicio
@@ -4147,7 +4150,7 @@ ALTER TABLE ONLY public.parametro_servicio
 
 
 --
--- Name: parametro parametro_tipo_parametro_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: parametro parametro_tipo_parametro_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.parametro
@@ -4155,7 +4158,7 @@ ALTER TABLE ONLY public.parametro
 
 
 --
--- Name: parametro parametro_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: parametro parametro_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.parametro
@@ -4163,7 +4166,7 @@ ALTER TABLE ONLY public.parametro
 
 
 --
--- Name: plan_dieta plan_dieta_tipo_dieta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: plan_dieta plan_dieta_tipo_dieta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.plan_dieta
@@ -4171,7 +4174,7 @@ ALTER TABLE ONLY public.plan_dieta
 
 
 --
--- Name: precio precio_id_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: precio precio_id_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.precio
@@ -4179,7 +4182,7 @@ ALTER TABLE ONLY public.precio
 
 
 --
--- Name: preferencia_cliente preferencia_cliente_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: preferencia_cliente preferencia_cliente_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.preferencia_cliente
@@ -4187,7 +4190,7 @@ ALTER TABLE ONLY public.preferencia_cliente
 
 
 --
--- Name: preferencia_cliente preferencia_cliente_id_especialidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: preferencia_cliente preferencia_cliente_id_especialidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.preferencia_cliente
@@ -4195,7 +4198,7 @@ ALTER TABLE ONLY public.preferencia_cliente
 
 
 --
--- Name: promocion promocion_id_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: promocion promocion_id_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.promocion
@@ -4203,7 +4206,7 @@ ALTER TABLE ONLY public.promocion
 
 
 --
--- Name: reclamo reclamo_id_motivo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: reclamo reclamo_id_motivo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.reclamo
@@ -4211,7 +4214,7 @@ ALTER TABLE ONLY public.reclamo
 
 
 --
--- Name: reclamo reclamo_id_orden_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: reclamo reclamo_id_orden_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.reclamo
@@ -4219,7 +4222,7 @@ ALTER TABLE ONLY public.reclamo
 
 
 --
--- Name: reclamo reclamo_id_respuesta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: reclamo reclamo_id_respuesta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.reclamo
@@ -4227,7 +4230,7 @@ ALTER TABLE ONLY public.reclamo
 
 
 --
--- Name: regimen_dieta regimen_dieta_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: regimen_dieta regimen_dieta_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.regimen_dieta
@@ -4235,7 +4238,7 @@ ALTER TABLE ONLY public.regimen_dieta
 
 
 --
--- Name: regimen_dieta regimen_dieta_id_detalle_plan_dieta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: regimen_dieta regimen_dieta_id_detalle_plan_dieta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.regimen_dieta
@@ -4243,7 +4246,7 @@ ALTER TABLE ONLY public.regimen_dieta
 
 
 --
--- Name: regimen_ejercicio regimen_ejercicio_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: regimen_ejercicio regimen_ejercicio_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.regimen_ejercicio
@@ -4251,7 +4254,7 @@ ALTER TABLE ONLY public.regimen_ejercicio
 
 
 --
--- Name: regimen_ejercicio regimen_ejercicio_id_ejercicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: regimen_ejercicio regimen_ejercicio_id_ejercicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.regimen_ejercicio
@@ -4259,7 +4262,7 @@ ALTER TABLE ONLY public.regimen_ejercicio
 
 
 --
--- Name: regimen_ejercicio regimen_ejercicio_id_frecuencia_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: regimen_ejercicio regimen_ejercicio_id_frecuencia_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.regimen_ejercicio
@@ -4267,7 +4270,7 @@ ALTER TABLE ONLY public.regimen_ejercicio
 
 
 --
--- Name: regimen_ejercicio regimen_ejercicio_id_tiempo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: regimen_ejercicio regimen_ejercicio_id_tiempo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.regimen_ejercicio
@@ -4275,7 +4278,7 @@ ALTER TABLE ONLY public.regimen_ejercicio
 
 
 --
--- Name: regimen_suplemento regimen_suplemento_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: regimen_suplemento regimen_suplemento_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.regimen_suplemento
@@ -4283,7 +4286,7 @@ ALTER TABLE ONLY public.regimen_suplemento
 
 
 --
--- Name: regimen_suplemento regimen_suplemento_id_frecuencia_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: regimen_suplemento regimen_suplemento_id_frecuencia_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.regimen_suplemento
@@ -4291,7 +4294,7 @@ ALTER TABLE ONLY public.regimen_suplemento
 
 
 --
--- Name: regimen_suplemento regimen_suplemento_id_suplemento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: regimen_suplemento regimen_suplemento_id_suplemento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.regimen_suplemento
@@ -4299,7 +4302,7 @@ ALTER TABLE ONLY public.regimen_suplemento
 
 
 --
--- Name: respuesta respuesta_id_tipo_respuesta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: respuesta respuesta_id_tipo_respuesta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.respuesta
@@ -4307,7 +4310,7 @@ ALTER TABLE ONLY public.respuesta
 
 
 --
--- Name: rol_funcionalidad rol_funcionalidad_id_funcionalidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: rol_funcionalidad rol_funcionalidad_id_funcionalidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.rol_funcionalidad
@@ -4315,7 +4318,7 @@ ALTER TABLE ONLY public.rol_funcionalidad
 
 
 --
--- Name: rol_funcionalidad rol_funcionalidad_id_rol_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: rol_funcionalidad rol_funcionalidad_id_rol_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.rol_funcionalidad
@@ -4323,7 +4326,7 @@ ALTER TABLE ONLY public.rol_funcionalidad
 
 
 --
--- Name: servicio servicio_id_especialidad_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: servicio servicio_id_especialidad_fk; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.servicio
@@ -4331,7 +4334,7 @@ ALTER TABLE ONLY public.servicio
 
 
 --
--- Name: servicio servicio_id_plan_dieta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: servicio servicio_id_plan_dieta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.servicio
@@ -4339,7 +4342,7 @@ ALTER TABLE ONLY public.servicio
 
 
 --
--- Name: servicio servicio_id_plan_ejercicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: servicio servicio_id_plan_ejercicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.servicio
@@ -4347,7 +4350,7 @@ ALTER TABLE ONLY public.servicio
 
 
 --
--- Name: servicio servicio_id_plan_suplemento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: servicio servicio_id_plan_suplemento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.servicio
@@ -4355,7 +4358,7 @@ ALTER TABLE ONLY public.servicio
 
 
 --
--- Name: solicitud_servicio solicitud_servicio_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: solicitud_servicio solicitud_servicio_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.solicitud_servicio
@@ -4363,7 +4366,7 @@ ALTER TABLE ONLY public.solicitud_servicio
 
 
 --
--- Name: solicitud_servicio solicitud_servicio_id_estado_solicitud_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: solicitud_servicio solicitud_servicio_id_estado_solicitud_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.solicitud_servicio
@@ -4371,7 +4374,7 @@ ALTER TABLE ONLY public.solicitud_servicio
 
 
 --
--- Name: solicitud_servicio solicitud_servicio_id_motivo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: solicitud_servicio solicitud_servicio_id_motivo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.solicitud_servicio
@@ -4379,7 +4382,7 @@ ALTER TABLE ONLY public.solicitud_servicio
 
 
 --
--- Name: solicitud_servicio solicitud_servicio_id_promocion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: solicitud_servicio solicitud_servicio_id_promocion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.solicitud_servicio
@@ -4387,7 +4390,7 @@ ALTER TABLE ONLY public.solicitud_servicio
 
 
 --
--- Name: solicitud_servicio solicitud_servicio_id_respuesta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: solicitud_servicio solicitud_servicio_id_respuesta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.solicitud_servicio
@@ -4395,7 +4398,7 @@ ALTER TABLE ONLY public.solicitud_servicio
 
 
 --
--- Name: solicitud_servicio solicitud_servicio_id_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: solicitud_servicio solicitud_servicio_id_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.solicitud_servicio
@@ -4403,7 +4406,7 @@ ALTER TABLE ONLY public.solicitud_servicio
 
 
 --
--- Name: suplemento suplemento_id_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: suplemento suplemento_id_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.suplemento
@@ -4411,7 +4414,7 @@ ALTER TABLE ONLY public.suplemento
 
 
 --
--- Name: unidad unidad_tipo_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: unidad unidad_tipo_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.unidad
@@ -4419,7 +4422,7 @@ ALTER TABLE ONLY public.unidad
 
 
 --
--- Name: usuario usuario_id_rol_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: usuario usuario_id_rol_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.usuario
@@ -4427,7 +4430,7 @@ ALTER TABLE ONLY public.usuario
 
 
 --
--- Name: valoracion valoracion_id_tipo_valoracion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: valoracion valoracion_id_tipo_valoracion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.valoracion
@@ -4435,7 +4438,7 @@ ALTER TABLE ONLY public.valoracion
 
 
 --
--- Name: visita visita_id_agenda_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: visita visita_id_agenda_fkey; Type: FK CONSTRAINT; Schema: public; Owner: byqkxhkjgnspco
 --
 
 ALTER TABLE ONLY public.visita
@@ -4443,7 +4446,7 @@ ALTER TABLE ONLY public.visita
 
 
 --
--- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: byqkxhkjgnspco
 --
 
 GRANT ALL ON SCHEMA public TO postgres;
@@ -4454,7 +4457,7 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 -- Name: LANGUAGE plpgsql; Type: ACL; Schema: -; Owner: postgres
 --
 
-GRANT ALL ON LANGUAGE plpgsql TO postgres;
+GRANT ALL ON LANGUAGE plpgsql TO byqkxhkjgnspco;
 
 
 --
