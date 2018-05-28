@@ -57,7 +57,7 @@ function getDetalle_visitaById(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 
-	VistaVisita.forge({ id_visita: id, estatus: 1 })
+	VistaVisita.forge({ id_visita: id })
 	.fetch({ withRelated: [
 		'detalles'
 	]})
