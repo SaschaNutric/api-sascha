@@ -2,7 +2,7 @@
 
 const Detalle_visitas 	= require('../collections/detalle_visitas');
 const Detalle_visita  	= require('../models/detalle_visita');
-const Visitas 			= require('../collections/visitas');
+const Visita 			= require('../models/visita');
 
 function getDetalle_visitas(req, res, next) {
 	Detalle_visitas.query(function (qb) {
