@@ -704,6 +704,13 @@ function getMiServicios(req, res, next) {
 			});
 		}
 		
+		var hash = {};
+		servicios = servicios.filter(function(current) {
+  			var exists = !hash[current.servicio.id_servicio] || false;
+  			hash[current.servicio.id_servicio] = true;
+  			return exists;
+		});
+
 		return res.status(200).json({ 
 			error: false, 
 			data: servicios
