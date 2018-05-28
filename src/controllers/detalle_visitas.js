@@ -86,6 +86,7 @@ function getDetalle_visitaById(req, res, next) {
 					_detalles.push({
 						id_parametro: detalle.id_parametro,
 						nombre: detalle.parametro.nombre,
+						tipo_parametro: detalle.parametro.tipo_parametro.nombre,
 						valor: detalle.valor,
 						tipo_valor: detalle.parametro.tipo_valor,
 						unidad: detalle.parametro.unidad ? detalle.parametro.unidad.nombre : null,
