@@ -2,6 +2,7 @@
 
 const Detalle_visitas 	= require('../collections/detalle_visitas');
 const Detalle_visita  	= require('../models/detalle_visita');
+const Visitas 			= require('../collections/visitas');
 
 function getDetalle_visitas(req, res, next) {
 	Detalle_visitas.query(function (qb) {
@@ -56,18 +57,40 @@ function getDetalle_visitaById(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 
-	Detalle_visita.forge({ id_detalle_visita: id })
+	Visita.forge({ id_visita: id, estatus: 1 })
 	.fetch()
-	.then(function(data) {
+	.then(function(visita) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
 				data: { mensaje: 'dato no encontrado' } 
 			});
-		return res.status(200).json({ 
-			error : false, 
-			data : data 
-		});
+		Detalle_visitas.query(function (qb) {
+   			qb.where('detalle_visita.estatus', '=', 1);
+   			qb.where('detalle_visita.id_visita', '=', visita.id_visita);
+		})
+		.fetch({ columns: ['id_detalle_visita','id_visita','id_parametro','valor'] })
+		.then(function(detalle_visita) {
+			if (!data)
+				return res.status(404).json({ 
+					error: true, 
+					data: { mensaje: 'No hay dato registrados' } 
+				});
+
+				return res.status(200).json({
+					error: false,
+				data: {
+					visita: visita,
+					detalle: detalle
+				}
+			});
+		})
+		.catch(function (err) {
+     		return res.status(500).json({
+				error: true,
+				data: { mensaje: err.message }
+			});
+    	});
 	})
 	.catch(function(err){
 		return res.status(500).json({ 

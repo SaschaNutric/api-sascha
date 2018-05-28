@@ -206,7 +206,7 @@ module.exports = (function () {
 
   api.get('/detallevisitas',                 detalleVisitasCtrl.getDetalle_visitas);
   api.post('/detallevisitas',                detalleVisitasCtrl.saveDetalle_visita);
-  api.get('/detallevisita/:id',              detalleVisitasCtrl.getDetalle_visitaById);  
+  api.get('/detalle/visita/:id',             detalleVisitasCtrl.getDetalle_visitaById);  
   api.put('/detallevisita/:id',              detalleVisitasCtrl.updateDetalle_visita);
   api.delete('/detallevisita/:id',           detalleVisitasCtrl.deleteDetalle_visita);     
 
