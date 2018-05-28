@@ -59,38 +59,16 @@ function getDetalle_visitaById(req, res, next) {
 
 	Visita.forge({ id_visita: id, estatus: 1 })
 	.fetch()
-	.then(function(visita) {
-		if(!visita) 
+	.then(function(data) {
+		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
 				data: { mensaje: 'dato no encontrado' } 
 			});
-		Detalle_visitas.query(function (qb) {
-   			qb.where('detalle_visita.estatus', '=', 1);
-   			qb.where('detalle_visita.id_visita', '=', visita.id_visita);
-		})
-		.fetch({ columns: ['id_detalle_visita','id_visita','id_parametro','valor'] })
-		.then(function(detalle_visita) {
-			if (!detalle_visita)
-				return res.status(404).json({ 
-					error: true, 
-					data: { mensaje: 'No hay dato registrados' } 
-				});
-
-				return res.status(200).json({
-					error: false,
-				data: {
-					visita: visita,
-					detalle: detalle_visita
-				}
-			});
-		})
-		.catch(function (err) {
-     		return res.status(500).json({
-				error: true,
-				data: { mensaje: err.message }
-			});
-    	});
+		return res.status(200).json({
+			error: false,
+			data: data
+		});
 	})
 	.catch(function(err){
 		return res.status(500).json({ 
