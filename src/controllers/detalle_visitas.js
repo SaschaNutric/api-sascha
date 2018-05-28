@@ -88,6 +88,7 @@ function getDetalle_visitaById(req, res, next) {
 						nombre: detalle.parametro.nombre,
 						valor: detalle.valor,
 						tipo_valor: detalle.parametro.tipo_valor,
+						tipo_parametro: detalle.parametro.tipo_parametro.nombre,
 						unidad: detalle.parametro.unidad ? detalle.parametro.unidad.nombre : null,
 						unidad_abreviatura: detalle.parametro.unidad ? detalle.parametro.unidad.abreviatura : null
 					});
