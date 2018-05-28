@@ -2,7 +2,7 @@
 
 const Detalle_visitas 	= require('../collections/detalle_visitas');
 const Detalle_visita  	= require('../models/detalle_visita');
-const Visita 			= require('../models/visita');
+const VistaVisita 		= require('../models/visita_visita');
 
 function getDetalle_visitas(req, res, next) {
 	Detalle_visitas.query(function (qb) {
@@ -57,7 +57,7 @@ function getDetalle_visitaById(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 
-	Visita.forge({ id_visita: id, estatus: 1 })
+	VistaVisita.forge({ id_visita: id, estatus: 1 })
 	.fetch({ withRelated: [
 		'detalles'
 	]})
