@@ -10,6 +10,7 @@ function getCriterios(req, res, next) {
 	.fetch({ withRelated: 
 		[
 			'tipo_criterio'
+			'tipo_criterio.tipo_valoracion'
 		] 
 	})
 	.then(function(data) {

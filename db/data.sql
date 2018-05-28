@@ -117,3 +117,10 @@ INSERT INTO public.estado_solicitud(id_estado_solicitud,tipo, nombre)
 (2,2,	'Rechazado por horario del empleado ocupado'),
 (3,2,	'Rechazado por horario no laborable del empleado'),
 (4,2,	'Rechazado por no aceptación del precio');
+
+INSERT INTO public.tiempo (nombre, abreviatura)
+VALUES
+('minutos','min'),  
+('horas','hrs'),    
+('dias','ds'),
+('meses','mes');

@@ -700,7 +700,7 @@ function getMiServicios(req, res, next) {
 			let agenda = agendas[i];
 			servicios.push({
 				"servicio": agenda.servicio,
-				"estado": agenda.orden.estado
+				"estado_orden_servicio": agenda.orden.estado
 			});
 		}
 		
