@@ -65,9 +65,9 @@ function getDetalle_visitaById(req, res, next) {
 				error: true, 
 				data: { mensaje: 'dato no encontrado' } 
 			});
-		return res.status(200).json({
-			error: false,
-			data: data
+		return res.status(200).json({ 
+			error : false, 
+			data : data 
 		});
 	})
 	.catch(function(err){
