@@ -70,6 +70,7 @@ function getDetalle_visitaById(req, res, next) {
 				error: true, 
 				data: { mensaje: 'dato no encontrado' } 
 			});
+		/*
 		let nuevaData = data.toJSON()
 		if (nuevaData.length == 0) {
 			return res.status(404).json({
@@ -77,13 +78,13 @@ function getDetalle_visitaById(req, res, next) {
 				data: { mensaje: 'Aun no tiene visitas registradas'}
 			})
 		}
-		let detalles   = [];
+		let _detalles = [];
 
 		if (nuevaData[0].detalles && nuevaData[0].detalles.length > 0) {
 			nuevaData[0].detalles.map(function (detalle) {
 				if (JSON.stringify(detalle.parametro) != '{}') {
-					detalles.push({
-						id_parametro: parametro.id_parametro,
+					_detalles.push({
+						id_parametro: detalle.id_parametro,
 						nombre: detalle.parametro.nombre,
 						valor: detalle.valor,
 						tipo_valor: detalle.parametro.tipo_valor,
@@ -93,13 +94,15 @@ function getDetalle_visitaById(req, res, next) {
 				}
 			});
 		}
-
+		
+		let _data = {
+				id_visita : nuevaData.id_visita,
+				detalles: _detalles
+			}; 
+*/
 		return res.status(200).json({ 
 			error : false, 
-			data : {
-				id_visita : nuevaData.id_visita,
-				detalles: detalles
-			}
+			data : data
 		});
 	})
 	.catch(function(err){
