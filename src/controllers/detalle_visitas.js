@@ -70,9 +70,36 @@ function getDetalle_visitaById(req, res, next) {
 				error: true, 
 				data: { mensaje: 'dato no encontrado' } 
 			});
+		let nuevaData = data.toJSON()
+		if (nuevaData.length == 0) {
+			return res.status(404).json({
+				error: true,
+				data: { mensaje: 'Aun no tiene visitas registradas'}
+			})
+		}
+		let detalles   = [];
+
+		if (nuevaData[0].detalles && nuevaData[0].detalles.length > 0) {
+			nuevaData[0].detalles.map(function (detalle) {
+				if (JSON.stringify(detalle.parametro) != '{}') {
+					detalles.push({
+						id_parametro: parametro.id_parametro,
+						nombre: detalle.parametro.nombre,
+						valor: detalle.valor,
+						tipo_valor: detalle.parametro.tipo_valor,
+						unidad: detalle.parametro.unidad ? detalle.parametro.unidad.nombre : null,
+						unidad_abreviatura: detalle.parametro.unidad ? detalle.parametro.unidad.abreviatura : null
+					});
+				}
+			});
+		}
+
 		return res.status(200).json({ 
 			error : false, 
-			data : data 
+			data : {
+				id_visita : nuevaData.id_visita,
+				detalles: detalles
+			}
 		});
 	})
 	.catch(function(err){
