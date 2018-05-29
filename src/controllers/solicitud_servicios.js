@@ -12,7 +12,7 @@ const VistaClienteOrdenes   = require('../models/vista_cliente_ordenes');
 
 function getSolicitud_servicios(req, res, next) {
 	Solicitud_servicios.query(function (qb) {
-   		qb.where('solicitud_servicio.estatus', '=', 1);
+   		qb.where('solicitud_servicio.estatus', '!=', 0);
 	})
 	.fetch({withRelated: ['servicio','cliente'] })
 	.then(function(data) {
