@@ -26,7 +26,7 @@ function getParametro_clientes(req, res, next) {
 			parametro_cliente.map(function (perfil) {
 				if (JSON.stringify(perfil.parametro) != '{}') {
 					let parametro_perfil = {
-						id_parametro_cliente : perfil.id_parametro_cliente,
+						id_parametro_cliente: perfil.id_parametro_cliente,
 						id_cliente: perfil.id_cliente,
 						parametro: {
 							id_parametro: perfil.id_parametro,
@@ -87,7 +87,7 @@ function getParametro_clientesByIdCliente(req, res, next) {
 						abreviatura = perfil.parametro.unidad.abreviatura;
 					}
 					let parametro_perfil = {
-						id_parametro_cliente : perfil.id_parametro_cliente,
+						id_parametro_cliente: perfil.id_parametro_cliente,
 						id_cliente: perfil.id_cliente,
 						parametro: {
 							id_parametro: perfil.id_parametro,
@@ -255,37 +255,50 @@ function updateParametro_cliente(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' }
 		});
 	}
-
-	Parametro_cliente.forge({ id_parametro_cliente: id, estatus: 1 })
-		.fetch()
-		.then(function (data) {
-			if (!data)
-				return res.status(404).json({
-					error: true,
-					data: { mensaje: 'Solicitud no encontrada' }
-				});
-			data.save({
-				valor: req.body.valor || data.get('valor')
-			})
-			.tap(function (data) {
-				return res.status(200).json({
-					error: false,
-					data: data
-				});
+	Bookshelf.transaction(function (t) {
+		Parametro_cliente.forge({ id_parametro_cliente: id, estatus: 1 })
+			.fetch()
+			.then(function (data) {
+				if (!data)
+					return res.status(404).json({
+						error: true,
+						data: { mensaje: 'Solicitud no encontrada' }
+					});
+				data.save({
+					valor: req.body.valor || data.get('valor')
+				}, { transacting: t })
+					.tap(function (parametro) {
+						DetalleVisita.forge({
+							id_visita: req.body.id_visita,
+							id_parametro: parametro.get('id_parametro'),
+							valor: parametro.get('valor')
+						})
+							.save(null, { transacting: t })
+							.then(function (detalle) {
+								t.commit()
+								res.status(200).json({
+									error: false,
+									data: parametro
+								})
+							})
+							.catch(function (err) {
+								t.rollback()
+								res.status(500).json({
+									error: true,
+									data: { mensaje: err.message }
+								})
+							})
+					})
 			})
 			.catch(function (err) {
+				t.rollback()
+
 				return res.status(500).json({
 					error: true,
 					data: { mensaje: err.message }
 				});
 			})
-		})
-		.catch(function (err) {
-			return res.status(500).json({
-				error: true,
-				data: { mensaje: err.message }
-			});
-		})
+	})
 }
 
 function deleteParametro_cliente(req, res, next) {
