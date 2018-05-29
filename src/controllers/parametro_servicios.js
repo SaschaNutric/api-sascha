@@ -30,7 +30,10 @@ function getParametro_servicios(req, res, next) {
 }
 
 async function getServiciosFiltrables(req, res, next) {
-	if (!req.body.id_parametros)
+	if (!req.body.id_parametros || 
+		!req.body.id_especialidades || 
+		!req.body.rangoPrecio ||
+		!req.body.duracion)
 		return res.status(400).json({
 			error: true,
 			data: { mensaje: 'Petición inválida. Faltan campos en el body' }
@@ -60,7 +63,12 @@ async function getServiciosFiltrables(req, res, next) {
    			qb.where({ 
 	 			'servicio.estatus': 1
 	 		});
+	 		qb.whereBetween('servicio.numero_visitas', [1, req.body.duracion]);
+	 		qb.whereBetween('servicio.precio', [req.body.rangoPrecio.min, req.body.rangoPrecio.max]);
 	 		qb.where((builder) =>
+  				builder.whereIn('servicio.especialidad.id_especialidad', req.body.id_especialidade)
+  			);
+  			qb.where((builder) =>
   				builder.whereIn('servicio.id_servicio', id_servicios)
   			);
    			qb.orderBy('servicio.fecha_creacion','ASC');
