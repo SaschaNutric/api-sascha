@@ -420,7 +420,7 @@ function singInEmpleado(req, res) {
 		qb.where('tipo_usuario', 2);
 		qb.where('estatus', 1);
 	})
-		.fetch()
+		.fetch({ withRelated: ['rol'] })
 		.then(function (usuario) {
 			if (!usuario)
 				return res.status(404).json({
@@ -430,21 +430,76 @@ function singInEmpleado(req, res) {
 			const esContrasenia = Bcrypt.compareSync(req.body.contraseña, usuario.get('contrasenia'));
 			if (esContrasenia) {
 				Empleado.forge({ id_usuario: usuario.get('id_usuario') })
-					.fetch()
+					.fetch({ withRelated: ['usuario', 'usuario.rol', 'usuario.rol.funcionalidades'] })
 					.then(function (empleado) {
 						if (!empleado)
 							return res.status(404).json({
 								error: true,
 								data: { mensaje: 'Empleado no encontrado' }
 							});
+						let empleado_json = empleado.toJSON()
+						let funcionalidades = empleado_json.usuario? empleado_json.usuario.rol.funcionalidades : []
+						let padres_ids = []
+						let padres = []
+						let abuelos = []
+						let menu = []
+						funcionalidades.map(function (f) {
+							if ( f.id_funcionalidad_padre != null  && padres_ids.indexOf(f.id_funcionalidad_padre) == -1  ) {
+								padres_ids.push(f.id_funcionalidad_padre)
+							}
+							if(f.id_funcionalidad == 1 || f.id_funcionalidad == 34){
+								padres_ids.push(f.id_funcionalidad)
+							}
+						})
+						funcionalidades.map(function (f) {
+							if (padres_ids.indexOf(f.id_funcionalidad) != -1) {
+								if (f.id_funcionalidad_padre == null) {
+									abuelos.push(f)
+								} else {
+									padres.push(f.id_funcionalidad);
+								}
+							}
+						})
+						abuelos.map(function (abuelo) {
+							let opciones = [];
+							funcionalidades.map(function (hijo) {
+								if (hijo.id_funcionalidad_padre == abuelo.id_funcionalidad) {
+									if (padres.indexOf(hijo.id_funcionalidad) != -1) {
+										let bebes = []
+										funcionalidades.map(function (nieto) {
+											if (hijo.id_funcionalidad == nieto.id_funcionalidad_padre) {
+												bebes.push(nieto)
+											}
+										})
+										hijo.hijos = bebes
+									}
+									opciones.push(hijo)
+								}
+							})
+							menu.push({
+								opcion: abuelo,
+								submenu: opciones,
+							})
+						})
+					let nuevoEmpleado = {
+						id_empleado : empleado_json.id_empleado,
+						id_usuario : empleado_json.id_usuario,
+						id_rol : empleado_json.usuario? empleado_json.usuario.rol.id_rol:null,
+						nombres : empleado_json.nombres,
+						apellidos : empleado_json.apellidos,
+						correo : empleado_json.correo,
+						rol : empleado_json.usuario? empleado_json.usuario.rol.nombre: null,
+						menu : menu
+
+					}
 						const data = {
 							mensaje: 'Inicio de sesión exitoso',
 							token: service.createToken(usuario),
-							empleado: empleado
+							empleado: nuevoEmpleado
 						}
 						return res.status(200).json({
 							error: false,
-							data: empleado
+							data: nuevoEmpleado
 						});
 					})
 					.catch(function (err) {
