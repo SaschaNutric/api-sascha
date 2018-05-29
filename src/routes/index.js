@@ -126,7 +126,7 @@ module.exports = (function () {
   api.post('/bloquehorarios',                bloquehorariosCtrl.saveBloque_horario);
   api.get('/bloquehorario/:id',              bloquehorariosCtrl.getBloque_horarioById);  
   api.put('/bloquehorario/:id',              bloquehorariosCtrl.updateBloque_horario);
-  api.delete('/bloquehorario/:id',          bloquehorariosCtrl.deleteBloque_horario);  
+  api.delete('/bloquehorario/:id',           bloquehorariosCtrl.deleteBloque_horario);  
 
   api.get('/calificaciones',                 calificacionesCtrl.getCalificaciones);
   api.post('/calificaciones',                calificacionesCtrl.saveCalificacion);
@@ -332,8 +332,8 @@ module.exports = (function () {
   api.delete('/parametrocliente/:id',        parametroClientesCtrl.deleteParametro_cliente);
 
   api.post('/parametrometas',                parametroMetasCtrl.saveParametroMeta);
-  api.put('/parametrometa/:id',             parametroMetasCtrl.updateParametroMeta);
-  api.delete('/parametrometa/:id',          parametroMetasCtrl.deleteParametroMeta);
+  api.put('/parametrometa/:id',              parametroMetasCtrl.updateParametroMeta);
+  api.delete('/parametrometa/:id',           parametroMetasCtrl.deleteParametroMeta);
 
   api.get('/parametropromociones',               parametroPromocionesCtrl.getParametro_promociones);
   api.get('/parametros/promocion/:id_promocion', parametroPromocionesCtrl.getParametrosByPromocion);  
@@ -342,12 +342,13 @@ module.exports = (function () {
   api.put('/parametropromocion/:id',            parametroPromocionesCtrl.updateParametro_promocion);
   api.delete('/parametropromocion/:id',         parametroPromocionesCtrl.deleteParametro_promocion);
 
-  api.get('/parametroservicios',                 parametroServiciosCtrl.getParametro_servicios);
-  api.get('/parametros/servicio/:id_servicio',   parametroServiciosCtrl.getParametrosByServicio);  
-  api.post('/parametroservicios',                parametroServiciosCtrl.saveParametro_servicio);
-  api.get('/parametroservicio/:id',              parametroServiciosCtrl.getParametro_servicioById);
-  api.put('/parametroservicio/:id',              parametroServiciosCtrl.updateParametro_servicio);
-  api.delete('/parametroservicio/:id',           parametroServiciosCtrl.deleteParametro_servicio);
+  api.get('/parametroservicios',               parametroServiciosCtrl.getParametro_servicios);
+  api.post('/servicios/filtrables',            parametroServiciosCtrl.getServiciosFiltrables);
+  api.get('/parametros/servicio/:id_servicio', parametroServiciosCtrl.getParametrosByServicio);  
+  api.post('/parametroservicios',              parametroServiciosCtrl.saveParametro_servicio);
+  api.get('/parametroservicio/:id',            parametroServiciosCtrl.getParametro_servicioById);
+  api.put('/parametroservicio/:id',            parametroServiciosCtrl.updateParametro_servicio);
+  api.delete('/parametroservicio/:id',         parametroServiciosCtrl.deleteParametro_servicio);
  
   api.get('/plandietas',                     plan_dietasCtrl.getPlanDietas);
   api.post('/plandietas',                    plan_dietasCtrl.savePlanDieta);
