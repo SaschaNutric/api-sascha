@@ -12,7 +12,10 @@ function getNotificacionesByUsuario(req, res, next) {
             data: { mensaje: 'Petición inválida' }
         });
     //Notificaciones.query({ where: { id_usuario: id } })
-    Notificaciones.query({ where: { id_usuario: id } })
+    Notificaciones.query(function(qb) {
+        qb.where('id_usuario', id);
+        qb.orderBy('fecha_creacion', 'DESC');
+    })
         .fetch()
         .then(function (data) {
             if (data.length == 0)
