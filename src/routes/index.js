@@ -34,6 +34,7 @@ const horarioEmpleadosCtrl        = require('../controllers/horario_empleados');
 const incidenciasCtrl             = require('../controllers/incidencias');
 const motivosCtrl                 = require('../controllers/motivos');
 const negociosCtrl                = require('../controllers/negocios');
+const notificacionesCtrl          = require('../controllers/notificaciones');
 const ordenServiciosCtrl          = require('../controllers/orden_servicios');
 const parametrosCtrl              = require('../controllers/parametros');
 const parametroClientesCtrl       = require('../controllers/parametro_clientes');
@@ -99,6 +100,11 @@ module.exports = (function () {
   api.get('/orden_servicios/cliente/:id_cliente', agendasCtrl.getMiOrdenServicios);
   api.get('/proximavisita/cliente/:id_cliente', agendasCtrl.getProximaCitaPorCliente);
   
+
+  api.get('/notificaciones/usuario/:id', notificacionesCtrl.getNotificacionesByUsuario);
+  //api.delete('usuario/:id/notificaciones', notificacionesCtrl.getNotificacionesByUsuario);
+  api.delete('/notificacion/:id',        notificacionesCtrl.deleteNegocio);
+
   api.post('/agendas',                       agendasCtrl.saveAgenda);
   api.get('/agenda/:id',                     agendasCtrl.getAgendaById);  
   api.put('/agenda/:id',                     agendasCtrl.updateAgenda);
