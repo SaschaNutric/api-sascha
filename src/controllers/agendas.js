@@ -491,6 +491,11 @@ function getPlanPorCliente(req, res, next) {
 		
 		let agenda = agendas[0];
 		let comidasPlanDieta = [];
+		if ( !agenda.servicio )
+			return res.status(404).json({
+				error: true,
+				data: { mensaje: 'No tiene un servicio agendado solicita el servicio' }
+			});
 		agenda.servicio.plan_dieta.detalle.map(function (comida) {
 			let index = comidasPlanDieta.map(function (comidaAsignada) {
 				return comidaAsignada.id_comida;
@@ -700,10 +705,17 @@ function getMiServicios(req, res, next) {
 			let agenda = agendas[i];
 			servicios.push({
 				"servicio": agenda.servicio,
-				"estado": agenda.orden.estado
+				"estado_orden_servicio": agenda.orden.estado
 			});
 		}
 		
+		var hash = {};
+		servicios = servicios.filter(function(current) {
+  			var exists = !hash[current.servicio.id_servicio] || false;
+  			hash[current.servicio.id_servicio] = true;
+  			return exists;
+		});
+
 		return res.status(200).json({ 
 			error: false, 
 			data: servicios

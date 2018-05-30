@@ -10,7 +10,7 @@ function getCriterios(req, res, next) {
 	.fetch({ withRelated: 
 		[
 			'tipo_criterio',
-			'tipo_valoracion'
+			'tipo_criterio.tipo_valoracion'
 		] 
 	})
 	.then(function(data) {
@@ -36,7 +36,6 @@ function getCriterios(req, res, next) {
 function saveCriterio(req, res, next){
 	Criterio.forge({ 
 		id_tipo_criterio: 	req.body.id_tipo_criterio ,
-		id_tipo_valoracion: req.body.id_tipo_valoracion ,
 		nombre: 			req.body.nombre ,
 		descripcion: 		req.body.descripcion  
 	})
@@ -67,8 +66,7 @@ function getCriterioById(req, res, next) {
 	Criterio.forge({ id_criterio: id, estatus: 1 })
 	.fetch({
 		withRelated: [
-			'tipo_criterio',
-			'tipo_valoracion'
+			'tipo_criterio'
 		] 
 	})
 	.then(function(data) {
@@ -100,11 +98,7 @@ function updateCriterio(req, res, next) {
 	}
 
 	Criterio.forge({ id_criterio: id, estatus: 1 })
-	.fetch({
-		withRelated: [
-			'tipo_criterio',
-			'tipo_valoracion'
-		] })
+	.fetch()
 	.then(function(data){
 		if(!data) 
 			return res.status(404).json({ 
@@ -113,7 +107,6 @@ function updateCriterio(req, res, next) {
 			});
 		data.save({ 
 			id_tipo_criterio:req.body.id_tipo_criterio || data.get('id_tipo_criterio'),
-			id_tipo_valoracion:req.body.id_tipo_valoracion || data.get('id_tipo_valoracion'),
 			nombre:req.body.nombre || data.get('nombre'),
 			descripcion:req.body.descripcion || data.get('descripcion') 
 		})

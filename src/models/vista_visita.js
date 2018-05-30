@@ -17,6 +17,10 @@ let VistaVisita = Bookshelf.Model.extend({
     metas: function () {
         return this.hasMany(ParametroMeta, 'id_orden_servicio', 'id_orden_servicio')
             .query({ where: { 'parametro_meta.estatus': 1 } });
+    },
+    detalles: function () {
+        return this.hasMany(DetalleVisita, 'id_visita', 'id_visita')
+            .query({ where: { 'detalle_visita.estatus': 1 } });
     }
 });
 

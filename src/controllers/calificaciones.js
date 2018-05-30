@@ -7,7 +7,7 @@ function getCalificaciones(req, res, next) {
 	Calificaciones.query(function (qb) {
    		qb.where('calificacion.estatus', '=', 1);
 	})
-	.fetch({ columns: ['id_calificacion','id_criterio','id_valoracion','id_visita','id_orden_servicio'] })
+	.fetch({ columns: ['id_calificacion','id_criterio','id_visita','id_orden_servicio'] })
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -31,7 +31,11 @@ function getCalificaciones(req, res, next) {
 function saveCalificacion(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	Calificacion.forge({ id_criterio:req.body.id_criterio ,id_valoracion:req.body.id_valoracion ,id_visita:req.body.id_visita ,id_orden_servicio:req.body.id_orden_servicio  })
+	Calificacion.forge({ 
+		id_criterio:req.body.id_criterio ,
+		id_visita:req.body.id_visita ,
+		id_orden_servicio:req.body.id_orden_servicio  
+	})
 	.save()
 	.then(function(data){
 		res.status(200).json({
@@ -94,7 +98,11 @@ function updateCalificacion(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ id_criterio:req.body.id_criterio || data.get('id_criterio'),id_valoracion:req.body.id_valoracion || data.get('id_valoracion'),id_visita:req.body.id_visita || data.get('id_visita'),id_orden_servicio:req.body.id_orden_servicio || data.get('id_orden_servicio') })
+		data.save({
+		 id_criterio:req.body.id_criterio || data.get('id_criterio'),
+		 id_visita:req.body.id_visita || data.get('id_visita'),
+		 id_orden_servicio:req.body.id_orden_servicio || data.get('id_orden_servicio') 
+		})
 		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 

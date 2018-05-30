@@ -7,7 +7,11 @@ function getTipoCriterios(req, res, next) {
 	TipoCriterios.query(function (qb) {
    		qb.where('tipo_criterio.estatus', '=', 1);
 	})
-	.fetch()
+	.fetch({ withRelated: 
+		[
+			'tipo_valoracion'
+		] 
+	})
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -29,10 +33,10 @@ function getTipoCriterios(req, res, next) {
 }
 
 function saveTipoCriterio(req, res, next){
-	console.log(JSON.stringify(req.body));
 
 	TipoCriterio.forge({
-        nombre: req.body.nombre
+        nombre: req.body.nombre,
+        id_tipo_valoracion: req.body.id_tipo_valoracion 
 	})
 	.save()
 	.then(function(data){
@@ -59,7 +63,11 @@ function getTipoCriterioById(req, res, next) {
 		});
 
 	TipoCriterio.forge({ id_tipo_criterio: id, estatus: 1 })
-	.fetch()
+	.fetch({ withRelated: 
+		[
+			'tipo_valoracion'
+		] 
+	})
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
@@ -97,7 +105,8 @@ function updateTipoCriterio(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({
-			nombre: req.body.nombre || data.get('nombre')
+			nombre: req.body.nombre || data.get('nombre'),
+			id_tipo_valoracion:req.body.id_tipo_valoracion || data.get('id_tipo_valoracion')
 		})
 		.then(function() {
 			return res.status(200).json({ 

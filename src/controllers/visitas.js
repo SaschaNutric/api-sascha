@@ -1,27 +1,32 @@
 'use strict';
 
-const Visitas 	= require('../collections/visitas');
-const Visita  	= require('../models/visita');
-const VistaVisita    = require('../models/vista_visita');
-const Bookshelf = require('../commons/bookshelf');
-const Bluebird  = require('bluebird');
-const Empleado  = require('../models/empleado');
-const Agenda    = require('../models/agenda');
-const VistaAgenda    = require('../models/agenda');
-const OrdenServicio  = require('../models/orden_servicio');
-const Cita      = require('../models/cita');
-const ParametrosCliente  = require('../collections/parametro_clientes');
-const DetallesVisita     = require('../collections/detalle_visitas');
-const RegimenSuplementos = require('../collections/regimen_suplementos');
-const RegimenEjercicios  = require('../collections/regimen_ejercicios');
-const RegimenDietas      = require('../collections/regimen_dietas');
-const DetalleRegimenAlimentos = require('../collections/detalle_regimen_alimentos');
+const Visitas 					= require('../collections/visitas');
+const Visita  					= require('../models/visita');
+const VistaVisita    			= require('../models/vista_visita');
+const Bookshelf 				= require('../commons/bookshelf');
+const Bluebird  				= require('bluebird');
+const Empleado  				= require('../models/empleado');
+const Agenda    				= require('../models/agenda');
+const VistaAgenda    			= require('../models/agenda');
+const OrdenServicio  			= require('../models/orden_servicio');
+const Cita      				= require('../models/cita');
+const ParametrosCliente  		= require('../collections/parametro_clientes');
+const DetallesVisita     		= require('../collections/detalle_visitas');
+const RegimenSuplementos 		= require('../collections/regimen_suplementos');
+const RegimenEjercicios  		= require('../collections/regimen_ejercicios');
+const RegimenDietas      		= require('../collections/regimen_dietas');
+const DetalleRegimenAlimentos 	= require('../collections/detalle_regimen_alimentos');
 
 function getVisitasByClienteAndOrden(req, res, next) {
+	if (!req.body.id_cliente || !req.body.id_orden_servicio )
+		return res.status(400).json({
+			error: true,
+			data: { mensaje: 'Debes solicitar un servicio' }
+		});
 	VistaVisita.query(function (qb) {
 		qb.where('id_cliente', '=', req.body.id_cliente);
 		qb.where('id_orden_servicio', '=', req.body.id_orden_servicio);
-		qb.orderBy('numero');
+		qb.orderByRaw('numero DESC');
 	})
 	.fetchAll({ withRelated: [
 		'parametros',
