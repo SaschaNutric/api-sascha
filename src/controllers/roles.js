@@ -47,17 +47,20 @@ function saveRol(req, res, next) {
 				let rol_funcionalidad = RolFuncionalidades.forge(funcionalidades);
 				rol_funcionalidad.invokeThen('save', null, { transacting: t })
 					.then(function () {
-						let data = {
-							id_rol: rol_json.id_rol,
-							nombre: rol_json.nombre,
-							descripcion: rol_json.descripcion,
-							funcionalidades: rol_funcionalidad
-						}
 						t.commit();
-						return res.status(200).json({
-							error: false,
-							data: data
-						});
+						Rol.forge({ id_rol: rol_json.id_rol, estatus: 1 })
+							.fetch({ withRelated: ['funcionalidades'] })
+							.then(function (rolNuevo) {
+								return res.status(200).json({
+									error: false,
+									data: rolNuevo
+								});
+							}).catch(function (err) {
+								return res.status(404).json({
+									error: true,
+									data: { mensaje: err.message }
+								})
+							})
 					})
 					.catch(function (err) {
 						t.rollback()
@@ -144,17 +147,20 @@ function updateRol(req, res, next) {
 								let rol_funcionalidad = RolFuncionalidades.forge(funcionalidades);
 								rol_funcionalidad.invokeThen('save', null, { transacting: t })
 									.then(function () {
-										let data = {
-											id_rol: rol_json.id_rol,
-											nombre: rol_json.nombre,
-											descripcion: rol_json.descripcion,
-											funcionalidades: rol_funcionalidad
-										}
 										t.commit();
-										return res.status(200).json({
-											error: false,
-											data: data
-										});
+										Rol.forge({ id_rol: rol_json.id_rol, estatus: 1 })
+											.fetch({ withRelated: ['funcionalidades'] })
+											.then(function (rolNuevo) {
+												return res.status(200).json({
+													error: false,
+													data: rolNuevo
+												});
+											}).catch(function (err) {
+												return res.status(404).json({
+													error: true,
+													data: { mensaje: err.message }
+												})
+											})
 									})
 									.catch(function (err) {
 										t.rollback()
