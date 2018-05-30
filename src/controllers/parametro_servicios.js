@@ -65,9 +65,6 @@ async function getServiciosFiltrables(req, res, next) {
 	 		});
 	 		qb.whereBetween('servicio.numero_visitas', [1, req.body.duracion]);
 	 		qb.whereBetween('servicio.precio', [req.body.rangoPrecio.min, req.body.rangoPrecio.max]);
-	 		qb.where((builder) =>
-  				builder.whereIn('servicio.id_especialidad', req.body.id_especialidades)
-  			);
   			qb.where((builder) =>
   				builder.whereIn('servicio.id_servicio', id_servicios)
   			);
