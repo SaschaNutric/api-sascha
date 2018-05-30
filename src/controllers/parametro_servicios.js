@@ -42,8 +42,6 @@ async function getServiciosFiltrables(req, res, next) {
 	let id_especialidades = req.body.id_especialidades;
 	let max = req.body.rangoPrecio.desde;
 	let min = req.body.rangoPrecio.hasta;
-	console.log(max);
-	console.log(min);
 	let duracion = req.body.duracion;
 	Parametro_servicios.query(function (qb) {
 		qb.distinct('id_servicio');
