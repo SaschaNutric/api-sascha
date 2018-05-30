@@ -38,13 +38,20 @@ async function getServiciosFiltrables(req, res, next) {
 			error: true,
 			data: { mensaje: 'Petición inválida. Faltan campos en el body' }
 		})
+	let parametros = req.body.id_parametros;
+	let id_especialidades = req.body.id_especialidades;
+	let max = req.body.rangoPrecio.desde;
+	let min = req.body.rangoPrecio.hasta;
+	console.log(max);
+	console.log(min);
+	let duracion = req.body.duracion;
 	Parametro_servicios.query(function (qb) {
 		qb.distinct('id_servicio');
    		qb.where({ 
 	 		'parametro_servicio.estatus': 1
 	 	});
 	 	qb.where((builder) =>
-  			builder.whereIn('parametro_servicio.id_parametro', req.body.id_parametros)
+  			builder.whereIn('parametro_servicio.id_parametro', parametros)
   		);
 	})
 	.fetch({ columns: ['id_servicio'] })
@@ -63,8 +70,11 @@ async function getServiciosFiltrables(req, res, next) {
    			qb.where({ 
 	 			'servicio.estatus': 1
 	 		});
-	 		qb.whereBetween('servicio.numero_visitas', [1, req.body.duracion]);
-	 		qb.whereBetween('servicio.precio', [req.body.rangoPrecio.min, req.body.rangoPrecio.max]);
+	 		qb.orWhere((builder) =>
+  				builder.whereIn('servicio.id_especialidad', req.body.id_especialidades)
+  			);
+  			qb.whereBetween('servicio.numero_visitas', [1, duracion]);
+  			qb.whereBetween('servicio.precio', [min, max]);
   			qb.where((builder) =>
   				builder.whereIn('servicio.id_servicio', id_servicios)
   			);
