@@ -481,21 +481,16 @@ function getPlanPorCliente(req, res, next) {
 		]
 	})
 	.then(function(data) {
-		if (!data)
+		let agendas = data.toJSON();
+		if (agendas.length == 0)
 			return res.status(404).json({
 				error: true,
-				data: { mensaje: 'Agenda no encontrada' }
+				data: { mensaje: 'No tienes plan asignado. Solicita un servicio' }
 			});
-		let agendas = data.toJSON();
 		let visitas_realizadas = [];
 		
 		let agenda = agendas[0];
 		let comidasPlanDieta = [];
-		if ( !agenda.servicio )
-			return res.status(404).json({
-				error: true,
-				data: { mensaje: 'No tiene un servicio agendado solicita el servicio' }
-			});
 		agenda.servicio.plan_dieta.detalle.map(function (comida) {
 			let index = comidasPlanDieta.map(function (comidaAsignada) {
 				return comidaAsignada.id_comida;
