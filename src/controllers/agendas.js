@@ -327,62 +327,53 @@ function getAgendaById(req, res, next) {
 				}
 			}
 		})
-
 		let ejercicios = [];
-		agenda.servicio.plan_ejercicio.ejercicios.map(function(ejercicio) {
-			let ejercicioIndex = agenda.regimen_ejercicio.map(function(regimen) {
-				return regimen.id_ejercicio
-			})
-			.indexOf(ejercicio.id_ejercicio);
-			
-			if(ejercicioIndex == -1) {
-				ejercicios.push({
-					id_ejercicio: ejercicio.id_ejercicio,
-					//id_tiempo: regimen.id_tiempo,
-					//duracion: regimen.duracion,
-					nombre: ejercicio.nombre
+		if (agenda.servicio.plan_ejercicio) {
+			agenda.servicio.plan_ejercicio.ejercicios.map(function (ejercicio) {
+				let ejercicioIndex = agenda.regimen_ejercicio.map(function (regimen) {
+					return regimen.id_ejercicio
 				})
-			}
-			else {
-				ejercicios.push({
-					id_ejercicio: ejercicio.id_ejercicio,
-					id_regimen_ejercicio: agenda.regimen_ejercicio[ejercicioIndex].id_regimen_ejercicio,
-					id_tiempo: agenda.regimen_ejercicio[ejercicioIndex].id_tiempo,
-					id_frecuencia: agenda.regimen_ejercicio[ejercicioIndex].id_frecuencia,					
-					duracion: agenda.regimen_ejercicio[ejercicioIndex].duracion,
-					nombre: ejercicio.nombre
-				});
-			}
-		});
+					.indexOf(ejercicio.id_ejercicio);
+
+				if (ejercicioIndex != -1) {
+					ejercicios.push({
+						id_ejercicio: ejercicio.id_ejercicio,
+						nombre: ejercicio.nombre,
+						descripcion: ejercicio.descripcion,
+						duracion: agenda.regimen_ejercicio[ejercicioIndex].duracion,
+						id_tiempo: agenda.regimen_ejercicio[ejercicioIndex].id_tiempo,
+						tiempo: agenda.regimen_ejercicio[ejercicioIndex].tiempo.nombre,
+						tiempo_abreviatura: agenda.regimen_ejercicio[ejercicioIndex].tiempo.abreviatura,
+						id_frecuencia: agenda.regimen_ejercicio[ejercicioIndex].id_frecuencia,
+						frecuencia: agenda.regimen_ejercicio[ejercicioIndex].frecuencia.frecuencia
+					});
+				}
+			});
+		}
+
 		let suplementos = [];
-		agenda.servicio.plan_suplemento.suplementos.map(function (suplemento) {
-			let suplementoIndex = agenda.regimen_suplemento.map(function (regimen) {
-				return regimen.id_suplemento
-			})
-			.indexOf(suplemento.id_suplemento);
-			
-			if(suplementoIndex == -1) {
-				suplementos.push({
-					id_suplemento: suplemento.id_suplemento,
-					nombre: suplemento.nombre,
-					//frecuencia: regimen.id_frecuencia,
-					//cantidad: regimen.cantidad,
-					unidad: suplemento.unidad.nombre,
-					unidad_abreviatura: suplemento.unidad.abreviatura
+		if (agenda.servicio.plan_suplemento) {
+			agenda.servicio.plan_suplemento.suplementos.map(function (suplemento) {
+				let suplementoIndex = agenda.regimen_suplemento.map(function (regimen) {
+					return regimen.id_suplemento
 				})
-			}
-			else {
-				suplementos.push({
-					id_suplemento: suplemento.id_suplemento,
-					nombre: suplemento.nombre,
-					id_regimen_suplemento: agenda.regimen_suplemento[suplementoIndex].id_regimen_suplemento, 
-					frecuencia: agenda.regimen_suplemento[suplementoIndex].id_frecuencia,
-					cantidad: agenda.regimen_suplemento[suplementoIndex].cantidad,
-					unidad: suplemento.unidad.nombre,
-					unidad_abreviatura: suplemento.unidad.abreviatura
-				})
-			}
-		});
+					.indexOf(suplemento.id_suplemento);
+
+				if (suplementoIndex != -1) {
+					suplementos.push({
+						id_suplemento: suplemento.id_suplemento,
+						nombre: suplemento.nombre,
+						id_frecuencia: agenda.regimen_suplemento[suplementoIndex].id_frecuencia,
+						frecuencia: agenda.regimen_suplemento[suplementoIndex].id_frecuencia,
+						cantidad: agenda.regimen_suplemento[suplementoIndex].cantidad,
+						unidad: suplemento.unidad.nombre,
+						unidad_abreviatura: suplemento.unidad.abreviatura
+					})
+				}
+
+			});
+		}
+		
 		let nuevaAgenda = {
 			id_agenda:    agenda.id_agenda,
 			id_visita:    agenda.id_visita,
@@ -577,46 +568,51 @@ function getPlanPorCliente(req, res, next) {
 		})
 
 		let ejercicios = [];
-		agenda.servicio.plan_ejercicio.ejercicios.map(function(ejercicio) {
-			let ejercicioIndex = agenda.regimen_ejercicio.map(function(regimen) {
-				return regimen.id_ejercicio
-			})
-			.indexOf(ejercicio.id_ejercicio);
-			
-			if(ejercicioIndex != -1) {
-				ejercicios.push({
-					id_ejercicio: ejercicio.id_ejercicio,
-					nombre: ejercicio.nombre,
-					descripcion: ejercicio.descripcion,
-					duracion: agenda.regimen_ejercicio[ejercicioIndex].duracion,
-					id_tiempo: agenda.regimen_ejercicio[ejercicioIndex].id_tiempo,
-					tiempo: agenda.regimen_ejercicio[ejercicioIndex].tiempo.nombre,
-					tiempo_abreviatura: agenda.regimen_ejercicio[ejercicioIndex].tiempo.abreviatura,
-					id_frecuencia: agenda.regimen_ejercicio[ejercicioIndex].id_frecuencia,
-					frecuencia: agenda.regimen_ejercicio[ejercicioIndex].frecuencia.frecuencia				
-				});
-			}
-		});
-		let suplementos = [];
-		agenda.servicio.plan_suplemento.suplementos.map(function (suplemento) {
-			let suplementoIndex = agenda.regimen_suplemento.map(function (regimen) {
-				return regimen.id_suplemento
-			})
-			.indexOf(suplemento.id_suplemento);
-			
-			if(suplementoIndex != -1) {
-				suplementos.push({
-					id_suplemento: suplemento.id_suplemento,
-					nombre: suplemento.nombre,
-					id_frecuencia: agenda.regimen_suplemento[suplementoIndex].id_frecuencia,
-					frecuencia: agenda.regimen_suplemento[suplementoIndex].id_frecuencia,
-					cantidad: agenda.regimen_suplemento[suplementoIndex].cantidad,
-					unidad: suplemento.unidad.nombre,
-					unidad_abreviatura: suplemento.unidad.abreviatura
+		if(agenda.servicio.plan_ejercicio) {
+			agenda.servicio.plan_ejercicio.ejercicios.map(function(ejercicio) {
+				let ejercicioIndex = agenda.regimen_ejercicio.map(function(regimen) {
+					return regimen.id_ejercicio
 				})
-			}
-			
-		});
+				.indexOf(ejercicio.id_ejercicio);
+				
+				if(ejercicioIndex != -1) {
+					ejercicios.push({
+						id_ejercicio: ejercicio.id_ejercicio,
+						nombre: ejercicio.nombre,
+						descripcion: ejercicio.descripcion,
+						duracion: agenda.regimen_ejercicio[ejercicioIndex].duracion,
+						id_tiempo: agenda.regimen_ejercicio[ejercicioIndex].id_tiempo,
+						tiempo: agenda.regimen_ejercicio[ejercicioIndex].tiempo.nombre,
+						tiempo_abreviatura: agenda.regimen_ejercicio[ejercicioIndex].tiempo.abreviatura,
+						id_frecuencia: agenda.regimen_ejercicio[ejercicioIndex].id_frecuencia,
+						frecuencia: agenda.regimen_ejercicio[ejercicioIndex].frecuencia.frecuencia				
+					});
+				}
+			});
+		}
+
+		let suplementos = [];
+		if (agenda.servicio.plan_suplemento) {
+			agenda.servicio.plan_suplemento.suplementos.map(function (suplemento) {
+				let suplementoIndex = agenda.regimen_suplemento.map(function (regimen) {
+					return regimen.id_suplemento
+				})
+				.indexOf(suplemento.id_suplemento);
+				
+				if(suplementoIndex != -1) {
+					suplementos.push({
+						id_suplemento: suplemento.id_suplemento,
+						nombre: suplemento.nombre,
+						id_frecuencia: agenda.regimen_suplemento[suplementoIndex].id_frecuencia,
+						frecuencia: agenda.regimen_suplemento[suplementoIndex].id_frecuencia,
+						cantidad: agenda.regimen_suplemento[suplementoIndex].cantidad,
+						unidad: suplemento.unidad.nombre,
+						unidad_abreviatura: suplemento.unidad.abreviatura
+					})
+				}
+				
+			});
+		}
 		let nuevaAgenda = {
 			id_agenda:    agenda.id_agenda,
 			id_visita:    agenda.id_visita,
