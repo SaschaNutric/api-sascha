@@ -491,6 +491,11 @@ function getPlanPorCliente(req, res, next) {
 		
 		let agenda = agendas[0];
 		let comidasPlanDieta = [];
+		if ( !agenda.servicio )
+			return res.status(404).json({
+				error: true,
+				data: { mensaje: 'No tiene un servicio agendado solicita el servicio' }
+			});
 		agenda.servicio.plan_dieta.detalle.map(function (comida) {
 			let index = comidasPlanDieta.map(function (comidaAsignada) {
 				return comidaAsignada.id_comida;
