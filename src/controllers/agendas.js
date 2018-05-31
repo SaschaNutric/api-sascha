@@ -164,7 +164,8 @@ function getAgendaDashboard(req, res, next) {
 	VistaAgendas.query(function (qb) {
 		qb.where('id_empleado', '=', id_empleado);
 		qb.where('fecha', '>=', req.body.fecha_inicio)
-		  .andWhere('fecha', '<=', req.body.fecha_fin);
+		  .andWhere('fecha', '<=', req.body.fecha_fin)
+		  qb.orderBy('hora_inicio');
 	})
 	.fetch()
 	.then(function (data) {
