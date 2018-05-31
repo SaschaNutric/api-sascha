@@ -130,12 +130,6 @@ function updateParametro(req, res, next) {
 		 	tipo_valor:req.body.tipo_valor 					|| data.get('tipo_valor'),
 		 	nombre:req.body.nombre 							|| data.get('nombre') 
 		})
-		.fetch({
-		withRelated: [
-			'tipo_parametro',
-			'unidad',
-			'unidad.tipo_unidad'
-		]})
 		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
