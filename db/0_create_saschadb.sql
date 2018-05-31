@@ -35,7 +35,7 @@ SET search_path = public, pg_catalog;
 CREATE FUNCTION fun_asignar_rango_edad() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
-DECLARE BEGIN
+    DECLARE BEGIN
     UPDATE cliente SET id_rango_edad=(
         SELECT id_rango_edad FROM rango_edad r 
         WHERE date_part('years', age(NEW.fecha_nacimiento)) >= r.minimo 
@@ -49,6 +49,23 @@ $$;
 
 
 ALTER FUNCTION public.fun_asignar_rango_edad() OWNER TO postgres;
+
+
+CREATE FUNCTION fun_notificar_comentario() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE BEGIN
+    INSERT INTO notificacion (id_usuario, id_promocion, tipo_notificacion, titulo, mensaje)
+    SELECT v.id_usuario, NULL, 8, 'Nuevo comentario',
+           (SELECT nombre_cliente FROM vista_comentario_cliente WHERE id_comentario = NEW.id_comentario) || ' ha realizado un comentario en el canal de escucha' 
+    FROM vista_usuarios_canal_escucha v;
+    RETURN NULL;
+END
+$$;
+
+
+ALTER FUNCTION public.fun_notificar_comentario() OWNER TO postgres;
+
 
 --
 -- Name: fun_eliminar_cliente(); Type: FUNCTION; Schema: public; Owner: postgres
@@ -67,6 +84,7 @@ CREATE FUNCTION fun_promocion_cliente(id integer) RETURNS INT
     END $$;
 
 ALTER FUNCTION public.fun_promocion_cliente() OWNER TO postgres;
+
 
 --
 -- Name: id_agenda_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -2653,6 +2671,16 @@ CREATE VIEW vista_reporte_solicitud AS
     WHERE a.estatus = 1;
 ALTER TABLE vista_reporte_solicitud OWNER TO byqkxhkjgnspco;
 
+CREATE VIEW vista_usuarios_canal_escucha AS
+SELECT c.id_usuario, a.id_rol, a.nombre 
+FROM rol a, rol_funcionalidad rf, funcionalidad b, usuario c
+WHERE rf.id_rol = a.id_rol 
+AND rf.id_funcionalidad = b.id_funcionalidad
+AND c.id_rol = a.id_rol
+AND b.id_funcionalidad = 58 
+AND a.estatus = 1;
+
+ALTER TABLE vista_usuarios_canal_escucha OWNER TO byqkxhkjgnspco;
 
 --
 -- Data for Name: alimento; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -3643,6 +3671,8 @@ CREATE INDEX fki_servicio_id_precio_fkey ON servicio USING btree (id_precio);
 CREATE TRIGGER dis_asignar_rango_edad AFTER INSERT ON cliente FOR EACH ROW EXECUTE PROCEDURE fun_asignar_rango_edad();
 
 CREATE TRIGGER dis_notificar_promocion AFTER INSERT ON promocion FOR EACH ROW EXECUTE PROCEDURE fun_notificar_promocion();
+
+CREATE TRIGGER dis_notificar_comentario AFTER INSERT ON comentario FOR EACH ROW EXECUTE PROCEDURE fun_notificar_comentario();
 
 --
 -- Name: dis_usuario_eliminada; Type: TRIGGER; Schema: public; Owner: postgres
