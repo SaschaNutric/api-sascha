@@ -54,27 +54,19 @@ ALTER FUNCTION public.fun_asignar_rango_edad() OWNER TO postgres;
 -- Name: fun_eliminar_cliente(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
-CREATE FUNCTION fun_eliminar_cliente() RETURNS trigger
+CREATE FUNCTION fun_promocion_cliente(id integer) RETURNS INT
     LANGUAGE plpgsql
     AS $$
-DECLARE BEGIN
-	UPDATE cliente SET estatus = 0 WHERE cliente.id_usuario = OLD.id_usuario;
-	RETURN NULL;
-END
-$$;
+    DECLARE BEGIN
+    	INSERT INTO notificacion (id_usuario, id_promocion, tipo_notificacion, titulo, mensaje)
+        SELECT id_usuario, id_promocion, 2, 'Promoción',
+        v.nombre_cliente || ' tenemos la promoción ' || v.nombre_promocion || ' adaptada para ti, con un descuento del ' || v.descuento || '%'
+        FROM vista_promocion_cliente v
+        WHERE v.id_promocion = id;
+      RETURN 1;
+    END $$;
 
-
-ALTER FUNCTION public.fun_eliminar_cliente() OWNER TO postgres;
-
-
-CREATE FUNCTION fun_notificar_promocion() RETURNS trigger
-    LANGUAGE plpgsql
-    AS $$
-DECLARE BEGIN
-
-    RETURN NULL;
-END
-$$;
+ALTER FUNCTION public.fun_promocion_cliente() OWNER TO postgres;
 
 --
 -- Name: id_agenda_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -2611,6 +2603,26 @@ CREATE VIEW vista_frecuencia AS
     WHERE a.estatus = 1;
     
 ALTER TABLE vista_frecuencia OWNER TO byqkxhkjgnspco;
+
+
+CREATE VIEW vista_promocion_cliente AS
+SELECT a.id_cliente,
+		a.id_usuario,
+        a.nombres || ' ' || a.apellidos AS nombre_cliente,
+        b.id_promocion,
+        b.nombre AS nombre_promocion,
+        b.descuento
+        FROM cliente a, promocion b, usuario c
+        WHERE
+        (a.id_rango_edad = b.id_rango_edad OR b.id_rango_edad is null)
+        AND (a.id_genero = b.id_genero OR b.id_genero is null)
+        AND (a.id_estado_civil = b.id_estado_civil OR b.id_estado_civil is null)
+        AND c.id_usuario = a.id_usuario
+        AND
+        ARRAY(SELECT id_parametro FROM parametro_promocion pp WHERE pp.id_promocion = b.id_promocion)
+        <@ ARRAY(SELECT id_parametro FROM parametro_cliente pc WHERE pc.id_cliente = a.id_cliente)
+        AND b.estatus = 1 AND a.estatus = 1 AND c.estatus = 1;
+ALTER TABLE vista_promocion_cliente OWNER TO byqkxhkjgnspco;
 
 
 CREATE VIEW vista_reporte_solicitud AS

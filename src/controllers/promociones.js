@@ -1,5 +1,5 @@
 'use strict';
-
+const Bookshelf = require('../commons/bookshelf');
 const Promociones = require('../collections/promociones');
 const Promocion = require('../models/promocion');
 const cloudinary = require('../../cloudinary');
@@ -124,6 +124,28 @@ function savePromocion(req, res, next) {
 				});
 			});
 	}
+}
+
+function sendPromocion(req, res, next) {
+	const id = Number.parseInt(req.params.id);
+	if (id == 'NaN')
+		return res.status(400).json({
+			error: true,
+			data: { mensaje: 'Solicitud incorrecta' }
+		});
+	Bookshelf.knex.raw(`SELECT fun_promocion_cliente(${id})`)
+	.then(function(data) {
+		res.status(200).json({
+			error: false,
+			data: { mensaje: 'Promoción difundida satisfactoriamente' }
+		})		
+	})
+	.catch(function(err) {
+		res.status(500).json({
+			error: true,
+			data: { mensaje: err.message }
+		})
+	})
 }
 
 function getPromocionById(req, res, next) {
@@ -311,6 +333,7 @@ function deletePromocion(req, res, next) {
 module.exports = {
 	getPromociones,
 	savePromocion,
+	sendPromocion,
 	getPromocionById,
 	updatePromocion,
 	deletePromocion
