@@ -1,51 +1,4 @@
 --
--- Data for Name: tipo_unidad; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
---
-
-COPY public.tipo_unidad (id_tipo_unidad, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	Longitud	2018-05-03 22:06:22.883	2018-05-03 22:06:22.883	0
-2	Vegetariana	2018-05-03 23:54:58.037	2018-05-03 23:54:58.037	0
-3	Hiper Calórica	2018-05-04 00:00:39.546	2018-05-04 00:00:39.546	0
-4		2018-05-03 22:08:04.122	2018-05-03 22:08:04.122	0
-5		2018-05-03 22:08:06.972	2018-05-03 22:08:06.972	0
-6		2018-05-03 22:51:57.372	2018-05-03 22:51:57.372	0
-7	Longitud	2018-05-04 01:42:14.943	2018-05-04 01:42:14.943	0
-8	Longitud	2018-05-04 01:55:54.712	2018-05-04 01:55:54.712	0
-9	Prueba para eliminar	2018-05-04 11:49:27.413	2018-05-04 11:49:27.413	0
-10	Prueba	2018-05-05 18:35:14.549	2018-05-05 18:35:14.549	0
-11	Prueba	2018-05-05 19:02:53.293	2018-05-05 19:02:53.293	0
-12	Tamaño	2018-05-04 03:37:03.083	2018-05-04 03:37:03.083	1
-13	Prueba	2018-05-05 19:03:28.346	2018-05-05 19:03:28.346	0
-14	Hola	2018-05-08 19:24:58.117	2018-05-08 19:24:58.117	0
-15	parametro	2018-05-04 14:58:41.433	2018-05-04 14:58:41.433	0
-16	Parámetro	2018-05-11 00:15:18.494	2018-05-11 00:15:18.494	1
-17	menta	2018-05-07 17:32:17.579	2018-05-07 17:32:17.579	0
-18	dfjdk	2018-05-05 23:30:37.684	2018-05-05 23:30:37.684	0
-19	Prueba1232	2018-05-05 22:26:30.267	2018-05-05 22:26:30.267	0
-2	Moneda	2018-05-03 21:21:21.405	2018-05-03 21:21:21.405	0
-15	Volumen	2018-05-04 14:57:09.318	2018-05-04 14:57:09.318	0
-30	algo1	2018-05-15 14:21:09.69	2018-05-15 14:21:09.69	0
-3	Tiempo	2018-05-03 21:21:21.405	2018-05-03 21:21:21.405	1
-22	Proteina	2018-05-06 01:48:16.581	2018-05-06 01:48:16.581	0
-23	Proteina	2018-05-06 01:49:23.169	2018-05-06 01:49:23.169	0
-28	Vitaminas	2018-05-09 15:59:29.099	2018-05-09 15:59:29.099	0
-31	Parametro	2018-05-23 18:04:38.785051	2018-05-23 18:04:38.785051	1
-13	Unidad	2018-05-04 04:42:00.053	2018-05-04 04:42:00.053	0
-1	Masa	2018-05-03 21:21:21.405	2018-05-03 21:21:21.405	1
-25	HOLA	2018-05-06 02:29:17.655	2018-05-06 02:29:17.655	0
-24	prueba	2018-05-06 02:26:37.767	2018-05-06 02:26:37.767	0
-32	Volumen	2018-05-24 02:01:34.473348	2018-05-24 02:01:34.473348	1
-33	Unidad	2018-05-24 02:02:31.524911	2018-05-24 02:02:31.524911	1
-35	AAAA	2018-05-24 21:58:26.16	2018-05-24 21:58:26.16	0
-34	asasa	2018-05-24 21:44:29.513	2018-05-24 21:44:29.513	0
-36	Examen	2018-05-25 03:34:31.212931	2018-05-25 03:34:31.212931	1
-\.
-
-
-
-
-
---
 -- Data for Name: agenda; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
@@ -464,10 +417,19 @@ COPY public.contenido (id_contenido, titulo, texto, url_imagen, fecha_creacion, 
 -- Data for Name: criterio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
 
-COPY public.criterio (id_criterio, id_tipo_criterio, nombre, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-10	1	Efectividad del plan	Valora la opinión del cliente con respecto a como se sintió con el plan	2018-05-13 00:33:19.082	2018-05-13 00:33:19.082	1
-16	2	Atención del nutricionista	Valora el trato del nutricionista hacia el cliente	2018-05-14 23:36:37.539	2018-05-14 23:36:37.539	1
-18	1	Costo	Valora el costo total del servicio.	2018-05-25 05:43:52.061449	2018-05-25 05:43:52.061449	1
+COPY public.criterio (id_criterio, id_tipo_criterio, id_tipo_valoracion, nombre, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+6	1	3	Prueba	probando	2018-05-13 00:02:35.712	2018-05-13 00:02:35.712	0
+9	1	3	Prueba	esto es una prueba	2018-05-13 00:12:41.312	2018-05-13 00:12:41.312	0
+12	1	3	Prueba2	esto es una prueba	2018-05-13 03:26:16.723	2018-05-13 03:26:16.723	0
+13	2	5	prueba5	otra vez	2018-05-13 03:42:17.348	2018-05-13 03:42:17.348	0
+11	2	5	prueba455	por decima quinta vez	2018-05-13 03:24:06.969	2018-05-13 03:24:06.969	0
+15	1	5	prueba7	otra vez aqui 	2018-05-14 23:26:24.751	2018-05-14 23:26:24.751	0
+14	3	6	Prueba5	seguimos probando aun	2018-05-14 23:17:52.634	2018-05-14 23:17:52.634	0
+10	1	3	Efectividad del plan	Valora la opinión del cliente con respecto a como se sintió con el plan	2018-05-13 00:33:19.082	2018-05-13 00:33:19.082	1
+16	2	3	Atención del nutricionista	Valora el trato del nutricionista hacia el cliente	2018-05-14 23:36:37.539	2018-05-14 23:36:37.539	1
+17	1	3	Costo	Valora el costo total del servicio.	2018-05-25 05:43:12.532	2018-05-25 05:43:12.532	0
+18	1	3	Costo	Valora el costo total del servicio.	2018-05-25 05:43:52.061449	2018-05-25 05:43:52.061449	1
+19	2	3	Costo	Valora el costo total de la visita	2018-05-25 05:47:56.727	2018-05-25 05:47:56.727	0
 \.
 
 
@@ -1333,6 +1295,20 @@ COPY public.plan_suplemento (id_plan_suplemento, nombre, descripcion, fecha_crea
 13	Multivitaminico5	Fantastico plan de vitaminas para tener energia dia	2018-05-12 21:00:03.966	2018-05-12 21:00:03.966	1
 \.
 
+
+--
+-- Data for Name: precio; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.precio (id_precio, id_unidad, nombre, fecha_creacion, fecha_actualizacion, estatus, valor) FROM stdin;
+3	3	Dos millones quinientos	2018-05-04 05:15:44.727631	2018-05-04 05:15:44.727631	1	2500000
+4	3	Tres millones dociebtos mil	2018-05-04 06:30:32.817583	2018-05-04 06:30:32.817583	1	3200000
+5	3	dos millones trecientos cincuenta mil	2018-05-04 06:37:25.949597	2018-05-04 06:37:25.949597	1	2350000
+6	3	Tres millones cuatrociento cincuenta mil	2018-05-04 06:42:06.921857	2018-05-04 06:42:06.921857	1	3450000
+7	3	dos millones ochociento mil	2018-05-04 06:45:45.174477	2018-05-04 06:45:45.174477	1	2800000
+\.
+
+
 --
 -- Data for Name: preferencia_cliente; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
 --
@@ -1843,6 +1819,48 @@ COPY public.tipo_respuesta (id_tipo_respuesta, nombre, fecha_creacion, fecha_act
 \.
 
 
+--
+-- Data for Name: tipo_unidad; Type: TABLE DATA; Schema: public; Owner: byqkxhkjgnspco
+--
+
+COPY public.tipo_unidad (id_tipo_unidad, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+4	Longitud	2018-05-03 22:06:22.883	2018-05-03 22:06:22.883	0
+8	Vegetariana	2018-05-03 23:54:58.037	2018-05-03 23:54:58.037	0
+9	Hiper Calórica	2018-05-04 00:00:39.546	2018-05-04 00:00:39.546	0
+5		2018-05-03 22:08:04.122	2018-05-03 22:08:04.122	0
+6		2018-05-03 22:08:06.972	2018-05-03 22:08:06.972	0
+7		2018-05-03 22:51:57.372	2018-05-03 22:51:57.372	0
+10	Longitud	2018-05-04 01:42:14.943	2018-05-04 01:42:14.943	0
+11	Longitud	2018-05-04 01:55:54.712	2018-05-04 01:55:54.712	0
+14	Prueba para eliminar	2018-05-04 11:49:27.413	2018-05-04 11:49:27.413	0
+17	Prueba	2018-05-05 18:35:14.549	2018-05-05 18:35:14.549	0
+18	Prueba	2018-05-05 19:02:53.293	2018-05-05 19:02:53.293	0
+12	Tamaño	2018-05-04 03:37:03.083	2018-05-04 03:37:03.083	1
+19	Prueba	2018-05-05 19:03:28.346	2018-05-05 19:03:28.346	0
+27	Hola	2018-05-08 19:24:58.117	2018-05-08 19:24:58.117	0
+16	parametro	2018-05-04 14:58:41.433	2018-05-04 14:58:41.433	0
+29	Parámetro	2018-05-11 00:15:18.494	2018-05-11 00:15:18.494	1
+26	menta	2018-05-07 17:32:17.579	2018-05-07 17:32:17.579	0
+21	dfjdk	2018-05-05 23:30:37.684	2018-05-05 23:30:37.684	0
+20	Prueba1232	2018-05-05 22:26:30.267	2018-05-05 22:26:30.267	0
+2	Moneda	2018-05-03 21:21:21.405	2018-05-03 21:21:21.405	0
+15	Volumen	2018-05-04 14:57:09.318	2018-05-04 14:57:09.318	0
+30	algo1	2018-05-15 14:21:09.69	2018-05-15 14:21:09.69	0
+3	Tiempo	2018-05-03 21:21:21.405	2018-05-03 21:21:21.405	1
+22	Proteina	2018-05-06 01:48:16.581	2018-05-06 01:48:16.581	0
+23	Proteina	2018-05-06 01:49:23.169	2018-05-06 01:49:23.169	0
+28	Vitaminas	2018-05-09 15:59:29.099	2018-05-09 15:59:29.099	0
+31	Parametro	2018-05-23 18:04:38.785051	2018-05-23 18:04:38.785051	1
+13	Unidad	2018-05-04 04:42:00.053	2018-05-04 04:42:00.053	0
+1	Masa	2018-05-03 21:21:21.405	2018-05-03 21:21:21.405	1
+25	HOLA	2018-05-06 02:29:17.655	2018-05-06 02:29:17.655	0
+24	prueba	2018-05-06 02:26:37.767	2018-05-06 02:26:37.767	0
+32	Volumen	2018-05-24 02:01:34.473348	2018-05-24 02:01:34.473348	1
+33	Unidad	2018-05-24 02:02:31.524911	2018-05-24 02:02:31.524911	1
+35	AAAA	2018-05-24 21:58:26.16	2018-05-24 21:58:26.16	0
+34	asasa	2018-05-24 21:44:29.513	2018-05-24 21:44:29.513	0
+36	Examen	2018-05-25 03:34:31.212931	2018-05-25 03:34:31.212931	1
+\.
 
 
 --

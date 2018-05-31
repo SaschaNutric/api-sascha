@@ -95,7 +95,6 @@ async function getServicios(req, res, next) {
     });
 }
 
-
 async function getServiciosPorEspecialidad(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') 

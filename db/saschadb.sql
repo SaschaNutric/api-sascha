@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.11
+-- Dumped from database version 9.5.12
 -- Dumped by pg_dump version 9.5.11
 
 SET statement_timeout = 0;
@@ -59,8 +59,8 @@ CREATE FUNCTION fun_eliminar_cliente() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
 DECLARE BEGIN
-	UPDATE cliente SET estatus = 0 WHERE cliente.id_usuario = OLD.id_usuario;
-	RETURN NULL;
+UPDATE cliente SET estatus = 0 WHERE cliente.id_usuario = OLD.id_usuario;
+RETURN NULL;
 END
 $$;
 
@@ -162,6 +162,36 @@ CREATE TABLE app_movil (
 
 
 ALTER TABLE app_movil OWNER TO postgres;
+
+--
+-- Name: id_ayuda_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE id_ayuda_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE id_ayuda_seq OWNER TO postgres;
+
+--
+-- Name: ayuda; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE ayuda (
+    id_ayuda integer DEFAULT nextval('id_ayuda_seq'::regclass) NOT NULL,
+    pregunta character varying(100) DEFAULT ''::character varying NOT NULL,
+    respuesta character varying(250) DEFAULT ''::character varying NOT NULL,
+    fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
+    fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
+    estatus integer DEFAULT 1 NOT NULL
+);
+
+
+ALTER TABLE ayuda OWNER TO postgres;
 
 --
 -- Name: id_bloque_horario_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -279,7 +309,6 @@ CREATE TABLE cliente (
     id_cliente integer DEFAULT nextval('id_cliente_seq'::regclass) NOT NULL,
     id_usuario integer NOT NULL,
     id_genero integer NOT NULL,
-    id_estado integer NOT NULL,
     id_estado_civil integer NOT NULL,
     id_rango_edad integer,
     cedula character varying(10) DEFAULT ''::character varying NOT NULL,
@@ -328,11 +357,11 @@ CREATE TABLE comentario (
     id_cliente integer NOT NULL,
     id_respuesta integer,
     contenido character varying(500) DEFAULT ''::character varying NOT NULL,
-    respuesta character varying(500),
-    id_tipo_comentario integer NOT NULL,
+    mensaje character varying(500),
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
     fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
-    estatus integer DEFAULT 1 NOT NULL
+    estatus integer DEFAULT 1 NOT NULL,
+    id_motivo integer NOT NULL
 );
 
 
@@ -448,7 +477,6 @@ ALTER TABLE id_criterio_seq OWNER TO postgres;
 CREATE TABLE criterio (
     id_criterio integer DEFAULT nextval('id_criterio_seq'::regclass) NOT NULL,
     id_tipo_criterio integer NOT NULL,
-    id_tipo_valoracion integer NOT NULL,
     nombre character varying(50) DEFAULT ''::character varying NOT NULL,
     descripcion character varying(150) DEFAULT ''::character varying NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
@@ -700,7 +728,8 @@ CREATE TABLE empleado (
     direccion character varying(100) DEFAULT ''::character varying NOT NULL,
     estatus integer DEFAULT 1 NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
-    fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL
+    fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
+    id_especialidad integer
 );
 
 
@@ -736,95 +765,6 @@ CREATE TABLE especialidad (
 ALTER TABLE especialidad OWNER TO postgres;
 
 --
--- Name: id_especialidad_empleado_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE id_especialidad_empleado_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE id_especialidad_empleado_seq OWNER TO postgres;
-
---
--- Name: especialidad_empleado; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE especialidad_empleado (
-    id_empleado integer NOT NULL,
-    id_especialidad integer NOT NULL,
-    fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
-    fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
-    estatus integer DEFAULT 1 NOT NULL,
-    id_especialidad_empleado integer DEFAULT nextval('id_especialidad_empleado_seq'::regclass) NOT NULL
-);
-
-
-ALTER TABLE especialidad_empleado OWNER TO postgres;
-
---
--- Name: id_especialidad_servicio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE id_especialidad_servicio_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE id_especialidad_servicio_seq OWNER TO postgres;
-
---
--- Name: especialidad_servicio; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE especialidad_servicio (
-    id_servicio integer NOT NULL,
-    id_especialidad integer NOT NULL,
-    fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
-    fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
-    estatus integer DEFAULT 1 NOT NULL,
-    id_especialidad_servicio integer DEFAULT nextval('id_especialidad_servicio_seq'::regclass) NOT NULL
-);
-
-
-ALTER TABLE especialidad_servicio OWNER TO postgres;
-
---
--- Name: id_estado_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE id_estado_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE id_estado_seq OWNER TO postgres;
-
---
--- Name: estado; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE estado (
-    id_estado integer DEFAULT nextval('id_estado_seq'::regclass) NOT NULL,
-    nombre character varying(50) DEFAULT ''::character varying NOT NULL,
-    fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
-    fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
-    estatus integer DEFAULT 1 NOT NULL
-);
-
-
-ALTER TABLE estado OWNER TO postgres;
-
---
 -- Name: id_estado_civil_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -844,11 +784,25 @@ ALTER TABLE id_estado_civil_seq OWNER TO postgres;
 
 CREATE TABLE estado_civil (
     id_estado_civil integer DEFAULT nextval('id_estado_civil_seq'::regclass) NOT NULL,
-    nombre character varying(20) DEFAULT ''::character varying NOT NULL
+    nombre character varying(20) DEFAULT ''::character varying NOT NULL,
+    estatus integer DEFAULT 1 NOT NULL
 );
 
 
 ALTER TABLE estado_civil OWNER TO postgres;
+
+--
+-- Name: estado_solicitud; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE estado_solicitud (
+    id_estado_solicitud integer NOT NULL,
+    tipo integer NOT NULL,
+    nombre character varying(200) DEFAULT ''::character varying NOT NULL
+);
+
+
+ALTER TABLE estado_solicitud OWNER TO postgres;
 
 --
 -- Name: id_frecuencia_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -962,7 +916,8 @@ ALTER TABLE id_genero_seq OWNER TO postgres;
 
 CREATE TABLE genero (
     id_genero integer DEFAULT nextval('id_genero_seq'::regclass) NOT NULL,
-    nombre character varying(20) DEFAULT ''::character varying NOT NULL
+    nombre character varying(20) DEFAULT ''::character varying NOT NULL,
+    estatus integer DEFAULT 1 NOT NULL
 );
 
 
@@ -1028,6 +983,48 @@ CREATE TABLE horario_empleado (
 
 
 ALTER TABLE horario_empleado OWNER TO postgres;
+
+--
+-- Name: id_especialidad_empleado_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE id_especialidad_empleado_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE id_especialidad_empleado_seq OWNER TO postgres;
+
+--
+-- Name: id_especialidad_servicio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE id_especialidad_servicio_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE id_especialidad_servicio_seq OWNER TO postgres;
+
+--
+-- Name: id_estado_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE id_estado_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE id_estado_seq OWNER TO postgres;
 
 --
 -- Name: id_incidencia_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1196,20 +1193,6 @@ CREATE SEQUENCE id_plan_suplemento_seq
 
 
 ALTER TABLE id_plan_suplemento_seq OWNER TO postgres;
-
---
--- Name: id_precio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE id_precio_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE id_precio_seq OWNER TO postgres;
 
 --
 -- Name: id_preferencia_cliente_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1448,20 +1431,6 @@ CREATE SEQUENCE id_tipo_cita_seq
 
 
 ALTER TABLE id_tipo_cita_seq OWNER TO postgres;
-
---
--- Name: id_tipo_comentario_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE id_tipo_comentario_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE id_tipo_comentario_seq OWNER TO postgres;
 
 --
 -- Name: id_tipo_criterio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1717,7 +1686,8 @@ CREATE TABLE orden_servicio (
     id_reclamo integer,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
     fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
-    estatus integer DEFAULT 1 NOT NULL
+    estatus integer DEFAULT 1 NOT NULL,
+    estado integer DEFAULT 1
 );
 
 
@@ -1808,8 +1778,8 @@ ALTER TABLE parametro_promocion OWNER TO postgres;
 CREATE TABLE parametro_servicio (
     id_servicio integer NOT NULL,
     id_parametro integer NOT NULL,
-    valor_minimo integer NOT NULL,
-    valor_maximo integer NOT NULL,
+    valor_minimo integer,
+    valor_maximo integer,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
     fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
     estatus integer DEFAULT 1 NOT NULL,
@@ -1827,7 +1797,7 @@ CREATE TABLE plan_dieta (
     id_plan_dieta integer DEFAULT nextval('id_plan_dieta_seq'::regclass) NOT NULL,
     id_tipo_dieta integer NOT NULL,
     nombre character varying(50) DEFAULT ''::character varying NOT NULL,
-    descripcion character varying(50) DEFAULT ''::character varying NOT NULL,
+    descripcion character varying(250) DEFAULT ''::character varying NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
     fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
     estatus integer DEFAULT 1 NOT NULL
@@ -1843,7 +1813,7 @@ ALTER TABLE plan_dieta OWNER TO postgres;
 CREATE TABLE plan_ejercicio (
     id_plan_ejercicio integer DEFAULT nextval('id_plan_ejercicio_seq'::regclass) NOT NULL,
     nombre character varying(50) DEFAULT ''::character varying NOT NULL,
-    descripcion character varying(100) DEFAULT ''::character varying NOT NULL,
+    descripcion character varying(250) DEFAULT ''::character varying NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
     fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
     estatus integer DEFAULT 1 NOT NULL
@@ -1859,7 +1829,7 @@ ALTER TABLE plan_ejercicio OWNER TO postgres;
 CREATE TABLE plan_suplemento (
     id_plan_suplemento integer DEFAULT nextval('id_plan_suplemento_seq'::regclass) NOT NULL,
     nombre character varying(50) DEFAULT ''::character varying NOT NULL,
-    descripcion character varying(100) DEFAULT ''::character varying NOT NULL,
+    descripcion character varying(250) DEFAULT ''::character varying NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
     fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
     estatus integer DEFAULT 1 NOT NULL
@@ -1867,23 +1837,6 @@ CREATE TABLE plan_suplemento (
 
 
 ALTER TABLE plan_suplemento OWNER TO postgres;
-
---
--- Name: precio; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE precio (
-    id_precio integer DEFAULT nextval('id_precio_seq'::regclass) NOT NULL,
-    id_unidad integer NOT NULL,
-    nombre character varying(50) DEFAULT ''::character varying NOT NULL,
-    fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
-    fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
-    estatus integer DEFAULT 1 NOT NULL,
-    valor double precision NOT NULL
-);
-
-
-ALTER TABLE precio OWNER TO postgres;
 
 --
 -- Name: preferencia_cliente; Type: TABLE; Schema: public; Owner: postgres
@@ -1915,10 +1868,11 @@ CREATE TABLE promocion (
     id_genero integer,
     id_estado_civil integer,
     id_rango_edad integer,
-    id_estado integer,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
     fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
-    estatus integer DEFAULT 1 NOT NULL
+    estatus integer DEFAULT 1 NOT NULL,
+    descuento integer,
+    url_imagen character varying(200)
 );
 
 
@@ -1931,6 +1885,20 @@ ALTER TABLE promocion OWNER TO postgres;
 COMMENT ON COLUMN promocion.id_estado_civil IS '
 ';
 
+
+--
+-- Name: prueba; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE prueba
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE prueba OWNER TO postgres;
 
 --
 -- Name: rango_edad; Type: TABLE; Schema: public; Owner: postgres
@@ -1978,7 +1946,8 @@ CREATE TABLE red_social (
     url_logo character varying(200) DEFAULT ''::character varying NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
     fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
-    estatus integer DEFAULT 1 NOT NULL
+    estatus integer DEFAULT 1 NOT NULL,
+    usuario character varying(100) DEFAULT ''::character varying NOT NULL
 );
 
 
@@ -2007,14 +1976,14 @@ ALTER TABLE regimen_dieta OWNER TO postgres;
 
 CREATE TABLE regimen_ejercicio (
     id_regimen_ejercicio integer DEFAULT nextval('id_regimen_ejercicio_seq'::regclass) NOT NULL,
-    id_plan_ejercicio integer NOT NULL,
     id_cliente integer NOT NULL,
     id_frecuencia integer NOT NULL,
     id_tiempo integer NOT NULL,
     duracion integer NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
     fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
-    estatus integer DEFAULT 1 NOT NULL
+    estatus integer DEFAULT 1 NOT NULL,
+    id_ejercicio integer
 );
 
 
@@ -2026,13 +1995,13 @@ ALTER TABLE regimen_ejercicio OWNER TO postgres;
 
 CREATE TABLE regimen_suplemento (
     id_regimen_suplemento integer DEFAULT nextval('id_regimen_suplemento_seq'::regclass) NOT NULL,
-    id_plan_suplemento integer NOT NULL,
     id_cliente integer NOT NULL,
     id_frecuencia integer NOT NULL,
     cantidad integer NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
     fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
-    estatus integer DEFAULT 1 NOT NULL
+    estatus integer DEFAULT 1 NOT NULL,
+    id_suplemento integer NOT NULL
 );
 
 
@@ -2048,7 +2017,8 @@ CREATE TABLE respuesta (
     descripcion character varying(150) DEFAULT ''::character varying NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
     fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
-    estatus integer DEFAULT 1 NOT NULL
+    estatus integer DEFAULT 1 NOT NULL,
+    aprobado boolean
 );
 
 
@@ -2093,16 +2063,17 @@ ALTER TABLE rol_funcionalidad OWNER TO postgres;
 CREATE TABLE servicio (
     id_servicio integer DEFAULT nextval('id_servicio_seq'::regclass) NOT NULL,
     id_plan_dieta integer NOT NULL,
-    id_plan_ejercicio integer NOT NULL,
-    id_plan_suplemento integer NOT NULL,
+    id_plan_ejercicio integer,
+    id_plan_suplemento integer,
     nombre character varying(100) DEFAULT ''::character varying NOT NULL,
     descripcion character varying(500) DEFAULT ''::character varying NOT NULL,
     url_imagen character varying(200) DEFAULT ''::character varying NOT NULL,
-    id_precio integer NOT NULL,
     numero_visitas integer NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
     fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
-    estatus integer DEFAULT 1 NOT NULL
+    estatus integer DEFAULT 1 NOT NULL,
+    id_especialidad integer,
+    precio numeric(15,2) DEFAULT 1000000 NOT NULL
 );
 
 
@@ -2140,7 +2111,8 @@ CREATE TABLE solicitud_servicio (
     id_promocion integer,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
     fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
-    estatus integer DEFAULT 1 NOT NULL
+    estatus integer DEFAULT 1 NOT NULL,
+    id_estado_solicitud integer DEFAULT 1 NOT NULL
 );
 
 
@@ -2194,21 +2166,6 @@ CREATE TABLE tipo_cita (
 ALTER TABLE tipo_cita OWNER TO postgres;
 
 --
--- Name: tipo_comentario; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE tipo_comentario (
-    id_tipo_comentario integer DEFAULT nextval('id_tipo_comentario_seq'::regclass) NOT NULL,
-    nombre character varying(50) NOT NULL,
-    estatus integer DEFAULT 1 NOT NULL,
-    fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
-    fecha_creacion timestamp without time zone DEFAULT now() NOT NULL
-);
-
-
-ALTER TABLE tipo_comentario OWNER TO postgres;
-
---
 -- Name: tipo_criterio; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2217,7 +2174,8 @@ CREATE TABLE tipo_criterio (
     nombre character varying(50) NOT NULL,
     estatus integer DEFAULT 1 NOT NULL,
     fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
-    fecha_creacion timestamp without time zone DEFAULT now() NOT NULL
+    fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
+    id_tipo_valoracion integer NOT NULL
 );
 
 
@@ -2260,14 +2218,30 @@ ALTER TABLE tipo_incidencia OWNER TO postgres;
 CREATE TABLE tipo_motivo (
     id_tipo_motivo integer DEFAULT nextval('id_tipo_motivo_seq'::regclass) NOT NULL,
     nombre character(50) DEFAULT ''::bpchar NOT NULL,
-    canal_escucha boolean DEFAULT true NOT NULL,
+    fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
+    fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
+    estatus integer DEFAULT 1 NOT NULL,
+    canal_escucha boolean DEFAULT true
+);
+
+
+ALTER TABLE tipo_motivo OWNER TO postgres;
+
+--
+-- Name: tipo_notificacion; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE tipo_notificacion (
+    id_tipo_notificacion integer NOT NULL,
+    nombre character varying(50) DEFAULT ''::character varying NOT NULL,
+    mensaje character varying(200) DEFAULT ''::character varying NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
     fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
     estatus integer DEFAULT 1 NOT NULL
 );
 
 
-ALTER TABLE tipo_motivo OWNER TO postgres;
+ALTER TABLE tipo_notificacion OWNER TO postgres;
 
 --
 -- Name: tipo_orden; Type: TABLE; Schema: public; Owner: postgres
@@ -2293,7 +2267,8 @@ CREATE TABLE tipo_parametro (
     nombre character varying(50) DEFAULT ''::character varying NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
     fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
-    estatus integer DEFAULT 1 NOT NULL
+    estatus integer DEFAULT 1 NOT NULL,
+    filtrable boolean DEFAULT false
 );
 
 
@@ -2368,7 +2343,7 @@ ALTER TABLE unidad OWNER TO postgres;
 
 CREATE TABLE usuario (
     id_usuario integer DEFAULT nextval('id_usuario_seq'::regclass) NOT NULL,
-    nombre_usuario character varying(100) DEFAULT ''::character varying NOT NULL,
+    nombre_usuario character varying(100) DEFAULT ''::character varying,
     correo character varying(100) DEFAULT ''::character varying NOT NULL,
     contrasenia character varying DEFAULT ''::character varying NOT NULL,
     salt character varying DEFAULT ''::character varying NOT NULL,
@@ -2376,7 +2351,8 @@ CREATE TABLE usuario (
     fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
     ultimo_acceso timestamp without time zone,
     estatus integer DEFAULT 1 NOT NULL,
-    id_rol integer
+    id_rol integer,
+    tipo_usuario integer DEFAULT 1 NOT NULL
 );
 
 
@@ -2411,12 +2387,12 @@ ALTER TABLE valoracion OWNER TO postgres;
 
 CREATE TABLE visita (
     id_visita integer DEFAULT nextval('id_visita_seq'::regclass) NOT NULL,
-    id_agenda integer NOT NULL,
     numero integer NOT NULL,
     fecha_atencion date NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
     fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
-    estatus integer DEFAULT 1 NOT NULL
+    estatus integer DEFAULT 1 NOT NULL,
+    id_agenda integer NOT NULL
 );
 
 
@@ -2448,6 +2424,7 @@ CREATE VIEW vista_agenda AS
     c.id_plan_dieta,
     c.id_plan_ejercicio,
     c.id_plan_suplemento,
+    d.id_cita,
     d.id_tipo_cita,
     e.nombre AS tipo_cita,
     d.fecha,
@@ -2463,8 +2440,8 @@ CREATE VIEW vista_agenda AS
      JOIN tipo_cita e ON ((d.id_tipo_cita = e.id_tipo_cita)))
      JOIN bloque_horario f ON ((d.id_bloque_horario = f.id_bloque_horario)))
      JOIN empleado i ON ((i.id_empleado = a.id_empleado)))
-     JOIN visita j ON ((j.id_agenda = a.id_agenda)))
-  WHERE ((a.estatus = 1) AND (b.estatus = 1) AND (c.estatus = 1) AND (d.estatus = 1) AND (g.estatus = 1) AND (g.estatus = 1) AND (i.estatus = 1) AND (j.estatus = 1));
+     LEFT JOIN visita j ON ((j.id_agenda = a.id_agenda)))
+  WHERE ((a.estatus = 1) AND (b.estatus = 1) AND (c.estatus = 1) AND (d.estatus = 1) AND (d.id_tipo_cita <> 3) AND (g.estatus = 1) AND (g.estado = 1) AND (i.estatus = 1));
 
 
 ALTER TABLE vista_agenda OWNER TO postgres;
@@ -2508,7 +2485,7 @@ CREATE VIEW vista_cliente_ordenes AS
     ARRAY( SELECT b.id_orden_servicio
            FROM (orden_servicio b
              JOIN solicitud_servicio c ON ((b.id_solicitud_servicio = c.id_solicitud_servicio)))
-          WHERE ((c.id_cliente = a.id_cliente) AND (b.estatus = 1))) AS ordenes
+          WHERE ((c.id_cliente = a.id_cliente) AND (b.estado = 1))) AS ordenes
    FROM cliente a
   WHERE (a.estatus = 1);
 
@@ -2550,6 +2527,34 @@ CREATE VIEW vista_frecuencia AS
 ALTER TABLE vista_frecuencia OWNER TO postgres;
 
 --
+-- Name: vista_visita; Type: VIEW; Schema: public; Owner: postgres
+--
+
+CREATE VIEW vista_visita AS
+ SELECT a.id_visita,
+    a.numero,
+    a.fecha_atencion,
+    b.id_agenda,
+    e.id_empleado,
+    (((e.nombres)::text || ' '::text) || (e.apellidos)::text) AS nombre_empleado,
+    h.id_servicio,
+    h.nombre AS nombre_servicio,
+    h.numero_visitas,
+    c.id_cliente,
+    d.id_orden_servicio
+   FROM ((((((visita a
+     JOIN agenda b ON ((b.id_agenda = a.id_agenda)))
+     JOIN cliente c ON ((c.id_cliente = b.id_cliente)))
+     JOIN orden_servicio d ON ((d.id_orden_servicio = b.id_orden_servicio)))
+     JOIN empleado e ON ((e.id_empleado = b.id_empleado)))
+     JOIN solicitud_servicio g ON ((g.id_solicitud_servicio = d.id_solicitud_servicio)))
+     JOIN servicio h ON ((h.id_servicio = g.id_servicio)))
+  WHERE ((a.estatus = 1) AND (b.estatus = 1) AND (c.estatus = 1));
+
+
+ALTER TABLE vista_visita OWNER TO postgres;
+
+--
 -- Data for Name: agenda; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2562,111 +2567,6 @@ COPY agenda (id_agenda, id_empleado, id_cliente, id_orden_servicio, id_cita, fec
 --
 
 COPY alimento (id_alimento, id_grupo_alimenticio, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	1	arroz blanco	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-2	1	arroz integral	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-3	1	trigo sarraceno	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-4	1	trigo integral (trigo partido)	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-5	1	harina de avena	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-6	1	palomitas de maíz	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-7	1	cebada de grano entero	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-8	1	harina de maíz integral	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-9	1	centeno integral	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-10	1	pan integral	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-11	1	galletas de trigo integral	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-12	1	pasta de trigo integral	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-13	1	copos de cereales integrales de trigo	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-14	1	tortillas de trigo integral	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-15	1	arroz salvaje	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-16	1	pan de maíz	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-17	1	tortillas de maíz	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-18	1	cuscús	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-19	1	galletas	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-20	2	col china	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-21	2	brócoli	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-22	2	berza	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-23	2	col rizada	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-24	2	espinaca	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-25	2	calabaza bellota	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-26	2	calabaza moscada	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-27	2	zanahorias	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-28	2	calabaza	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-29	2	pimientos rojos	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-30	2	batatas	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-31	2	tomates	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-32	2	jugo de tomate	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-33	2	maíz	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-34	2	guisantes	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-35	2	patatas	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-36	2	alcachofas	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-37	2	espárragos	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-38	2	aguacate	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-39	2	brotes de soja	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-40	2	remolacha	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-41	2	coles de bruselas	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-43	2	coliflor	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-44	2	apio	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-42	2	repollo	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-45	2	pepinos	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-46	2	berenjenas	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-47	2	pimientos verdes y rojos	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-48	2	pimientosjícama	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-49	2	hongos	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-50	2	quimbombó	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-51	2	cebollas	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-52	2	arveja china	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-53	2	judías verdes	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-54	2	tomates	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-55	2	jugos de verduras	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-56	2	calabacín	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-57	3	cortes magros de carne de res	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-58	3	ternera	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-59	3	cerdo	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-60	3	jamón y cordero	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-61	3	embutidos reducidos en grasa	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-62	3	embutidospollo sin piel y pavo	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-63	3	carne picada de pollo y pavo	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-65	3	trucha	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-66	3	almejas	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-64	3	salmón	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-67	3	arenque	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-68	3	cangrejo	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-69	3	langosta	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-70	3	mejillones	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-71	3	pulpo	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-72	3	ostras	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-73	3	vieiras	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-74	3	calamares	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-75	3	atún enlatado	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-76	3	huevos de pollo	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-77	3	huevos de pato	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-78	4	Leche baja en grasa	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-79	4	yogur	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-80	4	queso (como el cheddar, mozzarella, suizo, parmesano, tiras de queso, requesón)	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-81	4	pudín	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-82	4	helado	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-83	4	leche de soja	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-84	5	Manzanas	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-85	5	compota de manzanas	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-86	5	albaricoques	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-87	5	bananas	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-88	5	bayas (fresas, arándanos, frambuesas)	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-89	5	jugos de frutas (sin azúcar)	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-90	5	toronja	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-91	5	uvas	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-92	5	kiwis	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-93	5	mangos	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-94	5	melones (cantalupo, melón tuna, sandía)	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-95	5	nectarinas	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-96	5	naranjas	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-97	5	papayas	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-98	5	duraznos	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-99	5	peras	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-100	5	ciruelas	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-101	5	piña	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-102	5	pasas	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-103	5	ciruelas	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-104	5	carambolas	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-105	5	mandarinas	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
 \.
 
 
@@ -2675,8 +2575,14 @@ COPY alimento (id_alimento, id_grupo_alimenticio, nombre, fecha_creacion, fecha_
 --
 
 COPY app_movil (id_app_movil, sistema_operativo, url_descarga, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	Android	https://saschanutric.com/Android	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-2	IOS	https://saschanutric.com/	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
+\.
+
+
+--
+-- Data for Name: ayuda; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY ayuda (id_ayuda, pregunta, respuesta, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
 \.
 
 
@@ -2685,17 +2591,6 @@ COPY app_movil (id_app_movil, sistema_operativo, url_descarga, fecha_creacion, f
 --
 
 COPY bloque_horario (id_bloque_horario, hora_inicio, hora_fin, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	07:00:00	08:00:00	2018-05-23 07:32:27.946779-04	2018-05-23 07:32:27.946779	1
-2	08:00:00	09:00:00	2018-05-23 07:32:27.946779-04	2018-05-23 07:32:27.946779	1
-3	09:00:00	10:00:00	2018-05-23 07:32:27.946779-04	2018-05-23 07:32:27.946779	1
-4	10:00:00	11:00:00	2018-05-23 07:32:27.946779-04	2018-05-23 07:32:27.946779	1
-5	11:00:00	12:00:00	2018-05-23 07:32:27.946779-04	2018-05-23 07:32:27.946779	1
-6	12:00:00	13:00:00	2018-05-23 07:32:27.946779-04	2018-05-23 07:32:27.946779	1
-7	13:00:00	14:00:00	2018-05-23 07:32:27.946779-04	2018-05-23 07:32:27.946779	1
-8	14:00:00	15:00:00	2018-05-23 07:32:27.946779-04	2018-05-23 07:32:27.946779	1
-9	15:00:00	16:00:00	2018-05-23 07:32:27.946779-04	2018-05-23 07:32:27.946779	1
-10	16:00:00	17:00:00	2018-05-23 07:32:27.946779-04	2018-05-23 07:32:27.946779	1
-11	17:00:00	18:00:00	2018-05-23 07:32:27.946779-04	2018-05-23 07:32:27.946779	1
 \.
 
 
@@ -2719,8 +2614,7 @@ COPY cita (id_cita, id_orden_servicio, id_tipo_cita, id_bloque_horario, fecha, f
 -- Data for Name: cliente; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY cliente (id_cliente, id_usuario, id_genero, id_estado, id_estado_civil, id_rango_edad, cedula, nombres, apellidos, telefono, direccion, fecha_nacimiento, tipo_cliente, fecha_consolidado, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	1	1	2	1	3	V-24160052	Jose Alberto	Guerrero Carrillo	0414-5495292	Urb. El Amanecer, Cabudare	1994-06-07	1	\N	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
+COPY cliente (id_cliente, id_usuario, id_genero, id_estado_civil, id_rango_edad, cedula, nombres, apellidos, telefono, direccion, fecha_nacimiento, tipo_cliente, fecha_consolidado, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
 \.
 
 
@@ -2728,7 +2622,7 @@ COPY cliente (id_cliente, id_usuario, id_genero, id_estado, id_estado_civil, id_
 -- Data for Name: comentario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY comentario (id_comentario, id_cliente, id_respuesta, contenido, respuesta, id_tipo_comentario, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+COPY comentario (id_comentario, id_cliente, id_respuesta, contenido, mensaje, fecha_creacion, fecha_actualizacion, estatus, id_motivo) FROM stdin;
 \.
 
 
@@ -2737,12 +2631,6 @@ COPY comentario (id_comentario, id_cliente, id_respuesta, contenido, respuesta, 
 --
 
 COPY comida (id_comida, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	Desayuno	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-2	Merienda de la mañana	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-3	Almuerzo	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-4	Merienda de la tarde	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-5	Cena	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-6	Merienda de la noche	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
 \.
 
 
@@ -2766,7 +2654,7 @@ COPY contenido (id_contenido, titulo, texto, url_imagen, fecha_creacion, fecha_a
 -- Data for Name: criterio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY criterio (id_criterio, id_tipo_criterio, id_tipo_valoracion, nombre, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+COPY criterio (id_criterio, id_tipo_criterio, nombre, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
 \.
 
 
@@ -2815,13 +2703,6 @@ COPY detalle_visita (id_visita, id_parametro, valor, fecha_creacion, fecha_actua
 --
 
 COPY dia_laborable (id_dia_laborable, dia, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-0	Domingo	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-1	Lunes	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-2	Martes	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-3	Miercoles	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-4	Jueves	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-5	Viernes	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-6	Sábado	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
 \.
 
 
@@ -2837,7 +2718,7 @@ COPY ejercicio (id_ejercicio, nombre, descripcion, fecha_creacion, fecha_actuali
 -- Data for Name: empleado; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY empleado (id_empleado, id_usuario, id_genero, cedula, nombres, apellidos, telefono, correo, direccion, estatus, fecha_creacion, fecha_actualizacion) FROM stdin;
+COPY empleado (id_empleado, id_usuario, id_genero, cedula, nombres, apellidos, telefono, correo, direccion, estatus, fecha_creacion, fecha_actualizacion, id_especialidad) FROM stdin;
 \.
 
 
@@ -2846,44 +2727,6 @@ COPY empleado (id_empleado, id_usuario, id_genero, cedula, nombres, apellidos, t
 --
 
 COPY especialidad (id_especialidad, nombre, fecha_actualizacion, fecha_creacion, estatus) FROM stdin;
-1	Adelgazar	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-2	Aumentar Peso	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-3	Ganar Masa Muscular	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-4	Definición de Musculo	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-5	Control de Patología	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-6	Atención Deportiva	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-\.
-
-
---
--- Data for Name: especialidad_empleado; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY especialidad_empleado (id_empleado, id_especialidad, fecha_creacion, fecha_actualizacion, estatus, id_especialidad_empleado) FROM stdin;
-\.
-
-
---
--- Data for Name: especialidad_servicio; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY especialidad_servicio (id_servicio, id_especialidad, fecha_creacion, fecha_actualizacion, estatus, id_especialidad_servicio) FROM stdin;
-\.
-
-
---
--- Data for Name: estado; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY estado (id_estado, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	Lara	2018-04-12 23:54:14.138	2018-04-12 23:54:14.138	1
-2	Carabobo	2018-04-12 23:54:14.138	2018-04-12 23:54:14.138	1
-3	Anzoategui	2018-04-12 23:54:14.138	2018-04-12 23:54:14.138	1
-4	Aragua	2018-04-12 23:54:14.138	2018-04-12 23:54:14.138	1
-5	Nueva Esparta	2018-04-12 23:54:14.138	2018-04-12 23:54:14.138	1
-6	Distrito Capital	2018-04-12 23:54:14.138	2018-04-12 23:54:14.138	1
-7	Zulia	2018-04-12 23:54:14.138	2018-04-12 23:54:14.138	1
-8	Mérida	2018-04-12 23:54:14.138	2018-04-12 23:54:14.138	1
 \.
 
 
@@ -2891,12 +2734,20 @@ COPY estado (id_estado, nombre, fecha_creacion, fecha_actualizacion, estatus) FR
 -- Data for Name: estado_civil; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY estado_civil (id_estado_civil, nombre) FROM stdin;
-2	Comprometido/a
-1	Soltero/a
-4	Divorciado/a
-3	Casado/a
-5	Viudo/a
+COPY estado_civil (id_estado_civil, nombre, estatus) FROM stdin;
+2	Soltero/a	1
+3	Comprometido/a	1
+4	Casado/a	1
+5	Divorciado/a	1
+6	Viudo/a	1
+\.
+
+
+--
+-- Data for Name: estado_solicitud; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY estado_solicitud (id_estado_solicitud, tipo, nombre) FROM stdin;
 \.
 
 
@@ -2913,15 +2764,6 @@ COPY frecuencia (id_frecuencia, id_tiempo, repeticiones, fecha_creacion, fecha_a
 --
 
 COPY funcionalidad (id_funcionalidad, id_funcionalidad_padre, nombre, icono, orden, nivel, estatus, url_vista) FROM stdin;
-1	\N	Dashboard	fa fa-leaf	1	1	1	dashboard.html
-2	\N	Registros Básicos	fa fa-edit	2	1	1	
-3	\N	Configuración	fa fa-cogs	3	1	1	
-4	\N	Visitas	fa fa-calendar	4	1	1	
-5	\N	Ofertas y promociones	fa fa-tags	5	1	1	
-6	\N	Reportes	fa fa-bar-chart-o	6	1	1	
-7	\N	Administración del Sistema	fa fa-wrench	7	1	1	
-8	2	Unidades	fa fa-chevron-right	1	2	1	regi_unidad.html
-9	2	Tipos de Parámetros	fa fa-chevron-right	2	2	1	regi_tipo_parametro.html
 \.
 
 
@@ -2937,9 +2779,7 @@ COPY garantia_servicio (id_condicion_garantia, id_servicio, fecha_creacion, fech
 -- Data for Name: genero; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY genero (id_genero, nombre) FROM stdin;
-2	Femenino
-1	Masculino
+COPY genero (id_genero, nombre, estatus) FROM stdin;
 \.
 
 
@@ -2948,11 +2788,6 @@ COPY genero (id_genero, nombre) FROM stdin;
 --
 
 COPY grupo_alimenticio (id_grupo_alimenticio, id_unidad, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	1	Granos	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-2	1	Vegetales	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-3	1	Carne	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-4	1	Lácteos	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-5	1	Fruta	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
 \.
 
 
@@ -2968,28 +2803,35 @@ COPY horario_empleado (id_empleado, id_bloque_horario, id_dia_laborable, fecha_c
 -- Name: id_agenda_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_agenda_seq', 1, false);
+SELECT pg_catalog.setval('id_agenda_seq', 1, true);
 
 
 --
 -- Name: id_alimento_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_alimento_seq', 105, true);
+SELECT pg_catalog.setval('id_alimento_seq', 1, true);
 
 
 --
 -- Name: id_app_movil_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_app_movil_seq', 2, true);
+SELECT pg_catalog.setval('id_app_movil_seq', 1, true);
+
+
+--
+-- Name: id_ayuda_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('id_ayuda_seq', 1, true);
 
 
 --
 -- Name: id_bloque_horario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_bloque_horario_seq', 11, true);
+SELECT pg_catalog.setval('id_bloque_horario_seq', 1, true);
 
 
 --
@@ -3003,7 +2845,7 @@ SELECT pg_catalog.setval('id_calificacion_seq', 1, false);
 -- Name: id_cita_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_cita_seq', 1, false);
+SELECT pg_catalog.setval('id_cita_seq', 1, true);
 
 
 --
@@ -3017,70 +2859,70 @@ SELECT pg_catalog.setval('id_cliente_seq', 1, true);
 -- Name: id_comentario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_comentario_seq', 1, false);
+SELECT pg_catalog.setval('id_comentario_seq', 1, true);
 
 
 --
 -- Name: id_comida_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_comida_seq', 6, true);
+SELECT pg_catalog.setval('id_comida_seq', 1, true);
 
 
 --
 -- Name: id_condicion_garantia_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_condicion_garantia_seq', 1, false);
+SELECT pg_catalog.setval('id_condicion_garantia_seq', 1, true);
 
 
 --
 -- Name: id_contenido_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_contenido_seq', 1, false);
+SELECT pg_catalog.setval('id_contenido_seq', 1, true);
 
 
 --
 -- Name: id_criterio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_criterio_seq', 1, false);
+SELECT pg_catalog.setval('id_criterio_seq', 1, true);
 
 
 --
 -- Name: id_detalle_plan_dieta_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_detalle_plan_dieta_seq', 1, false);
+SELECT pg_catalog.setval('id_detalle_plan_dieta_seq', 1, true);
 
 
 --
 -- Name: id_detalle_plan_ejercicio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_detalle_plan_ejercicio_seq', 1, false);
+SELECT pg_catalog.setval('id_detalle_plan_ejercicio_seq', 1, true);
 
 
 --
 -- Name: id_detalle_plan_suplemento_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_detalle_plan_suplemento_seq', 1, false);
+SELECT pg_catalog.setval('id_detalle_plan_suplemento_seq', 1, true);
 
 
 --
 -- Name: id_detalle_regimen_alimento_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_detalle_regimen_alimento_seq', 1, false);
+SELECT pg_catalog.setval('id_detalle_regimen_alimento_seq', 1, true);
 
 
 --
 -- Name: id_detalle_visita_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_detalle_visita_seq', 1, false);
+SELECT pg_catalog.setval('id_detalle_visita_seq', 1, true);
 
 
 --
@@ -3094,14 +2936,14 @@ SELECT pg_catalog.setval('id_dia_laborable_seq', 1, false);
 -- Name: id_ejercicio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_ejercicio_seq', 1, false);
+SELECT pg_catalog.setval('id_ejercicio_seq', 1, true);
 
 
 --
 -- Name: id_empleado_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_empleado_seq', 1, false);
+SELECT pg_catalog.setval('id_empleado_seq', 1, true);
 
 
 --
@@ -3115,7 +2957,7 @@ SELECT pg_catalog.setval('id_especialidad_empleado_seq', 1, false);
 -- Name: id_especialidad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_especialidad_seq', 6, true);
+SELECT pg_catalog.setval('id_especialidad_seq', 1, true);
 
 
 --
@@ -3129,35 +2971,35 @@ SELECT pg_catalog.setval('id_especialidad_servicio_seq', 1, false);
 -- Name: id_estado_civil_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_estado_civil_seq', 1, false);
+SELECT pg_catalog.setval('id_estado_civil_seq', 6, true);
 
 
 --
 -- Name: id_estado_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_estado_seq', 8, true);
+SELECT pg_catalog.setval('id_estado_seq', 1, true);
 
 
 --
 -- Name: id_frecuencia_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_frecuencia_seq', 1, false);
+SELECT pg_catalog.setval('id_frecuencia_seq', 1, true);
 
 
 --
 -- Name: id_funcionalidad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_funcionalidad_seq', 7, true);
+SELECT pg_catalog.setval('id_funcionalidad_seq', 1, true);
 
 
 --
 -- Name: id_garantia_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_garantia_servicio_seq', 1, false);
+SELECT pg_catalog.setval('id_garantia_servicio_seq', 1, true);
 
 
 --
@@ -3171,28 +3013,28 @@ SELECT pg_catalog.setval('id_genero_seq', 1, true);
 -- Name: id_grupo_alimenticio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_grupo_alimenticio_seq', 5, true);
+SELECT pg_catalog.setval('id_grupo_alimenticio_seq', 1, true);
 
 
 --
 -- Name: id_horario_empleado_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_horario_empleado_seq', 1, false);
+SELECT pg_catalog.setval('id_horario_empleado_seq', 1, true);
 
 
 --
 -- Name: id_incidencia_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_incidencia_seq', 1, false);
+SELECT pg_catalog.setval('id_incidencia_seq', 1, true);
 
 
 --
 -- Name: id_motivo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_motivo_seq', 3, true);
+SELECT pg_catalog.setval('id_motivo_seq', 1, true);
 
 
 --
@@ -3206,70 +3048,63 @@ SELECT pg_catalog.setval('id_negocio_seq', 1, true);
 -- Name: id_orden_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_orden_servicio_seq', 1, false);
+SELECT pg_catalog.setval('id_orden_servicio_seq', 1, true);
 
 
 --
 -- Name: id_parametro_cliente_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_parametro_cliente_seq', 1, false);
+SELECT pg_catalog.setval('id_parametro_cliente_seq', 1, true);
 
 
 --
 -- Name: id_parametro_meta_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_parametro_meta_seq', 1, false);
+SELECT pg_catalog.setval('id_parametro_meta_seq', 1, true);
 
 
 --
 -- Name: id_parametro_promocion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_parametro_promocion_seq', 1, false);
+SELECT pg_catalog.setval('id_parametro_promocion_seq', 1, true);
 
 
 --
 -- Name: id_parametro_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_parametro_seq', 1, false);
+SELECT pg_catalog.setval('id_parametro_seq', 1, true);
 
 
 --
 -- Name: id_parametro_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_parametro_servicio_seq', 1, false);
+SELECT pg_catalog.setval('id_parametro_servicio_seq', 1, true);
 
 
 --
 -- Name: id_plan_dieta_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_plan_dieta_seq', 1, false);
+SELECT pg_catalog.setval('id_plan_dieta_seq', 1, true);
 
 
 --
 -- Name: id_plan_ejercicio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_plan_ejercicio_seq', 1, false);
+SELECT pg_catalog.setval('id_plan_ejercicio_seq', 1, true);
 
 
 --
 -- Name: id_plan_suplemento_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_plan_suplemento_seq', 1, false);
-
-
---
--- Name: id_precio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('id_precio_seq', 1, false);
+SELECT pg_catalog.setval('id_plan_suplemento_seq', 1, true);
 
 
 --
@@ -3283,189 +3118,182 @@ SELECT pg_catalog.setval('id_preferencia_cliente_seq', 1, false);
 -- Name: id_promocion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_promocion_seq', 1, false);
+SELECT pg_catalog.setval('id_promocion_seq', 1, true);
 
 
 --
 -- Name: id_rango_edad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_rango_edad_seq', 5, true);
+SELECT pg_catalog.setval('id_rango_edad_seq', 1, true);
 
 
 --
 -- Name: id_reclamo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_reclamo_seq', 1, false);
+SELECT pg_catalog.setval('id_reclamo_seq', 1, true);
 
 
 --
 -- Name: id_red_social_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_red_social_seq', 1, false);
+SELECT pg_catalog.setval('id_red_social_seq', 1, true);
 
 
 --
 -- Name: id_regimen_dieta_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_regimen_dieta_seq', 1, false);
+SELECT pg_catalog.setval('id_regimen_dieta_seq', 1, true);
 
 
 --
 -- Name: id_regimen_ejercicio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_regimen_ejercicio_seq', 1, false);
+SELECT pg_catalog.setval('id_regimen_ejercicio_seq', 1, true);
 
 
 --
 -- Name: id_regimen_suplemento_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_regimen_suplemento_seq', 1, false);
+SELECT pg_catalog.setval('id_regimen_suplemento_seq', 1, true);
 
 
 --
 -- Name: id_respuesta_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_respuesta_seq', 1, false);
+SELECT pg_catalog.setval('id_respuesta_seq', 1, true);
 
 
 --
 -- Name: id_rol_funcionalidad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_rol_funcionalidad_seq', 1, false);
+SELECT pg_catalog.setval('id_rol_funcionalidad_seq', 1, true);
 
 
 --
 -- Name: id_rol_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_rol_seq', 1, false);
+SELECT pg_catalog.setval('id_rol_seq', 1, true);
 
 
 --
 -- Name: id_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_servicio_seq', 1, false);
+SELECT pg_catalog.setval('id_servicio_seq', 1, true);
 
 
 --
 -- Name: id_slide_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_slide_seq', 1, false);
+SELECT pg_catalog.setval('id_slide_seq', 1, true);
 
 
 --
 -- Name: id_solicitud_servicio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_solicitud_servicio_seq', 1, false);
+SELECT pg_catalog.setval('id_solicitud_servicio_seq', 1, true);
 
 
 --
 -- Name: id_suplemento_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_suplemento_seq', 1, false);
+SELECT pg_catalog.setval('id_suplemento_seq', 1, true);
 
 
 --
 -- Name: id_tiempo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_tiempo_seq', 1, false);
+SELECT pg_catalog.setval('id_tiempo_seq', 1, true);
 
 
 --
 -- Name: id_tipo_cita_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_tipo_cita_seq', 3, true);
-
-
---
--- Name: id_tipo_comentario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('id_tipo_comentario_seq', 1, false);
+SELECT pg_catalog.setval('id_tipo_cita_seq', 1, true);
 
 
 --
 -- Name: id_tipo_criterio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_tipo_criterio_seq', 2, true);
+SELECT pg_catalog.setval('id_tipo_criterio_seq', 1, true);
 
 
 --
 -- Name: id_tipo_dieta_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_tipo_dieta_seq', 1, false);
+SELECT pg_catalog.setval('id_tipo_dieta_seq', 1, true);
 
 
 --
 -- Name: id_tipo_incidencia_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_tipo_incidencia_seq', 1, false);
+SELECT pg_catalog.setval('id_tipo_incidencia_seq', 1, true);
 
 
 --
 -- Name: id_tipo_motivo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_tipo_motivo_seq', 6, true);
+SELECT pg_catalog.setval('id_tipo_motivo_seq', 1, true);
 
 
 --
 -- Name: id_tipo_orden_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_tipo_orden_seq', 3, true);
+SELECT pg_catalog.setval('id_tipo_orden_seq', 1, true);
 
 
 --
 -- Name: id_tipo_parametro_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_tipo_parametro_seq', 1, false);
+SELECT pg_catalog.setval('id_tipo_parametro_seq', 1, true);
 
 
 --
 -- Name: id_tipo_respuesta_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_tipo_respuesta_seq', 1, false);
+SELECT pg_catalog.setval('id_tipo_respuesta_seq', 1, true);
 
 
 --
 -- Name: id_tipo_unidad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_tipo_unidad_seq', 3, true);
+SELECT pg_catalog.setval('id_tipo_unidad_seq', 7, true);
 
 
 --
 -- Name: id_tipo_valoracion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_tipo_valoracion_seq', 1, false);
+SELECT pg_catalog.setval('id_tipo_valoracion_seq', 1, true);
 
 
 --
 -- Name: id_unidad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_unidad_seq', 10, true);
+SELECT pg_catalog.setval('id_unidad_seq', 1, true);
 
 
 --
@@ -3479,14 +3307,14 @@ SELECT pg_catalog.setval('id_usuario_seq', 1, true);
 -- Name: id_valoracion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_valoracion_seq', 1, false);
+SELECT pg_catalog.setval('id_valoracion_seq', 1, true);
 
 
 --
 -- Name: id_visita_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('id_visita_seq', 1, false);
+SELECT pg_catalog.setval('id_visita_seq', 1, true);
 
 
 --
@@ -3502,9 +3330,6 @@ COPY incidencia (id_incidencia, id_tipo_incidencia, id_motivo, descripcion, fech
 --
 
 COPY motivo (id_motivo, id_tipo_motivo, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	1	Alcanzar peso ideal	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-2	1	Control de patología	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-3	1	Entrenamiento para atletas	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
 \.
 
 
@@ -3513,7 +3338,6 @@ COPY motivo (id_motivo, id_tipo_motivo, descripcion, fecha_creacion, fecha_actua
 --
 
 COPY negocio (id_negocio, razon_social, rif, url_logo, mision, vision, objetivo, telefono, correo, latitud, longitud, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	Sascha	1-3211111112111	https://res.cloudinary.com/saschanutric/image/upload/v1524779283/logosascha.png	mision	vision	objetivo	555-5555555	saschanutric@gmail.com	10.0768150	-69.3545490	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
 \.
 
 
@@ -3521,7 +3345,7 @@ COPY negocio (id_negocio, razon_social, rif, url_logo, mision, vision, objetivo,
 -- Data for Name: orden_servicio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY orden_servicio (id_orden_servicio, id_solicitud_servicio, id_tipo_orden, id_meta, fecha_emision, fecha_caducidad, id_reclamo, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+COPY orden_servicio (id_orden_servicio, id_solicitud_servicio, id_tipo_orden, id_meta, fecha_emision, fecha_caducidad, id_reclamo, fecha_creacion, fecha_actualizacion, estatus, estado) FROM stdin;
 \.
 
 
@@ -3590,14 +3414,6 @@ COPY plan_suplemento (id_plan_suplemento, nombre, descripcion, fecha_creacion, f
 
 
 --
--- Data for Name: precio; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY precio (id_precio, id_unidad, nombre, fecha_creacion, fecha_actualizacion, estatus, valor) FROM stdin;
-\.
-
-
---
 -- Data for Name: preferencia_cliente; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3609,8 +3425,15 @@ COPY preferencia_cliente (id_cliente, id_especialidad, fecha_creacion, fecha_act
 -- Data for Name: promocion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY promocion (id_promocion, id_servicio, nombre, descripcion, valido_desde, valido_hasta, id_genero, id_estado_civil, id_rango_edad, id_estado, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+COPY promocion (id_promocion, id_servicio, nombre, descripcion, valido_desde, valido_hasta, id_genero, id_estado_civil, id_rango_edad, fecha_creacion, fecha_actualizacion, estatus, descuento, url_imagen) FROM stdin;
 \.
+
+
+--
+-- Name: prueba; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('prueba', 1, false);
 
 
 --
@@ -3618,11 +3441,6 @@ COPY promocion (id_promocion, id_servicio, nombre, descripcion, valido_desde, va
 --
 
 COPY rango_edad (id_rango_edad, nombre, minimo, maximo, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	Bebe	0	1	2018-04-19 21:11:06.606	2018-04-19 21:11:06.606	1
-2	Niño/a	1	12	2018-04-19 21:11:19.305	2018-04-19 21:11:19.305	1
-3	Joven 	12	30	2018-04-19 21:11:32.739	2018-04-19 21:11:32.739	1
-4	Adulto	30	60	2018-04-19 21:11:41.765	2018-04-19 21:11:41.765	1
-5	Adulto mayor	60	120	2018-04-19 21:12:03.981	2018-04-19 21:12:03.981	1
 \.
 
 
@@ -3638,7 +3456,7 @@ COPY reclamo (id_reclamo, id_motivo, id_orden_servicio, id_respuesta, respuesta,
 -- Data for Name: red_social; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY red_social (id_red_social, nombre, url_base, url_logo, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+COPY red_social (id_red_social, nombre, url_base, url_logo, fecha_creacion, fecha_actualizacion, estatus, usuario) FROM stdin;
 \.
 
 
@@ -3654,7 +3472,7 @@ COPY regimen_dieta (id_regimen_dieta, id_detalle_plan_dieta, id_cliente, cantida
 -- Data for Name: regimen_ejercicio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY regimen_ejercicio (id_regimen_ejercicio, id_plan_ejercicio, id_cliente, id_frecuencia, id_tiempo, duracion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+COPY regimen_ejercicio (id_regimen_ejercicio, id_cliente, id_frecuencia, id_tiempo, duracion, fecha_creacion, fecha_actualizacion, estatus, id_ejercicio) FROM stdin;
 \.
 
 
@@ -3662,7 +3480,7 @@ COPY regimen_ejercicio (id_regimen_ejercicio, id_plan_ejercicio, id_cliente, id_
 -- Data for Name: regimen_suplemento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY regimen_suplemento (id_regimen_suplemento, id_plan_suplemento, id_cliente, id_frecuencia, cantidad, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+COPY regimen_suplemento (id_regimen_suplemento, id_cliente, id_frecuencia, cantidad, fecha_creacion, fecha_actualizacion, estatus, id_suplemento) FROM stdin;
 \.
 
 
@@ -3670,7 +3488,7 @@ COPY regimen_suplemento (id_regimen_suplemento, id_plan_suplemento, id_cliente, 
 -- Data for Name: respuesta; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY respuesta (id_respuesta, id_tipo_respuesta, descripcion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+COPY respuesta (id_respuesta, id_tipo_respuesta, descripcion, fecha_creacion, fecha_actualizacion, estatus, aprobado) FROM stdin;
 \.
 
 
@@ -3694,7 +3512,7 @@ COPY rol_funcionalidad (id_rol, id_funcionalidad, fecha_creacion, fecha_actualiz
 -- Data for Name: servicio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY servicio (id_servicio, id_plan_dieta, id_plan_ejercicio, id_plan_suplemento, nombre, descripcion, url_imagen, id_precio, numero_visitas, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+COPY servicio (id_servicio, id_plan_dieta, id_plan_ejercicio, id_plan_suplemento, nombre, descripcion, url_imagen, numero_visitas, fecha_creacion, fecha_actualizacion, estatus, id_especialidad, precio) FROM stdin;
 \.
 
 
@@ -3710,7 +3528,7 @@ COPY slide (id_slide, titulo, descripcion, orden, url_imagen, fecha_creacion, fe
 -- Data for Name: solicitud_servicio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY solicitud_servicio (id_solicitud_servicio, id_cliente, id_motivo, id_respuesta, id_servicio, respuesta, id_promocion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+COPY solicitud_servicio (id_solicitud_servicio, id_cliente, id_motivo, id_respuesta, id_servicio, respuesta, id_promocion, fecha_creacion, fecha_actualizacion, estatus, id_estado_solicitud) FROM stdin;
 \.
 
 
@@ -3735,17 +3553,6 @@ COPY tiempo (id_tiempo, nombre, abreviatura, fecha_creacion, fecha_actualizacion
 --
 
 COPY tipo_cita (id_tipo_cita, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	Diagnostico	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-2	Control	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-3	Reprogramada	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-\.
-
-
---
--- Data for Name: tipo_comentario; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY tipo_comentario (id_tipo_comentario, nombre, estatus, fecha_actualizacion, fecha_creacion) FROM stdin;
 \.
 
 
@@ -3753,9 +3560,7 @@ COPY tipo_comentario (id_tipo_comentario, nombre, estatus, fecha_actualizacion, 
 -- Data for Name: tipo_criterio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY tipo_criterio (id_tipo_criterio, nombre, estatus, fecha_actualizacion, fecha_creacion) FROM stdin;
-1	Servicio	1	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779
-2	Visita	1	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779
+COPY tipo_criterio (id_tipo_criterio, nombre, estatus, fecha_actualizacion, fecha_creacion, id_tipo_valoracion) FROM stdin;
 \.
 
 
@@ -3779,13 +3584,15 @@ COPY tipo_incidencia (id_tipo_incidencia, nombre, fecha_creacion, fecha_actualiz
 -- Data for Name: tipo_motivo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY tipo_motivo (id_tipo_motivo, nombre, canal_escucha, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	Solicitud                                         	t	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-2	Reclamo                                           	t	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-3	Incidencia                                        	t	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-4	Queja                                             	t	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-5	Sugerencia                                        	t	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-6	Pregunta                                          	t	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
+COPY tipo_motivo (id_tipo_motivo, nombre, fecha_creacion, fecha_actualizacion, estatus, canal_escucha) FROM stdin;
+\.
+
+
+--
+-- Data for Name: tipo_notificacion; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tipo_notificacion (id_tipo_notificacion, nombre, mensaje, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
 \.
 
 
@@ -3794,9 +3601,6 @@ COPY tipo_motivo (id_tipo_motivo, nombre, canal_escucha, fecha_creacion, fecha_a
 --
 
 COPY tipo_orden (id_tipo_orden, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	Normal	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-2	Garantía	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-3	Promoción	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
 \.
 
 
@@ -3804,7 +3608,7 @@ COPY tipo_orden (id_tipo_orden, nombre, fecha_creacion, fecha_actualizacion, est
 -- Data for Name: tipo_parametro; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY tipo_parametro (id_tipo_parametro, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+COPY tipo_parametro (id_tipo_parametro, nombre, fecha_creacion, fecha_actualizacion, estatus, filtrable) FROM stdin;
 \.
 
 
@@ -3821,9 +3625,12 @@ COPY tipo_respuesta (id_tipo_respuesta, nombre, fecha_creacion, fecha_actualizac
 --
 
 COPY tipo_unidad (id_tipo_unidad, nombre, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
-1	Masa	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-2	Moneda	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
-3	Tiempo	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1
+2	Parámetro	2018-05-27 07:22:59.102471	2018-05-27 07:22:59.102471	1
+3	Tiémpo	2018-05-27 07:22:59.102471	2018-05-27 07:22:59.102471	1
+4	Masa	2018-05-27 07:22:59.102471	2018-05-27 07:22:59.102471	1
+5	Volumen	2018-05-27 07:22:59.102471	2018-05-27 07:22:59.102471	1
+6	Unidad	2018-05-27 07:22:59.102471	2018-05-27 07:22:59.102471	1
+7	Examen	2018-05-27 07:22:59.102471	2018-05-27 07:22:59.102471	1
 \.
 
 
@@ -3840,15 +3647,6 @@ COPY tipo_valoracion (id_tipo_valoracion, nombre, fecha_creacion, fecha_actualiz
 --
 
 COPY unidad (id_unidad, id_tipo_unidad, nombre, abreviatura, fecha_creacion, fecha_actualizacion, estatus, simbolo) FROM stdin;
-1	1	Gramo	gr	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1	gr
-3	2	Bolivares Fuertes	VEF	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1	BsF
-4	1	Tonelada	ton	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1	ton
-5	1	Kilogramo	Kg	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1	Kg
-6	1	Miligramo	mg	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1	mg
-7	3	Hora	h	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1	h
-8	3	Minuto	min	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1	m
-9	3	Segundo	seg	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1	s
-10	2	Dólar estadounidense	USD	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	1	$
 \.
 
 
@@ -3856,8 +3654,7 @@ COPY unidad (id_unidad, id_tipo_unidad, nombre, abreviatura, fecha_creacion, fec
 -- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY usuario (id_usuario, nombre_usuario, correo, contrasenia, salt, fecha_creacion, fecha_actualizacion, ultimo_acceso, estatus, id_rol) FROM stdin;
-1	jguerrero	guerrero.c.jose.a@gmail.com	$2a$12$Zsfm7hKFFwzszEOGSuOS7ePL179wk2RfxNBObxu.Un/gZtVjHunj6	$2a$12$Zsfm7hKFFwzszEOGSuOS7e	2018-05-23 07:32:27.946779	2018-05-23 07:32:27.946779	\N	1	\N
+COPY usuario (id_usuario, nombre_usuario, correo, contrasenia, salt, fecha_creacion, fecha_actualizacion, ultimo_acceso, estatus, id_rol, tipo_usuario) FROM stdin;
 \.
 
 
@@ -3873,7 +3670,7 @@ COPY valoracion (id_valoracion, id_tipo_valoracion, nombre, fecha_creacion, fech
 -- Data for Name: visita; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY visita (id_visita, id_agenda, numero, fecha_atencion, fecha_creacion, fecha_actualizacion, estatus) FROM stdin;
+COPY visita (id_visita, numero, fecha_atencion, fecha_creacion, fecha_actualizacion, estatus, id_agenda) FROM stdin;
 \.
 
 
@@ -3899,6 +3696,14 @@ ALTER TABLE ONLY alimento
 
 ALTER TABLE ONLY app_movil
     ADD CONSTRAINT app_movil_pkey PRIMARY KEY (id_app_movil);
+
+
+--
+-- Name: ayuda_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY ayuda
+    ADD CONSTRAINT ayuda_pkey PRIMARY KEY (id_ayuda);
 
 
 --
@@ -4038,27 +3843,11 @@ ALTER TABLE ONLY empleado
 
 
 --
--- Name: especialidad_empleado_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY especialidad_empleado
-    ADD CONSTRAINT especialidad_empleado_pkey PRIMARY KEY (id_empleado, id_especialidad);
-
-
---
 -- Name: especialidad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY especialidad
     ADD CONSTRAINT especialidad_pkey PRIMARY KEY (id_especialidad);
-
-
---
--- Name: especialidad_servicio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY especialidad_servicio
-    ADD CONSTRAINT especialidad_servicio_pkey PRIMARY KEY (id_servicio, id_especialidad);
 
 
 --
@@ -4070,11 +3859,11 @@ ALTER TABLE ONLY estado_civil
 
 
 --
--- Name: estado_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: estado_solicitud_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY estado
-    ADD CONSTRAINT estado_pkey PRIMARY KEY (id_estado);
+ALTER TABLE ONLY estado_solicitud
+    ADD CONSTRAINT estado_solicitud_pkey PRIMARY KEY (id_estado_solicitud);
 
 
 --
@@ -4230,14 +4019,6 @@ ALTER TABLE ONLY plan_suplemento
 
 
 --
--- Name: precio_id_precio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY precio
-    ADD CONSTRAINT precio_id_precio_pkey PRIMARY KEY (id_precio);
-
-
---
 -- Name: preferencia_cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4366,14 +4147,6 @@ ALTER TABLE ONLY tipo_cita
 
 
 --
--- Name: tipo_comentario_id_tipo_comentario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY tipo_comentario
-    ADD CONSTRAINT tipo_comentario_id_tipo_comentario_pkey PRIMARY KEY (id_tipo_comentario);
-
-
---
 -- Name: tipo_criterio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4478,38 +4251,24 @@ ALTER TABLE ONLY visita
 
 
 --
--- Name: fki_comentario_id_tipo_comentario_fkey; Type: INDEX; Schema: public; Owner: postgres
---
-
-CREATE INDEX fki_comentario_id_tipo_comentario_fkey ON comentario USING btree (id_tipo_comentario);
-
-
---
 -- Name: fki_incidencia_id_agenda_fkey; Type: INDEX; Schema: public; Owner: postgres
 --
 
-CREATE INDEX fki_incidencia_id_agenda_fkey ON incidencia USING btree (id_agenda);
-
-
---
--- Name: fki_servicio_id_precio_fkey; Type: INDEX; Schema: public; Owner: postgres
---
-
-CREATE INDEX fki_servicio_id_precio_fkey ON servicio USING btree (id_precio);
+CREATE INDEX fki_incidencia_id_agenda_fkey ON public.incidencia USING btree (id_agenda);
 
 
 --
 -- Name: dis_asignar_rango_edad; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
-CREATE TRIGGER dis_asignar_rango_edad AFTER INSERT ON cliente FOR EACH ROW EXECUTE PROCEDURE fun_asignar_rango_edad();
+CREATE TRIGGER dis_asignar_rango_edad AFTER INSERT ON public.cliente FOR EACH ROW EXECUTE PROCEDURE fun_asignar_rango_edad();
 
 
 --
 -- Name: dis_usuario_eliminada; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
-CREATE TRIGGER dis_usuario_eliminada AFTER UPDATE OF estatus ON usuario FOR EACH ROW WHEN ((new.estatus = 0)) EXECUTE PROCEDURE fun_eliminar_cliente();
+CREATE TRIGGER dis_usuario_eliminada AFTER UPDATE OF estatus ON public.usuario FOR EACH ROW WHEN ((new.estatus = 0)) EXECUTE PROCEDURE fun_eliminar_cliente();
 
 
 --
@@ -4617,14 +4376,6 @@ ALTER TABLE ONLY cliente
 
 
 --
--- Name: cliente_id_estado_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY cliente
-    ADD CONSTRAINT cliente_id_estado_fkey FOREIGN KEY (id_estado) REFERENCES estado(id_estado);
-
-
---
 -- Name: cliente_id_genero_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4657,6 +4408,14 @@ ALTER TABLE ONLY comentario
 
 
 --
+-- Name: comentario_id_motivo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY comentario
+    ADD CONSTRAINT comentario_id_motivo_fkey FOREIGN KEY (id_motivo) REFERENCES motivo(id_motivo);
+
+
+--
 -- Name: comentario_id_respuesta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4665,27 +4424,11 @@ ALTER TABLE ONLY comentario
 
 
 --
--- Name: comentario_id_tipo_comentario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY comentario
-    ADD CONSTRAINT comentario_id_tipo_comentario_fkey FOREIGN KEY (id_tipo_comentario) REFERENCES tipo_comentario(id_tipo_comentario);
-
-
---
 -- Name: criterio_id_tipo_criterio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY criterio
     ADD CONSTRAINT criterio_id_tipo_criterio_fkey FOREIGN KEY (id_tipo_criterio) REFERENCES tipo_criterio(id_tipo_criterio);
-
-
---
--- Name: criterio_id_tipo_valoracion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY criterio
-    ADD CONSTRAINT criterio_id_tipo_valoracion_fkey FOREIGN KEY (id_tipo_valoracion) REFERENCES tipo_valoracion(id_tipo_valoracion);
 
 
 --
@@ -4777,6 +4520,14 @@ ALTER TABLE ONLY detalle_visita
 
 
 --
+-- Name: empleado_id_especialidad_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY empleado
+    ADD CONSTRAINT empleado_id_especialidad_fk FOREIGN KEY (id_especialidad) REFERENCES especialidad(id_especialidad);
+
+
+--
 -- Name: empleado_id_genero_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4790,38 +4541,6 @@ ALTER TABLE ONLY empleado
 
 ALTER TABLE ONLY empleado
     ADD CONSTRAINT empleado_id_usuario_fkey FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario);
-
-
---
--- Name: especialidad_empleado_id_empleado_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY especialidad_empleado
-    ADD CONSTRAINT especialidad_empleado_id_empleado_fkey FOREIGN KEY (id_empleado) REFERENCES empleado(id_empleado);
-
-
---
--- Name: especialidad_empleado_id_especialidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY especialidad_empleado
-    ADD CONSTRAINT especialidad_empleado_id_especialidad_fkey FOREIGN KEY (id_especialidad) REFERENCES especialidad(id_especialidad);
-
-
---
--- Name: especialidad_servicio_id_especialidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY especialidad_servicio
-    ADD CONSTRAINT especialidad_servicio_id_especialidad_fkey FOREIGN KEY (id_especialidad) REFERENCES especialidad(id_especialidad);
-
-
---
--- Name: especialidad_servicio_id_servicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY especialidad_servicio
-    ADD CONSTRAINT especialidad_servicio_id_servicio_fkey FOREIGN KEY (id_servicio) REFERENCES servicio(id_servicio);
 
 
 --
@@ -5017,14 +4736,6 @@ ALTER TABLE ONLY plan_dieta
 
 
 --
--- Name: precio_id_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY precio
-    ADD CONSTRAINT precio_id_unidad_fkey FOREIGN KEY (id_unidad) REFERENCES unidad(id_unidad);
-
-
---
 -- Name: preferencia_cliente_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -5097,19 +4808,19 @@ ALTER TABLE ONLY regimen_ejercicio
 
 
 --
+-- Name: regimen_ejercicio_id_ejercicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY regimen_ejercicio
+    ADD CONSTRAINT regimen_ejercicio_id_ejercicio_fkey FOREIGN KEY (id_ejercicio) REFERENCES ejercicio(id_ejercicio);
+
+
+--
 -- Name: regimen_ejercicio_id_frecuencia_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY regimen_ejercicio
     ADD CONSTRAINT regimen_ejercicio_id_frecuencia_fkey FOREIGN KEY (id_frecuencia) REFERENCES frecuencia(id_frecuencia);
-
-
---
--- Name: regimen_ejercicio_id_plan_ejercicio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY regimen_ejercicio
-    ADD CONSTRAINT regimen_ejercicio_id_plan_ejercicio_fkey FOREIGN KEY (id_plan_ejercicio) REFERENCES plan_ejercicio(id_plan_ejercicio);
 
 
 --
@@ -5137,11 +4848,11 @@ ALTER TABLE ONLY regimen_suplemento
 
 
 --
--- Name: regimen_suplemento_id_plan_suplemento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: regimen_suplemento_id_suplemento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY regimen_suplemento
-    ADD CONSTRAINT regimen_suplemento_id_plan_suplemento_fkey FOREIGN KEY (id_plan_suplemento) REFERENCES plan_suplemento(id_plan_suplemento);
+    ADD CONSTRAINT regimen_suplemento_id_suplemento_fkey FOREIGN KEY (id_suplemento) REFERENCES suplemento(id_suplemento);
 
 
 --
@@ -5149,7 +4860,7 @@ ALTER TABLE ONLY regimen_suplemento
 --
 
 ALTER TABLE ONLY respuesta
-    ADD CONSTRAINT respuesta_id_tipo_respuesta_fkey FOREIGN KEY (id_tipo_respuesta) REFERENCES tipo_respuesta(id_tipo_respuesta);
+    ADD CONSTRAINT respuesta_id_tipo_respuesta_fkey FOREIGN KEY (id_tipo_respuesta) REFERENCES tipo_motivo(id_tipo_motivo);
 
 
 --
@@ -5166,6 +4877,14 @@ ALTER TABLE ONLY rol_funcionalidad
 
 ALTER TABLE ONLY rol_funcionalidad
     ADD CONSTRAINT rol_funcionalidad_id_rol_fkey FOREIGN KEY (id_rol) REFERENCES rol(id_rol);
+
+
+--
+-- Name: servicio_id_especialidad_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY servicio
+    ADD CONSTRAINT servicio_id_especialidad_fk FOREIGN KEY (id_especialidad) REFERENCES especialidad(id_especialidad);
 
 
 --
@@ -5193,19 +4912,19 @@ ALTER TABLE ONLY servicio
 
 
 --
--- Name: servicio_id_precio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY servicio
-    ADD CONSTRAINT servicio_id_precio_fkey FOREIGN KEY (id_precio) REFERENCES precio(id_precio);
-
-
---
 -- Name: solicitud_servicio_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY solicitud_servicio
     ADD CONSTRAINT solicitud_servicio_id_cliente_fkey FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente);
+
+
+--
+-- Name: solicitud_servicio_id_estado_solicitud_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY solicitud_servicio
+    ADD CONSTRAINT solicitud_servicio_id_estado_solicitud_fkey FOREIGN KEY (id_estado_solicitud) REFERENCES estado_solicitud(id_estado_solicitud);
 
 
 --
@@ -5246,6 +4965,14 @@ ALTER TABLE ONLY solicitud_servicio
 
 ALTER TABLE ONLY suplemento
     ADD CONSTRAINT suplemento_id_unidad_fkey FOREIGN KEY (id_unidad) REFERENCES unidad(id_unidad);
+
+
+--
+-- Name: tipo_criterio_id_tipo_valoracion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tipo_criterio
+    ADD CONSTRAINT tipo_criterio_id_tipo_valoracion_fkey FOREIGN KEY (id_tipo_valoracion) REFERENCES tipo_valoracion(id_tipo_valoracion);
 
 
 --

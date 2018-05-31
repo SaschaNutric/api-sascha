@@ -16,8 +16,6 @@ function getIncidencias(req, res, next) {
 		],
 		columns: [
 			'id_incidencia',
-			'tipoIncidencia',
-			'motivo',
 			'descripcion',
 			'id_agenda'
 		] 

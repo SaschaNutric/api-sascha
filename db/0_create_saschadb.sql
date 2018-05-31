@@ -66,6 +66,16 @@ $$;
 
 ALTER FUNCTION public.fun_eliminar_cliente() OWNER TO postgres;
 
+
+CREATE FUNCTION fun_notificar_promocion() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE BEGIN
+
+    RETURN NULL;
+END
+$$;
+
 --
 -- Name: id_agenda_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
@@ -1070,6 +1080,18 @@ CREATE SEQUENCE id_negocio_seq
 
 ALTER TABLE id_negocio_seq OWNER TO postgres;
 
+
+CREATE SEQUENCE id_notificacion_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE id_notificacion_seq OWNER TO postgres;
+
+
 --
 -- Name: id_orden_servicio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
@@ -1704,6 +1726,31 @@ ALTER TABLE negocio OWNER TO postgres;
 -- Name: orden_servicio; Type: TABLE; Schema: public; Owner: postgres
 --
 
+CREATE TABLE notificacion (
+    id_notificacion integer DEFAULT nextval('id_notificacion_seq'::regclass) NOT NULL,
+    id_usuario integer,
+    id_promocion integer,
+    titulo character varying(50) DEFAULT ''::character varying NOT NULL,
+    mensaje character varying(500) DEFAULT '':: character varying NOT NULL,
+    tipo_notificacion integer NOT NULL,
+    fecha_creacion timestamp without time zone DEFAULT now() NOT NULL    
+)
+
+ALTER TABLE notificacion OWNER TO postgres;
+
+/*
+tipo_notificacion:
+1. Solicitud
+2. Promocion
+3. Proxima cita
+4. Incidencia
+5. Cita reprogramada
+6. Reclamo
+7. Garantia
+8. Comentario
+9. Respuesta
+*/
+
 CREATE TABLE orden_servicio (
     id_orden_servicio integer DEFAULT nextval('id_orden_servicio_seq'::regclass) NOT NULL,
     id_solicitud_servicio integer NOT NULL,
@@ -1787,6 +1834,7 @@ CREATE TABLE parametro_meta (
     id_parametro integer NOT NULL,
     valor_minimo integer NOT NULL,
     valor_maximo integer NOT NULL,
+    signo integer NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
     fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
     estatus integer DEFAULT 1 NOT NULL
@@ -1795,7 +1843,7 @@ CREATE TABLE parametro_meta (
 
 ALTER TABLE parametro_meta OWNER TO postgres;
 
-
+-- Signo 0: Negativo 1: Positivo
 
 --
 -- Name: parametro_servicio; Type: TABLE; Schema: public; Owner: postgres
@@ -2553,6 +2601,7 @@ CREATE VIEW vista_visita AS
     WHERE a.estatus = 1 AND b.estatus = 1 AND c.estatus = 1;
 ALTER TABLE vista_visita OWNER TO byqkxhkjgnspco;
 
+
 CREATE VIEW vista_frecuencia AS
 	SELECT a.id_frecuencia,
     	   a.repeticiones || ' veces por ' || b.nombre as frecuencia
@@ -2562,6 +2611,35 @@ CREATE VIEW vista_frecuencia AS
     WHERE a.estatus = 1;
     
 ALTER TABLE vista_frecuencia OWNER TO byqkxhkjgnspco;
+
+
+CREATE VIEW vista_reporte_solicitud AS
+	SELECT a.id_solicitud_servicio,
+    a.id_estado_solicitud AS id_respuesta,
+    CASE WHEN a.id_estado_solicitud = 1 THEN 'Aprobado'
+        WHEN a.id_estado_solicitud = 2 THEN 'Rechazado, nutricionista tiene agendado el dia y horario'
+        WHEN a.id_estado_solicitud = 3 THEN 'Rechazado, nutricionista no trabaja en el dia y horario especificado'
+        WHEN a.id_estado_solicitud = 4 THEN 'Rechazado, precio no aceptado'
+    END AS respuesta,
+    a.fecha_creacion,
+    b.id_cliente,
+    (b.nombres || ' ' || b.apellidos) AS nombre_cliente,
+    b.id_rango_edad,
+    b.id_genero,
+    b.id_estado_civil,
+    d.id_especialidad,
+    d.nombre AS nombres_especialidad,
+    c.id_servicio,
+    c.nombre AS nombre_servicio,
+    e.id_motivo,
+    e.descripcion AS motivo
+    FROM solicitud_servicio a
+    JOIN cliente  b ON a.id_cliente  = b.id_cliente
+    JOIN servicio c ON a.id_servicio = c.id_servicio
+    JOIN especialidad d ON d.id_especialidad = c.id_especialidad
+    JOIN motivo e ON e.id_motivo = a.id_motivo
+    WHERE a.estatus = 1;
+ALTER TABLE vista_reporte_solicitud OWNER TO byqkxhkjgnspco;
 
 
 --
@@ -2823,7 +2901,7 @@ INSERT INTO funcionalidad VALUES (7, NULL, 'Administración del Sistema', 'fa fa
 INSERT INTO funcionalidad VALUES (8, 2, 'Unidades', 'fa fa-chevron-right', 1, 2, 1, 'regi_unidad.html');
 INSERT INTO funcionalidad VALUES (9, 2, 'Tipos de Parámetros', 'fa fa-chevron-right', 2, 2, 1, 'regi_tipo_parametro.html');
 
-SELECT pg_catalog.setval('id_funcionalidad_seq', 7, true);
+SELECT pg_catalog.setval('id_funcionalidad_seq', 9, true);
 
 
 INSERT INTO negocio (id_negocio, razon_social, rif, url_logo, mision, vision, objetivo, telefono, correo, latitud, longitud)
@@ -3552,6 +3630,7 @@ CREATE INDEX fki_servicio_id_precio_fkey ON servicio USING btree (id_precio);
 
 CREATE TRIGGER dis_asignar_rango_edad AFTER INSERT ON cliente FOR EACH ROW EXECUTE PROCEDURE fun_asignar_rango_edad();
 
+CREATE TRIGGER dis_notificar_promocion AFTER INSERT ON promocion FOR EACH ROW EXECUTE PROCEDURE fun_notificar_promocion();
 
 --
 -- Name: dis_usuario_eliminada; Type: TRIGGER; Schema: public; Owner: postgres

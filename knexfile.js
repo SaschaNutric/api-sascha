@@ -8,10 +8,10 @@ const DB_CLIENT  = process.env.DB_CLIENT  || 'postgresql';
 module.exports = {
 	development: {
    		client: "postgresql",
-		 connection: {
+		connection: {
 			host:     "localhost",
 			user:     "postgres",
-			password: "postgres",
+			password: "karem",
 			database: "saschadb",
 			charset:  "utf-8"
 		},
