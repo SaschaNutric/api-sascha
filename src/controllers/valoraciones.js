@@ -37,20 +37,11 @@ function saveValoracion(req, res, next){
 	Valoracion.forge({ id_tipo_valoracion:req.body.id_tipo_valoracion ,nombre:req.body.nombre  })
 	.save()
 	.then(function(data){
-		Valoracion.query(function (q) {
-			q.where('valoracion.id_valoracion', '=', data.get('id_valoracion'));
-	        q.innerJoin('tipo_valoracion', function () {
-                this.on('valoracion.id_tipo_valoracion', '=', data.get('id_tipo_valoracion'));
-            });
-			q.where('valoracion.estatus', '=', 1);
-		})
-		.fetch({ withRelated: ['tipo_valoracion'] })
-		.then(function(valoracion) {
 			res.status(200).json({
 				error: false,
-				data: valoracion
+				data: data
 			});
-		})
+		
 	})
 	.catch(function (err) {
 		res.status(500)
