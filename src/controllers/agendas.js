@@ -327,6 +327,7 @@ function getAgendaById(req, res, next) {
 				}
 			}
 		})
+
 		let ejercicios = [];
 		if (agenda.servicio.plan_ejercicio) {
 			agenda.servicio.plan_ejercicio.ejercicios.map(function (ejercicio) {
@@ -335,20 +336,26 @@ function getAgendaById(req, res, next) {
 				})
 					.indexOf(ejercicio.id_ejercicio);
 
-				if (ejercicioIndex != -1) {
+				if (ejercicioIndex == -1) {
 					ejercicios.push({
 						id_ejercicio: ejercicio.id_ejercicio,
-						nombre: ejercicio.nombre,
-						descripcion: ejercicio.descripcion,
-						duracion: agenda.regimen_ejercicio[ejercicioIndex].duracion,
+						//id_tiempo: regimen.id_tiempo,
+						//duracion: regimen.duracion,
+						nombre: ejercicio.nombre
+					})
+				}
+				else {
+					ejercicios.push({
+						id_ejercicio: ejercicio.id_ejercicio,
+						id_regimen_ejercicio: agenda.regimen_ejercicio[ejercicioIndex].id_regimen_ejercicio,
 						id_tiempo: agenda.regimen_ejercicio[ejercicioIndex].id_tiempo,
-						tiempo: agenda.regimen_ejercicio[ejercicioIndex].tiempo.nombre,
-						tiempo_abreviatura: agenda.regimen_ejercicio[ejercicioIndex].tiempo.abreviatura,
 						id_frecuencia: agenda.regimen_ejercicio[ejercicioIndex].id_frecuencia,
-						frecuencia: agenda.regimen_ejercicio[ejercicioIndex].frecuencia.frecuencia
+						duracion: agenda.regimen_ejercicio[ejercicioIndex].duracion,
+						nombre: ejercicio.nombre
 					});
 				}
 			});
+
 		}
 
 		let suplementos = [];
@@ -357,20 +364,29 @@ function getAgendaById(req, res, next) {
 				let suplementoIndex = agenda.regimen_suplemento.map(function (regimen) {
 					return regimen.id_suplemento
 				})
-					.indexOf(suplemento.id_suplemento);
+				.indexOf(suplemento.id_suplemento);
 
-				if (suplementoIndex != -1) {
+				if (suplementoIndex == -1) {
 					suplementos.push({
 						id_suplemento: suplemento.id_suplemento,
 						nombre: suplemento.nombre,
-						id_frecuencia: agenda.regimen_suplemento[suplementoIndex].id_frecuencia,
+						//frecuencia: regimen.id_frecuencia,
+						//cantidad: regimen.cantidad,
+						unidad: suplemento.unidad.nombre,
+						unidad_abreviatura: suplemento.unidad.abreviatura
+					})
+				}
+				else {
+					suplementos.push({
+						id_suplemento: suplemento.id_suplemento,
+						nombre: suplemento.nombre,
+						id_regimen_suplemento: agenda.regimen_suplemento[suplementoIndex].id_regimen_suplemento,
 						frecuencia: agenda.regimen_suplemento[suplementoIndex].id_frecuencia,
 						cantidad: agenda.regimen_suplemento[suplementoIndex].cantidad,
 						unidad: suplemento.unidad.nombre,
 						unidad_abreviatura: suplemento.unidad.abreviatura
 					})
 				}
-
 			});
 		}
 		
