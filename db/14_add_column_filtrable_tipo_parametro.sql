@@ -1,0 +1,1 @@
+ALTER TABLE tipo_parametro ADD COLUMN filtrable boolean DEFAULT false;

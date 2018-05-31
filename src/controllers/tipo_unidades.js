@@ -21,12 +21,14 @@ function getTipoUnidades(req, res, next) {
 			console.log(tipoUnidad.unidades);
 			let unidades = [];
 			tipoUnidad.unidades.map(function(unidad) {
+				if(unidad.estatus == 1){
 				unidades.push({
 					id_unidad:   unidad.id_unidad,
 					nombre:      unidad.nombre,
 					abreviatura: unidad.abreviatura,
 					simbolo:     unidad.simbolo 
 				});
+				}
 			});
 
 			tipo_unidades.push({
@@ -120,7 +122,7 @@ function updateTipoUnidad(req, res, next) {
 		data.save({
 			nombre: req.body.nombre || data.get('nombre')
 		})
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

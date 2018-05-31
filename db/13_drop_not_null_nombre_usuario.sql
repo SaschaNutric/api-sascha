@@ -1,0 +1,1 @@
+ALTER TABLE usuario ALTER COLUMN nombre_usuario DROP NOT NULL;

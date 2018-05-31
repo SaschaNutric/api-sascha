@@ -31,8 +31,8 @@ function getSuplementos(req, res, next) {
 function saveSuplemento(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	Suplemento.forge({ id_unidad:req.body.id_unidad ,nombre:req.body.nombre  })
-	.fetch({ withRelated: ['unidad','unidad.tipo_unidad'] })
+	Suplemento.forge({ id_unidad:req.body.id_unidad , nombre:req.body.nombre  })
+	.save()
 	.then(function(data){
 		res.status(200).json({
 			error: false,
@@ -95,7 +95,7 @@ function updateSuplemento(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ id_unidad:req.body.id_unidad || data.get('id_unidad'),nombre:req.body.nombre || data.get('nombre') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

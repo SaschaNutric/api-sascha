@@ -6,12 +6,11 @@ const Cliente   	= require('../models/cliente');
 const Bookshelf     = require('../commons/bookshelf');
 
 function getClientes(req, res, next) {
-	ViewClientes.query(function (qb) {
-   		qb.where('cliente.estatus', '=', 1);
-	})
+	ViewClientes.query(function (qb) {})
 	.fetch({ columns: ['id_cliente', 'cedula', 'nombres', 'apellidos', 
 						'telefono', 'genero', 'estado_civil', 'direccion', 
-						'fecha_nacimiento', 'tipo_cliente', 'rango_edad'] })
+						'fecha_nacimiento', 'tipo_cliente', 'rango_edad'],
+			withRelated: ['perfil'] })
 	.then(function(clientes) {
 		if (clientes.length == 0)
 			return res.status(404).json({ 
@@ -44,7 +43,8 @@ function getClienteById(req, res, next) {
 	ViewCliente.forge({ id_cliente: id })
 	.fetch({ columns: ['id_cliente', 'cedula', 'nombres', 'apellidos', 
 						'telefono', 'genero', 'estado_civil', 'direccion', 
-						'fecha_nacimiento', 'tipo_cliente', 'rango_edad'] })
+						'fecha_nacimiento', 'tipo_cliente', 'rango_edad'],
+			withRelated: ['perfil'] })
 	.then(function(cliente) {
 		if(!cliente) 
 			return res.status(404).json({ 
@@ -92,7 +92,7 @@ const id = Number.parseInt(req.params.id);
             telefono : req.body.telefono || data.get('telefono'),
             direccion: req.body.direccion || data.get('direccion')
 		})
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

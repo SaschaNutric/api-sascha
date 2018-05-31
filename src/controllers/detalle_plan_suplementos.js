@@ -94,8 +94,11 @@ function updateDetalle_plan_suplemento(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ id_plan_suplemento:req.body.id_plan_suplemento || data.get('id_plan_suplemento'),id_suplemento:req.body.id_suplemento || data.get('id_suplemento') })
-		.then(function() {
+		data.save({ 
+			id_plan_suplemento:req.body.id_plan_suplemento || data.get('id_plan_suplemento'),
+			id_suplemento:req.body.id_suplemento || data.get('id_suplemento') 
+		})
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

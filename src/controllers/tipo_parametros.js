@@ -7,17 +7,38 @@ function getTipoParametros(req, res, next) {
 	TipoParametros.query(function (qb) {
    		qb.where('tipo_parametro.estatus', '=', 1);
 	})
-	.fetch()
+	.fetch({ withRelated: ['parametros','parametros.unidad'] })
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
 				error: true, 
 				data: { mensaje: 'No hay datos registrados' } 
 			});
+	let tipo_parametros = [];
+		
+		data.toJSON().map(function(tipoParametro) {
+			let parametros = [];
+			tipoParametro.parametros.map(function(parametro) {
+				if(parametro.estatus == 1 ) {
+				parametros.push({
+					id_parametro:   parametro.id_parametro,
+					nombre:      parametro.nombre,
+					unidad: parametro.unidad,
+					tipo_valor:     parametro.tipo_valor
+				});
+				}
+			});
 
+			tipo_parametros.push({
+				id_tipo_parametro: tipoParametro.id_tipo_parametro,
+				nombre:         tipoParametro.nombre,
+				filtrable: tipoParametro.filtrable,
+				parametros:       parametros
+			})
+		});
 		return res.status(200).json({
 			error: false,
-			data: data
+			data: tipo_parametros
 		});
 	})
 	.catch(function (err) {
@@ -26,6 +47,53 @@ function getTipoParametros(req, res, next) {
 			data: { mensaje: err.message }
 		});
     });
+}
+
+function getTipoParametrosFiltrable(req, res, next) {
+	TipoParametros.query(function (qb) {
+		qb.where('filtrable', '=', true);
+		qb.where('tipo_parametro.estatus', '=', 1);
+	})
+	.fetch({ withRelated: ['parametros', 'parametros.unidad'] })
+	.then(function (data) {
+		if (!data)
+			return res.status(404).json({
+				error: true,
+				data: { mensaje: 'No hay datos registrados' }
+			});
+		let tipo_parametros = [];
+
+		data.toJSON().map(function (tipoParametro) {
+			let parametros = [];
+			tipoParametro.parametros.map(function (parametro) {
+				if (parametro.estatus == 1) {
+					parametros.push({
+						id_parametro: parametro.id_parametro,
+						nombre: parametro.nombre,
+						unidad: parametro.unidad,
+						tipo_valor: parametro.tipo_valor
+					});
+				}
+			});
+
+			tipo_parametros.push({
+				id_tipo_parametro: tipoParametro.id_tipo_parametro,
+				nombre: tipoParametro.nombre,
+				filtrable: tipoParametro.filtrable,
+				parametros: parametros
+			})
+		});
+		return res.status(200).json({
+			error: false,
+			data: tipo_parametros
+		});
+	})
+	.catch(function (err) {
+		return res.status(500).json({
+			error: true,
+			data: { mensaje: err.message }
+		});
+	});
 }
 
 function saveTipoParametro(req, res, next){
@@ -99,7 +167,7 @@ function updateTipoParametro(req, res, next) {
 		data.save({
 			nombre: req.body.nombre || data.get('nombre')
 		})
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data
@@ -120,6 +188,48 @@ function updateTipoParametro(req, res, next) {
 	})
 }
 
+
+function updateTipoParametroFiltrable(req, res, next) {
+	const id = Number.parseInt(req.params.id);
+	if (!id || id == 'NaN') {
+		return res.status(400).json({
+			error: true,
+			data: { mensaje: 'Solicitud incorrecta' }
+		});
+	}
+
+	TipoParametro.forge({ id_tipo_parametro: id, estatus: 1 })
+		.fetch()
+		.then(function (data) {
+			if (!data)
+				return res.status(404).json({
+					error: true,
+					data: { mensaje: 'Tipo parametro no encontrado' }
+				});
+			data.save({
+				filtrable: req.body.filtrable
+			})
+			.then(function (data) {
+				return res.status(200).json({
+					error: false,
+					data: data
+				});
+			})
+			.catch(function (err) {
+				return res.status(500).json({
+					error: true,
+					data: { mensaje: err.message }
+				});
+			})
+		})
+		.catch(function (err) {
+			return res.status(500).json({
+				error: true,
+				data: { mensaje: err.message }
+			});
+		})
+}
+
 function deleteTipoParametro(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') {
@@ -134,10 +244,10 @@ function deleteTipoParametro(req, res, next) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'Solicitud no encontrad0' } 
+				data: { mensaje: 'Solicitud no encontrado' } 
 			});
 
-		data.save({ estatus:  0 })
+		data.save({ estatus: 0 })
 		.then(function() {
 			return res.status(200).json({ 
 				error: false,
@@ -161,8 +271,10 @@ function deleteTipoParametro(req, res, next) {
 
 module.exports = {
 	getTipoParametros,
+	getTipoParametrosFiltrable,
 	saveTipoParametro,
 	getTipoParametroById,
 	updateTipoParametro,
+	updateTipoParametroFiltrable,
 	deleteTipoParametro
 }

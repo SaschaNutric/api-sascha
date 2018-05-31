@@ -1,0 +1,1 @@
+ALTER TABLE usuario ADD COLUMN tipo_usuario integer DEFAULT 1 NOT NULL;

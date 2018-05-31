@@ -1,22 +1,25 @@
 'use strict'
 
 const Bookshelf 		= require('../commons/bookshelf');
-const PlanDieta 		= require('./plan_dieta');
-const Comida 			= require('./comida');
-const GrupoAlimenticio 	= require('./grupo_alimenticio');
+require('./plan_dieta');
+require('./comida');
+require('./grupo_alimenticio');
 
-let Detalle_plan_dieta = Bookshelf.Model.extend({
+let DetallePlanDieta = Bookshelf.Model.extend({
   tableName: 'detalle_plan_dieta',
   idAttribute: 'id_detalle_plan_dieta',
-  plan_dieta: function() {
-    return this.belongsTo(PlanDieta, 'id_plan_dieta');
+  plan_dieta: function () {
+    return this.belongsTo('PlanDieta', 'id_plan_dieta')
+          .query({ where: { 'plan_dieta.estatus': 1 } });
   },
-  comida: function() {
-    return this.belongsTo(Comida, 'id_comida');
+  comida: function () {
+    return this.belongsTo('Comida', 'id_comida')
+          .query({ where: { 'comida.estatus': 1 } });
   },
-  grupo_alimenticio: function() {
-    return this.belongsTo(GrupoAlimenticio, 'id_grupo_alimenticio');
+  grupoAlimenticio: function () {
+    return this.belongsTo('Grupo_alimenticio', 'id_grupo_alimenticio')
+          .query({ where: { 'grupo_alimenticio.estatus': 1 } });
   }
 });
 
-module.exports = Bookshelf.model('Detalle_plan_dieta', Detalle_plan_dieta);
+module.exports = Bookshelf.model('DetallePlanDieta', DetallePlanDieta);

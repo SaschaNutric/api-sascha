@@ -1,43 +1,14 @@
 'use strict';
 
-const Servicios = require('../collections/servicios');
-const Servicio  = require('../models/servicio');
+const Servicios  = require('../collections/servicios');
+const Servicio   = require('../models/servicio');
+const cloudinary = require('../../cloudinary');
+const Bookshelf  = require('../commons/bookshelf');
 
-/*
-.query(function (q) {
-        q.distinct()
-         .innerJoin('plan_dieta', function () {
-                this.on('servicio.id_plan_dieta', '=', 'plan_dieta.id_plan_dieta');
-            })
-         .innerJoin('tipo_dieta', function () {
-                this.on('tipo_dieta.id_tipo_dieta', '=', 'plan_dieta.id_tipo_dieta');
-            })
-         .innerJoin('plan_ejercicio', function () {
-                this.on('servicio.id_plan_ejercicio', '=', 'plan_ejercicio.id_plan_ejercicio');
-            })
-         .innerJoin('plan_suplemento', function () {
-                this.on('servicio.id_plan_suplemento', '=', 'plan_suplemento.id_plan_suplemento');
-            });
-	})
-*/
-/*
-'plan_dieta',
-		'plan_dieta.tipo_dieta',
-		'plan_ejercicio',
-		'plan_suplemento',
-		'precio',
-		'precio.unidad',
-		'precio.unidad.tipo_unidad'	
-*/
 async function getServicios(req, res, next) {
-	await Servicios
-	.query(function (qb) {
-   		//qb.innerJoin('plan_ejercicio', 'servicio.id_plan_ejercicio', 'plan_ejercicio.id_plan_ejercicio');
-   		//qb.innerJoin('plan_dieta', 'servicio.id_plan_dieta', 'plan_dieta.id_plan_dieta');
-   		//qb.innerJoin('plan_suplemento', 'servicio.id_plan_suplemento', 'plan_suplemento.id_plan_suplemento');
-   		//qb.innerJoin('precio', 'servicio.id_precio', 'precio.id_precio');
-   		qb.groupBy('servicio.id_servicio');
+	Servicios.query(function (qb) {
    		qb.where('servicio.estatus', '=', 1);
+   		qb.orderBy('servicio.fecha_creacion','ASC');
 	})
 	.fetch({
 		withRelated: [
@@ -45,21 +16,75 @@ async function getServicios(req, res, next) {
 			'plan_ejercicio',
 			'plan_suplemento',
 			'especialidad',
-			'precio',
-			'precio.unidad',
-			'precio.unidad.tipo_unidad'
+			'parametros',
+			'parametros.parametro',
+			'condiciones_garantia'
 		]
 	})
 	.then(function(data) {
-		//console.log(servicios.at(0).related('plan_dieta'));
 		if (!data)
 			return res.status(404).json({ 
 				error: true, 
 				data: { mensaje: 'No hay servicios registrados' } 
 			});
+			let servicios = [];
+			data.toJSON().map(function(servicio) {
+				let parametros = [];
+				servicio.parametros.map(function(parametro) {
+					if(parametro.estatus == 1){
+					parametros.push({
+						id_parametro_servicio: parametro.id_parametro_servicio,
+						id_parametro: parametro.parametro.id_parametro,
+						nombre: parametro.parametro.nombre,
+						valor_minimo: parametro.valor_minimo,
+						valor_maximo: parametro.valor_maximo
+					})
+				}
+				});
+				let condiciones = [];
+				servicio.condiciones_garantia.map(function (condicion) {
+					if (condicion.estatus == 1) {
+						condiciones.push({
+							id_condicion_garantia: condicion.id_condicion_garantia,
+							descripcion: condicion.descripcion
+						})
+					}
+				})
+				servicios.push({
+					id_servicio: servicio.id_servicio,
+					nombre: servicio.nombre,
+					descripcion: servicio.descripcion,
+					url_imagen: servicio.url_imagen,
+					precio: servicio.precio,
+					numero_visitas: servicio.numero_visitas,
+					fecha_creacion: servicio.fecha_creacion,
+					especialidad: {
+						id_especialidad: servicio.especialidad.id_especialidad,
+						nombre: servicio.especialidad.nombre
+					},
+					plan_dieta: { 
+						id_plan_dieta: servicio.plan_dieta.id_plan_dieta,
+						nombre: servicio.plan_dieta.nombre,
+						descripcion: servicio.plan_dieta.descripcion
+					},
+					plan_ejercicio: servicio.plan_ejercicio ? { 
+						id_plan_ejercicio: servicio.plan_ejercicio.id_plan_ejercicio,
+						nombre: servicio.plan_ejercicio.nombre,
+						descripcion: servicio.plan_ejercicio.descripcion
+					} : null,
+					plan_suplemento: servicio.plan_suplemento ? { 
+						id_plan_suplemento: servicio.plan_suplemento.id_plan_suplemento,
+						nombre: servicio.plan_suplemento.nombre,
+						descripcion: servicio.plan_suplemento.descripcion
+					} : null,
+					parametros: parametros,
+					condiciones_garantia: condiciones
+				})
+			})
+		
 		return res.status(200).json({
 			error: false,
-			data: data
+			data: servicios
 		});
 	})
 	.catch(function (err) {
@@ -70,6 +95,107 @@ async function getServicios(req, res, next) {
     });
 }
 
+async function getServiciosPorEspecialidad(req, res, next) {
+	const id = Number.parseInt(req.params.id);
+	if (!id || id == 'NaN') 
+		return res.status(400).json({ 
+			error: true, 
+			data: { mensaje: 'Solicitud incorrecta' } 
+		});
+
+	Servicios.query(function (qb) {
+   		qb.where('servicio.estatus', '=', 1);
+   		qb.where('servicio.id_especialidad', '=', id);
+	})
+	.fetch({
+		withRelated: [
+			'plan_dieta',
+			'plan_ejercicio',
+			'plan_suplemento',
+			'especialidad',
+			'parametros',
+			'parametros.parametro',
+			'condiciones_garantia'
+		]
+	})
+	.then(function(data) {
+		if (!data)
+			return res.status(404).json({ 
+				error: true, 
+				data: { mensaje: 'No hay servicios registrados' } 
+			});
+			let servicios = [];
+			let especialidad = {};
+			data.toJSON().map(function(servicio) {
+				let parametros = [];
+				servicio.parametros.map(function(parametro) {
+					if(parametro.estatus == 1){
+					parametros.push({
+						id_parametro_servicio: parametro.id_parametro_servicio,
+						nombre: parametro.parametro.nombre,
+						valor_minimo: parametro.valor_minimo,
+						valor_maximo: parametro.valor_maximo
+					})
+				}
+				});
+				let condiciones = [];
+				servicio.condiciones_garantia.map(function (condicion) {
+					if (condicion.estatus == 1) {
+						condiciones.push({
+							id_condicion_garantia: condicion.id_condicion_garantia,
+							descripcion: condicion.descripcion
+						})
+					}
+				})
+				especialidad =  {
+					id_especialidad: servicio.especialidad.id_especialidad,
+					nombre: servicio.especialidad.nombre
+				}
+
+				servicios.push({
+					id_servicio: servicio.id_servicio,
+					nombre: servicio.nombre,
+					descripcion: servicio.descripcion,
+					url_imagen: servicio.url_imagen,
+					precio: servicio.precio,
+					numero_visitas: servicio.numero_visitas,
+					plan_dieta: { 
+						id_plan_dieta: servicio.plan_dieta.id_plan_dieta,
+						nombre: servicio.plan_dieta.nombre,
+						descripcion: servicio.plan_dieta.descripcion
+					},
+					plan_ejercicio: servicio.plan_ejercicio ? { 
+						id_plan_ejercicio: servicio.plan_ejercicio.id_plan_ejercicio,
+						nombre: servicio.plan_ejercicio.nombre,
+						descripcion: servicio.plan_ejercicio.descripcion
+					} : null,
+					plan_suplemento: servicio.plan_suplemento ? { 
+						id_plan_suplemento: servicio.plan_suplemento.id_plan_suplemento,
+						nombre: servicio.plan_suplemento.nombre,
+						descripcion: servicio.plan_suplemento.descripcion
+					} : null,
+					parametros: parametros,
+					condiciones_garantia: condiciones
+				})
+			})
+		
+		return res.status(200).json({
+			error: false,
+			data: {
+				"especialidad":especialidad,
+				"servicios":servicios
+			}
+		});
+	})
+	.catch(function (err) {
+     	return res.status(500).json({
+			error: true,
+			data: { mensaje: err.message }
+		});
+    });
+}
+
+
 function getServicioById(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') 
@@ -79,16 +205,77 @@ function getServicioById(req, res, next) {
 		});
 
 	Servicio.forge({ id_servicio: id, estatus: 1 })
-	.fetch()
+	.fetch({
+		withRelated: [
+			'plan_dieta',
+			'plan_ejercicio',
+			'plan_suplemento',
+			'especialidad',
+			'parametros',
+			'parametros.parametro',
+			'condiciones_garantia'
+		]
+	})
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
 				data: { mensaje: 'Servicio no encontrado' } 
 			});
+		
+				let parametros = [];
+				let servicio = data.toJSON();
+				servicio.parametros.map(function(parametro) {
+					if(parametro.estatus == 1){
+					parametros.push({
+						id_parametro_servicio: parametro.id_parametro_servicio,
+						nombre: parametro.parametro.nombre,
+						valor_minimo: parametro.valor_minimo,
+						valor_maximo: parametro.valor_maximo,
+					})
+				}
+				});
+				let condiciones = [];
+				servicio.condiciones_garantia.map(function(condicion) {
+					if(condicion.estatus == 1) {
+						condiciones.push({
+							id_condicion_garantia: condicion.id_condicion_garantia,
+							descripcion: condicion.descripcion
+						})
+					}
+				})
+				let servicioObtenido = {
+					id_servicio: servicio.id_servicio,
+					nombre: servicio.nombre,
+					descripcion: servicio.descripcion,
+					url_imagen: servicio.url_imagen,
+					precio: servicio.precio,
+					numero_visitas: servicio.numero_visitas,
+					especialidad: {
+						id_especialidad: servicio.especialidad.id_especialidad,
+						nombre: servicio.especialidad.nombre
+					},
+					plan_dieta: { 
+						id_plan_dieta: servicio.plan_dieta.id_plan_dieta,
+						nombre: servicio.plan_dieta.nombre,
+						descripcion: servicio.plan_dieta.descripcion
+					},
+					plan_ejercicio: servicio.plan_ejercicio ? { 
+						id_plan_ejercicio: servicio.plan_ejercicio.id_plan_ejercicio,
+						nombre: servicio.plan_ejercicio.nombre,
+						descripcion: servicio.plan_ejercicio.descripcion
+					} : null,
+					plan_suplemento: servicio.plan_suplemento ? { 
+						id_plan_suplemento: servicio.plan_suplemento.id_plan_suplemento,
+						nombre: servicio.plan_suplemento.nombre,
+						descripcion: servicio.plan_suplemento.descripcion
+					} : null,
+					parametros: parametros,
+					condiciones_garantia: condiciones
+				}
 		return res.status(200).json({ 
 			error: false, 
-			data: data
+			data: servicioObtenido
 		});
 	})
 	.catch(function(err){
@@ -100,34 +287,78 @@ function getServicioById(req, res, next) {
 }
 
 function saveServicio(req, res, next){
-	Servicio.forge({
-		id_plan_dieta: req.body.id_plan_dieta,
-		id_plan_ejercicio: req.body.id_plan_ejercicio, 
-		id_plan_suplemento: req.body.id_plan_suplemento,
-		id_especialidad: req.body.id_especialidad || null,
-        nombre: req.body.nombre, 
-        descripcion: req.body.descripcion, 
-        url_imagen: req.body.url_imagen, 
-        id_precio: req.body.id_precio, 
-        numero_visitas: req.body.numero_visitas
-	})
-	.save()
-	.then(function(data){
-		res.status(200).json({
-			error: false,
-			data: {
-				mensaje: "Servicio Creado satisfactoriamente",
-				data: data,
-			}
+	if (req.files.imagen) {
+		const imagen = req.files.imagen
+		cloudinary.uploader.upload(imagen.path, function(result) {
+			if (result.error) {
+				return res.status(500).json({
+						error: true,
+						data: { message: result.error }
+					});
+			} 
+
+			// usuario.avatarNombre = result.public_id		
+			Servicio.forge({
+				id_plan_dieta:      req.body.id_plan_dieta,
+				id_plan_ejercicio:  req.body.id_plan_ejercicio, 
+				id_plan_suplemento: req.body.id_plan_suplemento,
+				id_especialidad:    req.body.id_especialidad || null,
+				nombre:             req.body.nombre, 
+				descripcion:        req.body.descripcion, 
+				url_imagen:         result.url, 
+				precio:             req.body.precio, 
+				numero_visitas:     req.body.numero_visitas
+			})
+			.save()
+			.then(function(data){
+				res.status(200).json({
+					error: false,
+					data: {
+						mensaje: "Servicio Creado satisfactoriamente",
+						data: data,
+					}
+				});
+			})
+			.catch(function (err) {
+				res.status(500)
+				.json({
+					error: true,
+					data: {message: err.message}
+				});
+			});
+			
+		})
+	}
+	else {
+		Servicio.forge({
+			id_plan_dieta:      req.body.id_plan_dieta,
+			id_plan_ejercicio:  req.body.id_plan_ejercicio,
+			id_plan_suplemento: req.body.id_plan_suplemento,
+			id_especialidad:    req.body.id_especialidad || null,
+			nombre:             req.body.nombre,
+			descripcion:        req.body.descripcion,
+			url_imagen:         'https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png',
+			precio:          req.body.precio,
+			numero_visitas:     req.body.numero_visitas
+		})
+		.save()
+		.then(function (data) {
+			res.status(200).json({
+				error: false,
+				data: {
+					mensaje: "Servicio Creado satisfactoriamente",
+					data: data,
+				}
+			});
+		})
+		.catch(function (err) {
+			res.status(500)
+				.json({
+					error: true,
+					data: { message: err.message }
+				});
 		});
-	})
-	.catch(function (err) {
-		res.status(500)
-		.json({
-			error: true,
-			data: {message: err.message}
-		});
-	});
+	}
 }
 
 function updateServicio(req, res, next) {
@@ -146,28 +377,64 @@ function updateServicio(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({
-        	nombre: req.body.nombre || data.get('nombre'), 
-        	descripcion: req.body.descripcion || data.get('descripcion'), 
-        	url_imagen: req.body.url_imagen || data.get('url_imagen'), 
-        	id_precio: req.body.id_precio || data.get('id_precio'), 
-        	numero_visita: req.body.numero_visita || data.get('numero_visita')
-		})
-		.then(function(servicio) {
-			return res.status(200).json({ 
-				error: false, 
-				data: { 
-					mensaje: 'Registro de servicio actualizado',
-					servicio: servicio
+		if (req.files.imagen && req.files.imagen.name != data.get('url_imagen').substr(65)) {
+			const imagen = req.files.imagen
+			cloudinary.uploader.upload(imagen.path, function(result) {
+				if (result.error) {
+					return res.status(500).json({
+						error: true,
+						data: { message: result.error }
+					});
 				}
+				data.save({
+        			nombre: 			req.body.nombre 			|| data.get('nombre'), 
+        			descripcion: 		req.body.descripcion 		|| data.get('descripcion'), 
+        			url_imagen: 		result.url,
+        			precio: 			req.body.precio 			|| data.get('precio'), 
+					numero_visitas: 	req.body.numero_visitas 	|| data.get('numero_visitas'),
+					id_plan_dieta: 		req.body.id_plan_dieta 		|| data.get('id_plan_dieta'),
+					id_plan_ejercicio: 	req.body.id_plan_ejercicio 	|| data.get('id_plan_ejercicio'),
+					id_plan_suplemento: req.body.id_plan_suplemento || data.get('id_plan_suplemento'),
+					id_especialidad: 	req.body.id_especialidad 	|| data.get('id_especialidad')
+				})
+				.then(function(data) {
+					return res.status(200).json({ 
+						error: false, 
+						data: data
+					});
+				})
+				.catch(function(err) {
+					return res.status(500).json({ 
+						error : true, 
+						data : { mensaje : err.message } 
+					});
+				})
 			});
-		})
-		.catch(function(err) {
-			return res.status(500).json({ 
-				error : true, 
-				data : { mensaje : err.message } 
-			});
-		})
+		} else {
+			data.save({
+        		nombre: 			req.body.nombre 			|| data.get('nombre'), 
+        		descripcion: 		req.body.descripcion 		|| data.get('descripcion'), 
+        		url_imagen: 		req.body.url_imagen 		|| data.get('url_imagen'), 
+        		precio: 			req.body.precio 			|| data.get('precio'), 
+				numero_visitas: 	req.body.numero_visitas 	|| data.get('numero_visitas'),
+				id_plan_dieta: 		req.body.id_plan_dieta 		|| data.get('id_plan_dieta'),
+				id_plan_ejercicio: 	req.body.id_plan_ejercicio 	|| data.get('id_plan_ejercicio'),
+				id_plan_suplemento: req.body.id_plan_suplemento || data.get('id_plan_suplemento'),
+				id_especialidad: 	req.body.id_especialidad 	|| data.get('id_especialidad')
+			})
+			.then(function (data) {
+				return res.status(200).json({
+					error: false,
+					data: data
+				});
+			})
+			.catch(function (err) {
+				return res.status(500).json({
+					error: true,
+					data: { mensaje: err.message }
+				});
+			})
+		}
 	})
 	.catch(function(err) {
 		return res.status(500).json({ 
@@ -219,6 +486,7 @@ function deleteServicio(req, res, next) {
 module.exports = {
 	getServicios,
 	getServicioById,
+	getServiciosPorEspecialidad,
 	saveServicio,
 	updateServicio,
 	deleteServicio

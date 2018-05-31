@@ -93,7 +93,6 @@ CREATE TABLE agenda (
     id_empleado integer NOT NULL,
     id_cliente integer NOT NULL,
     id_orden_servicio integer NOT NULL,
-    id_visita integer,
     id_cita integer NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
     fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
@@ -1071,6 +1070,18 @@ CREATE SEQUENCE id_negocio_seq
 
 ALTER TABLE id_negocio_seq OWNER TO postgres;
 
+
+CREATE SEQUENCE id_notificacion_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE id_notificacion_seq OWNER TO postgres;
+
+
 --
 -- Name: id_orden_servicio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
@@ -1126,6 +1137,18 @@ CREATE SEQUENCE id_parametro_seq
 
 
 ALTER TABLE id_parametro_seq OWNER TO postgres;
+
+
+CREATE SEQUENCE id_parametro_meta_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE id_parametro_meta_seq OWNER TO byqkxhkjgnspco;
+
 
 --
 -- Name: id_parametro_servicio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1693,6 +1716,31 @@ ALTER TABLE negocio OWNER TO postgres;
 -- Name: orden_servicio; Type: TABLE; Schema: public; Owner: postgres
 --
 
+CREATE TABLE notificacion (
+    id_notificacion integer DEFAULT nextval('id_notificacion_seq'::regclass) NOT NULL,
+    id_usuario integer,
+    id_promocion integer,
+    titulo character varying(50) DEFAULT ''::character varying NOT NULL,
+    mensaje character varying(500) DEFAULT '':: character varying NOT NULL,
+    tipo_notificacion integer NOT NULL,
+    fecha_creacion timestamp without time zone DEFAULT now() NOT NULL    
+)
+
+ALTER TABLE notificacion OWNER TO postgres;
+
+/*
+tipo_notificacion:
+1. Solicitud
+2. Promocion
+3. Proxima cita
+4. Incidencia
+5. Cita reprogramada
+6. Reclamo
+7. Garantia
+8. Comentario
+9. Respuesta
+*/
+
 CREATE TABLE orden_servicio (
     id_orden_servicio integer DEFAULT nextval('id_orden_servicio_seq'::regclass) NOT NULL,
     id_solicitud_servicio integer NOT NULL,
@@ -1768,6 +1816,24 @@ CREATE TABLE parametro_promocion (
 
 
 ALTER TABLE parametro_promocion OWNER TO postgres;
+
+
+CREATE TABLE parametro_meta (
+    id_parametro_meta integer DEFAULT nextval('id_parametro_meta_seq'::regclass) NOT NULL,
+    id_orden_servicio integer NOT NULL,
+    id_parametro integer NOT NULL,
+    valor_minimo integer NOT NULL,
+    valor_maximo integer NOT NULL,
+    signo integer NOT NULL,
+    fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
+    fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
+    estatus integer DEFAULT 1 NOT NULL
+);
+
+
+ALTER TABLE parametro_meta OWNER TO postgres;
+
+-- Signo 0: Negativo 1: Positivo
 
 --
 -- Name: parametro_servicio; Type: TABLE; Schema: public; Owner: postgres
@@ -2022,6 +2088,8 @@ CREATE TABLE respuesta (
 
 ALTER TABLE respuesta OWNER TO postgres;
 
+
+
 --
 -- Name: rol; Type: TABLE; Schema: public; Owner: postgres
 --
@@ -2228,6 +2296,7 @@ ALTER TABLE tipo_incidencia OWNER TO postgres;
 CREATE TABLE tipo_motivo (
     id_tipo_motivo integer DEFAULT nextval('id_tipo_motivo_seq'::regclass) NOT NULL,
     nombre character(50) DEFAULT ''::bpchar NOT NULL,
+    canal_escucha boolean DEFAULT TRUE NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
     fecha_actualizacion timestamp without time zone DEFAULT now() NOT NULL,
     estatus integer DEFAULT 1 NOT NULL
@@ -2378,6 +2447,7 @@ ALTER TABLE valoracion OWNER TO postgres;
 
 CREATE TABLE visita (
     id_visita integer DEFAULT nextval('id_visita_seq'::regclass) NOT NULL,
+    id_agenda integer NOT NULL,
     numero integer NOT NULL,
     fecha_atencion date NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL,
@@ -2405,20 +2475,131 @@ CREATE VIEW vista_cliente AS
     a.fecha_nacimiento,
     a.telefono,
     a.direccion,
-    d.id_estado,
-    d.nombre AS estado,
     a.tipo_cliente,
     e.nombre AS rango_edad,
     e.id_rango_edad
-   FROM ((((cliente a
+   FROM (((cliente a
      JOIN genero b ON ((a.id_genero = b.id_genero)))
      JOIN estado_civil c ON ((a.id_estado_civil = c.id_estado_civil)))
-     JOIN estado d ON ((a.id_estado = d.id_estado)))
      LEFT JOIN rango_edad e ON ((a.id_rango_edad = e.id_rango_edad)))
   WHERE (a.estatus = 1);
 
 
 ALTER TABLE vista_cliente OWNER TO postgres;
+
+
+CREATE VIEW vista_cliente_ordenes AS
+    SELECT a.id_cliente,
+    a.id_usuario,
+    ARRAY(SELECT id_orden_servicio 
+          FROM orden_servicio b 
+          JOIN solicitud_servicio c 
+          ON b.id_solicitud_servicio = c.id_solicitud_servicio
+          WHERE c.id_cliente = a.id_cliente
+          AND b.estado = 1) AS ordenes
+    FROM cliente a
+    WHERE a.estatus = 1;
+
+ALTER TABLE vista_cliente_ordenes OWNER TO postgres;
+
+
+CREATE VIEW vista_cliente_servicio_activo AS
+    SELECT a.id_orden_servicio, 
+        b.id_solicitud_servicio, 
+        d.id_cliente, 
+        (d.nombres || ' ' || d.apellidos) AS nombre_cliente, 
+        c.id_servicio, 
+        c.nombre as nombre_servicio
+    FROM orden_servicio a 
+    JOIN solicitud_servicio b ON a.id_solicitud_servicio = b.id_solicitud_servicio
+    JOIN servicio c ON b.id_servicio = c.id_servicio
+    JOIN cliente d ON b.id_cliente = d.id_cliente
+    WHERE a.estatus = 1 AND b.estatus = 1 AND c.estatus = 1 AND d.estatus = 1;
+
+ALTER TABLE vista_cliente_servicio_activo OWNER TO byqkxhkjgnspco;
+
+
+CREATE VIEW vista_agenda AS
+SELECT a.id_agenda, 
+    g.id_orden_servicio,
+    j.id_visita,
+    i.id_empleado,
+    (i.nombres || ' ' || i.apellidos) AS nombre_empleado,
+    b.id_cliente, 
+    (b.nombres || ' ' || b.apellidos) AS nombre_cliente,
+    b.direccion AS direccion_cliente,
+    b.telefono AS telefono_cliente,
+    b.fecha_nacimiento AS fecha_nacimiento_cliente,
+    date_part('years', age(b.fecha_nacimiento)) AS edad_cliente,
+    c.id_servicio, 
+    c.nombre AS nombre_servicio,
+    C.numero_visitas AS duracion_servicio,
+    (SELECT count(visita.id_visita) FROM visita JOIN agenda 
+    ON agenda.id_agenda = visita.id_agenda 
+    WHERE agenda.id_orden_servicio = g.id_orden_servicio) AS visitas_realizadas,
+    c.id_plan_dieta,
+    c.id_plan_ejercicio,
+    c.id_plan_suplemento,
+    d.id_cita,     
+    d.id_tipo_cita, 
+    e.nombre AS tipo_cita, 
+    d.fecha, 
+    f.hora_inicio, 
+    f.hora_fin,
+    a.fecha_creacion
+FROM agenda a
+    JOIN cliente b ON a.id_cliente = b.id_cliente
+    JOIN orden_servicio g ON a.id_orden_servicio = g.id_orden_servicio
+    JOIN solicitud_servicio h ON g.id_solicitud_servicio = h.id_solicitud_servicio
+    JOIN servicio c ON c.id_servicio = h.id_servicio
+    JOIN cita d ON d.id_cita = a.id_cita
+    JOIN tipo_cita e ON d.id_tipo_cita = e.id_tipo_cita
+    JOIN bloque_horario f ON d.id_bloque_horario = f.id_bloque_horario
+    JOIN empleado i ON i.id_empleado = a.id_empleado
+    LEFT JOIN visita j ON j.id_agenda = a.id_agenda
+WHERE a.estatus = 1 
+    AND b.estatus = 1 
+    AND c.estatus = 1 
+    AND d.estatus = 1
+    AND d.id_tipo_cita <> 3
+    AND g.estatus = 1 
+    AND g.estado = 1
+    AND i.estatus = 1;
+
+ALTER TABLE vista_agenda OWNER TO byqkxhkjgnspco;
+
+
+CREATE VIEW vista_visita AS 
+    SELECT a.id_visita,
+    a.numero,
+    a.fecha_atencion,
+    b.id_agenda,
+    e.id_empleado,
+    e.nombres || ' ' || e.apellidos AS nombre_empleado,
+    h.id_servicio,
+    h.nombre AS nombre_servicio,
+    h.numero_visitas,
+    c.id_cliente,
+    d.id_orden_servicio
+    FROM visita a 
+    JOIN agenda b ON b.id_agenda = a.id_agenda
+    JOIN cliente c ON c.id_cliente = b.id_cliente
+    JOIN orden_servicio d ON d.id_orden_servicio = b.id_orden_servicio
+    JOIN empleado e ON e.id_empleado = b.id_empleado
+    JOIN solicitud_servicio g ON g.id_solicitud_servicio = d.id_solicitud_servicio
+    JOIN servicio h ON h.id_servicio = g.id_servicio
+    WHERE a.estatus = 1 AND b.estatus = 1 AND c.estatus = 1;
+ALTER TABLE vista_visita OWNER TO byqkxhkjgnspco;
+
+CREATE VIEW vista_frecuencia AS
+	SELECT a.id_frecuencia,
+    	   a.repeticiones || ' veces por ' || b.nombre as frecuencia
+    FROM frecuencia a
+    JOIN tiempo b
+    ON a.id_tiempo = b.id_tiempo
+    WHERE a.estatus = 1;
+    
+ALTER TABLE vista_frecuencia OWNER TO byqkxhkjgnspco;
 
 
 --
@@ -2595,6 +2776,14 @@ VALUES (1, 'Desayuno'),
 
 SELECT pg_catalog.setval('id_comida_seq', 6, true);
 
+INSERT INTO dia_laborable(id_dia_laborable, dia)
+VALUES (0, 'Domingo'),
+(1, 'Lunes'),
+(2, 'Martes'),
+(3, 'Miercoles'),
+(4, 'Jueves'),
+(5, 'Viernes'),
+(6, 'Sábado');
 
 --
 -- Data for Name: estado; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -2612,6 +2801,15 @@ INSERT INTO estado VALUES (8, 'Mérida', '2018-04-12 23:54:14.138-04:30', '2018-
 
 SELECT pg_catalog.setval('id_estado_seq', 8, true);
 
+INSERT INTO especialidad (id_especialidad, nombre)
+VALUES (1, 'Adelgazar'),
+(2, 'Aumentar Peso'),
+(3, 'Ganar Masa Muscular'),
+(4, 'Definición de Musculo'),
+(5, 'Control de Patología'),
+(6, 'Atención Deportiva');
+
+SELECT pg_catalog.setval('id_especialidad_seq', 6, true);
 
 --
 -- Data for Name: estado_civil; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -2663,7 +2861,7 @@ INSERT INTO funcionalidad VALUES (7, NULL, 'Administración del Sistema', 'fa fa
 INSERT INTO funcionalidad VALUES (8, 2, 'Unidades', 'fa fa-chevron-right', 1, 2, 1, 'regi_unidad.html');
 INSERT INTO funcionalidad VALUES (9, 2, 'Tipos de Parámetros', 'fa fa-chevron-right', 2, 2, 1, 'regi_tipo_parametro.html');
 
-SELECT pg_catalog.setval('id_funcionalidad_seq', 7, true);
+SELECT pg_catalog.setval('id_funcionalidad_seq', 9, true);
 
 
 INSERT INTO negocio (id_negocio, razon_social, rif, url_logo, mision, vision, objetivo, telefono, correo, latitud, longitud)
@@ -2702,6 +2900,14 @@ VALUES (1, 'Diagnostico'),
 
 
 SELECT pg_catalog.setval('id_tipo_cita_seq', 3, true);
+
+
+INSERT INTO tipo_criterio (id_tipo_criterio, nombre)
+VALUES (1, 'Servicio'),
+(2, 'Visita');
+
+
+SELECT pg_catalog.setval('id_tipo_criterio_seq', 2, true);
 
 
 INSERT INTO tipo_orden (id_tipo_orden, nombre)
@@ -3061,6 +3267,18 @@ ALTER TABLE ONLY parametro
 -- Name: parametro_promocion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
+ALTER TABLE ONLY parametro_meta
+    ADD CONSTRAINT parametro_meta_pkey PRIMARY KEY (id_orden_servicio, id_parametro);
+
+
+ALTER TABLE ONLY parametro_meta
+    ADD CONSTRAINT parametro_meta_id_orden_servicio_fkey FOREIGN KEY (id_orden_servicio) REFERENCES orden_servicio(id_orden_servicio);
+
+
+ALTER TABLE ONLY parametro_meta
+    ADD CONSTRAINT parametro_meta_id_parametro_fkey FOREIGN KEY (id_parametro) REFERENCES parametro(id_parametro);
+
+
 ALTER TABLE ONLY parametro_promocion
     ADD CONSTRAINT parametro_promocion_pkey PRIMARY KEY (id_parametro, id_promocion);
 
@@ -3416,9 +3634,8 @@ ALTER TABLE ONLY agenda
 -- Name: agenda_id_visita_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY agenda
-    ADD CONSTRAINT agenda_id_visita_fkey FOREIGN KEY (id_visita) REFERENCES visita(id_visita);
-
+ALTER TABLE ONLY visita
+    ADD CONSTRAINT visita_id_agenda_fkey FOREIGN KEY (id_agenda) REFERENCES agenda(id_agenda);
 
 --
 -- Name: alimento_id_grupo_alimenticio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres

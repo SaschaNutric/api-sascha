@@ -1,7 +1,7 @@
 'use strict';
 
-const Bloque_horarios 	= require('../collections/bloque_horarios');
-const Bloque_horario  	= require('../models/bloque_horario');
+const Bloque_horarios = require('../collections/bloque_horarios');
+const Bloque_horario  = require('../models/bloque_horario');
 
 function getBloque_horarios(req, res, next) {
 	Bloque_horarios.query(function (qb) {
@@ -31,7 +31,7 @@ function getBloque_horarios(req, res, next) {
 function saveBloque_horario(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	Bloque_horario.forge({ hora_inicio:req.body.hora_inicio ,hora_fin:req.body.hora_fin  })
+	Bloque_horario.forge({ hora_inicio:req.body.hora_inicio, hora_fin:req.body.hora_fin  })
 	.save()
 	.then(function(data){
 		res.status(200).json({
@@ -57,12 +57,12 @@ function getBloque_horarioById(req, res, next) {
 		});
 
 	Bloque_horario.forge({ id_bloque_horario: id })
-	.fetch()
+	.fetch({ columns: ['id_bloque_horario', 'hora_inicio', 'hora_fin'] })
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'dato no encontrado' } 
+				data: { mensaje: 'Bloque horario no encontrado' } 
 			});
 		return res.status(200).json({ 
 			error : false, 
@@ -92,10 +92,13 @@ function updateBloque_horario(req, res, next) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'Solicitud no encontrada' } 
+				data: { mensaje: 'Bloque horario no encontrado' } 
 			});
-		data.save({ hora_inicio:req.body.hora_inicio || data.get('hora_inicio'),hora_fin:req.body.hora_fin || data.get('hora_fin') })
-		.then(function() {
+		data.save({ 
+			hora_inicio:req.body.hora_inicio || data.get('hora_inicio'),
+			hora_fin:req.body.hora_fin || data.get('hora_fin') 
+		})
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data
@@ -130,7 +133,7 @@ function deleteBloque_horario(req, res, next) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'Solicitud no encontrad0' } 
+				data: { mensaje: 'Bloque horario no encontrado' } 
 			});
 
 		data.save({ estatus:  0 })

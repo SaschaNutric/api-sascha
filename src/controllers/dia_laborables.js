@@ -94,8 +94,10 @@ function updateDia_laborable(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ dia:req.body.dia || data.get('dia') })
-		.then(function() {
+		data.save({ 
+			dia:req.body.dia || data.get('dia') 
+		})
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

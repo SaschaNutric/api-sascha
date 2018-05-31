@@ -7,11 +7,12 @@ function getCriterios(req, res, next) {
 	Criterios.query(function (qb) {
    		qb.where('criterio.estatus', '=', 1);
 	})
-	.fetch({
-		withRelated: [
+	.fetch({ withRelated: 
+		[
 			'tipo_criterio',
-			'tipo_valoracion'
-		] })
+			'tipo_criterio.tipo_valoracion'
+		] 
+	})
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -33,9 +34,11 @@ function getCriterios(req, res, next) {
 }
 
 function saveCriterio(req, res, next){
-	console.log(JSON.stringify(req.body));
-
-	Criterio.forge({ id_tipo_criterio:req.body.id_tipo_criterio ,id_tipo_valoracion:req.body.id_tipo_valoracion ,nombre:req.body.nombre ,descripcion:req.body.descripcion  })
+	Criterio.forge({ 
+		id_tipo_criterio: 	req.body.id_tipo_criterio ,
+		nombre: 			req.body.nombre ,
+		descripcion: 		req.body.descripcion  
+	})
 	.save()
 	.then(function(data){
 		res.status(200).json({
@@ -63,9 +66,9 @@ function getCriterioById(req, res, next) {
 	Criterio.forge({ id_criterio: id, estatus: 1 })
 	.fetch({
 		withRelated: [
-			'tipo_criterio',
-			'tipo_valoracion'
-		] })
+			'tipo_criterio'
+		] 
+	})
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
@@ -102,8 +105,12 @@ function updateCriterio(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ id_tipo_criterio:req.body.id_tipo_criterio || data.get('id_tipo_criterio'),id_tipo_valoracion:req.body.id_tipo_valoracion || data.get('id_tipo_valoracion'),nombre:req.body.nombre || data.get('nombre'),descripcion:req.body.descripcion || data.get('descripcion') })
-		.then(function() {
+		data.save({ 
+			id_tipo_criterio:req.body.id_tipo_criterio || data.get('id_tipo_criterio'),
+			nombre:req.body.nombre || data.get('nombre'),
+			descripcion:req.body.descripcion || data.get('descripcion') 
+		})
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

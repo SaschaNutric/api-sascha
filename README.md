@@ -3,6 +3,10 @@ API: Sascha
 
 #Interfaz de programacion de aplicaciones
 
+#Documentacion de las rutas
+
+[[Rutas api-sascha]](https://github.com/SaschaNutric/api-sascha/tree/master/src/routes)
+
 ### Quick de inicio
 **Hacer que tu version Node v8.9.4 and NPM = 5.6.0
 > Clonar/Descargar el repositorio

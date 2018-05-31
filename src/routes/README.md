@@ -35,7 +35,7 @@ Informacion sobre el contenido manejado sobre cada rutas de la api-sascha
     * [tiporespuestas](#tiporespuestas)
     * [tipounidades](#tipounidades)
     * [tipovaloraciones](#tipovaloraciones)
-
+    * [tiponotificaciones](#tiponotificaciones)
 * [agendas](#agendas)
 * [alimentos](#alimentos)
 * [calificaciones](#calificaciones)
@@ -291,6 +291,17 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 
 # tiempos
 
+```
+    ├─GET────/tiempos         * Retorna todos.
+    ├─POST───/tiempos         * Guarda. 
+    ├─GET────/tiempo/:id      * Retorna por id.
+    ├─PUT────/tiempo/:id      * Actualiza.
+    ├─DELETE─/tiempo/:id      * Elimina.
+    ├─Body─{
+        "nombre":"",
+        "abreviatura":""  
+    }
+```
 [[ver json]](https://api-sascha.herokuapp.com/tiempos)
 
 # tipocitas
@@ -512,6 +523,18 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 
 # frecuencias
 
+```
+    ├─GET────/frecuencias           * Retorna todos.
+    ├─POST───/frecuencias           * Guarda. 
+    ├─GET────/frecuencia/:id        * Retorna por id.
+    ├─PUT────/frecuencia/:id        * Actualiza.
+    ├─DELETE─/frecuencia/:id       * Elimina.
+    ├─Body─{ 
+        "id_tiempo": 1,
+        "repeticiones": 1
+    }
+```
+
 [[ver json]](https://api-sascha.herokuapp.com/frecuencias)
 
 # funcionalidades
@@ -635,19 +658,75 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
 
 # reclamos
 
+```
+    ├─GET────/reclamos          * Retorna todos.
+    ├─POST───/reclamos          * Guarda. 
+    ├─GET────/reclamo/:id       * Retorna por id.
+    ├─PUT────/reclamo/:id       * Actualiza.
+    ├─DELETE─/reclamo/:id       * Elimina.
+    ├─Body─{ 
+        "id_motivo":0,
+        "id_orden_servicio":0,
+        "id_respuesta":0,
+        "respuesta":""
+    }
+```
+
 [[ver json]](https://api-sascha.herokuapp.com/reclamos)
 
 # regimenDietas
 
-[[ver json]](https://api-sascha.herokuapp.com/regimendietas)
+```
+    ├─GET────/regimen/dietas          * Retorna todos.
+    ├─POST───/regimen/dietas          * Guarda. 
+    ├─GET────/regimen/dieta/:id       * Retorna por id.
+    ├─PUT────/regimen/dieta/:id       * Actualiza.
+    ├─DELETE─/regimen/dieta/:id       * Elimina.
+    ├─Body─{ 
+        "id_detalle_plan_dieta": 0,
+        "id_cliente": 0,
+        "cantidad": 1  
+    }  
+```
+
+[[ver json]](https://api-sascha.herokuapp.com/regimen/dietas)
 
 # regimenEjercicios
 
-[[ver json]](https://api-sascha.herokuapp.com/regimenejercicios)
+```
+    ├─GET────/regimen/ejercicios          * Retorna todos.
+    ├─POST───/regimen/ejercicios          * Guarda. 
+    ├─GET────/regimen/ejercicio/:id       * Retorna por id.
+    ├─PUT────/regimen/ejercicio/:id       * Actualiza.
+    ├─DELETE─/regimen/ejercicio/:id       * Elimina.
+    ├─Body─{
+        "id_plan_ejercicio":0 ,
+        "id_cliente":0 ,
+        "id_frecuencia":0 ,
+        "id_tiempo":1,
+        duracion:1
+    }  
+```
+
+[[ver json]](https://api-sascha.herokuapp.com/regimen/ejercicios)
 
 # regimenSuplementos
 
-[[ver json]](https://api-sascha.herokuapp.com/regimensuplementos)
+```
+    ├─GET────/regimen/suplementos          * Retorna todos.
+    ├─POST───/regimen/suplementos          * Guarda. 
+    ├─GET────/regimen/suplemento/:id       * Retorna por id.
+    ├─PUT────/regimen/suplemento/:id       * Actualiza.
+    ├─DELETE─/regimen/suplemento/:id       * Elimina.
+    ├─Body─{ 
+        "id_plan_suplemento":0,
+        "id_cliente":0 ,
+        "id_frecuencia":1 ,
+        "cantidad":1
+    }
+```
+
+[[ver json]](https://api-sascha.herokuapp.com/regimen/suplementos)
 
 # respuestas
 
@@ -853,6 +932,15 @@ Postman [https://www.getpostman.com/](https://www.getpostman.com/)
     ├─DELETE─/tipovaloracion/:id   * Elimina.
 ```
 [[ver json]](https://api-sascha.herokuapp.com/tipovaloraciones)
+
+# Tipo Notificaciones
+
+```
+    ├─GET────/tiponotificaciones       * Retorna todos.
+    ├─PUT────/tiponotificaciones/:id   * Actualiza.
+```
+[[ver json]](https://api-sascha.herokuapp.com/tiponotificaciones)
+
 
 # Unidades
 

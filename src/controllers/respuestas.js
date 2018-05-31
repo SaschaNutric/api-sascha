@@ -31,10 +31,49 @@ function getRespuestas(req, res, next) {
     });
 }
 
+function getRespuestasTipoMotivo(req, res, next){
+	const id = Number.parseInt(req.params.id);
+	if (!id || id == 'NaN') 
+		return res.status(400).json({ 
+			error: true, 
+			data: { mensaje: 'Solicitud incorrecta' } 
+		});
+	Respuestas.query(function (qb) {
+   		qb.where('respuesta.estatus', '=', 1);
+   		qb.where('respuesta.id_tipo_respuesta', '=', id);
+	})
+	.fetch({
+		withRelated: [
+			'tipo_respuesta'
+		] })
+	.then(function(data) {
+		if (!data)
+			return res.status(404).json({ 
+				error: true, 
+				data: { mensaje: 'No hay dato registrados' } 
+			});
+
+		return res.status(200).json({
+			error: false,
+			data: data
+		});
+	})
+	.catch(function (err) {
+     	return res.status(500).json({
+			error: true,
+			data: { mensaje: err.message }
+		});
+    });	
+}
+
 function saveRespuesta(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	Respuesta.forge({ id_tipo_respuesta:req.body.id_tipo_respuesta ,descripcion:req.body.descripcion  })
+	Respuesta.forge({ 
+		id_tipo_respuesta: req.body.id_tipo_respuesta, 
+		descripcion: req.body.descripcion,
+		aprobado: req.body.aprobado
+	})
 	.save()
 	.then(function(data){
 		res.status(200).json({
@@ -100,7 +139,11 @@ function updateRespuesta(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ id_tipo_respuesta:req.body.id_tipo_respuesta || data.get('id_tipo_respuesta'),descripcion:req.body.descripcion || data.get('descripcion') })
+		data.save({ 
+			id_tipo_respuesta:req.body.id_tipo_respuesta || data.get('id_tipo_respuesta'),
+			descripcion:req.body.descripcion || data.get('descripcion'),
+			aprobado: req.body.aprobado || data.get('aprobado')
+		})
 		.then(function() {
 			return res.status(200).json({ 
 				error: false, 
@@ -163,6 +206,7 @@ function deleteRespuesta(req, res, next) {
 
 module.exports = {
 	getRespuestas,
+	getRespuestasTipoMotivo,
 	saveRespuesta,
 	getRespuestaById,
 	updateRespuesta,

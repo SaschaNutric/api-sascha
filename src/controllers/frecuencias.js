@@ -5,14 +5,14 @@ const Frecuencia  	= require('../models/frecuencia');
 
 function getFrecuencias(req, res, next) {
 	Frecuencias.query(function (qb) {
-   		qb.where('frecuencia.estatus', '=', 1);
+
 	})
-	.fetch({ columns: ['id_frecuencia','id_tiempo','repeticiones'] })
+	.fetch()
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'No hay dato registrados' } 
+				data: { mensaje: 'No hay datos registrados' } 
 			});
 
 		return res.status(200).json({
@@ -31,7 +31,10 @@ function getFrecuencias(req, res, next) {
 function saveFrecuencia(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	Frecuencia.forge({ id_tiempo:req.body.id_tiempo ,repeticiones:req.body.repeticiones  })
+	Frecuencia.forge({ 
+		id_tiempo:req.body.id_tiempo ,
+		repeticiones:req.body.repeticiones  
+	})
 	.save()
 	.then(function(data){
 		res.status(200).json({
@@ -95,7 +98,7 @@ function updateFrecuencia(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ id_tiempo:req.body.id_tiempo || data.get('id_tiempo'),repeticiones:req.body.repeticiones || data.get('repeticiones') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

@@ -2,6 +2,7 @@
 
 const Condicion_garantias 	= require('../collections/condicion_garantias');
 const Condicion_garantia  	= require('../models/condicion_garantia');
+const Bluebird = require('bluebird');
 
 function getCondicion_garantias(req, res, next) {
 	Condicion_garantias.query(function (qb) {
@@ -95,7 +96,7 @@ function updateCondicion_garantia(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ descripcion:req.body.descripcion || data.get('descripcion') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

@@ -2,6 +2,7 @@
 
 const Detalle_visitas 	= require('../collections/detalle_visitas');
 const Detalle_visita  	= require('../models/detalle_visita');
+const VistaVisita 		= require('../models/vista_visita');
 
 function getDetalle_visitas(req, res, next) {
 	Detalle_visitas.query(function (qb) {
@@ -56,17 +57,55 @@ function getDetalle_visitaById(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 
-	Detalle_visita.forge({ id_detalle_visita: id })
-	.fetch()
+	VistaVisita.forge({ id_visita: id })
+	.fetch({ withRelated: [
+		'detalles',
+		'detalles.parametro',
+		'detalles.parametro.tipo_parametro',
+		'detalles.parametro.unidad'
+	]})
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
 				data: { mensaje: 'dato no encontrado' } 
 			});
+		
+		let nuevaData = data.toJSON()
+		if (nuevaData.length == 0) {
+			return res.status(404).json({
+				error: true,
+				data: { mensaje: 'Aun no tiene visitas registradas'}
+			})
+		}
+		let _detalles = [];
+
+		if (nuevaData.detalles && nuevaData.detalles.length > 0) {
+			nuevaData.detalles.map(function (detalle) {
+				if (JSON.stringify(detalle.parametro) != '{}') {
+					_detalles.push({
+						id_parametro: detalle.id_parametro,
+						nombre: detalle.parametro.nombre,
+						tipo_parametro: detalle.parametro.tipo_parametro.nombre,
+						valor: detalle.valor,
+						tipo_valor: detalle.parametro.tipo_valor,
+						tipo_parametro: detalle.parametro.tipo_parametro.nombre,
+						unidad: detalle.parametro.unidad ? detalle.parametro.unidad.nombre : null,
+						unidad_abreviatura: detalle.parametro.unidad ? detalle.parametro.unidad.abreviatura : null
+					});
+				}
+			});
+		}
+		
+		let _data = {
+				id_visita : nuevaData.id_visita,
+				numero : nuevaData.numero,
+				detalles: _detalles
+			}; 
+
 		return res.status(200).json({ 
 			error : false, 
-			data : data 
+			data : _data
 		});
 	})
 	.catch(function(err){
@@ -94,8 +133,12 @@ function updateDetalle_visita(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ id_visita:req.body.id_visita || data.get('id_visita'),id_parametro:req.body.id_parametro || data.get('id_parametro'),valor:req.body.valor || data.get('valor') })
-		.then(function() {
+		data.save({ 
+			id_visita:req.body.id_visita || data.get('id_visita'),
+			id_parametro:req.body.id_parametro || data.get('id_parametro'),
+			valor:req.body.valor || data.get('valor') 
+		})
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

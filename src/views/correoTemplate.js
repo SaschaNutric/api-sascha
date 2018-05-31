@@ -8,7 +8,7 @@ function correoTemplate(nombre, nombre_usuario, correo, contraseña) {
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Correo Contacto Web Ramirez Serra</title>
+	<title>Confirmación de Suscripcion Sascha</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body style="margin: 0; padding: 0;">
@@ -48,8 +48,7 @@ box-shadow: 4px 7px 14px -1px rgba(99,99,99,1);">
 		 			    	<td  style="color:#858580; font-weight: bold; text-align:center"> 
 		 			    	    <!-- EN "NOMBRE" va el name de quien envia el menssaje -->
 		 			    	    <!--Nos falto lo del asunto -->
-		 			    		<p>Hola ${nombre}! Gracias por Registrarte en Sascha, ahora necesitas descargar nuestra aplicacion movil para solicitar una cita con nuestro calificado grupo de nutricionistas.</p>
-		 			    		<p>Nombre de Usuario: ${nombre_usuario}</p>
+		 			    		<p>Hola ${nombre}! Gracias por Registrarte en Sascha, ahora necesitas descargar nuestra aplicacion movil para disfrutar de nuestros servicios con un calificado grupo de nutricionistas.</p>
 		 			    		<p>Correo: <a style="text-decoration:none;" href="">${correo}</a></p>
 		 			    		<p>Contraseña: ${contraseña}</p>
 		 			    		<h3 style="color:#3da3cb; font-family:arial">DESCARGAR</h3>

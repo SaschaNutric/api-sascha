@@ -7,7 +7,7 @@ function getRegimen_ejercicios(req, res, next) {
 	Regimen_ejercicios.query(function (qb) {
    		qb.where('regimen_ejercicio.estatus', '=', 1);
 	})
-	.fetch({ columns: ['id_plan_ejercicio','id_cliente','id_frecuencia','id_tiempo','duracion'] })
+	.fetch({ columns: ['id_regimen_ejercicio','id_ejercicio','id_cliente','id_frecuencia','id_tiempo','duracion'] })
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -31,7 +31,13 @@ function getRegimen_ejercicios(req, res, next) {
 function saveRegimen_ejercicio(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	Regimen_ejercicio.forge({ id_plan_ejercicio:req.body.id_plan_ejercicio ,id_cliente:req.body.id_cliente ,id_frecuencia:req.body.id_frecuencia ,id_tiempo:req.body.id_tiempo ,duracion:req.body.duracion  })
+	Regimen_ejercicio.forge({
+	 id_plan_ejercicio:req.body.id_plan_ejercicio ,
+	 id_cliente:req.body.id_cliente ,
+	 id_frecuencia:req.body.id_frecuencia ,
+	 id_tiempo:req.body.id_tiempo ,
+	 duracion:req.body.duracion  
+	})
 	.save()
 	.then(function(data){
 		res.status(200).json({
@@ -56,7 +62,7 @@ function getRegimen_ejercicioById(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 
-	Regimen_ejercicio.forge({ id_regimen_ejercicio })
+	Regimen_ejercicio.forge({ id_regimen_ejercicio: id })
 	.fetch()
 	.then(function(data) {
 		if(!data) 
@@ -86,19 +92,23 @@ function updateRegimen_ejercicio(req, res, next) {
 		});
 	}
 
-	Regimen_ejercicio.forge({ id_regimen_ejercicio })
+	Regimen_ejercicio.forge({ id_regimen_ejercicio: id })
 	.fetch()
 	.then(function(data){
-		if(!data) 
+		if(!data)
 			return res.status(404).json({ 
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ id_plan_ejercicio:req.body.id_plan_ejercicio || data.get('id_plan_ejercicio'),id_cliente:req.body.id_cliente || data.get('id_cliente'),id_frecuencia:req.body.id_frecuencia || data.get('id_frecuencia'),id_tiempo:req.body.id_tiempo || data.get('id_tiempo'),duracion:req.body.duracion || data.get('duracion') })
-		.then(function() {
+		data.save({ 
+			id_frecuencia: req.body.id_frecuencia     || data.get('id_frecuencia'),
+			id_tiempo:     req.body.id_tiempo         || data.get('id_tiempo'),
+			duracion:      req.body.duracion          || data.get('duracion') 
+		})
+		.tap(function(regimen) {
 			return res.status(200).json({ 
 				error: false, 
-				data: data
+				data: regimen
 			});
 		})
 		.catch(function(err) {
@@ -124,7 +134,7 @@ function deleteRegimen_ejercicio(req, res, next) {
 			data: { mensaje: 'Solicitud incorrecta' } 
 		});
 	}
-	Regimen_ejercicio.forge({ id_regimen_ejercicio })
+	Regimen_ejercicio.forge({ id_regimen_ejercicio : id })
 	.fetch()
 	.then(function(data){
 		if(!data) 

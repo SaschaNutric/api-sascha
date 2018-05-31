@@ -1,6 +1,7 @@
 var express                       = require('express');
 
 const agendasCtrl                 = require('../controllers/agendas');
+const ayudasCtrl                  = require('../controllers/ayudas');
 const alimentosCtrl               = require('../controllers/alimentos');
 const appmovilesCtrl              = require('../controllers/app_moviles');
 const bloquehorariosCtrl          = require('../controllers/bloque_horarios');
@@ -33,9 +34,11 @@ const horarioEmpleadosCtrl        = require('../controllers/horario_empleados');
 const incidenciasCtrl             = require('../controllers/incidencias');
 const motivosCtrl                 = require('../controllers/motivos');
 const negociosCtrl                = require('../controllers/negocios');
+const notificacionesCtrl          = require('../controllers/notificaciones');
 const ordenServiciosCtrl          = require('../controllers/orden_servicios');
 const parametrosCtrl              = require('../controllers/parametros');
 const parametroClientesCtrl       = require('../controllers/parametro_clientes');
+const parametroMetasCtrl          = require('../controllers/parametros_meta');
 const parametroPromocionesCtrl    = require('../controllers/parametro_promociones');
 const parametroServiciosCtrl      = require('../controllers/parametro_servicios');
 const plan_dietasCtrl             = require('../controllers/plan_dietas');
@@ -69,6 +72,7 @@ const tipo_parametrosCtrl         = require('../controllers/tipo_parametros');
 const tipo_respuestasCtrl         = require('../controllers/tipo_respuestas');
 const tipo_unidadesCtrl           = require('../controllers/tipo_unidades');
 const tipo_valoracionesCtrl       = require('../controllers/tipo_valoraciones');
+const tipo_notificacionesCtrl     = require('../controllers/tipo_notificaciones');
 const unidadesCtrl                = require('../controllers/unidades');
 const usuariosCtrl                = require('../controllers/usuarios');
 const valoracionesCtrl            = require('../controllers/valoraciones');
@@ -90,10 +94,27 @@ module.exports = (function () {
   });
 
   api.get('/agendas',                        agendasCtrl.getAgendas);
+  api.post('/agendas/empleado/:id_empleado', agendasCtrl.getAgendaPorEmpleado);  
+  api.get('/planes/cliente/:id_cliente',     agendasCtrl.getPlanPorCliente);  
+  api.get('/servicios/cliente/:id_cliente',  agendasCtrl.getMiServicios);
+  api.get('/orden_servicios/cliente/:id_cliente', agendasCtrl.getMiOrdenServicios);
+  api.get('/proximavisita/cliente/:id_cliente', agendasCtrl.getProximaCitaPorCliente);
+  
+
+  api.get('/notificaciones/usuario/:id', notificacionesCtrl.getNotificacionesByUsuario);
+  //api.delete('usuario/:id/notificaciones', notificacionesCtrl.getNotificacionesByUsuario);
+  api.delete('/notificacion/:id',        notificacionesCtrl.deleteNegocio);
+
   api.post('/agendas',                       agendasCtrl.saveAgenda);
   api.get('/agenda/:id',                     agendasCtrl.getAgendaById);  
   api.put('/agenda/:id',                     agendasCtrl.updateAgenda);
   api.delete('/agenda/:id',                  agendasCtrl.deleteAgenda);  
+
+  api.get('/ayudas',                         ayudasCtrl.getAyudas);
+  api.post('/ayudas',                        ayudasCtrl.saveAyuda);
+  api.get('/ayuda/:id',                      ayudasCtrl.getAyudaById);  
+  api.put('/ayuda/:id',                      ayudasCtrl.updateAyuda);
+  api.delete('/ayuda/:id',                   ayudasCtrl.deleteAyuda);  
 
   api.get('/alimentos',                      alimentosCtrl.getAlimentos);
   api.post('/alimentos',                     alimentosCtrl.saveAlimento);
@@ -111,7 +132,7 @@ module.exports = (function () {
   api.post('/bloquehorarios',                bloquehorariosCtrl.saveBloque_horario);
   api.get('/bloquehorario/:id',              bloquehorariosCtrl.getBloque_horarioById);  
   api.put('/bloquehorario/:id',              bloquehorariosCtrl.updateBloque_horario);
-  api.delete('/bloque/horario/:id',          bloquehorariosCtrl.deleteBloque_horario);  
+  api.delete('/bloquehorario/:id',           bloquehorariosCtrl.deleteBloque_horario);  
 
   api.get('/calificaciones',                 calificacionesCtrl.getCalificaciones);
   api.post('/calificaciones',                calificacionesCtrl.saveCalificacion);
@@ -191,7 +212,7 @@ module.exports = (function () {
 
   api.get('/detallevisitas',                 detalleVisitasCtrl.getDetalle_visitas);
   api.post('/detallevisitas',                detalleVisitasCtrl.saveDetalle_visita);
-  api.get('/detallevisita/:id',              detalleVisitasCtrl.getDetalle_visitaById);  
+  api.get('/detalles/visita/:id',            detalleVisitasCtrl.getDetalle_visitaById);  
   api.put('/detallevisita/:id',              detalleVisitasCtrl.updateDetalle_visita);
   api.delete('/detallevisita/:id',           detalleVisitasCtrl.deleteDetalle_visita);     
 
@@ -209,15 +230,16 @@ module.exports = (function () {
 
   api.get('/empleados',                      empleadosCtrl.getEmpleados);
   api.post('/empleados',                     empleadosCtrl.saveEmpleado);
-  api.get('/empleado/:id',                   empleadosCtrl.getEmpleadoById);  
+  api.get('/empleado/:id',                   empleadosCtrl.getEmpleadoById);
+  api.post('/empleado/cedula',               empleadosCtrl.getEmpleadoByCedula); 
   api.put('/empleado/:id',                   empleadosCtrl.updateEmpleado);
   api.delete('/empleado/:id',                empleadosCtrl.deleteEmpleado);   
 
   api.get('/especialidades',                 especialidadesCtrl.getEspecialidades);
   api.post('/especialidades',                especialidadesCtrl.saveEspecialidad);
-  api.get('/especialidade/:id',              especialidadesCtrl.getEspecialidadById);  
-  api.put('/especialidade/:id',              especialidadesCtrl.updateEspecialidad);
-  api.delete('/especialidade/:id',           especialidadesCtrl.deleteEspecialidad);   
+  api.get('/especialidad/:id',              especialidadesCtrl.getEspecialidadById);  
+  api.put('/especialidad/:id',              especialidadesCtrl.updateEspecialidad);
+  api.delete('/especialidad/:id',           especialidadesCtrl.deleteEspecialidad);   
 
   api.get('/especialidadeempleados',         especialidadeEmpleadosCtrl.getEspecialidad_empleados);
   api.post('/especialidadeempleados',        especialidadeEmpleadosCtrl.saveEspecialidad_empleado);
@@ -252,7 +274,7 @@ module.exports = (function () {
   api.get('/garantias',                      garantiaServiciosCtrl.getGarantia_servicios);
   api.post('/garantias',                     garantiaServiciosCtrl.saveGarantia_servicio);
   api.get('/garantia/:id',                   garantiaServiciosCtrl.getGarantia_servicioById);  
-  api.put('/garantia/:id',                   garantiaServiciosCtrl.updateGarantia_servicio);
+  api.put('/servicio/:id/garantias',         garantiaServiciosCtrl.updateGarantia_servicio);
   api.delete('/garantia/:id',                garantiaServiciosCtrl.deleteGarantia_servicio);   
 
   api.get('/generos',                        generosCtrl.getGeneros);
@@ -268,6 +290,7 @@ module.exports = (function () {
   api.delete('/grupoalimenticio/:id',        grupoalimenticiosCtrl.deleteGrupo_alimenticio); 
 
   api.get('/horarioempleados',               horarioEmpleadosCtrl.getHorario_empleados);
+  api.post('/horarioporempleadoydia',        horarioEmpleadosCtrl.getHorariByEmpleadoAndDia);  
   api.post('/horarioempleados',              horarioEmpleadosCtrl.saveHorario_empleado);
   api.get('/horarioempleado/:id',            horarioEmpleadosCtrl.getHorario_empleadoById);  
   api.put('/horarioempleado/:id',            horarioEmpleadosCtrl.updateHorario_empleado);
@@ -281,6 +304,8 @@ module.exports = (function () {
 
   api.get('/motivos',                        motivosCtrl.getMotivos);
   api.get('/motivos/solicitud',              motivosCtrl.getMotivosDeSolicitud); 
+  api.get('/motivos/queja',                  motivosCtrl.getMotivosDeQueja); 
+  api.get('/motivos/sugerencia',             motivosCtrl.getMotivosDeSugerencia); 
   api.post('/motivos',                       motivosCtrl.saveMotivo);
   api.get('/motivo/:id',                     motivosCtrl.getMotivoById);  
   api.put('/motivo/:id',                     motivosCtrl.updateMotivo);
@@ -308,20 +333,28 @@ module.exports = (function () {
   api.get('/parametroclientes',              parametroClientesCtrl.getParametro_clientes);
   api.post('/parametroclientes',             parametroClientesCtrl.saveParametro_cliente);
   api.get('/parametrocliente/:id',           parametroClientesCtrl.getParametro_clienteById);
+  api.get('/parametros/cliente/:id_cliente', parametroClientesCtrl.getParametro_clientesByIdCliente);
   api.put('/parametrocliente/:id',           parametroClientesCtrl.updateParametro_cliente);
   api.delete('/parametrocliente/:id',        parametroClientesCtrl.deleteParametro_cliente);
 
-  api.get('/parametropromociones',           parametroPromocionesCtrl.getParametro_promociones);
-  api.post('/parametropromociones',          parametroPromocionesCtrl.saveParametro_promocion);
-  api.get('/parametropromocione/:id',        parametroPromocionesCtrl.getParametro_promocionById);
-  api.put('/parametropromocione/:id',        parametroPromocionesCtrl.updateParametro_promocion);
-  api.delete('/parametropromocione/:id',     parametroPromocionesCtrl.deleteParametro_promocion);
+  api.post('/parametrometas',                parametroMetasCtrl.saveParametroMeta);
+  api.put('/parametrometa/:id',              parametroMetasCtrl.updateParametroMeta);
+  api.delete('/parametrometa/:id',           parametroMetasCtrl.deleteParametroMeta);
 
-  api.get('/parametroservicios',             parametroServiciosCtrl.getParametro_servicios);
-  api.post('/parametroservicios',            parametroServiciosCtrl.saveParametro_servicio);
-  api.get('/parametroservicio/:id',          parametroServiciosCtrl.getParametro_servicioById);
-  api.put('/parametroservicio/:id',          parametroServiciosCtrl.updateParametro_servicio);
-  api.delete('/parametroservicio/:id',       parametroServiciosCtrl.deleteParametro_servicio);
+  api.get('/parametropromociones',               parametroPromocionesCtrl.getParametro_promociones);
+  api.get('/parametros/promocion/:id_promocion', parametroPromocionesCtrl.getParametrosByPromocion);  
+  api.post('/parametropromociones',              parametroPromocionesCtrl.saveParametro_promocion);
+  api.get('/parametropromocion/:id',            parametroPromocionesCtrl.getParametro_promocionById);
+  api.put('/parametropromocion/:id',            parametroPromocionesCtrl.updateParametro_promocion);
+  api.delete('/parametropromocion/:id',         parametroPromocionesCtrl.deleteParametro_promocion);
+
+  api.get('/parametroservicios',               parametroServiciosCtrl.getParametro_servicios);
+  api.post('/servicios/filtrables',            parametroServiciosCtrl.getServiciosFiltrables);
+  api.get('/parametros/servicio/:id_servicio', parametroServiciosCtrl.getParametrosByServicio);  
+  api.post('/parametroservicios',              parametroServiciosCtrl.saveParametro_servicio);
+  api.get('/parametroservicio/:id',            parametroServiciosCtrl.getParametro_servicioById);
+  api.put('/parametroservicio/:id',            parametroServiciosCtrl.updateParametro_servicio);
+  api.delete('/parametroservicio/:id',         parametroServiciosCtrl.deleteParametro_servicio);
  
   api.get('/plandietas',                     plan_dietasCtrl.getPlanDietas);
   api.post('/plandietas',                    plan_dietasCtrl.savePlanDieta);
@@ -383,19 +416,20 @@ module.exports = (function () {
   api.put('/regimen/dieta/:id',              regimenDietasCtrl.updateRegimen_dieta);
   api.delete('/regimen/dieta/:id',           regimenDietasCtrl.deleteRegimen_dieta);  
 
-  api.get('/regimenejercicios',              regimenEjerciciosCtrl.getRegimen_ejercicios);
-  api.post('/regimenejercicios',             regimenEjerciciosCtrl.saveRegimen_ejercicio);
-  api.get('/regimenejercicio/:id',           regimenEjerciciosCtrl.getRegimen_ejercicioById);  
-  api.put('/regimenejercicio/:id',           regimenEjerciciosCtrl.updateRegimen_ejercicio);
-  api.delete('/regimenejercicio/:id',        regimenEjerciciosCtrl.deleteRegimen_ejercicio);  
+  api.get('/regimen/ejercicios',             regimenEjerciciosCtrl.getRegimen_ejercicios);
+  api.post('/regimen/ejercicios',            regimenEjerciciosCtrl.saveRegimen_ejercicio);
+  api.get('/regimen/ejercicio/:id',          regimenEjerciciosCtrl.getRegimen_ejercicioById);  
+  api.put('/regimen/ejercicio/:id',          regimenEjerciciosCtrl.updateRegimen_ejercicio);
+  api.delete('/regimen/ejercicio/:id',       regimenEjerciciosCtrl.deleteRegimen_ejercicio);  
 
-  api.get('/regimensuplementos',             regimenSuplementosCtrl.getRegimen_suplementos);
-  api.post('/regimensuplementos',            regimenSuplementosCtrl.saveRegimen_suplemento);
-  api.get('/regimensuplemento/:id',          regimenSuplementosCtrl.getRegimen_suplementoById);  
-  api.put('/regimensuplemento/:id',          regimenSuplementosCtrl.updateRegimen_suplemento);
-  api.delete('/regimensuplemento/:id',       regimenSuplementosCtrl.deleteRegimen_suplemento);  
+  api.get('/regimen/suplementos',            regimenSuplementosCtrl.getRegimen_suplementos);
+  api.post('/regimen/suplementos',           regimenSuplementosCtrl.saveRegimen_suplemento);
+  api.get('/regimen/suplemento/:id',         regimenSuplementosCtrl.getRegimen_suplementoById);  
+  api.put('/regimen/suplemento/:id',         regimenSuplementosCtrl.updateRegimen_suplemento);
+  api.delete('/regimen/suplemento/:id',      regimenSuplementosCtrl.deleteRegimen_suplemento);  
 
   api.get('/respuestas',                     respuestasCtrl.getRespuestas);
+  api.get('/respuestas/tipomotivo/:id',      respuestasCtrl.getRespuestasTipoMotivo);
   api.post('/respuestas',                    respuestasCtrl.saveRespuesta);
   api.get('/respuesta/:id',                  respuestasCtrl.getRespuestaById);  
   api.put('/respuesta/:id',                  respuestasCtrl.updateRespuesta);
@@ -414,6 +448,7 @@ module.exports = (function () {
   api.delete('/role/:id',                    rolesCtrl.deleteRol);
 
   api.get('/servicios',                      serviciosCtrl.getServicios);
+  api.get('/servicios/especialidad/:id',     serviciosCtrl.getServiciosPorEspecialidad);
   api.post('/servicios',                     serviciosCtrl.saveServicio);
   api.get('/servicio/:id',                   serviciosCtrl.getServicioById);
   api.put('/servicio/:id',                   serviciosCtrl.updateServicio);
@@ -426,6 +461,7 @@ module.exports = (function () {
   api.delete('/slide/:id',                   slidesCtrl.deleteSlide);
 
   api.get('/solicitudes',                    solicitudServiciosCtrl.getSolicitud_servicios);
+  api.get('/solicitudes/cliente/:id',        solicitudServiciosCtrl.getMiServicioActivo);
   api.post('/solicitudes',                   solicitudServiciosCtrl.saveSolicitud_servicio);
   api.get('/solicitud/:id',                  solicitudServiciosCtrl.getSolicitud_servicioById);  
   api.put('/solicitud/:id',                  solicitudServiciosCtrl.updateSolicitud_servicio);
@@ -473,11 +509,19 @@ module.exports = (function () {
   api.put('/tipoincidencia/:id',             tipo_incidenciasCtrl.updateTipoIncidencia);
   api.delete('/tipoincidencia/:id',          tipo_incidenciasCtrl.deleteTipoIncidencia);
 
-  api.get('/tipomotivos',                    tipo_motivosCtrl.getTipoMotivos);
+  api.get('/tipomotivos/todos',              tipo_motivosCtrl.getTipoMotivos);
+  api.get('/tipomotivos',                    tipo_motivosCtrl.getTipoMotivosSinSolicitud);
+  api.get('/tipomotivos/reclamo',            tipo_motivosCtrl.getTipoMotivosReclamo);
+  api.get('/tipomotivos/incidencia',         tipo_motivosCtrl.getTipoMotivosIncidencia);  
   api.post('/tipomotivos',                   tipo_motivosCtrl.saveTipoMotivo);
   api.get('/tipomotivo/:id',                 tipo_motivosCtrl.getTipoMotivoById);  
   api.put('/tipomotivo/:id',                 tipo_motivosCtrl.updateTipoMotivo);
   api.delete('/tipomotivo/:id',              tipo_motivosCtrl.deleteTipoMotivo);
+  api.get('/tipomotivos/canalescucha',       tipo_motivosCtrl.getTipoMotivosCanalEscucha);
+  api.post('/tipomotivos/canalescucha',      comentariosCtrl.saveComentario);
+  
+  api.get('/tiponotificaciones',             tipo_notificacionesCtrl.getTipoNotificaciones);
+  api.put('/tiponotificaciones/:id',         tipo_notificacionesCtrl.updateTipoNotificacion);
 
   api.get('/tipoordenes',                    tipo_ordenesCtrl.getTipoOrdenes);
   api.post('/tipoordenes',                   tipo_ordenesCtrl.saveTipoOrden);
@@ -486,9 +530,11 @@ module.exports = (function () {
   api.delete('/tipoorden/:id',               tipo_ordenesCtrl.deleteTipoOrden);
 
   api.get('/tipoparametros',                 tipo_parametrosCtrl.getTipoParametros);
+  api.get('/tipoparametros/filtrables',      tipo_parametrosCtrl.getTipoParametrosFiltrable);
   api.post('/tipoparametros',                tipo_parametrosCtrl.saveTipoParametro);
   api.get('/tipoparametro/:id',              tipo_parametrosCtrl.getTipoParametroById);  
   api.put('/tipoparametro/:id',              tipo_parametrosCtrl.updateTipoParametro);
+  api.put('/tipoparametro/:id/filtrable',    tipo_parametrosCtrl.updateTipoParametroFiltrable);
   api.delete('/tipoparametro/:id',           tipo_parametrosCtrl.deleteTipoParametro);
 
   api.get('/tiporespuestas',                 tipo_respuestasCtrl.getTipoRespuestas);
@@ -517,10 +563,13 @@ module.exports = (function () {
 
   api.get('/usuarios',                       usuariosCtrl.getUsuarios);
   api.post('/suscripciones',                 usuariosCtrl.saveUsuario);
+  api.post('/usuarios',                      usuariosCtrl.saveUsuarioEmpleado);
   api.get('/usuario/:id',                    usuariosCtrl.getUsuarioById);
   api.put('/usuario/:id',                    usuariosCtrl.updateUsuario);
   api.delete('/usuario/:id',                 usuariosCtrl.deleteUsuario);
   api.post('/login',                         usuariosCtrl.singIn);
+  api.post('/login/intranet',                usuariosCtrl.singInEmpleado);
+  api.get('/usuarios/empleados',             usuariosCtrl.getUsuariosEmpleados);
 
   api.get('/valoraciones',                   valoracionesCtrl.getValoraciones);
   api.post('/valoraciones',                  valoracionesCtrl.saveValoracion);
@@ -528,8 +577,10 @@ module.exports = (function () {
   api.put('/valoracion/:id',                 valoracionesCtrl.updateValoracion);
   api.delete('/valoracion/:id',              valoracionesCtrl.deleteValoracion);  
 
-  api.get('/visitas',                        visitasCtrl.getVisitas);
+  api.post('/cliente/visitas',               visitasCtrl.getVisitasByClienteAndOrden);
   api.post('/visitas',                       visitasCtrl.saveVisita);
+  api.post('/agendas/proximacita',           visitasCtrl.saveProximaCita);
+  api.post('/visitascontrol',                visitasCtrl.saveVisitaControl);
   api.get('/visita/:id',                     visitasCtrl.getVisitaById);  
   api.put('/visita/:id',                     visitasCtrl.updateVisita);
   api.delete('/visita/:id',                  visitasCtrl.deleteVisita);  

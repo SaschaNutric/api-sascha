@@ -2,6 +2,7 @@
 
 const Contenidos 	= require('../collections/contenidos');
 const Contenido  	= require('../models/contenido');
+const cloudinary = require('../../cloudinary');
 
 function getContenidos(req, res, next) {
 	Contenidos.query(function (qb) {
@@ -29,23 +30,57 @@ function getContenidos(req, res, next) {
 }
 
 function saveContenido(req, res, next){
-	console.log(JSON.stringify(req.body));
-
-	Contenido.forge({ titulo:req.body.titulo ,texto:req.body.texto ,url_imagen:req.body.url_imagen  })
-	.save()
-	.then(function(data){
-		res.status(200).json({
-			error: false,
-			data: data
+	if (req.files.imagen) {
+		const imagen = req.files.imagen
+		cloudinary.uploader.upload(imagen.path, function(result) {
+			if (result.error) {
+				return res.status(500).json({
+						error: true,
+						data: { message: result.error }
+					});
+			} 
+			Contenido.forge({
+				titulo: req.body.titulo,
+				texto: req.body.texto,
+				url_imagen: result.url
+			})
+			.save()
+			.then(function (data) {
+				return res.status(200).json({
+					error: false,
+					data: data
+				});
+			})
+			.catch(function (err) {
+				return res.status(500)
+					.json({
+						error: true,
+						data: { message: err.message }
+					});
+			});
 		});
-	})
-	.catch(function (err) {
-		res.status(500)
-		.json({
-			error: true,
-			data: {message: err.message}
+	}
+	else {
+		Contenido.forge({
+			titulo: req.body.titulo,
+			texto: req.body.texto,
+			url_imagen: 'https://res.cloudinary.com/saschanutric/image/upload/v1525906759/latest.png'
+		})
+		.save()
+		.then(function (data) {
+			return res.status(200).json({
+				error: false,
+				data: data
+			});
+		})
+		.catch(function (err) {
+			return res.status(500)
+				.json({
+					error: true,
+					data: { message: err.message }
+				});
 		});
-	});
+	}
 }
 
 function getContenidoById(req, res, next) {
@@ -94,19 +129,52 @@ function updateContenido(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ titulo:req.body.titulo || data.get('titulo'),texto:req.body.texto || data.get('texto'),url_imagen:req.body.url_imagen || data.get('url_imagen') })
-		.then(function() {
-			return res.status(200).json({ 
-				error: false, 
-				data: data
+		if (req.files.imagen && req.files.imagen.name != data.get('url_imagen').substr(65)) {
+			const imagen = req.files.imagen
+			cloudinary.uploader.upload(imagen.path, function(result) {
+				if (result.error) {
+					return res.status(500).json({
+						error: true,
+						data: { message: result.error }
+					});
+				}
+				data.save({ 
+					titulo:req.body.titulo || data.get('titulo'),
+					texto:req.body.texto || data.get('texto'),
+					url_imagen:result.url 
+				})
+				.then(function(data) {
+					return res.status(200).json({ 
+						error: false, 
+						data: data
+					});
+				})
+				.catch(function(err) {
+					return res.status(500).json({ 
+						error : true, 
+						data : { mensaje : err.message } 
+					});
+				})
 			});
-		})
-		.catch(function(err) {
-			return res.status(500).json({ 
-				error : true, 
-				data : { mensaje : err.message } 
-			});
-		})
+		} else {
+			data.save({ 
+				titulo:req.body.titulo || data.get('titulo'),
+				texto:req.body.texto || data.get('texto'),
+				url_imagen:req.body.url_imagen || data.get('url_imagen') 
+			})
+			.then(function (data) {
+				return res.status(200).json({
+					error: false,
+					data: data
+				});
+			})
+			.catch(function (err) {
+				return res.status(500).json({
+					error: true,
+					data: { mensaje: err.message }
+				});
+			})
+		}
 	})
 	.catch(function(err) {
 		return res.status(500).json({ 

@@ -1,5 +1,6 @@
 var express = require('express')
     bodyParser = require('body-parser')
+    multer = require('multer')
     logger = require('morgan')
     routes = require('./src/routes')
     app = express();
@@ -13,6 +14,7 @@ app.use(function(req, res, next) {
   next();
 });
 app.use(logger('dev'));
+app.use(multer({ dest: "./imagenes" }))
 app.use(bodyParser.json());
 app.use('/', routes);
 

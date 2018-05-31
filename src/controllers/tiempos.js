@@ -31,7 +31,10 @@ function getTiempos(req, res, next) {
 function saveTiempo(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	Tiempo.forge({ nombre:req.body.nombre ,abreviatura:req.body.abreviatura  })
+	Tiempo.forge({
+	 nombre:req.body.nombre ,
+	 abreviatura:req.body.abreviatura  
+	})
 	.save()
 	.then(function(data){
 		res.status(200).json({
@@ -95,7 +98,7 @@ function updateTiempo(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ nombre:req.body.nombre || data.get('nombre'),abreviatura:req.body.abreviatura || data.get('abreviatura') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data

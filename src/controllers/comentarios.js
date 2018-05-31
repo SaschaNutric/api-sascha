@@ -9,14 +9,14 @@ function getComentarios(req, res, next) {
 	})
 	.fetch({ withRelated: [
 		'cliente',
-		'cliente.estado',
 		'cliente.estado_civil',
 		'cliente.genero',
 		'cliente.rango_edad',
 		'respuesta',
 		'respuesta.tipo_respuesta',
-		'tipo_comentario'
-		]})
+		'motivo',
+		'motivo.tipo_motivo'
+	] })
 	.then(function(data) {
 		if (!data)
 			return res.status(404).json({ 
@@ -40,7 +40,13 @@ function getComentarios(req, res, next) {
 function saveComentario(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	Comentario.forge({ id_cliente:req.body.id_cliente ,id_respuesta:req.body.id_respuesta ,contenido:req.body.contenido ,respuesta:req.body.respuesta ,id_tipo_comentario:req.body.id_tipo_comentario  })
+	Comentario.forge({ 
+		id_cliente: req.body.id_cliente,
+		id_respuesta: req.body.id_respuesta || null,
+		id_motivo: req.body.id_motivo, 
+		contenido: req.body.contenido ,
+		mensaje: req.body.mensaje || null
+	})
 	.save()
 	.then(function(data){
 		res.status(200).json({
@@ -52,7 +58,7 @@ function saveComentario(req, res, next){
 		res.status(500)
 		.json({
 			error: true,
-			data: {message: err.message}
+			data: { mensaje: err.message }
 		});
 	});
 }
@@ -66,16 +72,25 @@ function getComentarioById(req, res, next) {
 		});
 
 	Comentario.forge({ id_comentario: id, estatus: 1 })
-	.fetch({ withRelated: ['cliente','respuesta','tipo_comentario']})
+	.fetch({ withRelated: [
+		'cliente',
+		'cliente.estado_civil',
+		'cliente.genero',
+		'cliente.rango_edad',
+		'respuesta',
+		'respuesta.tipo_respuesta',
+		'motivo',
+		'motivo.tipo_motivo'
+	] })
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'dato no encontrado' } 
+				data: 'Comentario no encontrado'
 			});
 		return res.status(200).json({ 
-			error : false, 
-			data : data 
+			error: false, 
+			data: data 
 		});
 	})
 	.catch(function(err){
@@ -95,7 +110,7 @@ function updateComentario(req, res, next) {
 		});
 	}
 
-	Comentario.forge({ id_comentario: id, estatus: 1 })
+Comentario.forge({ id_comentario: id, estatus: 1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 
@@ -103,8 +118,17 @@ function updateComentario(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ id_cliente:req.body.id_cliente || data.get('id_cliente'),id_respuesta:req.body.id_respuesta || data.get('id_respuesta'),contenido:req.body.contenido || data.get('contenido'),respuesta:req.body.respuesta || data.get('respuesta'),id_tipo_comentario:req.body.id_tipo_comentario || data.get('id_tipo_comentario') })
-		.then(function() {
+		console.log(req.body);
+		let body = { 
+			id_cliente: req.body.id_cliente 	|| data.get('id_cliente'),
+			id_respuesta: req.body.id_respuesta || data.get('id_respuesta') || null,
+			id_motivo: req.body.id_motivo 		|| data.get('id_motivo'), 
+			contenido: req.body.contenido 		|| data.get('contenido'),
+			mensaje: req.body.mensaje  			|| data.get('mensaje')
+		}; 
+		console.log(body);
+		data.save(body)
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data
@@ -125,6 +149,7 @@ function updateComentario(req, res, next) {
 	})
 }
 
+
 function deleteComentario(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') {
@@ -139,7 +164,7 @@ function deleteComentario(req, res, next) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'Solicitud no encontrad0' } 
+				data: { mensaje: 'Comentario no encontrado' } 
 			});
 
 		data.save({ estatus:  0 })
@@ -171,4 +196,3 @@ module.exports = {
 	updateComentario,
 	deleteComentario
 }
-

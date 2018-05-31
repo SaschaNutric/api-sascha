@@ -7,7 +7,8 @@ let TipoUnidad = Bookshelf.Model.extend({
   tableName: 'tipo_unidad',
   idAttribute: 'id_tipo_unidad',
   unidades: function() {
-  	return this.hasMany('Unidad', 'id_tipo_unidad');
+  	return this.hasMany('Unidad', 'id_tipo_unidad')
+    .query({ where: { 'unidad.estatus': 1 } });
   }
 });
 

@@ -115,10 +115,10 @@ function updateValoracion(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ id_tipo_valoracion:req.body.id_tipo_valoracion || data.get('id_tipo_valoracion'),nombre:req.body.nombre || data.get('nombre') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
-				data: { mensaje: 'Registro actualizado' } 
+				data: data 
 			});
 		})
 		.catch(function(err) {

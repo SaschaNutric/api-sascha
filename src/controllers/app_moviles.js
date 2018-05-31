@@ -95,7 +95,7 @@ function updateApp_movil(req, res, next) {
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
 		data.save({ sistema_operativo:req.body.sistema_operativo || data.get('sistema_operativo'),url_descarga:req.body.url_descarga || data.get('url_descarga') })
-		.then(function() {
+		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 
 				data: data
@@ -130,7 +130,7 @@ function deleteApp_movil(req, res, next) {
 		if(!data) 
 			return res.status(404).json({ 
 				error: true, 
-				data: { mensaje: 'Solicitud no encontrad0' } 
+				data: { mensaje: 'Aplicación móvil no encontrada' } 
 			});
 
 		data.save({ estatus:  0 })
