@@ -99,6 +99,7 @@ function getDetalle_visitaById(req, res, next) {
 		
 		let _data = {
 				id_visita : nuevaData.id_visita,
+				numero : nuevaData.numero,
 				detalles: _detalles
 			}; 
 
