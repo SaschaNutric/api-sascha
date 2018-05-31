@@ -103,8 +103,7 @@ module.exports = (function () {
   
 
   api.get('/notificaciones/usuario/:id', notificacionesCtrl.getNotificacionesByUsuario);
-  //api.delete('usuario/:id/notificaciones', notificacionesCtrl.getNotificacionesByUsuario);
-  api.delete('/notificacion/:id',        notificacionesCtrl.deleteNegocio);
+  api.delete('/notificacion/:id',        notificacionesCtrl.deleteNotificacion);
 
   api.post('/agendas',                       agendasCtrl.saveAgenda);
   api.get('/agenda/:id',                     agendasCtrl.getAgendaById);  
