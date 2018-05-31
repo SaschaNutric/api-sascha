@@ -194,7 +194,7 @@ function getAgendaDashboard(req, res, next) {
 				})
 			}
 			let fecha = moment(agenda.fecha).format('YYYY-MM-DD');
-			if(fecha_actual == fecha){
+			if(fecha_actual == fecha && agenda.id_visita == null){
 				agendas.push({
 					id_agenda:       agenda.id_agenda,
 					id_visita:       agenda.id_visita,
