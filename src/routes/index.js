@@ -390,6 +390,7 @@ module.exports = (function () {
   api.get('/promociones',                    promocionesCtrl.getPromociones);
   api.post('/promociones',                   promocionesCtrl.savePromocion);
   api.get('/promocion/:id',                  promocionesCtrl.getPromocionById);
+  api.get('/difundir/promocion/:id',         promocionesCtrl.sendPromocion);  
   api.put('/promocion/:id',                  promocionesCtrl.updatePromocion);
   api.delete('/promocion/:id',               promocionesCtrl.deletePromocion);
 
