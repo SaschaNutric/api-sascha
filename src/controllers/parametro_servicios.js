@@ -40,17 +40,15 @@ async function getServiciosFiltrables(req, res, next) {
 		})
 	let parametros = req.body.id_parametros;
 	let id_especialidades = req.body.id_especialidades;
-	let max = req.body.rangoPrecio.desde;
-	let min = req.body.rangoPrecio.hasta;
+	let min = req.body.rangoPrecio.desde;
+	let max = req.body.rangoPrecio.hasta;
 	let duracion = req.body.duracion;
 	Parametro_servicios.query(function (qb) {
 		qb.distinct('id_servicio');
    		qb.where({ 
 	 		'parametro_servicio.estatus': 1
 	 	});
-	 	qb.where((builder) =>
-  			builder.whereIn('parametro_servicio.id_parametro', parametros)
-  		);
+	 	qb.whereIn('parametro_servicio.id_parametro', parametros);
 	})
 	.fetch({ columns: ['id_servicio'] })
 	.then(function(data) {
@@ -59,7 +57,6 @@ async function getServiciosFiltrables(req, res, next) {
 				error: true, 
 				data: { mensaje: 'No hay dato registrados' } 
 			});
-
 		let id_servicios=[];
 		data.toJSON().map(function(servicio) {
 			id_servicios.push(servicio.id_servicio);
@@ -68,13 +65,11 @@ async function getServiciosFiltrables(req, res, next) {
    			qb.where({ 
 	 			'servicio.estatus': 1
 	 		});
-	 		qb.orWhere((builder) =>
-  				builder.whereIn('servicio.id_especialidad', req.body.id_especialidades)
-  			);
-  			qb.whereBetween('servicio.numero_visitas', [1, duracion]);
-  			qb.whereBetween('servicio.precio', [min, max]);
-  			qb.where((builder) =>
+	 		qb.where((builder) =>
   				builder.whereIn('servicio.id_servicio', id_servicios)
+  				.whereIn('servicio.id_especialidad', id_especialidades)
+  				.whereBetween('servicio.numero_visitas', [1, duracion])
+  				.whereBetween('servicio.precio', [min, max])
   			);
    			qb.orderBy('servicio.fecha_creacion','ASC');
 		})
