@@ -23,7 +23,7 @@
     "bookshelf": "^0.12.1",
     "cloudinary": "^1.9.1",
     "debug": "~2.6.3",
-    "express": "~4.15.2",
+    "express": "^4.15.5",
     "express-handlebars": "^3.0.0",
     "graceful-fs": "^4.1.11",
     "jwt-simple": "^0.5.1",
