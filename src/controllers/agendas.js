@@ -164,7 +164,8 @@ function getAgendaDashboard(req, res, next) {
 	VistaAgendas.query(function (qb) {
 		qb.where('id_empleado', '=', id_empleado);
 		qb.where('fecha', '>=', req.body.fecha_inicio)
-		  .andWhere('fecha', '<=', req.body.fecha_fin);
+		  .andWhere('fecha', '<=', req.body.fecha_fin)
+		  qb.orderBy('hora_inicio');
 	})
 	.fetch()
 	.then(function (data) {
@@ -193,7 +194,7 @@ function getAgendaDashboard(req, res, next) {
 				})
 			}
 			let fecha = moment(agenda.fecha).format('YYYY-MM-DD');
-			if(fecha_actual == fecha){
+			if(fecha_actual == fecha && agenda.id_visita == null){
 				agendas.push({
 					id_agenda:       agenda.id_agenda,
 					id_visita:       agenda.id_visita,
@@ -203,6 +204,7 @@ function getAgendaDashboard(req, res, next) {
 					nombre_cliente:  agenda.nombre_cliente,
 					id_servicio:     agenda.id_servicio,
 					nombre_servicio: agenda.nombre_servicio,
+					id_orden_servicio: agenda.id_orden_servicio,
 					id_cita:         agenda.id_cita,           
 					id_tipo_cita:    agenda.id_tipo_cita,
 					tipo_cita:       agenda.tipo_cita,

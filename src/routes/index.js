@@ -103,8 +103,7 @@ module.exports = (function () {
   
 
   api.get('/notificaciones/usuario/:id', notificacionesCtrl.getNotificacionesByUsuario);
-  //api.delete('usuario/:id/notificaciones', notificacionesCtrl.getNotificacionesByUsuario);
-  api.delete('/notificacion/:id',        notificacionesCtrl.deleteNegocio);
+  api.delete('/notificacion/:id',        notificacionesCtrl.deleteNotificacion);
 
   api.post('/agendas',                       agendasCtrl.saveAgenda);
   api.get('/agenda/:id',                     agendasCtrl.getAgendaById);  
@@ -390,6 +389,7 @@ module.exports = (function () {
   api.get('/promociones',                    promocionesCtrl.getPromociones);
   api.post('/promociones',                   promocionesCtrl.savePromocion);
   api.get('/promocion/:id',                  promocionesCtrl.getPromocionById);
+  api.get('/difundir/promocion/:id',         promocionesCtrl.sendPromocion);  
   api.put('/promocion/:id',                  promocionesCtrl.updatePromocion);
   api.delete('/promocion/:id',               promocionesCtrl.deletePromocion);
 

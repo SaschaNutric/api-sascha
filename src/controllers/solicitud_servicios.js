@@ -166,7 +166,7 @@ function saveSolicitud_servicio(req, res, next){
 									Solicitud_servicio.forge({
 										id_cliente: req.body.id_cliente,
 										id_servicio: req.body.id_servicio,
-										id_promocion: req.body.id_promocion,
+										id_promocion: req.body.id_promocion || null,
 										id_motivo: req.body.id_motivo,
 										id_respuesta: req.body.id_respuesta || null,
 										respuesta: req.body.respuesta || null,
@@ -174,8 +174,14 @@ function saveSolicitud_servicio(req, res, next){
 									})
 									.save(null, { transacting: transaction })
 									.then(function (solicitud) {
+										let id_tipo_orden = 1;
+										if (req.body.notificacion) {
+											if(req.body.notificacion == 2) id_tipo_orden = 2;
+											if (req.body.notificacion == 7) id_tipo_orden = 3;
+										}
 										Orden_servicio.forge({
 											id_solicitud_servicio: solicitud.get('id_solicitud_servicio'),
+											id_tipo_orden: id_tipo_orden
 										})
 										.save(null, { transacting: transaction })
 										.then(function (orden) {
