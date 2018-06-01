@@ -67,6 +67,20 @@ $$;
 ALTER FUNCTION public.fun_notificar_comentario() OWNER TO postgres;
 
 
+CREATE FUNCTION fun_notificar_respuesta_comentario() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE BEGIN
+    INSERT INTO notificacion (id_usuario, id_promocion, tipo_notificacion, titulo, mensaje)
+    SELECT v.id_usuario, NULL, 9, 'Respuesta a ' || v.contenido, v.respuesta 
+    FROM   vista_comentario_cliente v
+    WHERE  id_comentario = NEW.id_comentario;
+    RETURN NULL;
+END
+$$;
+
+ALTER FUNCTION public.fun_notificar_respuesta_comentario() OWNER TO byqkxhkjgnspco;
+
 --
 -- Name: fun_eliminar_cliente(); Type: FUNCTION; Schema: public; Owner: postgres
 --
@@ -1740,7 +1754,7 @@ CREATE TABLE notificacion (
     id_notificacion integer DEFAULT nextval('id_notificacion_seq'::regclass) NOT NULL,
     id_usuario integer,
     id_promocion integer,
-    titulo character varying(50) DEFAULT ''::character varying NOT NULL,
+    titulo character varying(500) DEFAULT ''::character varying NOT NULL,
     mensaje character varying(500) DEFAULT '':: character varying NOT NULL,
     tipo_notificacion integer NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL    
@@ -2537,6 +2551,30 @@ CREATE VIEW vista_cliente_servicio_activo AS
     WHERE a.estatus = 1 AND b.estatus = 1 AND c.estatus = 1 AND d.estatus = 1;
 
 ALTER TABLE vista_cliente_servicio_activo OWNER TO byqkxhkjgnspco;
+
+
+
+
+
+CREATE VIEW vista_comentario_cliente AS 
+SELECT a.id_cliente,
+    a.id_usuario,
+    (a.nombres::text || ' '::text) || a.apellidos::text AS nombre_cliente,
+    c.id_comentario,
+    c.contenido,
+    c.id_respuesta,
+    (CASE WHEN c.mensaje IS NOT NULL THEN c.mensaje 
+          WHEN c.id_respuesta IS NOT NULL THEN d.descripcion 
+          ELSE NULL END) AS respuesta
+FROM cliente a
+JOIN usuario b ON b.id_usuario = a.id_usuario
+JOIN comentario c ON a.id_cliente = c.id_cliente
+LEFT JOIN respuesta d ON c.id_respuesta = d.id_respuesta
+WHERE b.estatus = 1 
+AND a.estatus = 1 
+AND c.estatus = 1;
+
+ALTER TABLE vista_comentario_cliente OWNER TO byqkxhkjgnspco;
 
 
 CREATE VIEW vista_agenda AS
@@ -3688,6 +3726,9 @@ CREATE TRIGGER dis_asignar_rango_edad AFTER INSERT ON cliente FOR EACH ROW EXECU
 CREATE TRIGGER dis_notificar_promocion AFTER INSERT ON promocion FOR EACH ROW EXECUTE PROCEDURE fun_notificar_promocion();
 
 CREATE TRIGGER dis_notificar_comentario AFTER INSERT ON comentario FOR EACH ROW EXECUTE PROCEDURE fun_notificar_comentario();
+
+CREATE TRIGGER dis_notificar_respuesta_comentario AFTER UPDATE ON comentario FOR EACH ROW EXECUTE PROCEDURE fun_notificar_respuesta_comentario();
+
 
 --
 -- Name: dis_usuario_eliminada; Type: TRIGGER; Schema: public; Owner: postgres
