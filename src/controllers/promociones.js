@@ -3,7 +3,7 @@ const Bookshelf = require('../commons/bookshelf');
 const Promociones = require('../collections/promociones');
 const Promocion = require('../models/promocion');
 const cloudinary = require('../../cloudinary');
-
+const moment     = require('moment');
 
 function getPromociones(req, res, next) {
 	Promociones.query(function (qb) {
@@ -45,7 +45,61 @@ function getPromociones(req, res, next) {
 				promocion.parametros = parametros;
 				return promocion;
 			});
-			console.log(dataJSON);
+			return res.status(200).json({
+				error: false,
+				data: dataJSON
+			});
+		})
+		.catch(function (err) {
+			return res.status(500).json({
+				error: true,
+				data: { mensaje: err.message }
+			});
+		});
+}
+
+function getPromocionesValidas(req, res, next) {
+	Promociones.query(function (qb) {
+		qb.where('promocion.estatus', '=', 1);
+		qb.where('promocion.valido_desde', '<=', 'now()')
+	      .andWhere('promocion.valido_hasta', '>=', 'now()');
+	})
+		.fetch({
+			withRelated: [
+				'servicio',
+				'genero',
+				'estado_civil',
+				'rango_edad',
+				'parametros',
+				'parametros.parametro'
+			]
+		})
+		.then(function (data) {
+			if (!data)
+				return res.status(404).json({
+					error: true,
+					data: { mensaje: 'No hay dato registrados' }
+				});
+
+			let dataJSON = data.toJSON().map(function (promocion) {
+				let parametros = [];
+				promocion.parametros.map(function (parametro) {
+					if (parametro.estatus == 1) {
+						parametros.push({
+							id_parametro_promocion: parametro.id_parametro_promocion,
+							nombre: parametro.parametro.nombre,
+							valor_minimo: parametro.valor_minimo,
+							valor_maximo: parametro.valor_maximo
+						})
+					}
+				})
+				let validoDesde = JSON.stringify(promocion.valido_desde);
+				let validoHasta = JSON.stringify(promocion.valido_hasta);
+				promocion.valido_desde = validoDesde.substr(1, 10);
+				promocion.valido_hasta = validoHasta.substr(1, 10);
+				promocion.parametros = parametros;
+				return promocion;
+			});
 			return res.status(200).json({
 				error: false,
 				data: dataJSON
@@ -133,19 +187,44 @@ function sendPromocion(req, res, next) {
 			error: true,
 			data: { mensaje: 'Solicitud incorrecta' }
 		});
-	Bookshelf.knex.raw(`SELECT fun_promocion_cliente(${id})`)
+	Promocion.forge({ id_promocion: id, estatus: 1 })
+	.fetch()
 	.then(function(data) {
-		res.status(200).json({
-			error: false,
-			data: { mensaje: 'Promoción difundida satisfactoriamente' }
-		})		
+		if(!data)
+			res.status(404).json({
+				error: true,
+				data: { mensaje: 'Promoción no encontrada' }
+			});
+		let promocion = data.toJSON();
+
+		if(moment().isAfter(moment(promocion.valido_hasta))) {
+			res.status(404).json({
+				error: false,
+				data: { mensaje: 'Promoción vencida, no puede ser difundida' }
+			})
+		}
+		else {
+			Bookshelf.knex.raw(`SELECT fun_promocion_cliente(${id})`)
+			.then(function(data) {
+				res.status(200).json({
+					error: false,
+					data: { mensaje: 'Promoción difundida satisfactoriamente' }
+				})		
+			})
+			.catch(function(err) {
+				res.status(500).json({
+					error: true,
+					data: { mensaje: err.message }
+				})
+			})
+		}
 	})
 	.catch(function(err) {
 		res.status(500).json({
 			error: true,
 			data: { mensaje: err.message }
 		})
-	})
+	});
 }
 
 function getPromocionById(req, res, next) {
@@ -332,6 +411,7 @@ function deletePromocion(req, res, next) {
 
 module.exports = {
 	getPromociones,
+	getPromocionesValidas,
 	savePromocion,
 	sendPromocion,
 	getPromocionById,

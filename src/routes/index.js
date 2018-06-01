@@ -386,7 +386,8 @@ module.exports = (function () {
   api.put('/preferenciacliente/:id',         preferenciaClientesCtrl.updatePreferencia_cliente);
   api.delete('/preferenciacliente/:id',      preferenciaClientesCtrl.deletePreferencia_cliente);  
 
-  api.get('/promociones',                    promocionesCtrl.getPromociones);
+  api.get('/promociones/todas',              promocionesCtrl.getPromociones);
+  api.get('/promociones',                    promocionesCtrl.getPromocionesValidas);
   api.post('/promociones',                   promocionesCtrl.savePromocion);
   api.get('/promocion/:id',                  promocionesCtrl.getPromocionById);
   api.get('/difundir/promocion/:id',         promocionesCtrl.sendPromocion);  
