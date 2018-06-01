@@ -8,6 +8,8 @@ const moment     = require('moment');
 function getPromociones(req, res, next) {
 	Promociones.query(function (qb) {
 		qb.where('promocion.estatus', '=', 1);
+		qb.orderBy('promocion.valido_hasta', 'DESC');
+		
 	})
 		.fetch({
 			withRelated: [
@@ -62,7 +64,8 @@ function getPromocionesValidas(req, res, next) {
 	Promociones.query(function (qb) {
 		qb.where('promocion.estatus', '=', 1);
 		qb.where('promocion.valido_desde', '<=', 'now()')
-	      .andWhere('promocion.valido_hasta', '>=', 'now()');
+		  .andWhere('promocion.valido_hasta', '>=', 'now()');
+		qb.orderBy('promocion.valido_hasta', 'ASC');
 	})
 		.fetch({
 			withRelated: [
