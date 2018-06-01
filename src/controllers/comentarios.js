@@ -5,7 +5,8 @@ const Comentario  	= require('../models/comentario');
 
 function getComentarios(req, res, next) {
 	Comentarios.query(function (qb) {
-   		qb.where('comentario.estatus', '=', 1);
+		   qb.where('comentario.estatus', '=', 1);
+		   qb.orderBy('comentario.fecha_creacion','desc');
 	})
 	.fetch({ withRelated: [
 		'cliente',

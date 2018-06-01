@@ -24,6 +24,7 @@ const empleadosCtrl               = require('../controllers/empleados');
 const especialidadesCtrl          = require('../controllers/especialidades');
 const especialidadeEmpleadosCtrl  = require('../controllers/especialidad_empleados');
 const especialidadeServiciosCtrl  = require('../controllers/especialidad_servicios');
+const estadisticosCtrl            = require('../controllers/estadisticos');
 const estadoCivilesCtrl           = require('../controllers/estado_civiles');
 const frecuenciasCtrl             = require('../controllers/frecuencias');
 const funcionalidadesCtrl         = require('../controllers/funcionalidades');
@@ -253,6 +254,8 @@ module.exports = (function () {
   api.put('/especialidadeservicio/:id',      especialidadeServiciosCtrl.updateEspecialidad_servicio);
   api.delete('/especialidadeservicio/:id',   especialidadeServiciosCtrl.deleteEspecialidad_servicio);   
   
+  api.post('/estadisticos/clientes',        estadisticosCtrl.getMotivosSolicitudPreferidos);
+
   api.get('/estadociviles',                  estadoCivilesCtrl.getEstado_civiles);
   api.post('/estadociviles',                 estadoCivilesCtrl.saveEstado_civil);
   api.get('/estadocivil/:id',                estadoCivilesCtrl.getEstado_civilById);  
