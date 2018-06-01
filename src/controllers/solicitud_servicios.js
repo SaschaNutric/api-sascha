@@ -8,7 +8,7 @@ const Cita                  = require('../models/cita');
 const Agenda                = require('../models/agenda');
 const Empleado              = require('../models/empleado');
 const VistaClienteOrdenes   = require('../models/vista_cliente_ordenes');
-
+const moment                = require('moment');
 
 function getSolicitud_servicios(req, res, next) {
 	Solicitud_servicios.query(function (qb) {
@@ -147,7 +147,7 @@ function saveSolicitud_servicio(req, res, next){
 								.then(function (solicitud) {
 									return res.status(200).json({
 										error: true,
-										data: { mensaje: `${empleadoBuscado.get('nombres')} ${empleadoBuscado.get('apellidos')} no trabaja los dias tal en el horario seleccionado` }
+										data: { mensaje: `${empleadoBuscado.get('nombres')} ${empleadoBuscado.get('apellidos')} no trabaja en el dia y horario seleccionado` }
 									})
 								})
 								.catch(function (err) {
@@ -201,9 +201,10 @@ function saveSolicitud_servicio(req, res, next){
 												.save(null, { transacting: transaction })
 												.then(function (agenda) {
 													transaction.commit();
+													let fecha = moment(cita.get('fecha'), 'YYYY-MM-DDTHH:mm:ss.SSSZ').format('DD/MM/YYYY');
 													return res.status(200).json({
 														error: false,
-														data: { mensaje: `Solicitud aprobada y agendada satisfactoriamente para ${cita.get('fecha')}` }
+														data: { mensaje: `Solicitud aprobada y agendada satisfactoriamente para ${fecha}` }
 													});
 												})
 												.catch(function (err) {
