@@ -2682,6 +2682,21 @@ AND a.estatus = 1;
 
 ALTER TABLE vista_usuarios_canal_escucha OWNER TO byqkxhkjgnspco;
 
+
+CREATE VIEW vista_estadistico_clientes AS
+SELECT o.id_orden_servicio, s.id_cliente, cli.id_genero, cli.id_rango_edad, cli.id_estado_civil, s.id_servicio, se.id_especialidad, s.id_motivo, mo.descripcion as motivo_descripcion, o.fecha_creacion
+FROM orden_servicio o, solicitud_servicio s, motivo mo, cliente cli, servicio se
+WHERE o.id_solicitud_servicio = s.id_solicitud_servicio 
+AND s.id_motivo = mo.id_motivo
+AND s.id_cliente = cli.id_cliente
+AND s.id_servicio = se.id_servicio;
+
+ALTER TABLE vista_estadistico_clientes OWNER TO byqkxhkjgnspco;
+
+
+
+
+
 --
 -- Data for Name: alimento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
