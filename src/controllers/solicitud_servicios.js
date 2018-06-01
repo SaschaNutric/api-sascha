@@ -2,6 +2,7 @@
 
 const Bookshelf             = require('../commons/bookshelf');
 const Solicitud_servicios 	= require('../collections/solicitud_servicios');
+const Solicitud_reporte     = require ('../collections/vista_reporte_solicitud');
 const Solicitud_servicio  	= require('../models/solicitud_servicio');
 const Orden_servicio      	= require('../models/orden_servicio');
 const Cita                  = require('../models/cita');
@@ -344,6 +345,53 @@ function getMiServicioActivo(req, res, next) {
 	});
 }
 
+function reportServicio(req, res, next) {
+	let campos = {
+		id_motivo:           req.body.id_motivo           || null,
+		id_respuesta:        req.body.id_respuesta        || null,
+		id_especialidad:     req.body.id_especialidad     || null,
+		id_servicio:         req.body.id_servicio         || null,
+		id_genero:           req.body.id_genero           || null,
+		id_estado_civil:     req.body.id_estado_civil     || null,
+		id_rango_edad:       req.body.id_rango_edad       || null
+	}
+
+
+	let rango_fecha = {
+		minimo: req.body.fecha_inicial || null,
+		maximo: req.body.fecha_final || null
+	}
+
+		let filtros = new Object();
+	for(let item in campos) {
+		if(campos.hasOwnProperty(item)) {
+			if(campos[item] != null) 
+				filtros[item] = campos[item];
+		}
+	}
+
+		Solicitud_reporte.query(function(qb) {
+		   qb.where(filtros);
+		   	if (rango_fecha.minimo && rango_fecha.maximo)
+				qb.where('fecha_creacion', '>=', rango_fecha.minimo)
+				  .andWhere('fecha_creacion', '<=', rango_fecha.maximo);
+		})
+		.fetch()
+		.then(function(solicitudes) {
+			let nuevasSolicitudes = new Array();
+
+			res.status(200).json({ error: false, data: solicitudes });
+		})
+		.catch(function(err) {
+			return res.status(500).json({ error: true, data: { mensaje: err.message } });
+		});
+
+
+
+
+
+}
+
 function updateSolicitud_servicio(req, res, next) {
 	const id = Number.parseInt(req.params.id);
 	if (!id || id == 'NaN') {
@@ -427,6 +475,7 @@ module.exports = {
 	saveSolicitud_servicio,
 	getSolicitud_servicioById,
 	getMiServicioActivo,
+	reportServicio,
 	updateSolicitud_servicio,
 	deleteSolicitud_servicio
 }

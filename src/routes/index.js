@@ -467,6 +467,7 @@ module.exports = (function () {
   api.get('/solicitud/:id',                  solicitudServiciosCtrl.getSolicitud_servicioById);  
   api.put('/solicitud/:id',                  solicitudServiciosCtrl.updateSolicitud_servicio);
   api.delete('/solicitud/:id',               solicitudServiciosCtrl.deleteSolicitud_servicio);
+  api.post('/solicitudes/reporte',            solicitudServiciosCtrl.reportServicio);
 
   api.get('/suplementos',                    suplementosCtrl.getSuplementos);
   api.post('/suplementos',                   suplementosCtrl.saveSuplemento);
