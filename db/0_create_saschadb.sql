@@ -2791,7 +2791,7 @@ ORDER BY co.fecha_creacion DESC;
 
 ALTER TABLE vista_canal_escucha OWNER TO byqkxhkjgnspco;
 
-
+ALTER TABLE rol ADD COLUMN dashboard INTEGER DEFAULT 0;
 --
 -- Data for Name: alimento; Type: TABLE DATA; Schema: public; Owner: postgres
 --

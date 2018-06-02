@@ -33,7 +33,7 @@ function getRoles(req, res, next) {
 function saveRol(req, res, next) {
 	console.log(JSON.stringify(req.body));
 	Bookshelf.transaction(function (t) {
-		Rol.forge({ nombre: req.body.nombre, descripcion: req.body.descripcion })
+		Rol.forge({ nombre: req.body.nombre, descripcion: req.body.descripcion, dashboard: req.body.dashboard })
 			.save(null, { transacting: t })
 			.then(function (rol) {
 				let rol_json = rol.toJSON();
@@ -129,7 +129,7 @@ function updateRol(req, res, next) {
 						error: true,
 						data: { mensaje: 'Solicitud no encontrada' }
 					});
-				data.save({ nombre: req.body.nombre || data.get('nombre'), descripcion: req.body.descripcion || data.get('descripcion') }, { transacting: t })
+				data.save({ nombre: req.body.nombre || data.get('nombre'), descripcion: req.body.descripcion || data.get('descripcion'), dashboard: req.body.dashboard || data.get('dashboard') }, { transacting: t })
 					.then(function (rol) {
 						let rol_json = rol.toJSON();
 						RolFuncionalidades.query(function (qb) {
