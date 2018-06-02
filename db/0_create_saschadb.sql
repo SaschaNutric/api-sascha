@@ -2752,10 +2752,8 @@ ORDER BY o.fecha_emision DESC;
 ALTER TABLE vista_orden_servicio OWNER TO byqkxhkjgnspco;
 
 
-
-
 CREATE VIEW vista_reclamo AS
-SELECT DISTINCT(r.id_reclamo), cli.nombres ||  ' ' || cli.apellidos  as nombre_cliente, e.id_empleado, e.nombres || ' ' || e.apellidos  as nombre_empleado , s.id_servicio, serv.nombre as nombre_servicio, serv.id_especialidad,
+SELECT DISTINCT(r.id_reclamo), res.aprobado, cli.nombres ||  ' ' || cli.apellidos  as nombre_cliente, e.id_empleado, e.nombres || ' ' || e.apellidos  as nombre_empleado , s.id_servicio, serv.nombre as nombre_servicio, serv.id_especialidad,
 mo.descripcion as motivo_descripcion, mo.id_motivo, r.id_respuesta, res.descripcion as respuesta_descripcion, r.fecha_creacion,
 cli.id_genero, cli.id_estado_civil, cli.id_rango_edad 
 FROM reclamo r, orden_servicio o, solicitud_servicio s, agenda ag, empleado e, cliente cli, servicio serv, motivo mo, respuesta res
@@ -2790,6 +2788,19 @@ AND co.id_respuesta is not null
 ORDER BY co.fecha_creacion DESC;
 
 ALTER TABLE vista_canal_escucha OWNER TO byqkxhkjgnspco;
+
+CREATE VIEW vista_nutricionista AS
+SELECT ag.id_agenda, ci.id_tipo_cita, tc.nombre as tipo_cita, e.id_empleado, e.nombres || ' ' || e.apellidos as nombre_empleado,
+ci.fecha_creacion, e.id_especialidad, es.nombre as especialidad
+FROM cita ci, tipo_cita tc, orden_servicio o, solicitud_servicio s, empleado e, agenda ag , especialidad es 
+WHERE ci.id_cita = ag.id_cita 
+AND ag.id_orden_servicio = o.id_orden_servicio
+AND o.id_solicitud_servicio = s.id_solicitud_servicio
+AND ag.id_empleado = e.id_empleado
+AND ci.id_tipo_cita = tc.id_tipo_cita
+AND e.id_especialidad = es.id_especialidad
+AND tc.id_tipo_cita <> 3;
+ALTER TABLE vista_nutricionista OWNER TO byqkxhkjgnspco;
 
 ALTER TABLE rol ADD COLUMN dashboard INTEGER DEFAULT 0;
 --

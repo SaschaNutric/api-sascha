@@ -255,6 +255,7 @@ module.exports = (function () {
   api.delete('/especialidadeservicio/:id',   especialidadeServiciosCtrl.deleteEspecialidad_servicio);   
   
   api.post('/estadisticos/clientes',        estadisticosCtrl.getMotivosSolicitudPreferidos);
+  api.post('/estadisticos/nutricionistas',  estadisticosCtrl.getVisitasByNutricionista);
 
   api.get('/estadociviles',                  estadoCivilesCtrl.getEstado_civiles);
   api.post('/estadociviles',                 estadoCivilesCtrl.saveEstado_civil);
