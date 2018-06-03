@@ -10,7 +10,9 @@ function getCriterios(req, res, next) {
 	.fetch({ withRelated: 
 		[
 			'tipo_criterio',
-			'tipo_criterio.tipo_valoracion'
+			'tipo_criterio.tipo_valoracion',
+			'tipo_criterio.tipo_valoracion.valoraciones'
+			
 		] 
 	})
 	.then(function(data) {
@@ -31,6 +33,124 @@ function getCriterios(req, res, next) {
 			data: { mensaje: err.message }
 		});
     });
+}
+
+function getCriteriosServicio(req, res, next) {
+	Criterios.query(function (qb) {
+		qb.where('criterio.id_tipo_criterio', '=', 1)
+		qb.where('criterio.estatus', '=', 1);
+	})
+		.fetch({
+			withRelated:
+				[
+					'tipo_criterio',
+					'tipo_criterio.tipo_valoracion',
+					'tipo_criterio.tipo_valoracion.valoraciones'
+				]
+		})
+		.then(function (data) {
+			let data_json = data.toJSON();
+			if (data_json.length == 0)
+				return res.status(404).json({
+					error: true,
+					data: { mensaje: 'No hay criterios de servicio registrados' }
+				});
+			let criterios = [];
+			data_json.map(function(criterio) {
+				let valoraciones = [];
+				if (criterio.tipo_criterio.tipo_valoracion.valoraciones) {
+					criterio.tipo_criterio.tipo_valoracion.valoraciones.map(function(valoracion) {
+						valoraciones.push({
+							id_valoracion: valoracion.id_valoracion,
+							nombre: valoracion.nombre
+						})
+					});
+				}
+				criterios.push({
+					id_criterio: criterio.id_criterio,
+					nombre: criterio.nombres,
+					descripcion: criterio.descripcion,
+					tipo_criterio: {
+						id_tipo_criterio: criterio.tipo_criterio.id_tipo_criterio,
+						nombre: criterio.tipo_criterio.nombre
+					},
+					tipo_valoracion: {
+						id_tipo_valoracion: criterio.tipo_criterio.tipo_valoracion.id_tipo_valoracion,
+						nombre: criterio.tipo_criterio.tipo_valoracion.nombre
+					},
+					valoraciones: valoraciones
+				})
+			})
+			return res.status(200).json({
+				error: false,
+				data: criterios
+			});
+		})
+		.catch(function (err) {
+			return res.status(500).json({
+				error: true,
+				data: { mensaje: err.message }
+			});
+		});
+}
+
+function getCriteriosVisita(req, res, next) {
+	Criterios.query(function (qb) {
+		qb.where('criterio.id_tipo_criterio', '=', 2)
+		qb.where('criterio.estatus', '=', 1);
+	})
+		.fetch({
+			withRelated:
+				[
+					'tipo_criterio',
+					'tipo_criterio.tipo_valoracion',
+					'tipo_criterio.tipo_valoracion.valoraciones'
+				]
+		})
+		.then(function (data) {
+			let data_json = data.toJSON();
+			if (data_json.length == 0)
+				return res.status(404).json({
+					error: true,
+					data: { mensaje: 'No hay criterios de servicio registrados' }
+				});
+			let criterios = [];
+			data_json.map(function (criterio) {
+				let valoraciones = [];
+				if (criterio.tipo_criterio.tipo_valoracion.valoraciones) {
+					criterio.tipo_criterio.tipo_valoracion.valoraciones.map(function (valoracion) {
+						valoraciones.push({
+							id_valoracion: valoracion.id_valoracion,
+							nombre: valoracion.nombre
+						})
+					});
+				}
+				criterios.push({
+					id_criterio: criterio.id_criterio,
+					nombre: criterio.nombres,
+					descripcion: criterio.descripcion,
+					tipo_criterio: {
+						id_tipo_criterio: criterio.tipo_criterio.id_tipo_criterio,
+						nombre: criterio.tipo_criterio.nombre
+					},
+					tipo_valoracion: {
+						id_tipo_valoracion: criterio.tipo_criterio.tipo_valoracion.id_tipo_valoracion,
+						nombre: criterio.tipo_criterio.tipo_valoracion.nombre
+					},
+					valoraciones: valoraciones
+				})
+			})
+			return res.status(200).json({
+				error: false,
+				data: criterios
+			});
+		})
+		.catch(function (err) {
+			return res.status(500).json({
+				error: true,
+				data: { mensaje: err.message }
+			});
+		});
 }
 
 function saveCriterio(req, res, next){
@@ -172,6 +292,8 @@ function deleteCriterio(req, res, next) {
 
 module.exports = {
 	getCriterios,
+	getCriteriosVisita,
+	getCriteriosServicio,
 	saveCriterio,
 	getCriterioById,
 	updateCriterio,

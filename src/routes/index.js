@@ -96,6 +96,7 @@ module.exports = (function () {
 
   api.get('/agendas',                        agendasCtrl.getAgendas);
   api.post('/agendas/empleado/:id_empleado', agendasCtrl.getAgendaPorEmpleado);  
+  api.post('/agendas/dashboard',                    agendasCtrl.getAgendaDashboardGeneral);
   api.post('/agendas/empleado/dashboard/:id_empleado', agendasCtrl.getAgendaDashboard);
   api.get('/planes/cliente/:id_cliente',     agendasCtrl.getPlanPorCliente);  
   api.get('/servicios/cliente/:id_cliente',  agendasCtrl.getMiServicios);
@@ -182,6 +183,8 @@ module.exports = (function () {
   api.delete('/comentario/:id',              comentariosCtrl.deleteComentario);  
 
   api.get('/criterios',                      criteriosCtrl.getCriterios);
+  api.get('/criterios/servicio',             criteriosCtrl.getCriteriosServicio);
+  api.get('/criterios/visita',               criteriosCtrl.getCriteriosVisita);  
   api.post('/criterios',                     criteriosCtrl.saveCriterio);
   api.get('/criterio/:id',                   criteriosCtrl.getCriterioById);  
   api.put('/criterio/:id',                   criteriosCtrl.updateCriterio);

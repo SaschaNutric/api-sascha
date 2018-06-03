@@ -57,7 +57,8 @@ CREATE FUNCTION fun_notificar_comentario() RETURNS trigger
 DECLARE BEGIN
     INSERT INTO notificacion (id_usuario, id_promocion, tipo_notificacion, titulo, mensaje)
     SELECT v.id_usuario, NULL, 8, 'Nuevo comentario',
-           (SELECT nombre_cliente FROM vista_comentario_cliente WHERE id_comentario = NEW.id_comentario) || ' ha realizado un comentario en el canal de escucha' 
+           (SELECT nombre_cliente FROM vista_comentario_cliente WHERE id_comentario = NEW.id_comentario) 
+           || ' comentó ' || NEW.contenido
     FROM vista_usuarios_canal_escucha v;
     RETURN NULL;
 END
@@ -84,21 +85,18 @@ ALTER FUNCTION public.fun_notificar_respuesta_comentario() OWNER TO byqkxhkjgnsp
 --
 -- Name: fun_eliminar_cliente(); Type: FUNCTION; Schema: public; Owner: postgres
 --
-
 CREATE FUNCTION fun_promocion_cliente(id integer) RETURNS INT
     LANGUAGE plpgsql
     AS $$
     DECLARE BEGIN
     	INSERT INTO notificacion (id_usuario, id_promocion, tipo_notificacion, titulo, mensaje)
         SELECT id_usuario, id_promocion, 2, 'Promoción',
-        v.nombre_cliente || ' tenemos la promoción ' || v.nombre_promocion || ' adaptada para ti, con un descuento del ' || v.descuento || '%'
+        v.nombre_cliente || ' tenemos la promoción ' || v.nombre_promocion 
+        || ' adaptada para ti, con un descuento del ' || v.descuento || '% en el servicio ' || v.nombre_servicio 
         FROM vista_promocion_cliente v
         WHERE v.id_promocion = id;
       RETURN 1;
     END $$;
-
-ALTER FUNCTION public.fun_promocion_cliente() OWNER TO postgres;
-
 
 --
 -- Name: id_agenda_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -2667,17 +2665,19 @@ SELECT a.id_cliente,
         a.nombres || ' ' || a.apellidos AS nombre_cliente,
         b.id_promocion,
         b.nombre AS nombre_promocion,
-        b.descuento
-        FROM cliente a, promocion b, usuario c
-        WHERE
-        (a.id_rango_edad = b.id_rango_edad OR b.id_rango_edad is null)
+        b.descuento,
+        d.id_servicio,
+        d.nombre AS nombre_servicio
+        FROM cliente a, promocion b, usuario c, servicio d
+        WHERE d.id_servicio = b.id_servicio
+        AND (a.id_rango_edad = b.id_rango_edad OR b.id_rango_edad is null)
         AND (a.id_genero = b.id_genero OR b.id_genero is null)
         AND (a.id_estado_civil = b.id_estado_civil OR b.id_estado_civil is null)
         AND c.id_usuario = a.id_usuario
         AND
         ARRAY(SELECT id_parametro FROM parametro_promocion pp WHERE pp.id_promocion = b.id_promocion)
         <@ ARRAY(SELECT id_parametro FROM parametro_cliente pc WHERE pc.id_cliente = a.id_cliente)
-        AND b.estatus = 1 AND a.estatus = 1 AND c.estatus = 1;
+        AND b.estatus = 1 AND a.estatus = 1 AND c.estatus = 1 AND d.estatus = 1;
 ALTER TABLE vista_promocion_cliente OWNER TO byqkxhkjgnspco;
 
 
