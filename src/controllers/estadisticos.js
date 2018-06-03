@@ -2,6 +2,8 @@
 
 const Bookshelf = require('../commons/bookshelf');
 const VistaEstadisticoClientes = require('../collections/vista_estadistico_clientes');
+const VistaNutricionistas = require('../collections/vista_nutricionistas');
+
 
 function getMotivosSolicitudPreferidos(req, res, next) {
 
@@ -71,6 +73,37 @@ function getMotivosSolicitudPreferidos(req, res, next) {
 
 }
 
+function getVisitasByNutricionista(req, res, next){
+    let id_especialidad = req.body.id_especialidad || null
+    let rango_fecha = {
+        minimo: req.body.fecha_inicial || null ,
+        maximo : req.body.fecha_final || null
+    }
+
+    VistaNutricionistas.query( function(qb){
+        qb.select('nombre_empleado');
+        qb.count('id_empleado as cantidad_visitas');
+        if(id_especialidad != null)
+            qb.where('id_especialidad',id_especialidad)
+        if (rango_fecha.minimo && rango_fecha.maximo)
+            qb.where('fecha_creacion', '>=', rango_fecha.minimo)
+                .andWhere('fecha_creacion', '<=', rango_fecha.maximo);
+        qb.groupBy('id_empleado', 'nombre_empleado')
+        qb.orderBy('cantidad_visitas','DESC')
+
+    })
+    .fetch()
+    .then(function(data){
+        return res.status(200).json({ error: false, data: data });
+        
+    })
+    .catch(function (err) {
+        return res.status(500).json({ error: true, data: { mensaje: err.message } });
+    });
+
+
+}
 module.exports = {
-    getMotivosSolicitudPreferidos
+    getMotivosSolicitudPreferidos,
+    getVisitasByNutricionista
 }
