@@ -137,7 +137,7 @@ module.exports = (function () {
   api.delete('/bloquehorario/:id',           bloquehorariosCtrl.deleteBloque_horario);  
 
   api.get('/calificaciones',                 calificacionesCtrl.getCalificaciones);
-  api.post('/calificaciones',                calificacionesCtrl.saveCalificacion);
+  api.post('/calificaciones',                calificacionesCtrl.saveCalificaciones);
   api.get('/calificacion/:id',               calificacionesCtrl.getCalificacionById);  
   api.put('/calificacion/:id',               calificacionesCtrl.updateCalificacion);
   api.delete('/calificacion/:id',            calificacionesCtrl.deleteCalificacion);  

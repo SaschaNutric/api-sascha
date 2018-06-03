@@ -2,6 +2,7 @@
 
 const Calificaciones = require('../collections/calificaciones');
 const Calificacion   = require('../models/calificacion');
+const Bookshelf      = require('../commons/bookshelf');
 
 function getCalificaciones(req, res, next) {
 	Calificaciones.query(function (qb) {
@@ -50,6 +51,34 @@ function saveCalificacion(req, res, next){
 			data: {message: err.message}
 		});
 	});
+}
+
+function saveCalificaciones(req, res, next) {
+	console.log(JSON.stringify(req.body));
+/*
+	id_criterio: req.body.id_criterio,
+	id_valoracion: req.body.id_valoracion,
+	id_visita: req.body.id_visita,
+	id_orden_servicio: req.body.id_orden_servicio
+*/
+	Bookshelf.transaction(function(t) {
+		let calificaciones = Calificaciones.forge(req.body.calificaciones)
+		calificaciones.invokeThen('save', null, { transacting: t })
+		.then(function (data) {
+			t.commit()
+			res.status(200).json({
+				error: false,
+				data: { mensaje: 'Calificaciones registradas satisfactoriamente'}
+			});
+		})
+		.catch(function (err) {
+			t.rollback();
+			res.status(500).json({
+				error: true,
+				data: { message: err.message }
+			});
+		});
+	})
 }
 
 function getCalificacionById(req, res, next) {
@@ -166,6 +195,7 @@ function deleteCalificacion(req, res, next) {
 module.exports = {
 	getCalificaciones,
 	saveCalificacion,
+	saveCalificaciones,
 	getCalificacionById,
 	updateCalificacion,
 	deleteCalificacion
