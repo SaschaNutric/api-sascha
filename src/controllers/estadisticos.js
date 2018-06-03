@@ -82,18 +82,21 @@ function getVisitasByNutricionista(req, res, next){
 
     VistaNutricionistas.query( function(qb){
         qb.select('nombre_empleado');
-        qb.count('id_empleado as cantidad_visitas');
+        qb.countDistinct(' id_orden_servicio as cantidad_clientes');
         if(id_especialidad != null)
             qb.where('id_especialidad',id_especialidad)
         if (rango_fecha.minimo && rango_fecha.maximo)
             qb.where('fecha_creacion', '>=', rango_fecha.minimo)
                 .andWhere('fecha_creacion', '<=', rango_fecha.maximo);
-        qb.groupBy('id_empleado', 'nombre_empleado')
-        qb.orderBy('cantidad_visitas','DESC')
+        qb.groupBy( 'nombre_empleado')
+        qb.orderBy('cantidad_clientes','DESC')
 
     })
     .fetch()
     .then(function(data){
+        data.map(function(emp){
+
+        })
         return res.status(200).json({ error: false, data: data });
         
     })
