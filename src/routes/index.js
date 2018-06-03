@@ -136,11 +136,12 @@ module.exports = (function () {
   api.put('/bloquehorario/:id',              bloquehorariosCtrl.updateBloque_horario);
   api.delete('/bloquehorario/:id',           bloquehorariosCtrl.deleteBloque_horario);  
 
-  api.get('/calificaciones',                 calificacionesCtrl.getCalificaciones);
-  api.post('/calificaciones',                calificacionesCtrl.saveCalificaciones);
-  api.get('/calificacion/:id',               calificacionesCtrl.getCalificacionById);  
-  api.put('/calificacion/:id',               calificacionesCtrl.updateCalificacion);
-  api.delete('/calificacion/:id',            calificacionesCtrl.deleteCalificacion);  
+  api.get('/calificaciones',                     calificacionesCtrl.getCalificaciones);
+  api.post('/calificaciones/visita/:id',         calificacionesCtrl.saveCalificacionesVisita);
+  api.post('/calificaciones/orden_servicio/:id', calificacionesCtrl.saveCalificacionesOrdenServicio);  
+  api.get('/calificacion/:id',                   calificacionesCtrl.getCalificacionById);  
+  api.put('/calificacion/:id',                   calificacionesCtrl.updateCalificacion);
+  api.delete('/calificacion/:id',                calificacionesCtrl.deleteCalificacion);  
 
   api.get('/citas',                          citasCtrl.getCitas);
   api.post('/citas',                         citasCtrl.saveCita);

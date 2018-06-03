@@ -2,6 +2,7 @@
 
 const Calificaciones = require('../collections/calificaciones');
 const Calificacion   = require('../models/calificacion');
+const OrdenServicio  = require('../models/orden_servicio');
 const Bookshelf      = require('../commons/bookshelf');
 
 function getCalificaciones(req, res, next) {
@@ -53,23 +54,96 @@ function saveCalificacion(req, res, next){
 	});
 }
 
-function saveCalificaciones(req, res, next) {
+function saveCalificacionesVisita(req, res, next) {
 	console.log(JSON.stringify(req.body));
-	if(!req.body.calificaciones || !req.body.calificaciones.length) {
+	let id = Number.parseInt(req.params.id);
+	if (id == 'NaN' || !req.body.calificaciones || !req.body.calificaciones.length) {
+		res.status(400).json({
+			error: true,
+			data: { mensaje: 'Petición inválida' }
+		})
+	}
+	Bookshelf.transaction(function (t) {
+		let calificaciones = [];
+		req.body.calificaciones.map(function (calificacion) {
+			calificaciones.push({
+				id_visita: id,
+				id_criterio: calificacion.id_criterio,
+				id_valoracion: calificacion.id_valoracion
+			})
+		})
+		Calificaciones.forge(calificaciones)
+		.invokeThen('save', null, { transacting: t })
+			.then(function (data) {
+				t.commit()
+				res.status(200).json({
+					error: false,
+					data: { mensaje: 'Calificaciones registradas satisfactoriamente' }
+				});
+			})
+			.catch(function (err) {
+				t.rollback();
+				res.status(500).json({
+					error: true,
+					data: { message: err.message }
+				});
+			});
+	})
+	.catch(function (err) {
+		res.status(500).json({
+			error: true,
+			data: { message: err.message }
+		});
+	});
+}
+
+function saveCalificacionesOrdenServicio(req, res, next) {
+	console.log(JSON.stringify(req.body));
+	let id = Number.parseInt(req.params.id);
+	if(id == 'NaN' || !req.body.calificaciones || !req.body.calificaciones.length) {
 		res.status(400).json({
 			error: true,
 			data: { mensaje: 'Petición inválida' }
 		})
 	}
 	Bookshelf.transaction(function(t) {
-		let calificaciones = Calificaciones.forge(req.body.calificaciones)
-		calificaciones.invokeThen('save', null, { transacting: t })
+		let calificaciones = [];
+		req.body.calificaciones.map(function (calificacion) {
+			calificaciones.push({
+				id_orden_servicio: id,
+				id_criterio: calificacion.id_criterio,
+				id_valoracion: calificacion.id_valoracion
+			})
+		})
+		Calificaciones.forge(calificaciones)
+		.invokeThen('save', null, { transacting: t })
 		.then(function (data) {
-			t.commit()
-			res.status(200).json({
-				error: false,
-				data: { mensaje: 'Calificaciones registradas satisfactoriamente'}
-			});
+			OrdenServicio.forge({ id_orden_servicio: id })
+			.fetch()
+			.then(function (orden) {
+				orden.save({ estado: 5 }, { transacting: t })
+				.then(function (orden) {
+					t.commit()
+					res.status(200).json({
+						error: false,
+						data: { mensaje: 'Calificaciones registradas satisfactoriamente' }
+					});
+				})
+				.catch(function (err) {
+					t.rollback()
+					return res.status(500).json({
+						error: false,
+						data: { mensaje: err.message }
+					})
+				})
+			})
+			.catch(function (err) {
+				t.rollback()
+				return res.status(500).json({
+					error: false,
+					data: { mensaje: err.message }
+				})
+			})
 		})
 		.catch(function (err) {
 			t.rollback();
@@ -79,6 +153,12 @@ function saveCalificaciones(req, res, next) {
 			});
 		});
 	})
+	.catch(function (err) {
+		res.status(500).json({
+			error: true,
+			data: { message: err.message }
+		});
+	});
 }
 
 function getCalificacionById(req, res, next) {
@@ -195,7 +275,8 @@ function deleteCalificacion(req, res, next) {
 module.exports = {
 	getCalificaciones,
 	saveCalificacion,
-	saveCalificaciones,
+	saveCalificacionesVisita,
+	saveCalificacionesOrdenServicio,	
 	getCalificacionById,
 	updateCalificacion,
 	deleteCalificacion

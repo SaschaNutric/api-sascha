@@ -2,6 +2,8 @@
 
 const Reclamos 	= require('../collections/reclamos');
 const Reclamo  	= require('../models/reclamo');
+const OrdenServicio   = require('../models/orden_servicio');
+const Bookshelf = require('../commons/bookshelf');
 
 function getReclamos(req, res, next) {
 	Reclamos.query(function (qb) {
@@ -63,25 +65,60 @@ function getReclamos(req, res, next) {
 
 function saveReclamo(req, res, next){
 	console.log(JSON.stringify(req.body));
-
-	Reclamo.forge({ 
-		id_motivo:req.body.id_motivo ,
-		id_orden_servicio:req.body.id_orden_servicio ,
-		id_respuesta:req.body.id_respuesta || null,
-		respuesta:req.body.respuesta || null 
-	})
-	.save()
-	.then(function(data){
-		res.status(200).json({
-			error: false,
-			data: data
+	if (!req.body.id_motivo || !req.body.id_orden_servicio) {
+		return res.status(400).json({
+			error: true,
+			data: { mensaje: 'Petición inválida' }
+		})
+	}
+	Bookshelf.transaction(function(t) {
+		Reclamo.forge({ 
+			id_motivo:         req.body.id_motivo ,
+			id_orden_servicio: req.body.id_orden_servicio ,
+			id_respuesta:      req.body.id_respuesta || null,
+			respuesta:         req.body.respuesta || null 
+		})
+		.save(null, { transacting: t })
+		.then(function(data){
+			OrdenServicio.forge({ id_orden_servicio: req.body.id_orden_servicio })
+			.fetch()
+			.then(function (orden) {
+				orden.save({ estado: 4, id_reclamo: data.get('id_reclamo') }, { transacting: t })
+				.then(function (orden) {
+					t.commit()
+					res.status(200).json({
+						error: false,
+						data: { mensaje: 'Reclamo del servicio realizado satisfactoriamente' }
+					});
+				})
+				.catch(function (err) {
+					t.rollback()
+					return res.status(500).json({
+						error: false,
+						data: { mensaje: err.message }
+					})
+				})
+			})
+			.catch(function (err) {
+				t.rollback()
+				return res.status(500).json({
+					error: false,
+					data: { mensaje: err.message }
+				})
+			})
+		})
+		.catch(function (err) {
+			t.rollback();
+			res.status(500).json({
+				error: true,
+				data: {message: err.message}
+			});
 		});
 	})
 	.catch(function (err) {
-		res.status(500)
-		.json({
+		res.status(500).json({
 			error: true,
-			data: {message: err.message}
+			data: { message: err.message }
 		});
 	});
 }
