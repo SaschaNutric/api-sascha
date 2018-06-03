@@ -34,7 +34,11 @@ function getValoraciones(req, res, next) {
 function saveValoracion(req, res, next){
 	console.log(JSON.stringify(req.body));
 
-	Valoracion.forge({ id_tipo_valoracion:req.body.id_tipo_valoracion ,nombre:req.body.nombre  })
+	Valoracion.forge({ 
+		id_tipo_valoracion: req.body.id_tipo_valoracion, 
+		nombre: req.body.nombre,
+		valor: req.body.valor
+	})
 	.save()
 	.then(function(data){
 			res.status(200).json({
@@ -105,7 +109,11 @@ function updateValoracion(req, res, next) {
 				error: true, 
 				data: { mensaje: 'Solicitud no encontrada' } 
 			});
-		data.save({ id_tipo_valoracion:req.body.id_tipo_valoracion || data.get('id_tipo_valoracion'),nombre:req.body.nombre || data.get('nombre') })
+		data.save({ 
+			id_tipo_valoracion: req.body.id_tipo_valoracion || data.get('id_tipo_valoracion'),
+			nombre: req.body.nombre || data.get('nombre'), 
+			valor: req.body.valor || data.get('valor')
+		})
 		.then(function(data) {
 			return res.status(200).json({ 
 				error: false, 

@@ -55,12 +55,12 @@ function saveCalificacion(req, res, next){
 
 function saveCalificaciones(req, res, next) {
 	console.log(JSON.stringify(req.body));
-/*
-	id_criterio: req.body.id_criterio,
-	id_valoracion: req.body.id_valoracion,
-	id_visita: req.body.id_visita,
-	id_orden_servicio: req.body.id_orden_servicio
-*/
+	if(!req.body.calificaciones || !req.body.calificaciones.length) {
+		res.status(400).json({
+			error: true,
+			data: { mensaje: 'Petición inválida' }
+		})
+	}
 	Bookshelf.transaction(function(t) {
 		let calificaciones = Calificaciones.forge(req.body.calificaciones)
 		calificaciones.invokeThen('save', null, { transacting: t })
