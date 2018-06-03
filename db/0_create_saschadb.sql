@@ -2771,20 +2771,18 @@ ALTER TABLE vista_reclamo OWNER TO byqkxhkjgnspco;
 
 
 
-CREATE VIEW vista_canal_escucha ASSELECT co.id_comentario,
+CREATE VIEW vista_canal_escucha AS
+SELECT co.id_comentario,
 co.id_cliente, cli.nombres || ' ' || cli.apellidos as nombre_cliente,
 mo.id_tipo_motivo, tm.nombre as tipo_motivo,
 co.id_motivo, mo.descripcion as motivo_descripcion, 
-co.id_respuesta, re.descripcion as respuesta_descripcion,
-co.fecha_creacion, 
+co.id_respuesta,co.fecha_creacion, 
 cli.id_genero, cli.id_rango_edad, cli.id_estado_civil,
 ARRAY(SELECT pc.id_parametro FROM parametro_cliente pc WHERE pc.id_cliente = cli.id_cliente) as perfil_cliente
-FROM comentario co, cliente cli, motivo mo, respuesta re, tipo_motivo tm
+FROM comentario co, cliente cli, motivo mo,  tipo_motivo tm
 WHERE co.id_cliente = cli.id_cliente 
 AND co.id_motivo = mo.id_motivo
 AND mo.id_tipo_motivo = tm.id_tipo_motivo
-AND co.id_respuesta = re.id_respuesta
-AND co.id_respuesta is not null
 ORDER BY co.fecha_creacion DESC;
 
 ALTER TABLE vista_canal_escucha OWNER TO byqkxhkjgnspco;
