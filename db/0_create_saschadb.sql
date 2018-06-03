@@ -2791,7 +2791,7 @@ ALTER TABLE vista_canal_escucha OWNER TO byqkxhkjgnspco;
 
 CREATE VIEW vista_nutricionista AS
 SELECT ag.id_agenda, ci.id_tipo_cita, tc.nombre as tipo_cita, e.id_empleado, e.nombres || ' ' || e.apellidos as nombre_empleado,
-ci.fecha_creacion, e.id_especialidad, es.nombre as especialidad
+ci.fecha_creacion, e.id_especialidad, es.nombre as especialidad, s.id_cliente 
 FROM cita ci, tipo_cita tc, orden_servicio o, solicitud_servicio s, empleado e, agenda ag , especialidad es 
 WHERE ci.id_cita = ag.id_cita 
 AND ag.id_orden_servicio = o.id_orden_servicio
