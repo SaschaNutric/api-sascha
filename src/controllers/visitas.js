@@ -59,6 +59,7 @@ function getVisitasByClienteAndOrden(req, res, next) {
 							parametro: meta.parametro.nombre,
 							valor_minimo: meta.valor_minimo,
 							valor_maximo: meta.valor_maximo,
+							signo: meta.signo,
 							tipo_parametro: meta.parametro.tipo_parametro.nombre,
 							unidad: meta.parametro.unidad ? meta.parametro.unidad.nombre : null,
 							unidad_abreviatura: meta.parametro.unidad ? meta.parametro.unidad.abreviatura : null

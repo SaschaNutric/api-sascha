@@ -67,6 +67,20 @@ $$;
 ALTER FUNCTION public.fun_notificar_comentario() OWNER TO postgres;
 
 
+CREATE FUNCTION fun_notificar_respuesta_comentario() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE BEGIN
+    INSERT INTO notificacion (id_usuario, id_promocion, tipo_notificacion, titulo, mensaje)
+    SELECT v.id_usuario, NULL, 9, 'Respuesta a ' || v.contenido, v.respuesta 
+    FROM   vista_comentario_cliente v
+    WHERE  id_comentario = NEW.id_comentario;
+    RETURN NULL;
+END
+$$;
+
+ALTER FUNCTION public.fun_notificar_respuesta_comentario() OWNER TO byqkxhkjgnspco;
+
 --
 -- Name: fun_eliminar_cliente(); Type: FUNCTION; Schema: public; Owner: postgres
 --
@@ -1740,7 +1754,7 @@ CREATE TABLE notificacion (
     id_notificacion integer DEFAULT nextval('id_notificacion_seq'::regclass) NOT NULL,
     id_usuario integer,
     id_promocion integer,
-    titulo character varying(50) DEFAULT ''::character varying NOT NULL,
+    titulo character varying(500) DEFAULT ''::character varying NOT NULL,
     mensaje character varying(500) DEFAULT '':: character varying NOT NULL,
     tipo_notificacion integer NOT NULL,
     fecha_creacion timestamp without time zone DEFAULT now() NOT NULL    
@@ -2539,6 +2553,30 @@ CREATE VIEW vista_cliente_servicio_activo AS
 ALTER TABLE vista_cliente_servicio_activo OWNER TO byqkxhkjgnspco;
 
 
+
+
+
+CREATE VIEW vista_comentario_cliente AS 
+SELECT a.id_cliente,
+    a.id_usuario,
+    (a.nombres::text || ' '::text) || a.apellidos::text AS nombre_cliente,
+    c.id_comentario,
+    c.contenido,
+    c.id_respuesta,
+    (CASE WHEN c.mensaje IS NOT NULL THEN c.mensaje 
+          WHEN c.id_respuesta IS NOT NULL THEN d.descripcion 
+          ELSE NULL END) AS respuesta
+FROM cliente a
+JOIN usuario b ON b.id_usuario = a.id_usuario
+JOIN comentario c ON a.id_cliente = c.id_cliente
+LEFT JOIN respuesta d ON c.id_respuesta = d.id_respuesta
+WHERE b.estatus = 1 
+AND a.estatus = 1 
+AND c.estatus = 1;
+
+ALTER TABLE vista_comentario_cliente OWNER TO byqkxhkjgnspco;
+
+
 CREATE VIEW vista_agenda AS
 SELECT a.id_agenda, 
     g.id_orden_servicio,
@@ -2682,6 +2720,89 @@ AND a.estatus = 1;
 
 ALTER TABLE vista_usuarios_canal_escucha OWNER TO byqkxhkjgnspco;
 
+
+CREATE VIEW vista_estadistico_clientes AS
+SELECT o.id_orden_servicio, s.id_cliente, cli.id_genero, cli.id_rango_edad, cli.id_estado_civil, s.id_servicio, se.id_especialidad, s.id_motivo, mo.descripcion as motivo_descripcion, o.fecha_creacion
+FROM orden_servicio o, solicitud_servicio s, motivo mo, cliente cli, servicio se
+WHERE o.id_solicitud_servicio = s.id_solicitud_servicio 
+AND s.id_motivo = mo.id_motivo
+AND s.id_cliente = cli.id_cliente
+AND s.id_servicio = se.id_servicio;
+
+ALTER TABLE vista_estadistico_clientes OWNER TO byqkxhkjgnspco;
+
+CREATE VIEW vista_orden_servicio AS
+SELECT DISTINCT( o.id_orden_servicio), 
+cli.nombres || ' ' || cli.apellidos as nombre_cliente,
+s.id_servicio, ser.nombre as nombre_servicio, 
+e.id_empleado, e.nombres || ' ' || e.apellidos as nombre_empleado,
+o.fecha_emision, o.id_tipo_orden , tiO.nombre as tipo_orden, o.estado,
+cli.id_genero, cli.id_estado_civil, cli.id_rango_edad,
+ser.id_especialidad, ARRAY(SELECT ps.id_parametro FROM parametro_servicio ps WHERE ps.id_servicio = ser.id_servicio) as paremtros_servicio
+FROM orden_servicio o, solicitud_servicio s, cliente cli, servicio ser, tipo_orden tiO, agenda ag, empleado e 
+WHERE s.id_solicitud_servicio = o.id_solicitud_servicio
+AND s.id_cliente = cli.id_cliente
+AND s.id_servicio = ser.id_servicio
+AND o.id_tipo_orden = tiO.id_tipo_orden
+AND o.id_orden_servicio = ag.id_orden_servicio
+AND e.id_empleado = ag.id_empleado
+ORDER BY o.fecha_emision DESC;
+
+
+ALTER TABLE vista_orden_servicio OWNER TO byqkxhkjgnspco;
+
+
+CREATE VIEW vista_reclamo AS
+SELECT DISTINCT(r.id_reclamo), res.aprobado, cli.nombres ||  ' ' || cli.apellidos  as nombre_cliente, e.id_empleado, e.nombres || ' ' || e.apellidos  as nombre_empleado , s.id_servicio, serv.nombre as nombre_servicio, serv.id_especialidad,
+mo.descripcion as motivo_descripcion, mo.id_motivo, r.id_respuesta, res.descripcion as respuesta_descripcion, r.fecha_creacion,
+cli.id_genero, cli.id_estado_civil, cli.id_rango_edad 
+FROM reclamo r, orden_servicio o, solicitud_servicio s, agenda ag, empleado e, cliente cli, servicio serv, motivo mo, respuesta res
+WHERE r.id_orden_servicio = o.id_orden_servicio
+AND o.id_solicitud_servicio = s.id_solicitud_servicio
+AND s.id_cliente = cli.id_cliente
+AND s.id_servicio = serv.id_servicio
+AND r.id_respuesta = res.id_respuesta
+AND r.id_motivo = mo.id_motivo
+AND ag.id_orden_servicio = o.id_orden_servicio
+AND ag.id_empleado = e.id_empleado
+AND r.id_respuesta is not null
+ORDER BY r.fecha_creacion DESC;
+ALTER TABLE vista_reclamo OWNER TO byqkxhkjgnspco;
+
+
+
+CREATE VIEW vista_canal_escucha ASSELECT co.id_comentario,
+co.id_cliente, cli.nombres || ' ' || cli.apellidos as nombre_cliente,
+mo.id_tipo_motivo, tm.nombre as tipo_motivo,
+co.id_motivo, mo.descripcion as motivo_descripcion, 
+co.id_respuesta, re.descripcion as respuesta_descripcion,
+co.fecha_creacion, 
+cli.id_genero, cli.id_rango_edad, cli.id_estado_civil,
+ARRAY(SELECT pc.id_parametro FROM parametro_cliente pc WHERE pc.id_cliente = cli.id_cliente) as perfil_cliente
+FROM comentario co, cliente cli, motivo mo, respuesta re, tipo_motivo tm
+WHERE co.id_cliente = cli.id_cliente 
+AND co.id_motivo = mo.id_motivo
+AND mo.id_tipo_motivo = tm.id_tipo_motivo
+AND co.id_respuesta = re.id_respuesta
+AND co.id_respuesta is not null
+ORDER BY co.fecha_creacion DESC;
+
+ALTER TABLE vista_canal_escucha OWNER TO byqkxhkjgnspco;
+
+CREATE VIEW vista_nutricionista AS
+SELECT ag.id_agenda, ci.id_tipo_cita, tc.nombre as tipo_cita, e.id_empleado, e.nombres || ' ' || e.apellidos as nombre_empleado,
+ci.fecha_creacion, e.id_especialidad, es.nombre as especialidad
+FROM cita ci, tipo_cita tc, orden_servicio o, solicitud_servicio s, empleado e, agenda ag , especialidad es 
+WHERE ci.id_cita = ag.id_cita 
+AND ag.id_orden_servicio = o.id_orden_servicio
+AND o.id_solicitud_servicio = s.id_solicitud_servicio
+AND ag.id_empleado = e.id_empleado
+AND ci.id_tipo_cita = tc.id_tipo_cita
+AND e.id_especialidad = es.id_especialidad
+AND tc.id_tipo_cita <> 3;
+ALTER TABLE vista_nutricionista OWNER TO byqkxhkjgnspco;
+
+ALTER TABLE rol ADD COLUMN dashboard INTEGER DEFAULT 0;
 --
 -- Data for Name: alimento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -3673,6 +3794,9 @@ CREATE TRIGGER dis_asignar_rango_edad AFTER INSERT ON cliente FOR EACH ROW EXECU
 CREATE TRIGGER dis_notificar_promocion AFTER INSERT ON promocion FOR EACH ROW EXECUTE PROCEDURE fun_notificar_promocion();
 
 CREATE TRIGGER dis_notificar_comentario AFTER INSERT ON comentario FOR EACH ROW EXECUTE PROCEDURE fun_notificar_comentario();
+
+CREATE TRIGGER dis_notificar_respuesta_comentario AFTER UPDATE ON comentario FOR EACH ROW EXECUTE PROCEDURE fun_notificar_respuesta_comentario();
+
 
 --
 -- Name: dis_usuario_eliminada; Type: TRIGGER; Schema: public; Owner: postgres

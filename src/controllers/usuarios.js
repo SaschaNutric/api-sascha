@@ -447,7 +447,7 @@ function singInEmpleado(req, res) {
 							if ( f.id_funcionalidad_padre != null  && padres_ids.indexOf(f.id_funcionalidad_padre) == -1  ) {
 								padres_ids.push(f.id_funcionalidad_padre)
 							}
-							if(f.id_funcionalidad == 1 || f.id_funcionalidad == 34){
+							if(f.id_funcionalidad == 1){
 								padres_ids.push(f.id_funcionalidad)
 							}
 						})
@@ -489,6 +489,7 @@ function singInEmpleado(req, res) {
 						apellidos : empleado_json.apellidos,
 						correo : empleado_json.correo,
 						rol : empleado_json.usuario? empleado_json.usuario.rol.nombre: null,
+						dashboard : empleado_json.usuario? empleado_json.usuario.rol.dashboard: null, 
 						menu : menu
 
 					}
