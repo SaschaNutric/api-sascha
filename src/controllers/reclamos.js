@@ -91,7 +91,7 @@ function saveReclamo(req, res, next){
 				})
 				.save(null, { transacting: t })
 				.then(function (data) {
-					orden.save({ estado: 4, id_reclamo: data.get('id_reclamo') }, { transacting: t })
+					orden.save({ estado: 2, id_reclamo: data.get('id_reclamo') }, { transacting: t })
 					.then(function (orden) {
 						t.commit()
 						res.status(200).json({
