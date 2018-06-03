@@ -182,6 +182,8 @@ module.exports = (function () {
   api.delete('/comentario/:id',              comentariosCtrl.deleteComentario);  
 
   api.get('/criterios',                      criteriosCtrl.getCriterios);
+  api.get('/criterios/servicio',             criteriosCtrl.getCriteriosServicio);
+  api.get('/criterios/visita',               criteriosCtrl.getCriteriosVisita);  
   api.post('/criterios',                     criteriosCtrl.saveCriterio);
   api.get('/criterio/:id',                   criteriosCtrl.getCriterioById);  
   api.put('/criterio/:id',                   criteriosCtrl.updateCriterio);
