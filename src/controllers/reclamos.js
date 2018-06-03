@@ -71,49 +71,57 @@ function saveReclamo(req, res, next){
 			data: { mensaje: 'Petición inválida' }
 		})
 	}
-	Bookshelf.transaction(function(t) {
-		Reclamo.forge({ 
-			id_motivo:         req.body.id_motivo ,
-			id_orden_servicio: req.body.id_orden_servicio ,
-			id_respuesta:      req.body.id_respuesta || null,
-			respuesta:         req.body.respuesta || null 
-		})
-		.save(null, { transacting: t })
-		.then(function(data){
-			OrdenServicio.forge({ id_orden_servicio: req.body.id_orden_servicio })
-			.fetch()
-			.then(function (orden) {
-				orden.save({ estado: 4, id_reclamo: data.get('id_reclamo') }, { transacting: t })
-				.then(function (orden) {
-					t.commit()
-					res.status(200).json({
-						error: false,
-						data: { mensaje: 'Reclamo del servicio realizado satisfactoriamente' }
-					});
+	OrdenServicio.forge({ id_orden_servicio: req.body.id_orden_servicio })
+	.fetch()
+	.then(function (orden) {
+		let reclamo = orden.get('id_reclamo');
+		if(reclamo) {
+			return res.status(403).json({
+				error: true,
+				data: { mensaje: 'Orden de servicio ya ha sido reclamada' }
+			})			
+		}
+		else {
+			Bookshelf.transaction(function (t) {
+				Reclamo.forge({
+					id_motivo: req.body.id_motivo,
+					id_orden_servicio: req.body.id_orden_servicio,
+					id_respuesta: req.body.id_respuesta || null,
+					respuesta: req.body.respuesta || null
 				})
-				.catch(function (err) {
-					t.rollback()
-					return res.status(500).json({
-						error: false,
-						data: { mensaje: err.message }
+				.save(null, { transacting: t })
+				.then(function (data) {
+					orden.save({ estado: 4, id_reclamo: data.get('id_reclamo') }, { transacting: t })
+					.then(function (orden) {
+						t.commit()
+						res.status(200).json({
+							error: false,
+							data: { mensaje: 'Reclamo del servicio realizado satisfactoriamente' }
+						});
+					})
+					.catch(function (err) {
+						t.rollback()
+						return res.status(500).json({
+							error: false,
+							data: { mensaje: err.message }
+						})
 					})
 				})
+				.catch(function (err) {
+					t.rollback();
+					res.status(500).json({
+						error: true,
+						data: { message: err.message }
+					});
+				});
 			})
 			.catch(function (err) {
-				t.rollback()
 				return res.status(500).json({
 					error: false,
 					data: { mensaje: err.message }
 				})
 			})
-		})
-		.catch(function (err) {
-			t.rollback();
-			res.status(500).json({
-				error: true,
-				data: {message: err.message}
-			});
-		});
+		}
 	})
 	.catch(function (err) {
 		res.status(500).json({
