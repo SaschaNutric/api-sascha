@@ -95,6 +95,7 @@ module.exports = (function () {
 
   api.get('/agendas',                        agendasCtrl.getAgendas);
   api.post('/agendas/empleado/:id_empleado', agendasCtrl.getAgendaPorEmpleado);  
+  api.post('/agendas/dashboard',                    agendasCtrl.getAgendaDashboardGeneral);
   api.post('/agendas/empleado/dashboard/:id_empleado', agendasCtrl.getAgendaDashboard);
   api.get('/planes/cliente/:id_cliente',     agendasCtrl.getPlanPorCliente);  
   api.get('/servicios/cliente/:id_cliente',  agendasCtrl.getMiServicios);
