@@ -335,6 +335,7 @@ module.exports = (function () {
 
   api.get('/ordenservicios',                 ordenServiciosCtrl.getOrden_servicios);
   api.post('/ordenservicios',                ordenServiciosCtrl.saveOrden_servicio);
+  api.post('/ordenservicios/reporte',        ordenServiciosCtrl.reportOrdenServicio);
   api.get('/ordenservicio/:id',              ordenServiciosCtrl.getOrden_servicioById);
   api.put('/ordenservicio/:id',              ordenServiciosCtrl.updateOrden_servicio);
   api.delete('/ordenservicio/:id',           ordenServiciosCtrl.deleteOrden_servicio);

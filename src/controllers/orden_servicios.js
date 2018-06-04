@@ -1,6 +1,7 @@
 'use strict';
 
 const Orden_servicios 	= require('../collections/orden_servicios');
+const Orden_servicio_reporte     = require ('../collections/vista_reporte_orden_servicio');
 const Orden_servicio  	= require('../models/orden_servicio');
 
 function getOrden_servicios(req, res, next) {
@@ -75,6 +76,51 @@ function getOrden_servicioById(req, res, next) {
 			data: { mensaje: err.message } 
 		})
 	});
+}
+
+function reportOrdenServicio(req, res, next) {
+	let campos = {
+		// id_motivo:           req.body.id_motivo           || null,
+		id_tipo_orden:       req.body.id_tipo_orden       || null,
+		estado:              req.body.estado              || null,
+		id_especialidad:     req.body.id_especialidad     || null,
+		id_servicio:         req.body.id_servicio         || null,
+		id_genero:           req.body.id_genero           || null,
+		id_estado_civil:     req.body.id_estado_civil     || null,
+		id_rango_edad:       req.body.id_rango_edad       || null
+	}
+
+
+	 let rango_fecha = {
+	 	minimo: req.body.fecha_inicial || null,
+     	maximo: req.body.fecha_final || null
+	 }
+
+		let filtros = new Object();
+	for(let item in campos) {
+		if(campos.hasOwnProperty(item)) {
+			if(campos[item] != null) 
+				filtros[item] = campos[item];
+		}
+	}
+
+		Orden_servicio_reporte.query(function(qb) {
+		   qb.where(filtros);
+		   	if (rango_fecha.minimo && rango_fecha.maximo)
+			 qb.where('fecha_emision', '>=', rango_fecha.minimo)
+			  .andWhere('fecha_emision', '<=', rango_fecha.maximo);
+		})
+		.fetch()
+		.then(function(ordenes) {
+			let nuevasOrdenes = new Array();
+
+			res.status(200).json({ error: false, data: ordenes });
+		})
+		.catch(function(err) {
+			return res.status(500).json({ error: true, data: { mensaje: err.message } });
+		});
+
+
 }
 
 function updateOrden_servicio(req, res, next) {
@@ -167,6 +213,7 @@ module.exports = {
 	getOrden_servicios,
 	saveOrden_servicio,
 	getOrden_servicioById,
+	reportOrdenServicio,
 	updateOrden_servicio,
 	deleteOrden_servicio
 }

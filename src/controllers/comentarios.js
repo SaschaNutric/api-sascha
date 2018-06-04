@@ -193,7 +193,7 @@ function deleteComentario(req, res, next) {
 
 function reporteComentario(req, res, next) {
 	let campos = {
-		id_contacto:		 req.body.id_contacto		  || null,
+		id_tipo_motivo:		 req.body.id_tipo_motivo		  || null,
 		id_motivo:           req.body.id_motivo           || null,
 		id_respuesta:        req.body.id_respuesta        || null,
 		id_genero:           req.body.id_genero           || null,
