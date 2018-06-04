@@ -59,7 +59,7 @@ function getTipoValoracionById(req, res, next) {
 		});
 
 	TipoValoracion.forge({ id_tipo_valoracion: id, estatus: 1 })
-	.fetch()
+	.fetch({withRelated : ['valoraciones']})
 	.then(function(data) {
 		if(!data) 
 			return res.status(404).json({ 
