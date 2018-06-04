@@ -159,7 +159,8 @@ module.exports = (function () {
   api.post('/comentarios',                   comentariosCtrl.saveComentario);
   api.get('/comentario/:id',                 comentariosCtrl.getComentarioById);  
   api.put('/comentario/:id',                 comentariosCtrl.updateComentario);
-  api.delete('/comentario/:id',              comentariosCtrl.deleteComentario);  
+  api.delete('/comentario/:id',              comentariosCtrl.deleteComentario);
+  api.post('/comentarios/reporte',            comentariosCtrl.reporteComentario); 
 
   api.get('/comidas',                        comidasCtrl.getComidas);
   api.post('/comidas',                       comidasCtrl.saveComida);
@@ -418,7 +419,8 @@ module.exports = (function () {
   api.post('/reclamos',                      reclamosCtrl.saveReclamo);
   api.get('/reclamo/:id',                    reclamosCtrl.getReclamoById);  
   api.put('/reclamo/:id',                    reclamosCtrl.updateReclamo);
-  api.delete('/reclamo/:id',                 reclamosCtrl.deleteReclamo);  
+  api.delete('/reclamo/:id',                 reclamosCtrl.deleteReclamo);
+  api.post('/reclamos/reporte',               reclamosCtrl.reporteReclamo);  
 
   api.get('/redsociales',                    redSocialesCtrl.getRed_sociales);
   api.post('/redsociales',                   redSocialesCtrl.saveRed_social);

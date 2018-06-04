@@ -84,6 +84,7 @@ function getVisitasByClienteAndOrden(req, res, next) {
 					id_visita: visita.id_visita,
 					numero: visita.numero,
 					fecha_atencion: JSON.stringify(visita.fecha_atencion).substr(1, 10),
+					calificada: visita.calificaciones.length == 0 ? false : true,
 					id_servicio: visita.id_servicio,
 					nombre_servicio: visita.nombre_servicio,
 					numero_visitas: visita.numero_visitas,
@@ -455,32 +456,7 @@ function saveVisitaControl(req, res, next) {
 							VistaAgenda.forge({ id_agenda: req.body.id_agenda })
 								.fetch()
 								.then(function (agenda) {
-									OrdenServicio.forge({ id_orden_servicio: agenda.get('id_orden_servicio') })
-										.fetch()
-										.then(function (orden) {
-											orden.save({ estado: 5 }, { transacting: t })
-												.then(function (orden) {
-													t.commit()
-													res.status(200).json({
-														error: false,
-														data: visita
-													})
-												})
-												.catch(function (err) {
-													t.rollback()
-													return res.status(500).json({
-														error: false,
-														data: { mensaje: err.message }
-													})
-												})
-										})
-										.catch(function (err) {
-											t.rollback()
-											return res.status(500).json({
-												error: false,
-												data: { mensaje: err.message }
-											})
-										})
+									
 								})
 								.catch(function (err) {
 									t.rollback()
