@@ -256,7 +256,7 @@ function getCalificacionesbyTipoDeValoracion(req, res, next) {
             data_json.map(function (c) {
 
                 c.criterios.map(function (cri) {
-                    let valoraciones = {} 
+                    let valoraciones = {}
                     c.tipo_valoracion.valoraciones.map(function (val) {
                         valoraciones[val.nombre] = 0
                     })
@@ -314,54 +314,48 @@ function getCalificacionesbyTipoDeValoracion(req, res, next) {
             return res.status(500).json({ error: true, data: { mensaje: err.message } });
         });
     console.log(criterios)
+}
+
+
+function getMetasByServicioAndEspecialidad(req, res, next) {
+    let campos = {
+        id_especialidad: req.body.id_especialidad || null,
+        id_servicio: req.body.id_servicio || null,
     }
 
-
-    function getMetasByServicioAndEspecialidad(req, res, next) {
-        let campos = {
-            id_especialidad: req.body.id_especialidad || null,
-            id_servicio: req.body.id_servicio         || null,
-        }
-
-        let rango_fecha = {
-            minimo: req.body.fecha_inicial || null,
-            maximo: req.body.fecha_final   || null
-        }
-
-        let filtros = new Object();
-        for (let item in campos) {
-            if (campos.hasOwnProperty(item)) {
-                if (campos[item] != null)
-                    filtros[item] = campos[item];
-            }
-        }
-        VistaMetas.query(function(qb) {
-            qb.select('especialidad', 'servicio',
-                Bookshelf.knex.raw('(SELECT COUNT(1) FROM vista_metas b WHERE b.cumplida AND b.id_especialidad = a.id_especialidad AND b.id_servicio = a.id_servicio) AS metas_cumplidas'),
-                Bookshelf.knex.raw('(SELECT COUNT(1) FROM vista_metas b WHERE b.id_especialidad = a.id_especialidad AND b.id_servicio = a.id_servicio) AS metas')
-            ); 
-            qb.from('vista_metas AS a');
-            qb.where(filtros);
-            if (rango_fecha.minimo && rango_fecha.maximo) {
-                qb.where('fecha_creacion', '>=', rango_fecha.minimo)
-                  .andWhere('fecha_creacion', '<=', rango_fecha.maximo);
-            }
-            qb.groupBy('id_especialidad', 'especialidad', 'id_servicio', 'servicio');
-        })
-        .fetch()
-        .then(function(data) {
-            res.status(200).json({
-                error: false,
-                data: data
-            })
-        })
-        .catch(function(err) {
-            res.status(500).json({
-                error: true,
-                data: { mensaje: err.message }
-            })
-        })
+    let rango_fecha = {
+        minimo: req.body.fecha_inicial || null,
+        maximo: req.body.fecha_final || null
     }
+
+    let filtros = new Object();
+    for (let item in campos) {
+        if (campos.hasOwnProperty(item)) {
+            if (campos[item] != null)
+                filtros[item] = campos[item];
+        }
+    }
+    let query = `select 
+    sum(CASE  WHEN cumplida     
+           THEN 1  
+             ELSE 0
+      END) as cumplida,
+ sum(1) as todas
+    from vista_metas
+    WHERE `
+    if (filtros.id_especialidad) query += `id_especialidad = ${filtros.id_especialidad} AND `
+    if (filtros.id_servicio) query += `id_servicio= ${filtros.id_servicio} AND `
+    if (rango_fecha.minimo && rango_fecha.maximo) query += `fecha_creacion >= ${rango_fecha.minimo} AND fecha_creacion >=  ${rango_fecha.maximo} AND `
+    query += ` id_parametro_meta > 0`
+    Bookshelf.knex.raw(query)
+        .then(function (data) {
+            let metas = data.rows
+            return res.status(200).json({ error: false, data: metas });
+
+        }).catch(function (err) {
+            return res.status(500).json({ error: true, data: { mensaje: err.message } });
+        });
+}
 
 
 module.exports = {
