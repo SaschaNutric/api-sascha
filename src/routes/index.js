@@ -418,7 +418,8 @@ module.exports = (function () {
   api.post('/reclamos',                      reclamosCtrl.saveReclamo);
   api.get('/reclamo/:id',                    reclamosCtrl.getReclamoById);  
   api.put('/reclamo/:id',                    reclamosCtrl.updateReclamo);
-  api.delete('/reclamo/:id',                 reclamosCtrl.deleteReclamo);  
+  api.delete('/reclamo/:id',                 reclamosCtrl.deleteReclamo);
+  api.post('/reclamos/reporte',               reclamosCtrl.reporteReclamo);  
 
   api.get('/redsociales',                    redSocialesCtrl.getRed_sociales);
   api.post('/redsociales',                   redSocialesCtrl.saveRed_social);

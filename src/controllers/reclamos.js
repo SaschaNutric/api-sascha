@@ -4,6 +4,7 @@ const Reclamos 	= require('../collections/reclamos');
 const Reclamo  	= require('../models/reclamo');
 const OrdenServicio   = require('../models/orden_servicio');
 const Bookshelf = require('../commons/bookshelf');
+const vista_reclamos = require ('../collections/vista_reclamos');
 
 function getReclamos(req, res, next) {
 	Reclamos.query(function (qb) {
@@ -241,10 +242,53 @@ function deleteReclamo(req, res, next) {
 	})
 }
 
+function reporteReclamo(req, res, next) {
+	let campos = {
+		id_motivo:           req.body.id_motivo           || null,
+		id_respuesta:        req.body.id_respuesta        || null,
+		id_especialidad:     req.body.id_especialidad     || null,
+		id_servicio:         req.body.id_servicio         || null,
+		id_genero:           req.body.id_genero           || null,
+		id_estado_civil:     req.body.id_estado_civil     || null,
+		id_rango_edad:       req.body.id_rango_edad       || null
+	}
+
+
+	let rango_fecha = {
+		minimo: req.body.fecha_inicial || null,
+		maximo: req.body.fecha_final || null
+	}
+
+		let filtros = new Object();
+	for(let item in campos) {
+		if(campos.hasOwnProperty(item)) {
+			if(campos[item] != null) 
+				filtros[item] = campos[item];
+		}
+	}
+
+		vista_reclamos.query(function(qb) {
+		   qb.where(filtros);
+		   	if (rango_fecha.minimo && rango_fecha.maximo)
+				qb.where('fecha_creacion', '>=', rango_fecha.minimo)
+				  .andWhere('fecha_creacion', '<=', rango_fecha.maximo);
+		})
+		.fetch()
+		.then(function(reclamos) {
+			let nuevosReclamos = new Array();
+
+			res.status(200).json({ error: false, data: reclamos });
+		})
+		.catch(function(err) {
+			return res.status(500).json({ error: true, data: { mensaje: err.message } });
+		});
+}
+
 module.exports = {
 	getReclamos,
 	saveReclamo,
 	getReclamoById,
 	updateReclamo,
-	deleteReclamo
+	deleteReclamo,
+	reporteReclamo
 }
