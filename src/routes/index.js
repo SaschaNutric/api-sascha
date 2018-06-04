@@ -159,7 +159,8 @@ module.exports = (function () {
   api.post('/comentarios',                   comentariosCtrl.saveComentario);
   api.get('/comentario/:id',                 comentariosCtrl.getComentarioById);  
   api.put('/comentario/:id',                 comentariosCtrl.updateComentario);
-  api.delete('/comentario/:id',              comentariosCtrl.deleteComentario);  
+  api.delete('/comentario/:id',              comentariosCtrl.deleteComentario);
+  api.post('/comentarios/reporte',            comentariosCtrl.reporteComentario); 
 
   api.get('/comidas',                        comidasCtrl.getComidas);
   api.post('/comidas',                       comidasCtrl.saveComida);
