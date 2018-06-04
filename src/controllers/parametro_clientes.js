@@ -2,8 +2,10 @@
 
 const Parametro_clientes = require('../collections/parametro_clientes');
 const Parametro_cliente = require('../models/parametro_cliente');
+const Parametro_meta = require('../models/parametro_meta');
 const DetalleVisita = require('../models/detalle_visita');
 const Bookshelf = require('../commons/bookshelf');
+
 function getParametro_clientes(req, res, next) {
 	Parametro_clientes.query(function (qb) {
 		qb.where('parametro_cliente.estatus', '=', 1);
@@ -273,21 +275,75 @@ function updateParametro_cliente(req, res, next) {
 							id_parametro: parametro.get('id_parametro'),
 							valor: parametro.get('valor')
 						})
-							.save(null, { transacting: t })
-							.then(function (detalle) {
-								t.commit()
-								res.status(200).json({
-									error: false,
-									data: parametro
-								})
+						.save(null, { transacting: t })
+						.then(function (detalle) {
+							console.log({
+								id_cliente: data.get('id_cliente'),
+								id_orden_servicio: req.body.id_orden_servicio,
+								id_parametro: parametro.get('id_parametro')
+							})
+
+							Parametro_meta.forge({ 
+								id_orden_servicio: req.body.id_orden_servicio,
+								id_parametro: parametro.get('id_parametro') 
+							})
+							.fetch()
+							.then(function(parametroMeta) {
+								if(parametroMeta) {
+									let meta = parametroMeta.toJSON();
+									console.log(parametro.toJSON())
+									console.log(meta)
+									if ((meta.signo == 1    && Number.parseFloat(req.body.valor) >= Number.parseFloat(meta.valor_minimo))
+										|| (meta.signo == 0 && Number.parseFloat(req.body.valor) <= Number.parseFloat(meta.valor_minimo))) {
+											parametroMeta.save({ cumplida: true }, { transacting: t })
+											.then(function() {
+												t.commit()
+												res.status(200).json({
+													error: false,
+													data: parametro
+												})
+											})
+											.catch(function(err) {
+												t.rollback();
+												return res.status(500).json({
+													error: true,
+													data: { mensaje: err.message }
+												})
+											})
+									}
+									else {
+										console.log('Salta la validacion del signo')
+										t.commit()
+										res.status(200).json({
+											error: false,
+											data: parametro
+										})
+									}
+								}
+								else {
+									t.commit()
+									res.status(200).json({
+										error: false,
+										data: parametro
+									})
+								}
 							})
 							.catch(function (err) {
-								t.rollback()
-								res.status(500).json({
+								t.rollback();
+								return res.status(500).json({
 									error: true,
 									data: { mensaje: err.message }
 								})
 							})
+							
+						})
+						.catch(function (err) {
+							t.rollback()
+							res.status(500).json({
+								error: true,
+								data: { mensaje: err.message }
+							})
+						})
 					})
 			})
 			.catch(function (err) {
