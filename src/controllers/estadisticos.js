@@ -4,7 +4,10 @@ const Bookshelf = require('../commons/bookshelf');
 const VistaEstadisticoClientes = require('../collections/vista_estadistico_clientes');
 const VistaNutricionistas = require('../collections/vista_nutricionistas');
 const VistaCanalEscuchas = require('../collections/vista_canal_escuchas');
-const VistaReclamos = require('../collections/vista_reclamos')
+const VistaReclamos = require('../collections/vista_reclamos');
+const VistaCalificacionServicios = require('../collections/vista_calificacion_servicios');
+const VistaCalificacionVisitas = require('../collections/vista_calificacion_visitas');
+const TipoCriterios = require('../collections/tipo_criterios')
 
 
 function getMotivosSolicitudPreferidos(req, res, next) {
@@ -198,14 +201,14 @@ function getReclamosByRespuesta(req, res, next) {
                    END) as rechazados
                 from vista_reclamo
                 WHERE `
-    if (filtros.id_genero) query+= `id_genero = ${filtros.id_genero} AND `
-    if (filtros.id_especialidad)  query+= `id_especialidad = ${filtros.id_especialidad} AND `
-    if (filtros.id_servicio)  query+= `id_servicio= ${filtros.id_servicio} AND `
-    if (filtros.id_rango_edad)  query+= `id_rango_edad = ${filtros.id_rango_edad} AND `
-    if (filtros.id_empleado)  query+= `id_empleado = ${filtros.id_empleado} AND `
-    if (filtros.id_estado_civil)  query+= `id_estado_civil = ${filtros.id_estado_civil} AND `
-    if (rango_fecha.minimo && rango_fecha.maximo)  query+= `fecha_creacion >= ${rango_fecha.minimo} AND fecha_creacion >=  ${rango_fecha.maximo} AND `
-    query+=` id_reclamo > 0  group by motivo_descripcion`
+    if (filtros.id_genero) query += `id_genero = ${filtros.id_genero} AND `
+    if (filtros.id_especialidad) query += `id_especialidad = ${filtros.id_especialidad} AND `
+    if (filtros.id_servicio) query += `id_servicio= ${filtros.id_servicio} AND `
+    if (filtros.id_rango_edad) query += `id_rango_edad = ${filtros.id_rango_edad} AND `
+    if (filtros.id_empleado) query += `id_empleado = ${filtros.id_empleado} AND `
+    if (filtros.id_estado_civil) query += `id_estado_civil = ${filtros.id_estado_civil} AND `
+    if (rango_fecha.minimo && rango_fecha.maximo) query += `fecha_creacion >= ${rango_fecha.minimo} AND fecha_creacion >=  ${rango_fecha.maximo} AND `
+    query += ` id_reclamo > 0  group by motivo_descripcion`
     console.log(query)
     Bookshelf.knex.raw(query)
         .then(function (data) {
@@ -217,10 +220,117 @@ function getReclamosByRespuesta(req, res, next) {
 
 }
 
+function getCalificacionesbyTipoDeValoracion(req, res, next) {
+    if (!req.body.id_tipo_criterio) {
+        return res.status(400).json({
+            error: true,
+            data: { mensaje: 'Petición inválida. Indique el tipo de criterio' }
+        })
+    }
+
+    let tipo_criterio = req.body.id_tipo_criterio;
+
+    let campos = {
+        id_especialidad: req.body.id_especialidad || null,
+        id_servicio: req.body.id_servicio || null
+
+    }
+
+    let rango_fecha = {
+        minimo: req.body.fecha_inicial || null,
+        maximo: req.body.fecha_final || null
+    }
+    let filtros = new Object();
+    for (let item in campos) {
+        if (campos.hasOwnProperty(item)) {
+            if (campos[item] != null)
+                filtros[item] = campos[item];
+        }
+    }
+    let criterio = {}
+    let criterios = {}
+    let valoraciones = {}
+
+    TipoCriterios.query(function (qb) {
+        qb.where("id_tipo_criterio", tipo_criterio)
+    }).fetch({ withRelated: ['criterios', 'tipo_valoracion', 'tipo_valoracion.valoraciones'] })
+        .then(function (data) {
+            let data_json = data.toJSON()
+            data_json.map(function (c) {
+                c.tipo_valoracion.valoraciones.map(function (val) {
+                    valoraciones[val.nombre] = 0
+                })
+                c.criterios.map(function (cri) {
+                    criterios[cri.nombre] = valoraciones
+                })
+            })
+            console.log(criterios)
+            if (tipo_criterio == 1) {
+                VistaCalificacionServicios.query(function (qb) {
+                    qb.select('nombre_criterio', 'valor');
+                    qb.count('valor as cantidad')
+                    qb.where(filtros)
+                    if (rango_fecha.minimo && rango_fecha.maximo)
+                        qb.where('fecha_creacion', '>=', rango_fecha.minimo)
+                            .andWhere('fecha_creacion', '<=', rango_fecha.maximo);
+                    qb.groupBy('nombre_criterio', 'valor')
+                    qb.orderBy('nombre_criterio')
+                })
+                    .fetch()
+                    .then(function (data) {
+                        let calificacion = data.toJSON();
+                        calificacion.map(function (cal) {
+                            criterios[cal.nombre_criterio][cal.valor] = cal.cantidad
+                        })
+                        return res.status(200).json({ error: false, data: criterios });
+
+                    }).catch(function (err) {
+                        return res.status(500).json({ error: true, data: { mensaje: err.message } });
+                    });
+            } else {
+                VistaCalificacionVisitas.query(function (qb) {
+                    qb.select('nombre_criterio', 'valor');
+                    qb.count('valor as cantidad')
+                    qb.where(filtros)
+                    if (rango_fecha.minimo && rango_fecha.maximo)
+                        qb.where('fecha_creacion', '>=', rango_fecha.minimo)
+                            .andWhere('fecha_creacion', '<=', rango_fecha.maximo);
+                    qb.groupBy('nombre_criterio', 'valor')
+                    qb.orderBy('nombre_criterio')
+                }).fetch()
+                    .then(function (data) {
+                        let calificacion = data.toJSON();
+                        criterios.map(function (criterio) {
+                            calificacion.map(function (cal) {
+                                if (criterio.nombre == cal.nombre_criterio) {
+                                    criterio.valoraciones[cal.valor] = cal.valor
+                                }
+                            })
+                        })
+                        return res.status(200).json({ error: false, data: criterios });
+
+                    }).catch(function (err) {
+                        return res.status(500).json({ error: true, data: { mensaje: err.message } });
+                    });
+
+            }
+
+        }).catch(function (err) {
+            return res.status(500).json({ error: true, data: { mensaje: err.message } });
+        });
+    console.log(criterios)
+
+
+
+
+
+}
+
 
 module.exports = {
     getMotivosSolicitudPreferidos,
     getVisitasByNutricionista,
     getMotivosByTipoContacto,
-    getReclamosByRespuesta
+    getReclamosByRespuesta,
+    getCalificacionesbyTipoDeValoracion
 }
