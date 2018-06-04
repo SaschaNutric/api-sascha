@@ -65,7 +65,7 @@ function getTipoCriterioById(req, res, next) {
 	TipoCriterio.forge({ id_tipo_criterio: id, estatus: 1 })
 	.fetch({ withRelated: 
 		[
-			'tipo_valoracion'
+			'tipo_valoracion','tipo_valoracion.valoraciones', 'criterios'
 		] 
 	})
 	.then(function(data) {

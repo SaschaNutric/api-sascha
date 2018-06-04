@@ -264,6 +264,8 @@ module.exports = (function () {
   api.post('/estadisticos/nutricionistas',  estadisticosCtrl.getVisitasByNutricionista);
   api.post('/estadisticos/contactos',        estadisticosCtrl.getMotivosByTipoContacto);
   api.post('/estadisticos/reclamos',        estadisticosCtrl.getReclamosByRespuesta);
+  api.post('/estadisticos/valoraciones',        estadisticosCtrl.getCalificacionesbyTipoDeValoracion);
+  
 
   api.get('/estadociviles',                  estadoCivilesCtrl.getEstado_civiles);
   api.post('/estadociviles',                 estadoCivilesCtrl.saveEstado_civil);
