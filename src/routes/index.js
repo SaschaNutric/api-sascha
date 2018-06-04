@@ -138,7 +138,9 @@ module.exports = (function () {
 
   api.get('/calificaciones',                     calificacionesCtrl.getCalificaciones);
   api.post('/calificaciones/visita/:id',         calificacionesCtrl.saveCalificacionesVisita);
-  api.post('/calificaciones/orden_servicio/:id', calificacionesCtrl.saveCalificacionesOrdenServicio);  
+  api.post('/calificaciones/orden_servicio/:id', calificacionesCtrl.saveCalificacionesOrdenServicio); 
+  api.get('/calificacion/empleado/:id_empleado', calificacionesCtrl.getCalificacionDashboardEmpleado);
+  api.get('/calificacion/dashboard'            , calificacionesCtrl.getCalificacionDashboard);
   api.get('/calificacion/:id',                   calificacionesCtrl.getCalificacionById);  
   api.put('/calificacion/:id',                   calificacionesCtrl.updateCalificacion);
   api.delete('/calificacion/:id',                calificacionesCtrl.deleteCalificacion);  
