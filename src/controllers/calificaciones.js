@@ -121,7 +121,7 @@ function saveCalificacionesOrdenServicio(req, res, next) {
 			OrdenServicio.forge({ id_orden_servicio: id })
 			.fetch()
 			.then(function (orden) {
-				orden.save({ estado: 5 }, { transacting: t })
+				orden.save({ estado: 3 }, { transacting: t })
 				.then(function (orden) {
 					t.commit()
 					res.status(200).json({
