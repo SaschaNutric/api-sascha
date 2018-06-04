@@ -2636,14 +2636,15 @@ CREATE VIEW vista_visita AS
     h.nombre AS nombre_servicio,
     h.numero_visitas,
     c.id_cliente,
-    d.id_orden_servicio
+    d.id_orden_servicio,
+    ARRAY(SELECT f.id_calificacion FROM calificacion f WHERE f.id_visita = a.id_visita) AS calificaciones
     FROM visita a 
     JOIN agenda b ON b.id_agenda = a.id_agenda
     JOIN cliente c ON c.id_cliente = b.id_cliente
     JOIN orden_servicio d ON d.id_orden_servicio = b.id_orden_servicio
     JOIN empleado e ON e.id_empleado = b.id_empleado
     JOIN solicitud_servicio g ON g.id_solicitud_servicio = d.id_solicitud_servicio
-    JOIN servicio h ON h.id_servicio = g.id_servicio
+    JOIN servicio h ON h.id_servicio = g.id_servicio 
     WHERE a.estatus = 1 AND b.estatus = 1 AND c.estatus = 1;
 ALTER TABLE vista_visita OWNER TO byqkxhkjgnspco;
 
@@ -2801,6 +2802,7 @@ AND tc.id_tipo_cita <> 3;
 ALTER TABLE vista_nutricionista OWNER TO byqkxhkjgnspco;
 
 ALTER TABLE rol ADD COLUMN dashboard INTEGER DEFAULT 0;
+
 
 CREATE VIEW vista_calificacion_servicio AS
 SELECT ca.id_calificacion, ca.id_visita, ca.id_orden_servicio,
