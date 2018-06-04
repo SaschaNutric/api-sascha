@@ -140,7 +140,6 @@ function getMotivosByTipoContacto(req, res, next) {
                 filtros[item] = campos[item];
         }
     }
-    console.log(filtros)
     VistaCanalEscuchas.query(function (qb) {
         qb.select('motivo_descripcion');
         qb.count('id_comentario as cantidad');
@@ -187,9 +186,6 @@ function getReclamosByRespuesta(req, res, next) {
                 filtros[item] = campos[item];
         }
     }
-
-    console.log(filtros);
-
     let query = `select motivo_descripcion, 
                 sum(CASE  WHEN aprobado     
                        THEN 1  
@@ -209,7 +205,6 @@ function getReclamosByRespuesta(req, res, next) {
     if (filtros.id_estado_civil) query += `id_estado_civil = ${filtros.id_estado_civil} AND `
     if (rango_fecha.minimo && rango_fecha.maximo) query += `fecha_creacion >= ${rango_fecha.minimo} AND fecha_creacion >=  ${rango_fecha.maximo} AND `
     query += ` id_reclamo > 0  group by motivo_descripcion`
-    console.log(query)
     Bookshelf.knex.raw(query)
         .then(function (data) {
             return res.status(200).json({ error: false, data: data });
@@ -247,7 +242,7 @@ function getCalificacionesbyTipoDeValoracion(req, res, next) {
                 filtros[item] = campos[item];
         }
     }
-    let criterio = {}
+
     let criterios = {}
     let valoraciones = {}
 
@@ -257,14 +252,15 @@ function getCalificacionesbyTipoDeValoracion(req, res, next) {
         .then(function (data) {
             let data_json = data.toJSON()
             data_json.map(function (c) {
-                c.tipo_valoracion.valoraciones.map(function (val) {
-                    valoraciones[val.nombre] = 0
-                })
+
                 c.criterios.map(function (cri) {
+                    let valoraciones = {} 
+                    c.tipo_valoracion.valoraciones.map(function (val) {
+                        valoraciones[val.nombre] = 0
+                    })
                     criterios[cri.nombre] = valoraciones
                 })
             })
-            console.log(criterios)
             if (tipo_criterio == 1) {
                 VistaCalificacionServicios.query(function (qb) {
                     qb.select('nombre_criterio', 'valor');
@@ -280,7 +276,7 @@ function getCalificacionesbyTipoDeValoracion(req, res, next) {
                     .then(function (data) {
                         let calificacion = data.toJSON();
                         calificacion.map(function (cal) {
-                            criterios[cal.nombre_criterio][cal.valor] = cal.cantidad
+                            criterios[cal.nombre_criterio][cal.valor] = Number.parseInt(cal.cantidad)
                         })
                         return res.status(200).json({ error: false, data: criterios });
 
@@ -300,12 +296,9 @@ function getCalificacionesbyTipoDeValoracion(req, res, next) {
                 }).fetch()
                     .then(function (data) {
                         let calificacion = data.toJSON();
-                        criterios.map(function (criterio) {
-                            calificacion.map(function (cal) {
-                                if (criterio.nombre == cal.nombre_criterio) {
-                                    criterio.valoraciones[cal.valor] = cal.valor
-                                }
-                            })
+                        calificacion.map(function (cal) {
+                            criterios[cal.nombre_criterio][cal.valor] = Number.parseInt(cal.cantidad)
+                            console.log(criterios)
                         })
                         return res.status(200).json({ error: false, data: criterios });
 
@@ -318,11 +311,6 @@ function getCalificacionesbyTipoDeValoracion(req, res, next) {
         }).catch(function (err) {
             return res.status(500).json({ error: true, data: { mensaje: err.message } });
         });
-    console.log(criterios)
-
-
-
-
 
 }
 
