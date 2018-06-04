@@ -2801,6 +2801,37 @@ AND tc.id_tipo_cita <> 3;
 ALTER TABLE vista_nutricionista OWNER TO byqkxhkjgnspco;
 
 ALTER TABLE rol ADD COLUMN dashboard INTEGER DEFAULT 0;
+
+CREATE VIEW vista_calificacion_servicio AS
+SELECT ca.id_calificacion, ca.id_visita, ca.id_orden_servicio,
+ca.fecha_creacion, cri.nombre as nombre_criterio, cri.id_tipo_criterio,val.valor as ponderacion, val.nombre as valor, ser.id_servicio, ser.nombre as nombre_servicio,
+es.id_especialidad,es.nombre as especialidad 
+FROM calificacion ca, orden_servicio o, solicitud_servicio s, servicio ser, especialidad es, valoracion val, criterio cri
+WHERE ca.id_orden_servicio = o.id_orden_servicio
+AND o.id_solicitud_servicio = s.id_solicitud_servicio
+AND s.id_servicio = ser.id_servicio
+AND ser.id_especialidad = es.id_especialidad
+AND ca.id_criterio = cri.id_criterio 
+AND ca.id_valoracion = val.id_valoracion;
+ALTER TABLE vista_calificacion_servicio OWNER TO byqkxhkjgnspco;
+
+
+CREATE VIEW vista_calificacion_visita AS
+SELECT ca.id_calificacion, ca.id_visita, ca.id_orden_servicio,
+ca.fecha_creacion, cri.nombre as nombre_criterio, cri.id_tipo_criterio,val.valor as ponderacion, val.nombre as valor, ser.id_servicio, ser.nombre as nombre_servicio,
+es.id_especialidad,es.nombre as especialidad , emp.id_empleado, emp.nombres as nombre_empleado
+FROM calificacion ca, agenda ag, orden_servicio o, solicitud_servicio s,empleado emp, servicio ser, especialidad es, valoracion val, criterio cri, visita vi
+WHERE ca.id_visita = vi.id_visita
+AND ag.id_agenda = vi.id_agenda
+AND ag.id_orden_servicio = o.id_orden_servicio
+AND o.id_solicitud_servicio = s.id_solicitud_servicio
+AND emp.id_empleado = ag.id_empleado
+AND s.id_servicio = ser.id_servicio
+AND ser.id_especialidad = es.id_especialidad
+AND ca.id_criterio = cri.id_criterio 
+AND ca.id_valoracion = val.id_valoracion;
+ALTER TABLE vista_calificacion_visita OWNER TO byqkxhkjgnspco;
+
 --
 -- Data for Name: alimento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
