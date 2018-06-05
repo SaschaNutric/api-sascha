@@ -129,7 +129,7 @@ function saveProximaCita(req, res, next) {
 		.then(function (result) {
 			let empleado = result.rows[0]
 			if (empleado.agenda_consultada.length > 0) {
-				return res.status(200).json({
+				return res.status(400).json({
 					error: true,
 					data: { mensaje: `${empleado.nombres} ${empleado.apellidos} ya tiene una cita agendada el ${req.body.fecha} en el horario seleccionado` }
 				})
@@ -150,7 +150,7 @@ function saveProximaCita(req, res, next) {
 							}
 						})
 						if (!horarioValido) {
-							return res.status(200).json({
+							return res.status(400).json({
 								error: true,
 								data: { mensaje: `${empleadoBuscado.get('nombres')} ${empleadoBuscado.get('apellidos')} no trabaja los dia ${fechaSolicitud.getUTCDate} en el horario seleccionado` }
 							})

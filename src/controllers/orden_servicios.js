@@ -4,6 +4,46 @@ const Orden_servicios 	= require('../collections/orden_servicios');
 const Orden_servicio_reporte     = require ('../collections/vista_reporte_orden_servicio');
 const Orden_servicio  	= require('../models/orden_servicio');
 
+function getVistaOrdenServicio(filtros, rango_fecha) {
+	let where = '';
+	for (let filtro in filtros) {
+		if (filtro == 'id_tipo_orden')   where += ' AND o.' + filtro + '=' + filtros[filtro];
+		if (filtro == 'estado')          where += ' AND o.' + filtro + '=' + filtros[filtro];
+		if (filtro == 'id_especialidad') where += ' AND ser.' + filtro + '=' + filtros[filtro];
+		if (filtro == 'id_servicio')     where += ' AND ser.' + filtro + '=' + filtros[filtro];
+		if (filtro == 'id_genero')       where += ' AND cli.' + filtro + '=' + filtros[filtro];
+		if (filtro == 'id_estado_civil') where += ' AND cli.' + filtro + '=' + filtros[filtro];
+		if (filtro == 'id_rango_edad')   where += ' AND cli.' + filtro + '=' + filtros[filtro];
+	}
+	if (rango_fecha.minimo && rango_fecha.maximo) {
+		where += " AND fecha_emision >= '" + rango_fecha.minimo + "' AND fecha_emision <= '" + rango_fecha.maximo + "' ";
+	}
+return "SELECT DISTINCT o.id_orden_servicio, " +
+"(cli.nombres:: text || ' ':: text) || cli.apellidos:: text AS nombre_cliente, " +
+"s.id_servicio, " +
+"ser.nombre AS nombre_servicio, " +
+"e.id_empleado, " +
+"(e.nombres:: text || ' ':: text) || e.apellidos:: text AS nombre_empleado, " +
+"o.fecha_emision, " +
+"o.id_tipo_orden, " +
+"tio.nombre AS tipo_orden, " +
+"o.estado, " +
+"cli.id_genero, " +
+"cli.id_estado_civil, " +
+"cli.id_rango_edad, " +
+"ser.id_especialidad, " +
+"ARRAY(SELECT ps.id_parametro " +
+"FROM parametro_servicio ps " +
+"WHERE ps.id_servicio = ser.id_servicio) AS parametros_servicio " +
+"FROM orden_servicio o, solicitud_servicio s, cliente cli, " +
+"servicio ser, tipo_orden tio, agenda ag, empleado e " +
+"WHERE s.id_solicitud_servicio = o.id_solicitud_servicio AND s.id_cliente = cli.id_cliente  " +
+"AND s.id_servicio = ser.id_servicio AND o.id_tipo_orden = tio.id_tipo_orden  " +
+"AND o.id_orden_servicio = ag.id_orden_servicio AND e.id_empleado = ag.id_empleado " +
+where +
+"ORDER BY o.fecha_emision DESC";
+}
+
 function getOrden_servicios(req, res, next) {
 	Orden_servicios.query(function (qb) {
    		qb.where('orden_servicio.estatus', '=', 1);
@@ -80,7 +120,6 @@ function getOrden_servicioById(req, res, next) {
 
 function reportOrdenServicio(req, res, next) {
 	let campos = {
-		// id_motivo:           req.body.id_motivo           || null,
 		id_tipo_orden:       req.body.id_tipo_orden       || null,
 		estado:              req.body.estado              || null,
 		id_especialidad:     req.body.id_especialidad     || null,
@@ -90,13 +129,12 @@ function reportOrdenServicio(req, res, next) {
 		id_rango_edad:       req.body.id_rango_edad       || null
 	}
 
-
-	 let rango_fecha = {
+	let rango_fecha = {
 	 	minimo: req.body.fecha_inicial || null,
      	maximo: req.body.fecha_final || null
-	 }
+	}
 
-		let filtros = new Object();
+	let filtros = new Object();
 	for(let item in campos) {
 		if(campos.hasOwnProperty(item)) {
 			if(campos[item] != null) 
@@ -115,7 +153,7 @@ function reportOrdenServicio(req, res, next) {
 		.then(function(ordenes) {
 			let nuevasOrdenes = new Array();
 
-			res.status(200).json({ error: false, data: ordenes, query: queryString.replace(/["]+/g, '') });
+			res.status(200).json({ error: false, data: ordenes, query: getVistaOrdenServicio(filtros, rango_fecha) });
 		})
 		.catch(function(err) {
 			return res.status(500).json({ error: true, data: { mensaje: err.message } });
