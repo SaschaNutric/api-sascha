@@ -205,7 +205,7 @@ function getReclamosByRespuesta(req, res, next) {
     if (filtros.id_rango_edad) query += `id_rango_edad = ${filtros.id_rango_edad} AND `
     if (filtros.id_empleado) query += `id_empleado = ${filtros.id_empleado} AND `
     if (filtros.id_estado_civil) query += `id_estado_civil = ${filtros.id_estado_civil} AND `
-    if (rango_fecha.minimo && rango_fecha.maximo) query += `fecha_creacion >= ${rango_fecha.minimo} AND fecha_creacion >=  ${rango_fecha.maximo} AND `
+    if (rango_fecha.minimo && rango_fecha.maximo) query += `fecha_creacion >= '${rango_fecha.minimo}' AND fecha_creacion >= '${rango_fecha.maximo}' AND `
     query += ` id_reclamo > 0  group by motivo_descripcion`
     Bookshelf.knex.raw(query)
         .then(function (data) {
@@ -345,7 +345,7 @@ function getMetasByServicioAndEspecialidad(req, res, next) {
     WHERE `
     if (filtros.id_especialidad) query += `id_especialidad = ${filtros.id_especialidad} AND `
     if (filtros.id_servicio) query += `id_servicio= ${filtros.id_servicio} AND `
-    if (rango_fecha.minimo && rango_fecha.maximo) query += `fecha_creacion >= ${rango_fecha.minimo} AND fecha_creacion >=  ${rango_fecha.maximo} AND `
+    if (rango_fecha.minimo && rango_fecha.maximo) query += `fecha_creacion >= '${rango_fecha.minimo}' AND fecha_creacion >=  '${rango_fecha.maximo}' AND `
     query += ` id_parametro_meta > 0`
     Bookshelf.knex.raw(query)
         .then(function (data) {
