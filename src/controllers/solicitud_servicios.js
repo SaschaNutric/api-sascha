@@ -11,6 +11,44 @@ const Empleado              = require('../models/empleado');
 const VistaClienteOrdenes   = require('../models/vista_cliente_ordenes');
 const moment                = require('moment');
 
+function getVistaReporteSolicitud(filtros, rango_fecha) {
+let where = '';
+for(let filtro in filtros) {
+	if (filtro == 'id_motivo')       where += 'e.' + filtro + '=' + filtros[filtro] + ' AND ';
+	if (filtro == 'id_respuesta')    where += 'a.' + 'id_estado_solicitud' + '=' + filtros[filtro] + ' AND ';
+	if (filtro == 'id_especialidad') where += 'd.' + filtro + '=' + filtros[filtro] + ' AND ';
+	if (filtro == 'id_servicio')     where += 'c.' + filtro + '=' + filtros[filtro] + ' AND ';
+	if (filtro == 'id_genero')       where += 'b.' + filtro + '=' + filtros[filtro] + ' AND ';
+	if (filtro == 'id_estado_civil') where += 'b.' + filtro + '=' + filtros[filtro] + ' AND ';
+	if (filtro == 'id_rango_edad')   where += 'b.' + filtro + '=' + filtros[filtro] + ' AND ';
+}
+return "SELECT a.id_solicitud_servicio, " +  
+"a.id_estado_solicitud AS id_respuesta, " +
+"CASE WHEN a.id_estado_solicitud = 1 THEN 'Aprobado' " +
+"WHEN a.id_estado_solicitud = 2 THEN 'Rechazado, nutricionista tiene agendado el dia y horario' " +
+"WHEN a.id_estado_solicitud = 3 THEN 'Rechazado, nutricionista no trabaja en el dia y horario especificado' " +
+"WHEN a.id_estado_solicitud = 4 THEN 'Rechazado, precio no aceptado' " +
+"END AS respuesta, " +
+"a.fecha_creacion, " +
+"b.id_cliente, " +
+"(b.nombres || ' ' || b.apellidos) AS nombre_cliente, " +
+"b.id_rango_edad, " +
+"b.id_genero, " +
+"b.id_estado_civil, " +
+"d.id_especialidad, " +
+"d.nombre AS nombres_especialidad, " +
+"c.id_servicio, " +
+"c.nombre AS nombre_servicio, " +
+"e.id_motivo, " +
+"e.descripcion AS motivo " +
+"FROM solicitud_servicio a " +
+"JOIN cliente  b ON a.id_cliente = b.id_cliente " +
+"JOIN servicio c ON a.id_servicio = c.id_servicio " +
+"JOIN especialidad d ON d.id_especialidad = c.id_especialidad " +
+"JOIN motivo e ON e.id_motivo = a.id_motivo " +
+"WHERE " + where + " a.estatus = 1";
+}
+
 function getSolicitud_servicios(req, res, next) {
 	Solicitud_servicios.query(function (qb) {
    		qb.where('solicitud_servicio.estatus', '!=', 0);
@@ -379,11 +417,13 @@ function reportServicio(req, res, next) {
 	})
 	.fetch()
 	.then(function(solicitudes) {
-		console.log(solicitudes);
+		let solicitudes_json = solicitudes.toJSON();
+		console.log(solicitudes_json);
 		console.log(queryString);
 		let nuevasSolicitudes = new Array();
 
-		res.status(200).json({ error: false, data: solicitudes, query: queryString.replace(/["]+/g, '') });
+		//let where = queryString.replace(/["]+/g, '').split('where')[1];
+		res.status(200).json({ error: false, data: solicitudes, query: getVistaReporteSolicitud(filtros, rango_fecha) });
 	})
 	.catch(function(err) {
 		return res.status(500).json({ error: true, data: { mensaje: err.message } });
