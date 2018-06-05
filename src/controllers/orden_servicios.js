@@ -103,18 +103,19 @@ function reportOrdenServicio(req, res, next) {
 				filtros[item] = campos[item];
 		}
 	}
-
+		let queryString = '';
 		Orden_servicio_reporte.query(function(qb) {
-		   qb.where(filtros);
+		    qb.where(filtros);
 		   	if (rango_fecha.minimo && rango_fecha.maximo)
 			 qb.where('fecha_emision', '>=', rango_fecha.minimo)
 			  .andWhere('fecha_emision', '<=', rango_fecha.maximo);
+			queryString = qb.toString();
 		})
 		.fetch()
 		.then(function(ordenes) {
 			let nuevasOrdenes = new Array();
 
-			res.status(200).json({ error: false, data: ordenes });
+			res.status(200).json({ error: false, data: ordenes, query: queryString.replace(/["]+/g, '') });
 		})
 		.catch(function(err) {
 			return res.status(500).json({ error: true, data: { mensaje: err.message } });

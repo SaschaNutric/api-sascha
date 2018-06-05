@@ -266,18 +266,19 @@ function reporteReclamo(req, res, next) {
 				filtros[item] = campos[item];
 		}
 	}
-
+		let queryString = '';
 		vista_reclamos.query(function(qb) {
 		   qb.where(filtros);
 		   	if (rango_fecha.minimo && rango_fecha.maximo)
 				qb.where('fecha_creacion', '>=', rango_fecha.minimo)
 				  .andWhere('fecha_creacion', '<=', rango_fecha.maximo);
+			queryString = qb.toString();
 		})
 		.fetch()
 		.then(function(reclamos) {
 			let nuevosReclamos = new Array();
 
-			res.status(200).json({ error: false, data: reclamos });
+			res.status(200).json({ error: false, data: reclamos, query: queryString.replace(/["]+/g, '') });
 		})
 		.catch(function(err) {
 			return res.status(500).json({ error: true, data: { mensaje: err.message } });

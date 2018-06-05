@@ -112,7 +112,7 @@ function updateComentario(req, res, next) {
 		});
 	}
 
-Comentario.forge({ id_comentario: id, estatus: 1 })
+	Comentario.forge({ id_comentario: id, estatus: 1 })
 	.fetch()
 	.then(function(data){
 		if(!data) 
@@ -214,18 +214,19 @@ function reporteComentario(req, res, next) {
 				filtros[item] = campos[item];
 		}
 	}
-
+		let queryString = '';
 		vista_canal_escuchas.query(function(qb) {
 		   qb.where(filtros);
 		   	if (rango_fecha.minimo && rango_fecha.maximo)
 				qb.where('fecha_creacion', '>=', rango_fecha.minimo)
 				  .andWhere('fecha_creacion', '<=', rango_fecha.maximo);
+			queryString = qb.toString();
 		})
 		.fetch()
 		.then(function(comentarios) {
 			let nuevosComentarios = new Array();
 
-			res.status(200).json({ error: false, data: comentarios });
+			res.status(200).json({ error: false, data: comentarios, query: queryString.replace(/["]+/g, '') });
 		})
 		.catch(function(err) {
 			return res.status(500).json({ error: true, data: { mensaje: err.message } });
