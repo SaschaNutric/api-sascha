@@ -16,7 +16,7 @@ function getVistaOrdenServicio(filtros, rango_fecha) {
 		if (filtro == 'id_rango_edad')   where += ' AND cli.' + filtro + '=' + filtros[filtro];
 	}
 	if (rango_fecha.minimo && rango_fecha.maximo) {
-		where += " AND fecha_emision >= '" + rango_fecha.minimo + "' AND fecha_emision <= '" + rango_fecha.maximo + "' ";
+		where += " AND o.fecha_emision >= '" + rango_fecha.minimo + "' AND o.fecha_emision <= '" + rango_fecha.maximo + "' ";
 	}
 return "SELECT DISTINCT o.id_orden_servicio, " +
 "(cli.nombres:: text || ' ':: text) || cli.apellidos:: text AS nombre_cliente, " +

@@ -22,6 +22,9 @@ for(let filtro in filtros) {
 	if (filtro == 'id_estado_civil') where += 'b.' + filtro + '=' + filtros[filtro] + ' AND ';
 	if (filtro == 'id_rango_edad')   where += 'b.' + filtro + '=' + filtros[filtro] + ' AND ';
 }
+	if (rango_fecha.minimo && rango_fecha.maximo) {
+		where += " a.fecha_creacion >= '" + rango_fecha.minimo + "' AND a.fecha_creacion <= '" + rango_fecha.maximo + "' AND ";
+	}
 return "SELECT a.id_solicitud_servicio, " +  
 "a.id_estado_solicitud AS id_respuesta, " +
 "CASE WHEN a.id_estado_solicitud = 1 THEN 'Aprobado' " +

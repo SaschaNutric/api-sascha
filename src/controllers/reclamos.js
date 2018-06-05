@@ -18,7 +18,7 @@ function getVistaReclamo(filtros, rango_fecha) {
 		if (filtro == 'id_rango_edad')   where += ' AND cli.' + filtro + '=' + filtros[filtro];		
 	}
 	if (rango_fecha.minimo && rango_fecha.maximo) {
-		where += " AND fecha_emision >= '" + rango_fecha.minimo + "' AND fecha_emision <= '" + rango_fecha.maximo + "' ";
+		where += " AND r.fecha_creacion >= '" + rango_fecha.minimo + "' AND r.fecha_creacion <= '" + rango_fecha.maximo + "' ";
 	}
 return "SELECT DISTINCT r.id_reclamo, " +
 "res.aprobado, " +

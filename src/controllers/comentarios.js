@@ -15,7 +15,7 @@ function getVistaComentario(filtros, rango_fecha) {
 		if (filtro == 'id_rango_edad')   where += ' AND cli.' + filtro + '=' + filtros[filtro];
 	}
 	if (rango_fecha.minimo && rango_fecha.maximo) {
-		where += " AND fecha_emision >= '" + rango_fecha.minimo + "' AND fecha_emision <= '" + rango_fecha.maximo + "' ";
+		where += " AND co.fecha_creacion >= '" + rango_fecha.minimo + "' AND co.fecha_creacion <= '" + rango_fecha.maximo + "' ";
 	}
 return "SELECT co.id_comentario, " +
 "co.id_cliente, " +
