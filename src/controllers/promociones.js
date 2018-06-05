@@ -70,6 +70,9 @@ function getPromocionesValidas(req, res, next) {
 		.fetch({
 			withRelated: [
 				'servicio',
+				'servicio.plan_dieta',
+				'servicio.plan_ejercicio',
+				'servicio.plan_suplemento',
 				'genero',
 				'estado_civil',
 				'rango_edad',
