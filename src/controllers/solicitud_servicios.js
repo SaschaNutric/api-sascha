@@ -57,7 +57,7 @@ function saveSolicitud_servicio(req, res, next){
 			if(cliente.toJSON().ordenes.length > 0) 
 			return res.status(200).json({
 				error: true,
-				data: { mensaje: 'Cliente ya tiene un servicio activo' }
+				data: { mensaje: 'Cliente ya tiene un servicio activo o concluido pero pendiente por calificar' }
 			})
 			
 			if(req.body.acepto_precio === 'no') {
@@ -369,27 +369,25 @@ function reportServicio(req, res, next) {
 				filtros[item] = campos[item];
 		}
 	}
+	var queryString = '';
+	Solicitud_reporte.query(function(qb) {
+		qb.where(filtros);
+		if (rango_fecha.minimo && rango_fecha.maximo)
+			qb.where('fecha_creacion', '>=', rango_fecha.minimo)
+				.andWhere('fecha_creacion', '<=', rango_fecha.maximo);
+		queryString = qb.toString();
+	})
+	.fetch()
+	.then(function(solicitudes) {
+		console.log(solicitudes);
+		console.log(queryString);
+		let nuevasSolicitudes = new Array();
 
-		Solicitud_reporte.query(function(qb) {
-		   qb.where(filtros);
-		   	if (rango_fecha.minimo && rango_fecha.maximo)
-				qb.where('fecha_creacion', '>=', rango_fecha.minimo)
-				  .andWhere('fecha_creacion', '<=', rango_fecha.maximo);
-		})
-		.fetch()
-		.then(function(solicitudes) {
-			let nuevasSolicitudes = new Array();
-
-			res.status(200).json({ error: false, data: solicitudes });
-		})
-		.catch(function(err) {
-			return res.status(500).json({ error: true, data: { mensaje: err.message } });
-		});
-
-
-
-
-
+		res.status(200).json({ error: false, data: solicitudes, query: queryString.replace(/["]+/g, '') });
+	})
+	.catch(function(err) {
+		return res.status(500).json({ error: true, data: { mensaje: err.message } });
+	});
 }
 
 function updateSolicitud_servicio(req, res, next) {

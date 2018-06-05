@@ -8,9 +8,9 @@ let TipoValoracion = Bookshelf.Model.extend({
   idAttribute: 'id_tipo_valoracion',
   valoraciones: function() {
     return this.hasMany('Valoracion', 'id_tipo_valoracion')
-      .query(function(qb){ 
+      .query(function(qb) {
         qb.where('valoracion.estatus', 1);
-        qb.orderBy('valoracion.nombre', 'ASC');
+        qb.orderBy('valoracion.valor', 'ASC');
       });
     }
 });

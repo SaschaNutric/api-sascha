@@ -116,6 +116,7 @@ function getAgendaPorEmpleado(req, res, next) {
 		data.toJSON().map(function (agenda) {
 			agendas.push({
 				id_agenda:       agenda.id_agenda,
+				id_orden_servicio: agenda.id_orden_servicio,
 				id_visita:       agenda.id_visita,
 				id_empleado:     agenda.id_empleado,
 				nombre_empleado: agenda.nombre_empleado,
