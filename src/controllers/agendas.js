@@ -381,6 +381,7 @@ function getAgendaById(req, res, next) {
 					parametro: meta.parametro.nombre,
 					valor_minimo: meta.valor_minimo,
 					valor_maximo: meta.valor_maximo,
+					id_tipo_parametro: meta.parametro.tipo_parametro.id_tipo_parametro,
 					tipo_parametro: meta.parametro.tipo_parametro.nombre,
 					unidad: meta.parametro.unidad.nombre,
 					unidad_abreviatura: meta.parametro.unidad.abreviatura
