@@ -6,6 +6,54 @@ const OrdenServicio   = require('../models/orden_servicio');
 const Bookshelf = require('../commons/bookshelf');
 const vista_reclamos = require ('../collections/vista_reclamos');
 
+function getVistaReclamo(filtros, rango_fecha) {
+	let where = '';
+	for (let filtro in filtros) {
+		if (filtro == 'id_motivo')       where += ' AND mo.' + filtro + '=' + filtros[filtro];
+		if (filtro == 'id_respuesta')    where += ' AND res.' + filtro + '=' + filtros[filtro];
+		if (filtro == 'id_especialidad') where += ' AND serv.' + filtro + '=' + filtros[filtro];
+		if (filtro == 'id_servicio')     where += ' AND serv.' + filtro + '=' + filtros[filtro];
+		if (filtro == 'id_genero')       where += ' AND cli.' + filtro + '=' + filtros[filtro];
+		if (filtro == 'id_estado_civil') where += ' AND cli.' + filtro + '=' + filtros[filtro];
+		if (filtro == 'id_rango_edad')   where += ' AND cli.' + filtro + '=' + filtros[filtro];		
+	}
+	if (rango_fecha.minimo && rango_fecha.maximo) {
+		where += " AND fecha_emision >= '" + rango_fecha.minimo + "' AND fecha_emision <= '" + rango_fecha.maximo + "' ";
+	}
+return "SELECT DISTINCT r.id_reclamo, " +
+"res.aprobado, " +
+"cli.id_usuario, " +
+"(cli.nombres:: text || ' ':: text) || cli.apellidos:: text AS nombre_cliente, " +
+"e.id_empleado, " +
+"(e.nombres:: text || ' ':: text) || e.apellidos:: text AS nombre_empleado, " +
+"s.id_servicio, " +
+"serv.nombre AS nombre_servicio, " +
+"serv.id_especialidad, " +
+"mo.descripcion AS motivo_descripcion, " +
+"mo.id_motivo, " +
+"r.id_respuesta, " +
+"res.descripcion AS respuesta_descripcion, " +
+"r.fecha_creacion, " +
+"cli.id_genero, " +
+"cli.id_estado_civil, " +
+"cli.id_rango_edad " +
+"FROM reclamo r, " +
+"orden_servicio o, " +
+"solicitud_servicio s, " +
+"agenda ag, " +
+"empleado e, " +
+"cliente cli, " +
+"servicio serv, " +
+"motivo mo, " +
+"respuesta res " +
+"WHERE r.id_orden_servicio = o.id_orden_servicio AND o.id_solicitud_servicio = s.id_solicitud_servicio  " +
+"AND s.id_cliente = cli.id_cliente AND s.id_servicio = serv.id_servicio AND r.id_respuesta = res.id_respuesta  " +
+"AND r.id_motivo = mo.id_motivo AND ag.id_orden_servicio = o.id_orden_servicio  " +
+"AND ag.id_empleado = e.id_empleado AND r.id_respuesta IS NOT NULL " +
+where +
+"ORDER BY r.fecha_creacion DESC";
+}
+
 function getReclamos(req, res, next) {
 	Reclamos.query(function (qb) {
 		   qb.where('reclamo.estatus', '=', 1);
@@ -278,7 +326,7 @@ function reporteReclamo(req, res, next) {
 		.then(function(reclamos) {
 			let nuevosReclamos = new Array();
 
-			res.status(200).json({ error: false, data: reclamos, query: queryString.replace(/["]+/g, '') });
+			res.status(200).json({ error: false, data: reclamos, query: getVistaReclamo(filtros, rango_fecha) });
 		})
 		.catch(function(err) {
 			return res.status(500).json({ error: true, data: { mensaje: err.message } });

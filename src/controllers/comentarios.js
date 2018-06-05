@@ -4,6 +4,46 @@ const Comentarios 	= require('../collections/comentarios');
 const Comentario  	= require('../models/comentario');
 const vista_canal_escuchas = require ('../collections/vista_canal_escuchas');
 
+function getVistaComentario(filtros, rango_fecha) {
+		let where = '';
+	for (let filtro in filtros) {
+		if (filtro == 'id_tipo_motivo')  where += ' AND mo.' + filtro + '=' + filtros[filtro];
+		if (filtro == 'id_motivo')       where += ' AND co.' + filtro + '=' + filtros[filtro];
+		if (filtro == 'id_respuesta')    where += ' AND res.' + filtro + '=' + filtros[filtro];
+		if (filtro == 'id_genero')       where += ' AND cli.' + filtro + '=' + filtros[filtro];
+		if (filtro == 'id_estado_civil') where += ' AND cli.' + filtro + '=' + filtros[filtro];
+		if (filtro == 'id_rango_edad')   where += ' AND cli.' + filtro + '=' + filtros[filtro];
+	}
+	if (rango_fecha.minimo && rango_fecha.maximo) {
+		where += " AND fecha_emision >= '" + rango_fecha.minimo + "' AND fecha_emision <= '" + rango_fecha.maximo + "' ";
+	}
+return "SELECT co.id_comentario, " +
+"co.id_cliente, " +
+"(cli.nombres:: text || ' ':: text) || cli.apellidos:: text AS nombre_cliente, " +
+"mo.id_tipo_motivo, " +
+"tm.nombre AS tipo_motivo, " +
+"co.id_motivo, " +
+"mo.descripcion AS motivo_descripcion, " +
+"res.id_respuesta, " +
+"res.descripcion AS respuesta, " +
+"co.mensaje AS respuesta_personalizada, " +
+"co.fecha_creacion, " +
+"cli.id_genero, " +
+"cli.id_rango_edad, " +
+"cli.id_estado_civil, " +
+"ARRAY(SELECT pc.id_parametro " +
+"FROM parametro_cliente pc " +
+"WHERE pc.id_cliente = cli.id_cliente) AS perfil_cliente " +
+"FROM comentario co, " +
+"cliente cli, " +
+"motivo mo, " +
+"tipo_motivo tm, " +
+"respuesta res " +
+"WHERE co.id_cliente = cli.id_cliente AND co.id_motivo = mo.id_motivo  " +
+"AND mo.id_tipo_motivo = tm.id_tipo_motivo AND co.id_respuesta = res.id_respuesta " +
+"ORDER BY co.fecha_creacion DESC";
+}
+
 function getComentarios(req, res, next) {
 	Comentarios.query(function (qb) {
 		   qb.where('comentario.estatus', '=', 1);
@@ -226,7 +266,7 @@ function reporteComentario(req, res, next) {
 		.then(function(comentarios) {
 			let nuevosComentarios = new Array();
 
-			res.status(200).json({ error: false, data: comentarios, query: queryString.replace(/["]+/g, '') });
+			res.status(200).json({ error: false, data: comentarios, query: getVistaComentario(filtros, rango_fecha) });
 		})
 		.catch(function(err) {
 			return res.status(500).json({ error: true, data: { mensaje: err.message } });
