@@ -10,7 +10,7 @@ let TipoValoracion = Bookshelf.Model.extend({
     return this.hasMany('Valoracion', 'id_tipo_valoracion')
       .query(function(qb) {
         qb.where('valoracion.estatus', 1);
-        qb.orderBy('valoracion.valor', 'ASC');
+        qb.orderBy('valoracion.valor', 'DESC');
       });
     }
 });
