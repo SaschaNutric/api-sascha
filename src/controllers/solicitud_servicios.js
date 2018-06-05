@@ -57,7 +57,7 @@ function saveSolicitud_servicio(req, res, next){
 			if(cliente.toJSON().ordenes.length > 0) 
 			return res.status(200).json({
 				error: true,
-				data: { mensaje: 'Cliente ya tiene un servicio activo' }
+				data: { mensaje: 'Cliente ya tiene un servicio activo o concluido pero pendiente por calificar' }
 			})
 			
 			if(req.body.acepto_precio === 'no') {
@@ -375,6 +375,7 @@ function reportServicio(req, res, next) {
 		   	if (rango_fecha.minimo && rango_fecha.maximo)
 				qb.where('fecha_creacion', '>=', rango_fecha.minimo)
 				  .andWhere('fecha_creacion', '<=', rango_fecha.maximo);
+			qb.toStrin
 		})
 		.fetch()
 		.then(function(solicitudes) {
