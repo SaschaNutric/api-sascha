@@ -14,6 +14,7 @@
     "histori:db": "pg_dump saschadb -h localhost -p 5432 -U postgres -F p -b -v -f $PWD/db/saschadb$(date +%s).hsql",
     "backup:db": "npm run histori:db && pg_dump saschadb -h localhost -p 5432 -U postgres -F p -b -f $PWD/db/saschadb.sql",
     "restore:db": "npm run remove:db && npm run create:db && npm run update:db",
+    "backup:db:plain": "heroku run 'pg_dump $DATABASE_URL' > saschadb_heroku.sql",
     "sascha": "bash sascha"
   },
   "dependencies": {
