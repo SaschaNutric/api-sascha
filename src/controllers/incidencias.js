@@ -41,13 +41,14 @@ function getIncidencias(req, res, next) {
 }
 
 function saveIncidencia(req, res, next){
+	/*
 	if (!req.body.id_tipo_incidencia || !req.body.id_motivo
 		|| !req.body.id_cita         || !req.body.id_agenda)
 		return res.status(400).json({
 			error: true,
 			data: { mensaje: 'Petición inválida' }
 		})
-
+	*/
 	Bookshelf.transaction(function(t) {
 		Incidencia.forge({ 
 			id_tipo_incidencia: req.body.id_tipo_incidencia,
